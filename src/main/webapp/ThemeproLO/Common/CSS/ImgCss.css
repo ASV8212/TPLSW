@@ -1,0 +1,89 @@
+
+.dmain { background: url('/ThemePro_LSW/ThemeproLO/Common/Images/DashboardMain.png') no-repeat top left; width: 60px; height: 60px;  } 
+.dmain.Disbursement { background-position: 0 0; } 
+.dmain.ionion-android-people { background-position: 0 -70px; } 
+.dmain.ionion-compose { background-position: 0 -140px; } 
+.dmain.ion-android-attach { background-position: 0 -210px; } 
+.dmain.ion-android-clipboard { background-position: 0 -280px; } 
+.dmain.ion-android-drafts { background-position: 0 -350px; } 
+.dmain.ion-android-folder-open { background-position: 0 -420px; } 
+.dmain.ion-android-laptop { background-position: 0 -490px; } 
+.dmain.ion-android-options { background-position: 0 -560px; } 
+.dmain.ion-android-people { background-position: 0 -630px; height: 50px; } 
+.dmain.ion-arrow-graph-up-right { background-position: 0 -690px; height: 50px; } 
+.dmain.ion-briefcase { background-position: 0 -750px; } 
+.dmain.ion-calendar { background-position: 0 -820px; } 
+.dmain.ion-compose { background-position: 0 -890px; } 
+.dmain.ion-edit { background-position: 0 -960px; } 
+.dmain.ion-ios-color-wand { background-position: 0 -1030px; height: 35px; } 
+.dmain.ion-ios-folder { background-position: 0 -1075px; } 
+.dmain.ion-ios-home-outline { background-position: 0 -1145px; height: 58px; } 
+.dmain.ion-ios-list-outline { background-position: 0 -1213px; } 
+.dmain.ion-ios-loop { background-position: 0 -1283px; height: 50px; } 
+.dmain.ion-ios-people { background-position: 0 -1343px; height: 50px; } 
+.dmain.ion-ios-timer-outline { background-position: 0 -1403px; height: 50px; } 
+.dmain.ion-ios-world-outline { background-position: 0 -1463px; } 
+.dmain.ion-person-add { background-position: 0 -1533px; } 
+.dmain.ion-reporting_icon-outline { background-position: 0 -1603px; height: 50px; } 
+.dmain.ion-soup-can-outline { background-position: 0 -1663px; height: 50px; } 
+
+
+
+
+.dsidebar { background: url('/ThemePro_LSW/ThemeproLO/Common/Images/Dashboard-sidebar.png') no-repeat top left; width: 20px; height: 20px;  } 
+.dsidebar.arrowboth { background-position: 0 0; } 
+.dsidebar.Disbursement-sidebar { background-position: 0 -30px; } 
+.dsidebar.Edit { background-position: 0 -60px; } 
+.dsidebar.file_add { background-position: 0 -90px; } 
+.dsidebar.file_delete { background-position: 0 -120px; } 
+.dsidebar.ionion-android-people-sidebar { background-position: 0 -150px; } 
+.dsidebar.ionion-compose-sidebar { background-position: 0 -180px; } 
+.dsidebar.ion-android-attach-sidebar { background-position: 0 -210px; } 
+.dsidebar.ion-android-clipboard-sidebar { background-position: 0 -240px; } 
+.dsidebar.ion-android-drafts-sidebar { background-position: 0 -270px; } 
+.dsidebar.ion-android-folder-open-sidebar { background-position: 0 -300px; } 
+.dsidebar.ion-android-laptop-sidebar { background-position: 0 -330px; } 
+.dsidebar.ion-android-options-sidebar { background-position: 0 -360px; } 
+.dsidebar.ion-android-people-sidebar { background-position: 0 -390px; } 
+.dsidebar.ion-arrow-graph-up-right-sidebar { background-position: 0 -420px; } 
+.dsidebar.ion-briefcase-sidebar { background-position: 0 -450px; } 
+.dsidebar.ion-calendar-sidebar { background-position: 0 -480px; } 
+.dsidebar.ion-clipboard-sidebar { background-position: 0 -510px; } 
+.dsidebar.ion-compose-sidebar { background-position: 0 -540px; } 
+.dsidebar.ion-edit-sidebar { background-position: 0 -570px; } 
+.dsidebar.ion-ios-color-wand-sidebar { background-position: 0 -600px; } 
+.dsidebar.ion-ios-folder-sidebar { background-position: 0 -630px; } 
+.dsidebar.ion-ios-home-outline-sidebar { background-position: 0 -660px; } 
+.dsidebar.ion-ios-list-outline-sidebar { background-position: 0 -690px; } 
+.dsidebar.ion-ios-loop-sidebar { background-position: 0 -720px; } 
+.dsidebar.ion-ios-people-sidebar { background-position: 0 -750px; } 
+.dsidebar.ion-ios-timer-outline-sidebar { background-position: 0 -780px; } 
+.dsidebar.ion-ios-world-outline-sidebar { background-position: 0 -810px; } 
+.dsidebar.ion-person-add-sidebar { background-position: 0 -840px; } 
+.dsidebar.ion-reporting_icon-outline-sidebar { background-position: 0 -870px; } 
+.dsidebar.ion-soup-can-outline-sidebar { background-position: 0 -900px; } 
+
+
+
+
+.qinbox { background: url('/ThemePro_LSW/ThemeproLO/Common/Images/queue-inbox.png') no-repeat top left; width: 23px; height: 23px;  } 
+.qinbox.Accept1 { background-position: 0 0; } 
+.qinbox.CamPng { background-position: 0 -33px; } 
+.qinbox.forward3 { background-position: 0 -66px; } 
+.qinbox.history3 { background-position: 0 -99px; } 
+.qinbox.LsoGen { background-position: 0 -132px; } 
+.qinbox.review1 { background-position: 0 -165px; } 
+.qinbox.swap-arrows-refresh { background-position: 0 -198px; } 
+
+
+
+.login { background: url('/ThemePro_LSW/ThemeproLO/Common/Images/login-logo.png') no-repeat top left; width: 190px; height: 50px;  } 
+.login.CHFLlogo { background-position: 0 0; } 
+.login.encorethemelogo { background-position: 0 -60px; } 
+
+
+.pageicon { background: url('/ThemePro_LSW/ThemeproLO/Common/Images/pageicon.png') no-repeat top left; width: 27px; height: 27px;  } 
+.pageicon.anger { background-position: 0 0; } 
+.pageicon.cmnt_burned { background-position: 0 -37px; } 
+.pageicon.fileupload { background-position: 0 -74px; } 
+.pageicon.report-icon { background-position: 0 -111px; } 

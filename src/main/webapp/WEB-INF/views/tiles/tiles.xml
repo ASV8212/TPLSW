@@ -1,0 +1,1581 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">  
+
+<tiles-definitions>  
+ 
+   <!-- Base Definition -->
+   <definition name="Salesbase-definition" template="/WEB-INF/views/tiles/layouts/SalesLayout.jsp">  
+       <put-attribute name="title" value="ThemePro LSW - Dashboard" />  
+       <put-attribute name="header" value="/WEB-INF/views/tiles/template/defaultHeader.jsp" />  
+       <put-attribute name="menu" value="/WEB-INF/views/tiles/template/defaultMenu.jsp" />   
+       <put-attribute name="body" value="" />  
+       <put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" />  
+   </definition>  
+   
+   <definition name="Multipage-definition" template="/WEB-INF/views/tiles/layouts/MultiPageLayout.jsp">  
+       <put-attribute name="body" value="" />  
+   </definition>
+ 
+    <definition name="Formsbase-definition" template="/WEB-INF/views/tiles/layouts/FormsLayout.jsp">  
+       <put-attribute name="title" value="ThemePro LSW - Application" />  
+       <put-attribute name="header" value="/WEB-INF/views/tiles/template/defaultHeader.jsp" />  
+       <put-attribute name="menu" value="/WEB-INF/views/tiles/template/defaultMenu.jsp" />   
+       <put-attribute name="ApplHdr" value="" /> 
+       <put-attribute name="ApplTitle" value="" />   
+       <put-attribute name="ApplInfo" value="" />
+       <put-attribute name="ApplTabs" value="" />
+       <put-attribute name="body" value="" />  
+       <put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" />  
+   </definition>  
+ 
+ 
+   <!-- Home Page -->
+   <definition name="Home" extends="Salesbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->  
+       <put-attribute name="body" value="/WEB-INF/views/SalesDashBoard/home.jsp" />  
+   </definition>  
+
+ <!-- My Application Page -->
+<definition name="Module" extends="Salesbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->  
+       <put-attribute name="body" value="/WEB-INF/views/MyApplication/Module.jsp" />  
+   </definition> 
+
+  <!-- My Application Page -->
+<definition name="MyApplication" extends="Salesbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->  
+       <put-attribute name="body" value="/WEB-INF/views/MyApplication/SalesMyApplication.jsp" />  
+   </definition>  
+   
+    <!-- Manage Deferment Page -->
+<definition name="ManageDeferment" extends="Salesbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->  
+       <put-attribute name="body" value="/WEB-INF/views/MyApplication/ManageDeferment.jsp" />  
+   </definition> 
+   
+   <!-- Manage OTC Page -->
+    <definition name="ManageOTC" extends="Salesbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->  
+       <put-attribute name="body" value="/WEB-INF/views/MyApplication/ManageOTC.jsp" />  
+   </definition> 
+   
+    <!-- Manage PDD Page -->
+   <definition name="ManagePDD" extends="Salesbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->  
+       <put-attribute name="body" value="/WEB-INF/views/MyApplication/ManagePDD.jsp" />  
+   </definition> 
+    <!-- Manage Dev Page -->
+   <definition name="ManageDev" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <!-- <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> --> 
+      <!-- <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" /> -->  
+     <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+      <!-- <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" /> --> 
+       <put-attribute name="body" value="/WEB-INF/views/MyApplication/ManageDev.jsp" />  
+   </definition> 
+   <!-- Manage Lead Page -->
+   <definition name="ManageLead" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <!-- <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> -->
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <!-- <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" /> -->
+     <put-attribute name="body" value="/WEB-INF/views/MyApplication/ManageLead.jsp" />  
+   </definition>
+   
+   
+   <definition name="CONFIGURATION" extends="Salesbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->  
+       <put-attribute name="body" value="/WEB-INF/views/MyApplication/CONFIGURATION.jsp" />  
+   </definition>
+<!-- Form Page Attributes -->
+ 
+
+<!-- Form Page Attributes -->
+
+   <!-- Form Page -->
+   
+   <definition name="Applcnt" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+     <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Applcnt/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/CustomerDetails/Applcnt.jsp" />  
+   </definition> 
+   
+      <definition name="CoApplcnt" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+     <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/CoApplcnt/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/CustomerDetails/CoApplcnt.jsp" />  
+   </definition> 
+   
+      <definition name="Guantr" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+     <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Guantr/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/CustomerDetails/Guantr.jsp" />  
+   </definition> 
+   
+   <definition name="LonDtls" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+     <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/LoanProperty/LonDtls.jsp" />  
+   </definition> 
+   
+     <definition name="PropDtls" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+     <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/LoanProperty/PropDtls.jsp" />  
+   </definition> 
+   
+     <definition name="RefDtls" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+     <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/LoanProperty/RefDtls.jsp" />  
+   </definition> 
+
+     <definition name="PFDtls" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+    <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/PFBank/PFDtls.jsp" />  
+   </definition> 
+
+
+     <definition name="BnkDtls" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/PFBank/BnkDtls.jsp" />  
+   </definition> 
+   
+   <definition name="FinDtls" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/PFBank/FinDtls.jsp" />  
+   </definition> 
+   
+
+     <definition name="DocDtls" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+     <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/DocCheckList/DocDtls.jsp" />  
+   </definition> 
+
+   <definition name="DefrMnt" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+     <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/DocCheckList/DefrMnt.jsp" />  
+   </definition>
+   
+    <definition name="FileCheck" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+     <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/DocCheckList/FileCheck.jsp" />  
+   </definition> 
+
+  <!-- View Report Start -->
+  
+   <definition name="ViewRpts" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/ViewReports/ViewRpts.jsp" />  
+   </definition> 
+   
+   <definition name="TechIPropeInfo" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/ViewReports/TechIPropeInfo.jsp" />  
+   </definition>
+   
+    <definition name="UCVVehicleDetl" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/ViewReports/UCVVehicleDetl.jsp" />  
+   </definition>
+   
+   <definition name="TechIIPropeInfo" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/ViewReports/TechIIPropeInfo.jsp" />  
+   </definition>
+   
+   <definition name="LegalDetails" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/ViewReports/LegalDetails.jsp" />  
+   </definition>
+   
+   <definition name="FIResidenceInfo" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/ViewReports/FIResidenceInfo.jsp" />  
+   </definition>
+	
+	<definition name="FIEmployementInfo" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/ViewReports/FIEmployementInfo.jsp" />  
+   </definition>
+   
+   <definition name="LegalUpdateReport" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/ViewReports/LegalUpdateReport.jsp" />  
+   </definition>
+   
+   <definition name="VdrRCU" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/ViewReports/VdrRCU.jsp" />  
+   </definition>
+   
+   <definition name="IRCU" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/ViewReports/IRCU.jsp" />  
+   </definition>
+   
+   
+   <!-- View Report End -->
+   
+   <!-- Financial Start-->
+   
+     <definition name="BorowClass" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/Financials/BorowClass.jsp" />  
+   </definition>
+   
+   <definition name="Viability" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/Financials/Viability.jsp" />  
+   </definition>
+
+   <definition name="Sales" extends="Formsbase-definition">  
+    <!--<put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/Financials/Sales.jsp" />  
+   </definition>
+   
+  
+   
+   <definition name="ScoreCard" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/Financials/ScoreCard.jsp" />  
+   </definition>
+   
+   <definition name="UCVScoreCard" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV//Financials/UCVScoreCard.jsp" />  
+   </definition>
+   
+   
+   <definition name="ExstLon" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/Financials/ExstLon.jsp" />  
+   </definition>
+   
+   <definition name="FincBnk" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/Financials/FincBnk.jsp" />  
+   </definition>
+   
+   <definition name="CAMElig" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/Financials/CAMElig.jsp" />  
+   </definition>
+   
+   <definition name="Margin" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/Financials/Margin.jsp" />  
+   </definition>
+   
+   <!-- New TVS Page Start-->
+   
+   <definition name="AllianceTMI" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/AllianceTMI.jsp" />  
+   </definition>
+   <definition name="AllianceTMII" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/AllianceTMII.jsp" />  
+   </definition>
+   <definition name="AllianceTMF" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/AllianceTMF.jsp" />  
+   </definition>
+   <definition name="AllianceTMG" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/AllianceTMG.jsp" />  
+   </definition>
+   <definition name="AllianceUMAP" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/AllianceUMAP.jsp" />  
+   </definition>
+   <definition name="AllianceUMPP" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/AllianceUMPP.jsp" />  
+   </definition> 
+   <definition name="AllianceMA" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/AllianceMA.jsp" />  
+   </definition>
+   
+   <definition name="AllianceTMPG" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/AllianceTMPG.jsp" />  
+   </definition>
+   
+   <definition name="AlliancePG" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/AlliancePG.jsp" />  
+   </definition>
+   
+   <definition name="RTR" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/RTR.jsp" />  
+   </definition>
+   
+    <definition name="ABBII" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/ABBII.jsp" />  
+   </definition>
+   
+    <definition name="ABB" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/Financials/ABB.jsp" />  
+   </definition>
+
+   <definition name="FOIRITR" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/FOIRITR.jsp" />  
+   </definition>
+   
+  <definition name="FOIRGST" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/FOIRGST.jsp" />  
+  </definition>
+   
+   <!--   
+   <definition name="Margin" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/Margin.jsp" />  
+   </definition>-->
+   
+   <definition name="LowLTV" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/LowLTV.jsp" />  
+   </definition>
+   
+   <definition name="CashFlow" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/CashFlow.jsp" />  
+   </definition>
+   
+   <definition name="AssetCreation" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/AssetCreation.jsp" />  
+   </definition>
+   
+    <definition name="ITRBased" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/ITRBased.jsp" />  
+   </definition>
+   
+     <definition name="GSTBased" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/GSTBased.jsp" />  
+   </definition>
+   
+   <definition name="BnkBased" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/BnkBased.jsp" />  
+   </definition>
+   
+    <definition name="ABBUBL" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/ABBUBL.jsp" />  
+   </definition>
+   
+   <definition name="TakOvrUBL" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/TakOvrUBL.jsp" />  
+   </definition>
+   
+   <definition name="CasFlowUBL" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/CasFlowUBL.jsp" />  
+   </definition>
+   
+   <definition name="STML" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/STML.jsp" />  
+   </definition>
+   
+   <definition name="WcLimit" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/WcLimit.jsp" />  
+   </definition>
+   
+   <definition name="TakOvrFinc" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/TakOvrFinc.jsp" />  
+   </definition>
+   
+   <definition name="TakOvrGST" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/TakOvrGST.jsp" />  
+   </definition>
+     <!-- New TVS Page End-->
+	 
+   <definition name="AtomRes" extends="Formsbase-definition">  
+       <put-attribute name="body" value="/WEB-INF/views/Interface/AtomRes.jsp" />  
+   </definition>
+   
+   
+   <definition name="BankingPage" extends="Formsbase-definition">  
+       <put-attribute name="body" value="/WEB-INF/views/Interface/BankingPage.jsp" />  
+   </definition>
+   
+   <definition name="FinancialPage" extends="Formsbase-definition">  
+       <put-attribute name="body" value="/WEB-INF/views/Interface/FinancialPage.jsp" />  
+   </definition>
+   
+   <definition name="BankUploadTrans" extends="Formsbase-definition">  
+       <put-attribute name="body" value="/WEB-INF/views/Interface/BankUploadTrans.jsp" />  
+   </definition>
+   
+   <definition name="GSTAnalysisRes" extends="Formsbase-definition">  
+       <put-attribute name="body" value="/WEB-INF/views/Interface/GSTAnalysisRes.jsp" />  
+   </definition>
+   
+   <definition name="NetBankingRes" extends="Formsbase-definition">  
+       <put-attribute name="body" value="/WEB-INF/views/Interface/NetBankingRes.jsp" />  
+   </definition>
+   
+    <definition name="UCVManuFlow" extends="Multipage-definition">  
+        <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVManuFlow.jsp" />  
+   </definition>
+	 
+   <definition name="PropVal" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/Financials/PropVal.jsp" />  
+   </definition>
+   
+   <definition name="Fincs" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/Financials/Fincs.jsp" />  
+   </definition>
+   
+   <definition name="FincRto" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/Financials/FincRto.jsp" />  
+   </definition>
+ 
+ <!-- Financial End-->
+
+<!-- Approve End-->
+ <definition name="Waiver" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/Approve/Waiver.jsp" />  
+   </definition>
+   
+   <definition name="Empwr" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/Approve/Empwr.jsp" />  
+   </definition>
+   
+   <definition name="PdDt" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/Approve/PdDt.jsp" />  
+   </definition>
+   
+   <definition name="ApprlNt" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/Approve/ApprlNt.jsp" />  
+   </definition>
+   
+   <definition name="BusinessDetl" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/Approve/BusinessDetl.jsp" />  
+   </definition>
+   
+   <definition name="Chgr" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/Approve/Chgr.jsp" />  
+   </definition>
+   
+   <definition name="ENach" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/Approve/ENach.jsp" />  
+   </definition>
+   
+    <definition name="CrsSel" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/Approve/CrsSel.jsp" />  
+   </definition>
+   
+   <definition name="Enquiry" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <!--<put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />--> 
+	 <put-attribute name="Config" value="/WEB-INF/views/Forms/Config.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />-->
+     <put-attribute name="body" value="/WEB-INF/views/Enquiry/Enquiry.jsp" />  
+   </definition>
+   
+   <definition name="CrsSelProp" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/Approve/CrsSelProp.jsp" />  
+   </definition>
+ <!-- Approve End-->
+ 
+   <definition name="Appr" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/Approve/Appr.jsp" />  
+   </definition>
+ 
+ <!-- Post Sanction Start -->
+ <definition name="Disbrsmnt" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/PostSanction/Disbrsmnt.jsp" />  
+   </definition>
+   
+   <definition name="OpsAck" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/PostSanction/OpsAck.jsp" />  
+   </definition>
+   
+   <definition name="OTC" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/PostSanction/OTC.jsp" />  
+   </definition>
+   
+   <definition name="PDD" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/PostSanction/PDD.jsp" />  
+   </definition>
+   
+   <definition name="DisbMemo" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/PostSanction/DisbMemo.jsp" />  
+   </definition>
+   
+   <definition name="RePay" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/PostSanction/RePay.jsp" />  
+   </definition>
+  
+  <definition name="InsrncUpld" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/PostSanction/InsrncUpld.jsp" />  
+   </definition>
+   
+     <definition name="DocUpload" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/PostSanction/DocUpload.jsp" />  
+   </definition>
+   
+ <!-- Post Sanction End -->
+  
+   <!--  Dedupe   -->
+    <definition name="Dedupe" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/ViewReports/Dedupe.jsp" />  
+   </definition>
+   
+   
+    <definition name="Repts" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/ViewReports/Repts.jsp" />  
+   </definition>
+   
+      <definition name="Cibil" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/ViewReports/Cibil.jsp" />  
+   </definition>
+
+   <!-- Dedupe End -->
+  
+   <!-- Manage Query Page -->
+	<definition name="MnagQuery" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+      <put-attribute name="body" value="/WEB-INF/views/ManageQuery/MnagQuery.jsp" />  
+   </definition>
+  
+  
+  
+  <definition name="IFSCMaster" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <!--<put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />--> 
+	 <put-attribute name="Config" value="/WEB-INF/views/Forms/Config.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />-->
+     <put-attribute name="body" value="/WEB-INF/views/CommonPage/IFSCMaster.jsp" />  
+   </definition>
+   
+   <definition name="PINMaster" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+    <!-- <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> --> 
+	 <put-attribute name="Config" value="/WEB-INF/views/Forms/Config.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/CommonPage/PINMaster.jsp" />  
+   </definition>
+  
+   <!-- Manage Query Search Page -->
+    <definition name="MnagQuerySrch" extends="Salesbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->  
+        <put-attribute name="body" value="/WEB-INF/views/ManageQuery/MnagQuerySrch.jsp" />  
+   </definition> 
+   
+   <definition name="DirDepartment" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="Config" value="/WEB-INF/views/Forms/Config.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />-->
+     <put-attribute name="body" value="/WEB-INF/views/CommonPage/DirDepartment.jsp" />  
+   </definition>
+   
+     <definition name="DirDepartmentMST" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="Config" value="/WEB-INF/views/Forms/Config.jsp" />  
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />-->
+     <put-attribute name="body" value="/WEB-INF/views/CommonPage/DirDepartmentMST.jsp" />  
+   </definition>
+   
+     
+    <definition name="Vendorcreation" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+    <put-attribute name="Config" value="/WEB-INF/views/Forms/Config.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />-->
+     <put-attribute name="body" value="/WEB-INF/views/CommonPage/Vendorcreation.jsp" />  
+   </definition>
+   
+   <definition name="VendorMST" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="Config" value="/WEB-INF/views/Forms/Config.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />-->
+     <put-attribute name="body" value="/WEB-INF/views/CommonPage/VendorMST.jsp" />  
+   </definition>
+ 
+ 
+ 
+ <definition name="RoleMST" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+   <put-attribute name="Config" value="/WEB-INF/views/Forms/Config.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />-->
+     <put-attribute name="body" value="/WEB-INF/views/CommonPage/RoleMST.jsp" />  
+   </definition>
+ 
+  <definition name="Rolecreation" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="Config" value="/WEB-INF/views/Forms/Config.jsp" />  
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />-->
+     <put-attribute name="body" value="/WEB-INF/views/CommonPage/Rolecreation.jsp" />  
+   </definition>
+ 
+   <definition name="DirUserMST" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <!--<put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> -->
+	  <put-attribute name="Config" value="/WEB-INF/views/Forms/Config.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />-->
+     <put-attribute name="body" value="/WEB-INF/views/CommonPage/DirUserMST.jsp" />  
+   </definition>
+   
+    <definition name="diruser" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+    <!-- <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> -->
+	 <put-attribute name="Config" value="/WEB-INF/views/Forms/Config.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />-->
+     <put-attribute name="body" value="/WEB-INF/views/CommonPage/diruser.jsp" />  
+   </definition>
+   
+     <definition name="GECLCklst" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/Approve/GECLCklst.jsp" />  
+   </definition>
+   
+     <definition name="CersaiDownload" extends="Formsbase-definition">  
+    <put-attribute name="Config" value="/WEB-INF/views/Forms/Config.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" /> 
+     <put-attribute name="body" value="/WEB-INF/views/CommonPage/CersaiDownload.jsp" />  
+   </definition>
+   
+    <definition name="MonthRpt" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+    <!-- <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> -->
+	 <put-attribute name="Config" value="/WEB-INF/views/Forms/Config.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />-->
+     <put-attribute name="body" value="/WEB-INF/views/CommonPage/MonthRpt.jsp" />  
+   </definition>
+   
+   
+   
+   <!-- UCV Form Page  Start-->
+   
+   <definition name="UCVApplcnt" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+     <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Applcnt/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/CustomerDetails/UCVApplcnt.jsp" />  
+   </definition> 
+   
+   <definition name="UCVCoApplcnt" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+     <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/CoApplcnt/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/CustomerDetails/UCVCoApplcnt.jsp" />  
+   </definition> 
+   
+      <definition name="UCVGuantr" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+     <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Guantr/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/CustomerDetails/UCVGuantr.jsp" />  
+   </definition> 
+   
+   <definition name="UCVLonDtls" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+     <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/LoanProperty/UCVLonDtls.jsp" />  
+   </definition> 
+   
+     <definition name="UCVPropDtls" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+     <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/LoanProperty/UCVPropDtls.jsp" />  
+   </definition> 
+   
+     <definition name="UCVRefDtls" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+     <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/LoanProperty/UCVRefDtls.jsp" />  
+   </definition> 
+
+     <definition name="UCVPFDtls" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+    <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/PFBank/UCVPFDtls.jsp" />  
+   </definition> 
+
+
+     <definition name="UCVBnkDtls" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/PFBank/UCVBnkDtls.jsp" />  
+   </definition> 
+   
+   <definition name="UCVFinDtls" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/PFBank/UCVFinDtls.jsp" />  
+   </definition> 
+   
+
+     <definition name="UCVDocDtls" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+     <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/DocCheckList/UCVDocDtls.jsp" />  
+   </definition> 
+
+   <definition name="UCVDefrMnt" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+     <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/DocCheckList/UCVDefrMnt.jsp" />  
+   </definition>
+   
+    <definition name="UCVFileCheck" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+     <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/DocCheckList/UCVFileCheck.jsp" />  
+   </definition> 
+
+  <!-- View Report Start -->
+  
+   <definition name="UCVViewRpts" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/ViewReports/UCVViewRpts.jsp" />  
+   </definition> 
+   
+   <definition name="UCVTechIPropeInfo" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/ViewReports/UCVTechIPropeInfo.jsp" />  
+   </definition>
+   
+   <definition name="UCVTechIIPropeInfo" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/ViewReports/UCVTechIIPropeInfo.jsp" />  
+   </definition>
+   
+   <definition name="UCVLegalDetails" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/ViewReports/UCVLegalDetails.jsp" />  
+   </definition>
+   
+   <definition name="UCVFIResidenceInfo" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/ViewReports/UCVFIResidenceInfo.jsp" />  
+   </definition>
+	
+	<definition name="UCVFIEmployementInfo" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/ViewReports/UCVFIEmployementInfo.jsp" />  
+   </definition>
+   
+   <definition name="UCVLegalUpdateReport" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/ViewReports/UCVLegalUpdateReport.jsp" />  
+   </definition>
+   
+   <definition name="UCVVdrRCU" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/ViewReports/UCVVdrRCU.jsp" />  
+   </definition>
+   
+   <definition name="UCVIRCU" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/ViewReports/UCVIRCU.jsp" />  
+   </definition>
+   
+   
+   <!-- View Report End -->
+   
+   <!-- Financial Start-->
+   
+     <definition name="UCVBorowClass" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVBorowClass.jsp" />  
+   </definition>
+   
+   <definition name="UCVViability" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVViability.jsp" />  
+   </definition>
+
+   <definition name="UCVSales" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVSales.jsp" />  
+   </definition>
+   
+   <definition name="UCVScoreCard" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVScoreCard.jsp" />  
+   </definition>
+   
+   
+   <definition name="UCVExstLon" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVExstLon.jsp" />  
+   </definition>
+   
+   <definition name="UCVFincBnk" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVFincBnk.jsp" />  
+   </definition>
+   
+   <definition name="UCVCAMElig" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVCAMElig.jsp" />  
+   </definition>
+   
+   <definition name="UCVMargin" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVMargin.jsp" />  
+   </definition>
+   
+   <!-- New TVS Page Start-->
+   
+   <definition name="UCVAllianceTMI" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVAllianceTMI.jsp" />  
+   </definition>
+   <definition name="UCVAllianceTMII" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVAllianceTMII.jsp" />  
+   </definition>
+   <definition name="UCVAllianceTMF" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVAllianceTMF.jsp" />  
+   </definition>
+   <definition name="UCVAllianceTMG" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVAllianceTMG.jsp" />  
+   </definition>
+   <definition name="UCVAllianceUMAP" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVAllianceUMAP.jsp" />  
+   </definition>
+   <definition name="UCVAllianceUMPP" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVAllianceUMPP.jsp" />  
+   </definition> 
+   <definition name="UCVAllianceMA" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVAllianceMA.jsp" />  
+   </definition>
+   
+   <definition name="UCVRTR" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVRTR.jsp" />  
+   </definition>
+   
+    <definition name="UCVABBII" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVABBII.jsp" />  
+   </definition>
+   
+    <definition name="UCVABB" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVABB.jsp" />  
+   </definition>
+
+   <definition name="UCVFOIRITR" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVFOIRITR.jsp" />  
+   </definition>
+   
+  <definition name="UCVFOIRGST" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVFOIRGST.jsp" />  
+  </definition>
+   
+   <!--   
+   <definition name="Margin" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/Margin.jsp" />  
+   </definition>-->
+   
+   <definition name="UCVLowLTV" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVLowLTV.jsp" />  
+   </definition>
+   
+   <definition name="UCVCashFlow" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVCashFlow.jsp" />  
+   </definition>
+   
+   <definition name="UCVAssetCreation" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVAssetCreation.jsp" />  
+   </definition>
+   
+    <definition name="UCVITRBased" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVITRBased.jsp" />  
+   </definition>
+   
+     <definition name="UCVGSTBased" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVGSTBased.jsp" />  
+   </definition>
+   
+   <definition name="UCVBnkBased" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVBnkBased.jsp" />  
+   </definition>
+   
+    <definition name="UCVABBUBL" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVABBUBL.jsp" />  
+   </definition>
+   
+     <definition name="UCVTakOvrUBL" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVTakOvrUBL.jsp" />  
+   </definition>
+   
+   <definition name="UCVCasFlowUBL" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVCasFlowUBL.jsp" />  
+   </definition>
+   
+   <definition name="UCVSTML" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVSTML.jsp" />  
+   </definition>
+   
+   <definition name="UCVWcLimit" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVWcLimit.jsp" />  
+   </definition>
+   
+   <definition name="UCVTakOvrFinc" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVTakOvrFinc.jsp" />  
+   </definition>
+   
+   <definition name="UCVTakOvrGST" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVTakOvrGST.jsp" />  
+   </definition>
+   
+    <definition name="UCVTERMLOAN" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVTERMLOAN.jsp" />  
+   </definition>
+   
+   <definition name="UCVOD" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVOD.jsp" />  
+   </definition>
+   
+     <!-- New TVS Page End-->
+	 
+   <definition name="UCVPropVal" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVPropVal.jsp" />  
+   </definition>
+   
+   <definition name="UCVFincs" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVFincs.jsp" />  
+   </definition>
+   
+   <definition name="UCVFincRto" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVFincRto.jsp" />  
+   </definition>
+   
+   <definition name="UCVFleetDetl" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVFleetDetl.jsp" />  
+   </definition>
+   
+   <definition name="UCVAgeOfAsset" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVAgeOfAsset.jsp" />  
+   </definition>
+
+   <definition name="UCVExposure" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVExposure.jsp" />  
+   </definition>
+ <!-- Financial End-->
+
+<!-- Approve End-->
+ <definition name="UCVWaiver" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Approve/UCVWaiver.jsp" />  
+   </definition>
+   
+   <definition name="UCVEmpwr" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Approve/UCVEmpwr.jsp" />  
+   </definition>
+   
+   <definition name="UCVPdDt" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Approve/UCVPdDt.jsp" />  
+   </definition>
+   
+   <definition name="UCVApprlNt" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Approve/UCVApprlNt.jsp" />  
+   </definition>
+   
+   <definition name="UCVBusinessDetl" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Approve/UCVBusinessDetl.jsp" />  
+   </definition>
+   
+   <definition name="UCVChgr" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Approve/UCVChgr.jsp" />  
+   </definition>
+   
+   <definition name="UCVENach" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Approve/UCVENach.jsp" />  
+   </definition>
+   
+    <definition name="UCVCrsSel" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Approve/UCVCrsSel.jsp" />  
+   </definition>
+
+   
+   <definition name="UCVCrsSelProp" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Approve/UCVCrsSelProp.jsp" />  
+   </definition>
+ <!-- Approve End-->
+ 
+   <definition name="UCVAppr" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Approve/UCVAppr.jsp" />  
+   </definition>
+ 
+ <!-- Post Sanction Start -->
+ <definition name="UCVDisbrsmnt" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/PostSanction/UCVDisbrsmnt.jsp" />  
+   </definition>
+   
+   <definition name="UCVOpsAck" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/PostSanction/UCVOpsAck.jsp" />  
+   </definition>
+   
+   <definition name="UCVOTC" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/PostSanction/UCVOTC.jsp" />  
+   </definition>
+   
+   <definition name="UCVPDD" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/PostSanction/UCVPDD.jsp" />  
+   </definition>
+   
+   <definition name="UCVDisbMemo" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/PostSanction/UCVDisbMemo.jsp" />  
+   </definition>
+   
+   <definition name="UCVRePay" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/PostSanction/UCVRePay.jsp" />  
+   </definition>
+  
+  <definition name="UCVInsrncUpld" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/PostSanction/UCVInsrncUpld.jsp" />  
+   </definition>
+   
+     <definition name="UCVDocUpload" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" />
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/PostSanction/UCVDocUpload.jsp" />  
+   </definition>
+   
+ <!-- Post Sanction End -->
+  
+   <!--  Dedupe   -->
+    <definition name="UCVDedupe" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/ViewReports/UCVDedupe.jsp" />  
+   </definition>
+   
+   
+    <definition name="UCVRepts" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/ViewReports/UCVRepts.jsp" />  
+   </definition>
+   
+      <definition name="UCVCibil" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/UCV/ViewReports/UCVCibil.jsp" />  
+   </definition>
+
+   <!-- Dedupe End -->
+  
+   <!-- Manage Query Page -->
+	<definition name="UCVMnagQuery" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+      <put-attribute name="body" value="/WEB-INF/views/UCV/ManageQuery/UCVMnagQuery.jsp" />  
+   </definition>
+  
+   <!-- Manage Query Search Page -->
+    <definition name="UCVMnagQuerySrch" extends="Salesbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->  
+        <put-attribute name="body" value="/WEB-INF/views/UCV/ManageQuery/UCVMnagQuerySrch.jsp" />  
+   </definition> 
+   <!-- UCV Form Page End -->
+   
+    <definition name="Profile" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <!--<put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> -->
+	  <put-attribute name="Config" value="/WEB-INF/views/Forms/Config.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />-->
+     <put-attribute name="body" value="/WEB-INF/views/Profile/Profile.jsp" />  
+   </definition>
+   
+   
+   
+</tiles-definitions>

@@ -1,0 +1,33 @@
+.wrap{
+    width: 800px;
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    height: 450px;
+	border: 2px solid orange;
+	 box-shadow: 0 3px 3px rgba(0,0,0,.3);
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    background: #ebeeef;
+}
+.form-section-title  span{
+    text-align: center;
+	background:orange;
+}
+#BTNGenRport:hover { 
+    width:60px !important;
+	height:60px !important;
+}

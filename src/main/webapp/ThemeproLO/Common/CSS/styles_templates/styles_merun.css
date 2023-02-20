@@ -1,0 +1,404 @@
+
+	
+ .ui-dialog-grid {
+
+	width:360px;
+	height: auto;
+	padding:8px;
+
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b7deed+0,71ceef+91,21b4e2+99,b7deed+100 */
+/*background: #b7deed; /* Old browsers */
+
+/*background: -moz-linear-gradient(top,  #b7deed 0%, #71ceef 91%, #21b4e2 99%, #b7deed 100%); /* FF3.6-15 */
+/*background: -webkit-linear-gradient(top,  #b7deed 0%,#71ceef 91%,#21b4e2 99%,#b7deed 100%); /* Chrome10-25,Safari5.1-6 */
+/*background: linear-gradient(to bottom,  #b7deed 0%,#71ceef 91%,#21b4e2 99%,#b7deed 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b7deed', endColorstr='#b7deed',GradientType=0 ); /* IE6-9 */
+
+	-webkit-border-radius:8px;
+	-moz-border-radius:8px;
+	border-radius:8px;
+
+
+}
+
+
+
+
+
+.button {
+	width:138px;
+	height:33px;
+
+	font-size:13px;
+	font-weight:bold;
+	line-height:33px;
+
+	color:#fff;
+	text-shadow:0px 1px 0px rgba(0,0,0,.2);
+
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	border-radius:3px;
+
+	-webkit-box-shadow:
+		inset 0px 1px 0px rgba(255,255,255,.5),
+		0px 1px 2px rgba(0,0,0,.3);
+	-moz-box-shadow:
+		inset 0px 1px 0px rgba(255,255,255,.5),
+		0px 1px 2px rgba(0,0,0,.3);
+	box-shadow:
+		inset 0px 1px 0px rgba(255,255,255,.5),
+		0px 1px 2px rgba(0,0,0,.3);
+
+	float:left;
+}
+.button img { 
+	float:left;
+	width:33px;
+	height:33px;
+}
+
+
+
+ 
+.uploadfile {
+    background: #0986A3 url("ThemeproLO/Common/Images/up.png") no-repeat 10px;
+    padding: 10px 15px 10px 30px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin-top: 10px;
+}
+.viewattach
+{
+	
+	background: #0986A3 url("ThemeproLO/Common/Images/SEO-icon.png") no-repeat 10px ;
+	 padding: 10px 15px 10px 30px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin-top: 10px;
+}
+.deleteattach
+{
+	background: #0986A3 url("ThemeproLO/Common/Images/delete-file-icon.png") no-repeat 10px;
+	 padding: 10px 15px 10px 30px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin-top: 10px;
+}
+.downloadattach
+{
+	background: #0986A3 url("ThemeproLO/Common/Images/Downloads 2.png") no-repeat 10px;
+	 padding: 10px 15px 10px 30px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin-top: 10px;
+}
+.detailattach
+{
+	background: #0986A3 url("ThemeproLO/Common/Images/View-Detail.png") no-repeat 10px;
+	 padding: 10px 15px 10px 30px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin-top: 10px;
+}
+ .saveattach{
+ background: #0986A3 url("ThemeproLO/Common/Images/save-as-icon.png") no-repeat 10px;
+	 padding: 10px 15px 10px 30px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin-top: 10px;
+ }
+.cancelattach{
+	background: #0986A3 url("ThemeproLO/Common/Images/View-Detail.png") no-repeat 10px;
+	 padding: 10px 15px 10px 30px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin-top: 10px;
+}
+.uploadfile:hover {background-color: #e35a44;}
+.viewattach:hover {background-color: #e35a44;}
+.deleteattach:hover {background-color: #e35a44;}
+.downloadattach:hover {background-color: #e35a44;}
+.detailattach:hover {background-color: #e35a44;}
+.saveattach:hover {background-color: #e35a44;}
+.cancelattach:hover {background-color: #e35a44;}
+
+.fileuplscroll{
+	style: width: 1100px; height: 500px;overflow-y: scroll; overflow-x:hidden;
+}
+ 
+.myOtherTable { background-color:#FFFFFF;
+/*border-collapse:collapse;*/
+color:#000;
+font-size:15px; }
+.myOtherTable th { background-color:#C0504D;color:white;width:40%; }
+/*.myOtherTable td, .myOtherTable th { padding:5px;border:0; }
+.myOtherTable td { border-bottom:1px dotted #BDB76B; }*/
+ 
+ 
+.formbox1 {
+  width: 100%;
+    height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  
+}
+.formbox2 {
+  width: 100%;
+    height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+
+.uploadfile {
+    background: #e35a44 url("ThemeproLO/Common/Images/up.png") no-repeat 22px;
+    padding: 10px 15px 10px 30px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-top: 10px;
+     height:30px;
+    width:120px;
+}
+.viewattach
+{
+	
+	background: #e35a44 url("ThemeproLO/Common/Images/SEO-icon.png") no-repeat 30px ;
+	 padding: 10px 15px 10px 30px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-top: 10px;
+     height:30px;
+    width:120px;
+}
+.deleteattach
+{
+	background: #e35a44 url("ThemeproLO/Common/Images/delete-file-icon.png") no-repeat 24px;
+	 padding: 10px 15px 10px 30px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-top: 10px;
+     height:30px;
+    width:120px;
+}
+.downloadattach
+{
+	background: #e35a44 url("ThemeproLO/Common/Images/Downloads 2.png") no-repeat 14px;
+	 padding: 10px 15px 10px 30px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-top: 10px;
+     height:30px;
+    width:120px;
+}
+.detailattach
+{
+	background: #e35a44 url("ThemeproLO/Common/Images/View-Detail.png") no-repeat 21px;
+	 padding: 10px 15px 10px 30px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-top: 10px;
+     height:30px;
+    width:120px;
+}
+ .saveattach{
+ background: #e35a44 url("ThemeproLO/Common/Images/save-as-icon.png") no-repeat 30px;
+	 padding: 10px 15px 10px 30px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-top: 10px;
+     height:30px;
+    width:120px;
+ }
+.cancelattach{
+	background: #e35a44 url("ThemeproLO/Common/Images/document-close.png") no-repeat 24px;
+	 padding: 10px 15px 10px 30px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-top: 10px;
+     height:30px;
+    width:120px;
+}
+.uploadfile:hover {background-color: #0986A3;}
+.viewattach:hover {background-color: #0986A3;}
+.deleteattach:hover {background-color: #0986A3;}
+.downloadattach:hover {background-color: #0986A3;}
+.detailattach:hover {background-color: #0986A3;}
+.saveattach:hover {background-color: #0986A3;}
+.cancelattach:hover {background-color: #0986A3;}
+ 
+ .myattchTable th { 
+ background-color:#C0504D;
+ color:#fff;
+ 
+  }
+ 
+ 
+.myOtherTable tbody tr{ 
+background-color:#e6e6e6;  color:#000;
+font-size:15px; }
+
+ 
+
+.statuediv {
+  position: fixed;
+  bottom: -12px;
+  }
+
+.table-container 
+{
+    height: 10em;
+}
+ 
+#fileupload thead{
+    /* head takes the height it requires, 
+    and it's not scaled when table is resized */
+    
+     color:#fff;
+    flex: 0 0 auto;
+    width: calc(100% - 0em);
+}
+#fileupload tbody {
+    /* body takes all the remaining available space  flex: 1 1 auto;*/
+     width: 100%;     
+    height: 240px;  
+    overflow-y: auto;
+    overflow-x: hidden; 
+    display: inline-block;    
+} 
+#fileupload tbody tr {
+	 	
+	display: block;
+    width: 99.6%;
+}
+
+#fileupload thead, #fileupload tbody tr {
+    display: table;
+    postion:fixed;
+    table-layout: fixed;
+}
+.vertical_dotted_line1
+{  
+   /* border-right: 1px dotted black;
+    height: 400px;   */     
+} 
+
+
+
+.vertical_dotted_line {
+ content:"";
+position: absolute;
+left: 105%;
+top:-20%;
+height: 245px;
+border-left: 1px dotted black;
+}
+
+.form-attch-title span {
+    padding: 10px;
+    width: 1366px;
+    margin-bottom: 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    background: #488AC7;
+    color: white;
+    display: block;
+}
+
+ #tabledata thead{
+    /* head takes the height it requires, 
+    and it's not scaled when table is resized */
+   
+    color:#fff;
+    flex: 0 0 auto;
+    width: calc(100% - 0em);
+}
+ 
+ 
+#tabledata tbody {
+    /* body takes all the remaining available space  flex: 1 1 auto;*/
+    width:100%; 
+    height: 245px;  
+    overflow-y: auto;
+    overflow-x: hidden; 
+    display: inline-block;    
+} 
+ #tabledata tbody tr { 	
+	display: block;
+    width: 99.6%;
+}
+
+#tabledata thead, #tabledata tbody tr {
+    display: table;
+    postion:fixed;
+    table-layout: fixed;
+}
+ 
+ 
+  
+ #fileupload tbody tr:nth-child(odd)		{ background-color:#ffd0c2; }
+#fileupload tbody tr:nth-child(even)		{ background-color:#fff0eb; }
+
+#tabledata tbody tr:nth-child(odd)		{ background-color:#ffd0c2; }
+#tabledata tbody tr:nth-child(even)		{ background-color:#fff0eb; }
+
+
