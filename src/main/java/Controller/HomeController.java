@@ -13277,7 +13277,8 @@ public class HomeController {
 			     String retval = getdata.EsignLegalityService1(Input1,Input2,Input3,Encoded1,ServiceType);
 		     return retval;
 			   }
-	// Namesthy Start
+/*
+			  // Namesthy Start
 			    @RequestMapping(value = {"/NamastheAPICall"}, method = {RequestMethod.POST})
 				@ResponseBody
 				public String NamastheAPICall(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
@@ -13300,4 +13301,6 @@ public class HomeController {
 				    return retval;
 				  }	 
 		// End	
+		 *
+*/
 }
