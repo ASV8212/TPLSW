@@ -14,15 +14,12 @@ import com.squareup.okhttp.TlsVersion;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -70,9 +67,7 @@ public class MTotalKyc {
     String APiURL = "";
     String Tokan="";
     String Message="";
-    String Chiper="";
-    int Status=503;
-    String statuscode="";
+    
     try {
       Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
       
@@ -97,8 +92,8 @@ public class MTotalKyc {
         processId = results.getString(5);
       } 
       
-   //   Data_LOG = GetDBData.Call(Reqxml,apitype, APiURL, processId,"INSERT","LSW_SKYCIntegrationLog");
-     // Tokan = Data_LOG.get(0);
+      Data_LOG = GetDBData.Call(Reqxml,apitype, APiURL, processId,"INSERT","LSW_SKYCIntegrationLog");
+      Tokan = Data_LOG.get(0);
        
 
       ConnectionSpec spec = new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS) 
@@ -111,8 +106,6 @@ public class MTotalKyc {
     		
       
       OkHttpClient client = new OkHttpClient();
-      
-      client = client.setConnectionSpecs(Collections.singletonList(spec));    
       
       MediaType mediaType = MediaType.parse(contenttype);
       RequestBody body = RequestBody.create(mediaType, JsonData);
@@ -129,38 +122,8 @@ public class MTotalKyc {
       
       ResMsg = response.body().string();
 
-      JSONObject obj1 = new JSONObject(ResMsg);
-      
-      if (!obj1.has("status-code"))
-      {
-      if (obj1.has("status"))
-      {
-       Status= obj1.getInt("status");
-      }
-      else if (obj1.has("statusCode"))
-      {
-       Status = obj1.getInt("statusCode");
-      }
-      
-      statuscode = Integer.toString(Status);   	
-      
-      obj1.put("status-code", statuscode);
-      
-      ResMsg = obj1.toString();
-      }
-      CallableStatement ps1 = con.prepareCall("{call LSW_SKYCIntegrationLog(?,?,?,?,?,?) }");
-      
-      ps1.setString(1, Reqxml);
-      ps1.setString(2, ResMsg);
-      ps1.setString(3, contenttype);
-      ps1.setString(4, APiURL);
-      ps1.setString(5, processId);
-      ps1.setString(6, "");
-      ResultSet results1 = ps1.executeQuery();
-      ResultSetMetaData rsmd1 = results1.getMetaData();
-      int colCount1 = rsmd1.getColumnCount();
-      
-    //  Data_LOG = GetDBData.Call(ResMsg,Tokan, "", "","UPDATE","LSW_SKYCIntegrationLog");
+
+      Data_LOG = GetDBData.Call(ResMsg,Tokan, "", "","UPDATE","LSW_SKYCIntegrationLog");
 
      
       System.out.println("Response: " + ResMsg);
@@ -170,7 +133,7 @@ public class MTotalKyc {
       
     	e.printStackTrace();
         
-    //    Data_LOG = GetDBData.Call(e.toString(),Tokan, "", "ERROR","UPDATE","LSW_SKYCIntegrationLog");
+        Data_LOG = GetDBData.Call(e.toString(),Tokan, "", "ERROR","UPDATE","LSW_SKYCIntegrationLog");
         
         ResMsg = e.toString();
         Message = "ERROR";
@@ -181,7 +144,7 @@ public class MTotalKyc {
       
     	e.printStackTrace();
         
-       // Data_LOG = GetDBData.Call(e.toString(),Tokan, "", "ERROR","UPDATE","LSW_SKYCIntegrationLog");
+        Data_LOG = GetDBData.Call(e.toString(),Tokan, "", "ERROR","UPDATE","LSW_SKYCIntegrationLog");
         
         ResMsg = e.toString();
         Message = "ERROR";
@@ -193,7 +156,7 @@ public class MTotalKyc {
     	
     	e.printStackTrace();
         
-      //  Data_LOG = GetDBData.Call(e.toString(),Tokan, "", "ERROR","UPDATE","LSW_SKYCIntegrationLog");
+        Data_LOG = GetDBData.Call(e.toString(),Tokan, "", "ERROR","UPDATE","LSW_SKYCIntegrationLog");
         ResMsg = e.toString();
         Message = "ERROR";
         System.out.println("Response: " + ResMsg);
