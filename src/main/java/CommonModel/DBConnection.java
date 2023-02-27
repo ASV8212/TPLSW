@@ -168,6 +168,7 @@ public class DBConnection {
 		InputStream inputStream;
 		Properties prop = new Properties();
 		FileName=System.getProperty("catalina.base");
+		
 		FileName=FileName+"/conf/"+propFileName;
 		//System.out.println(FileName);		
 		inputStream = new FileInputStream(FileName);
