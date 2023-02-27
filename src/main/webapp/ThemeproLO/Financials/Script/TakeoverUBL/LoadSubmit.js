@@ -7,7 +7,7 @@ $(document).ready(function() {
 	  //GetBorowClass();
       //GetSector();
 	  //HandlePropDtl();
-	Checkinst();
+	
 	GetBusiness();
 	Profit();
     FormDataFromDB("LSW_TTAKEOVERUBL", "OUBL_", "OUBLDBfields", "OUBL_SCHEMEID");
@@ -16,6 +16,7 @@ $(document).ready(function() {
 	$("#OUBL_SCHEMEID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
 	$("#OUBL_SCHEMENAME").attr("value",$(".FormPageMultiTab li.active").text());
 	
+	Checkinst();
     
  
     
@@ -31,7 +32,7 @@ $(document).ready(function() {
             var MndtryChk = ChkMandatoryFlds(prfx + "Mndtry");
             if (MndtryChk == "Mandatory") 
             {
-                alert("Fill the Mandatory Fields");
+                alert("Fill the Mandatory Fields / Document(s)");
                 return false;
             }
     

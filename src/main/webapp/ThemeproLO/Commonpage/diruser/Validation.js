@@ -15,19 +15,6 @@ $('#'+state).val('');
 $('#'+state).next().removeClass('active');
 $(idval).val('');
 }
-if($(val).find("Telephone").text()!="")
-{
-$('#'+STDCode).attr('disabled',true)
-$('#'+STDCode).val($(val).find("Telephone").text());
-$('#'+STDCode).next().addClass('active');
-}
-else
-{
-$('#'+STDCode).attr('disabled',true)
-$('#'+STDCode).val('');
-$('#'+STDCode).next().removeClass('active');
-$(idval).val('');
-}
 if($(val).find("Districtname").text()!="")
 {
 $('#'+city).attr('disabled',true)
@@ -227,6 +214,76 @@ function GridControlDIRBRMAP (popTableModPageGrid1,TableID,dtData,dtcolumn,hideC
 
 
 
+function GridControlDIRMODULEMAP (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm)
+{
+	 
+	 popTableModPageGrid1 = $('#'+TableID).DataTable({ 
+
+        'aaData': dtData,
+        "aoColumns": dtcolumn,  
+        
+        "bAutoWidth": false,
+
+        "autoWidth": false,
+
+        'bPaginate': true,
+
+       "aaSorting": [],
+
+        "pageLength": 5,
+
+        "bDeferRender": true,
+
+        'bInfo': true,
+
+        'bFilter': true,
+
+        "bDestroy": true,
+		 "destroy": true,
+
+        "bJQueryUI": true,
+
+       //"scrollY": true,
+
+       // "scrollX": "200px",
+
+        "sPaginationType": "full_numbers",
+
+        
+        
+"aoColumnDefs": [ 
+	   { "sClass": "dpass", "aTargets": jQuery.parseJSON(hideClm)},
+	   { targets: 1, "render": function ( data, type, row, meta ) {                            
+		   var rowno = meta.row;	 
+			var HTML =	'<span><input type="checkbox" class="custom-control-input DSVLBL" title="'+row[0]+'" value="'+data+'" name="KYCD_OSV'+rowno+'" id="KYCD_OSV'+rowno+'">';			 
+  		HTML = HTML + '<label class="custom-control-label GridLabel" for="KYCD_OSV'+rowno+'"></label></span>';	
+    		//var HTML =	'<span><input type="text" id="KYCD_OSV'+rowno+'"  name="KYCD_OSV'+rowno+'" disabled maxlength="100" class="form-control DSVLBL form-control IsNumberFields  "></span>';			 
+    			 
+    		var htmldata = $(HTML);
+ 			
+ 			$(htmldata).find('[name=KYCD_OSV'+rowno+'][value="true"]').attr('checked', 'checked');       			       			
+ 			
+	 return htmldata[0].outerHTML;
+  		
+  		
+  			 return HTML;		
+			
+         } 
+		 }
+	        	
+    	   ],
+
+         "fnDrawCallback": function (oSettings) {
+
+        }
+
+        });
+	  return popTableModPageGrid1;
+}
+
+
+
+
 function GridControlDIRBRMAPMAIN (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm)
 {
 	 
@@ -324,6 +381,95 @@ function GridControlDIRBRMAPMAIN (popTableModPageGrid1,TableID,dtData,dtcolumn,h
         });
 	  return popTableModPageGrid1;
 }
+
+
+
+
+function GridControlDIRUSERMODULEMAIN (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm)
+{
+	 
+	 popTableModPageGrid1 = $('#'+TableID).DataTable({ 
+
+        'aaData': dtData,
+        "aoColumns": dtcolumn,  
+        
+        "bAutoWidth": false,
+
+        "autoWidth": false,
+
+        'bPaginate': true,
+
+       "aaSorting": [],
+
+        "pageLength": 5,
+
+        "bDeferRender": true,
+
+        'bInfo': true,
+
+        'bFilter': true,
+
+        "bDestroy": true,
+		 "destroy": true,
+
+        "bJQueryUI": true,
+
+       //"scrollY": true,
+
+       // "scrollX": "200px",
+
+        "sPaginationType": "full_numbers",
+
+        
+        
+"aoColumnDefs": [ 
+	   { "sClass": "dpass", "aTargets": jQuery.parseJSON(hideClm)},
+	   { targets: 0, "render": function ( data, type, row, meta ) {                            
+			
+
+			var rowno = meta.row;	 
+			var HTML =	'<span><input type="text"  id="id'+rowno+'"   name="id'+rowno+'" maxlength="10"  disabled class=" DSVLBL form-control NoSpecialChar ROLEID form-control ">';			 
+			HTML = HTML + '</span>'; 
+				 
+			var htmldata = $(HTML);
+				
+
+			if ($(htmldata).find('[name=id'+rowno+']').hasClass("IsCURCommaFields"))
+				{
+				data = CURCommaSep(data);
+				}
+				
+			
+				$(htmldata).find('[name=id'+rowno+']').attr("value",data);
+
+				
+				return htmldata[0].outerHTML;      
+				
+	         } 
+			 },
+			 
+			 { targets: 1, "render": function ( data, type, row, meta ) {                            
+                  	 		
+                			var rowno = meta.row;	
+                       var HTML =	'<span id=""> <img src="ThemeproLO/Common/Images/Delete_Img.png"  class="DeleteMODULEMapRow BTNHIDE"  title="Delete" attr-Upd="UCBM_ACTION'+rowno+'"  width="20" height="20"/>';
+                         '</span>';		 
+                         return HTML;
+							 
+                         } 
+                		 }
+	        	
+    	   ],
+
+         "fnDrawCallback": function (oSettings) {
+
+        }
+
+        });
+	  return popTableModPageGrid1;
+}
+
+
+
 
 
 function GridControlDIRROLEMAPMAIN (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm)
@@ -627,6 +773,23 @@ function GetUserMap()
 }
 
 
+
+function GetModuleMap()
+{
+   $("#MODLU_UNIQID").val($("#URCR_UNIQID").val())
+  $("#BTNMODULEMAPBRGRD").click();
+  $("#UserMODULEModalPop").click();
+	//  }
+  //$("#UserModalClose").click();
+  oTable = $('#Table2').DataTable();
+		$('#SearchTable2').keyup(function(){
+		      oTable.search($(this).val()).draw() ;
+		})	
+}
+
+
+
+
 function GetRoleMap()
 {
   var Name=$("#URCR_NAME").val();
@@ -708,6 +871,25 @@ if (r == true) {
 	
 })
 
+
+$(document).on("click", ".DeleteMODULEMapRow" , function() {
+	var r = confirm("Are you sure!! to delete the record");
+if (r == true) {
+	
+	 var Id=$($(this).closest('tbody tr').find('td')[0]).find('input[type=text]').val()	
+ oTable = $('#'+ $(this).closest("table").attr("id")).DataTable();
+ oTable.row($(this).closest('tbody tr').index()).remove().draw();
+
+	var xml=UI_getdata($("#PrcsID").val(),Id,"MODULE","","","LSW_SDELMAPDATA")
+} 
+	
+})
+
+
+
+
+
+
 $(document).on("click", ".UpdPrimaryRoleMap" , function() {
 
 var Id=$($(this).closest('tbody tr').find('td')[0]).find('input[type=text]').val()	
@@ -717,6 +899,8 @@ radioTbl6 = $(document).find('#Table6').DataTable();
 	 var xml=UI_getdata($("#PrcsID").val(),Id,"Role",Val,"","LSW_SUPDMAPDATA")
 	
 })
+
+
 
 $(document).on("click", ".UpdPrimaryBrMap" , function() {
 
@@ -740,4 +924,41 @@ function getUserIdPop()
 	$("#RptIDModalPop").click();
 }
 
+
+function GetUserCategory(Event)
+{
+	var Type=$("#URCR_USRTYPE").val()
+	var CATEGORY=$("#URCR_CATEGORY").val()
 	
+	var xml=UI_getdata(Type,"","","","","LSW_SGETUSERCATEGORY")
+	
+	if($(xml).find('RESULT').text() != 'N')
+		{
+		    $("#URCR_CATEGORY").attr('disabled',false);
+		    $("#URCR_CATEGORY").html("")
+			$("#URCR_CATEGORY").append($(xml).find("RESULT").html());
+		    $("#URCR_CATEGORY").material_select();
+			$("#URCR_CATEGORY").addClass('URCRMndtry');
+		    $(".NAB").show();
+			
+			$(".CATNAME").text(Type+' *');
+		}
+	else
+		{
+		    $("#URCR_CATEGORY").val('')
+		    $("#URCR_CATEGORY").material_select('destroy');
+		    $("#URCR_CATEGORY").material_select();
+		    $('.CATEGORY').find('.select-dropdown').attr('disabled',true)
+			$("#URCR_CATEGORY").removeClass('URCRMndtry');
+		    $(".NAB").hide();
+			$(".CATNAME").text('Category');
+		}
+		
+		if(Event=="Load")
+		{
+			$("#URCR_CATEGORY option:contains("+CATEGORY+")").attr("selected","selected")
+			$(".CATNAME").text(Type+' *');
+		}
+}
+
+

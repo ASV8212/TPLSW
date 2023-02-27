@@ -41,6 +41,8 @@ $(document).ready(function () {
 	
 	FormDataFromDB(tbl, prfx + "_", prfx+"DBfields", DATA);
 	
+	LoadMultiData("",$("#PrcsID").val(),$("#PrMs6").val(),"BankDetail1","PRDODBfields","LSW_SGETPROPUPDDT");
+	
 	LoadMultiData("",$("#PrcsID").val(),$("#PrMs5").val(),"OWNERNAME","OWNADBfields","LSW_SLEGALOWNERNAME");
 	
 	LoadMultiData("",$("#PrcsID").val(),$("#PrMs5").val(),"MUSTTOHAVE","LMUDDBfields","LSW_SLEGALMUSTDETAILS");
@@ -49,7 +51,9 @@ $(document).ready(function () {
 	
 	OnloadSameADDR();
 	
-	
+	  var xml=UI_getdata($("#PrcsID").val(),$("#PrMs5").val(),"","","","LSW_SFIDATEOFINSINT")
+      var DTINITION=$(xml).find('DTINITION').text()
+	   $("#LEVD_DATEINIT").val(DTINITION)
 	
 	
 	if($('input:radio[name=LEVD_DOCAGIPROP]')[0].checked == false && $('input:radio[name=LEVD_DOCAGIPROP]')[1].checked == false)
@@ -75,40 +79,69 @@ $(document).ready(function () {
 	
 	 $(document).on("click", ".DeleteMUST" , function() {
 
-	         
+	          var TXTROW=  $(this).closest('.DYNROW').find("[name=LMUD_TXTROW]").val()
+			 
+			 
+			 var xmlSTATUS=UI_getdata($("#PrcsID").val(),$("#PrMs5").val(),TXTROW,"","","LSW_SCHKMUSTDETAILS")
+			 
+			   if($(xmlSTATUS).find('ODCSTATUS').text()=="OTCPDD"&&$(xmlSTATUS).find('COLLECTSTATUS').text()=="COLLECT")
+		      {
+				 alert('Cannot delete,Since OTC/PDD has been Initiated')  
+	          }
+			   else
+		     {
 			  if(confirm('Delete MUST TO HAVE') == true)
 		 		{
-		     $(this).closest('.DYNROW').remove()	
+					$("#save").click();
+					var xml=UI_getdata("VENDOR","MUST",$("#PrcsID").val(),$("#PrMs5").val(),TXTROW,"LSW_SDELMNTHDT")
+					location.reload(true);
+		    /* $(this).closest('.DYNROW').remove()	
 			var k= $('.MUSTTOHAVE').find('.DYNROW').length
 			for(i=0;i<k;i++)
 				{
 				//('.BankDetail1').find('.DYNROW')[i]
 			    var	j=i+1
 	         $($('.MUSTTOHAVE').find('.DYNROW')[i]).find('#PROPTXTHDR').text(j)
+				}*/
 				}
-				}
+			 }
           })
 	   
 			
           $(document).on("click", ".DeleteNICE" , function() {
 
-	         
+	         var TXTROW=  $(this).closest('.DYNROW').find("[name=LNID_TXTROW]").val()
 			  if(confirm('Delete NICE TO HAVE') == true)
 		 		{
-		     $(this).closest('.DYNROW').remove()	
+					$("#save").click();
+					var xml=UI_getdata("VENDOR","NICE",$("#PrcsID").val(),$("#LEVD_PROPERTYNO").val(),TXTROW,"LSW_SDELMNTHDT")
+					location.reload(true);
+		    /* $(this).closest('.DYNROW').remove()	
 			var k= $('.NICETOHAVE').find('.DYNROW').length
 			for(i=0;i<k;i++)
 				{
 				//('.BankDetail1').find('.DYNROW')[i]
 			    var	j=i+1
 	         $($('.NICETOHAVE').find('.DYNROW')[i]).find('#PROPTXTHDR').text(j)
-				}
+				}*/
 				}
           })
 		  
 	
 $('.FormSave').on('click', function() {
+	
+	  var xml=UI_getdata($("#PrcsID").val(),$("#PrMs6").val(),$("#PrMs5").val(),"Legal","","LSW_SCHKPROPERTY");
 		
+		if($(xml).find("RESULT").text()!="Yes")
+		{
+			alert($(xml).find("RESULT").text())
+			var RedirectURL=""
+              var   PAGENAME="MyApplication"
+	          RedirectURL = window.location.origin+"/TPLSW/"+PAGENAME;
+               $(location).attr('href',encodeURI(RedirectURL));
+			   return false;
+		}
+
 	var LEVD_MUSTTO = TxtGridsubmitdata_V2("MUSTTOHAVE","LMUD_","LEVD_","LMUDDBfields"); 
 	AssignGridXmltoField("LEVD_MUSTTO", LEVD_MUSTTO)
 	
@@ -126,9 +159,23 @@ $('.FormSave').on('click', function() {
 		
 		if(MndtryChk == "Mandatory")
 			{
-			alert("Fill the Mandatory Fields");
+			alert("Fill the Mandatory Fields / Document(s)");
 			return false;
 			}
+			
+			
+			
+			 var html = $('.MUSTTOHAVE')
+		
+		  var  MndtryChk1 = ChkMandatoryFlds_V1("MUSTMndtry",html);
+          
+          if (MndtryChk1 == "Mandatory") 
+          {
+              alert("Fill the Mandatory Fields in MUST TO HAVE");
+              return false;
+          }
+          
+        
 		
 		}
 		
@@ -146,7 +193,7 @@ $('.FormSave').on('click', function() {
 		  
 		if($(this).text() == "Submit")
          {
-			 var xml1=UI_getdata($("#LEVD_PRCSID").val(),$("#LEVD_ALTNPROPERTYNO").val(),"","","","LSW_SCHKVENDORCOMP")
+			  var xml1=UI_getdata($("#LEVD_PRCSID").val(),$("#LEVD_ALTNPROPERTYNO").val(),"","","","LSW_SCHKVENDORCOMP")
              var VENCOMSTA=$(xml1).find('RESULT').text()
 			 if(VENCOMSTA=="YES")
 			 {

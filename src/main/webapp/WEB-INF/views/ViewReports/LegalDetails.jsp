@@ -28,6 +28,9 @@
           <input type="text" id="LEVD_MUSTTO" hidden="hidden" name="LEVD_MUSTTO" class="form-control LEVDDBfields">
           <input type="text" id="LEVD_NICETO" hidden="hidden" name="LEVD_NICETO" class="form-control LEVDDBfields">
            <input type="text" id="LEVD_OWNERNAME" hidden="hidden" name="LEVD_OWNERNAME" class="form-control LEVDDBfields">
+		   <input type="text" id="LEVD_DATEINIT" hidden="hidden" name="LEVD_DATEINIT" class="form-control LEVDDBfields">
+		   
+		   
   <!--  card -->
   <div class="card cardNS">
     <!-- Card body -->
@@ -41,7 +44,7 @@
         	</div>
         	
        <div class="HyperControls FltRight" > 
-      <a onclick="AddPageMultiData('','','','OWNERNAME','OWNADBfields')" class="Btxt4 ADDBTN FltRight"  href="#">+ Add Owner's Name</a>
+      <a onclick="AddPageMultiData('','','','OWNERNAME','OWNADBfields')" class="Btxt4 ADDBTN FltRight BTNHIDE"  href="#">+ Add Owner's Name</a>
      </div> 
         <div class="card-body px-lg-5 pt-0">
         <form>
@@ -62,7 +65,7 @@
                <div class=" col-md-6">
                  <div class="md-form">
                  
-                   <input type="text" id="OWNA_OWNERNAME" maxlength="25" name="OWNA_OWNERNAME" class="form-control NoSpecialChar OWNADBfields">
+                   <input type="text" id="OWNA_OWNERNAME" maxlength="100" name="OWNA_OWNERNAME" class="form-control NoSpecialChar OWNADBfields">
                     <label for="OWNA_OWNERNAME" class="">Name<span class="MndtryAstr"></span></label>
                   </div>
 
@@ -76,19 +79,19 @@
             <div class="form-row">
                <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LEVD_DOCPLOTNO" maxlength="5"   name="LEVD_DOCPLOTNO" class="form-control LEVDMndtry IsNumberFields NoSpecialChar SMADDR LEVDDBfields">
+                    <input type="text" id="LEVD_DOCPLOTNO" maxlength="30"   name="LEVD_DOCPLOTNO" class="form-control LEVDMndtry  AddrNoSpecialChar SMADDR LEVDDBfields">
                     <label for="LEVD_DOCPLOTNO" class="">Plot Number<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
                    <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LEVD_DOCDOORNO" maxlength="5"  name="LEVD_DOCDOORNO" class="form-control IsNumberFields  LEVDMndtry NoSpecialChar SMADDR LEVDDBfields">
+                    <input type="text" id="LEVD_DOCDOORNO" maxlength="30"  name="LEVD_DOCDOORNO" class="form-control AddrNoSpecialChar  LEVDMndtry  SMADDR LEVDDBfields">
                     <label for="LEVD_PROPADDR2" class="">Door Number<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
                 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LEVD_DOCBUILDNAME" maxlength="15"  name="LEVD_DOCBUILDNAME" class="form-control LEVDMndtry IsAlphaFields SMADDR LEVDDBfields  ">
+                    <input type="text" id="LEVD_DOCBUILDNAME" maxlength="100"  name="LEVD_DOCBUILDNAME" class="form-control LEVDMndtry AddrNoSpecialChar SMADDR LEVDDBfields  ">
                     <label for="LEVD_DOCBUILDNAME" class="">Building Name/House Name<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
@@ -96,19 +99,19 @@
               <div class="form-row">
                <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LEVD_DOCSTREET" maxlength="25"  name="LEVD_DOCSTREET" class="form-control LEVDMndtry SMADDR LEVDDBfields">
+                    <input type="text" id="LEVD_DOCSTREET" maxlength="100"  name="LEVD_DOCSTREET" class="form-control LEVDMndtry AddrNoSpecialChar SMADDR LEVDDBfields">
                     <label for="LEVD_DOCSTREET" class="">Street Name<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
                    <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LEVD_DOCLOCALITY" maxlength="25"  name="LEVD_DOCLOCALITY" class="form-control LEVDMndtry SMADDR LEVDDBfields">
+                    <input type="text" id="LEVD_DOCLOCALITY" maxlength="100"  name="LEVD_DOCLOCALITY" class="form-control LEVDMndtry  NoSpecialChar SMADDR LEVDDBfields">
                     <label for="LEVD_DOCLOCALITY" class="">Locality<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
                 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LEVD_DOCSURYNO" maxlength="5"  name="LEVD_DOCSURYNO" class="form-control IsNumberFields LEVDMndtry SMADDR NoSpecialChar LEVDDBfields  ">
+                    <input type="text" id="LEVD_DOCSURYNO" maxlength="30"  name="LEVD_DOCSURYNO" class="form-control  LEVDMndtry SMADDR AddrNoSpecialChar LEVDDBfields  ">
                     <label for="LEVD_DOCSURYNO" class="">Survey Number<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
@@ -122,13 +125,13 @@
                 </div>
                    <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LEVD_DOCCITY" disabled name="LEVD_DOCCITY" class="form-control IsAlphaFields LEVDDBfields">
+                    <input type="text" id="LEVD_DOCCITY" disabled name="LEVD_DOCCITY" class="form-control IsAlphaFields NoSpecialChar LEVDDBfields">
                     <label for="LEVD_DOCCITY" class="">City<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
                 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LEVD_DOCSTATE" disabled name="LEVD_DOCSTATE" class="form-control IsAlphaFields LEVDDBfields  ">
+                    <input type="text" id="LEVD_DOCSTATE" disabled name="LEVD_DOCSTATE" class="form-control IsAlphaFields NoSpecialChar LEVDDBfields  ">
                     <label for="LEVD_DOCSTATE" class="">State<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
@@ -136,7 +139,7 @@
             <div class="form-row ">
                 <div class=" col-md-12">
                   <div class="md-form">
-                    <input type="text" id="LEVD_DOCLANDMARK" maxlength="100"  name="LEVD_DOCLANDMARK" class="form-control LEVDMndtry SMADDR LEVDDBfields  ">
+                    <input type="text" id="LEVD_DOCLANDMARK" maxlength="100"  name="LEVD_DOCLANDMARK" class="form-control LEVDMndtry AddrNoSpecialChar SMADDR LEVDDBfields  ">
                     <label for="LEVD_DOCLANDMARK" class="">Landmark<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
@@ -147,19 +150,19 @@
             <div  class="form-row">
                <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LEVD_DOCNORTH" maxlength="15" name="LEVD_DOCNORTH" class="form-control LEVDMndtry NoSpecialChar LEVDDBfields">
+                    <input type="text" id="LEVD_DOCNORTH" maxlength="300" name="LEVD_DOCNORTH" class="form-control LEVDMndtry NoSpecialChar LEVDDBfields">
                     <label for="LEVD_DOCNORTH" class="">North By<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
                    <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LEVD_DOCSOUTH" maxlength="15" name="LEVD_DOCSOUTH" class="form-control LEVDMndtry NoSpecialChar LEVDDBfields">
+                    <input type="text" id="LEVD_DOCSOUTH" maxlength="300" name="LEVD_DOCSOUTH" class="form-control LEVDMndtry NoSpecialChar LEVDDBfields">
                     <label for="LEVD_DOCSOUTH" class="">South By<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
                 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LEVD_DOCEAST" maxlength="15" name="LEVD_DOCEAST" class="form-control LEVDMndtry NoSpecialChar LEVDDBfields  ">
+                    <input type="text" id="LEVD_DOCEAST" maxlength="300" name="LEVD_DOCEAST" class="form-control LEVDMndtry NoSpecialChar LEVDDBfields  ">
                     <label for="LEVD_DOCEAST" class="">East By<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
@@ -167,7 +170,7 @@
            <div class="form-row ">
             <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LEVD_DOCWEST" maxlength="15" name="LEVD_DOCWEST" class="form-control LEVDMndtry NoSpecialChar LEVDDBfields  ">
+                    <input type="text" id="LEVD_DOCWEST" maxlength="300" name="LEVD_DOCWEST" class="form-control LEVDMndtry NoSpecialChar LEVDDBfields  ">
                     <label for="LEVD_DOCWEST" class="">West By<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
@@ -175,7 +178,7 @@
      <div class="form-row ">
         <div class=" col-md-4">
              <div class="md-form">
-                 <input type="text" id="LEVD_DOCSRO" maxlength="15" name="LEVD_DOCSRO" class="form-control LEVDMndtry LEVDDBfields  ">
+                 <input type="text" id="LEVD_DOCSRO" maxlength="50" name="LEVD_DOCSRO" class="form-control LEVDMndtry NoSpecialChar LEVDDBfields  ">
                  <label for="LEVD_DOCSRO" class="">SRO<span class="MndtryAstr">*</span></label>
               </div>
         </div>   
@@ -214,19 +217,19 @@
             <div class="form-row">
                <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LEVD_SITEPLOTNO" maxlength="5" name="LEVD_SITEPLOTNO" class="form-control IsNumberFields LEVDMndtry SMADDR SMDOC NoSpecialChar LEVDDBfields">
+                    <input type="text" id="LEVD_SITEPLOTNO" maxlength="30" name="LEVD_SITEPLOTNO" class="form-control  LEVDMndtry SMADDR SMDOC AddrNoSpecialChar LEVDDBfields">
                     <label for="LEVD_SITEPLOTNO" class="ADDR ">Plot Number<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
                 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LEVD_SITEDOORNO" maxlength="5" name="LEVD_SITEDOORNO" class="form-control IsNumberFields LEVDMndtry SMADDR SMDOC NoSpecialChar LEVDDBfields">
+                    <input type="text" id="LEVD_SITEDOORNO" maxlength="30" name="LEVD_SITEDOORNO" class="form-control  LEVDMndtry SMADDR SMDOC AddrNoSpecialChar LEVDDBfields">
                     <label for="LEVD_SITEDOORNO" class="ADDR">Door Number<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
                 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LEVD_SITEBUILDNAME" maxlength="25" name="LEVD_SITEBUILDNAME" class="form-control SMADDR LEVDMndtry SMDOC IsAlphaFields LEVDDBfields  ">
+                    <input type="text" id="LEVD_SITEBUILDNAME" maxlength="100" name="LEVD_SITEBUILDNAME" class="form-control SMADDR LEVDMndtry SMDOC AddrNoSpecialChar  LEVDDBfields  ">
                     <label for="LEVD_SITEBUILDNAME" class="ADDR">Building Name/House Name<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
@@ -234,19 +237,19 @@
            <div class="form-row">
              <div class=" col-md-4">
                  <div class="md-form">
-                    <input type="text" id="LEVD_SITESTREET" maxlength="25" name="LEVD_SITESTREET" class="form-control  SMADDR SMDOC LEVDMndtry  LEVDDBfields">
+                    <input type="text" id="LEVD_SITESTREET" maxlength="100" name="LEVD_SITESTREET" class="form-control  SMADDR SMDOC LEVDMndtry AddrNoSpecialChar LEVDDBfields">
                     <label for="LEVD_SITESTREET" class="ADDR">Street Name<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
                 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LEVD_SITELOCALITY" maxlength="25" name="LEVD_SITELOCALITY" class="form-control SMADDR SMDOC LEVDMndtry LEVDDBfields">
+                    <input type="text" id="LEVD_SITELOCALITY" maxlength="100" name="LEVD_SITELOCALITY" class="form-control SMADDR SMDOC LEVDMndtry NoSpecialChar LEVDDBfields">
                     <label for="LEVD_SITELOCALITY" class="ADDR">Locality<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
                 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LEVD_SITESURYNO" maxlength="10" name="LEVD_SITESURYNO" class="form-control IsNumberFields LEVDMndtry SMDOC SMADDR NoSpecialChar LEVDDBfields  ">
+                    <input type="text" id="LEVD_SITESURYNO" maxlength="30" name="LEVD_SITESURYNO" class="form-control  LEVDMndtry SMDOC SMADDR AddrNoSpecialChar LEVDDBfields  ">
                     <label for="LEVD_SITESURYNO" class="ADDR">Survey Number<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
@@ -260,13 +263,13 @@
                 </div>
                 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LEVD_SITECITY" disabled name="LEVD_SITECITY" class="form-control SMDOC IsAlphaFields LEVDDBfields">
+                    <input type="text" id="LEVD_SITECITY" disabled name="LEVD_SITECITY" class="form-control NoSpecialChar SMDOC IsAlphaFields LEVDDBfields">
                     <label for="LEVD_SITECITY" class="ADDR">City<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
                 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LEVD_SITESTATE" disabled name="LEVD_SITESTATE" class="form-control SMDOC IsAlphaFields LEVDDBfields  ">
+                    <input type="text" id="LEVD_SITESTATE" disabled name="LEVD_SITESTATE" class="form-control NoSpecialChar SMDOC IsAlphaFields LEVDDBfields  ">
                     <label for="LEVD_SITESTATE" class="ADDR">State<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
@@ -274,7 +277,7 @@
            <div class="form-row ">
                 <div class=" col-md-12">
                   <div class="md-form">
-                    <input type="text" id="LEVD_SITELANDMARK" maxlength="100" name="LEVD_SITELANDMARK" class="form-control LEVDMndtry SMDOC SMADDR LEVDDBfields  ">
+                    <input type="text" id="LEVD_SITELANDMARK" maxlength="100" name="LEVD_SITELANDMARK" class="form-control LEVDMndtry AddrNoSpecialChar SMDOC SMADDR LEVDDBfields  ">
                     <label for="LEVD_SITELANDMARK" class="ADDR">Landmark<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
@@ -285,19 +288,19 @@
             <div  class="form-row">
                <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LEVD_SITENORTH" maxlength="15" name="LEVD_SITENORTH" class="form-control LEVDMndtry  NoSpecialChar LEVDDBfields">
+                    <input type="text" id="LEVD_SITENORTH" maxlength="300" name="LEVD_SITENORTH" class="form-control LEVDMndtry  NoSpecialChar LEVDDBfields">
                     <label for="LEVD_SITENORTH" class="">North By<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
                 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LEVD_SITESOUTH" maxlength="15" name="LEVD_SITESOUTH" class="form-control LEVDMndtry NoSpecialChar LEVDDBfields">
+                    <input type="text" id="LEVD_SITESOUTH" maxlength="300" name="LEVD_SITESOUTH" class="form-control LEVDMndtry NoSpecialChar LEVDDBfields">
                     <label for="LEVD_SITESOUTH" class="">South By<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
                 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LEVD_SITEEAST" maxlength="15" name="LEVD_SITEEAST" class="form-control LEVDMndtry NoSpecialChar LEVDDBfields  ">
+                    <input type="text" id="LEVD_SITEEAST" maxlength="300" name="LEVD_SITEEAST" class="form-control LEVDMndtry NoSpecialChar LEVDDBfields  ">
                     <label for="LEVD_SITEEAST" class="">East By<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
@@ -305,7 +308,7 @@
            <div class="form-row ">
             <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LEVD_SITEWEST" maxlength="15" name="LEVD_SITEWEST" class="form-control LEVDMndtry NoSpecialChar LEVDDBfields  ">
+                    <input type="text" id="LEVD_SITEWEST" maxlength="300" name="LEVD_SITEWEST" class="form-control LEVDMndtry NoSpecialChar LEVDDBfields  ">
                     <label for="LEVD_SITEWEST" class="">West By<span class="MndtryAstr"></span>*</label>
                   </div>
                 </div>
@@ -313,7 +316,7 @@
            <div class="form-row ">
              <div class=" col-md-4">
                <div class="md-form">
-                    <input type="text" id="LEVD_SITESRO" maxlength="15" name="LEVD_SITESRO" class="form-control LEVDMndtry NoSpecialChar LEVDDBfields  ">
+                    <input type="text" id="LEVD_SITESRO"  maxlength="50" name="LEVD_SITESRO" class="form-control LEVDMndtry NoSpecialChar LEVDDBfields  ">
                     <label for="LEVD_SITESRO" class="">SRO<span class="MndtryAstr">*</span></label>
                   </div>
             </div>        
@@ -332,7 +335,67 @@
               <label class="mdb-main-label BTxt9">Non-agricultural Property<span class="MndtryAstr"></span></label>      
       </div>
       </div>    
-         </div>     
+         </div> 
+
+
+ <div class="form-row">
+		  <div class="col-md-6">
+                    <div class="col Btxt10">Uploaded Security Documents</div>
+                     <div data-for="BankDetail1" class="BankDetail1"> 
+                     </div>
+                     <div class="DynamicPageGrid" data-val="PROPTXTHDR|" id="BankDetail1" style="display:none">
+                        <div data-row="" class="card-body px-lg-5 pt-0 DYNROW">
+                           </br>
+                           <input type="text" id="PRDO_PRCSID" hidden="hidden" name="PRDO_PRCSID" value="" class="form-control PRDODBfields">
+                           <input type="text" id="PRDO_ACTIVITYID" hidden="hidden" name="PRDO_ACTIVITYID" class="form-control PRDODBfields">
+                           <input type="text" id="PRDO_DTCREATED" hidden="hidden" name="PRDO_DTCREATED" class="form-control PRDODBfields">
+                           <input type="text" id="PRDO_CREATEDBY" hidden="hidden" name="PRDO_CREATEDBY" class="form-control PRDODBfields">
+                           <input type="text" id="PRDO_DTMODIFIED" hidden="hidden" name="PRDO_DTMODIFIED" class="form-control PRDODBfields">
+                           <input type="text" id="PRDO_MODIFIEDBY" hidden="hidden" name="PRDO_MODIFIEDBY" class="form-control PRDODBfields">
+                           <input type="text" id="PRDO_PROPNUM" hidden="hidden" name="PRDO_PROPNUM" class="form-control PRDODBfields">
+						   <div class="form-row">
+                              <div class="col">
+                                 <div class="md-form " >
+                                    <table>
+                                       <tr>
+                                          <td>
+                                             <div id="PRDO_DOCUMENTUPLOAD"  class="file-field" style="display:none">
+                                                <a class="">
+                                                <i class="fa fa-plus imgAdd" aria-hidden=""></i>
+                                                <input type="file"  name="datafile" onchange="DocFldUpldHndlr_V1(this,'PRDO_DOCUMENT'+$(this).closest('.DYNROW').attr('data-row'),'PRDO_DOCUMENT','PDDetails','PDDate','PD',$(this).closest('.DYNROW'))" class="PRDO_DOCUMENT"  >
+                                                </a>
+                                                <input type="text" id="PRDO_DOCUMENT" hidden="hidden" data-Validate="PRDO_DOCUMENT"  name="PRDO_DOCUMENT" class="form-control File PRDODBfields PRDOMndtry">
+                                                <span class="name">Upload Documents</span> 
+                                             </div>
+                                          </td>
+                                          <div class="md-form" >
+                                             <div class="md-form Formcol-mdLR">
+                                                
+												 <div class="PRDO_DOCUMENT"> 
+												 <img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW" 
+                                                onclick="GrdDocDwnld('PRDO_DOCUMENT'+$(this).closest('.DYNROW').attr('data-row'))" class="rounded" 
+                                                alt="Cinque Terre" width="35" height="25">
+												</div>
+                                             </div>
+                                          </div>
+                                       </tr>
+                                    </table>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="HyperControls form-row" style="display:none" >
+                        <a onclick="AddPageMultiData('',$('#PRDO_PRCSID').val(),$('#LPDT_PROPERTYNO').val(),'BankDetail1','PRDODBfields');" class="Btxt4 FltRight ADDBTN "  href="#">+ Add</a>
+                        <!-- <a class="Btxt4" id="AuditTrail" href="#">Audit Trail</a> -->
+                     </div>
+                  </div>
+				  </div>
+
+
+
+
+		 
                
          <div class="form-row">
         		<div class="col Btxt10">DOCUMENTS PRODUCED</div>
@@ -341,7 +404,7 @@
         	   <div class="form-row">
            		 <div class="col">
            			<div class="md-form">
-                      <textarea id="LEVD_DOCPRODU" name="LEVD_DOCPRODU" class="form-control IsRmkField LEVDDBfields"   style="height: 160px;width:1200px;"></textarea>
+                      <textarea id="LEVD_DOCPRODU" name="LEVD_DOCPRODU" maxlength="5000"  class="form-control AddrNoSpecialChar IsRmkField LEVDDBfields"   style="height: 160px;width:1200px;"></textarea>
            			</div>
            		 </div>
            </div>
@@ -351,7 +414,7 @@
         	</div>
                
      <div class="HyperControls  " > 
-   <a onclick="AddPageMultiData('','','','MUSTTOHAVE','LMUDDBfields');ADDROWNO()" class="Btxt4 "  href="#">+ Add a Point</a>
+   <a onclick="AddPageMultiData('','','','MUSTTOHAVE','LMUDDBfields');ADDROWNO()" class="Btxt4 BTNHIDE"  href="#">+ Add a Point</a>
   </div>	
   
         <div data-for="MUSTTOHAVE" class="MUSTTOHAVE"> 
@@ -367,13 +430,13 @@
          <input type="text" id="LMUD_PROPERTYNO" hidden="hidden" name="LMUD_PROPERTYNO" class="form-control LMUDDBfields">
  
  
-      <input type="text" id="LMUD_TXTROW" hidden="hidden" name="LMUD_TXTROW" class="form-control LMUDDBfields">
+      <input type="text" id="LMUD_TXTROW" hidden="hidden" name="LMUD_TXTROW" maxlength="200" class="form-control LMUDDBfields">
        <div class="form-row">
 
 
               <div class=" col-md-11">
                  <div class="md-form">
-                    <span id="PROPTXTHDR" class="Btxt10"></span> <input type="text" id="LMUD_TEXTVAL" name="LMUD_TEXTVAL" class="form-control  LMUDDBfields  ">
+                    <span id="PROPTXTHDR" class="Btxt10"></span> <input type="text" id="LMUD_TEXTVAL" name="LMUD_TEXTVAL" class="form-control MUSTMndtry AddrNoSpecialChar LMUDDBfields ">
                   </div>
 				  </div>
 				  			  <div class=" col-md-1"> 
@@ -390,7 +453,7 @@
         	   </div>           
            
  <div class="HyperControls "> 
-   <a onclick="AddPageMultiData('','','','NICETOHAVE','LNIDDBfields');ADDROWNONICE()" class="Btxt4 "  href="#">+ Add a Point</a>
+   <a onclick="AddPageMultiData('','','','NICETOHAVE','LNIDDBfields');ADDROWNONICE()" class="Btxt4 BTNHIDE"  href="#">+ Add a Point</a>
   </div>
  	
         <div data-for="NICETOHAVE" class="NICETOHAVE"> 
@@ -409,7 +472,7 @@
            <div class="form-row">
               <div class=" col-md-11">
                  <div class="md-form">
-                     <span id="PROPTXTHDR" class="Btxt10"></span><input type="text" id="LNID_TEXTVAL" name="LNID_TEXTVAL" class="form-control  LNIDDBfields  ">
+                     <span id="PROPTXTHDR" class="Btxt10"></span><input type="text" id="LNID_TEXTVAL" maxlength="200" name="LNID_TEXTVAL" class="form-control NICEMndtry AddrNoSpecialChar LNIDDBfields  ">
                   </div>
               </div>
 			  <div class=" col-md-1"> 
@@ -426,7 +489,7 @@
         	  <div class="form-row">
         	    <div class="form-row">
            			<div class="md-form">
-                      <textarea  placeholder="Type Here..."  id="LEVD_FLOWTITLE" name="LEVD_FLOWTITLE" class="form-control IsRmkField btxt24 LEVDDBfields"   style="height: 160px;width:1200px;"></textarea>
+                      <textarea  placeholder="Type Here..."  id="LEVD_FLOWTITLE" name="LEVD_FLOWTITLE" maxlength="5000" class="form-control AddrNoSpecialChar IsRmkField btxt24 LEVDDBfields"   style="height: 160px;width:1200px;"></textarea>
            			</div>
                 </div>
              </div>   
@@ -437,28 +500,28 @@
         	   <div class="form-row">
            		 <div class="col">
            			<div class="md-form">
-                      <textarea placeholder="Type Here..."  id="LEVD_FINLEGALOPINON" name="LEVD_FINLEGALOPINON" class="form-control btxt24 IsRmkField LEVDDBfields"   style="height: 160px;width:1200px;"></textarea>
+                      <textarea placeholder="Type Here..."  id="LEVD_FINLEGALOPINON" name="LEVD_FINLEGALOPINON" maxlength="5000" class="form-control btxt24 NoSpecialChar IsRmkField LEVDDBfields"   style="height: 160px;width:1200px;"></textarea>
            			</div>
            		 </div>
            </div>
            </div>    
-             <div class="form-row"> 
-           		<div class="col-md-4">
+               <div class="form-row"> 
+           		  <div class="col-md-4">
                    <div class="md-form">
-                    <input type="text" id="LEVD_DTREPORT" maxlength="10" name="LEVD_DTREPORT" class="form-control ISFutureDateFields IsNumberFields NoSpecialChar LEVDMndtry ISDatefield LEVDDBfields">
+                    <input type="text" id="LEVD_DTREPORT" maxlength="10" name="LEVD_DTREPORT" onblur="DateInspect(this,'LEVD_DATEINIT')"   class="form-control ISFutureDateFields IsNumberFields NoSpecialChar LEVDMndtry ISDatefield LEVDDBfields">
                     <label for="LEVD_DTREPORT" class="">Date of Report<span class="MndtryAstr">*</span></label>
                     <img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker" />
-                   </div>
-                </div>
-				 <div class=" col-md-4">
+               </div>
+            </div>
+			 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LEVD_TITLEDOCNAME" name="LEVD_TITLEDOCNAME" class="form-control LEVDMndtry AddrNoSpecialChar LEVDDBfields">
+                    <input type="text" id="LEVD_TITLEDOCNAME" name="LEVD_TITLEDOCNAME" maxlength="100" class="form-control LEVDMndtry NoSpecialChar LEVDDBfields">
                     <label for="LEVD_TITLEDOCNAME" class="">Title Document Name<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
 				<div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LEVD_TITLEDOCNO" name="LEVD_TITLEDOCNO" class="form-control LEVDMndtry AddrNoSpecialChar LEVDDBfields">
+                    <input type="text" id="LEVD_TITLEDOCNO" name="LEVD_TITLEDOCNO" maxlength="100" class="form-control LEVDMndtry NoSpecialChar LEVDDBfields">
                     <label for="LEVD_TITLEDOCNO" class="">Title Document Number<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>

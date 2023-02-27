@@ -7,20 +7,19 @@ $(document).ready(function() {
 	var CusName=$(op).find('RESULT').html();
 	$("#AEND_ACCNTNO").append(CusName)
 	
+	$("#AEND_LOANID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
+
+    $("#AEND_PRCSID").attr("value",$("#PrcsID").val())
 	
-	//$("#AEND_ACCNTNO").materialSelect();
-	
-    FormDataFromDB("LSW_TENACHDTL", "AEND_", "AENDDBfields", "");
+    FormDataFromDB("LSW_TENACHDTL", "AEND_", "AENDDBfields", $("#AEND_LOANID").val()+"|AEND_LOANID");
 
     /**Grid Trigger Start **/
     //$("#BTNBUSNSDTL").click();
     // $("#BTNEMPOWERMNT").click();
     /**Grid Trigger End **/
-   RECOMMENDHIDE()
- 
-  
-	
-     if($("#AEND_ENACHVERIFY").val()=="Success")
+ RECOMMENDHIDE()
+
+if($("#AEND_ENACHVERIFY").val()=="Success")
 	 {
 		 $("[data-Validatedata=AEND_ENACHVERIFY]").text('Re-Initiate E-NACH');
 	     $("[data-Validatedata=AEND_ENACHVERIFY]").addClass("btn-GrnInplain");	
@@ -35,7 +34,7 @@ $(document).ready(function() {
 	     $("[data-Validatedata=AEND_ENACHVERIFY]").addClass("btn-RedInplain");  
 	 }
 	 
-	  var XML = UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETENCHBNKDETL");
+	var XML = UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETENCHBNKDETL");
 	
 	var Acct1=$("#AEND_ACCNTNO").val()
 	var Acct2=$(XML).find('ACCTNO').text()
@@ -58,10 +57,15 @@ $(document).ready(function() {
 	 //$("#AEND_ENDDATE").val($("#DMY7").val().split('|')[1].setMonth($("#DMY7").val().split('|')[1].getMonth() + $("#DMY3").val().split('|')[4]*12 ))
 	 
 	 var EMI=$("#DMY3").val().split('|')[6]
-	 
 	 $("#AEND_EMI").val(CURCommaSep(EMI))
-	 $("#AEND_REPAYMONTH").val($("#DMY3").val().split('|')[4]*12)
+	// var LOANSANCTION=$("#DMY3").val().split('|')[3]
+	var XML=UI_getdata($("#PrcsID").val(),$("#AEND_LOANID").val(),"","","","LSW_SGETENCHBNKDETL");
+	var LOANSANCTION=$(XML).find('LOANAMT').text()
+	 $("#AEND_LOANSANC").val(CURCommaSep(LOANSANCTION))
+	// $("#AEND_REPAYMONTH").val($("#DMY3").val().split('|')[4]*12)
+	  $("#AEND_REPAYMONTH").val($("#DMY3").val().split('|')[4])
 addMonths()
+
 
     $(document).on("click", ".FormSave", function() {
 
@@ -73,7 +77,7 @@ addMonths()
         if ($(this).text() == "Submit") {
             var MndtryChk = ChkMandatoryFlds(prfx + "Mndtry");
             if (MndtryChk == "Mandatory") {
-                alert("Fill the Mandatory Fields");
+                alert("Fill the Mandatory Fields / Document(s)");
                 return false;
             }
         }
@@ -87,8 +91,8 @@ addMonths()
         /*$("#BKDT_BNKREFNAME").val($(".FormPageMultiTab li.active a div").text())*/
 
        
-        var CHKresult=FormDataToDB(tbl, prfx, '');
-
+       // var CHKresult=FormDataToDB(tbl, prfx, '');
+        var CHKresult=FormDataToDB(tbl, prfx, $("#AEND_PRCSID").val()+"|"+$("#"+DATA).val()+"|" + DATA);
         
         if(CHKresult == "Fail")
    		{
@@ -99,7 +103,7 @@ addMonths()
         // Tab Header Change End
 
 
-        if ($(this).text() == "Submit") {
+        if ($(this).text() == "Save & Next") {
             NXTTAB(this);
         }
     });

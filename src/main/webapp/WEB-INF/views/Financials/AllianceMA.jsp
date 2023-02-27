@@ -89,8 +89,8 @@
 <% 
 
 
-String Prcsid=request.getParameter("PrcsID")+"|"+request.getParameter("PrMs3");
-String TblName="LSW_tTEAPPRBUSIFIRM";
+String Prcsid=request.getParameter("PrcsID");
+String TblName="LSW_tTEMANUALEDITOR";
 String Spname="Sam_sFetRichTxtEdt";
 String AcvtID="";
 String HistVar="";
@@ -101,24 +101,7 @@ editData.setAcvtID(AcvtID);
 editData.setHistVar(HistVar); %>
 <% editData.EditData1(); %>
 		</br>
-					   <div class="">
-                            <!--Admin panel-->
-     <div class="admin-panel">
-	  <div class="row">
-	<div class="col-lg-12">
-		  <ul title="Firm" data-popup="No" class="nav FormPageMultiTab">
-<!--<li id="ApprlNt" value="ApprlNt" title="ApprlNt" class="nav-item active"><a><div class="nav-link" href="#">Approval Note</div></a></li>	-->	  
-    ${SUBPAGETABDATA}
-       <!-- <li id="Co-Applicant1" value="" title = "Co-Applicant1" class="nav-item  active">
-       <a> <div class="nav-link" href="#">Co-Applicant 1</div></a>
-      </li>        
-      <li id=""  value="Add" title = "" class="nav-item FormPageMultiTabAdd">
-     <a> <div class="nav-link" href="#">+ Add</div>  </a>
-      </li>
-      --> 
-      </ul>
-	</div>
-</div>
+
 </br> 
  <div class="card CardNS">
     <!-- Card body -->
@@ -134,6 +117,7 @@ editData.setHistVar(HistVar); %>
 				<input type="text" id="MAED_SCHEMEID" hidden="hidden"  name="MAED_SCHEMEID" class="form-control MAEDDBfields ">
 				<input type="text" id="MAED_SCHEMENAME" hidden="hidden"  name="MAED_SCHEMENAME" class="form-control MAEDDBfields ">
 				<input type="text" id="MAED_MANUALEDIT" hidden="hidden"  name="MAED_MANUALEDIT" class="form-control MAEDDBfields ">
+				<input type="text" id="MAED_LOANID" hidden="hidden"  name="MAED_LOANID" class="form-control MAEDDBfields ">
            
       
                         </br>
@@ -185,8 +169,6 @@ editData.setHistVar(HistVar); %>
          <!-- Business Details End -->
          </div>
       </div>
-   </div>
-</div>
 
 <table style="display:none" id="GridMAEDTable">
 <thead>

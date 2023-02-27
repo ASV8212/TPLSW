@@ -7,11 +7,28 @@ $("#FLOW_SCHEMEID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
 	  //GetBorowClass();
       //GetSector();
 	
-  Checkinst();
-  Getbussiness();
+		var check1=UI_getdata($("#PrcsID").val(),$("#FLOW_SCHEMEID").val(),"","","","LSW_SGETLOANDETAILS");
+		var pro3=($(check1).find('PRODUCT').text());
+	
+	
+  
+	if(pro3=='T201')
+	{
+		GetbussinessUBL();
+		
+	}
+	else
+	{
+		 Getbussiness();
+		 GetMarginVal() ;
+	}
+ 
+  getproperty();
+  //GetMarginVal() ;
+  //Checkemiamt();
   
     FormDataFromDB("LSW_TCASHFLOWUBL", "FLOW_", "FLOWDBfields", "FLOW_SCHEMEID");
-	
+	Checkinst();
     $("#FLOW_PRCSID").val($("#PrcsID").val())
       	
 	$("#BTMONTHSHEETGRD").click();
@@ -33,7 +50,7 @@ $("#FLOW_SCHEMEID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
             var MndtryChk = ChkMandatoryFlds(prfx + "Mndtry");
             if (MndtryChk == "Mandatory") 
             {
-                alert("Fill the Mandatory Fields");
+                alert("Fill the Mandatory Fields / Document(s)");
                 return false;
             }
     

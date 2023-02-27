@@ -7,7 +7,6 @@
 <div class="loader2" style="display:none;" >
 
 </div>
-
      	
         <!-- Sidebar navigation -->
      <!-- Sidebar navigation -->
@@ -16,7 +15,8 @@
         <div id="slide-out" class="side-nav mdb-sidenav fixed" style="">
   <ul class="custom-scrollbar list-unstyled">
     <!-- Logo -->
-    ${DMY8}
+     ${DMY8}
+
          </ul>
           </div>
         <!--/. Sidebar navigation -->
@@ -24,11 +24,12 @@
         <!-- Navbar -->
         <nav class="mb-1 navbar fixed-top navbar-expand-lg navbar-inverse scrolling-navbar double-nav CusGrdColr align-items-center">
 
-            
-            
+            <div class="waves-effect waves-light Btxt16">
+			LSW
+            </div> 
             <!-- Breadcrumb-->
         
- <img class="img-fluid" alt="Responsive image" src="ThemeproLO/Common/Images/chola-logo.png" />
+ <!--<img class="img-fluid" alt="Responsive image" src="ThemeproLO/Common/Images/chola-logo.png" />-->
             <!--Navbar links-->
 	
 	
@@ -75,10 +76,10 @@ ${HEADERDATA}
             <ul class="nav navbar-nav nav-flex-icons ml-auto ULHdr align-items-center">
 
 				<li class="nav-item"  style="color:white"></li>
-				  <li class="nav-item">
+				  <!--<li class="nav-item">
                     <a href="#" class="nav-link">  <img id="" src="ThemeproLO/Common/FEP/images/DashSearch.png" alt="DashSearch"></img></a>
-                </li>
-                <!--<li class="nav-item">
+                </li>-->
+               <!-- <li class="nav-item">
                     <a href="#" class="nav-link">  <img id="" src="ThemeproLO/Common/FEP/images/DashBell.png" alt="DashBell"></img></a>
                 </li>-->
 				${DMY9}

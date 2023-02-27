@@ -8,8 +8,15 @@ if(($("#DMY5").val().split("|")[1]=="Yes")||$("#PrMs1").val()=="View")
 		}
 //Credit Changes END
 $(document).ready(function () {
-	 CheckGstCus();
+	
+	 	var result=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHKVIABILITYTAB");
+	var chk=$(result).find("RESULT").text();
 	 
+	if(chk=='Y')	
+	{
+		$("#FormPageTab9").remove()
+	}
+
 	//$("#EGCD_UNIQUID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
 	
 	/*var xml1=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETINDUSCATRGORY");
@@ -97,12 +104,46 @@ $(document).ready(function () {
 	$("#SALE_ACTIVITYID").val("#ActvID");
     FormDataFromDB("LSW_TSALESDETL","SALE_", "SALEDBfields","");
 	 
-	
+	 CheckGstCus();
+	 decideinterface();
 	
 	$("#BTNSALESGRD").click();
  
 	 
- 
+	$(document).on("click", ".CompleteTransaction" , function() {
+		$.ajax({
+		url: "/TPLSW/GSTAnalysisCallProcess",
+		data: {SPNAME:"LSW_SGSTANALYSISCREATE",Param1:"",Param2:"Process",PRCSID:$("#PrcsID").val(),Prvnt:$("#Prvnt").val()},
+		async:true,
+		type: 'POST',
+		success: function(xml1)
+		{
+			if(xml1.split("~")[0] == "Error")
+			{
+				alert(xml1.split("~")[1]);
+				return;
+			}
+			else if(xml1.split("~")[0] == "Success")
+			{
+				alert("Transaction Completed");
+				$("#SALE_COMPTRANSFLG").val("Completed");
+				$("#Save1").click();
+				window.location.reload();
+				return;
+			}
+			else
+			{
+				alert("Error Occurred, Contact ID");
+				return;
+			}
+		},
+		error: function (xml1)
+	   {
+			alert("Error Occurred, Contact ID");
+			return;
+	   }
+	});
+	});
 
 	$(document).on("click", ".FormSave" , function() {
 	//$('.FormSave').on('click', function() {
@@ -115,7 +156,7 @@ $(document).ready(function () {
             var MndtryChk = ChkMandatoryFlds(prfx + "Mndtry");
             if (MndtryChk == "Mandatory") 
             {
-                alert("Fill the Mandatory Fields");
+                alert("Fill the Mandatory Fields / Document(s)");
                 return false;
             }
     

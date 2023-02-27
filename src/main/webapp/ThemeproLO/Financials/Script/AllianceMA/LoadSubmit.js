@@ -38,7 +38,7 @@ $("#MAED_SCHEMEID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
 $("#MAED_SCHEMENAME").attr("value",$(".FormPageMultiTab li.active").text());
 
 	
-$("#BTNMAEDGRD").click();
+//$("#BTNMAEDGRD").click();
 
  $(document).on("click", ".FormSave" , function() {
 	//$('.FormSave').on('click', function() {
@@ -54,7 +54,7 @@ $("#BTNMAEDGRD").click();
             var MndtryChk = ChkMandatoryFlds(prfx + "Mndtry");
             if (MndtryChk == "Mandatory") 
             {
-                alert("Fill the Mandatory Fields");
+                alert("Fill the Mandatory Fields / Document(s)");
                 return false;
             }
     

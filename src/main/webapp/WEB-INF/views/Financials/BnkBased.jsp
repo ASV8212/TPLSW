@@ -20,6 +20,7 @@
 				<input type="text" id="CBBA_GRIDMNTH" hidden="hidden" name="CBBA_GRIDMNTH" class="form-control CBBADBfields">
 				<input type="text" id="CBBA_PRODUCTID" hidden="hidden" name="CBBA_PRODUCTID" class="form-control CBBADBfields">  
 				<input type="text" id="CBBA_PRODUCTNAME" hidden="hidden" name="CBBA_PRODUCTNAME" class="form-control CBBADBfields">
+				<input type="text" id="CBBA_LOANID" hidden="hidden" name="CBBA_LOANID" class="form-control  CBBADBfields">
 				 <!--value="S00001"--> 
                    
 				</br>

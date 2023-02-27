@@ -86,12 +86,25 @@ function GridControlDetailREPAYCHQ (popTableModPageGrid1,TableID,dtData,dtcolumn
 								 { targets: 3, "render": function ( data, type, row, meta ) {                            
 
 							 			var rowno = meta.row;       			 
-							 			 
+							 		
 							 		var HTML =    '<span><select class="Gridmdb-select md-form colorful-select dropdown-primary" id="RPCD_PDCTYPE'+rowno+'" name="RPCD_PDCTYPE'+rowno+'">';
 							 			HTML = HTML + '<option value="">Select</option>';
+										if($("#VERTICAL").val()!="UCV Eco")
+										{
 							 			HTML = HTML + '<option value="SPDC">SPDC</option>';
-										HTML = HTML + '<option value="PDC">PDC</option></span>';
-									          			
+										}
+										else if($("#VERTICAL").val()=="UCV Eco" && $("#PRPM_LOANTY").val()!="Term Loan")
+										{
+											HTML = HTML + '<option value="SPDC">SPDC</option>';
+										}
+										
+										
+										if($("#PRPM_LOANTY").val()=="Term Loan")
+										   {
+											HTML = HTML + '<option value="PDC">PDC</option></span>';
+											}
+
+											
 							 			var htmldata = $(HTML);
 							 			
 							 			$(htmldata).find("option[value='"+data+ "']").attr("selected","selected");
@@ -214,8 +227,20 @@ function GridControlDetailREPAYCHQMULTI (popTableModPageGrid1,TableID,dtData,dtc
 							 			 
 							 		var HTML =    '<span><select class="Gridmdb-select md-form colorful-select dropdown-primary" id="BMTD_PDCTYPE'+rowno+'" name="BMTD_PDCTYPE'+rowno+'">';
 							 			HTML = HTML + '<option value="">Select</option>';
+										
+							 			if($("#VERTICAL").val()!="UCV Eco")
+										{
 							 			HTML = HTML + '<option value="SPDC">SPDC</option>';
-										HTML = HTML + '<option value="PDC">PDC</option></span>';
+										}
+										else if($("#VERTICAL").val()=="UCV Eco" && $("#RPBD_PDCTYPE").val()!="Term Loan")
+										{
+											HTML = HTML + '<option value="SPDC">SPDC</option>';
+										}
+										
+										if($("#RPBD_PDCTYPE").val()=="Term Loan")
+										   {
+											HTML = HTML + '<option value="PDC">PDC</option></span>';
+											} 
 									          			
 							 			var htmldata = $(HTML);
 							 			
@@ -305,19 +330,27 @@ var CountAttch=1;
 	 }
 	 
 	 	 var FileSize=parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2);
-     var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
+ //    var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
+ //    var Filename  = names.replace(',','')
 	 
-
-		var xml=UI_getdata(FileType,FileSize,"","","","LSW_SGETDOCUMNTSIZE")
+	      var Filename  = $(id).closest('td').find('input[type="file"]')[0].files[0].name
+	      var FileType= Filename.substring(Filename.lastIndexOf('.')+1);
+          var  Filename= Filename.substring(0, Filename.lastIndexOf('.'));
+          var names=Filename
+		  
+		  
+		  
+		var xml=UI_getdata(FileType,FileSize,Filename,"","","LSW_SGETDOCUMNTSIZE")
 		var FileAccept=$(xml).find('RESULT').text()
 	if(FileAccept == 'No')
 	{
-		alert("File Size not matched")
+		alert($(xml).find("alert").text());
+		$(id).closest('td').find('input[type="file"]').val('')
 		return
     }
-	 names=names.slice(0,-1)+'.'+FileType	
+	 names=names+'.'+FileType	
 var y=  names;
-var specialChars = "<>&#^|~`"
+/*var specialChars = "<>&#^|~`"
 var check = function(string){
     for(i = 0; i < specialChars.length;i++){
         if(string.indexOf(specialChars[i]) > -1){
@@ -330,10 +363,10 @@ var check = function(string){
 if(check(y) == false){
     // Code that needs to execute when none of the above is in the string
 }else{
-    alert('Error in File Name');
+    alert('File name contains special character please remove and upload');
 	$(id).closest('td').find('input[type="file"]').val('')
 	return;
-}
+}*/
  ajaxindicatorstart("Uploading.. Please wait");
 	    $.ajax({
 	    	url:"/TPLSW/DMS?names="+names+"&PrcsID="+PrcsID+"&FormName="+FormName+"&descrptns="+descrptns+"&flsize="+flsize+"&vrsnno="+vrsnno+"&domain="+domain+"&usrpwd="+usrpwd+"&Prvnt="+$("#Prvnt").val()+"&CusID="+CusID+"&DocName="+DocName,
@@ -558,8 +591,6 @@ function GetAcctNo(HTML,Evnt,val)
 	   }
 	});
 
-
-
 function ChkEnachReson()
 {
 	if($("#DMY7").val().split('|')[11] != "")
@@ -584,6 +615,8 @@ function ChkEnachReson()
 		}
 	}
 }
+
+
 
 
 

@@ -37,7 +37,7 @@
         <input type="text" id="APDU_DTMODIFIED" hidden="hidden" name="APDU_DTMODIFIED" class="form-control APDUDBfields">
         <input type="text" id="APDU_MODIFIEDBY" hidden="hidden" name="APDU_MODIFIEDBY" class="form-control APDUDBfields">
         <input type="text" id="APDU_CUSID" hidden="hidden" name="APDU_CUSID" class="form-control APDUDBfields">
-       
+     
        <input type="text" id="APDU_DUPEVERITY" hidden="hidden" name="APDU_DUPEVERITY" class="form-control APDUDBfields">
          <!-- LSW_TDEDUBEAPPLDETAILS -->
          <br>
@@ -45,9 +45,9 @@
              <div class="col-md-6"> 
                <input type="text" id="APDU_NAME"  name="APDU_NAME" class="form-control DSVLBL Btxt04 APDUDBfields" >
              </div>
-             <div class="col-md-6"> 
-             <button type="button" onclick="DedupeChk('APDU_CUSID'+$(this).closest('.DYNROW').attr('data-row'),'BTNDEDUPEGRD'+$(this).closest('.DYNROW').attr('data-row'),'APDU_DUPEVERITY'+$(this).closest('.DYNROW').attr('data-row'),this)" data-Validatearia="APDU_DUPEVERITY"  class="FltRight APDU_DUPEVERITY waves-effect btn-yelInplain btn-sm">Re Initiate Dedupe</button>
-             </div>
+           <!--  <div class="col-md-6"> 
+             <button type="button"  onclick="DedupeChk('APDU_CUSID'+$(this).closest('.DYNROW').attr('data-row'),'BTNDEDUPEGRD'+$(this).closest('.DYNROW').attr('data-row'),'APDU_DUPEVERITY'+$(this).closest('.DYNROW').attr('data-row'),this)" data-Validatearia="APDU_DUPEVERITY"  class="FltRight APDU_DUPEVERITY waves-effect btn-yelInplain btn-sm">Re Initiate Dedupe</button>
+             </div>-->
            </div>
     <!--    <div class="form-row">
            <div class="col">
@@ -58,7 +58,7 @@
         </div> -->  
         <div class="form-row">
            <div class="col">
-             <input type="button" data-button="GridButton" data-value="APPLGRIDTable|LSW_SGETDEDUEGRID|PrcsID|APDU_CUSID||8,9,10,11,12|DEDUBEGRID" style="display:none" class="DashTrg APDUDBfields MultiGridTrg" id="BTNDEDUPEGRD" name="BTNDEDUPEGRD" />
+             <input type="button" data-button="GridButton" data-value="APPLGRIDTable|LSW_SGETDEDUEGRID|PrcsID|APDU_CUSID||0,8,9,10,11,12|DEDUBEGRID" style="display:none" class="DashTrg APDUDBfields MultiGridTrg" id="BTNDEDUPEGRD" name="BTNDEDUPEGRD" />
              <table cellpadding="0"  cellspacing="0" border="0" style="width: 80%" class="display APDUDBfields DataGrid" name="APPLGRIDTable" id="APPLGRIDTable">
              </table>
            </div>
@@ -100,8 +100,8 @@
     </table>    
  <!-- LSW_TDEDUBEGRID -->   
     
-    <script type="text/javascript" src="ThemeproLO/ViewRpt/Script/Dedupe/LoadSubmit.js${DMY13}"></script>
-    <script type="text/javascript" src="ThemeproLO/ViewRpt/Script/Dedupe/Validation.js${DMY13}"></script> 
+    <script type="text/javascript" src="ThemeproLO/UCV/ViewRpt/Script/Dedupe/LoadSubmit.js${DMY13}"></script>
+    <script type="text/javascript" src="ThemeproLO/UCV/ViewRpt/Script/Dedupe/Validation.js${DMY13}"></script> 
   
   <link href="ThemeproLO/Common/FEP/Calendar/css/monthly.css${DMY13}" rel="stylesheet">
 <script type="text/javascript" src="ThemeproLO/Common/FEP/Calendar/js/monthly.js${DMY13}"></script>

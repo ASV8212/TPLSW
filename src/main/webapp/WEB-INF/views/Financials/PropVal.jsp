@@ -37,7 +37,7 @@
 <div class="Formaccordion accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
 
   <!-- Accordion card -->
-  <div class="card active">
+  <div class="card active PropValu">
 
     <!-- Card header -->
     <div class="card-header Btxt7 active" role="tab" id="headingOne1">
@@ -838,6 +838,7 @@
 <th>PVCS_DEDUBESTAUS</th>
 <th>PVCS_PROFCHECK</th>
 <th>PVCS_CUSID</th>
+<th>PVCS_GEOGRAPH</th>
 </thead>
 </table>
   <script type="text/javascript" src="ThemeproLO/Financials/Script/PropValuation/LoadSubmit.js${DMY13}"></script>

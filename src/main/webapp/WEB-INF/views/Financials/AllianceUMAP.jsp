@@ -22,6 +22,7 @@
 				  <input type="text" id="AEPM_SCHEMENAME" hidden="hidden" name="AEPM_SCHEMENAME" class="form-control AEPMDBfields">
 				  <input type="text" id="AEPM_SCHEMEID" hidden="hidden" name="AEPM_SCHEMEID" class="form-control AEPMDBfields">
 				  <input type="text" id="AEPM_ACTUALMETHOD" hidden="hidden" name="AEPM_ACTUALMETHOD" class="form-control AEPMDBfields">
+				  <input type="text" id="AEPM_LOANID" hidden="hidden" name="AEPM_LOANID" class="form-control AEPMDBfields">
 				  
                    
 				 </br>
@@ -29,9 +30,12 @@
         	<div class="col Btxt10">Eligibility Calculation - Actual/Existing Purchase Method</div>
         </div>
       	</br>
+		<div class="form-row">
+        	<div class="col Btxt10" style="color: rgb(255, 0, 0);">Details to be entered in actuals (Rs)</div>
+        </div>
        <div class="form-row">
            <div class="col">
-             <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table7',{spname:'LSW_SELIGCALCI',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#AEPM_SCHEMEID').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||3,4','ELIGCALCI');" id="BTNELIGCALCIGRD" name="BTNELIGCALCIGRD" />
+             <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table7',{spname:'LSW_SELIGCALCI',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#AEPM_SCHEMEID').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||2,3,4','ELIGCALCI');" id="BTNELIGCALCIGRD" name="BTNELIGCALCIGRD" />
              <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display DataGrid" id="Table7">
              </table>
            </div>

@@ -1,7 +1,7 @@
 
 function BANKSUMAVG()
 {
-	var xmlSTATUS=UI_getdata($("#PrcsID").val(),"SUMAVG",$("#SABB_NOBANKACC").val(),"","","LSW_SABBCALCULATION")
+	var xmlSTATUS=UI_getdata($("#PrcsID").val(),"SUMAVG",$("#SABB_NOBANKACC").val(),$("#SABB_BANKMONTHS").val(),"","LSW_SABBCALCULATION")
 	
 	if($(xmlSTATUS).find('RESULT').text()!="SUCCESS")
 	{
@@ -29,7 +29,7 @@ function BANKSUMAVG()
 		
 		
  
-	var xmlSTAT1=UI_getdata($("#PrcsID").val(),"SUMAVGINFLOW",$("#SABB_NOBANKACC").val(),"","","LSW_SABBCALCULATION")
+	var xmlSTAT1=UI_getdata($("#PrcsID").val(),"SUMAVGINFLOW",$("#SABB_NOBANKACC").val(),$("#SABB_BANKMONTHS").val(),"","LSW_SABBCALCULATION")
 	
 	if($(xmlSTAT1).find('RESULT').text()!="SUCCESS")
 	{
@@ -46,6 +46,10 @@ function BANKSUMAVG()
 	{
 		SUMAVGINFLOW=0;
 	}
+	if(SUMAVGINFLOW=='Infinity')
+	{
+		SUMAVGINFLOW=0;
+	}
 	
     	$("#SABB_TOTCREBANKACC").val(CURINRCommaSep(parseFloat(SUMAVGINFLOW).toFixed(2))); 
 		$('#SABB_TOTCREBANKACC').next().addClass('active');
@@ -53,7 +57,7 @@ function BANKSUMAVG()
 		
 		
 		
-		var xmlSTA=UI_getdata($("#PrcsID").val(),"SUMAVGEXCLUSION",$("#SABB_NOBANKACC").val(),"","","LSW_SABBCALCULATION")
+		var xmlSTA=UI_getdata($("#PrcsID").val(),"SUMAVGEXCLUSION",$("#SABB_NOBANKACC").val(),$("#SABB_BANKMONTHS").val(),"","LSW_SABBCALCULATION")
 	
 	if($(xmlSTA).find('RESULT').text()!="SUCCESS")
 	{
@@ -67,6 +71,10 @@ function BANKSUMAVG()
 		SUMAVGEXCLUSION=0;
 	}
 	if(isNaN(SUMAVGEXCLUSION))
+	{
+		SUMAVGEXCLUSION=0;
+	}
+	if(SUMAVGEXCLUSION=='Infinity')
 	{
 		SUMAVGEXCLUSION=0;
 	}
@@ -98,6 +106,10 @@ function SUBTRACTIONAMOUNT()
 	{
 		TOTAL=0;
 	}
+	if(TOTAL==Infinity)
+	{
+		TOTAL=0;
+	}
 	$("#SABB_REVBUSICRESUM").val(CURINRCommaSep(parseFloat(TOTAL).toFixed(2)));
 	  $("#SABB_REVBUSICRESUM").next().addClass('active');
 	  PERNONBUSINESS();
@@ -123,6 +135,14 @@ function PERNONBUSINESS()
 	{
 		TOTAL=0;
 	}
+	
+	if(TOTAL == Infinity) 
+	{
+	TOTAL=0;	
+	}
+	
+	
+	
 	TOTAL=parseFloat(TOTAL)*100
 	$('#SABB_PRCNONSUM').val(CURINRCommaSep(parseFloat(TOTAL).toFixed(2)));
 	  $('#SABB_PRCNONSUM').next().addClass('active');
@@ -148,6 +168,11 @@ function AJUSTABB()
 	var TOTAL=parseFloat(parseFloat(MONTHABB)*parseFloat(1-parseFloat(PRCNONSUM)/100));
 	
 	 
+	 if(TOTAL == Infinity) 
+	{
+	TOTAL=0;	
+	}
+	
 	if(isNaN(TOTAL))
 	{
 		TOTAL=0;
@@ -179,6 +204,10 @@ function FINALABB()
 	} 
 	var TOTAL=parseFloat(SABB_ADJUCTABB)-parseFloat(SABB_EMILASTSIXMONTH)+parseFloat(SABB_EMICLOSIXMONTH);
 	if(isNaN(TOTAL))
+	{
+		TOTAL=0;
+	}
+	if(TOTAL==Infinity)
 	{
 		TOTAL=0;
 	}
@@ -231,7 +260,10 @@ function GetMaxEmi(){
 	{
 		MAXEMI=0;
 	}
-	
+	if(MAXEMI==Infinity)
+	{
+		MAXEMI=0;
+	}
 	$("#SABB_MAXEMI").val(CURINRCommaSep(parseFloat(MAXEMI).toFixed(2)));
 	$("#SABB_MAXEMI").next().addClass('active');
 	
@@ -264,6 +296,12 @@ function GetLoanEligibil()
 	else{
 		var LOANELIGH=parseFloat(parseFloat(EMI)/ parseFloat(EMI))*100000;
 	}
+	
+	 if(LOANELIGH == Infinity) 
+	{
+	LOANELIGH=0;	
+	}
+	
 	if(isNaN(LOANELIGH))
 	{
 		LOANELIGH=0;
@@ -292,6 +330,10 @@ function GetPropoLoan()
 	{
 		PROPLOAN=0;
 	} 
+	if(PORLOAN==Infinity)
+	{
+		PROLOAN=0;
+	}
 	$("#SABB_PROPLOAN").val(CURINRCommaSep(parseFloat(PROPLOAN).toFixed(2)));
 	$("#SABB_PROPLOAN").next().addClass('active'); 
 	GetOutStand();
@@ -318,7 +360,16 @@ function GetOutStand()
 		}
 	 
 	var OUTEXITLAON=parseFloat(parseFloat(EXITLOAN)-parseFloat(parseFloat(ODLIMIT)*parseFloat(50/100))-parseFloat(parseFloat(LAPOS)*parseFloat(50/100)));
-		if(isNaN(OUTEXITLAON))
+		
+		
+		if(OUTEXITLAON == Infinity) 
+	{
+	OUTEXITLAON=0;	
+	}
+	
+	
+	
+	if(isNaN(OUTEXITLAON))
 	{
 		OUTEXITLAON=0;
 	} 
@@ -350,6 +401,10 @@ function GetLoanexpos()
 	{
 		TOTLOANEXP=0;
 	} 
+	if(TOTLOANEXP==Infinity)
+	{
+		TOTLOANEXP=0;
+	}
 	$("#SABB_TOTLOANEXP").val(CURINRCommaSep(parseFloat(TOTLOANEXP).toFixed(2)));
 	$("#SABB_TOTLOANEXP").next().addClass('active'); 
 	
@@ -370,6 +425,12 @@ function GetLoanexpos()
 	 
 	 
 	var PERTOTLAONEXP= parseFloat(parseFloat(TOTLOANEXP1)/parseFloat(REVBUSICRESUM));
+	
+	if(PERTOTLAONEXP == Infinity) 
+	{
+	PERTOTLAONEXP=0;	
+	}
+	
 		if(isNaN(PERTOTLAONEXP))
 	{
 		PERTOTLAONEXP=0;

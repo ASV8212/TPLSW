@@ -20,8 +20,8 @@
                   <input type="text" id="OUBL_MODIFIEDBY" hidden="hidden" name="OUBL_MODIFIEDBY" class="form-control OUBLDBfields">
                   <input type="text" id="OUBL_DTMODIFIED" hidden="hidden" name="OUBL_DTMODIFIED" class="form-control OUBLDBfields">
 				  <input type="text" id="OUBL_SCHEMENAME" hidden="hidden" name="OUBL_SCHEMENAME" class="form-control OUBLDBfields">
-				  <input type="text" id="OUBL_SCHEMEID" hidden="hidden" name="OUBL_SCHEMEID" class="form-control 
-				  OUBLDBfields">
+				  <input type="text" id="OUBL_SCHEMEID" hidden="hidden" name="OUBL_SCHEMEID" class="form-control OUBLDBfields">
+				  <input type="text" id="OUBL_LOANID" hidden="hidden" name="OUBL_LOANID" class="form-control OUBLDBfields">
 				  
                    
 				 </br>
@@ -155,8 +155,8 @@
              
             </form>
          </div>
-       <!--  </div>
-    card 
+        </div>
+   <!--  card 
    </div>
 </div>-->
 <!--   </div>

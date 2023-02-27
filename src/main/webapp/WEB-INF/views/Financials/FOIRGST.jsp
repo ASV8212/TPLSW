@@ -7,6 +7,9 @@
          <br>
          <div class="Btxt10 ">FOIR GST</div>
 		   </br>
+		   <div class="form-row ALLI">
+        	<div class="col Btxt10" style="color: rgb(255, 0, 0);">Details to be entered in actuals (Rs)</div>
+        </div>
          <input type="text" id="FOGS_PRCSID" hidden="hidden" name="FOGS_PRCSID" class="form-control FOGSDBfields">
          <input type="text" id="FOGS_ACTIVITYID" hidden="hidden" name="FOGS_ACTIVITYID" class="form-control FOGSDBfields">
          <input type="text" id="FOGS_DTCREATED" hidden="hidden" name="FOGS_DTCREATED" class="form-control FOGSDBfields">
@@ -16,6 +19,7 @@
          <input type="text" id="FOGS_SCHEMEID"   hidden="hidden" name="FOGS_SCHEMEID" class="form-control FOGSDBfields">
          <input type="text" id="FOGS_SCHEMENAME" hidden="hidden" name="FOGS_SCHEMENAME" class="form-control FOGSDBfields">
           <input type="text" id="FOGS_PRODUCT" hidden="hidden" name="FOGS_PRODUCT" class="form-control FOGSDBfields">
+		  <input type="text" id="FOGS_LOANID"   hidden="hidden" name="FOGS_LOANID" class="form-control FOGSDBfields">
 
 			 <div class="form-row">
 			 <div class="col-md-4">
@@ -115,13 +119,19 @@
 			   
 			   
 			   <div class="form-row">
-			 <div class="col-md-4">
+			 <div class="col-md-4" style="display:none">
                      <div class="md-form">
                         <input type="text" id="FOGS_INDTAX"  disabled maxlength="200" onblur="FoirGst();"  class="form-control  IsCURCommaFields   IsNumberFields NoSpecialChar  FOGSDBfields " name="FOGS_INDTAX">
                         <label for ="FOGS_INDTAX" class="">Net Sales<span class="MndtryAstr"></span></label>
                      </div>
                   </div>
 				  
+				  <div class="col-md-4">
+                     <div class="md-form">
+                        <input type="text" id="FOGS_INDTAXI"   maxlength="200" onblur="FoirGst();"  class="form-control  IsCURCommaFields   IsNumberFields NoSpecialChar  FOGSDBfields " name="FOGS_INDTAXI">
+                        <label for ="FOGS_INDTAXI" class="">Individual Tax<span class="MndtryAstr"></span></label>
+                     </div>
+                  </div>
               
 			 <div class="col-md-4">
                      <div class="md-form">

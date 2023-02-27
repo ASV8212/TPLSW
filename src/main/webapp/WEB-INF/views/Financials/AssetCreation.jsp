@@ -18,6 +18,7 @@
          <input type="text" id="ASST_CUSID" hidden="hidden" name="ASST_CUSID" class="form-control ASSTDBfields">
 		 <input type="text" id="ASST_SCHEMEID" hidden="hidden"  name="ASST_SCHEMEID" class="form-control ASSTDBfields">
 		 <input type="text" id="ASST_SCHEMENAME" hidden="hidden" name="ASST_SCHEMENAME" class="form-control ASSTDBfields">
+		 <input type="text" id="ASST_LOANID" hidden="hidden"  name="ASST_LOANID" class="form-control ASSTDBfields">
 	
 		  <div class="form-row ">
                   
@@ -57,7 +58,7 @@
                   </div>
 				  
 				  
-				  <div class="col-md-4">
+				  <div class="col-md-4 CHKLNTY">
                      <div class="md-form">
                         <select class="mdb-select md-form colorful-select dropdown-primary  ASSTDBfields"  id="ASST_TYPEPROPE" name="ASST_TYPEPROPE">
                            <option value="" selected>--Select--</option>
@@ -68,7 +69,7 @@
                      </div>
                   </div>
 				  
-				  <div class="col-md-4">
+				  <div class="col-md-4 CHKLNTY">
                      <div class="md-form">
                         <input type="text" id="ASST_PROPVALUATION"  maxlength="200"  class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar ASSTDBfields  " name="ASST_PROPVALUATION">
                         <label for ="ASST_PROPVALUATION" class="">Property Valuation (as per Valuation report)<span class="MndtryAstr"></span></label>
@@ -76,6 +77,41 @@
                   </div>
 				  
                </div>
+			   <div class="form-row"   >
+			 <div class="col-md-4 ">
+			 <div class="md-form">
+											<div class=""> </div>
+											<div class="row UAMN" >
+							<div class="col-md-8  Formcol-mdLR ">
+							<div class="md-form">
+							<table><tr>
+							<td>
+							<div id="ASST_PROPDOCUPLOAD"  class="file-field">
+								<a class="">
+								<i class="fa fa-plus imgAdd" aria-hidden=""></i>
+								<input type="file"  name="datafile" onchange="DocFldUpldHndlr(ASST_PROPDOC,'ASST_PROPDOC','PROPDoc','PROPDocview')" class="ASST_PROPDOC"  >
+								</a> 
+							<input type="text" id="ASST_PROPDOC" data-val="Upload Document" hidden="hidden" data-Validate="ASST_PROPDOC"  name="ASST_PROPDOC" class="form-control voter File ASSTDBfields">
+							<span class="name1">Upload Document <span class="MndtryAstr">*</span></span>
+							</div>
+							</td>
+							</tr></table>
+							</div>    
+							</div>  
+							<div class="col-md-2 Formcol-mdLR TxtCenter MachineryDocview">
+							<div class="md-form">
+							<div class="ASST_PROPDOC" style="display:none"> <img src="ThemeproLO/Common/Images/UploadImg.png" onclick="ReuploadFile(ASST_PROPDOC);" title="UPLOAD"  class="rounded ReUpld" alt="Cinque Terre" width="20" height="20">  
+							<img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW"  class="rounded" onclick="GrdDocDwnld('ASST_PROPDOC')" alt="Cinque Terre" width="35" height="25"> </div>
+							</div>
+							</div>  
+							</div>
+							</div>
+							</div>
+			</br>
+			</br>
+			</br>
+			</div>
+			   
 			   
 			     <div class="Btxt10 ">Assets</div>
 			   </br>
@@ -266,7 +302,7 @@
                      </div>
                   </div>
 				  
-				  <div class="col-md-4">
+				  <div class="col-md-4 CHKLNTY">
                      <div class="md-form">
                         <input type="text" id="ASST_FINALLTV" disabled maxlength="200"  class="form-control   IsNumberFields NoSpecialChar ASSTDBfields  " name="ASST_FINALLTV">
                         <label for ="ASST_FINALLTV" class="">Final LTV(%)<span class="MndtryAstr"></span></label>

@@ -1,15 +1,19 @@
 $(document).ready(function() {
 
 
-
     //$($('.AFormaccordion')[0]).click();
     //$("#BKDT_CUSID").val($(".FormPageMultiTab li.active").attr("id"));
-
+	//$("#ACSP_LOANID").val($(".FormPageMultiTab li.active").attr("id"));
     $("#ACSP_PRCSID").attr("value", $("#PrcsID").val());
     $("#ACHP_PRCSID").attr("value", $("#PrcsID").val());
     //FormDataFromDB("LSW_TLYFINSRNCHDR", "ALIH_", "ALIHDBfields", "");
     //LoadMultiData("",$("#PrcsID").val(),"","ApproveNote2","ALIHDBfields","LSW_SGETAPPLNWSCRSSELL");
-    
+    var XML=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETLOANDTL")
+	$("#ACSP_LOANID").append($(XML).find("RESULT").html())
+	$("#ACHP_LOANID").append($(XML).find("RESULT").html())
+	
+	
+	
     GetPropertyAddr();
     GETINSURERNAME();
     $("#ACSP_SUMASSURD").val(CURCommaSep($("#DMY3").val().split("|")[3]))
@@ -24,11 +28,9 @@ $(document).ready(function() {
     
     
     
-    LoadMultiData("",$("#PrcsID").val(),"","ApproveNote2","ACHPDBfields","LSW_SGETHEALTHPEC"); 
+    LoadMultiData("",$("#PrcsID").val(),$(".FormPageMultiTab li.active").attr("id"),"ApproveNote2","ACHPDBfields","LSW_SGETHEALTHPEC"); 
     
 	$("#headingOne1").find('.AFormaccordion').click();
-	
-	
 	
 	//$("#BTNPropertyInsurance").click();
 	
@@ -57,7 +59,7 @@ $(document).ready(function() {
       }
     CheckApplicable('','Load');
 	
-   
+    
     	$(document).on("click", ".DELETECROSSPRO" , function() {
 
 
@@ -72,7 +74,6 @@ $(document).ready(function() {
 	 	 			//('.BankDetail1').find('.DYNROW')[i]
 	 	 		    var	j=i+1
 	 	            $($('.BankDetail1').find('.DYNROW')[i]).find('#PROPTXTHDR').text('Property '+j)
-					
 	 	 			}
 	 		}
 	 })
@@ -91,6 +92,35 @@ $(document).ready(function() {
 
 	 	});
     
+	$(document).on("change", ".ClrPremium", function() {
+		
+		var Count=$(this).attr('CNT')
+		if(parseInt(Count)>=0)
+		{
+		if(Count=="0")
+		{
+			Count
+		}
+		else
+		{
+			Count=Count-1
+		}
+		var Html=$(".ApproveNote2").find(".DYNROW")[Count]
+		var Premium=$(this).attr('data')
+		var Data=$(Html).find("#"+Premium).val().replace(/,/g, "")
+		
+		/*if(Data.indexOf(',') != -1)
+		{
+			 Data=$(Html).find("#"+Premium).val().replace(/,/g, "")
+		}*/
+		
+		if(Data!="")
+		{
+			$(Html).find("#"+Premium).val('');
+		}
+		}
+		
+	});
     
     
 		  $(document).on("change", ".Tenure", function() {
@@ -114,7 +144,7 @@ $(document).ready(function() {
     /**Grid Trigger End **/
 
     $(document).on("click", ".FormSave", function() {
-         
+
         var html = $(this).closest('.DYNROW')
         var tbl = $(this).attr("data-aria").split("|")[0];
         var prfx = $(this).attr("data-aria").split("|")[1];
@@ -128,10 +158,10 @@ $(document).ready(function() {
 			
             var MndtryChk = ChkMandatoryFlds(prfx + "Mndtry");
             if (MndtryChk == "Mandatory") {
-                alert("Fill the Mandatory Fields");
+                alert("Fill the Mandatory Fields / Document(s)s");
                 return false;
             }
-			if($('input:radio[name=ACSP_GENDR]')[0].checked == false && $('input:radio[name=ACSP_GENDR]')[1].checked == false && $('input:radio[name=ACSP_GENDR]')[1].checked == false)
+			if($('input:radio[name=ACSP_GENDR]')[0].checked == false && $('input:radio[name=ACSP_GENDR]')[1].checked == false && $('input:radio[name=ACSP_GENDR]')[2].checked == false)
 			{
 				alert('Fill the Gender');
 				return false;
@@ -143,29 +173,29 @@ $(document).ready(function() {
     	{
 			if($(this).attr('data-form')=="Property Insurance"  && $(this).text() == "Save")
 		     {
-		
+		         
 			    var MndtryChk = ChkMandatoryFlds_V1("AMPIMndtry",html);
 
 		      if(MndtryChk == "Mandatory")
 			    {
-			     alert("Fill the Mandatory Fields");
+			     alert("Fill the Mandatory Fields / Document(s)");
 			      return false;
 			     }
 		    }
 
-        if( ($(this).attr('data-form')=="Health & Pac Insurance" && $(this).text() == "Save" || $(this).text() == "Generate Health Premium" || $(this).text() == "Generate Pac Premium") )
+        if(($(this).attr('data-form')=="Health & Pac Insurance" && $(this).text() == "Save" || $(this).text() == "Generate Health Premium" || $(this).text() == "Generate Pac Premium"))
 		{
 		
 		var MndtryChk = ChkMandatoryFlds_V1("ACHPMndtry",html);
 
 		if(MndtryChk == "Mandatory")
 			{
-			alert("Fill the Mandatory Fields");
+			alert("Fill the Mandatory Fields / Document(s)");
 			return false;
 			}
 		if($(html).find("[name='ACHP_APPCONSIDER']").val() == "Yes")
 		{
-			if($(html).find('input:radio[name=ACHP_NOMINEGENDR]')[0].checked == false && $(html).find('input:radio[name=ACHP_NOMINEGENDR]')[1].checked == false && $(html).find('input:radio[name=ACHP_NOMINEGENDR]')[1].checked == false)
+			if($(html).find('input:radio[name=ACHP_NOMINEGENDR]')[0].checked == false && $(html).find('input:radio[name=ACHP_NOMINEGENDR]')[1].checked == false && $(html).find('input:radio[name=ACHP_NOMINEGENDR]')[2].checked == false)
 			{
 				alert('Fill the Gender');
 				return false;
@@ -184,9 +214,9 @@ $(document).ready(function() {
 		}
     	}
         
-        if($(this).attr('data-form')=="Health & Pac Insurance")
-		{
-		   var ACHP_COMBOGRD = TxtGridsubmitdata_V3("Table7","AMPI_","ACHP_");
+        if($(this).attr('data-form')=="Health & Pac Insurance")	
+	     {
+			  var ACHP_COMBOGRD = TxtGridsubmitdata_V3("Table7","AMPI_","ACHP_");
 				 	var ACHP_FAIMILYGRD = TxtGridsubmitdata_V3("Table8","HPFA_","ACHP_");
 			    var BALANCEDATA=["ApproveNote2|"];
 				 for (j=0;j<BALANCEDATA.length;j++)
@@ -209,21 +239,18 @@ $(document).ready(function() {
 		                alert("Submission Failed");
 		                return false;	
 			      	  }	
-			$(".loader1").show();
+					  $(".loader1").show();
           if($(html).find("[name='ACHP_APPCONSIDER']").val() == "Yes")
-		{
-			var Health="";
-			var Pac="";
+		    {
+			   var Health="";
+			    var Pac="";
         	var op=UI_getdata("Health Insurance","",$(this).closest('.DYNROW').find("input[name='ACHP_CUSID']").val(),$("#PrcsID").val(),"","LSW_SVALDTINSBFRCALC")
             
             if($(op).find('HARDSTOP').text()=="Y")
             	{
-					if($(this).text()=="Generate Health Premium")
-					{
             	  alert($(op).find('MSG').text());
             	  //return false;
 				  Health="Failed"
-					}
                 }
            // else
             //	{
@@ -236,12 +263,9 @@ $(document).ready(function() {
                  
                  if($(xml).find('HARDSTOP').text()=="Y")
                  	{
-						if($(this).text()=="Generate Pac Premium")
-					     {
                  	  alert($(xml).find('MSG').text());
                  	  //return false;
 					  Pac="Failed"
-						 }
                  	}
                 // else
                	  //{
@@ -257,14 +281,14 @@ $(document).ready(function() {
    				subtyp+=$($($("#"+TablID).find('.tbodytr')[i]).find('.tbodytrtd')[0]).text()+'|'
    				Tenr+=$($($("#"+TablID).find('.tbodytr')[i]).find('.tbodytrtd')[1]).find('select').val()+'|'
    				if(subtyp=="Health Insurance|"){
-   				Tenr+=$($($("#"+TablID).find('.tbodytr')[i]).find('.tbodytrtd')[2]).find('select').val().replace(/,/g, "")+'|'
+   				Tenr+=$($($("#"+TablID).find('.tbodytr')[i]).find('.tbodytrtd')[2]).find('select').val()+'|' //.replace(/,/g, "")
    				}
    				else{
-   					Tenr+=$($($("#"+TablID).find('.tbodytr')[i]).find('.tbodytrtd')[2]).find('input').val().replace(/,/g, "")+'|'
+   					Tenr+=$($($("#"+TablID).find('.tbodytr')[i]).find('.tbodytrtd')[2]).find('input').val()+'|' //.replace(/,/g, "")
    				}
    				
    			}
-			if($(this).text()!="Save")
+   			if($(this).text()!="Save")
 			{
 				var Hit=$(this).attr('data-hit')
 			var xml=UI_getdata("Health and Pac","","","","","LSW_SCHKINTGSTATUS")
@@ -354,9 +378,9 @@ $(document).ready(function() {
 		     
 		                       // var RTNINSVAL=GetHelthPac(this,TablID,tbllen)
 							}
-                         else if($(xml).find('STATUS').text()=="Inactive")
+                        else 
 						 {
-   			var op = UI_getdata($(this).attr('data-form'),$("#PrcsID").val(),$("#ACHP_CUSID1").val(),subtyp,Tenr,"LSW_SOFFLNINSCALC")
+   			/*var op = UI_getdata($(this).attr('data-form'),$("#PrcsID").val(),$("#ACHP_CUSID1").val(),subtyp,Tenr,"LSW_SOFFLNINSCALC")
    			
    			$(this).closest('.CardNS').find("[name=ACHP_INSAMOUNT]").val(CURCommaSep($(op).find("TOT").text()));
    			$(this).closest('.CardNS').find("[name=ACHP_INSAMOUNT]").next().addClass('active');
@@ -384,7 +408,7 @@ $(document).ready(function() {
 					   alert("Offline \n\r Personal Accidental Cover (PAC) Premium Amount Rs."+CURCommaSep($(op).find("PAC").text()))	
 					}
    				}
-   			}
+   			}*/
 			
 			var ACHP_COMBOGRD = TxtGridsubmitdata_V3("Table7","AMPI_","ACHP_");
 				 	var ACHP_FAIMILYGRD = TxtGridsubmitdata_V3("Table8","HPFA_","ACHP_");
@@ -409,14 +433,62 @@ $(document).ready(function() {
 		                alert("Submission Failed");
 		                return false;	
 			      	  }
-		            } 					   
+		            } 
 			}
-		         }
+		  } 
+         // } 
+         }
+        	
+        	/*  var xml=UI_getdata($(this).closest('.DYNROW').find("input[name='ALIH_INSPTNR']:checked").val(),"",$(this).closest('.DYNROW').find("input[name='ACHP_CUSID']").val(),$("#PrcsID").val(),"","LSW_SVALDTINSBFRCALC")
+              
+              if($(xml).find('HARDSTOP').text()=="Y")
+              	{
+              	  alert($(xml).find('MSG').text());
+              	  return false;
+              	}
+              else
+            	  {
+            	  
+            	  if($(xml).find('MSG').text() != "ALLOW")
+          		   {
+          		      alert($(xml).find('MSG').text())
+          		   }
+			var TablID = "Table7"+$(this).closest('.DYNROW').attr("data-row")
+			var tbllen = $("#"+TablID).find('.tbodytr').length
+			var subtyp="",Tenr="0",SumInsr="0",PARAM5=""
+			for(var i = 0;i<tbllen;i++){
+				subtyp+=$($($("#"+TablID).find('.tbodytr')[i]).find('.tbodytrtd')[0]).text()+'|'
+				Tenr+=$($($("#"+TablID).find('.tbodytr')[i]).find('.tbodytrtd')[1]).find('select').val()+'|'
+				if(subtyp=="Health Insurance|"){
+				Tenr+=$($($("#"+TablID).find('.tbodytr')[i]).find('.tbodytrtd')[2]).find('select').val().replace(/,/g, "")+'|'
+				}
+				else{
+					Tenr+=$($($("#"+TablID).find('.tbodytr')[i]).find('.tbodytrtd')[2]).find('input').val().replace(/,/g, "")+'|'
+				}
+				
 			}
-      
+			var op = UI_getdata($($(this).closest('.CardNS').prev().find('a')).text(),$("#PrcsID").val(),$("#ACHP_CUSID1").val(),subtyp,Tenr,"LSW_SOFFLNINSCALC")
+			
+			$(this).closest('.CardNS').find("[name=ACHP_INSAMOUNT]").val(CURCommaSep($(op).find("TOT").text()));
+			$(this).closest('.CardNS').find("[name=ACHP_INSAMOUNT]").next().addClass('active');
+			for(var i = 0;i<tbllen;i++){
+				if($($($("#"+TablID).find('.tbodytr')[i]).find('.tbodytrtd')[0]).text()=="Health Insurance"){
+					$($($("#"+TablID).find('.tbodytr')[i]).find('.tbodytrtd')[3]).find('input').val(CURCommaSep($(op).find("HEALTH").text()))
+				}
+				else if($($($("#"+TablID).find('.tbodytr')[i]).find('.tbodytrtd')[0]).text()=="Personal Accidental Cover (PAC)"){
+					$($($("#"+TablID).find('.tbodytr')[i]).find('.tbodytrtd')[3]).find('input').val(CURCommaSep($(op).find("PAC").text()))
+				}
+			}
+           }
+		}
+        
+        
+		}*/
+        
 		if($(this).attr('data-form')=="Property Insurance" && $(this).text()=="Save")
 		{
 			 //var CHKresult=FormDataToDB(tbl, prfx, '');
+			  $(html).find('[name = AMPI_LOANID]').val($("#ACSP_LOANID").val());
 			 var CHKresult = FormDataToDB_V1(tbl,prfx,$(html).find("[name="+DATA+"]").val()+"|"+$(html).find("[name="+DATA+"]").val()+"|" + DATA,html);	   
                    
                             if(CHKresult == "Fail")
@@ -504,15 +576,15 @@ $(document).ready(function() {
 								//var RTNINSVAL=GetPropertyPriem(this)
 								 
 							}
-                   else if($(xml).find('STATUS').text()=="Inactive")
+                         else 
 						 {
-			var op = UI_getdata($(this).attr('data-form'),$("#PrcsID").val(),$(this).closest('.DYNROW').find("[name=AMPI_LOCATN]").val(),$(this).closest('.DYNROW').find("[name=AMPI_APPRUSAGE]").val(),$(this).closest('.DYNROW').find("[name=AMPI_PLCYTNR]").val()+'|'+$(this).closest('.DYNROW').find("[name=AMPI_SUMINSRD]").val().replace(/,/g, ""),"LSW_SOFFLNINSCALC")
+			/*var op = UI_getdata($(this).attr('data-form'),$("#PrcsID").val(),$("#ACHP_CUSID1").val(),$(this).closest('.DYNROW').find("[name=AMPI_APPRUSAGE]").val(),$(this).closest('.DYNROW').find("[name=AMPI_PLCYTNR]").val()+'|'+$(this).closest('.DYNROW').find("[name=AMPI_SUMINSRD]").val().replace(/,/g, ""),"LSW_SOFFLNINSCALC")
 			var Applicable=$(this).closest('.DYNROW').find("[name='AMPI_PROAPPLICABLE']").is(':checked')
              if(Applicable==true)
             	 {
 			     $(this).closest('.DYNROW').find("[name=AMPI_PRMINCLDGST]").val(CURCommaSep($(op).find("PROPINS").text()));
 				  alert("Offline \n\r Property Premium Amount is Rs."+ CURCommaSep($(op).find("PROPINS").text()));
-				 }
+				 }*/
 				 
 				       //var CHKresult=FormDataToDB(tbl, prfx, '');
 					   var CHKresult = FormDataToDB_V1(tbl,prfx,$(html).find("[name="+DATA+"]").val()+"|"+$(html).find("[name="+DATA+"]").val()+"|" + DATA,html);	   
@@ -536,19 +608,20 @@ $(document).ready(function() {
 		}
 		else if($(this).attr('data-form')=="Property Insurance" && $(this).text()=="Save & Generate")
 		{
-			
-			var CHKresult=FormDataToDB(tbl, prfx, '');
+			/*var CHKresult=FormDataToDB(tbl, prfx, '');
                             if(CHKresult == "Fail")
    		                     {
    		                      alert("Submission Failed");
    		                        return false;			
    		                     }
-			
 			var xml=UI_getdata("Hospital cash","",$("#ACSP_INSURERNAME").val(),$("#PrcsID").val(),"","LSW_SVALDTINSBFRCALC")
             
             if($(xml).find('HARDSTOP').text()=="Y")
             	{
             	  alert($(xml).find('MSG').text());
+				  $("#ACSP_MPREMINCLDGST").val('0');
+				  $("#ACSP_MPOLCYTNR").val('0')
+				  $(this).closest('.card123').find("[name=AMPI_PRMINCLDGST]").val('0')
             	  return false;
             	}
             else
@@ -558,36 +631,35 @@ $(document).ready(function() {
         		  alert($(xml).find('MSG').text())
         		}
         	
-			$("#ACSP_MPOLCYTNR").val('3')
-			if($("#ACSP_MPREMINCLDGST").val()==""){
-			var op = UI_getdata($(this).attr('data-form'),$("#PrcsID").val(),$("#ACHP_CUSID1").val(),"Mandatory coverage details","","LSW_SOFFLNINSCALC")
-			//$(this).closest('.DYNROW').find("[name=AMPI_PRMINCLDGST]").val(CURCommaSep($(op).find("PROPINS").text()));
-			$("#ACSP_MPREMINCLDGST").val(CURCommaSep($(op).find("MANDTRY").text()));
-			}
-          	  }
-			var CHKresult=FormDataToDB(tbl, prfx, '');
+			    // $("#ACSP_MPOLCYTNR").val('3')
+			      /* if($("#ACSP_MPREMINCLDGST").val()=="" || $("#ACSP_MPREMINCLDGST").val()=="0")
+				    {
+			           var op = UI_getdata($(this).attr('data-form'),$("#PrcsID").val(),$("#ACHP_CUSID1").val(),"Mandatory coverage details","","LSW_SOFFLNINSCALC")
+			               //$(this).closest('.DYNROW').find("[name=AMPI_PRMINCLDGST]").val(CURCommaSep($(op).find("PROPINS").text()));
+			             $("#ACSP_MPREMINCLDGST").val(CURCommaSep($(op).find("MANDTRY").text()));
+			        }*
+					
+          	  }*/
+			  var CHKresult=FormDataToDB(tbl, prfx, '');
                             if(CHKresult == "Fail")
    		                     {
    		                      alert("Submission Failed");
    		                        return false;			
    		                     }
-		}
-        
-        
-
+		}  
 
    /*     if($(this).closest('.collapse').attr('id')=="collapseOne1")
         	{
         	var PROPDTL = TxtGridsubmitdata_V2("BankDetail1","AMPI_","ACSP_","AMPIDBfields");
 			AssignGridXmltoField("ACSP_PROPDTL", PROPDTL)
         	}*/
-          /* if(PAGE=="COAPPINSUR")
+          /*  if(PAGE=="COAPPINSUR")
         	{
         /*	var COMBOGRD = TxtGridsubmitdata_V1("Table7","AMPI_","ACHP_");
     		AssignGridXmltoField("ACHP_COMBOGRD", COMBOGRD);*/
         	   
         	/*   var COMBOGRD = TxtGridsubmitdata_V3("Table7","AMPI_","ACHP_");
-				AssignGridXmltoField("ACHP_COMBOGRD", COMBOGRD);    /
+				AssignGridXmltoField("ACHP_COMBOGRD", COMBOGRD);    //
 				
 				var ACHP_COMBOGRD = TxtGridsubmitdata_V3("Table7","AMPI_","ACHP_");
 				 	var ACHP_FAIMILYGRD = TxtGridsubmitdata_V3("Table8","HPFA_","ACHP_");
@@ -603,24 +675,23 @@ $(document).ready(function() {
 						  $(BnkHtml).find('[name = ACHP_FAIMILYGRD]').val(ACHP_FAIMILYGRD)
 				        // SchemeBasedCAM(HTML,"CACL_INCCONSID"+(parseInt([i])+1));
 				       }
-				     }	
-
-				 
-				
+				     }		
         	}*/
 		
         
-      /* if(PAGE=="PROINSUR")
+          /* if(PAGE=="PROINSUR")
        	{ 
+	
+			
            var CHKresult=FormDataToDB(tbl, prfx, '');
            if(CHKresult == "Fail")
    		{
    		  alert("Submission Failed");
    		   return false;			
    		}
-       	}*/
+       	}
            
-      /* if(PAGE=="COAPPINSUR")
+           if(PAGE=="COAPPINSUR")
        	{
         var CHKresult = FormDataToDB_V1(tbl,prfx,$(html).find("[name="+DATA+"]").val()+"|"+$(html).find("[name="+DATA+"]").val()+"|" + DATA,html);	   
         if (CHKresult == "Fail")
@@ -637,10 +708,9 @@ $(document).ready(function() {
         // Tab Header Change End
 
 
-        if ($(this).text() == "Save & Generate") {
-          //  NXTTAB(this);
+         if ($(this).text() == "Save & Next") {
+            NXTTAB(this);
         }
-		  //}
     });
 	
 	$(document).on("click", ".MCFormSave", function() {
@@ -672,6 +742,8 @@ $(document).ready(function() {
 		alert("Submission Failed");
 		return false;			
 		}
+		
+		
 	});
 	
 	
@@ -680,7 +752,6 @@ $(document).ready(function() {
     	GetCustomerName2();
     	FormDataFromDB("LSW_TCRSSELGLTHPAC", "ACHP_", "ACHPDBfields", "");
     	$("#BTNHEALTHCOMBOGRD").click();
-		
     });
   //  $("#BTNPropertyInsurance").on('click', function() {
     	GetCustomerName1();
@@ -697,9 +768,10 @@ $(document).ready(function() {
 			var Input=""
 		}
 		
-        LoadMultiData("",$("#PrcsID").val(),Input,"BankDetail1","AMPIDBfields","LSW_SADPROPINSRNC");
+        LoadMultiData("",$("#PrcsID").val(),Input+'|'+$(".FormPageMultiTab li.active").attr("id"),"BankDetail1","AMPIDBfields","LSW_SADPROPINSRNC");
 		CheckGender1('Load')
-        var DATA=["BankDetail1|"];
+        
+		var DATA=["BankDetail1|"];
 
         for (j=0;j<DATA.length;j++){
         	var ValuationID=DATA[j].split("|")[0];
@@ -715,10 +787,11 @@ $(document).ready(function() {
         		}
         	}
           } 
+		
         CheckMDCDetl('','Load');
    // });
-
-if($("#DMY7").val().split('|')[0]=="Registered Mortgage")
+   
+   if($("#DMY7").val().split('|')[0]=="Registered Mortgage")
 	 {
 		$(".ACHPDBfields").attr('disabled',true) ;
 		$(".ACSPDBfields").attr('disabled',true);
@@ -726,16 +799,4 @@ if($("#DMY7").val().split('|')[0]=="Registered Mortgage")
 		$(".HPFADBfields").attr('disabled',true);
 		$(".select-dropdown").attr('disabled',true);
 	 }
-
-var xml=UI_getdata("Health and Pac","","","","","LSW_SCHKINTGSTATUS")
-	
-	if($(xml).find('STATUS').text()=="")
-	{
-	 $(".PremiumEnabled").attr('disabled',false);
-	}
-	else
-	{
-	  $(".PremiumEnabled").attr('disabled',true);
-	}
-
 });

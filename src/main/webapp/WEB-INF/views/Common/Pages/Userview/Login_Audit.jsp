@@ -118,9 +118,13 @@ input[type=date], input[type=datetime-local], input[type=email], input[type=numb
     <div class="col-md-6 LGNRow LGNRowBr" >
   
 
-        <div class="LGNCenter">              
-<img  class="img-fluid" style="width: 20rem;" alt="Responsive image" src="ThemeproLO/Common/Images/chola-logo3x.png">
-	</div>		   
+    <!-- <div class="LGNCenter">              
+	<img  class="img-fluid" style="width: 20rem;" alt="Responsive image" src="ThemeproLO/Common/Images/Tvs_Logo.jpg">
+	</div> 	 -->
+
+     <div class="LGNCenter">              
+<img  class="img-fluid" style="width: 20rem;" alt="Responsive image" src="ThemeproLO/Common/Images/TPT Logo.png">
+	</div> 	  
 
 </div>
 
@@ -186,9 +190,9 @@ input[type=date], input[type=datetime-local], input[type=email], input[type=numb
 											<div class="col-md-12">                                             
                                              Captcha  
                                               <div>
-<input type="text" disabled="" onpaste="return false" style="color:black;text-align: center;background-color:#afe2fa;margin:5px 0px;float:left;border-radius: .4rem;width:45px;height:40px;" class="" id="txt1"/>
+<input type="text" disabled="" onpaste="return false" style="color:black;text-align: center;background-color:#0e8943;margin:5px 0px;float:left;border-radius: .4rem;width:45px;height:40px;" class="" id="txt1"/>
 <div class="plus" style="padding: 16px 0;margin: 0px 4px;float: left;">+</div>  
-<input type="text" disabled="" onpaste="return false" style="color:black;text-align: center;background-color:#afe2fa;margin:5px 0px;float:left;border-radius: .4rem;width:45px;height:40px;" class="" id="txt2"/>
+<input type="text" disabled="" onpaste="return false" style="color:black;text-align: center;background-color:#0e8943;margin:5px 0px;float:left;border-radius: .4rem;width:45px;height:40px;" class="" id="txt2"/>
 <div class="plus" style="padding: 16px 0;margin: 0px 4px;float: left;">=</div> 
 <input type="text" onpaste="return false" style="border:1px solid #CCC;color:black;text-align: center;margin:5px 0px;float:left;border-radius: .4rem;width:45px;height:40px;" class="" id="txt3"/><img src="ThemeproLO/Common/Images/swap-arrows-refresh.png" title="Refresh" id="Refreshbtn" onclick="randomnum()" align=" right" style="display:none;width:20px;height:20px;cursor: pointer;"/>
 </div>
@@ -219,7 +223,7 @@ input[type=date], input[type=datetime-local], input[type=email], input[type=numb
 <div class="col-md-12">                                         
                                              
   <div style="display: flex;justify-content: center">
-<div><button type="button" value="Sign In" id="CheckSignInBtn1" class="btn btn-light waves-effect waves-light CheckSignInBtn" style="color: black!important;">Sign In</button></div>
+<div><button type="button" value="Sign In" id="CheckSignInBtn1" class="btn btn-light waves-effect waves-light CheckSignInBtn" >Sign In</button></div>
 <div><button type="button" style="display:none" value="Forgot Password?" onclick="FrgPwd()" id="CheckFrgPwd" class="btn btn-light waves-effect waves-light " style="color: black!important;">Forgot Password?</button></div>
 <div><button type="button" style="display:none" value="Forgot Username?" onclick="FrgUsrNme()" id="CheckFrgUsrNme" class="btn btn-light waves-effect waves-light " style="color: black!important;">Forgot Username?</button></div>
 </div>
@@ -579,13 +583,12 @@ input[type=date], input[type=datetime-local], input[type=email], input[type=numb
 
 
 
-
+</div>
 </section>
 
-        </div>
+        
    <!-- </main>-->
     <!--/Main layout-->
-
 			     <script type="text/javascript" src="ThemeproLO/Common/scripts/Alert/alertfy.js${DMY13}"></script>
  <script type="text/javascript" src="ThemeproLO/Common/Alert/metro/js/jquery.msgbox.js${DMY13}"></script>
  
@@ -703,5 +706,6 @@ function FrgUsrNme()
     </script> 
  
 		<!--</footer>-->
+		
 </body>
 </html>

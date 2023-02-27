@@ -1,10 +1,37 @@
 $(document).ready(function () {
 	
-	
+		var result=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHKVIABILITYTAB");
+	var chk=$(result).find("RESULT").text();
+	 
+	if(chk=='Y')	
+	{
+		$("#FormPageTab9").remove()
+	}
+
 	
 	//FormDataFromDB(tbl, prfx + "_", prfx+"DBfields", DATA);
 	FormDataFromDB("LSW_TPROVALVERIF","PVER_", "PVERDBfields", "")
 	$("#PRAP_PRCSID").val($("#PrcsID").val())
+	
+	var result=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHKSECRITYPROP");
+	var chk=$(result).find("RESULT").text();
+	 
+	if(chk=="Y")
+	{
+	  $(".PropValu").show();
+	}
+	else
+	{
+	   $(".PropValu").hide();
+	   
+	   $("#collapseTwo2").addClass("show");
+	   $("#headingTwo2").addClass("active");
+	   $("#headingTwo2").find('a').addClass("collapsed");
+	   $("#headingTwo2").find('a').addClass("Btxt8");
+	   $("#headingTwo2").find('a').removeClass("Btxt7");
+	   $("#headingTwo2").find('a').find('i').removeClass('fa-plus-circle');
+	   $("#headingTwo2").find('a').find('i').addClass('fa-minus-circle');  
+	}
 	
 	LoadMultiData("",$("#PrcsID").val(),"","PROPEAPPRI","PAPDDBfields","LSW_SPROPEAPPRISAL");
 
@@ -24,7 +51,7 @@ $(document).ready(function () {
 		
 		if(MndtryChk == "Mandatory")
 			{
-			alert("Fill the Mandatory Fields");
+			alert("Fill the Mandatory Fields / Document(s)");
 			return false;
 			}
 		}

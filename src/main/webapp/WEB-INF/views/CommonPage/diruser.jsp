@@ -146,7 +146,7 @@
                </div>
 			   <div class="col-md-4">
                   <div class="md-form">
-                    <input type="text" id="URCR_RPTID" disabled maxlength="30" class="form-control URCRMndtry URCRDBfields NoSpecialChar" name="URCR_RPTID">
+                    <input type="text" id="URCR_RPTID" disabled maxlength="30" class="form-control  URCRDBfields NoSpecialChar" name="URCR_RPTID">
 				    <label for="URCR_RPTID" class="">Reporting To<span class="MndtryAstr">*</span></label>
 					<img src="ThemeproLO/Common/Images/search.png" style="" onclick="getUserIdPop();" class="FieldIcon">
                   </div>
@@ -208,8 +208,87 @@
                           <textarea class="form-control URCRDBfields" id="URCR_REMARK" name="URCR_REMARK" style="height: 100px;width:380px;"></textarea>					
                      </div>
                   </div>
-			 </div>
+				  
+				  
+				  
+				   
+				  <div class="col-md-4">
+				  <div class="md-form">
+                     <select class="mdb-select md-form colorful-select dropdown-primary URCRDBfields" onchange="GetUserCategory();RefresGrid();"   id="URCR_MODULE" name="URCR_MODULE">
+				      <option value="" selected>--Select--</option>
+				     </select>
+				       <label class="mdb-main-label BTxt9">Module<span class="MndtryAstr"></span></label>
+                   </div>
+				   </div>
+				   <div class="col-md-4">
+				   <div class="md-form">
+                     <select class="mdb-select md-form colorful-select dropdown-primary URCRDBfields" onchange="GetUserCategory();RefresGrid();"   id="URCR_PRODUCT" name="URCR_PRODUCT">
+				         <option value="" selected>--Select--</option>
+				         <option value="Term Loan">Term Loan</option>
+				         <option value="Over Draft">Over Draft</option>
+				         <option value="Bill Discounting">Bill Discounting</option>
+				         <option value="WSDL">WSDL</option>
+						 <option value="DLOD">DLOD</option>
+				     </select>
+				       <label class="mdb-main-label BTxt9">Product<span class="MndtryAstr"></span></label>
+                   </div>
+				  </div>
+				  
+				   <div class="col-md-4">
+				   <div class="md-form">
+                     <select class="mdb-select md-form colorful-select dropdown-primary URCRDBfields"  id="URCR_LDAPUSER" name="URCR_LDAPUSER">
+				         <option value="" selected>--Select--</option>
+				         <option value="Yes">Yes</option>
+				         <option value="No">No</option>
+				        
+				     </select>
+				       <label class="mdb-main-label BTxt9">LDAP USER<span class="MndtryAstr"></span></label>
+                   </div>
+				  </div>
+				  
+				 </div>
          </div>
+		 
+		 <!--- -->
+		 
+		  <div class="form-row">
+        	<div class="col Btxt8">Module Mapping</div>
+          </div>
+		  <div class="form-row">
+               <div class="col-md-9">
+               </div>
+			    <div class="col-md-3">
+                     <div class="HyperControls FltRight"> 
+                         <a class="Btxt4 ADDBTN FltRight NEWDEPT"  href="#" onclick="GetModuleMap();">+ Add Module</a>
+                     </div> 
+				</div>
+          </div>
+		   <div class="card-headerBlack white-text">    
+         <div class="row">       
+         <div class="col-md-2 ">
+         </div>
+         <div class="col-md-5"> 
+         </div>  
+         <div class="col-md-3">
+           <span class="Ntxt4">Search</span>
+          <input type="text" id="SearchTable56" name="SearchTable56" class="Ntxt3" title="">
+         </div> 
+         </div> </div>
+            <div class="form-row">
+               <div class="col">
+                    <input type="button" style="display:none" class="DashTrg" onclick="FncallMultiPagingGrd(this,'Table56',{spname:'LSW_SUSERMODLOADDATA',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#URCR_USRTYPE').val(),MnuId:$('#URCR_BRMAPPINGCA').val()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||2','DIRUSERMODULEMAIN');" id="BTNMODULEGRD" name="BTNMODULEGRD" />
+                    <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" id="Table56">
+                    </table>
+                </div>
+            </div>  
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 <!-- -->
 		   <div class="form-row">
         	<div class="col Btxt8">Branch Mapping</div>
           </div>
@@ -232,8 +311,7 @@
            <span class="Ntxt4">Search</span>
           <input type="text" id="SearchTable5" name="SearchTable5" class="Ntxt3" title="">
          </div> 
-         </div>                     
-</div>
+         </div> </div>
             <div class="form-row">
                <div class="col">
                     <input type="button" style="display:none" class="DashTrg" onclick="FncallMultiPagingGrd(this,'Table5',{spname:'LSW_SBRMAPLOADDATA',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#URCR_USRTYPE').val(),MnuId:$('#URCR_BRMAPPINGCA').val()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||0,4,5,6,7','DIRBRMAPMAIN');" id="BTNDIRBRMAPMAINGRD" name="BTNDIRBRMAPMAINGRD" />
@@ -241,6 +319,14 @@
                     </table>
                 </div>
             </div>  
+			
+			
+			
+			
+			
+			
+			
+			
 			<div class="form-row">
         	<div class="col Btxt8">Role Mapping</div>
           </div>
@@ -284,8 +370,9 @@
         </form>
       </div>
     </div>
-
-  <a type="button" id="UserModalPop" class="btn btn-floating btn-large red waves-effect waves-light" style="display:none" data-toggle="modal" data-target="#UserModal">
+	
+	
+	<a type="button" id="UserModalPop" class="btn btn-floating btn-large red waves-effect waves-light" style="display:none" data-toggle="modal" data-target="#UserModal">
  <i class="fa fa-plus" style="display: none;"></i> </a>  
 <div class="modal fade" id="UserModal" tabindex="-1" role="dialog" aria-labelledby="UserModalLabel"
   aria-hidden="true">
@@ -344,6 +431,68 @@
       <div class="modal-footer align-middle">
       <!--  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
         <button type="button" id="UserModalSmt" onclick="" class="btn btn-yel Btxt2">Confirm</button>
+      </div>
+    </div>
+  </div>
+  </div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+  <a type="button" id="UserMODULEModalPop" class="btn btn-floating btn-large red waves-effect waves-light" style="display:none" data-toggle="modal" data-target="#UserMODULEModal">
+ <i class="fa fa-plus" style="display: none;"></i> </a>  
+<div class="modal fade" id="UserMODULEModal" tabindex="-1" role="dialog" aria-labelledby="UserMODULEModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" style="max-width:1000px" role="document">
+    <div class="modal-content">
+       <div class="modal-header">
+       <div class="Btxt10">Module Mapping</div> 
+         <a href="#"><img id="UserMODULEModalClose" class="close" data-dismiss="modal" aria-label="Close" src="ThemeproLO/Common/FEP/images/Close1.png" alt="DashSearch"></img></a>      
+      </div>  
+      <div class="modal-body">
+         <div class="">
+    <!-- Card body -->
+     <div class="">
+         <form>
+        	</br>
+        	</br>
+       
+			<input type="text" id="MODLU_UNIQID"  name="MODLU_UNIQID" hidden="hidden"  class="form-control UCBMDBfields" value="">
+		<div class="card-headerBlack white-text">    
+         <div class="row">       
+         <div class="col-md-2 ">
+         </div>
+         <div class="col-md-5"> 
+         </div>  
+         <div class="col-md-3">
+           <span class="Ntxt4">Search</span>
+          <input type="text" id="SearchTableMODPOP" name="SearchTable2" class="Ntxt3" title="">
+         </div> 
+         </div>                     </div>
+             <div class="form-row">
+           <div class="col">
+             <input type="button" style="display:none" class="DashTrg" onclick="FncallMultiPagingGrd(this,'TableMODPOP',{spname:'LSW_SGETMODULEMAPDETL',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#MODLU_UNIQID').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||','DIRBRMODULEMAP');" id="BTNMODULEMAPBRGRD" name="BTNMODULEMAPBRGRD" />
+             <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" id="TableMODPOP">
+             </table>
+          </div>
+        </div> 
+      <!-- grid  show -->
+    <!--Main layout-->
+        </form>
+      </div>
+    </div> 
+      </div>
+      <div class="modal-footer align-middle">
+      <!--  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+        <button type="button" id="UserMODULEModalSmt" onclick="" class="btn btn-yel Btxt2">Confirm</button>
       </div>
     </div>
   </div>
@@ -484,6 +633,28 @@
 <th>UPFD_DTMODIFIED</th>-->
    </thead> 
     </table>  
+	
+	 <table style="display:none" id="GridTableMODPOP">
+   <thead>
+<th>UCBM_ROLEID</th>
+<th>UCBM_ROLENAME</th>
+<th>UCBM_USERID</th>
+<th>UCBM_USERNAME</th>
+<th>UCBM_BRMAP</th>
+<th>UCBM_BRMAPC</th>
+<th>UCBM_PRIMARY</th>
+<th>UCBM_UNIQID</th>
+<!--<th>UPFD_PRCSID</th>
+<th>UPFD_ACTIVITYID</th>
+<th>UPFD_CREATEDBY</th>
+<th>UPFD_DTCREATED</th>
+<th>UPFD_MODIFIEDBY</th>
+<th>UPFD_DTMODIFIED</th>-->
+   </thead> 
+    </table> 
+	
+	
+	
 	<table style="display:none" id="GridTable4">
    <thead>
 <th>URCM_ROLEID</th>

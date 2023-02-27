@@ -295,9 +295,10 @@ function CheckLoanType(Prifx1)
 
 $('.CollectedPage').on('click', function() {
 	
-		if (($("[name=PFDT_MODE]:checked").val() == "Online"))
+  if(($("[name=PFDT_MODE]:checked").val() == "Online"))
 	{
-   location.reload();
+   //location.reload();
+   $(".FormPageMultiTab").find("li.active").click();
 
 	}
 });
@@ -1006,12 +1007,18 @@ function CheckDmndAmt(DMAmt,GSTAmt)
 	
 	var PFTimes=$("#DMY12").val().split("|")[0]
 	
-	if(parseInt(DemandAmt*PFTimes)<parseInt(GSTAmount))
-		{
-		  alert('Amount cannot be greater than '+PFTimes+' times of Demand Amount.');
+        if(GSTAmount == "0")
+	      {
+	          alert('Amount is  should not entered zero allow to make payment')
+	           $("#"+GSTAmt).val('')
+	           return false;
+	      }
+	   else if( parseInt(DemandAmt*PFTimes)<parseInt(GSTAmount))
+		  {
+		     alert('Amount cannot be greater than '+PFTimes+' times of Demand Amount.');
 		     $("#"+GSTAmt).val('');
 		       return false;
-		}
+		  }
 }
 /*
 function CheckDmndAmt(DMAmt,GSTAmt)
@@ -1065,11 +1072,13 @@ function InitDiffrmnt(){
 
 function GetDmdAmt()
 {
-var DemandAmount=$("#PFDT_DEMANDAMT").val()
-if(DemandAmount == "")
+var DemandAmount=$("#PFDT_DEMANDAMT").val();
+
+if((DemandAmount == "0"  || DemandAmount=="") && $(".FormPageMultiTab li.active").attr("id")=="PF1")
     {
      alert('Fill the Property Details')
-    
+	 $("#FormMainTab2").click();
+     return false;
     }
 }
 
@@ -1352,6 +1361,7 @@ var IOP=LoadFrmXML("RS006");
 	    	}
 }
 
+
 function CheckPayStatus()
 {
     var PRCSID=$("#PrcsID").val();
@@ -1364,13 +1374,13 @@ function CheckPayStatus()
         success: function(stm){        
        // var obj = JSON.parse(JSON.stringify(stm))
 	   
-	   if (stm != "")
+	   if(stm != "")
 	   {
         	 var obj = JSON.parse(stm).body.resultInfo.resultStatus
         
         	 if(obj=="TXN_SUCCESS")
         		 {
-        		   var PrcsId=$("#PFDT_PRCSID").val()
+        	var PrcsId=$("#PFDT_PRCSID").val()
 		 var PFNO=$("#PFDT_PFNO").val();
 		// $("#PFDT_PFCOLLECT").val('Collected')
 		 var xml=UI_getdata(PrcsId,"Online",PFNO,"","","LSW_SGETONLINEMODEDETLS")
@@ -1393,12 +1403,15 @@ function CheckPayStatus()
         		 }	
         		 else
         		 {
+					 alert(JSON.parse(stm).body.resultInfo.resultMsg);
         		   $("#OnlineModal").hide();
+				   $('.PF').show();
         		 }
 	   }
         else
 	    {
-			$("#OnlineModal").hide();		
+			$("#OnlineModal").hide();	
+            $('.PF').show();			
 	    }	 
     },
     error: function(stm) {

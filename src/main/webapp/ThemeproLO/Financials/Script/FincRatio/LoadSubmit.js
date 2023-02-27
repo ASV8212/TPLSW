@@ -3,7 +3,14 @@ var CusName123 ="";
 var FirmID ="";
 var FirmName ="";
 $(document).ready(function () {
-	
+		var result=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHKVIABILITYTAB");
+	var chk=$(result).find("RESULT").text();
+	 
+	if(chk=='Y')	
+	{
+		$("#FormPageTab9").remove()
+	}
+
 
 	//$("#RACD_UNIQID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
 	//$("#RCCM_SCHEME").attr("value",$(".FormPageMultiTab li.active").text());
@@ -16,7 +23,7 @@ $(document).ready(function () {
         $("#RACD_UNIQID").val($(CUSID).find("Val1").text());
         }
 	GetCustomerName();
-	
+	GetFinclYr();
 	
 	var tbl = "LSW_TRATIOCOMPDETAILS"
 	var prfx ="RACD"
@@ -66,9 +73,13 @@ $(document).ready(function () {
 	
 		if($("input:radio[name=RACD_TYP]:checked").val() !=undefined && $("input:radio[name=RACD_TYP]:checked").val()=="Consolidated"){
 		if($("input:radio[name=RACD_TYP]:checked").val()=="Consolidated"){ //eql consolidate
-			FncallDocChkLst(this,'Table4',{spname:'LSW_SGETROBALSHTGRID1',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'BS|'+$('#RACD_UNIQID').val()+'|'+$("#RACD_UNIQID").val()+'|'+GetRadioBtnVal(),MnuId:GetLatestFincYr()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5','RATIOBALSHEET');
-			FncallDocChkLst(this,'Table3',{spname:'LSW_SGETROPROFLOSS1',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'PL|'+$('#RACD_UNIQID').val()+'|'+$("#RACD_UNIQID").val()+'|'+GetRadioBtnVal(),MnuId:GetLatestFincYr()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5','RATIOPROFITLOSS');
+			FncallDocChkLst(this,'Table4',{spname:'LSW_SGETROBALSHTGRID1',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'BS|'+$('#RACD_UNIQID').val()+'|'+$("#RACD_UNIQID").val()+'|'+GetRadioBtnVal(),MnuId:GetLatestFincYr()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5,6','RATIOBALSHEET');
+			FncallDocChkLst(this,'Table3',{spname:'LSW_SGETROPROFLOSS1',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'PL|'+$('#RACD_UNIQID').val()+'|'+$("#RACD_UNIQID").val()+'|'+GetRadioBtnVal(),MnuId:GetLatestFincYr()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5,6','RATIOPROFITLOSS');
 			
+			FncallDocChkLst(this,'Table6',{spname:'LSW_SGETRATIOASSETS',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'ASSETS|'+$('#RACD_UNIQID').val()+'|'+$("#RACD_UNIQID").val()+'|'+GetRadioBtnVal(),MnuId:GetLatestFincYr()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5,6','BTNRATIOASSETS');
+			
+			$("#BTNFNBALSHT").click();
+				$("#BTNFNCASHFLOW1").click();
 			
 			LoadMultiData("",$("#PrcsID").val()+"|" + $("#RACD_UNIQID").val()+"|"+$("#RACD_UNIQID").val(),"PROFITABILITY RATIOS","PROFITRATIO","RAPRDBfields","LSW_SGETPROPBILITYRATIO");
 			LoadMultiData("",$("#PrcsID").val()+"|" + $("#RACD_UNIQID").val()+"|"+$("#RACD_UNIQID").val(),"COVERAGE RATIOS","COVERAGERATIO","RACODBfields","LSW_SGETCOVERAGERATIO");
@@ -84,6 +95,11 @@ $(document).ready(function () {
 			$("#BTNRATIOBALSHEET").click();
 			$("#BTNPROFITLOSS").click();
 			$("#BTNFINCSUMMARY").click();
+			$("#BTNRATIOASSETS").click();
+			
+			$("#BTNFNBALSHT").click();
+				$("#BTNFNCASHFLOW1").click();
+			
 			//FncallDocChkLst(this,'Table5',{spname:'LSW_SGETROFINSMRY',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'FS|'+$('#RACD_CUSID').val()+'|'+$('#RACD_UNIQID').val(),MnuId:GetLatestFincSumYr()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||1,5,6,7','FINCSUMMARY');
 			
 			LoadMultiData("",$("#PrcsID").val()+"|" + $("#RACD_CUSID").val()+"|"+$("#RACD_UNIQID").val(),"PROFITABILITY RATIOS","PROFITRATIO","RAPRDBfields","LSW_SGETPROPBILITYRATIO");
@@ -96,7 +112,10 @@ $(document).ready(function () {
 		}
 	
 	
-	
+	var op = UI_getdata($("#RACD_FINYEAR").val(),"","","","","LSW_SSTNDRYR")
+	$("#RACD_RADYEARI").val($(op).find("RACD_RADYEARI").text())
+	$("#RACD_RADYEARII").val($(op).find("RACD_RADYEARII").text())
+	$("#RAPR_REMARKS").val($(op).find("RAPR_REMARKS").text())
 	
 	profitlose('Load');
     HndlFirmOnLoad();
@@ -134,6 +153,18 @@ $(document).ready(function () {
 		     $($('input:radio[name=RACD_TYP]')[1]).attr('disabled',true)
 		 }
 	
+	$(document).on("click", ".DELETEDOCUMNETS" , function() {
+		$(".DELETEDOCUMNETS").parent().hide();
+		$(".DELETEDOCUMNETS").closest(".col-md-4").prev().find("table div").show();
+		if($(".DELETEDOCUMNETS").closest(".col-md-4").prev().find("#RACD_PERFIOSATTACHUPLOAD").find("span").length == 0)
+		{
+			$(".DELETEDOCUMNETS").closest(".col-md-4").prev().find("#RACD_PERFIOSATTACHUPLOAD").append('<span class="name1">Upload Updated FSA File</span>');
+		}
+		$(".DELETEDOCUMNETS").closest(".col-md-4").prev().find(".name").remove();
+		$("#RACD_PERFIOSATTACH").val('');
+		$("#Save2").click();
+	});
+	
 	$(document).on("change", "#RACD_Ratio" , function() {
 		if($(event.srcElement).is('span')==false){
 			if($(event.srcElement).prev().prop("checked")==false){
@@ -150,7 +181,7 @@ $(document).ready(function () {
 					$('.CASHFLOW').empty();
 					
 					FncallDocChkLst(this,'Table4',{spname:'LSW_SGETROBALSHTGRID1',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'BS|'+$('#RACD_UNIQID').val()+'|'+$("#RACD_UNIQID").val(),MnuId:GetLatestFincYr()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5','RATIOBALSHEET');
-					FncallDocChkLst(this,'Table3',{spname:'LSW_SGETROPROFLOSS1',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'PL|'+$('#RACD_UNIQID').val()+'|'+$("#RACD_UNIQID").val(),MnuId:GetLatestFincYr()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5','RATIOPROFITLOSS');
+					FncallDocChkLst(this,'Table3',{spname:'LSW_SGETROPROFLOSS1',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'PL|'+$('#RACD_UNIQID').val()+'|'+$("#RACD_UNIQID").val(),MnuId:GetLatestFincYr()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5,6','RATIOPROFITLOSS');
 					
 					
 					LoadMultiData("",$("#PrcsID").val()+"|" + $("#RACD_UNIQID").val()+"|"+$("#RACD_UNIQID").val(),"PROFITABILITY RATIOS","PROFITRATIO","RAPRDBfields","LSW_SGETPROPBILITYRATIO");
@@ -186,7 +217,7 @@ $(document).ready(function () {
 					$('.CASHFLOW').empty();
 					
 					FncallDocChkLst(this,'Table4',{spname:'LSW_SGETROBALSHTGRID1',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'BS|'+$('#RACD_UNIQID').val()+'|'+$("#RACD_UNIQID").val(),MnuId:GetLatestFincYr()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5','RATIOBALSHEET');
-					FncallDocChkLst(this,'Table3',{spname:'LSW_SGETROPROFLOSS1',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'PL|'+$('#RACD_UNIQID').val()+'|'+$("#RACD_UNIQID").val(),MnuId:GetLatestFincYr()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5','RATIOPROFITLOSS');
+					FncallDocChkLst(this,'Table3',{spname:'LSW_SGETROPROFLOSS1',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'PL|'+$('#RACD_UNIQID').val()+'|'+$("#RACD_UNIQID").val(),MnuId:GetLatestFincYr()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5,6','RATIOPROFITLOSS');
 					
 					
 					LoadMultiData("",$("#PrcsID").val()+"|" + $("#RACD_UNIQID").val()+"|"+$("#RACD_UNIQID").val(),"PROFITABILITY RATIOS","PROFITRATIO","RAPRDBfields","LSW_SGETPROPBILITYRATIO");
@@ -252,7 +283,15 @@ $(document).ready(function () {
 			$('.FormPageMultiTabAdd').show();
 	    }
 	}
-   
+   if($("#DMY10").val().split("|")[2] == "N")
+   {
+	   $("#RACD_PERFIOSTEMPLATE").next().next().hide();
+	   $("#RACD_PERFIOSTEMPLATE").next().text("FSA Template Not Yet Received From Perfios");
+	   $("#RACD_PERFIOSTEMPLATE").next().css("color", "red");
+   }
+   else{
+	   $("#RACD_PERFIOSTEMPLATE").val($("#DMY10").val().split("|")[3])
+   }
   
   $('#BTNPROFITLOSE').on('click', function() {
 	  if($("input:radio[name=RACD_TYP]:checked").val()=="Consolidated")
@@ -284,7 +323,7 @@ $(document).ready(function () {
 			
 			if(MndtryChk == "Mandatory")
 				{
-				alert("Fill the Mandatory Fields");
+				alert("Fill the Mandatory Fields / Document(s)");
 				return false;
 				}
 			if($("input[name=RACD_PROFIT]:checked").val() == 'Ratio Sheet')
@@ -338,6 +377,14 @@ $(document).ready(function () {
 			var RACD_FINCSUMMGRID = TxtGridsubmitdata_V1("Table5","RFNS_","RACD_");
 			AssignGridXmltoField("RACD_FINCSUMMGRID", RACD_FINCSUMMGRID)
 			
+			var RACD_ASSETSGRID = TxtGridsubmitdata_V1("Table6","RAAS_","RACD_");
+			AssignGridXmltoField("RACD_ASSETSGRID", RACD_ASSETSGRID)
+			
+			var RACD_SUMBALSHTGRID = TxtGridsubmitdata_V1("Table7","RBAL_","RACD_");
+			AssignGridXmltoField("RACD_SUMBALSHTGRID", RACD_SUMBALSHTGRID)
+			
+			var RACD_SUMCASHFLOW = TxtGridsubmitdata_V1("Table8","RCFL_","RACD_");
+			AssignGridXmltoField("RACD_SUMCASHFLOW", RACD_SUMCASHFLOW)
 			
 			
 		
@@ -378,9 +425,9 @@ $(document).ready(function () {
              $(".FormPageMultiTab li.active a div").text($("#RACD_REFNAME").val())
 			}
 			
-			
-			/*if($(this).text() == "Calculate")
-			{*/
+			/*
+			if($(this).text() == "Calculate")
+			{
 				if($("input:radio[name=RACD_TYP]:checked").val() !=undefined && $("input:radio[name=RACD_TYP]:checked").val()=="Consolidated"){
 				if($("input:radio[name=RACD_TYP]:checked").val()=="Consolidated"){
 					FncallDocChkLst(this,'Table3',{spname:'LSW_SPRFTNDLOSSCALC',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'PL|'+$('#RACD_UNIQID').val()+'|'+$("#RACD_UNIQID").val(),MnuId:$("#RACD_FINYEAR").val()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5','RATIOPROFITLOSS');
@@ -416,13 +463,13 @@ $(document).ready(function () {
 					LoadMultiData("",$("#PrcsID").val()+"|" + $("#RACD_CUSID").val()+"|"+$("#RACD_UNIQID").val(),"CASH FLOW","CASHFLOW","RACFDBfields","LSW_SGETCASHFLOWCALC");
 				}
 				
-			/*}*/
+			}
 			
 			//FormDataToDB(tbl,prfx,$("#RACD_PRCSID").val()+"|"+$("#"+DATA).val()+"|" + DATA);
 			
 			if($('input[name=RACD_PROFIT]:checked').val()!="Financial Summary"){
 			UI_getdata($('#PrcsID').val(),'FS|'+$('#RACD_CUSID').val()+'|'+$('#RACD_UNIQID').val(),$("#RACD_FINYEAR").val(),"","","LSW_SGETROFINSMRYONCLICK1")
-		 }
+		 }*/
 		 
 		 if($("input:radio[name=RACD_TYP]:checked").val()=="Consolidated" || $("input:radio[name=RACD_TYP]:checked").val()=="Add Firm")
 		 {
@@ -568,7 +615,7 @@ $(document).on("change", "select", function(){
 				LoadMultiData("",$("#PrcsID").val()+"|" + $("#RACD_CUSID").val()+"|"+$("#RACD_UNIQID").val(),"CASH FLOW","CASHFLOW","RACFDBfields","LSW_SGETCASHFLOW");
 				
 				FncallDocChkLst(this,'Table4',{spname:'LSW_SGETROBALSHTGRID1',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'BS|'+$('#RACD_CUSID').val()+'|'+$("#RACD_UNIQID").val()+'|'+GetRadioBtnVal(),MnuId:GetLatestFincYr()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5','RATIOBALSHEET');
-				FncallDocChkLst(this,'Table3',{spname:'LSW_SGETROPROFLOSS1',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'PL|'+$('#RACD_CUSID').val()+'|'+$("#RACD_UNIQID").val()+'|'+GetRadioBtnVal(),MnuId:GetLatestFincYr()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5','RATIOPROFITLOSS');
+				FncallDocChkLst(this,'Table3',{spname:'LSW_SGETROPROFLOSS1',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'PL|'+$('#RACD_CUSID').val()+'|'+$("#RACD_UNIQID").val()+'|'+GetRadioBtnVal(),MnuId:GetLatestFincYr()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5,6','RATIOPROFITLOSS');
 				FncallDocChkLst(this,'Table5',{spname:'LSW_SGETROFINSMRY',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'FS|'+$('#RACD_CUSID').val()+'|'+$('#RACD_UNIQID').val(),MnuId:$('#RACD_FINSUMYEAR').val()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||1,5,6,7','FINCSUMMARY');
 				
 			}
@@ -591,7 +638,7 @@ $(document).on("change", "select", function(){
 				LoadMultiData("",$("#PrcsID").val()+"|" + $("#RACD_CUSID").val()+"|"+$("#RACD_UNIQID").val(),"CASH FLOW","CASHFLOW","RACFDBfields","LSW_SGETCASHFLOW");
 				
 				FncallDocChkLst(this,'Table4',{spname:'LSW_SGETROBALSHTGRID1',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'BS|'+$('#RACD_CUSID').val()+'|'+$("#RACD_UNIQID").val()+'|'+GetRadioBtnVal(),MnuId:GetLatestFincYr()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5','RATIOBALSHEET');
-				FncallDocChkLst(this,'Table3',{spname:'LSW_SGETROPROFLOSS1',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'PL|'+$('#RACD_CUSID').val()+'|'+$("#RACD_UNIQID").val()+'|'+GetRadioBtnVal(),MnuId:GetLatestFincYr()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5','RATIOPROFITLOSS');
+				FncallDocChkLst(this,'Table3',{spname:'LSW_SGETROPROFLOSS1',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'PL|'+$('#RACD_CUSID').val()+'|'+$("#RACD_UNIQID").val()+'|'+GetRadioBtnVal(),MnuId:GetLatestFincYr()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5,6','RATIOPROFITLOSS');
 				FncallDocChkLst(this,'Table5',{spname:'LSW_SGETROFINSMRY',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'FS|'+$('#RACD_CUSID').val()+'|'+$('#RACD_UNIQID').val(),MnuId:$('#RACD_FINSUMYEAR').val()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||1,5,6,7','FINCSUMMARY');
 				
 				//ChkifCusExst(this.value,this.id,'RACD_CMPNYID');

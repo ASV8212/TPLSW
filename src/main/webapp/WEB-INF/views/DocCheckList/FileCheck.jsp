@@ -27,7 +27,7 @@
             <div class="card-header Btxt7" role="tab" id="headingOne1">
                <a data-toggle="collapse" data-aria="LSW_UPFLCHCKLSTHDR|UCLH" data-multidata="" data-load="" class="Btxt8 AFormaccordion" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
                   aria-controls="collapseOne1">       
-               CAM Checklist<i class="fa fa-minus-circle rotate-icon"></i>
+               Credit Checklist<i class="fa fa-minus-circle rotate-icon"></i>
                </a>
             </div>
             <!-- Card body -->
@@ -48,51 +48,20 @@
                      
                      <input type="text" id="UCLH_COAPPCAM" name="UCLH_COAPPCAM" hidden="hidden" class="form-control UCLHDBfields">
                      <div class="form-row">
-                        <div class="col">
-                           <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table2',{spname:'LSW_UPLDFILECHECK',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#UCLH_SCHEM').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5','UPLDFILECHECK');" id="BTNUPLDFILECHECK" name="BTNUPLDFILECHECK" />
+                        <div class="col"><!--$('#UCLH_SCHEM').val()-->
+                           <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table2',{spname:'LSW_UPLDFILECHECK',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'',MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||1,4,5','UPLDFILECHECK');" id="BTNUPLDFILECHECK" name="BTNUPLDFILECHECK" />
                            <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display DataGrid" id="Table2">
                            </table>
                         </div>
-                     </div>
-                     <div class="form-row CUSNAME">
+                     </div><!--CUSNAME-->
+                     <div class="form-row" style="display:none">
                         <div class="col Btxt10"><input type="text" id="UCLH_APPLNAME"  name="UCLH_APPLNAME" class="form-control DSVLBL Btxt04 UCLHDBfields" value=""></div>
                      </div>
-					 <form>
-                     <div class="form-row AINCY" style="display:none">
+					 <form><!--AINCY-->
+                     <div class="form-row " style="display:none">
                         <div class="col-md-4">
                            <div class="md-form">
-                              <label for="" class="">ITRs Filled within 6 months GAP<span class="MndtryAstr"></span></label>
-                           </div>
-                        </div>
-                        <div class="col-md-2">
-                           <div class="md-form">
-                           </div>
-                        </div>
-                        <div class="col-md-3">
-                           <div class="md-form">
-                              <!-- <div class="md-form"> -->
-                                 <div  class="select-radio">
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                       <input type="radio" class="custom-control-input UCLHDBfields RADIOACTNCHK1" data-uniq-type="CAM Checklist FieldsA" value="Yes" id="ITRGAPY" name="UCLH_ITRGAP">
-                                       <label class="custom-control-label" for="ITRGAPY">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                       <input type="radio" class="custom-control-input UCLHDBfields RADIOACTNCHK1" data-uniq-type="CAM Checklist FieldsA" value="No" id="ITRGAPN" name="UCLH_ITRGAP">
-                                       <label class="custom-control-label" for="ITRGAPN">No</label>
-                                    </div>
-                                 </div>
-                                 
-                             <!--  </div> -->
-                           </div>
-                        </div>
-                         <div class="col-md-3">
-                         <button type="button" id="RaiseQueryA1" data-aria="" data-uniq-type="CAM Checklist FieldsA" data-quey-sec="S05" data-form="PersonalInfo" style="height:35px" class="btn btn-Syeloutline waves-effect waves-light PODSave RaiseQry">Raise Query</button>
-                         </div>
-                     </div>
-					 <div class="form-row AINCY" style="display:none">
-                        <div class="col-md-4">
-                           <div class="md-form">
-                              <label for="" class="">ITR Filled on the same date<span class="MndtryAstr"></span></label>
+                              <label for="" class="">ITRs not in Same Date<span class="MndtryAstr"></span></label>
                            </div>
                         </div>
                         <div class="col-md-2">
@@ -117,13 +86,13 @@
                            </div>
                         </div>
                          <div class="col-md-3">
-                         <button type="button" id="RaiseQueryA2" data-aria="" data-uniq-type="CAM Checklist FieldsA" data-quey-sec="S05" data-form="PersonalInfo" style="height:35px" class="btn btn-Syeloutline waves-effect waves-light PODSave RaiseQry">Raise Query</button>
+                         <button type="button" id="RaiseQueryA1" data-aria="" data-uniq-type="CAM Checklist FieldsA" data-quey-sec="S05" data-form="PersonalInfo" style="height:35px" class="btn btn-Syeloutline waves-effect waves-light PODSave RaiseQry">Raise Query</button>
                          </div>
-                     </div>
-                     <div class="form-row ANSRTRBS" style="display:none">
+                     </div><!--ANSRTRBS-->
+                     <div class="form-row " style="display:none">
                         <div class="col-md-4">
                            <div class="md-form">
-                              <label for="" class="LOWLTV"><span class="MndtryAstr"></span></label>
+                              <label for="" class="">ITRs - Min Latest 2 Yr<span class="MndtryAstr"></span></label>
                            </div>
                         </div>
                         <div class="col-md-2">
@@ -147,10 +116,10 @@
                            </div>
                         </div>
                          <div class="col-md-3">
-                         <button type="button" id="RaiseQueryA3" data-uniq-type="CAM Checklist FieldsA" data-quey-sec="S05" data-aria="" data-form="PersonalInfo" style="height:35px" class="btn btn-Syeloutline waves-effect waves-light PODSave RaiseQry">Raise Query</button>
+                         <button type="button" id="RaiseQueryA2" data-aria="" data-uniq-type="CAM Checklist FieldsA" data-quey-sec="S05" data-form="PersonalInfo" style="height:35px" class="btn btn-Syeloutline waves-effect waves-light PODSave RaiseQry">Raise Query</button>
                          </div>
-                     </div>
-                     <div class="form-row ASCMLIP" style="display:none">
+                     </div><!--ASCMLIP-->
+                     <div class="form-row " style="display:none">
                         <div class="col-md-4">
                            <div class="md-form">
                               <label for="" class="">CA Assessment Report<span class="MndtryAstr"></span></label>
@@ -177,7 +146,7 @@
                            </div>
                         </div>
                         <div class="col-md-3">
-                        <button type="button" data-quey-sec="S05" data-uniq-type="CAM Checklist FieldsA"  id="RaiseQueryA3" data-aria="" data-form="PersonalInfo" style="height:35px" class="btn btn-Syeloutline waves-effect waves-light PODSave RaiseQry">Raise Query</button>
+                        <button type="button" id="RaiseQueryA3" data-quey-sec="S05" data-uniq-type="CAM Checklist FieldsA" data-aria="" data-form="PersonalInfo" style="height:35px" class="btn btn-Syeloutline waves-effect waves-light PODSave RaiseQry">Raise Query</button>
                         </div>
                      </div>
 					 </form>
@@ -205,37 +174,10 @@
         <div class="form-row COCUSNAME" style="display:none" >
         	<div class="col Btxt10"><input type="text" id="FICL_CUSNAME" name="FICL_CUSNAME" class="form-control DSVLBL Btxt04 FICLDBfields"></div>
         </div>
-		<div class="form-row CINCY" style="display:none">
-            <div class="col-md-4">   
-               <div class="md-form">
-                  <label for="" class="">ITRs Filled within 6 months GAP<span class="MndtryAstr"></span></label>
-              </div>
-              </div>
-              <div class="col-md-2">
-                 <div class="md-form">
-                 </div>
-              </div>
-              <div class="col-md-3">
-                 <div class="select-radio "> 
-                    <div class="custom-control custom-radio custom-control-inline">
-                           <input type="radio" class="custom-control-input FICLDBfields RADIOACTNCHK1" data-uniq-type="CAM Checklist Fields"  value="Yes" id="ITRGAPYes" name="FICL_ITRGAP">
-                            <label class="custom-control-label" for="ITRGAPYes">Yes</label>
-                     </div>
-                      <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input FICLDBfields RADIOACTNCHK1" data-uniq-type="CAM Checklist Fields" value="No" id="ITRGAPNo" name="FICL_ITRGAP">
-                            <label class="custom-control-label" for="ITRGAPNo">No</label>
-                       </div>
-                        <input type="text" id="FICL_ITRGAP" name="FICL_ITRGAP" hidden="hidden" class="form-control FICLDBfields"> 
-                  </div>
-              </div>
-                 <div class="col-md-3">
-                        <button type="button" id="RaiseQueryCO1" data-uniq-type="CAM Checklist Fields" data-quey-sec="S05" data-aria="" data-form="PersonalInfo" style="height:35px" class="btn btn-Syeloutline waves-effect waves-light PODSave RaiseQry">Raise Query</button>
-                        </div>
-        </div>
           <div class="form-row CINCY" style="display:none">
             <div class="col-md-4">   
                <div class="md-form">
-                  <label for="" class="">ITR Filled on the same date<span class="MndtryAstr"></span></label>
+                  <label for="" class="">ITRs not in Same Date<span class="MndtryAstr"></span></label>
               </div>
               </div>
               <div class="col-md-2">
@@ -256,13 +198,13 @@
                   </div>
               </div>
                  <div class="col-md-3">
-                        <button type="button" id="RaiseQueryCO2" data-uniq-type="CAM Checklist Fields" data-quey-sec="S05" data-aria="" data-form="PersonalInfo" style="height:35px" class="btn btn-Syeloutline waves-effect waves-light PODSave RaiseQry">Raise Query</button>
+                        <button type="button" id="RaiseQueryCO1" data-aria="" data-uniq-type="CAM Checklist Fields" data-quey-sec="S05" data-form="PersonalInfo" style="height:35px" class="btn btn-Syeloutline waves-effect waves-light PODSave RaiseQry">Raise Query</button>
                         </div>
         </div>
          <div class="form-row NSRTRBS" style="display:none" >
             <div class="col-md-4">   
                <div class="md-form">
-                  <label for="" class="LOWLTV"><span class="MndtryAstr"></span></label>
+                  <label for="" class="">ITRs - Min Latest 2 Yr<span class="MndtryAstr"></span></label>
               </div>
               </div>
               <div class="col-md-2">
@@ -287,7 +229,7 @@
                  </div>
               </div>
                  <div class="col-md-3">
-                        <button type="button" id="RaiseQueryCo3" data-aria="" data-uniq-type="CAM Checklist Fields" data-quey-sec="S05" data-form="PersonalInfo" style="height:35px" class="btn btn-Syeloutline waves-effect waves-light PODSave RaiseQry">Raise Query</button>
+                        <button type="button" id="RaiseQueryCo2" data-aria="" data-uniq-type="CAM Checklist Fields" data-quey-sec="S05" data-form="PersonalInfo" style="height:35px" class="btn btn-Syeloutline waves-effect waves-light PODSave RaiseQry">Raise Query</button>
                         </div>
         </div>
          <div class="form-row SCMLIP" style="display:none">
@@ -305,11 +247,11 @@
                      <div class="md-form">
                     <div  class="select-radio"> 
                        <div class="custom-control custom-radio custom-control-inline">
-                          <input type="radio" class="custom-control-input FICLDBfields RADIOACTNCHK1" data-uniq-type="CAM Checklist Fields" value="Yes" id="COCARPTY" name="FICL_CARPT">
+                          <input type="radio" class="custom-control-input FICLDBfields RADIOACTNCHK1" value="Yes" data-uniq-type="CAM Checklist Fields" id="COCARPTY" name="FICL_CARPT">
                           <label class="custom-control-label" for="COCARPTY">Yes</label>
                        </div>
                        <div class="custom-control custom-radio custom-control-inline">
-                           <input type="radio" class="custom-control-input FICLDBfields RADIOACTNCHK1" data-uniq-type="CAM Checklist Fields" value="No" id="COCARPTN" name="FICL_CARPT">
+                           <input type="radio" class="custom-control-input FICLDBfields RADIOACTNCHK1" value="No" data-uniq-type="CAM Checklist Fields" id="COCARPTN" name="FICL_CARPT">
                            <label class="custom-control-label" for="COCARPTN">No</label>
                        </div>
                           <input type="text" id="FICL_CARPT" name="FICL_CARPT" hidden="hidden" class="form-control FICLDBfields"> 
@@ -318,7 +260,7 @@
                  </div>
               </div>
                  <div class="col-md-3">
-                        <button type="button" id="RaiseQueryCo4" data-aria="" data-uniq-type="CAM Checklist Fields" data-quey-sec="S05" data-form="PersonalInfo" style="height:35px" class="btn btn-Syeloutline waves-effect waves-light PODSave RaiseQry">Raise Query</button>
+                        <button type="button" id="RaiseQueryCo3" data-aria="" data-uniq-type="CAM Checklist Fields" data-quey-sec="S05" data-form="PersonalInfo" style="height:35px" class="btn btn-Syeloutline waves-effect waves-light PODSave RaiseQry">Raise Query</button>
                   </div>
         </div>
         </form>
@@ -333,7 +275,8 @@
       <!-- End -->
       <div class="form-row">
          <div class="col d-flex justify-content-center">
-            <button type="button" id="Save4" data-aria="LSW_UPFLCHCKLSTHDR|UCLH"  class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
+            <button type="button" id="Save4" data-aria="LSW_UPFLCHCKLSTHDR|UCLH"  class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button> 
+            <button type="button" id="Save4" data-aria="LSW_UPFLCHCKLSTHDR|UCLH" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 			
             <button type="button" id="MoveToLogin" style="display:none" data-aria="LSW_UPFLCHCKLSTHDR|UCLH" data-card="0" class="btn btn-Syel MVLBTN waves-effect waves-light FormSave">Move to Login</button> 
          </div>
       </div>

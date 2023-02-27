@@ -90,11 +90,8 @@
                         <a type="button" class="Btxt4 FltRight" onclick="GenAckRpt()" href="#">OPS Acknowledgement.pdf</a>
                      </div>
          <div data-row="" class="card-body px-lg-5 pt-0  ">
-		 
             </br>
             <form>
-
-					  
                <input type="text" id="DOAH_PRCSID" hidden="hidden" name="DOAH_PRCSID" value="" class="form-control DOAHDBfields">
                <input type="text" id="DOAH_ACTIVITYID" hidden="hidden" name="DOAH_ACTIVITYID" class="form-control DOAHDBfields">
                <input type="text" id="DOAH_DTCREATED" hidden="hidden" name="DOAH_DTCREATED" class="form-control DOAHDBfields">
@@ -102,6 +99,9 @@
                <input type="text" id="DOAH_DTMODIFIED" hidden="hidden" name="DOAH_DTMODIFIED" class="form-control DOAHDBfields">
                <input type="text" id="DOAH_MODIFIEDBY" hidden="hidden" name="DOAH_MODIFIEDBY" class="form-control DOAHDBfields">
                <input type="text" id="DOAH_OPSACKDTL" hidden="hidden" name="DOAH_OPSACKDTL" class="form-control DOAHDBfields">
+			   
+			   <input type="text" id="DOAH_TRNCH" hidden="hidden" name="DOAH_TRNCH" class="form-control DOAHDBfields">
+               <input type="text" id="DOAH_TRNCHName" hidden="hidden" name="DOAH_TRNCHName" class="form-control DOAHDBfields">
 			   
 			   <input type="text" id="HiddenActID" hidden="hidden" name="HiddenActID" class="form-control ">
                <div class="form-row">
@@ -113,8 +113,8 @@
                </div>
                <div class="form-row">
                   <div class="col d-flex justify-content-center">
-                     <button type="button" id="Save" data-aria="LSW_TDISBOPSACKHDR|DOAH"  class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
-                     <button type="button" data-aria="LSW_TDISBOPSACKHDR|DOAH" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
+                     <button type="button" id="Save" data-aria="LSW_TDISBOPSACKHDR|DOAH|DOAH_TRNCH"  class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
+                     <button type="button" data-aria="LSW_TDISBOPSACKHDR|DOAH|DOAH_TRNCH" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
                   </div>
                </div>
             </form>
@@ -141,6 +141,7 @@
       <th>DDMD_SEQNO</th>
 	  <th>OTCPDDSTUS</th>
 	   <th>DDMD_WVRMRK</th>
+	   <th>DDMD_TRANCH</th>
       <!-- <th>DDMD_OTCPDDSTUS</th> -->
       
    </thead>

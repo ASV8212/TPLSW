@@ -22,15 +22,21 @@
 				  <input type="text" id="ATMI_SCHEMENAME" hidden="hidden" name="ATMI_SCHEMENAME" class="form-control ATMIDBfields">
 				  <input type="text" id="ATMI_SCHEMEID" hidden="hidden" name="ATMI_SCHEMEID" class="form-control ATMIDBfields">
 				  <input type="text" id="ATMI_ALLIANCETMI" hidden="hidden" name="ATMI_ALLIANCETMI" class="form-control ATMIDBfields">
+				  <input type="text" id="ATMI_LOANID" hidden="hidden" name="ATMI_LOANID" class="form-control ATMIDBfields">
 				  
                    
 				 </br>
 				 <div class="form-row">
         	<div class="col Btxt10">MPBF Method - Tandons 1st method of lending</div>
         </div>
+		 </br>
+		 <div class="form-row">
+        	<div class="col Btxt10" style="color: rgb(255, 0, 0);">Details to be entered in actuals (Rs)</div>
+        </div>
+		
 		<div class="form-row">
            <div class="col">
-             <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table2',{spname:'LSW_SMPBFMRTHODI',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#ATMI_SCHEMEID').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||3,4','MPBFI');" id="BTNMPBFIGRD" name="BTNMPBFIGRD" />
+             <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table2',{spname:'LSW_SMPBFMRTHODI',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#ATMI_SCHEMEID').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||2,3,4','MPBFI');" id="BTNMPBFIGRD" name="BTNMPBFIGRD" />
              <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display DataGrid" id="Table2">
              </table>
            </div>

@@ -126,8 +126,8 @@
                   <div class="col d-flex justify-content-center">
                      <button type="button" id="Save" data-aria="LSW_TOPSPDDHDR|OPDD|OPDD_TRNCH"  class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
 					 <!--<button type="button" id="RaiseQuery" style="display:none;width:250px" data-aria="LSW_TOPSPDDHDR|OPDD|OPDD_TRNCH"  class="btn btn-Syeloutline waves-effect waves-light ">Raise Query & Save</button>   -->
-                     <button type="button" id="SaveNxt" data-aria="LSW_TOPSPDDHDR|OPDD|OPDD_TRNCH" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button>
-					<button type="button" id="Submit" style="display:none;" data-aria="LSW_TOPSPDDHDR|OPDD|OPDD_TRNCH" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Submit</button> 					 
+                     <button type="button" id="SaveNxt" data-aria="LSW_TOPSPDDHDR|OPDD|OPDD_TRNCH" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
+					  <button type="button" id="Submit" style="display:none;" data-aria="LSW_TOPSPDDHDR|OPDD|OPDD_TRNCH" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Submit</button> 
                      
                   </div>
                </div>

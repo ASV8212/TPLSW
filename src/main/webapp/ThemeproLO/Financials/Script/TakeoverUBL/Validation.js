@@ -146,6 +146,10 @@ $("#OUBL_PROEXISTEMI").val(win);
 		{
 			EMI=0;
 		}
+		if(EMI=='Infinity')
+		{
+		EMI=0;	
+		}
 	$("#OUBL_EMILAKH").val(CURINRCommaSep(parseFloat(EMI).toFixed(2)));
 	$("#OUBL_EMILAKH").next().addClass('active'); 
 	

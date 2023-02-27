@@ -44,8 +44,6 @@ $(document).ready(function() {
 			{
 			$('.FormPageMultiTab li:first').addClass("active");
 			}
-		
-		
 	}
 	if(activityname != "BranchOPS"){
 		$('.FormPageMultiTabAdd').hide();

@@ -6,11 +6,8 @@
 <div class="">
    <!--Admin panel-->
    <div class="admin-panel">
-
-      </br>
       <!-- card -->
-
-      <div class="card">
+      <div class="card CardNS">
                <!-- Card header -->
                
                <!-- Card body -->
@@ -50,8 +47,8 @@
                            <div class="col d-flex justify-content-center">
                               <!-- <button type="button" id="Save" data-aria="LSW_TCHRGHDR|APCH"  class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
                               <button type="button" data-aria="LSW_TCHRGHDR|APCH" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> --> 
-                               <button type="button" data-aria="LSW_TCHRGHDR|APCH" data-card="0" class="btn btn-Syeloutline waves-effect waves-light FormSave">Send Back</button> 
-							  <button type="button" data-aria="LSW_TCHRGHDR|APCH" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Submit</button>
+                               <button type="button" data-aria="LSW_TCHRGHDR|APCH" data-card="0" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button> 
+							  <button type="button" data-aria="LSW_TCHRGHDR|APCH" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button>
                              
                               <!-- <button type="button" id="Waiver" data-aria="LSW_TCHRGHDR|APCH" style="display:none;" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Approve</button> -->
                            </div>

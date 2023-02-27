@@ -17,9 +17,8 @@
          <input type="text" id="LERP_DTMODIFIED" hidden="hidden" name="LERP_DTMODIFIED" class="form-control LERPDBfields">
          <input type="text" id="LERP_PROPERTYNO" hidden="hidden" name="LERP_PROPERTYNO" class="form-control LERPDBfields">
         
-		 <input type="text" id="LERP_MAXTEXTROW" hidden="hidden" name="LERP_MAXTEXTROW" class="form-control LERPDBfields">
-		 
-		 
+		
+		<input type="text" id="LERP_MAXTEXTROW" hidden="hidden" name="LERP_MAXTEXTROW" class="form-control LERPDBfields">
           <input type="text" id="LERP_MUSTTO" hidden="hidden" name="LERP_MUSTTO" class="form-control LERPDBfields">
           <input type="text" id="LERP_NICETO" hidden="hidden" name="LERP_NICETO" class="form-control LERPDBfields">
         
@@ -38,20 +37,20 @@
                         <div class="form-row">
                <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LERP_PROPADDR1" name="LERP_PROPADDR1" class="form-control LERPMndtry AddrNoSpecialChar LERPDBfields">
+                    <input type="text" id="LERP_PROPADDR1" maxlength="30"   name="LERP_PROPADDR1" class="form-control LERPMndtry AddrNoSpecialChar LERPDBfields">
                     <label for="LERP_PROPADDR1" class="">Plot Number<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
                 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LERP_PROPADDR2" name="LERP_PROPADDR2" class="form-control LERPMndtry AddrNoSpecialChar LERPDBfields">
+                    <input type="text" id="LERP_PROPADDR2" maxlength="30"   name="LERP_PROPADDR2" class="form-control LERPMndtry AddrNoSpecialChar LERPDBfields">
                     <label for="LERP_PROPADDR2" class="">Door Number<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
                   <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LERP_BUILDNAME" name="LERP_BUILDNAME" class="form-control LERPMndtry AddrNoSpecialChar LERPDBfields">
-                    <label for="LERP_BUILDNAME" class="">Building Name/House Name<span class="MndtryAstr">*</span></label>
+                    <input type="text" id="LERP_BUILDNAME" maxlength="100" name="LERP_BUILDNAME" class="form-control  AddrNoSpecialChar LERPDBfields">
+                    <label for="LERP_BUILDNAME" class="">Building Name/House Name<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
             </div>
@@ -62,19 +61,19 @@
           <div class="form-row">
                <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LERP_STREETNAME" name="LERP_STREETNAME" class="form-control LERPMndtry AddrNoSpecialChar LERPDBfields">
+                    <input type="text" id="LERP_STREETNAME" maxlength="100"   name="LERP_STREETNAME" class="form-control LERPMndtry AddrNoSpecialChar LERPDBfields">
                     <label for="LERP_STREETNAME" class="">Street Name<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
                <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LERP_DISTICT"  name="LERP_DISTICT" class="form-control LERPMndtry  NoSpecialChar LERPDBfields">
+                    <input type="text" id="LERP_DISTICT" maxlength="100"  name="LERP_DISTICT" class="form-control LERPMndtry NoSpecialChar  LERPDBfields">
                     <label for="LERP_DISTICT" class="">Locality<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
                   <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LERP_SURVEYNO" name="LERP_SURVEYNO" class="form-control LERPMndtry AddrNoSpecialChar LERPDBfields">
+                    <input type="text" id="LERP_SURVEYNO" maxlength="30"   name="LERP_SURVEYNO" class="form-control LERPMndtry AddrNoSpecialChar LERPDBfields">
                     <label for="LERP_SURVEYNO" class="">Survey Number<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
@@ -90,17 +89,78 @@
 
                 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LERP_CITY" disabled name="LERP_CITY" class="form-control IsAlphaFields LERPDBfields">
+                    <input type="text" id="LERP_CITY" disabled name="LERP_CITY" class="form-control IsAlphaFields NoSpecialChar LERPDBfields">
                     <label for="LERP_CITY" class="">City<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
                 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LERP_STATE" disabled name="LERP_STATE" class="form-control IsAlphaFields LERPDBfields  ">
+                    <input type="text" id="LERP_STATE" disabled name="LERP_STATE" class="form-control IsAlphaFields NoSpecialChar LERPDBfields  ">
                     <label for="LERP_STATE" class="">State<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
            </div>  
+		   
+		   
+		   <div class="form-row">
+		  <div class="col-md-6">
+                    <div class="col Btxt10">Uploaded Security Documents</div>
+                     <div data-for="BankDetail1" class="BankDetail1"> 
+                     </div>
+                     <div class="DynamicPageGrid" data-val="PROPTXTHDR|" id="BankDetail1" style="display:none">
+                        <div data-row="" class="card-body px-lg-5 pt-0 DYNROW">
+                           </br>
+                           <input type="text" id="PRDO_PRCSID" hidden="hidden" name="PRDO_PRCSID" value="" class="form-control PRDODBfields">
+                           <input type="text" id="PRDO_ACTIVITYID" hidden="hidden" name="PRDO_ACTIVITYID" class="form-control PRDODBfields">
+                           <input type="text" id="PRDO_DTCREATED" hidden="hidden" name="PRDO_DTCREATED" class="form-control PRDODBfields">
+                           <input type="text" id="PRDO_CREATEDBY" hidden="hidden" name="PRDO_CREATEDBY" class="form-control PRDODBfields">
+                           <input type="text" id="PRDO_DTMODIFIED" hidden="hidden" name="PRDO_DTMODIFIED" class="form-control PRDODBfields">
+                           <input type="text" id="PRDO_MODIFIEDBY" hidden="hidden" name="PRDO_MODIFIEDBY" class="form-control PRDODBfields">
+                           <input type="text" id="PRDO_PROPNUM" hidden="hidden" name="PRDO_PROPNUM" class="form-control PRDODBfields">
+						   <div class="form-row">
+                              <div class="col">
+                                 <div class="md-form " >
+                                    <table>
+                                       <tr>
+                                          <td>
+                                             <div id="PRDO_DOCUMENTUPLOAD"  class="file-field" style="display:none">
+                                                <a class="">
+                                                <i class="fa fa-plus imgAdd" aria-hidden=""></i>
+                                                <input type="file"  name="datafile" onchange="DocFldUpldHndlr_V1(this,'PRDO_DOCUMENT'+$(this).closest('.DYNROW').attr('data-row'),'PRDO_DOCUMENT','PDDetails','PDDate','PD',$(this).closest('.DYNROW'))" class="PRDO_DOCUMENT"  >
+                                                </a>
+                                                <input type="text" id="PRDO_DOCUMENT" hidden="hidden" data-Validate="PRDO_DOCUMENT"  name="PRDO_DOCUMENT" class="form-control File PRDODBfields PRDOMndtry">
+                                                <span class="name">Upload Documents</span> 
+                                             </div>
+                                          </td>
+                                          <div class="md-form" >
+                                             <div class="md-form Formcol-mdLR">
+                                                
+												 <div class="PRDO_DOCUMENT"> 
+												 <img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW" 
+                                                onclick="GrdDocDwnld('PRDO_DOCUMENT'+$(this).closest('.DYNROW').attr('data-row'))" class="rounded" 
+                                                alt="Cinque Terre" width="35" height="25">
+												</div>
+                                             </div>
+                                          </div>
+                                       </tr>
+                                    </table>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="HyperControls form-row" style="display:none" >
+                        <a onclick="AddPageMultiData('',$('#PRDO_PRCSID').val(),$('#LPDT_PROPERTYNO').val(),'BankDetail1','PRDODBfields');" class="Btxt4 FltRight ADDBTN "  href="#">+ Add</a>
+                        <!-- <a class="Btxt4" id="AuditTrail" href="#">Audit Trail</a> -->
+                     </div>
+                  </div>
+				  </div>
+		   
+		   
+		   
+		   
+		   
+		   
 		   
              <div class="form-row ">
              <div class="col-md-4">     
@@ -152,35 +212,46 @@
     </tr>
    </table>
   </div> 
-    <div class="LERP_ATTACHMENT" style="display:none"> <img src="ThemeproLO/Common/Images/UploadImg.png" onclick="ReuploadFile(LERP_ATTACHMENT);" title="UPLOAD"  class="rounded" alt="Cinque Terre" width="20" height="20">  <img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW"  class="rounded" onclick="GrdDocDwnld('LERP_ATTACHMENT')" alt="Cinque Terre" width="35" height="25"> </div> 
+    <div class="LERP_ATTACHMENT" style="display:none"> <img src="ThemeproLO/Common/Images/UploadImg.png" onclick="ReuploadFile(LERP_ATTACHMENT);" title="UPLOAD"  class="rounded BTNHIDE" alt="Cinque Terre" width="20" height="20">  <img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW"  class="rounded" onclick="GrdDocDwnld('LERP_ATTACHMENT')" alt="Cinque Terre" width="35" height="25"> </div> 
       </div>      
         </div> 
     </div>
 	       <div class="form-row">
                <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LERP_SRO" name="LERP_SRO" class="form-control LERPMndtry AddrNoSpecialChar LERPDBfields">
+                    <input type="text" id="LERP_SRO" name="LERP_SRO" maxlength="50" class="form-control LERPMndtry  NoSpecialChar LERPDBfields">
                     <label for="LERP_SRO" class="">SRO<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
-                <div class=" col-md-4">
+				 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LERP_TITLEDOCNAME" name="LERP_TITLEDOCNAME" class="form-control LERPMndtry AddrNoSpecialChar LERPDBfields">
+                    <input type="text" id="LERP_TITLEDOCNAME" maxlength="100"  name="LERP_TITLEDOCNAME" class="form-control LERPMndtry NoSpecialChar LERPDBfields">
                     <label for="LERP_TITLEDOCNAME" class="">Title Document Name<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
 				<div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="LERP_TITLEDOCNO" name="LERP_TITLEDOCNO" class="form-control LERPMndtry AddrNoSpecialChar LERPDBfields">
+                    <input type="text" id="LERP_TITLEDOCNO" maxlength="100"  name="LERP_TITLEDOCNO" class="form-control LERPMndtry  NoSpecialChar LERPDBfields">
                     <label for="LERP_TITLEDOCNO" class="">Title Document Number<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
             </div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
                <div class="form-row">
         		<div class="col Btxt10">MUST TO HAVE</div>
         	</div>
          <div class="HyperControls form-row"> 
-   <a onclick="AddPageMultiData('','','','MUSTTOHAVE','LEMUDBfields');ADDROWNO();" class="Btxt4 FltRight"  href="#">+ Add a Point</a>
+   <a onclick="AddPageMultiData('','','','MUSTTOHAVE','LEMUDBfields');ADDROWNO();" class="Btxt4 FltRight BTNHIDE"  href="#">+ Add a Point</a>
   </div>	
         <div data-for="MUSTTOHAVE" class="MUSTTOHAVE"> 
       </div>
@@ -196,20 +267,18 @@
          <input type="text" id="LEMU_PROPERTYNO"  hidden="hidden" name="LEMU_PROPERTYNO" class="form-control LEMUDBfields">
            <input type="text" id="LEMU_UNIQID"  hidden="hidden" name="LEMU_UNIQID" class="form-control LEMUDBfields">
 		   
-		     <input type="text" id="LEMU_OTCPDD" hidden="hidden"  name="LEMU_OTCPDD" class="form-control LEMUDBfields">
+		    <input type="text" id="LEMU_OTCPDD" hidden="hidden"  name="LEMU_OTCPDD" class="form-control LEMUDBfields">
            <input type="text" id="LEMU_APPROVE" hidden="hidden"  name="LEMU_APPROVE" class="form-control LEMUDBfields">
-		    
-		   
 		         <input type="text" id="LEMU_TXTROW" hidden="hidden"  name="LEMU_TXTROW" class="form-control LEMUDBfields">
        <div class="form-row">
          <div class=" col-md-11">
                  <div class="md-form">
-                <span id="PROPTXTHDR" class="Btxt10"></span>    <input type="text" id="LEMU_TEXTVAL" name="LEMU_TEXTVAL" class="form-control  LEMUDBfields  ">
+                <span id="PROPTXTHDR" class="Btxt10"></span>    <input type="text" id="LEMU_TEXTVAL" maxlength="200"  name="LEMU_TEXTVAL" class="form-control MUSTMndtry LEMUDBfields  ">
                   </div>
               </div>
 			  <div class=" col-md-1"> 
                   <div class="md-form">
-                   <img src="ThemeproLO/Common/Images/Delete_Img.png"   class="DeleteMUST DELBTN" alt="Cinque Terre" width="20" height="20"> 
+                   <img src="ThemeproLO/Common/Images/Delete_Img.png"   class="DeleteMUST BTNHIDE DELBTN" alt="Cinque Terre" width="20" height="20"> 
                    </div>
                    </div>
            </div>    
@@ -219,7 +288,7 @@
         		<div class="col Btxt10">NICE TO HAVE</div>
         	   </div>  
  <div class="HyperControls form-row"> 
-   <a onclick="AddPageMultiData('','','','NICETOHAVE','LRNDDBfields');ADDROWNONICE()" class="Btxt4 FltRight"  href="#">+ Add a Point</a>
+   <a onclick="AddPageMultiData('','','','NICETOHAVE','LRNDDBfields');ADDROWNONICE()" class="Btxt4 FltRight BTNHIDE"  href="#">+ Add a Point</a>
   </div>	
         <div data-for="NICETOHAVE" class="NICETOHAVE"> 
       </div>
@@ -238,12 +307,12 @@
          <div class="form-row">
              <div class=" col-md-11">
                  <div class="md-form">
-                  <span id="PROPTXTHDR" class="Btxt10"></span><input type="text" id="LRND_TEXTVAL" name="LRND_TEXTVAL" class="form-control  LRNDDBfields  ">
+                  <span id="PROPTXTHDR" class="Btxt10"></span><input type="text" id="LRND_TEXTVAL" maxlength="200"   name="LRND_TEXTVAL" class="form-control NICEMndtry  LRNDDBfields  ">
                   </div>
               </div>
 			  	<div class=" col-md-1"> 
                   <div class="md-form">
-                   <img src="ThemeproLO/Common/Images/Delete_Img.png"   class="DeleteNICE DELBTN" alt="Cinque Terre" width="20" height="20"> 
+                   <img src="ThemeproLO/Common/Images/Delete_Img.png"   class="DeleteNICE BTNHIDE DELBTN" alt="Cinque Terre" width="20" height="20"> 
                    </div>
                    </div>
            </div>    

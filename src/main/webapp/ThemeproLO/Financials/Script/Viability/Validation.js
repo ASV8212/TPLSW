@@ -38,7 +38,7 @@ function GridControlDetailVIABILITYGRD  (popTableModPageGrid1,TableID,dtData,dtc
 						var exists = pattern.test(row[0]);
 			 			
 					 var rowno = meta.row;	 
-						var HTML =	'<span><input type="text"  id="VIAG_DESCRIPTION'+rowno+'" style="width:160px"  name="VIAG_DESCRIPTION'+rowno+'" maxlength="30" disabled class="form-control NoSpecialChar IsCURCommaFields  form-control DSVLBL  ">';			 
+						var HTML =	'<span><input type="text"  id="VIAG_DESCRIPTION'+rowno+'" style="width:160px"  name="VIAG_DESCRIPTION'+rowno+'" maxlength="30" disabled class="form-control NoSpecialChar IsCURCommaFields  form-control DSVLBL PROD VIABMNDTRY ">';			 
 						HTML = HTML + '</span>'; 
 							 
 						var htmldata = $(HTML);
@@ -61,12 +61,12 @@ function GridControlDetailVIABILITYGRD  (popTableModPageGrid1,TableID,dtData,dtc
 					 var HTML = "";
 						if(row[0] == "Contribution per unit/part" || row[0] == "No of parts per day" || row[0] == "Contribution per Month" || row[0] == "FCF(Free Cashflow)per month" || row[0] == "Average FCF per month")
 						{
-							HTML =	'<span><input type="text"  id="VIAG_MONTH1'+rowno+'" style="width:160px"  name="VIAG_MONTH1'+rowno+'" data-item="Amount" data-itemr="Amount" data-totalr="ITRVAL" disabled maxlength="30" class="form-control NoSpecialChar IsCURCommaFields  form-control DSVLBL VIABILITYDTL">';	
+							HTML =	'<span><input type="text"  id="VIAG_MONTH1'+rowno+'" style="width:160px"  name="VIAG_MONTH1'+rowno+'" data-item="Amount" data-itemr="Amount" data-totalr="ITRVAL" disabled maxlength="30" class="form-control NoSpecialChar IsCURCommaFields  form-control DSVLBL VIABILITYDTL PROD VIABMNDTRY">';	
 						}
 		
 						else	
 						{
-							HTML =	'<span><input type="text"  id="VIAG_MONTH1'+rowno+'" style="width:160px"  name="VIAG_MONTH1'+rowno+'" data-item="Amount" data-itemr="Amount" data-totalr="ITRVAL"  maxlength="30" class="form-control NoSpecialChar IsCURCommaFields  form-control  VIABILITYDTL">';	
+							HTML =	'<span><input type="text"  id="VIAG_MONTH1'+rowno+'" style="width:160px"  name="VIAG_MONTH1'+rowno+'" data-item="Amount" data-itemr="Amount" data-totalr="ITRVAL"  maxlength="30" class="form-control NoSpecialChar IsCURCommaFields  form-control  VIABILITYDTL PROD VIABMNDTRY">';	
 						}							
 						HTML = HTML + '</span>'; 
 							 
@@ -87,12 +87,12 @@ function GridControlDetailVIABILITYGRD  (popTableModPageGrid1,TableID,dtData,dtc
 								var HTML = "";
 						if(row[0] == "Contribution per unit/part" || row[0] == "No of parts per day" || row[0] == "Contribution per Month" || row[0] == "FCF(Free Cashflow)per month" || row[0] == "Average FCF per month")
 						{
-							HTML =	'<span><input type="text"  id="VIAG_MONTH2'+rowno+'" style="width:160px"  name="VIAG_MONTH2'+rowno+'" data-item="Amount" data-itemr="Amount" data-totalr="ITRVAL" disabled maxlength="30" class="form-control NoSpecialChar IsCURCommaFields  form-control  DSVLBL VIABILITYDTL">';	
+							HTML =	'<span><input type="text"  id="VIAG_MONTH2'+rowno+'" style="width:160px"  name="VIAG_MONTH2'+rowno+'" data-item="Amount" data-itemr="Amount" data-totalr="ITRVAL" disabled maxlength="30" class="form-control NoSpecialChar IsCURCommaFields  form-control  DSVLBL VIABILITYDTL PROD VIABMNDTRY">';	
 						}
 		
 						else	
 						{
-							HTML =	'<span><input type="text"  id="VIAG_MONTH2'+rowno+'" style="width:160px"  name="VIAG_MONTH2'+rowno+'" data-item="Amount" data-itemr="Amount" data-totalr="ITRVAL"  maxlength="30" class="form-control NoSpecialChar IsCURCommaFields  form-control  VIABILITYDTL">';	
+							HTML =	'<span><input type="text"  id="VIAG_MONTH2'+rowno+'" style="width:160px"  name="VIAG_MONTH2'+rowno+'" data-item="Amount" data-itemr="Amount" data-totalr="ITRVAL"  maxlength="30" class="form-control NoSpecialChar IsCURCommaFields  form-control  VIABILITYDTL PROD VIABMNDTRY">';	
 						}
 								
 								HTML = HTML + '</span>'; 
@@ -114,12 +114,12 @@ function GridControlDetailVIABILITYGRD  (popTableModPageGrid1,TableID,dtData,dtc
 							var HTML = "";
 						if(row[0] == "Contribution per unit/part" || row[0] == "No of parts per day" || row[0] == "Contribution per Month" || row[0] == "FCF(Free Cashflow)per month" || row[0] == "Average FCF per month")
 						{
-							HTML =	'<span><input type="text"  id="VIAG_MONTH3'+rowno+'" style="width:160px"  name="VIAG_MONTH3'+rowno+'" data-item="Amount" data-itemr="Amount" data-totalr="ITRVAL"  maxlength="30" disabled class="form-control NoSpecialChar IsCURCommaFields  form-control DSVLBL  VIABILITYDTL">';	
+							HTML =	'<span><input type="text"  id="VIAG_MONTH3'+rowno+'" style="width:160px"  name="VIAG_MONTH3'+rowno+'" data-item="Amount" data-itemr="Amount" data-totalr="ITRVAL"  maxlength="30" disabled class="form-control NoSpecialChar IsCURCommaFields  form-control DSVLBL  VIABILITYDTL PROD VIABMNDTRY">';	
 						}
 		
 						else	
 						{
-							HTML =	'<span><input type="text"  id="VIAG_MONTH3'+rowno+'" style="width:160px"  name="VIAG_MONTH3'+rowno+'" data-item="Amount" data-itemr="Amount" data-totalr="ITRVAL"  maxlength="30" class="form-control NoSpecialChar IsCURCommaFields  form-control  VIABILITYDTL">';	
+							HTML =	'<span><input type="text"  id="VIAG_MONTH3'+rowno+'" style="width:160px"  name="VIAG_MONTH3'+rowno+'" data-item="Amount" data-itemr="Amount" data-totalr="ITRVAL"  maxlength="30" class="form-control NoSpecialChar IsCURCommaFields  form-control  VIABILITYDTL PROD VIABMNDTRY">';	
 						}
 							HTML = HTML + '</span>'; 
 								 
@@ -3643,6 +3643,30 @@ $(document).on("change", ".CONSRI", function() {
 
 $(document).on("blur", ".VIABILITYDTL", function() {
 	 
+var currentVal = $(this).val();
+    	      currentVal=currentVal.replace(/,/g,'')
+		   if(parseInt(currentVal)!=0)
+      	    {
+      	    if (currentVal.length > 1){
+				var currentVal1=currentVal[0]
+         if(currentVal1=="-")
+         {
+         	currentVal=currentVal.replace("-","")
+         }
+              	var FirstLetter=currentVal.substring(0, 1)
+      	    	if(parseInt(FirstLetter)==0)
+      	    		{
+						
+						  alert ("Enter the Valid Amount,Cannot be Start with Zero");
+						   $(this).val('');
+						   $(this).next().removeClass('active')
+						 
+                    }
+      	      }
+			}
+	 
+	 
+ 
 	var amt=0;
 	var val1=0;
 	var val2=0;

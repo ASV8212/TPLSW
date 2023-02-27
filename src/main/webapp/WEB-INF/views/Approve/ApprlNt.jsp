@@ -28,41 +28,41 @@
  -->
  
  <!--Alert-->
- <link href="ThemeproLO/Common/Alert/sweetalert.css" rel="stylesheet" />
+ <link href="ThemeproLO/Common/Alert/sweetalert.css${DMY13}" rel="stylesheet" />
 <!--<link rel="stylesheet" href="ThemeproLO/Common/scripts/UI/queuefrwd/ionicons.min.css">-->
 
-<link rel="stylesheet" href="ThemeproLO/Common/CSS/Alert/alertify.bootstrap.css">
-<link rel="stylesheet" href="ThemeproLO/Common/CSS/Alert/alertify.core.css">
-<link rel="stylesheet" href="ThemeproLO/Common/CSS/Alert/alertify.default.css">
+<link rel="stylesheet" href="ThemeproLO/Common/CSS/Alert/alertify.bootstrap.css${DMY13}">
+<link rel="stylesheet" href="ThemeproLO/Common/CSS/Alert/alertify.core.css${DMY13}">
+<link rel="stylesheet" href="ThemeproLO/Common/CSS/Alert/alertify.default.css${DMY13}">
 
-  <link href="ThemeproLO/Common/jw/js/boxy/stylesheets/boxy.css" rel="stylesheet" type="text/css" />
- <link href="ThemeproLO/Common/Alert/metro/css/jquery.msgbox.css" rel="stylesheet" type="text/css" />
+  <link href="ThemeproLO/Common/jw/js/boxy/stylesheets/boxy.css${DMY13}" rel="stylesheet" type="text/css" />
+ <link href="ThemeproLO/Common/Alert/metro/css/jquery.msgbox.css${DMY13}" rel="stylesheet" type="text/css" />
  
-<script type="text/javascript" src="ThemeproLO/Common/Alert/sweetalert.min.js"></script>
+<script type="text/javascript" src="ThemeproLO/Common/Alert/sweetalert.min.js${DMY13}"></script>
 	
  <!--Alert-->
 
 
  <!--Text Editor-->
  
- <script src="ThemeproLO/ckeditor/ckeditor.js"></script>
-<script src="ThemeproLO/ckeditor/BrowserIdentity.js"></script>
-<script src="ThemeproLO/ckeditor/samples/js/sample.js"></script>
+ <script src="ThemeproLO/ckeditor/ckeditor.js${DMY13}"></script>
+<script src="ThemeproLO/ckeditor/BrowserIdentity.js${DMY13}"></script>
+<script src="ThemeproLO/ckeditor/samples/js/sample.js${DMY13}"></script>
 
 <!--FEB-->
 
 
-	<link href="ThemeproLO/Common/FEP/css/bootstrap.min.css" rel="stylesheet"> 
+	<link href="ThemeproLO/Common/FEP/css/bootstrap.min.css${DMY13}" rel="stylesheet"> 
 	
 	<!-- Material Design Bootstrap --> 
-	<link href="ThemeproLO/Common/FEP/css/mdb.min.css" rel="stylesheet"> 
+	<link href="ThemeproLO/Common/FEP/css/mdb.min.css${DMY13}" rel="stylesheet"> 
 	
 	<!-- Customizer --> 
-	<link rel="stylesheet" href="ThemeproLO/Common/FEP/css/customizer.min.css"> 
+	<link rel="stylesheet" href="ThemeproLO/Common/FEP/css/customizer.min.css${DMY13}"> 
 	
 	
 	<!-- Your custom styles (optional) --> 
-	<link href="ThemeproLO/Common/FEP/css/style.css" rel="stylesheet"> 
+	<link href="ThemeproLO/Common/FEP/css/style.css${DMY13}" rel="stylesheet"> 
 	
 	<!-- <link href="ThemeproLO/Common/FEP/css/Grid/datatables.min.css" rel="stylesheet"> 
 	<link href="ThemeproLO/Common/FEP/css/Grid/datatables-select.min.css" rel="stylesheet"> --> 
@@ -102,9 +102,6 @@ editData.setAcvtID(AcvtID);
 editData.setHistVar(HistVar); %>
 <% editData.EditData1(); %>
 
-
-
-
 </br>
 <!--Main row-->
 <!--  <div class="row FormRows"> 
@@ -113,14 +110,14 @@ editData.setHistVar(HistVar); %>
 <div class="">
    <!--Admin panel-->
    <div class="admin-panel">
-      <div class="row">
+     <!-- <div class="row">
          <div class="col-lg-12">
             <ul title="Firm" data-aria="LSW_TAPPLNAPPROV|AAPR|" data-popup="No"  class="nav FormPageMultiTab">		
                  <li id="ApprlNt" value="ApprlNt" title="ApprlNt" class="nav-item active"><a><div class="nav-link" href="#">Approval Note</div></a></li>
 			  ${SUBPAGETABDATA}
             </ul>
          </div>
-      </div>
+      </div>-->
       </br>
       <!-- Start -->
       <div class="HiddenBTN">
@@ -169,22 +166,16 @@ editData.setHistVar(HistVar); %>
                            </div>
                         </div>
                      </div>
-					 
-					 
-					  <div class="adjoined-bottom">
-		<div class="grid-container">
-			<div class="grid-width-100">
-		
-				<textarea style="" id="AAPR_FamilyBckGrnd"	placeholder="Type the content here!"  class="Edtr Text TEXTEDITDSBL" name="AAPR_FamilyBckGrnd" data-maxlen="10000" maxlength="10000">
-				 <%= editData.getTxt1() %>  
-				
-				 </textarea>
+				    <div class="adjoined-bottom">
+		               <div class="grid-container">
+			              <div class="grid-width-100">
+				               <textarea style="" id="AAPR_FamilyBckGrnd"	placeholder="Type the content here!"  class="Edtr Text TEXTEDITDSBL" name="AAPR_FamilyBckGrnd" data-maxlen="10000" maxlength="10000">
+				                 <%= editData.getTxt1() %>  </textarea>
 
-				<div class="invalid-tooltip"></div>
-			</div>
-			
-		</div>
-	</div>
+			        	    <div class="invalid-tooltip"></div>
+			             </div>
+		           </div>
+	             </div>
                      </br>
                      <div class="form-row">
                         <div class="col d-flex justify-content-center">
@@ -198,8 +189,7 @@ editData.setHistVar(HistVar); %>
             </div>
          </div>
          <!-- Family Background End -->
-         <!--
-		 <!-- Business Details Start --
+        <!-- <!-- Business Details Start --
          <div class="card BUSINESS">
             <div class="card-header Btxt7" role="tab" id="heading2">
                <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse" data-load="" data-multidata="BTNBUSINESSDATA" data-aria="" data-parent="#accordionEx" href="#collapseTwo2"
@@ -254,7 +244,7 @@ editData.setHistVar(HistVar); %>
                         <div class="form-row">
                            <div class="col">
                               <div class="md-form">
-                                 <select class=" md-form colorful-select dropdown-primary ABFDDBfields DataToFld" onchange="GetInduestry(this,'ABFD_INDUSCATRY'+$(this).closest('.DYNROW').attr('data-row'),'ABFD_INDUSCATRY','Page','','ABFD_CONSTITUTION'+$(this).closest('.DYNROW').attr('data-row'))" data-change="ABFD_FIRMNAMEVAL" id="ABFD_FIRMNAME" name="ABFD_FIRMNAME">
+                                 <select class=" md-form colorful-select dropdown-primary ABFDMndtry ABFDDBfields DataToFld" onchange="GetInduestry(this,'ABFD_INDUSCATRY'+$(this).closest('.DYNROW').attr('data-row'),'ABFD_INDUSCATRY','Page','','ABFD_CONSTITUTION'+$(this).closest('.DYNROW').attr('data-row'))" data-change="ABFD_FIRMNAMEVAL" id="ABFD_FIRMNAME" name="ABFD_FIRMNAME">
                                  </select>
                                  <label class="mdb-main-label BTxt9">Name of Firm<span class="MndtryAstr">*</span></label>
                               </div>
@@ -317,7 +307,7 @@ editData.setHistVar(HistVar); %>
                               </div>
                            </div>
                         </div>
-                        <div class="form-row">
+                        <div class="form-row">k
                            <div class="col Btxt10">NO. OF SKILLED</div>
                         </div>
                         <div class="form-row">
@@ -470,7 +460,7 @@ editData.setHistVar(HistVar); %>
                   </div>
                </div>
          <!-- Business Details End -->
-         <!-- Other Income Start --> 
+         <!-- Other Income Start -->
 
                <div class="card ">
                   <!-- Card header -->
@@ -591,7 +581,7 @@ editData.setHistVar(HistVar); %>
                         <div class="form-row">
                            <div class="col d-flex justify-content-center">
                               <button type="button" id="SaveOI" data-aria="LSW_TOTHRINCM|APOI"  class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
-                              <button type="button" data-aria="LSW_TOTHRINCM|APOI" data-card="2" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
+                              <button type="button" data-aria="LSW_TOTHRINCM|APOI" data-card="1" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
                            </div>
                         </div>
                         </form>
@@ -682,26 +672,20 @@ editData.setHistVar(HistVar); %>
                            </div>
                         </div>
                      </div>
-					 
-					  <div class="adjoined-bottom">
-		<div class="grid-container">
-			<div class="grid-width-100">
-		
-				<textarea style="" id="AAPR_FINCSUMMARY"	placeholder="Type the content here!"  class="Edtr Text  TEXTEDITDSBL" name="AAPR_FINCSUMMARY" data-maxlen="10000" maxlength="10000">
-				 <%= editData.getTxt2() %>  
-				
-				 </textarea>
-
-				<div class="invalid-tooltip"></div>
-			</div>
-			
-		</div>
-	</div>
-					 
+					 <div class="adjoined-bottom">
+		                <div class="grid-container">
+			               <div class="grid-width-100">
+			                  <textarea style="" id="AAPR_FINCSUMMARY"	placeholder="Type the content here!"  class="Edtr Text  TEXTEDITDSBL" name="AAPR_FINCSUMMARY" data-maxlen="10000" maxlength="10000">
+				               <%= editData.getTxt2() %>  
+				               </textarea>
+				              <div class="invalid-tooltip"></div>
+			              </div>
+	              	   </div>
+	                 </div>
                      <div class="form-row">
                         <div class="col d-flex justify-content-center">
                            <button type="button" id="Save4" data-aria="LSW_TFINCLSUMMRY|APFS"  class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
-                           <button type="button" data-aria="LSW_TFINCLSUMMRY|APFS" data-card="3" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
+                           <button type="button" data-aria="LSW_TFINCLSUMMRY|APFS" data-card="2" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
                         </div>
                      </div>
                   </form>
@@ -736,25 +720,17 @@ editData.setHistVar(HistVar); %>
                            </div>
                         </div>
                      </div>
-					 
-					  <div class="adjoined-bottom">
-		<div class="grid-container">
-			<div class="grid-width-100">
-		
-				<textarea style="" id="AAPR_BANKINGSUMM"	placeholder="Type the content here!"  class="Edtr Text TEXTEDITDSBL" name="AAPR_BANKINGSUMM" data-maxlen="10000" maxlength="10000">
-				 <%= editData.getTxt3() %>  
-				
-				 </textarea>
-
-				<div class="invalid-tooltip"></div>
-			</div>
-			
-		</div>
-	</div>  
-	
-					 
-					 
-					 </br>
+					 <div class="adjoined-bottom">
+		                <div class="grid-container">
+			               <div class="grid-width-100">
+				             <textarea style="" id="AAPR_BANKINGSUMM"	placeholder="Type the content here!"  class="Edtr Text TEXTEDITDSBL" name="AAPR_BANKINGSUMM" data-maxlen="10000" maxlength="10000">
+				              <%= editData.getTxt3() %>  
+				            </textarea>
+				            <div class="invalid-tooltip"></div>
+			              </div>
+		              </div>
+	                </div>  
+					</br>
                       <div class="form-row">
                      <div class="col-md-8">
                            <div class="md-form">
@@ -782,7 +758,7 @@ editData.setHistVar(HistVar); %>
                      <div class="form-row">
                         <div class="col d-flex justify-content-center">
                            <button type="button" id="SaveBNK" data-aria="LSW_TAPPBANKINGDTL|APBD" data-form="Banking" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
-                           <button type="button" data-aria="LSW_TAPPBANKINGDTL|APBD" data-card="4"  data-form="Banking" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
+                           <button type="button" data-aria="LSW_TAPPBANKINGDTL|APBD" data-card="3" data-form="Banking" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
                         </div>
                      </div>
                   </form>
@@ -812,9 +788,17 @@ editData.setHistVar(HistVar); %>
                 
                 <input type="text" id="ALNM_CUSDATA" hidden="hidden" name="ALNM_CUSDATA" class="form-control ALNMDBfields">
                 <input type="text" id="ALNM_CUSDATAGED" hidden="hidden"  name="ALNM_CUSDATAGED" class="form-control ALNMDBfields">
-                        
+                   <div class="form-row">
+			    <div class="col-md-2">
+               <div class="md-form">
+                   <input type="text" id="ALNM_RTRAMOUNT" maxlength="100" disabled  name="ALNM_RTRAMOUNT" class="form-control IsCURCommaFields  ALNMDBfields ">
+                    <label for="ALNM_RTRAMOUNT" class="">RTR<span class="MndtryAstr">*</span></label>
+                  </div>    
+                  </div>
+				  </div>     
                <div data-for="ApproveNote6" class="ApproveNote6"> 
                </div>
+			   
                <div class="DynamicPageGrid" data-val="PROPTXTHDR|" id="ApproveNote6" style="display:none">
                   <div class="DYNROW" >
                      </br>
@@ -837,7 +821,7 @@ editData.setHistVar(HistVar); %>
                         </div>
                         <div class="form-row">
                             <div class="col">
-                                 <input type="button" data-button="GridButton" data-value="LoansTable|LSW_SAPPRLONSGRDDATA|PrcsID|ALCD_CUSID||7|APPRLOANGRID" style="display:none" class="DashTrg ALCDDBfields LoansTable MultiGridTrg" id="BTNLOANGRD" name="BTNLOANGRD" />
+                                 <input type="button" data-button="GridButton" data-value="LoansTable|LSW_SAPPRLONSGRDDATA|PrcsID|ALCD_CUSID||8,9|APPRLOANGRID" style="display:none" class="DashTrg ALCDDBfields LoansTable MultiGridTrg" id="BTNLOANGRD" name="BTNLOANGRD" />
                                  <table cellpadding="0"  cellspacing="0" border="0" style="width: 80%" class="display ALCDDBfields DataGrid" name="LoansTable" id="LoansTable">
                                  </table>
                             </div>
@@ -861,14 +845,14 @@ editData.setHistVar(HistVar); %>
                <div class="form-row">
         	        <div class="col Btxt10">COMMENTS</div>
                </div>
-               <div class="form-row" style="display:none">
+               <div class="form-row"  style="display:none">
                     <div class="col">
                          <div class="md-form">
                               <textarea id="ALNM_COMMENT" name="ALNM_COMMENT" class="form-control ALNMDBfields btxt24" maxlength="4000"  style="height: 130px;width:1150px;"></textarea>
                          </div>
                      </div>
                  </div>
-				   <div class="adjoined-bottom">
+				 <div class="adjoined-bottom">
 		     <div class="grid-container">
 			<div class="grid-width-100">
 		
@@ -880,13 +864,10 @@ editData.setHistVar(HistVar); %>
 			</div>
             </div>
 	    </div>
-		
-		
-				 
                  <div class="form-row">
                      <div class="col d-flex justify-content-center">
                          <button type="button" id="Save3" data-aria="LSW_TAPPRLOANSMAIN|ALNM"  class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
-                         <button type="button" data-aria="LSW_TAPPRLOANSMAIN|ALNM" data-card="5" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
+                         <button type="button" data-aria="LSW_TAPPRLOANSMAIN|ALNM" data-card="4" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
                      </div>
                  </div>
               </form>
@@ -917,7 +898,7 @@ editData.setHistVar(HistVar); %>
                      <input type="text" id="APRT_PROPGRD" hidden="hidden"  name="APRT_PROPGRD" class="form-control APRTDBfields">
                      <input type="text" id="APRT_APPLN" hidden="hidden"  name="APRT_APPLN" class="form-control APRTDBfields">
                      <input type="text" id="APRT_RESN" hidden="hidden"  name="APRT_RESN" class="form-control APRTDBfields">
-					 <input type="text" id="APRT_COMLINK" hidden="hidden"  name="APRT_COMLINK" class="form-control APRTDBfields">
+					  <input type="text" id="APRT_COMLINK" hidden="hidden"  name="APRT_COMLINK" class="form-control APRTDBfields">
                      <div class="form-row">
                         <div class="col">
                            <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table7',{spname:'LSW_SGETRPT',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'',MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||6','REPORT');" id="BTNREPT" name="BTNREPT" />
@@ -927,21 +908,21 @@ editData.setHistVar(HistVar); %>
                      </div>
                      <div class="form-row">
                         <div class="col">
-                           <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table8',{spname:'LSW_SGETAPPLNT',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'',MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||5','APPLICANT');" id="BTNREPT1" name="BTNREPT1" />
+                           <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table8',{spname:'LSW_SGETAPPLNT',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'',MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||6','APPLICANT');" id="BTNREPT1" name="BTNREPT1" />
                            <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" id="Table8">
                            </table>
                         </div>
                      </div>
-					 <div class="form-row">
+					  <div class="form-row">
               <div class=" col-md-4">
-                <div class="md-form">
+                <div class="md-form" style="display:none">
                    
                   <span type="text" class="DataFld Btxt10 ARCLDBfields">Reference Links</span>
 				 </div>
               </div>
               
             </div>
-			<div data-for="CommonLink" class="CommonLink"> 
+			<div data-for="CommonLink" class="CommonLink" style="display:none"> 
          </div>
          <div class="DynamicPageGrid" data-val="PROPTXTHDR|" id="CommonLink" style="display:none">
          <div data-row="" class=" DYNROW">
@@ -1019,7 +1000,7 @@ editData.setHistVar(HistVar); %>
                         </div>
                         <div class=" col-md-4">
                            <div class="md-form">
-                              <input type="text" id="APRT_CRDTSCR" disabled name="APRT_CRDTSCR" class="form-control APRTDBfields">
+                              <input type="text" id="APRT_CRDTSCR"  name="APRT_CRDTSCR" class="form-control APRTDBfields">
                            </div>
                         </div>
                         <div class=" col-md-4">
@@ -1033,7 +1014,7 @@ editData.setHistVar(HistVar); %>
                         </div>
                         <div class=" col-md-4">
                            <div class="md-form">
-                              <input type="text" id="APRT_CRMDL" disabled name="APRT_CRMDL" class="form-control APRTDBfields">
+                              <input type="text" id="APRT_CRMDL"  name="APRT_CRMDL" class="form-control APRTDBfields">
                            </div>
                         </div>
                         <div class=" col-md-4">
@@ -1044,275 +1025,23 @@ editData.setHistVar(HistVar); %>
                         </div>
                         <div data-for="MUSTTOHAVE" class="MUSTTOHAVE"> 
                         </div>
-                        <div class="DynamicPageGrid" data-val="PROPTXTHDR|" id="MUSTTOHAVE" style="display:none">
+                        <div class="DynamicPageGrid" data-val="PROPTXTHDR|" id="MUSTTOHAVE" >
                            <div data-row="" class="card-body px-lg-5 pt-0 DYNROW">
                               <div class="form-row">
                                  <div class=" col-md-12">
                                     <div class="md-form">
                                        <span id="PROPTXTHDR" class="Btxt10"></span>    
-                                       <input type="text" id="APRG_RESN" disabled maxlength="600" name="APRG_RESN" class="form-control NoSpecialChar APRGDBfields  ">
+                                       <input type="text" id="APRG_RESN"  maxlength="600" name="APRG_RESN" class="form-control NoSpecialChar APRGDBfields  ">
                                     </div>
                                  </div>
                               </div>
                            </div>
                         </div>
-						<!-- Credit Analytics Start-->
-
-<div  id="CreditAnalyticsST" style="display:none">
-
-<div class="row">
-<div class="col-md-12 CBTXT03" style="">
-    		CREDIT DECISION
-    	</div>
-</div>
-
-<div class="row" style="margin-top:20px; margin-left:0px; margin-right:0px;">
-    	
-    	<div class="col-md-3 ">
-		
-		
-		    	<div class="row">
-<div class="col-md-12 CrdDescUI" style="margin-left:0px; margin-right:0px;">
-		
-    		<div class="row CrdDescUIR">
-    		
-    			<div class="col-md-4 ">
-    				
-    				
-					<div style="height:60px; width:60px; border-radius:30px; background-color:#057CB3; margin:0 auto; text-align:center;">
-         							<img src="ThemeproLO/Common/FEP/images/PerfrmnceBar.png" style="height:80%; width:auto; margin-top:10%;">
-         						</div>	
-					
-    			</div>
-				
-				<div class="col-md-8">
-    				
-    				
-					<div class="CBTXT01" id="CRSCORE">-</div>
-					<div class="CBTXT02">Credit Score</div>
-					
-					
-    			</div>
-    			
-    			
-    		</div>
-		
-    	</div>
-    	
-			</div>
-			
-				</br>
-				<div class="row">
-<div class="col-md-12 CrdDescUI" style="margin-left:0px; margin-right:0px;">
-		
-    		<div class="row CrdDescUIR">
-    		
-    			<div class="col-md-4 ">
-    				
-    				
-					<div style="height:60px; width:60px; border-radius:30px; background-color:#057CB3; margin:0 auto; text-align:center;">
-         							<img src="ThemeproLO/Common/FEP/images/PerfrmncPercentg.png" style="height:80%; width:auto; margin-top:10%;">
-         						</div>	
-					
-					
-    			</div>
-				
-				<div class="col-md-8">
-    				
-    				
-					<div class="CBTXT01" id="CRD">-</div>
-					<div class="CBTXT02">Decision</div>
-					
-    			</div>
-    			
-    			
-    		</div>
-    	</div>
-    	
-			</div>
-			
-    	</div>
-		
-		
-		         <div class="col-md-9 CrdDescUIReas">
-       
-  <div class="row">
-		<div class="col-md-1 CBTXT04" style="">
-    					
-    	</div>
-    	<div class="col-md-11 CBTXT03" style="">
-    		3 Reason Points
-    	</div>
-    	</div>
-</br>
-	   <div class="row CrdDescUIReasRw">
-		
-		
-		<div class="col-md-1 CBTXT04" style="">
-    		<i class="fa fa-angle-right rotate-icon"></i>  				
-    	</div>
-		
-    	<div class="col-md-11 CBTXT05" style="" id="CRR1">
-    -	
-    	</div>
-    	</div>
-		  <div class="row CrdDescUIReasRw">
-		
-    	<div class="col-md-1 CBTXT04" style="">
-    		<i class="fa fa-angle-right rotate-icon"></i>  				
-    	</div>
-		
-    	<div class="col-md-11 CBTXT05" style=""  id="CRR2">
-    	-
-  </div>
-</div>
-		  <div class="row CrdDescUIReasRw">
-		
-    <div class="col-md-1 CBTXT04" style="">
-    		<i class="fa fa-angle-right rotate-icon"></i>  				
-    	</div>
-		
-    	<div class="col-md-11 CBTXT05" style=""  id="CRR3">
-    	-
-    		
-    	</div>
-    	</div>
-    	</div>
-  			
-    </div>
-
-</br>
-</br>
-
-
-<div class="row">
-<div class="col-md-12 CBTXT03" style="">
-    		CLUSTER DECISION
-    	</div>
-</div>
-
-<div class="row" style="margin-top:20px; margin-left:0px; margin-right:0px;">
-    	
-    	<div class="col-md-3 ">
-		
-		
-		    	<div class="row">
-<div class="col-md-12 CrdDescUI" style="margin-left:0px; margin-right:0px;">
-		
-    		<div class="row CrdDescUIR">
-    		
-    			<div class="col-md-4 ">
-    				
-    				
-					<div style="height:60px; width:60px; border-radius:30px; background-color:#057CB3; margin:0 auto; text-align:center;">
-         							<img src="ThemeproLO/Common/FEP/images/PerfrmnceBar.png" style="height:80%; width:auto; margin-top:10%;">
-         						</div>	
-					
-					
-    			</div>
-				
-				<div class="col-md-8">
-    				
-    				
-					<div class="CBTXT01" id="CLSCORE">-</div>
-					<div class="CBTXT02">Credit Score</div>
-					
-					
-    			</div>
-    			
-    			
-    		</div>
-		
-    	</div>
-    	
-			</div>
-			
-				</br>
-				<div class="row">
-<div class="col-md-12 CrdDescUI" style="margin-left:0px; margin-right:0px;">
-		
-    		<div class="row CrdDescUIR">
-    		
-    			<div class="col-md-4 ">
-    				
-    				
-					<div style="height:60px; width:60px; border-radius:30px; background-color:#057CB3; margin:0 auto; text-align:center;">
-         							<img src="ThemeproLO/Common/FEP/images/PerfrmncPercentg.png" style="height:80%; width:auto; margin-top:10%;">
-         						</div>	
-					
-					
-    			</div>
-				
-				<div class="col-md-8">
-    				
-    				
-					<div class="CBTXT01" id="CLD">-</div>
-					<div class="CBTXT02">Decision</div>
-					
-    			</div>
-    			
-    			
-    		</div>
-    	</div>
-    	
-			</div>
-			
-    	</div>
-		
-		         <div class="col-md-9 CrdDescUIReas">
-       
-  <div class="row">
-		<div class="col-md-1 CBTXT04" style="">
-    					
-    	</div>
-    	<div class="col-md-11 CBTXT03" style="">
-    		3 Reason Points
-    	</div>
-    	</div>
-</br>
-	   <div class="row CrdDescUIReasRw">
-		
-		
-		<div class="col-md-1 CBTXT04" style="">
-    		<i class="fa fa-angle-right rotate-icon"></i>  				
-    	</div>
-		
-    	<div class="col-md-11 CBTXT05" style="" id="CLR1">
-    -	
-    	</div>
-    	</div>
-		  <div class="row CrdDescUIReasRw">
-		
-    	<div class="col-md-1 CBTXT04" style="">
-    		<i class="fa fa-angle-right rotate-icon"></i>  				
-    	</div>
-		
-    	<div class="col-md-11 CBTXT05" style=""  id="CLR2">
-    	-
-  </div>
-</div>
-		  <div class="row CrdDescUIReasRw">
-		
-    <div class="col-md-1 CBTXT04" style="">
-    		<i class="fa fa-angle-right rotate-icon"></i>  				
-    	</div>
-		
-    	<div class="col-md-11 CBTXT05" style=""  id="CLR3">
-    	-
-    		
-    	</div>
-    	</div>
-    	</div>
-    </div>
-
- </div>
-
-<!-- Credit Analytics End -->
                      <div class="form-row">
                         <div class="col d-flex justify-content-center">
-						     <button type="button" id="Save7" data-aria="LSW_APPRREPORT|APRT" style="display:none" data-card="6" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
+						     <button type="button" id="Save7" data-aria="LSW_APPRREPORT|APRT"  data-card="6" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
                         
-                           <button type="button" id="Save" data-aria="LSW_APPRREPORT|APRT" data-card="6" class="btn btn-Syeloutline waves-effect waves-light FormSave">Next</button>   
+                           <button type="button" id="Save" data-aria="LSW_APPRREPORT|APRT" data-card="5" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save & Next</button>   
                         </div>
                      </div>
                   </form>
@@ -1340,17 +1069,14 @@ editData.setHistVar(HistVar); %>
                      <input type="text" id="APPC_CREATEDBY" hidden="hidden" name="APPC_CREATEDBY" class="form-control APPCDBfields">
                      <input type="text" id="APPC_DTMODIFIED" hidden="hidden" name="APPC_DTMODIFIED" class="form-control APPCDBfields">
                      <input type="text" id="APPC_MODIFIEDBY" hidden="hidden"  name="APPC_MODIFIEDBY" class="form-control APPCDBfields">
-                     <div class="form-row"  style="display:none">
+                     <div class="form-row" style="display:none">
                         <div class="col">
                            <div class="md-form">
                               <textarea id="APPC_COLLCMNT" name="APPC_COLLCMNT" class="form-control APPCDBfields btxt24" maxlength="4000"  style="height: 130px;width:1150px;"></textarea>
                            </div>
                         </div>
                      </div>
-					 
-					 
-					 
-					  <div class="adjoined-bottom">
+					 <div class="adjoined-bottom">
 		     <div class="grid-container">
 			<div class="grid-width-100">
 		
@@ -1362,13 +1088,11 @@ editData.setHistVar(HistVar); %>
 			</div>
             </div>
 	    </div>
-		
-		
                      </br>
                      <div class="form-row">
                         <div class="col d-flex justify-content-center">
                            <button type="button" id="Save8" data-aria="LSW_TAPPRCOLLATERAL|APPC" data-form="Collateral" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
-                           <button type="button" data-aria="LSW_TAPPRCOLLATERAL|APPC" data-form="Collateral" data-card="7" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
+                           <button type="button" data-aria="LSW_TAPPRCOLLATERAL|APPC" data-form="Collateral" data-card="6" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
                         </div>
                      </div>
                   </form>
@@ -1414,10 +1138,10 @@ editData.setHistVar(HistVar); %>
                         <input type="text" id="AEUP_EXLONNO" hidden="hidden"  name="AEUP_EXLONNO" class="form-control AEUPDBfields">
                         <input type="text" id="AEUP_UNIQUID" hidden="hidden"  name="AEUP_UNIQUID" class="form-control AEUPDBfields">
                        
-                       <div class="form-row">
+                       <div class="form-row" style="display:none">
                            	<div class="col Btxt10"><input type="text" id="AEUP_CLOUSERTYPE"  name="AEUP_CLOUSERTYPE" class="form-control DSVLBL Btxt04 AEUPDBfields" value=""></div>
                        </div>
-                       <div class="form-row">
+                       <div class="form-row" style="display:none">
                           <div class="col">
                                <input type="button" data-button="GridButton" data-value="EUTable|LSW_SENDUSEGRDDATA|PrcsID|AEUP_CLOUSERTYPE|AEUP_EXLONNO|2,3,4|ENDUSEGRID" style="display:none" class="DashTrg AEUPDBfields MultiGridTrg" id="BTNIEUGRD" name="BTNEUGRD" />
                                <table cellpadding="0"  cellspacing="0" border="0" style="width: 80%" class="display AEUPDBfields DataGrid" name="EUTable" id="EUTable">
@@ -1436,7 +1160,7 @@ editData.setHistVar(HistVar); %>
                         </div>
                   </div>
                </div>
-                      <div class="form-row">
+                      <div class="form-row" style="display:none">
                            <div class="col-md-6 BluShd"> 
                                 <label for="" class="Btxt10">Total<span class="MndtryAstr"></span></label>
                            </div>
@@ -1446,7 +1170,7 @@ editData.setHistVar(HistVar); %>
                            <div class="col-md-4 BluShd"> 
                            </div>
                         </div>
-						<div class="form-row">
+						<div class="form-row" style="display:none">
                            <div class="col-md-6 BluShd"> 
                                 <label for="" class="Btxt10">Balance Top Up<span class="MndtryAstr"></span></label>
                            </div>
@@ -1466,8 +1190,7 @@ editData.setHistVar(HistVar); %>
                          </div>
                      </div>
                  </div>
-				 
-				 	  <div class="adjoined-bottom">
+				 <div class="adjoined-bottom">
 		     <div class="grid-container">
 			<div class="grid-width-100">
 		
@@ -1479,12 +1202,11 @@ editData.setHistVar(HistVar); %>
 			</div>
             </div>
 	    </div>
-				 
                   </br>
                    <div class="form-row">
                          <div class="col d-flex justify-content-center">
                               <button type="button" id="Save9" data-aria="LSW_APPRENDUSE|AEUM" data-form="EndUse" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
-                              <button type="button" data-aria="LSW_APPRENDUSE|AEUM" data-form="EndUse" data-card="8" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
+                              <button type="button" data-aria="LSW_APPRENDUSE|AEUM" data-form="EndUse" data-card="7" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
                         </div>
                     </div>
                 </form>
@@ -1527,7 +1249,7 @@ editData.setHistVar(HistVar); %>
                      <div class="form-row">
                         <div class="col d-flex justify-content-center">
                            <button type="button" id="Save10" data-aria="LSW_TAPPRASSET|APAS" data-form="AssetDetails" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
-                           <button type="button" data-aria="LSW_TAPPRASSET|APAS" data-form="AssetDetails" data-card="9" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
+                           <button type="button" data-aria="LSW_TAPPRASSET|APAS" data-form="AssetDetails" data-card="8" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
                         </div>
                      </div>
                   </form>
@@ -1565,9 +1287,7 @@ editData.setHistVar(HistVar); %>
                               </div>
                           </div>
                        </div>
-					   
-					   
-					   	  <div class="adjoined-bottom">
+					    <div class="adjoined-bottom">
 		     <div class="grid-container">
 			<div class="grid-width-100">
 		
@@ -1582,7 +1302,7 @@ editData.setHistVar(HistVar); %>
                      <div class="form-row">
                         <div class="col d-flex justify-content-center">
                            <button type="button" id="Save10" data-aria="LSW_TAPPRSTRMITIG|APSM" data-form="Strengths" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
-                           <button type="button" data-aria="LSW_TAPPRSTRMITIG|APSM" data-form="Strengths" data-card="10" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
+                           <button type="button" data-aria="LSW_TAPPRSTRMITIG|APSM" data-form="Strengths" data-card="9" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
                         </div>
                      </div>
                   </form>
@@ -1620,7 +1340,6 @@ editData.setHistVar(HistVar); %>
                               </div>
                           </div>
                        </div>
-					   
 					     <div class="adjoined-bottom">
 		     <div class="grid-container">
 			<div class="grid-width-100">
@@ -1633,12 +1352,10 @@ editData.setHistVar(HistVar); %>
 			</div>
             </div>
 	    </div> 
-					   
-					   
                      <div class="form-row">
                         <div class="col d-flex justify-content-center">
                            <button type="button" id="Save10" data-aria="LSW_TAPPRREFRRNCE|APRC" data-form="Reference" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
-                           <button type="button" data-aria="LSW_TAPPRREFRRNCE|APRC" data-form="Reference" data-card="11" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
+                           <button type="button" data-aria="LSW_TAPPRREFRRNCE|APRC" data-form="Reference" data-card="10" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
                         </div>
                      </div>
                   </form>
@@ -1667,7 +1384,7 @@ editData.setHistVar(HistVar); %>
                      <input type="text" id="APEM_DTMODIFIED" hidden="hidden" name="APEM_DTMODIFIED" class="form-control APEMDBfields">
                      <input type="text" id="APEM_MODIFIEDBY" hidden="hidden"  name="APEM_MODIFIEDBY" class="form-control APEMDBfields">
                      <input type="text" id="APEM_EMPRMNT" hidden="hidden"  name="APEM_EMPRMNT" class="form-control APEMDBfields">
-					 <input type="text" id="APEM_MANEMPRMNT" hidden="hidden"  name="APEM_MANEMPRMNT" class="form-control APEMDBfields">
+					  <input type="text" id="APEM_MANEMPRMNT" hidden="hidden"  name="APEM_MANEMPRMNT" class="form-control APEMDBfields">
                      <div class="form-row">
                         <div class="col">
                            <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table4',{spname:'LSW_SGETFIXEMPRMNTDTL',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'',MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||3,4','EMPOWERMNT');" id="BTNEMPOWERMNT" name="BTNEMPOWERMNT" />
@@ -1680,15 +1397,15 @@ editData.setHistVar(HistVar); %>
                      </div>
                      <div class="form-row">
                            <div class="col">
-                                 <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'MDTable',{spname:'LSW_SMANUEMPRMNTDTL',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'',MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4','MNUEMPOWERMNT');" id="BTNMNUEMPOWERMNT" name="BTNMNUEMPOWERMNT" />
+                                 <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'MDTable',{spname:'LSW_SEMPWMDDATAGRD',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'',MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4','MNUEMPOWERMNT');" id="BTNMNUEMPOWERMNT" name="BTNMNUEMPOWERMNT" />
                                  <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" id="MDTable">
                                  </table>
                             </div>
                          </div>
-                     <div class="form-row">
+                     <!--<div class="form-row">
                          <div class="HyperControls">
                                 <a type="button" class="Btxt4 ADDBTN ADDME" data-toggle="modal" id="PropertyGrid" data-target="" href="#">+ Add Empowerment</a>
-         <!-- <a class="Btxt4" id="AuditTrail" href="#">Audit Trail</a> -->
+         <!-- <a class="Btxt4" id="AuditTrail" href="#">Audit Trail</a>
                               </div>
                           </div>
 						  </br>
@@ -1699,11 +1416,11 @@ editData.setHistVar(HistVar); %>
 						 </select>
 						 <label class="mdb-main-label BTxt9" >360 Degree<span class="MndtryAstr">*</span></label>
 							</div>
-						  </div>
+						  </div>-->
                      <div class="form-row">
                         <div class="col d-flex justify-content-center">
                            <button type="button" id="Save11" data-aria="LSW_TAPPREMPR|APEM"  class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
-                           <button type="button" id="SaveE11" data-aria="LSW_TAPPREMPR|APEM" data-card="12" style="padding-left: 25px;width: 166px;" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
+                           <button type="button" id="SaveE11" data-aria="LSW_TAPPREMPR|APEM" data-card="11" style="padding-left: 25px;width: 166px;" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
                         </div>
                      </div>
                   </form>
@@ -1746,7 +1463,7 @@ editData.setHistVar(HistVar); %>
                                  <div class=" col-md-11">
                                     <div class="md-form">
                                        <span id="PROPTXTHDR" class="Btxt10"></span>    
-                                       <input type="text" id="APSG_SANCCMNT"  name="APSG_SANCCMNT" class="form-control NoSpecialChar APSGDBfields  ">
+                                       <input type="text" id="APSG_SANCCMNT"  name="APSG_SANCCMNT" class="form-control  APSGDBfields  ">
                                     </div>
                                  </div>
                                  <div class="col-md-1">
@@ -1783,9 +1500,11 @@ editData.setHistVar(HistVar); %>
                       <div class="form-row">
                      
                         <div class="col d-flex justify-content-center">
+						<button type="button" id="SendBack" data-aria="LSW_TAPPLNAPPROV|AAPR" style="display:none;" onclick=""  class="btn btn-Syeloutline waves-effect waves-light BTNHIDE FormSave StageReversal">Send Back</button> 
+						<button type="button" id="Reject" data-aria="LSW_TAPPLNAPPROV|AAPR"   data-form="FamilyBackground" class="BTNSTA btn btn-Syeloutline waves-effect waves-light">Reject</button>  
                            <button type="button" id="Save12" onclick="" data-aria="LSW_TAPPLNAPPROV|AAPR" data-form="FamilyBackground" class="btn btn-Syel waves-effect waves-light FormSave">Generate Approval Note</button>   
                              <button type="button" id="Save12" data-aria="LSW_TAPPLNAPPROV|AAPR"   data-form="FamilyBackground" class="BTNSTA btn btn-Syel waves-effect waves-light FormSave">Send for Approval</button>  
-							 <button type="button" id="Reject" data-aria="LSW_TAPPLNAPPROV|AAPR"   data-form="FamilyBackground" class="BTNSTA btn btn-Syel waves-effect waves-light">Reject</button>  
+							 
 						</div>
                      </div>
          </div>
@@ -1825,6 +1544,7 @@ editData.setHistVar(HistVar); %>
 <th>LCDT_OBLIGATION</th>
 <th>LCDT_ENDUSE</th>
 <th>LCDT_CUSID</th>
+<th>LCDT_EXLONNO</th>
 <!--<th>LCDT_PRCSID</th>
 <th>LCDT_ACTIVITYID</th>
 <th>LCDT_CREATEDBY</th>
@@ -1859,6 +1579,7 @@ editData.setHistVar(HistVar); %>
       <th>APED_REMARK</th>
       <th>APED_DEVID</th>
       <th>APED_LVLID</th>
+	  <th>APED_VERIFY</th>
    </thead>
 </table>
 <table style="display:none" id="GridFINANCTable">
@@ -1910,7 +1631,6 @@ editData.setHistVar(HistVar); %>
         <th>AEUG_SCHEME</th>
    </thead>
 </table>
-
 <table style="display:none" id="GridMDTable">
    <thead>
       <th>AEMD_EMPOWTYP</th>
@@ -1919,7 +1639,6 @@ editData.setHistVar(HistVar); %>
        <th>ACTION</th>
    </thead>
 </table>
-
 
 <!-- <table style="display:none" id="GridFINANCTable">
    <thead>
@@ -1980,8 +1699,17 @@ editData.setHistVar(HistVar); %>
     </div>
   </div>
   </div>
-  <!--</body>-->
-  <script>
+<table style="display:none" id="GridEmpovTable4">
+   <thead>
+      <th>APED_EMPTYP</th>
+      <th>APED_LEVEL</th>
+      <th>APED_REMARK</th>
+      <th>APED_DEVID</th>
+      <th>APED_LVLID</th>
+   </thead>
+</table>
+
+ <script>
 initSample("AAPR_FamilyBckGrnd");
 initSample("AAPR_FINCSUMMARY");
 initSample("AAPR_BANKINGSUMM");
@@ -1994,15 +1722,7 @@ initSample("AAPR_REFCHECKSUMM");
 </script>	
 <% editData.ClearMtd(); %>   
 </form>
-<table style="display:none" id="GridEmpovTable4">
-   <thead>
-      <th>APED_EMPTYP</th>
-      <th>APED_LEVEL</th>
-      <th>APED_REMARK</th>
-      <th>APED_DEVID</th>
-      <th>APED_LVLID</th>
-   </thead>
-</table>
+
 <script type="text/javascript" src="ThemeproLO/Approve/Script/ApprlNt/LoadSubmit.js${DMY13}"></script>
 <script type="text/javascript" src="ThemeproLO/Approve/Script/ApprlNt/Validation.js${DMY13}"></script>
 <link href="ThemeproLO/Common/FEP/Calendar/css/monthly.css${DMY13}" rel="stylesheet">

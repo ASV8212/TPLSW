@@ -359,8 +359,8 @@ function GridControlDetailHEALTHCOMBOGRD  (popTableModPageGrid1,TableID,dtData,d
              /*  var HTML = '<span><input type="text"  id="AMPI_PLCYTNR' + rowno + '"  name="AMPI_PLCYTNR' + rowno + '" maxlength="2" class="form-control form-control Appcble Tenure IsNumberFields IsCURCommaFields">';
                HTML = HTML + '</span>';*/
                
-           	var HTML =    '<span><select class="Gridmdb-select md-form colorful-select Mndtry APPDROPDOWN dropdown-primary AMPIDBfields" disabled id="AMPI_PLCYTNR'+rowno+'" name="AMPI_PLCYTNR'+rowno+'">';
- 			//HTML = HTML + '<option value="">Select</option>';
+           	var HTML =    '<span><select class="Gridmdb-select md-form colorful-select Mndtry APPDROPDOWN dropdown-primary" disabled id="AMPI_PLCYTNR'+rowno+'" name="AMPI_PLCYTNR'+rowno+'">';
+ 			HTML = HTML + '<option value="">Select</option>';
  			HTML = HTML + '<option value="1">1</option>';
  			HTML = HTML + '<option value="2">2</option>';
  			HTML = HTML + '<option value="3">3</option></span>';
@@ -379,10 +379,11 @@ function GridControlDetailHEALTHCOMBOGRD  (popTableModPageGrid1,TableID,dtData,d
         		   var rowno = meta.row;
                    /*  var HTML = '<span><input type="text"  id="AMPI_PLCYTNR' + rowno + '"  name="AMPI_PLCYTNR' + rowno + '" maxlength="2" class="form-control form-control Appcble Tenure IsNumberFields IsCURCommaFields">';
                      HTML = HTML + '</span>';*/
-                 	var HTML =    '<span><select class="Gridmdb-select md-form colorful-select Mndtry APPDROPDOWN dropdown-primary AMPIDBfields" disabled id="AMPI_PLCYTNR'+rowno+'" name="AMPI_PLCYTNR'+rowno+'">';
-       		    	//HTML = HTML + '<option value="">Select</option>';
-       			   HTML = HTML + '<option value="1">1</option>';
-				   HTML = HTML + '<option value="5">5</option></span>';
+                     
+                 	var HTML =    '<span><select class="Gridmdb-select md-form colorful-select Mndtry APPDROPDOWN dropdown-primary" disabled id="AMPI_PLCYTNR'+rowno+'" name="AMPI_PLCYTNR'+rowno+'">';
+       		    	HTML = HTML + '<option value="">Select</option>';
+					HTML = HTML + '<option value="1">1</option>';
+       			    HTML = HTML + '<option value="5">5</option></span>';
                      
                var htmldata = $(HTML);
  			
@@ -396,10 +397,10 @@ function GridControlDetailHEALTHCOMBOGRD  (popTableModPageGrid1,TableID,dtData,d
 				 },
 				 { targets: 2,
 			           "render": function(data, type, row, meta) {
-			        	   if(row[0] == "Health Insurance")
+			        	  /* if(row[0] == "Health Insurance")
 							{
 			               var rowno = meta.row;
-			             	var HTML =    '<span><select class="Gridmdb-select md-form colorful-select Mndtry APPDROPDOWN dropdown-primary AMPIDBfields" id="AMPI_SUMINSRD'+rowno+'" name="AMPI_SUMINSRD'+rowno+'">';
+			             	var HTML =    '<span><select data="AMPI_PRMINCLDGST'+ rowno + '" CNT='+rowno+'  class="Gridmdb-select md-form colorful-select Mndtry ClrPremium APPDROPDOWN dropdown-primary" id="AMPI_SUMINSRD'+rowno+'" name="AMPI_SUMINSRD'+rowno+'">';
 		       		    	HTML = HTML + '<option value="">Select</option>';
 		       			    HTML = HTML + '<option value="1000000">1000000</option></span>';
 		       			    HTML = HTML + '<option value="1500000">1500000</option></span>';
@@ -412,10 +413,10 @@ function GridControlDetailHEALTHCOMBOGRD  (popTableModPageGrid1,TableID,dtData,d
 						   
 							}
 			        	   else
-			        		   {
+			        		   {*/
 			        		   
 			        		    var rowno = meta.row;
-					               var HTML = '<span><input type="text"  id="AMPI_SUMINSRD' + rowno + '"  name="AMPI_SUMINSRD' + rowno + '" maxlength="15" class=" Appcble Mndtry form-control form-control COMSUMINSUR IsNumberFields AMPIDBfields IsCURCommaFields">';
+					               var HTML = '<span><input type="text"  id="AMPI_SUMINSRD' + rowno + '" CNT='+rowno+' data="AMPI_PRMINCLDGST'+rowno+'" name="AMPI_SUMINSRD' + rowno + '" maxlength="15" class="ClrPremium Appcble Mndtry form-control form-control COMSUMINSUR IsNumberFields IsCURCommaFields">';
 					               HTML = HTML + '</span>';
 					               
 					               var htmldata = $(HTML);
@@ -431,15 +432,15 @@ function GridControlDetailHEALTHCOMBOGRD  (popTableModPageGrid1,TableID,dtData,d
 
 					               return htmldata[0].outerHTML;
 			        		   
-			        		   }
+			        		  // }
 			        	   
-			           }
-							 },
+			}
+		},
 		 { targets: 3,
            "render": function(data, type, row, meta) {
 
                var rowno = meta.row;
-               var HTML = '<span><input type="text"  disabled id="AMPI_PRMINCLDGST' + rowno + '"  name="AMPI_PRMINCLDGST' + rowno + '" maxlength="10" class="Appcble form-control form-control AMPIDBfields Appcble PremiumEnabled IsNumberFields IsCURCommaFields">';
+               var HTML = '<span><input type="text" id="AMPI_PRMINCLDGST' + rowno + '"  name="AMPI_PRMINCLDGST' + rowno + '" maxlength="10" class="Appcble form-control form-control PrmGST Appcble IsNumberFields IsCURCommaFields">';
                HTML = HTML + '</span>';
                
                var htmldata = $(HTML);
@@ -466,6 +467,8 @@ function GridControlDetailHEALTHCOMBOGRD  (popTableModPageGrid1,TableID,dtData,d
 
         });
 }
+
+
 
 
 function CompareFROMDATE(XID,YID)
@@ -717,7 +720,7 @@ function GridControlDetailFAMILCOMBOGRD  (popTableModPageGrid1,TableID,dtData,dt
 	   { targets: 1,
            "render": function(data, type, row, meta) {
         	   var rowno = meta.row;
-               var HTML = '<span><input type="text"   id="HPFA_NAME' + rowno + '"  name="HPFA_NAME' + rowno + '" maxlength="10" class="form-control HPFADBfields IsAlphaFields form-control  Appcble  ">';
+               var HTML = '<span><input type="text"   id="HPFA_NAME' + rowno + '"  name="HPFA_NAME' + rowno + '" maxlength="10" class="form-control IsAlphaFields form-control  Appcble  ">';
                HTML = HTML + '</span>';
                
                var htmldata = $(HTML);
@@ -740,7 +743,7 @@ function GridControlDetailFAMILCOMBOGRD  (popTableModPageGrid1,TableID,dtData,dt
 			        	if(row[0] == "Mother" || row[0] == "Father")
 						{
 			               var rowno = meta.row;
-			             	var HTML =    '<span><select class="Gridmdb-select md-form colorful-select dropdown-primary HPFADBfields" disabled id="HPFA_GENDOR'+rowno+'" name="HPFA_GENDOR'+rowno+'">';
+			             	var HTML =    '<span><select class="Gridmdb-select md-form colorful-select   dropdown-primary" disabled id="HPFA_GENDOR'+rowno+'" name="HPFA_GENDOR'+rowno+'">';
 		       		    	HTML = HTML + '<option value="">Select</option>';
 		       			    HTML = HTML + '<option value="Male">Male</option></span>';
 		       			    HTML = HTML + '<option value="Female">Female</option></span>';
@@ -756,7 +759,7 @@ function GridControlDetailFAMILCOMBOGRD  (popTableModPageGrid1,TableID,dtData,dt
 						else
 							{
 			               var rowno = meta.row;
-			             	var HTML =    '<span><select class="Gridmdb-select md-form colorful-select APPDROPDOWN dropdown-primary HPFADBfields" id="HPFA_GENDOR'+rowno+'" name="HPFA_GENDOR'+rowno+'">';
+			             	var HTML =    '<span><select class="Gridmdb-select md-form colorful-select APPDROPDOWN dropdown-primary" id="HPFA_GENDOR'+rowno+'" name="HPFA_GENDOR'+rowno+'">';
 		       		    	HTML = HTML + '<option value="">Select</option>';
 		       			    HTML = HTML + '<option value="Male">Male</option></span>';
 		       			    HTML = HTML + '<option value="Female">Female</option></span>';
@@ -777,7 +780,7 @@ function GridControlDetailFAMILCOMBOGRD  (popTableModPageGrid1,TableID,dtData,dt
            "render": function(data, type, row, meta) {
 
                	var rowno = meta.row;	 
-      	      		var HTML =	'<span><input type="text" id="HPFA_DOB'+rowno+'"  name="HPFA_DOB'+rowno+'" maxlength="10" class="form-control Appcble form-control IsNumberFields HPFADBfields ISFutureDateFields ISDatefield ">';			 
+      	      		var HTML =	'<span><input type="text" id="HPFA_DOB'+rowno+'"  name="HPFA_DOB'+rowno+'" maxlength="10" class="form-control Appcble form-control IsNumberFields  ISFutureDateFields ISDatefield ">';			 
       	      		HTML = HTML + '<img src="ThemeproLO/Common/Images/calendar.png" class="GridFieldIcon Griddatepicker"/></span>'; 
       	      			 
       	      		var htmldata = $(HTML);
@@ -862,8 +865,12 @@ function CheckMDCDetl(id,Event)
 	{
 		if($('#ACSP_MNDCGAPPLIC').is(':checked')==false)
 		{
-	      $("#ACSP_MNDCGAPPLIC").prop("checked", true);
-		  $(".MDCD").show();
+	      $("#ACSP_MNDCGAPPLIC").prop("checked", false);
+		  $(".MDCD").hide();
+		}
+		else
+		{
+			$(".MDCD").show();
 		}
 		
 		var DATA=["BankDetail1|"];
@@ -876,11 +883,14 @@ function CheckMDCDetl(id,Event)
     		{   
 			if($(HTML).find("[name='AMPI_PROAPPLICABLE']").is(':checked')==false)
 		         {
-					 $(HTML).find("[name='AMPI_PROAPPLICABLE']").prop("checked", true);
-            	     $(HTML).find('.Applicable').show()
+					 $(HTML).find("[name='AMPI_PROAPPLICABLE']").prop("checked", false);
+            	     $(HTML).find('.Applicable').hide();
                  }
-			  
-				  
+			else
+				 {
+					  //$(HTML).find("[name='AMPI_PROAPPLICABLE']").prop("checked", true);
+					 $(HTML).find('.Applicable').show();
+				 } 
     		}
     	}
       }
@@ -1056,7 +1066,6 @@ function CheckGender1(Event)
 	
 }
 
-
 function ShowInsurLink(HTML,Type,Evnt)
 {	
   if($("#PrMs1").val()=="View")
@@ -1107,6 +1116,7 @@ function generatePDF(Cusid,PropId,Type,html,HIT)
 	
 	 
 	  var URL=$(xml).find('URL').text()
+	  var Alert=$(xml).find('ALERT').text()
 	  
 	  if(URL !="")
 	  {
@@ -1121,6 +1131,11 @@ function generatePDF(Cusid,PropId,Type,html,HIT)
 				  window.open(URL)
 		  }
 	  }
+	  else if(Alert !="")
+	  {
+		  alert(Alert);
+		  return false;
+	  }
 	  else
 	  {
 		  if(Type=="PolicyProperty")
@@ -1133,6 +1148,7 @@ function generatePDF(Cusid,PropId,Type,html,HIT)
 		  }
 	  }
 }
+
 
 function GetPropertyURL(Cusid,PropId)
  {
@@ -1304,7 +1320,6 @@ function GetHelthPac(Evnt,TablID,tbllen)
 			  });
 		 return RTNVAL;
 }
-
 
 function ChkNomiName(CusID,Name)
 {

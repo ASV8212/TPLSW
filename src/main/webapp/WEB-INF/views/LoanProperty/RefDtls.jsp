@@ -9,6 +9,27 @@
 
                             <!--Admin panel-->
                             <div class="admin-panel">
+							
+		<div class="row">
+	<div class="col-lg-12">
+		
+		  <ul title="Reference" data-popup="No" data-aria="LSW_TLONREFDTLS|LRDT|" class="nav FormPageMultiTab">   
+		  
+    ${SUBPAGETABDATA}
+       <!-- <li id="Co-Applicant1" value="" title = "Co-Applicant1" class="nav-item  active">
+       <a> <div class="nav-link" href="#">Co-Applicant 1</div></a>
+      </li>      
+          
+      <li id=""  value="Add" title = "" class="nav-item FormPageMultiTabAdd">
+     <a> <div class="nav-link" href="#">+ Add</div>  </a>
+      </li>
+      --> 
+      </ul>
+	
+	</div>
+</div>
+
+</br>
 
 <div class="card CardNS">
     <!-- Card body -->
@@ -21,8 +42,17 @@
          <input type="text" id="LRDT_DTCREATED" hidden="hidden" name="LRDT_DTCREATED" class="form-control LRDTDBfields">
          <input type="text" id="LRDT_MODIFIEDBY" hidden="hidden" name="LRDT_MODIFIEDBY" class="form-control LRDTDBfields">
          <input type="text" id="LRDT_DTMODIFIED" hidden="hidden" name="LRDT_DTMODIFIED" class="form-control LRDTDBfields">
+		  	<input type="text"   hidden="hidden" id="LRDT_REFID" name="LRDT_REFID" class="form-control LRDTDBfields">
+			<input type="text" id="LRDT_REFNAME" hidden="hidden" name="LRDT_REFNAME" class="form-control LRDTDBfields">
       	</br>
-      	
+      	      	          <div class="form-row">
+           <div class="col ">
+           <div class="FltRight DELBTNTXT">
+           Delete Reference
+           <img src="ThemeproLO/Common/Images/Delete_Img.png" style="height:25px;width:25px" data-tab="LRDT_PRCSID|LRDT_REFID|Reference" class="DELBTN DELETETAP"/>
+           </div>    
+           </div>     
+           </div>
         	<div class="form-row">
         		<div class="col Btxt3">Enter Reference Details</div>
         	</div>
@@ -31,7 +61,7 @@
       	</br>
       	
       	<div class="form-row">
-        	<div class="col Btxt10">REFERENCE ADDRESS 1</div>
+        	<div class="col Btxt10">REFERENCE ADDRESS</div>
         </div>
       	</br>
       	
@@ -47,20 +77,19 @@
                 <div class="col">
                   
                   <div class="md-form">
-          
-               <div class="select-radio LRDTMndtry"> 
-                    <div class="custom-control custom-radio custom-control-inline">
-                 <input type="radio" class="custom-control-input LRDTDBfields" onclick="checkRadio(this)" value="Friend" id="Friend" name="LRDT_FIRREFREL">
-                 <label class="custom-control-label" for="Friend">Friend</label>
-                   </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" class="custom-control-input LRDTDBfields" onclick="checkRadio(this)" value="Relative" id="Relative" name="LRDT_FIRREFREL">
-              <label class="custom-control-label" for="Relative">Relative</label>
-                    </div>
-               </div>
-                 <label class="mdb-main-label BTxt9">Relationship <span class="MndtryAstr">*</span></label>      
+                    <select class="mdb-select md-form colorful-select dropdown-primary   LRDTDBfields LRDTMndtry "   id="LRDT_FIRREFREL" name="LRDT_FIRREFREL">
+                  <!--	<option value="">Select</option>
+  				    <option value="Buyer">Buyer</option>
+					<option value="Vehicles">Seller</option>
+					<option value="Relative">Relative</option>
+					<option value="Friend">Friend</option>-->
+					 
+ 					 
+  					
+				</select>
+				<label class="mdb-main-label BTxt9">Relationship<span class="MndtryAstr">*</span></label>
                   </div>
-                </div>
+				  </div>
            
            </div>
       	
@@ -69,7 +98,7 @@
             <div class="col">
                  
                   <div class="md-form">
-                  	<input type="text" id="LRDT_FIRREFMOBILE" maxlength="10" onchange="CheckMobNo();CheckRefNo();"  name="LRDT_FIRREFMOBILE" class="form-control IsMobileFields IsNumberFields LRDTMndtry LRDTDBfields">
+                  	<input type="text" id="LRDT_FIRREFMOBILE" maxlength="10" onchange="DupMOBval('LRDT_PRCSID','LRDT_FIRREFMOBILE','LRDT_REFID');"  name="LRDT_FIRREFMOBILE" class="form-control IsMobileFields IsNumberFields LRDTMndtry LRDTDBfields">
                     <label for="LRDT_FIRREFMOBILE" class="">Mobile No <span class="MndtryAstr">*</span></label>
              </div>
                 </div>
@@ -109,7 +138,7 @@
                 </div>
                 <div class="col">
                   <div class="md-form">
-                    <input type="text" id="LRDT_FIRREFCITY" name="LRDT_FIRREFCITY" disabled class="form-control LRDTMndtry LRDTDBfields">
+                    <input type="text" id="LRDT_FIRREFCITY" disabled name="LRDT_FIRREFCITY" class="form-control LRDTMndtry LRDTDBfields">
                     <label for="LRDT_FIRREFCITY" class="">City <span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
@@ -120,15 +149,53 @@
             <div class="col">
                  
                   <div class="md-form">
-                  	<input type="text" id="LRDT_FIRREFSTATE" name="LRDT_FIRREFSTATE" disabled class="form-control LRDTMndtry LRDTDBfields">
+                  	<input type="text" id="LRDT_FIRREFSTATE" disabled name="LRDT_FIRREFSTATE" class="form-control LRDTMndtry LRDTDBfields">
                     <label for="LRDT_FIRREFSTATE" class="">State <span class="MndtryAstr">*</span></label>
              </div>
                 </div>
                 <div class="col"></div>
            
            </div>
+		   <div class="form-row  MSMEDETAILS">
            
-      		<div class="form-row">
+            <div class="col-md-6">
+                 
+                  <div class="md-form">
+                  	<input type="text" id="LRDT_REFFROM"  name="LRDT_REFFROM" maxlength="30"  class="form-control NoSpecialChar LRDTDBfields">
+                    <label for="LRDT_REFFROM" class="">Reference taken from <span class="MndtryAstr"></span></label>
+             </div>
+                </div>
+				
+				 <div class="col-md-6">
+                 
+                  <div class="md-form">
+                  	<input type="text" id="LRDT_YEARSREL"  name="LRDT_YEARSREL"  maxlength="2"   class="form-control  IsNumberFields  LRDTDBfields">
+                    <label for="LRDT_YEARSREL" class="">Years of relationship <span class="MndtryAstr"></span></label>
+             </div>
+                </div>
+		    </div>
+		   
+		     <div class="form-row MSMEDETAILS">
+           
+            <div class="col-md-6">
+                 
+                  <div class="md-form">
+                  	<input type="text" id="LRDT_TURNOVERPER" maxlength="5" name="LRDT_TURNOVERPER"    class="form-control IsPercentageSPL IsNumberFields LRDTDBfields">
+                    <label for="LRDT_TURNOVERPER" class=""> % Turnover in last one year <span class="MndtryAstr"></span></label>
+             </div>
+                </div>
+				
+				 <div class="col-md-6">
+                 
+                  <div class="md-form">
+                  	<input type="text" id="LRDT_REMARK"  name="LRDT_REMARK"    class="form-control NoSpecialChar LRDTDBfields">
+                    <label for="LRDT_REMARK" class="">Remarks<span class="MndtryAstr"></span></label>
+             </div>
+                </div>
+		    </div>
+		   
+           
+      		<!--<div class="form-row"  >
         	<div class="col Btxt10">REFERENCE ADDRESS 2</div>
         </div>
       	</br>
@@ -223,12 +290,12 @@
                 </div>
                 <div class="col"></div>
            
-           </div>
+           </div>-->
       		</br>
       	    <div class="form-row">
                  <div class="col d-flex justify-content-center">
-                     <button type="button" id="Save" data-aria="LSW_TLONREFDTLS|LRDT" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
-                     <button type="button" data-aria="LSW_TLONREFDTLS|LRDT" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
+                     <button type="button" id="Save" data-aria="LSW_TLONREFDTLS|LRDT|LRDT_REFID" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
+                     <button type="button" data-aria="LSW_TLONREFDTLS|LRDT|LRDT_REFID" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
                 </div>
             </div>
        	</form>

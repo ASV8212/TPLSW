@@ -66,3 +66,15 @@ $(function () {
         }, 1000);*/
     });
 });
+
+
+$(document).ready(function() {
+     
+$("input").keypress(function(event) {
+        if (event.which === 13) {
+if($("#TXTusername").val()!='' && $("#TXTpwd")!='' && $("#txt3")!=''){
+            $("#CheckSignInBtn1").click();
+}
+        }
+ });
+    });

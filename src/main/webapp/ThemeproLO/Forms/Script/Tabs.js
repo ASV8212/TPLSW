@@ -22,17 +22,31 @@
 		  
 		 if (active != $(this).attr("id"))
 			 {
+				 
+		var BusinessId="";
+		 if($(this).attr('id')=="FormMainTab7")
+		 {
+			 BusinessId="FIRM1"
+		 }
+		 
+		 if($(this).attr('id') != "FormMainTab7")
+		 {
+		RedirectURL = window.location.origin+"/TPLSW/"+$(this).attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9=NIL&PrMs10="+$(this).attr("id") + DataValue+"&PrMs1="+$("#PrMs1").val()+"&PrMs3="+BusinessId;
+		  //RedirectURL = window.location.origin+"/TPLSW/"+$(this).attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9="+$(this).attr("id")+"&PrMs10="+MainActive + DataValue+"&PrMs1="+$("#PrMs1").val()+"&PrMs3="+BusinessId;
+		 }
+		 else{
+			// RedirectURL = window.location.origin+"/TPLSW/"+$(this).attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs5="+$("#PrMs5").val()+"&PrMs6="+$("#PrMs6").val()+"&PrMs9="+$(this).attr("id")+"&PrMs10="+MainActive + DataValue+"&PrMs1="+$("#PrMs1").val()+"&PrMs3="+BusinessId;
+		 RedirectURL = window.location.origin+"/TPLSW/"+$(this).attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9=NIL&PrMs10="+$(this).attr("id") + DataValue+"&PrMs1="+$("#PrMs1").val()+"&PrMs3="+BusinessId;
+		 }
 		  
 		 // $(this).addClass('active')
-		  RedirectURL = window.location.origin+"/TPLSW/"+$(this).attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9=NIL&PrMs10="+$(this).attr("id") + DataValue+"&PrMs1="+$("#PrMs1").val();
+		 // RedirectURL = window.location.origin+"/TPLSW/"+$(this).attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9=NIL&PrMs10="+$(this).attr("id") + DataValue+"&PrMs1="+$("#PrMs1").val();
 			$(location).attr('href',encodeURI(RedirectURL));
 			 }
 		 else
 			 {
 			 $(this).addClass("active");
 			 }
-		 
-		
 	})
 	
 // Main Page Tab End	
@@ -42,6 +56,14 @@
 	$(".FormPageTab li").on('click', function () {
 
 		  //$('.FormPageTab li')
+		  
+		           var Vertical=$("#VERTICAL").val();
+	                  var Page="";
+					  
+					 if(Vertical=="UCV" || Vertical=="UCV Eco")
+					 {
+						Page="UCV"
+					 }
 		  
 		  var active = $(".FormPageTab").find("li.active").attr("id");
 		  
@@ -58,16 +80,31 @@
 		 if (active != $(this).attr("id"))
 			 {	
 			 
-			 if($(this).attr("value") == "Guantr")
+			 if($(this).attr("value") == Page+"Guantr")
 				 {
 				  
 				 var PST = UI_getdata($(this).attr("value"),$("#PrcsID").val(),"","","","LSW_SGETCOAPPLGAUST");	
 					
 					if($(PST).find("RESULT").text() == "Y")
 						{
+							if($("#PrMs1").val() == "View") 
+							{
+                                alert("No Guarantor has been added for this Application");
+                                return;
+							}
+							else if($("#DMY5").val().split('|')[2]!="PreLogin" 
+							&& $("#DMY5").val().split('|')[2]!="PreLoginSB" && $("#DMY5").val().split('|')[2]!="SendToCredit")
+							{
+							 alert("No Guarantor has been added for this Application");
+                               return;
+							}
 				
 				$("#NextPageID").val($(this).attr("id")+'|'+$(this).attr("value"));
 					if($(this).attr("value") == "Guantr")
+						{
+						$(".CLABEL").text("Guarantor Type*");
+						}
+						if($(this).attr("value") == "UCVGuantr")
 						{
 						$(".CLABEL").text("Guarantor Type*");
 						}
@@ -105,13 +142,17 @@
 						
 					// }
 				 }
-			 else if($(this).attr("value") == "CoApplcnt")
+			 else if($(this).attr("value") == Page+"CoApplcnt")
 				{
 					var PST = UI_getdata($(this).attr("value"),$("#PrcsID").val(),"","","","LSW_SGETCOAPPLGAUST");	
 					
 					if($(PST).find("RESULT").text() == "Y")
 						{
-				
+				         if($("#PrMs1").val() == "View")
+							{
+                                alert("No Co-Applicant has been added for this Application");
+                                return;
+							}
 				$("#NextPageID").val($(this).attr("id")+'|'+$(this).attr("value"));
 					if($(this).attr("value") == "Guantr")
 						{
@@ -121,12 +162,27 @@
 				return;
 						}
 				}
-             if($(this).attr('id') != "IQ" && $(this).attr('id') != "OQ" && $(this).attr('id') != "CQ")
+if($(this).attr('id') != "IQ" && $(this).attr('id') != "OQ" && $(this).attr('id') != "CQ")
 		       {				
 		 // $(this).addClass('active')
-		  RedirectURL = window.location.origin+"/TPLSW/"+$(this).attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9="+$(this).attr("id")+"&PrMs10="+MainActive + DataValue+"&PrMs1="+$("#PrMs1").val();
+		//Added at 20/06/2020 for Business purpose start
+		var BusinessId="";
+		 if($(".FormMainTabs").find('li.active').attr('id')=="FormMainTab7" && $(this).attr('id')=="FormPageTab9")
+		 {
+			 BusinessId="FIRM1"
+		 }
+		 
+		 if($(".FormMainTabs").find('li.active').attr('id') != "FormMainTab9")
+		 {
+		  RedirectURL = window.location.origin+"/TPLSW/"+$(this).attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9="+$(this).attr("id")+"&PrMs10="+MainActive + DataValue+"&PrMs1="+$("#PrMs1").val()+"&PrMs3="+BusinessId;
+		 }
+		 else{
+			 RedirectURL = window.location.origin+"/TPLSW/"+$(this).attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs5="+$("#PrMs5").val()+"&PrMs6="+$("#PrMs6").val()+"&PrMs9="+$(this).attr("id")+"&PrMs10="+MainActive + DataValue+"&PrMs1="+$("#PrMs1").val()+"&PrMs3="+BusinessId;
+		 }
 			$(location).attr('href',encodeURI(RedirectURL));
-			   }
+			
+			//Added at 20/06/2020 for Business purpose end
+			 }
 			 }
 	})
 	
@@ -155,8 +211,7 @@
 			{
 			 DataValue = "&PrMs8=" + $("#PrMs8").val();
 			}
-			 
-		 if($(this).attr("id") != "IQQRL" && $(this).attr("id") != "IQQR")
+		if($(this).attr("id") != "IQQRL" && $(this).attr("id") != "IQQR")
 			 { 
 			 if (Subactive == $(this).attr("id"))
 				 {		  
@@ -201,56 +256,57 @@ $(document).on("click", ".FormPageMultiTab li", function() {
 		
 // Add Tab Validations Start
 		
-			// Disbursement Tranche Start
-			if ($(this).prev().text().indexOf("Tranche") >= 0)
-			{
-			
-var trst = UI_getdata($("#PrcsID").val(), $(this).prev().text(), $("#DMY3").val().split("|")[3], "", "", "LSW_SCHKTRANCHEST");			
-			
-			if ($(trst).find("RESULT").text() != "")
-			{
-			alert($(trst).find("RESULT").text());	
+		// Disbursement Tranche Start
+			// Added by Bala for Jira HE-5117 Start
+	//if ($(this).prev().text().indexOf("Tranche") >= 0)
+			//{
+	     if(Formactive=="FormPageTab1" && MainActive=="FormMainTab8")
+            {
+		  // Added by Bala for Jira HE-5117 End
+		  
+		  var OP= UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETLOANUNIQUE")
+		  $("#PopUpDrop").append($(OP).find("RESULT").html());
+		  $("#PopUpDrop").material_select(); 
+		      $("#TreanchPopup").click()
 			return;
-			}
-				
+              var trst = UI_getdata($("#PrcsID").val(), $(this).prev().text(), $("#DMY3").val().split("|")[3], "", "", "LSW_SCHKTRANCHEST");			
+			
+			   if ($(trst).find("RESULT").text() != "")
+			   {
+			     alert($(trst).find("RESULT").text());	
+			     return;
+			   }
 			}
 			// Disbursement Tranche End
 			
 			
 	// PF Start	
-	if ($(this).prev().text().indexOf("PF") >= 0)
-			{
+	// Added by Bala for Jira HE-5117 Start
+	//if ($(this).prev().text().indexOf("PF") >= 0)
+			//{
+	if(Formactive=="FormPageTab1" && MainActive=="FormMainTab3")
+      {
+		  // Added by Bala for Jira HE-5117 End
 	
-	if ($("#PFDT_TRANSSTATUS").val() == "")
-	{
-		alert("Added PF not Collected");
-		return
-	}
+	    if ($("#PFDT_TRANSSTATUS").val() == "" && $("#PFDT_DEFRSTATUS").val() != "Rejected") // Added And condition for JIRA 2713
+	        {
+		       alert("Added PF not Collected");
+		        return
+	        }
 	
-var trst = UI_getdata($("#PrcsID").val(), $(this).prev().text(), $("#DMY3").val().split("|")[3], "", "", "LSW_SADDPFCHECK");			
+          var trst = UI_getdata($("#PrcsID").val(), $(this).prev().text(), $("#DMY3").val().split("|")[3], "", "", "LSW_SADDPFCHECK");			
 			
-			if ($(trst).find("RESULT").text() != "Success")
+	    if ($(trst).find("RESULT").text() != "Success")
 			{
-			alert($(trst).find("RESULT").text());	
-			return;
+			    alert($(trst).find("RESULT").text());	
+			    return;
 			}	
-	
-			}
+	}
 			
 // Add Tab Validations End			
 			
 		var licount = $(".FormPageMultiTab li").length;
 		var value = $(".FormPageMultiTab").attr('title');
-		
-		// 13/06/2020 Firm Tab Changes Start
-		
-		if(value=="Firm" || value=="Business")
-		{
-			licount="";
-		}
-		
-		// 13/06/2020 Firm Tab Changes End
-		
 		var PopUp  = $(".FormPageMultiTab").attr('data-popup');
 		if ((Subactive.indexOf ($(".FormPageMultiTab").attr('title')) >= 0)&&(value !="Tranche"))
 			{
@@ -259,24 +315,42 @@ var trst = UI_getdata($("#PrcsID").val(), $(this).prev().text(), $("#DMY3").val(
 		else{
 			
 			if (PopUp == "Yes")
-			{			
-             $(".CLABEL").text($('.FormMainTab1 li.active').text()+' Type')  		
-			 $("#Popup").click();
+			{				
+		        $(".CLABEL").text($('.FormMainTab1 li.active').text()+' Type')
+		    	$("#Popup").click();
 			}
 		else
 			{
-			 //RedirectURL = window.location.origin+"/TPLSW/"+$(".FormPageTab").find("li.active").attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9="+Formactive+"&PrMs10="+MainActive+"&PrMs8="+value+"|"+licount+"|"+"Add"+"&PrMs1="+$("#PrMs1").val();
+				//Added at 20/06/2020 for Business purpose start
+				   var BusinessId="";
+		 if($(".FormMainTabs").find('li.active').attr('id')=="FormMainTab7" && $(".FormPageTab").find('li.active').attr('id')=="FormPageTab9")
+		 {
+			 var Count=licount
+			 BusinessId="FIRM"+Count
+		 }
+		 if($(".FormMainTabs").find('li.active').attr('id')=="FormMainTab2" && $(".FormPageTab").find('li.active').attr('id')=="FormPageTab1")
+		 {
+			if(licount>2)
+			{
+              alert('Two Loan Details only added');
+			  return false;
+			}				
+		 }
+				
+			//RedirectURL = window.location.origin+"/TPLSW/"+$(".FormPageTab").find("li.active").attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9="+Formactive+"&PrMs10="+MainActive+"&PrMs8="+value+"|"+licount+"|"+"Add"+"&PrMs1="+$("#PrMs1").val();
 			 //$(location).attr('href',encodeURI(RedirectURL));
-			  
-				// 15/06/2020 Firm Tab Changes Start
-			RedirectURL = window.location.origin+"/TPLSW/"+$(".FormPageMultiTab").find("li.active").attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9="+Formactive+"&PrMs10="+MainActive+"&PrMs8="+value+"|"+licount+"|"+"Add"+"&PrMs1="+$("#PrMs1").val();
+			
+			  // 19/06/2020 Firm Tab Changes Start
+			//RedirectURL = window.location.origin+"/TPLSW/"+$(".FormPageMultiTab").find("li.active").attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9="+Formactive+"&PrMs10="+MainActive+"&PrMs8="+value+"|"+licount+"|"+"Add"+"&PrMs1="+$("#PrMs1").val();
+			 //$(location).attr('href',encodeURI(RedirectURL));
+			 // 19/06/2020 Firm Tab Changes End
+			 
+			 RedirectURL = window.location.origin+"/TPLSW/"+$(".FormPageMultiTab").find("li.active").attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9="+Formactive+"&PrMs10="+MainActive+"&PrMs8="+value+"|"+licount+"|"+"Add"+"&PrMs1="+$("#PrMs1").val()+"&PrMs3="+BusinessId;
 			 $(location).attr('href',encodeURI(RedirectURL));
-			 // 15/06/2020 Firm Tab Changes End
-			
-			
+			 
+			 //Added at 20/06/2020 for Business purpose end
 			}	
 			
-	
 		}
 			}
 	else
@@ -288,15 +362,32 @@ var trst = UI_getdata($("#PrcsID").val(), $(this).prev().text(), $("#DMY3").val(
 		  
 		 if (Subactive == $(this).attr("id"))
 			 {		  
+		 
+		 
 		 // $(this).addClass('active')
 		  //RedirectURL = window.location.origin+"/TPLSW/"+$(".FormPageTab").find("li.active").attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9="+Formactive+"&PrMs10="+MainActive+DataValue+"&PrMs6="+$(this).attr("id")+"&PrMs1="+$("#PrMs1").val();
-		     RedirectURL = window.location.origin+"/TPLSW/"+$(this).attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9="+Formactive+"&PrMs10="+MainActive+DataValue+"&PrMs6="+$(this).attr("id")+"&PrMs1="+$("#PrMs1").val();
-		     $(location).attr('href',encodeURI(RedirectURL));
+          RedirectURL = window.location.origin+"/TPLSW/"+$(this).attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9="+Formactive+"&PrMs10="+MainActive+DataValue+"&PrMs6="+$(this).attr("id")+"&PrMs1="+$("#PrMs1").val();
+		 		 
+		 $(location).attr('href',encodeURI(RedirectURL));
+		 
+		
 			 }
 		 else
 			 {
-			  RedirectURL = window.location.origin+"/TPLSW/"+$(this).attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9="+Formactive+"&PrMs10="+MainActive+DataValue+"&PrMs6="+$(this).attr("id")+"&PrMs1="+$("#PrMs1").val();
+				 //Added at 20/06/2020 for Business purpose start
+		 		   var BusinessId="";
+		 if($(".FormMainTabs").find('li.active').attr('id')=="FormMainTab7" && $(".FormPageTab").find('li.active').attr('id')=="FormPageTab9")
+		 {
+			 BusinessId=$(this).attr("id")
+		 }
+			 // RedirectURL = window.location.origin+"/TPLSW/"+$(this).attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9="+Formactive+"&PrMs10="+MainActive+DataValue+"&PrMs6="+$(this).attr("id")+"&PrMs1="+$("#PrMs1").val()+"&PrMs3="+BusinessId;
+			  // $(location).attr('href',encodeURI(RedirectURL));
+			  
+			  RedirectURL = window.location.origin+"/TPLSW/"+$(this).attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9="+Formactive+"&PrMs10="+MainActive+DataValue+"&PrMs6="+$(this).attr("id")+"&PrMs1="+$("#PrMs1").val()+"&PrMs3="+BusinessId;
 			  $(location).attr('href',encodeURI(RedirectURL));
+			  
+			  
+			 //Added at 20/06/2020 for Business purpose end
 			 }
 		}
 	})
@@ -374,7 +465,9 @@ var trst = UI_getdata($("#PrcsID").val(), $(this).prev().text(), $("#DMY3").val(
 	// Page Tab
 	 if ($("#PrMs9").val() != "")
 		 {
-			 // Added for New Mapping GECL START
+			 
+		
+ // Added for New Mapping GECL START
 			 if ($("#PrMs9").val() == 'NIL')
 			 {
 				 $('.FormPageTab li').removeClass('active');
@@ -384,7 +477,15 @@ var trst = UI_getdata($("#PrcsID").val(), $(this).prev().text(), $("#DMY3").val(
 	 {
 	$('.FormPageTab li').removeClass('active');
 	$("#"+ $("#PrMs9").val()).addClass("active");
-	 }
+	 }		
+			 
+	/* if ($('.FormPageTab').length > 0)
+	 {
+	$('.FormPageTab li').removeClass('active');
+	$("#"+ $("#PrMs9").val()).addClass("active");
+	 }*/
+	  
+	 
 		 }
 	// Sub Tab
 	if ($('.FormPageMultiTab').length > 0)
@@ -566,8 +667,8 @@ var trst = UI_getdata($("#PrcsID").val(), $(this).prev().text(), $("#DMY3").val(
  		           // DSVLBLALL()
  					DSVLBLALLWS()
  				  }
- 		        }
-            */
+ 		        }*/
+
 
  		
 
@@ -577,6 +678,10 @@ var trst = UI_getdata($("#PrcsID").val(), $(this).prev().text(), $("#DMY3").val(
  				  {
  					  
  				  }	
+				  else if($("#VERTICAL").val() == "UCV Eco" && $("#PrMs9").val() == "FormPageTab4" && $("#PrMs10").val() == "FormMainTab7" && $("#DMY7").val().split("|")[19] == "Y")
+				{
+
+				}
  		      else
  			     {
  		          DSVLBLALL('')

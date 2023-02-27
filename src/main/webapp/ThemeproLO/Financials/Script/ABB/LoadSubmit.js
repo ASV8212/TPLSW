@@ -1,6 +1,13 @@
 $(document).ready(function () {
 	
-	
+		var result=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHKVIABILITYTAB");
+	var chk=$(result).find("RESULT").text();
+	 
+	if(chk=='Y')	
+	{
+		$("#FormPageTab9").remove()
+	}
+
 	
 	 
 	$("#SABB_SHEMEID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
@@ -28,7 +35,7 @@ $(document).ready(function () {
 			
 			if(MndtryChk == "Mandatory")
 				{
-				alert("Fill the Mandatory Fields");
+				alert("Fill the Mandatory Fields / Document(s)");
 				return false;
 				}
 			}

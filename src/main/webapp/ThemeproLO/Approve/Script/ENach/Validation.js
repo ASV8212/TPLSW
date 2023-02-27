@@ -8,6 +8,12 @@ function AccntOnChng(){
 
 function GentrateENACH()
 {
+	if($("#AEND_ACCNTNO").val()=="")
+		{
+         alert('select the customer name')
+		return false;
+		}
+		
 	var IOP=window.location.origin;
 	var PrcsId=$("#PrcsID").val()
 	var AcctNo=$("#AEND_ACCNTNO").val()
@@ -23,66 +29,26 @@ function GentrateENACH()
 			ajaxindicatorstop();
 }
 
+
 function ChkENACH(Verify,uniqid,urmno,Status)
 {
-	if($("#"+Verify).val()=="Success")
-	{
-		 var PRCSID = $("#PrcsID").val();
-	            $.ajax({
-	              url: "/TPLSW/ENACHFETCH",
-	              type: 'POST',
-	              data: {PRCSID:PRCSID,UID:$("#DMY7").val().split('|')[11],Prvnt:$(window.parent.parent.document).find("#Prvnt").val()},
-	              async:false,
-	   // dataType: 'json',
-	   // contentType:'application/json',
-	    
-	           success: function(stm){
-			if(stm == "")
-	    		{
-					//alert('E-NACH Failed')
-					//return false;
-				}
-             else if (stm.split("|")[0]=="FAILURE" || stm.split("|")[0]=="No Data")
-	    		{
-                  //alert(stm.split("|")[3])
-				  //return false;
-				}
-				else if (stm.split("|")[0]=="SUCCESS")
-	    		{
-					if(stm.split("|")[2]!="")
-					{
-				      $("#AEND_ENACHURMNO").val(stm.split("|")[2])
-					  $("#Save1").click();
-                    alert(stm.split("|")[3])
-					}
-					else
-					{
-					  //alert(stm.split("|")[3])	
-					}
-				}				   
-			   },
-	             error: function(stm) {
-		              //window.alert(LoadFrmXML("V0125"))
-		                // alert("E-NACH Failed.");
-						 //	return false;
-		                   }
-	               });
-		  if($("#AEND_ENACHURMNO").val()=="")
-		  {
-            if (confirm("Do you want to initiate the enach process?") == true) {	
+	if($("#AEND_ENACHURMNO").val()=="")
+    {
+    if(confirm("Do you want to initiate the enach process?") == true) 
+	{	
 	var PRCSID = $("#PrcsID").val();
 	 $("#Save1").click();
 	$.ajax({
-	    url: "/TPLSW/ENACH",
+	    url: "/TPLSW/EmandateAPI",
 	    type: 'POST',
-	    data: {PRCSID:PRCSID,Prvnt:$(window.parent.parent.document).find("#Prvnt").val()},
+	    data: {SPNAME:"LSW_SEMANDATEAPICREATE",Param1:$("#AEND_LOANID").val(),Param2:"Create",Param3:$("#AEND_ACCNTNO").val(),Param4:"",PRCSID:PRCSID,Prvnt:$(window.parent.parent.document).find("#Prvnt").val()},
 	    async:true,
 	   // dataType: 'json',
 	   // contentType:'application/json',
 	    
 	    success: function(stm){        
 	   // var obj = JSON.parse(JSON.stringify(stm))
-	   var OP=stm.split('|')[3]
+	   //var OP=stm.split('|')[3]
 	    	if (stm == "")
 	    		{
 	    		   alert("E-NACH Failed");
@@ -93,28 +59,33 @@ function ChkENACH(Verify,uniqid,urmno,Status)
 	    		   $("#"+Verify).val('Failed')
 	    		     return;
 	    		}
-				else if (stm.split("|")[0]=="SUCCESS" && stm.split("|")[2] != "")
+				else if(stm.split('~')[0]=="Success")
 	    		{
-				  $("[data-Validatedata="+Verify+"]").text('Re-Initiate E-NACH');
+					alert("E-NACH Initiated");
+					//var xml=UI_getdata($("#PrcsID").val(),stm,"","","","LSW_SENACHLINK");
+				  $("[data-Validatedata="+Verify+"]").text('E-NACH Initiated');
 	    		  $("[data-Validatedata="+Verify+"]").addClass("btn-GrnInplain");	
 	    		  $("[data-Validatedata="+Verify+"]").removeClass("btn-yelInplain");
 	    		  $("[data-Validatedata="+Verify+"]").removeClass("btn-RedInplain"); 
-	    		  //$("#"+Verify).val('Success')
-				  $("#"+uniqid).val(OP.split('*')[2])
-				  $("#"+Status).val(OP.split('*')[1])
-				  $("#"+Verify).val(OP.split('*')[0])
+	    		  $("#"+Verify).val('Success')
+				  $("#"+uniqid).val(stm.split('~')[1])
+				   $("#Save1").click();
+				//  $("#"+Status).val(OP.split('*')[1])
+				//  $("#"+Verify).val(OP.split('*')[0])
 				}
 				else
 				{
-				  alert(stm.split("|")[3])
+				  alert("E-NACH Failed");
+				  alert(stm.split('~')[0]);
 				  $("[data-Validatedata="+Verify+"]").text('E-NACH Failed');
 	    		  $("[data-Validatedata="+Verify+"]").removeClass("btn-GrnInplain");	
 	    		  $("[data-Validatedata="+Verify+"]").removeClass("btn-yelInplain");
 	    		  $("[data-Validatedata="+Verify+"]").addClass("btn-RedInplain"); 
-	    		  //$("#"+Verify).val('Failed')
-				  $("#"+uniqid).val(OP.split('*')[2])
-				  $("#"+Status).val(OP.split('*')[1])
-				  $("#"+Verify).val(OP.split('*')[0])
+	    		  $("#"+Verify).val('Failed')
+				   $("#Save1").click();
+				 // $("#"+uniqid).val(OP.split('*')[2])
+				 // $("#"+Status).val(OP.split('*')[1])
+				  //$("#"+Verify).val(OP.split('*')[0])
 				}
 		},
 	error: function(stm) {
@@ -124,83 +95,23 @@ function ChkENACH(Verify,uniqid,urmno,Status)
 		   }
 	});
 	 }
-		  }			  
-	}
-	else
-	{
-	if($("#AEND_ACCNTNO").val() !="")
-	{
-	 if (confirm("Do you want to initiate the enach process?") == true) {	
-	var PRCSID = $("#PrcsID").val();
-	 $("#Save1").click();
-	$.ajax({
-	    url: "/TPLSW/ENACH",
-	    type: 'POST',
-	    data: {PRCSID:PRCSID,Prvnt:$(window.parent.parent.document).find("#Prvnt").val()},
-	    async:true,
-	   // dataType: 'json',
-	   // contentType:'application/json',
-	    
-	    success: function(stm){        
-	   // var obj = JSON.parse(JSON.stringify(stm))
-	   var OP=stm.split('|')[3]
-	    	if (stm == "")
-	    		{
-	    		   alert("E-NACH Failed");
-	    		   $("[data-Validatedata="+Verify+"]").text('E-NACH Failed');
-	    		   $("[data-Validatedata="+Verify+"]").removeClass("btn-GrnInplain");	
-	    		   $("[data-Validatedata="+Verify+"]").removeClass("btn-yelInplain");
-	    		   $("[data-Validatedata="+Verify+"]").addClass("btn-RedInplain"); 
-	    		   $("#"+Verify).val('Failed')
-	    		     return;
-	    		}
-				else if (stm.split("|")[0]=="SUCCESS" && stm.split("|")[2] != "")
-	    		{
-				  $("[data-Validatedata="+Verify+"]").text('Re-Initiate E-NACH');
-	    		  $("[data-Validatedata="+Verify+"]").addClass("btn-GrnInplain");	
-	    		  $("[data-Validatedata="+Verify+"]").removeClass("btn-yelInplain");
-	    		  $("[data-Validatedata="+Verify+"]").removeClass("btn-RedInplain"); 
-	    		  //$("#"+Verify).val('Success')
-				  $("#"+uniqid).val(OP.split('*')[2])
-				  $("#"+Status).val(OP.split('*')[1])
-				  $("#"+Verify).val(OP.split('*')[0])
-				}
-				else
-				{
-				  alert(stm.split("|")[3])
-				  $("[data-Validatedata="+Verify+"]").text('E-NACH Failed');
-	    		  $("[data-Validatedata="+Verify+"]").removeClass("btn-GrnInplain");	
-	    		  $("[data-Validatedata="+Verify+"]").removeClass("btn-yelInplain");
-	    		  $("[data-Validatedata="+Verify+"]").addClass("btn-RedInplain"); 
-	    		  //$("#"+Verify).val('Failed')
-				  $("#"+uniqid).val(OP.split('*')[2])
-				  $("#"+Status).val(OP.split('*')[1])
-				  $("#"+Verify).val(OP.split('*')[0])
-				}
-		},
-	error: function(stm) {
-		 //window.alert(LoadFrmXML("V0125"))
-		alert("E-NACH Failed");
-		return false;
-		   }
-	});
-	 }
-	}
+	}			  
 	else
 	{
 		alert('Bank Account for Repayment is Mandatory')
 		return false;
 	}
-	}
+	
 }
 
 function addMonths() {
     	 var Date1=$("#DMY7").val().split('|')[1]
+		 
          //var Date2=Date1.replaceAll('/','-')
          var Date2=Date1.replace(/[/]/g,'-')
 
 		 var date3 = new Date(Date2.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"))
-var newDate = new Date(date3.setMonth(date3.getMonth()+$("#DMY3").val().split('|')[4]*12));
+var newDate = new Date(date3.setMonth(parseInt(date3.getMonth())+parseInt($("#DMY3").val().split('|')[4])));
 var year = newDate.getFullYear();
   var month = (1 + newDate.getMonth()).toString();
   month = month.length > 1 ? month : '0' + month;
@@ -208,3 +119,139 @@ var year = newDate.getFullYear();
   day = day.length > 1 ? day : '0' + day;
   $("#AEND_ENDDATE").val(day + '/' + month + '/' + year)
 }
+function DocFldUpldHndlr(id,docu,KYCName)
+{
+var Val=$(id).val()
+
+if($(id).closest('td').find('input[type="file"]').val()!="")
+{
+    var domain= LoadFrmXML("RS001");
+    var usrpwd= LoadFrmXML("RS002");
+    var PrcsID=getUrlParam("PrcsID");
+    var FormName= 'Collection';
+  // var CusID=$('#CBSI_CUSID').val()
+    var CusID='PF'
+    var DocName=KYCName
+    var names="";
+    var descrptns="";
+	var op= UI_getdata("DOCVRNO","","","","","Sam_sGetCOMSeqID")
+	var flsize = "";
+ var fd = new FormData();
+   var vrsnno= "";
+	var prodata = "";
+var CountAttch=1;
+	
+	 for(var c=0;c<CountAttch;c++)
+	 {
+      file_data = $(id).closest('td').find('input[type="file"]')[0].files; // for multiple files
+	     for(var i = 0;i<file_data.length;i++){
+			var op= UI_getdata("DOCVRNO","","","","","Sam_sGetCOMSeqID")
+	         fd.append("file_"+c, file_data[i]);
+	         names += $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[0]+',';
+			 flsize += parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2)+',';
+			 vrsnno += $(op).find("VR").text()+',';
+			 if($($('input[type="file"]')[c]).closest('tr').find("#comments").val()=="")
+			 {
+				 $($('input[type="file"]')[c]).closest('tr').find("#comments").val("No Description");
+			 }
+	         descrptns += 'FieldDocument'+',';
+	     }
+	 }
+
+	 
+	 var FileSize=parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2);
+     var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
+	 
+        var Filename  = names.replace(',','')
+		var xml=UI_getdata(FileType,FileSize,Filename,"","","LSW_SGETDOCUMNTSIZE")
+		var FileAccept=$(xml).find('RESULT').text()
+	if(FileAccept == 'No')
+	{
+		alert($(xml).find("alert").text());
+		$(id).closest('td').find('input[type="file"]').val('')
+		return
+    }
+names=names.slice(0,-1)+'.'+FileType
+var y=  names;
+/*var specialChars = "<>&#^|~`"
+var check = function(string){
+    for(i = 0; i < specialChars.length;i++){
+        if(string.indexOf(specialChars[i]) > -1){
+            return true
+        }
+    }
+    return false;
+}
+
+if(check(y) == false){
+    // Code that needs to execute when none of the above is in the string
+}else{
+    alert('Special characters not allowed in the upload file');
+	$(id).closest('td').find('input[type="file"]').val('')
+	return;
+}*/
+ ajaxindicatorstart("Uploading.. Please wait");
+	    $.ajax({
+	    	url:"/TPLSW/DMS?names="+names+"&PrcsID="+PrcsID+"&FormName="+FormName+"&descrptns="+descrptns+"&flsize="+flsize+"&vrsnno="+vrsnno+"&domain="+domain+"&usrpwd="+usrpwd+"&Prvnt="+$("#Prvnt").val()+"&CusID="+CusID+"&DocName="+DocName,
+	        data: fd,
+			async:false,
+	        contentType: false,
+	        processData: false,
+	        type: 'POST',
+	        success: function(data){
+			
+			if(data=="Fail")
+	        		{
+						 ajaxindicatorstop();
+	        		alert(LoadFrmXML("V0119"));
+					return
+	        		}
+			else{
+				//AttchDmsIns(data,'upload',prodata);
+				//$(id).val('View');
+				$(id).closest('td').find('input[type="hidden"]').val(data.split('~')[2])
+				$(id).closest('td').find('input[type="file"]').attr('disabled',true)
+				$(id).closest('td').find('input[type="file"]').val('');
+				$(id).closest('td').find('input[type="file"]').hide();
+			//	$(id).closest('td').replace('','');
+			//	$(id).closest('td').append('<span class="name">'+names.slice(0,-1)+'</span> ')
+				
+				//
+				
+				$(id).closest('.md-form').find('span').remove()
+				 $(id).val('')
+		
+			    $(id).val(data.split('~')[2])
+				var UPLOAD=docu+'UPLOAD'
+				$('#'+UPLOAD).hide();
+				$('.'+docu).show();
+				$(id).closest('.md-form').append('<span class="name">'+names+'</span>');
+				
+				
+			
+					ajaxindicatorstop();
+					alert(LoadFrmXML("V0118"));
+					return
+					
+				}	
+					 ajaxindicatorstop(); 
+	        },
+	        failure:function(data)
+	        {
+	     		  ajaxindicatorstop();
+					alert(LoadFrmXML("V0119"));
+					return
+	        	
+	        }
+	    });
+		
+		  ajaxindicatorstop();
+		  }
+		  else{
+		  
+		  alert('select the file to upload');
+		  }
+
+}
+
+

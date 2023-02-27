@@ -21,7 +21,7 @@
 function Product()
 {
 	//var xmlSTATUS=UI_getdata($("#PrcsID").val(),$("#RCCM_SCHEME").val(),"","","","LSW_SGETLOANDETAILS")
-	var xmlSTATUS=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETLOANDET");
+	var xmlSTATUS=UI_getdata($("#PrcsID").val(),$("#FOGS_SCHEMEID").val(),"","","","LSW_SGETLOANDET");
 	$("#FOGS_PRODUCT").val($(xmlSTATUS).find('PRODUCT').text());
 	$("#FOGS_PRDNAME").val($(xmlSTATUS).find('PRDNAME').text());
 	$("#FOGS_APPROI").val($(xmlSTATUS).find('INTERESTRATE').text());
@@ -108,7 +108,18 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 	
 	var check=UI_getdata("MARGINVAL",$("#FOGS_INDGROUP").val(),$("#FOGS_SUBINSTGROUP").val(),$("#FOGS_BUSINESSTYE").val(),"","LSW_SGETPRODVAL");  
 	var INDUS=$(check).find ('RESULT').text()
-	
+	if(INDUS=='')
+		{
+			INDUS=0;
+		}
+	if(isNaN(INDUS))
+		{
+			INDUS=0;
+		}
+	if(INDUS==Infinity)
+	{
+		INDUS=0;
+	}		
 	$("#FOGS_INDMARGIN").val(parseFloat(INDUS).toFixed(2));  
     $("#FOGS_INDMARGIN").attr('disabled',true); 
 
@@ -120,7 +131,7 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 		var INTERPAID=$("#FOGS_INTERPAID").val().replace(/,/g,'');
 		var RENUM=$("#FOGS_RECUMPARTENER").val().replace(/,/g,'');
 		var OTHERIN=$("#FOGS_OTHERINCOME").val().replace(/,/g,'');
-	//	var INDITAX=$("#FOGS_INDTAX").val().replace(/,/g,''); 
+		var INDITAX=$("#FOGS_INDTAXI").val().replace(/,/g,''); 
 		if(PAT=='')
 		{
 			PAT=0;
@@ -141,14 +152,18 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 		{
 			OTHERIN=0;
 		}
-		/* if(INDITAX=='')
+		if(INDITAX=='')
 		{
 			INDITAX=0;
-		} */
+		} 
 		var GROSSPROF1=parseFloat(parseFloat(parseFloat(PAT)+parseFloat(DEP))*2);
 		var GROSSPROF2=parseFloat(parseFloat(parseFloat(RENUM)+parseFloat(OTHERIN))*(75/100));
-		var GROSSPROF=parseFloat(GROSSPROF1)+parseFloat(INTERPAID)+parseFloat(GROSSPROF2);//-parseFloat(INDITAX);
+		var GROSSPROF=parseFloat(GROSSPROF1)+parseFloat(INTERPAID)+parseFloat(GROSSPROF2)- parseFloat(INDITAX);
 		if(isNaN(GROSSPROF))
+		{
+			GROSSPROF=0;
+		}
+		if(GROSSPROF==Infinity)
 		{
 			GROSSPROF=0;
 		}
@@ -167,11 +182,18 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 		 }
 		 
 		 var GROSSMARGIN= parseFloat(GROSSPROF)/parseFloat(GROSSMARGIN1); 
-		 if(isNaN(GROSSMARGIN))
+		
+		 GROSSMARGIN=GROSSMARGIN*100;
+		  if(isNaN(GROSSMARGIN))
 		 {
 			 GROSSMARGIN=0;
 		 }
-		 GROSSMARGIN=GROSSMARGIN*100;
+		 
+		 if(GROSSMARGIN==Infinity)
+		{
+			GROSSMARGIN=0;
+		}
+		 
 		 $("#FOGS_GROSSMARGIN").val(parseFloat(GROSSMARGIN).toFixed(2));  
 		 $("#FOGS_GROSSMARGIN").next().addClass('active');
 		  
@@ -186,6 +208,10 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 		 {
 			 APPLMARGIN=0;
 		 } 
+		 if(APPLMARGIN==Infinity)
+		 {
+			 APPLMARGIN=0;
+		 }
 		 $("#FOGS_APPLMARGIN").val(CURINRCommaSep(parseFloat(APPLMARGIN).toFixed(2)));
 		 $("#FOGS_APPLMARGIN").next().addClass('active');
 		  
@@ -201,7 +227,11 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 		 if(isNaN(APPLPROFIT))
 		 {
 			 APPLPROFIT=0;
-		 }   
+		 }  
+         if(APPLPROFIT==Infinity)
+		 {
+			 Infinity=0;
+		 }			 
 		 
 		  $("#FOGS_APPLPROFIT").val(CURINRCommaSep(parseFloat(APPLPROFIT).toFixed(2)));
 		 $("#FOGS_APPLPROFIT").next().addClass('active');
@@ -222,6 +252,10 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 		 {
 			 FOIRMONTH=0;
 		 }  
+		 if(FOIRMONTH==Infinity)
+		 {
+			 FOIRMONTH=0;
+		 }
 		 $("#FOGS_FOIRMONTH").val(CURINRCommaSep(parseFloat(FOIRMONTH).toFixed(2)));
 		  $("#FOGS_FOIRMONTH").next().addClass('active');
 		  
@@ -237,6 +271,10 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 		 {
 			 EXISEMI=0;
 		 } 
+		 if(EXISEMI==Infinity)
+		 {
+			 EXISEMI=0;
+		 }
 		$("#FOGS_EXISTEMI").val(CURINRCommaSep(parseFloat(EXISEMI).toFixed(2)));
 		   $("#FOGS_EXISTEMI").next().addClass('active');
 		
@@ -246,6 +284,10 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 		 {
 			 PREFUNDFCF=0;
 		 }  
+		 if(PREFUNDFCF==Infinity)
+		 {
+			 PREFUNDFCF=0;
+		 }
 		 
 		  $("#FOGS_PREFUNDFCF").val(CURINRCommaSep(parseFloat(PREFUNDFCF).toFixed(2)));
 		  $("#FOGS_PREFUNDFCF").next().addClass('active');
@@ -269,6 +311,10 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 		{
 			EMI=0;
 		}
+		if(EMI==Infinity)
+		{
+			EMI=0;
+		}
 	$("#FOGS_EMI").val(CURINRCommaSep(parseFloat(EMI).toFixed(2)));
 	$("#FOGS_EMI").next().addClass('active');
 		  
@@ -279,6 +325,10 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 		{
 			LOANELIGI=0;
 		}
+		if(LOANELIGI==Infinity)
+		{
+			LOANELIGI=0;
+		}
 	  
 	  $("#FOGS_LOANELIGI").val(CURINRCommaSep(parseFloat(LOANELIGI).toFixed(2)));
 	$("#FOGS_LOANELIGI").next().addClass('active');
@@ -286,9 +336,16 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 	
 	
 	//Loan Proposed
+	var xmlSTATUS=UI_getdata($("#PrcsID").val(),$("#FOGS_SCHEMEID").val(),"","","","LSW_SGETLOANDET");
+	var LoanAmt=parseFloat($(xmlSTATUS).find('LOANAMOUNT').text());
 	
-	 var LOANPROPOSED=parseFloat(Math.min(LOANELIGI,$("#DMY3").val().split('|')[0])); 
+	
+	 var LOANPROPOSED=parseFloat(Math.min(LOANELIGI,LoanAmt)); 
 		if(isNaN(LOANPROPOSED))
+		{
+			LOANPROPOSED=0;
+		}
+		if(LOANPROPOSED==Infinity)
 		{
 			LOANPROPOSED=0;
 		}
@@ -303,7 +360,10 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 		{
 			PREFUNDSCR=0;
 		}
-	  
+	  if(PREFUNDSCR==Infinity)
+		{
+			PREFUNDSCR=0;
+		}
 	 $("#FOGS_PREFUNDSCR").val(CURINRCommaSep(parseFloat(PREFUNDSCR).toFixed(2)));
 	$("#FOGS_PREFUNDSCR").next().addClass('active');
 
@@ -329,6 +389,10 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 	var POSTFUNDSCR=parseFloat(parseFloat(APPLIPROFIT/12)/parseFloat(parseFloat(EXISEMI)+parseFloat(EMI1)));
 	
 	if(isNaN(POSTFUNDSCR))
+		{
+			POSTFUNDSCR=0;
+		}
+		if(POSTFUNDSCR==Infinity)
 		{
 			POSTFUNDSCR=0;
 		}

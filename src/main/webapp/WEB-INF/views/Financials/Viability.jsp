@@ -20,6 +20,7 @@
              <input type="text" id="VIAB_CREATEDBY" hidden="hidden" name="VIAB_CREATEDBY" class="form-control VIABDBfields">
              <input type="text" id="VIAB_MODIFIEDBY" hidden="hidden" name="VIAB_MODIFIEDBY" class="form-control VIABDBfields">
              <input type="text" id="VIAB_DTMODIFIED" hidden="hidden" name="VIAB_DTMODIFIED" class="form-control VIABDBfields">
+			 <input type="text" id="VIAB_PRODUCTNAME" hidden="hidden" name="VIAB_PRODUCTNAME" class="form-control VIABDBfields">
         	<!-- LSW_TRATIOCOMPDETAILS -->
         	  
               <input type="text" id="VIAB_VIABILITY" hidden="hidden" name="VIAB_VIABILITY" class="form-control VIABDBfields">

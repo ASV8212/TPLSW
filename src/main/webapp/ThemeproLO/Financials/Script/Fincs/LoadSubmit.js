@@ -1,15 +1,26 @@
 var OthrIncmDropDwn="";
 //Credit Changes Strt
 var ViewRInavtivePGFlg = "";
+var EmpowermentFlg = "Inactive";
 if(($("#DMY5").val().split("|")[1]=="Yes")||$("#PrMs1").val()=="View")
 		{
 		  ViewRInavtivePGFlg = "View";
 		}
+		
+		
 //Credit Changes END
 $(document).ready(function () {
-	
+		var result=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHKVIABILITYTAB");
+	var chk=$(result).find("RESULT").text();
+	 
+	if(chk=='Y')	
+	{
+		$("#FormPageTab9").remove()
+	}
 
-	$("#RCCM_UNIQUID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
+
+	//$("#RCCM_UNIQUID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
+	$("#RCCM_LOANUNIQID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
 	$("#RCCM_SCHEME").attr("value",$(".FormPageMultiTab li.active").text());
 	$("#EGCD_UNIQUID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
 	
@@ -79,14 +90,24 @@ $(document).ready(function () {
 
 	FormDataFromDB(tbl, prfx + "_", prfx+"DBfields", DATA);
     
-    LoadMultiData("",$("#PrcsID").val(),$("#RCCM_UNIQUID").val()+'|'+ViewRInavtivePGFlg,"ELIGHSCHEME","FCEBDBfields","LSW_SGETELIGHSCHEME"); 
+    LoadMultiData("",$("#PrcsID").val(),$("#RCCM_UNIQUID").val()+'|'+ViewRInavtivePGFlg+'|'+$("#RCCM_LOANUNIQID").val(),"ELIGHSCHEME","FCEBDBfields","LSW_SGETELIGHSCHEME"); 
 	
-   var BREHIT=UI_getdata($("#PrcsID").val(),$(".FormPageMultiTab li.active").attr("id"),"","","","LSW_TPUTBRDDATAMANUAL")
+	$("#BTNRCUGRD").click();
+	
+	var xml=UI_getdata($("#PrcsID").val(),$("#RCCM_UNIQUID").val(),"","","","LSW_SCHECKLNTY")
+	var CusName=$(xml).find('RESULT').html();
+	
+	if(CusName=="Bill Discounting" || CusName=="DLOD" || CusName=="Over Draft" || CusName=="WCDL")
+	{	
+		 $(".REPAY").hide();
+	}
+	
+   /*var BREHIT=UI_getdata($("#PrcsID").val(),$(".FormPageMultiTab li.active").attr("id"),"","","","LSW_TPUTBRDDATAMANUAL")
 	
 	if($(BREHIT).find("LOANID").text()!="")
 	{
 	$("#RCCM_LOANUNIQID").val($(BREHIT).find("LOANID").text())
-	}
+	}*/
 	
 		//Eligiblity Final data field enable start
 
@@ -98,6 +119,7 @@ $(document).ready(function () {
 	
 	//$(".loadfincscreen").find("div").not($(".loadfincscreen").find("."+$(".FormPageMultiTab .active a").text().replace(/\s/g, ''))).remove();
 	//$(".loader").hide();
+	
 	var DATA=["CAMChecklist|"];
 	 for (j=0;j<DATA.length;j++)
 		 {
@@ -112,7 +134,7 @@ $(document).ready(function () {
 	 getApplName();
 	//SchemeBasedCAM();
 	//getLOWLTV();
-	getAddValue();
+	//getAddValue();
 	//CheckRadio();
 	
 		var xml=UI_getdata($("#PrcsID").val(),$("#RCCM_UNIQUID").val(),"","","","LSW_SGETCREDITANALYSDATA")
@@ -385,7 +407,7 @@ $(document).on("click", "#MarginSmt", function(){
 			 
 			 
 
-	$(document).on("click", ".FormSave" , function() {
+	$(document).on("click", ".FormSave1" , function() {
 	//$('.FormSave').on('click', function() {
 		
 		
@@ -436,7 +458,7 @@ $(document).on("click", "#MarginSmt", function(){
 			
 				if(MndtryChkRTR == "Mandatory")
 				{
-				alert("Fill the Mandatory Fields");
+				alert("Fill the Mandatory Fields / Document(s)");
 				return false;
 				}
 			}
@@ -491,12 +513,183 @@ $(document).on("click", "#MarginSmt", function(){
 			}*/
 			}
 			
-		   var LoanAmt=$(".LoanAmt").val()	
-			if((LoanAmt==""||LoanAmt=="0")&&($(this).text()!="Save"))
+		   var LoanAmt=$('.LoanAmt').val().replace(/,/g,'');
+		   
+		  if((LoanAmt==""||LoanAmt=="0")&&($(this).text()!="Save"))
 			{
 		       alert('Enter the Loan Sanction Amount')
 		       return false
 	     	}
+			
+				var LoanAmt=$('.LoanAmt').val().replace(/,/g,'');
+				var EligbleAmt=$('.LoanAmt').val().replace(/,/g,'');
+			if($('.FormPageMultiTab li.active').attr("id")=="S00001")
+			{
+			    var EligbleAmt=$("#FOIR_LOANPROP").val().replace(/,/g,'');
+				
+			}
+			
+			
+			if($('.FormPageMultiTab li.active').attr("id")=="S00002")
+			{
+				var EligbleAmt=$("#FOGS_LOANPROPOSED").val().replace(/,/g,'');
+			}
+			
+			
+			if($('.FormPageMultiTab li.active').attr("id")=="S00004")
+			{
+				 var EligbleAmt=$("#CLTV_LOANELIGIBILITY").val().replace(/,/g,'');
+			
+			}
+			
+			
+			if($('.FormPageMultiTab li.active').attr("id")=="S00005")
+			{
+				var EligbleAmt=$("#FLOW_LOANEGBLAKH").val().replace(/,/g,'');
+				
+			}
+			
+			if($('.FormPageMultiTab li.active').attr("id")=="S00006")
+			{
+			 var EligbleAmt=$("#ASST_LOANELIGIBIL").val().replace(/,/g,'');
+				
+			}
+			
+			
+				if($('.FormPageMultiTab li.active').attr("id")=="S00007")
+			{
+				var EligbleAmt=$("#ASST_LOANELIGIBIL").val().replace(/,/g,'');
+				
+			}
+			
+			
+			if($('.FormPageMultiTab li.active').attr("id")=="S00008")
+			{
+		        var EligbleAmt=$("#CITR_FINALLOAN").val().replace(/,/g,'');
+		   }
+			
+			if($('.FormPageMultiTab li.active').attr("id")=="S00009")
+			{
+		         var EligbleAmt=$("#CITR_FINALLOAN").val().replace(/,/g,'');
+				
+			}
+			
+			
+			if($('.FormPageMultiTab li.active').attr("id")=="S00010")
+			{
+			  var EligbleAmt=$("#CGST_LOANELIGIBIL").val().replace(/,/g,'');
+				
+			}
+			
+				if($('.FormPageMultiTab li.active').attr("id")=="S00011")
+			{
+				 var EligbleAmt=$("#CGST_LOANELIGIBIL").val().replace(/,/g,'');
+			}
+			
+			
+			if($('.FormPageMultiTab li.active').attr("id")=="S00012")
+			{
+			  var EligbleAmt=$("#CBBA_LNELIGI").val().replace(/,/g,'');
+			}
+			
+			if($('.FormPageMultiTab li.active').attr("id")=="S00013")
+			{
+			  var EligbleAmt=$("#CBBA_LNELIGI").val().replace(/,/g,'');
+			}
+		
+			if($('.FormPageMultiTab li.active').attr("id")=="S00003")
+			{
+			  var EligbleAmt=$("#SABB_LOANELIGH").val().replace(/,/g,'');
+			}
+		
+		   if($('.FormPageMultiTab li.active').attr("id")=="S00014")
+			{
+			  var EligbleAmt=$("#ABBL_LOANEG").val().replace(/,/g,'');
+			}
+
+           if($('.FormPageMultiTab li.active').attr("id")=="S00015")
+			{
+			  var EligbleAmt=$("#FLOW_LOANEGBLAKH").val().replace(/,/g,'');
+			}
+
+           if($('.FormPageMultiTab li.active').attr("id")=="S00016")
+			{
+			  var EligbleAmt=$("#ASST_LOANELIGIBIL").val().replace(/,/g,'');
+			}
+
+             if($('.FormPageMultiTab li.active').attr("id")=="S00017")
+			{
+			  var EligbleAmt=$("#OUBL_MAXLOAELY").val().replace(/,/g,'');
+			}
+			
+			  if($('.FormPageMultiTab li.active').attr("id")=="S00018")
+			{
+			  var EligbleAmt=$("#CRTR_ELIGIBLELNAMT").val().replace(/,/g,'');
+			}
+			
+			
+			 if($('.FormPageMultiTab li.active').attr("id")=="S00021")
+			{
+			  var EligbleAmt=$("#STML_LOANELIGIB").val().replace(/,/g,'');
+			}
+			
+			 if($('.FormPageMultiTab li.active').attr("id")=="S00022")
+			{
+			  var EligbleAmt=$("#MPMI_VALUEI8").val().replace(/,/g,'');
+			}
+			
+			 if($('.FormPageMultiTab li.active').attr("id")=="S00023")
+			{
+			  var EligbleAmt=$("#MPII_VALUEI7").val().replace(/,/g,'');
+			}
+			
+		    if($('.FormPageMultiTab li.active').attr("id")=="S00024")
+			{
+			  var EligbleAmt=$("#TOMI_VALUEI6").val().replace(/,/g,'');
+			}
+			
+			
+			   if($('.FormPageMultiTab li.active').attr("id")=="S00025")
+			{
+			  var EligbleAmt=$("#TOII_VALUEI6").val().replace(/,/g,'');
+			}
+			
+			  if($('.FormPageMultiTab li.active').attr("id")=="S00026")
+			{
+			  var EligbleAmt=$("#TIII_VALUEI6").val().replace(/,/g,'');
+			}
+			
+			  if($('.FormPageMultiTab li.active').attr("id")=="S00027")
+			{
+			  var EligbleAmt=$("#EGCI_VALUEI7").val().replace(/,/g,'');
+			}
+			
+			  if($('.FormPageMultiTab li.active').attr("id")=="S00028")
+			{
+			  var EligbleAmt=$("#ECII_VALUEI7").val().replace(/,/g,'');
+			}
+			if($('.FormPageMultiTab li.active').attr("id")=="S00032")
+			{
+			  var EligbleAmt=$("#CRSU_FINALLOANELIG").val().replace(/,/g,'');
+			}
+			if($('.FormPageMultiTab li.active').attr("id")=="S00031")
+			{
+			  var EligbleAmt=$("#NBNK_LOANEGBLAKH").val().replace(/,/g,'');
+			}
+			if(EligbleAmt=="")
+			{
+				alert ('Fill the Loan Eligibility Amount')
+		    	return
+			}
+			
+			if(parseFloat(LoanAmt)>parseFloat(EligbleAmt))
+		    		{
+		    		alert ('Loan Amount Sanction should not be greater than Loan Eligibility')
+		    		return
+		    		}
+			
+					
+			$("#"+$(".FormSave").attr('id')).click();		
 			
 	if($(this).text() == "CAM Generate")
 		{
@@ -600,8 +793,8 @@ $(document).on("click", "#MarginSmt", function(){
 			var prfx = $(this).attr("data-aria").split("|")[1];
 			var DATA = $(this).attr("data-aria").split("|")[2];
 
-           // var ELIGBLESCHEME = TxtGridsubmitdata_V2("ELIGHSCHEME","FCEB_","ICEG_","FCEBDBfields"); 
-			//   AssignGridXmltoField("ICEG_FINCSCHEM", ELIGBLESCHEME)			
+            var ELIGBLESCHEME = TxtGridsubmitdata_V2("ELIGHSCHEME","FCEB_","ICEG_","FCEBDBfields"); 
+			   AssignGridXmltoField("ICEG_FINCSCHEM", ELIGBLESCHEME)			
 				
 			var CHKresult=FormDataToDB(tbl,prfx,$("#RCCM_PRCSID").val()+"|"+$("#"+DATA).val()+"|" + DATA);
 			if(CHKresult == "Fail")
@@ -693,10 +886,11 @@ $(document).on("click", "#MarginSmt", function(){
 				$(".LIP").empty();
 			   }
 			}	  */
-	 if(FormName=="ELIGBL")
+	 if($(this).attr("data-form")=="CAM")
 	 {
                if($("#DMY7").val().split("|")[8] != "HE02")
 			   {
+				   if(EmpowermentFlg == "Active"){
 			var PFNO1 = "4";
 			 var PRCSID1 = $("#PrcsID").val()+"|CAM";
 			 //var PRCSID1 = $("#PrcsID").val();
@@ -733,6 +927,38 @@ $(document).on("click", "#MarginSmt", function(){
 			    return false; 
 			  }
 			 });
+			   }
+			   else
+			   {
+				   $.ajax({
+					   url: "/TPLSW/internalBRE",
+					   type: 'POST',
+					   data: {prcsid:$("#PrcsID").val(),procName:"LSW_SBUSINESSRULESENGINE",Prvnt:$(window.parent.parent.document).find("#Prvnt").val()},
+					   async:false,
+					   success: function(stm){  
+					   
+					   if (stm == "")
+					   {
+						   alert("Empowerment Failed");
+							return false;
+					   }
+					   else  if(stm == "Success~Success")
+						{
+						  var op = UI_getdata($("#PrcsID").val(),"","","","","LSW_SREFRESHEMPOW");
+						  NXTTAB(this);
+						}
+						else
+						{
+							alert("Empowerment Failed");
+							return false;   	
+						}  
+						},
+						 error: function(stm) {
+							alert("Empowerment Failed");
+							return false; 
+						  }
+					 });  
+			   }
 	      }
 	     }
 	// NXTTAB(this);
@@ -773,7 +999,7 @@ $("#SchemeAdd").on('click', function() {
 		
 		if(MndtryChk == "Mandatory")
 			{
-			alert("Fill the Mandatory Fields");
+			alert("Fill the Mandatory Fields / Document(s)");
 			return false;
 			}
 		

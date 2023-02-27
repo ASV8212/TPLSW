@@ -22,8 +22,6 @@ $(document).ready(function () {
 	
 	var RfID=$("#TVPI_ALTERPROREFID").val();
 	
-	
-	//var PropType=$("#TVPI_PROPERTYPE").html();
 	if($("#DMY7").val().split("|")[8]=="ML01")
 	{
 	var mySelect = document.getElementById('TVPI_PROPERTYPE'),
@@ -45,9 +43,8 @@ mySelect.appendChild(newOption);
 	}
 	
 	FormDataFromDB("LSW_TECHVALPROINF", "TVPI_","TVPIDBfields",RfID +"|TVPI_ALTERPROREFID");
+	LoadMultiData("",$("#PrcsID").val(),$("#PrMs6").val(),"BankDetail1","PRDODBfields","LSW_SGETPROPUPDDT");
     //$("#heading1 a").attr("data-load","Yes");
-	
-	
 	
 	if($("input[name='TVPI_MINAREA']:checked"). val() == undefined)
 		{
@@ -85,6 +82,8 @@ mySelect.appendChild(newOption);
          $('.btn').hide()
          $("#AddFloor").hide()
 		 $("#AddAMENTIES").hide()
+		 $('.Reuplod').hide()
+		 $(".form-control").attr('disabled',true);
 	  }
 	
 	
@@ -95,6 +94,8 @@ mySelect.appendChild(newOption);
          $('.btn').hide()
          $("#AddFloor").hide()
 		 $("#AddAMENTIES").hide()
+		  $('.Reuplod').hide()
+		 $(".form-control").attr('disabled',true);
      }  	
 	
 	
@@ -123,7 +124,7 @@ if (r == true) {
 	{
 	  var    R=i+1
       value = inWords(R - 3) + " Floor";
-	  	if(R==1)
+	  if(R==1)
 			{
 			value='Basement'	
 			}
@@ -231,6 +232,7 @@ $("#TVPI_TOTEXTIMVAL").val(CURINRCommaSep(parseFloat(Land)+parseFloat(Constructv
 			
 			value = inWords($("#"+TableID).find("tbody tr").length - 3) + " Floor";
 			
+			
 			if(NewrowCnt==1)
 			{
 			value='Basement'	
@@ -243,6 +245,8 @@ $("#TVPI_TOTEXTIMVAL").val(CURINRCommaSep(parseFloat(Land)+parseFloat(Constructv
 			{
 			value='Ground Floor'	
 			}
+			
+			
 			HTML = $($("#"+TableID).find('tbody tr')[parseInt(NewrowCnt)-1]);
 			   
 		    $($(HTML).find('td')[0]).text(value);	    
@@ -348,7 +352,7 @@ $("#TVPI_TOTEXTIMVAL").val(CURINRCommaSep(parseFloat(Land)+parseFloat(Constructv
 		
 		if(MndtryChk == "Mandatory")
 			{
-			alert("Fill the Mandatory Fields");
+			alert("Fill the Mandatory Fields / Document(s)");
 			return false;
 			}
 			
@@ -395,37 +399,36 @@ $("#TVPI_TOTEXTIMVAL").val(CURINRCommaSep(parseFloat(Land)+parseFloat(Constructv
 		}
 		
 		if($(this).text() == "Submit")
-		{
-			 var xml1=UI_getdata($("#PrcsID").val(),$("#TVPI_ALTERPROREFID").val(),"","","","LSW_SCHKVENDORCOMP")
+		{  
+	
+	 var xml1=UI_getdata($("#PrcsID").val(),$("#TVPI_ALTERPROREFID").val(),"","","","LSW_SCHKVENDORCOMP")
              var VENCOMSTA=$(xml1).find('RESULT').text()
 			 if(VENCOMSTA=="YES")
 			 {
 				 alert($(xml1).find('alert').text())
 				  var ACCORD=''
 		  ACCORD=$("#PrMs3").val()
-		   var  ViewFlag=$("#PrMs1").val()
 		  RedirectURL=""
 	  //   RedirectURL = document.referrer+"&PrMs3="+ACCORD;
 	 //    $(location).attr('href',encodeURI(RedirectURL));
 	      var   PAGENAME="ViewRpts"
-	     RedirectURL = window.location.origin+"/TPLSW/"+PAGENAME+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9=FormPageTab1"+"&PrMs10="+$("#PrMs10").val()+"&PrMs3="+ACCORD+"&PrMs1="+ViewFlag;
+	     RedirectURL = window.location.origin+"/TPLSW/"+PAGENAME+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9=FormPageTab1"+"&PrMs10="+$("#PrMs10").val()+"&PrMs3="+ACCORD+"&PrMs1="+$("#PrMs1").val();
           $(location).attr('href',encodeURI(RedirectURL));
 
 			 }
 			else
 			
 			{
-           var xml=UI_getdata($("#TVPI_PRCSID").val(),$("#TVPI_ALTERPROREFID").val(),"VALUER",$("#LogUsr").val(),"","LSW_SSTATUSUPDATE")
+            var xml=UI_getdata($("#TVPI_PRCSID").val(),$("#TVPI_ALTERPROREFID").val(),"VALUER",$("#LogUsr").val(),"","LSW_SSTATUSUPDATE")
            // RedirectURL = window.location.origin+"/TPLSW/MyApplication"
 			//$(location).attr('href',encodeURI(RedirectURL));
 		  var ACCORD=''
 		  ACCORD=$("#PrMs3").val()
-		  var  ViewFlag=$("#PrMs1").val()
 		  RedirectURL=""
 	  //   RedirectURL = document.referrer+"&PrMs3="+ACCORD;
 	 //    $(location).attr('href',encodeURI(RedirectURL));
 	      var   PAGENAME="ViewRpts"
-	     RedirectURL = window.location.origin+"/TPLSW/"+PAGENAME+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9=FormPageTab1"+"&PrMs10="+$("#PrMs10").val()+"&PrMs3="+ACCORD+"&PrMs1="+ViewFlag;
+	     RedirectURL = window.location.origin+"/TPLSW/"+PAGENAME+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9=FormPageTab1"+"&PrMs10="+$("#PrMs10").val()+"&PrMs3="+ACCORD+"&PrMs1="+$("#PrMs1").val();
           $(location).attr('href',encodeURI(RedirectURL));
 			}
 		}
@@ -437,8 +440,7 @@ $("#TVPI_TOTEXTIMVAL").val(CURINRCommaSep(parseFloat(Land)+parseFloat(Constructv
 		  ACCORD=$("#PrMs3").val()
 		  RedirectURL=""
     var   PAGENAME="ViewRpts"
-	var  ViewFlag=$("#PrMs1").val()
-	      RedirectURL = window.location.origin+"/TPLSW/"+PAGENAME+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9=FormPageTab1"+"&PrMs10="+$("#PrMs10").val()+"&PrMs3="+ACCORD+"&PrMs1="+ViewFlag;
+	      RedirectURL = window.location.origin+"/TPLSW/"+PAGENAME+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9=FormPageTab1"+"&PrMs10="+$("#PrMs10").val()+"&PrMs3="+ACCORD+"&PrMs1="+$("#PrMs1").val();
          $(location).attr('href',encodeURI(RedirectURL));
 	})
 	

@@ -12,10 +12,11 @@
 				  <input type="text" id="FLOW_SCHEMENAME" hidden="hidden" name="FLOW_SCHEMENAME" class="form-control FLOWDBfields">
 				  <input type="text" id="FLOW_SCHEMEID" hidden="hidden" name="FLOW_SCHEMEID" class="form-control FLOWDBfields">
 				  <input type="text" id="FLOW_CASHFLOW" hidden="hidden" name="FLOW_CASHFLOW" class="form-control FLOWDBfields">
+				  <input type="text" id="FLOW_LOANID" hidden="hidden" name="FLOW_LOANID" class="form-control FLOWDBfields">
                    
 				 </br>
 				 <div class="form-row">
-			    <div class="Btxt10">CASH OVER-UBL</div>
+			    <div class="Btxt10">CASH FLOW-UBL</div>
 			</div>
 			</br>
 				   <div class="form-row">
@@ -110,70 +111,78 @@
                   	  <input type="text" id="FLOW_SALAPERMON"  maxlength="30" onblur="Chkprofit();"  name="FLOW_SALAPERMON" class="form-control FLOWMndtry IsCURCommaFields FLOWDBfields">
                       <label for="FLOW_SALAPERMON" class="">Salary paid per month<span class="MndtryAstr">*</span></label>
                   </div>
-                </div>
-				
+            </div>
+			<div class="col-md-4">
+                  <div class="md-form">
+                  	  <input type="text" id="FLOW_OTHERFXCOST"  maxlength="30" onblur="Chkprofit();"  name="FLOW_OTHERFXCOST" class="form-control FLOWMndtry IsCURCommaFields FLOWDBfields">
+                      <label for="FLOW_OTHERFXCOST" class="">Other fixed cost<span class="MndtryAstr">*</span></label>
+                  </div>
+            </div>	
             <div class="col-md-4">
                   <div class="md-form">
                   	  <input type="text" id="FLOW_NETPROFIT" disabled maxlength="30"  name="FLOW_NETPROFIT" class="form-control FLOWMndtry IsCURCommaFields FLOWDBfields">
                       <label for="FLOW_NETPROFIT" class="">Net Profit<span class="MndtryAstr">*</span></label>
                   </div>
-                </div>
-            <div class="col-md-4">
+            </div>
+  
+				</div>
+		<div class="form-row">	
+			<div class="col-md-4">
                   <div class="md-form">
                   	  <input type="text" id="FLOW_DSR" disabled maxlength="30"  name="FLOW_DSR" class="form-control FLOWMndtry  IsCURCommaFields FLOWDBfields">
                       <label for="FLOW_DSR" class="">DSR 60% <span class="MndtryAstr">*</span></label>
                   </div>
-                </div>
-				</div>
-			<div class="form-row">	 
+            </div>		
             <div class="col-md-4">
                   <div class="md-form">
                   	  <input type="text" id="FLOW_EXISTEMIOBLI"  maxlength="30" onblur="Existemi();"  name="FLOW_EXISTEMIOBLI" class="form-control FLOWMndtry IsCURCommaFields FLOWDBfields">
                       <label for="FLOW_EXISTEMIOBLI" class="">Existing EMI Obligation <span class="MndtryAstr">*</span></label>
                   </div>
-                </div>
+            </div>
 				
             <div class="col-md-4">
                   <div class="md-form">
                   	  <input type="text" id="FLOW_AVALFUND" disabled maxlength="30"  name="FLOW_AVALFUND" class="form-control FLOWMndtry IsCURCommaFields FLOWDBfields">
                       <label for="FLOW_AVALFUND" class="">Available Fund<span class="MndtryAstr">*</span></label>
                   </div>
-                </div>
-            <div class="col-md-4">
+            </div>
+ 
+		</div>
+		<div class="form-row">	
+			<div class="col-md-4">
                   <div class="md-form">
                   	  <input type="text" id="FLOW_ABB" disabled maxlength="30"  name="FLOW_ABB" class="form-control FLOWMndtry IsCURCommaFields FLOWDBfields">
                       <label for="FLOW_ABB" class="">90% of ABB <span class="MndtryAstr">*</span></label>
                   </div>
-                </div>
-				</div>
-			<div class="form-row">	 	 
+            </div>		
             <div class="col-md-4">
                   <div class="md-form">
                   	  <input type="text" id="FLOW_EMITRACK" disabled  maxlength="30"  name="FLOW_EMITRACK" class="form-control FLOWMndtry IsCURCommaFields FLOWDBfields">
                       <label for="FLOW_EMITRACK" class="">Twice of 12  months EMI track<span class="MndtryAstr">*</span></label>
                   </div>
-                </div>
-				  <div class="col-md-4">
+            </div>
+			<div class="col-md-4">
                   <div class="md-form">
                   	  <input type="text" id="FLOW_FUNDEMI" disabled maxlength="30"  name="FLOW_FUNDEMI" class="form-control FLOWMndtry IsCURCommaFields FLOWDBfields" Onchange ="EMIPERLAK">
                       <label for="FLOW_FUNDEMI" class="">Fund for EMI<span class="MndtryAstr">*</span></label>
                   </div>
-                </div>
-				  <div class="col-md-4">
-                  <div class="md-form">
+			</div>
+
+		</div>
+			<div class="form-row">	
+				<div class="col-md-4">
+					<div class="md-form">
                   	  <input type="text" id="FLOW_EMIPERLAKH" disabled  maxlength="30"  name="FLOW_EMIPERLAKH" class="form-control FLOWMndtry IsCURCommaFields FLOWDBfields">
                       <label for="FLOW_EMIPERLAKH" class="">EMI Per Lakh<span class="MndtryAstr">*</span></label>
-                  </div>
+					</div>
                 </div>
-				</div>
-				<div class="form-row">	
 				<div class="col-md-4">
-                  <div class="md-form">
+					<div class="md-form">
                   	  <input type="text" id="FLOW_LOANEGBLAKH" disabled maxlength="30"  name="FLOW_LOANEGBLAKH" class="form-control FLOWMndtry IsCURCommaFields FLOWDBfields">
                       <label for="FLOW_LOANEGBLAKH" class="">Loan Eligibility in Lakh<span class="MndtryAstr">*</span></label>
-                  </div>
+					</div>
                 </div>
-				</div>
+			</div>
 		
 			 
 				  </br>

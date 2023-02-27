@@ -15,6 +15,20 @@ function Checkinst(){
 	var check=UI_getdata($("#PrcsID").val(),$("#FLOW_SCHEMEID").val(),"","","","LSW_SGETLOANDETAILS");
 	$("#FLOW_PROINTRATE").val($(check).find ('INTERESTRATE').text());
 	$("#FLOW_PROTENTURE").val($(check).find ('TENTURE').text());
+	//$("#FLOW_LOANAMT").val($(check).find ('LOANAMOUNT').text());
+	
+	
+	var fnchk=($(check).find('PRODUCT').text());
+		if(fnchk=='T201')
+		{
+			Chkprofit();
+		}
+		else
+		{
+			Chkproflow();
+		}
+	
+	
 }
 
 /* $(document).on("blur",".EMIPERLAK",function(){  
@@ -347,53 +361,289 @@ $("#OUBL_EMILAKH").next().addClass('active');
 		
 		amt=parseFloat(val1)+parseFloat(val2)+parseFloat(val3)+parseFloat(val4)+parseFloat(val5)+parseFloat(val6)+parseFloat(val7)+parseFloat(val8)+parseFloat(val9)+parseFloat(val10)+parseFloat(val11)+parseFloat(val12);
 	
-		amt=CURINRCommaSep(parseFloat(amt).toFixed(2));
+		//amt=CURINRCommaSep(parseFloat(amt).toFixed(2));
+		var avg=amt/12;
+		$("#FLOW_AVERAGE").val(amt);
+		$("#FLOW_AVERAGE").next().addClass('active'); 
+		
+		//
+		/* 
+		var Tybus=$("#FLOW_TYPEBUSS").val();
+		var result=UI_getdata("TYBUSIN",Tybus,"","","","LSW_SGETFINANCIALVAL");
+		$("#FLOW_GROSSPRO").val($(result).find("RESULT").text());
+		$("#FLOW_GROSSPRO").next().addClass('active');	
+	
+		var eight=$("#FLOW_GROSSPRO").val();
+		var temp=parseFloat(amt)*parseFloat(eight);
+		if(isNaN(temp))
+		{
+			temp=0;
+		}
+		$("#FLOW_NETPROFIT").val(temp);
+		$("#FLOW_NETPROFIT").next().addClass('active'); 
+		var hunt=parseFloat(temp)*0.6;
+		$("#FLOW_SALAPERMON").val(hunt);
+		$("#FLOW_SALAPERMON").next().addClass('active'); 
+		 */
+		
 		
 		//$($($(this).closest(".tbody").find(".tbodytr")[12]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".Cashflow").val(amt);
 
-		var Chkamt=amt.replace(/,/g,'');
+		var Chkamt=amt;//.replace(/,/g,'');TYBUSIN
 		var TyPro=$("#FLOW_TYPEBUSS").val();
-		var Gross=UI_getdata("TAKEOVERVALUE",TyPro,"","","","LSW_SGETFINANCIALVAL");
-		var Total=$(Gross).find("RESULT").text();
+		var Gross=UI_getdata("TYPEBUSINESS1",TyPro,"","","","LSW_SGETFINANCIALVAL");
+		var Total=$(Gross).find("MARGIN").text();
+		Total=Total.replace(/%/g,'');
 		var AmtTotal=0;
 		if(Total==15)
 		{
 			AmtTotal=Chkamt*15/100
 		}
-		else if(Total==20)
+		else if(Total==10)
 		{
-			AmtTotal=Chkamt*20/100
+			AmtTotal=Chkamt*10/100
 		}
 		else if(Total==12)
 		{
 			AmtTotal=Chkamt*12/100
 		}
+		else if(Total==8)
+		{
+			AmtTotal=Chkamt*8/100
+		}else if(Total==7)
+		{
+			AmtTotal=Chkamt*7/100
+		}else if(Total==5)
+		{
+			AmtTotal=Chkamt*5/100
+		}else if(Total==4)
+		{
+			AmtTotal=Chkamt*4/100
+		}
+		else if(Total==20)
+		{
+			AmtTotal=Chkamt*20/100
+		}
+		else
+		{
+			AmtTotal=Total
+		}
 		
-		
+		var chk=UI_getdata($("#PrcsID").val(),$("#FLOW_SCHEMEID").val(),"","","","LSW_SGETLOANDETAILS");
+		var fnchk=($(chk).find('PRODUCT').text());
+		if(fnchk=='T201')
+		{
 		AmtTotal=CURINRCommaSep(parseFloat(AmtTotal).toFixed(2));
 		$("#FLOW_GROSSPRO").val(AmtTotal);
 		$("#FLOW_GROSSPRO").next().addClass('active'); 
 		
-		var I7=$("#FLOW_GROSSPRO").val().replace(/,/g,'');;
+		var I7=$("#FLOW_GROSSPRO").val().replace(/,/g,'');
 		var ResultI7=parseFloat(I7)/12;
 		ResultI7=CURINRCommaSep(parseFloat(ResultI7).toFixed(2));
 		$("#FLOW_GROSSPROMON").val(ResultI7);
 		$("#FLOW_GROSSPROMON").next().addClass('active'); 
 		Chkprofit();
+		}
+		else
+		{
+			
+			var NETPROFT=parseFloat(avg)*12/100;
+			$("#FLOW_NETPROFIT").val(CURINRCommaSep(parseFloat(NETPROFT).toFixed(2)));
+			$("#FLOW_NETPROFIT").next().addClass('active');
+			Chkproflow();
+		}
 });
 	
 function Getbussiness()
 { 
-var xml=UI_getdata("TAKEOVERBUSI","","","","","LSW_SGETFINANCIALVAL");
+	var xml=UI_getdata("TYPEBUSINESS","","","","","LSW_SGETFINANCIALVAL");
     $("#FLOW_TYPEBUSS").html("");
-$("#FLOW_TYPEBUSS").append($(xml).find("RESULT").html());
-$("#FLOW_TYPEBUSS").material_select(); 
+    $("#FLOW_TYPEBUSS").append($(xml).find("RESULT").html());
+    $("#FLOW_TYPEBUSS").material_select(); 
 }
+function GetbussinessUBL()
+{ 
+	var xml=UI_getdata("TYPEBUSINESS1","","","","","LSW_SGETFINANCIALVAL");
+    $("#FLOW_TYPEBUSS").html("");
+    $("#FLOW_TYPEBUSS").append($(xml).find("RESULT").html());
+    $("#FLOW_TYPEBUSS").material_select(); 
+}
+function Chkproflow()
+{
+	//DST 60% CASH FLOW
+	var IEleven=$("#FLOW_NETPROFIT").val().replace(/,/g,'');
+	if(IEleven=='')
+	{
+	IEleven=0;
+	}
+	var Eleresult=parseFloat(IEleven)*60/100;
+	if(isNaN(Eleresult))
+	{
+	  Eleresult=0;
+	}	
+	//Eleresult=CURINRCommaSep(parseFloat(Eleresult).toFixed(2));	
+	$("#FLOW_DSR").val('60');
+	$("#FLOW_DSR").next().addClass('active');
+	
+		$("#FLOW_SALAPERMON").val(Eleresult);
+	$("#FLOW_SALAPERMON").next().addClass('active');
+	EMIOBILIFLOW();
+	
+	
+	
+}
+function EMIOBILIFLOW()
+{
+		var SURPLUS=$("#FLOW_SALAPERMON").val().replace(/,/g,'');
+		var EXISTEMI=$("#FLOW_EXISTEMIOBLI").val().replace(/,/g,'');
+		var TOTAL=parseFloat(SURPLUS)-parseFloat(EXISTEMI);
+		$("#FLOW_AVALFUND").val(CURINRCommaSep(parseFloat(TOTAL).toFixed(2)));
+		$("#FLOW_AVALFUND").next().addClass('active');
+		
+		//2 TIMES ABB FLOW
+		
+		var ABB=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETABBDETAILS");
+		var ABBVAL=($(ABB).find ('FINALABB').text());
+		FINABB=2*parseFloat(ABBVAL);
+		$("#FLOW_ABB").val(CURINRCommaSep(parseFloat(FINABB).toFixed(2)));
+		$("#FLOW_ABB").next().addClass('active');
+		
+		//12 MONTHS OF EMI TRACKER FLOW
+		
+		var twice=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETABBDETAILS");
+		var twice1=($(twice).find ('EMIPAID').text());
+		var mulrecrd=2*parseFloat(twice1);
+
+		mulrecrd=CURINRCommaSep(parseFloat(mulrecrd).toFixed(2));
+		$("#FLOW_EMITRACK").val(mulrecrd);
+		$("#FLOW_EMITRACK").next().addClass('active'); 
+		
+		//ADJUSTED FUND EMI FLOW
+		
+		var adjust=$("#FLOW_AVALFUND").val().replace(/,/g,'');
+		var adjust1=$("#FLOW_ABB").val().replace(/,/g,'');
+		var adjust2=$("#FLOW_EMITRACK").val().replace(/,/g,'');
+			
+		if(adjust=='')
+		{
+		adjust=0;
+		}	
+		if(adjust1=='')
+		{
+		adjust1=0;
+		}	
+		if(adjust2=='')
+		{
+		adjust2=0;
+		}	
+		
+		var finladjust=Math.min((adjust),(adjust1),(adjust2));
+		FINAL=CURINRCommaSep(parseFloat(finladjust).toFixed(2));
+		$("#FLOW_FUNDEMI").val(FINAL);
+		$("#FLOW_FUNDEMI").next().addClass('active'); 
+		
+		
+		//EMI PER LAKH FLOW
+		
+		var LnAmt=100000; 
+		var ROI=0;
+		var Tenur=0; 
+		ROI=$("#FLOW_PROINTRATE").val();
+		Tenur=$("#FLOW_PROTENTURE").val();
+		if(ROI=='')
+		{
+		ROI=0;
+		}	
+		if(Tenur=='')
+		{
+		Tenur=0;
+		}
+		var result=UI_getdata(ROI,Tenur,LnAmt,"","","LSW_SGETEMI_DATA");
+		var EMI=$(result).find("EMI").text();
+	
+		if(isNaN(EMI))
+		{
+		EMI=0;
+		}
+		$("#FLOW_EMIPERLAKH").val(CURINRCommaSep(parseFloat(EMI).toFixed(2)));
+		$("#FLOW_EMIPERLAKH").next().addClass('active'); 
+		
+		//LOAN ELIGIBILITY
+	
+		var ad=$("#FLOW_EMITRACK").val().replace(/,/g,'');
+		var ad1=$("#FLOW_FUNDEMI").val().replace(/,/g,'');
+		var ad2=$("#FLOW_EMIPERLAKH").val().replace(/,/g,'');
+		var PROVAL=$("#FLOW_PROVALUE").val().replace(/,/g,'');
+		var INDUSMAR=$("#FLOW_GROSSPRO").val().replace(/,/g,'');
+		
+		
+		
+		if(ad=='')
+		{
+		ad=0;
+		}	
+		if(ad1=='')
+		{
+		ad1=0;
+		}	
+		if(ad2=='')
+		{
+		ad2=0;
+		}	
+		
+		var firstmin=parseFloat(ad1)/parseFloat(ad2)*100000;
+		
+		
+		var secondmin=parseFloat(PROVAL)*parseFloat(INDUSMAR)
+		var finalmin=Math.min((firstmin),(secondmin));
+		if(isNaN(finalmin))
+		{
+		finalmin=0;
+		}
+		if(finalmin==Infinity)
+		{
+			finalmin=0;
+			
+		}
+		//finladjust=CURINRCommaSep(parseFloat(finladjust).toFixed(2));
+		$("#FLOW_LOANEGBLAKH").val(CURINRCommaSep(parseFloat(finalmin).toFixed(2)));
+		$("#FLOW_LOANEGBLAKH").next().addClass('active'); 
+		
+		
+		//PROPOSED LOAN
+		
+		//var LNAMT=UI_getdata($("#PrcsID").val(),$("#FLOW_SCHEMEID").val(),"","","","LSW_SGETLOANDETAILS");
+	//$("#FLOW_PROINTRATE").val($(check).find ('LOANAMOUNT').text());
+	
+		var LOANELI=$("#FLOW_LOANEGBLAKH").val().replace(/,/g,'');
+		//var LOANAMT=$("#FLOW_LOANAMT").val().replace(/,/g,'');
+		
+		var LOANAMT=$(check).find ('LOANAMOUNT').text().replace(/,/g,'');
+		
+		if(LOANELI=='')
+		{
+		LOANELI=0;
+		}
+		if(LOANAMT)
+		{
+		LOANAMT=0;
+		}
+		var FINALPRO=Math.min((LOANELI),(LOANAMT));
+		if(isNaN(FINALPRO))
+		{
+			FINALPRO=0;
+		}
+		$("#FLOW_GROSSPROMON").val(CURINRCommaSep(parseFloat(FINALPRO).toFixed(2)));
+		$("#FLOW_GROSSPROMON").next().addClass('active'); 
+}
+
 function Chkprofit()
 {
 	var IEight=$("#FLOW_GROSSPROMON").val().replace(/,/g,'');
 	var INine=$("#FLOW_RENTPERMON").val().replace(/,/g,'');
 	var ITen=$("#FLOW_SALAPERMON").val().replace(/,/g,'');
+	var OTHERFXCST=$("#FLOW_OTHERFXCOST").val().replace(/,/g,'');
+	
 	if(IEight=='')
 	{
 	IEight=0;
@@ -406,7 +656,11 @@ function Chkprofit()
 	{
 	ITen=0;
 	}
-	var Plus=parseFloat(INine)+parseFloat(ITen)
+	if(OTHERFXCST=='')
+	{
+	OTHERFXCST=0;
+	}
+	var Plus=parseFloat(INine)+parseFloat(ITen)+parseFloat(OTHERFXCST)
 	var Result=parseFloat(IEight)-parseFloat(Plus);
 	
 	if(isNaN(Result))
@@ -417,7 +671,7 @@ function Chkprofit()
 	$("#FLOW_NETPROFIT").val(Result);
 	$("#FLOW_NETPROFIT").next().addClass('active');
 	
-	//DSR 60%
+	//DSR 60% UBL
 	
 	var IEleven=$("#FLOW_NETPROFIT").val().replace(/,/g,'');
 	if(IEleven=='')
@@ -521,7 +775,7 @@ function Existemi()
 
 	if(adjust2>8400)
 	{	
-		var finladjust=Math.min((adjust),(adjust2));
+		var finladjust=Math.min((adjust),(adjust1),(adjust2));
 	}
 	else
 	{
@@ -602,3 +856,26 @@ function Existemi()
 
 }
 
+ /*   function getproperty()
+	{
+		var xml=UI_getdata("Property","","","","","LSW_SGETPRODVAL");
+        $("#FLOW_PROPERTY").html("");
+	    $("#FLOW_PROPERTY").append($(xml).find("RESULT").html());	
+	}   */
+	
+	function getproperty(){
+	var xml=UI_getdata("PROPERTYTYPE","","","","","LSW_SGETFINANCIALVAL");
+    $("#FLOW_PROPERTY").html("");
+	$("#FLOW_PROPERTY").append($(xml).find("RESULT").html());
+	//$("#CAFL_TYPEPRO").material_select(); 
+}
+	
+  function GetMarginVal()  
+    {
+	var Tybus=$("#FLOW_TYPEBUSS").val();
+	var result=UI_getdata("TYBUSIN",Tybus,"","","","LSW_SGETFINANCIALVAL");
+	$("#FLOW_GROSSPRO").val($(result).find("RESULT").text());
+	$("#FLOW_GROSSPRO").next().addClass('active');	 	
+	//GetNetProfit();
+	}
+  

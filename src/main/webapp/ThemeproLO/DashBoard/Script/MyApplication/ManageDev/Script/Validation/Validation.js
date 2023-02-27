@@ -46,7 +46,7 @@ function GridControlDetailMNGDEV (popTableModPageGrid1,TableID,dtData,dtcolumn,h
        				{
        				data = Addvalue;
        				}
-				var	HTML =  '<span id=""><img src="ThemeproLO/Common/FEP/images/Remarks.png" title="VIEW" onclick="REMARKPOPUP(this)" class="" width="35" height="25">';
+				var	HTML =  '<span id=""><img src="ThemeproLO/Common/FEP/images/Remarks.png" title="VIEW" onclick="REMARKPOPUPDSBL(this)" class="" width="35" height="25">';
 				var	HTML =  HTML + '<input type="text" style="display:none;" id="DEVT_REMARK'+rowno+'"  name="DEVT_REMARK'+rowno+'" disabled class="form-control DSVLBL form-control     ">';		 
 				var htmldata = $(HTML);
        			$(htmldata).find('[name=DEVT_REMARK'+rowno+']').attr("value",data);
@@ -94,3 +94,26 @@ function GridControlDetailMNGDEV (popTableModPageGrid1,TableID,dtData,dtcolumn,h
          });
 	 
  }
+
+
+function REMARKPOPUPDSBL(Evnt){
+	var ClosID = $(Evnt).next()
+	var val =ClosID.val()
+	
+	$("#REMARKSPopup").click();
+	$("#REMARKSModal").find("#RemarksCONFIRM").attr("data-to",$(ClosID).attr("id"))
+	$("#RemarksCONFIRM").hide();
+	if(val != ""){
+		$("#POPUPRemarks").val(val);
+	///	$("#POPUPRemarks").attr("disabled","disabled")
+		$("#POPUPRemarks").next().addClass('active');
+		
+	}
+	else{
+		$("#POPUPRemarks").val("");
+	//	$("#POPUPRemarks").attr("disabled","disabled")
+		$("#POPUPRemarks").next().addClass('active');
+	}
+	
+	$("#RemarksCONFIRM").show();
+}

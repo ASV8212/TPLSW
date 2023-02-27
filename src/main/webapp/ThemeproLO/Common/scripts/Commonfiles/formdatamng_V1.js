@@ -1,9 +1,9 @@
-
 if (!window.location.origin) {
   window.location.origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port: '');
 }
 //var Prvnt=//;
 var timer1="-1";
+
 
 function SessionStChk()
 {
@@ -960,7 +960,9 @@ $input.appendTo($("#SubmitBTNs"));
  
         
      function UI_getdata(param1,param2,param3,param4,param5,spname)
-     {
+       
+       {
+    	   
     	   var OP="";
 		    var Token=$(window.parent.parent.document).find("#Prvnt").val();
     	  
@@ -989,49 +991,17 @@ $input.appendTo($("#SubmitBTNs"));
     	   });     
 		  // ajaxindicatorstop();
     	   return OP;
-    	}
-    	
-    function UI_GetData_Disb(param1,param2,param3,param4,param5,spname)
-     {
+    	   
+    	   }
+		   
+   function UI_GetData_Disb(param1,param2,param3,param4,param5,spname)
+     {  
     	   var OP="";
 		    var Token=$(window.parent.parent.document).find("#Prvnt").val();
     	  
     	   $.ajax({
 
                url: "/TPLSW/UI_GetData_Disb",
-               data: { param1: param1, param2: param2, param3: param3, param4: param4, param5: param5,spname: spname,Prvnt:$(window.parent.parent.document).find("#Prvnt").val()  },
-               async: false,
-               //dataType: "json",
-			    dataType: "text",
-               type: 'POST',
-               complete: function OnSuccess_submit(xml1) {
-            	   	OP=xml1.responseText;
-					//ajaxindicatorstop();
-            },
-			
-            error: function (xml1)
-            {
-				//alertify.alert(LoadFrmXML("V0126"));
-					window.alert(LoadFrmXML("V0126"));
-				OP="Fail";
-				//ajaxindicatorstop();
-            }
-                                  
-               
-    	   });     
-		  // ajaxindicatorstop();
-    	   return OP;
-    	}
-    	
-      
-	   function UI_getAPIdata(param1,param2,param3,param4,param5,spname)
-       {
-    	   var OP="";
-		    var Token=$(window.parent.parent.document).find("#Prvnt").val();
-    	  
-    	   $.ajax({
-
-               url: "/TPLSW/UI_getAPIdata",
                data: { param1: param1, param2: param2, param3: param3, param4: param4, param5: param5,spname: spname,Prvnt:$(window.parent.parent.document).find("#Prvnt").val()  },
                async: false,
                //dataType: "json",
@@ -1420,7 +1390,7 @@ $input.appendTo($("#SubmitBTNs"));
                          if($("[data-Validatearia="+name+"]").length > 0)
                         	 {
                         	 
-                        	 if (val == "Verified")
+                        	 if (val == "Verified" || val == "Upload Verified")
                         		 {
                             $("[data-Validatearia="+name+"]").text(val);
                         	$("[data-Validatearia="+name+"]").addClass("btn-GrnInplain");
@@ -1471,15 +1441,12 @@ $input.appendTo($("#SubmitBTNs"));
 				{
 				$("#"+ name).append(optn)
 				//$("#"+name+" option:contains("+val+")").attr("selected","selected")
-				
-				
-				$("#"+name+"option[value='"+val+"']").attr("selected","selected")
-				
+				$("#"+name+" option[value='"+val+"']").attr("selected","selected")
 				}
 				else
 					{
 					//$("#"+name+" option:contains("+val+")").attr("selected","selected")
-					$("#"+name+"option[value='"+val+"']").attr("selected","selected")
+					$("#"+name+" option[value='"+val+"']").attr("selected","selected")
 					}
 				
 			//	if($("#"+ name).prev('ul').length == 0)
@@ -1914,7 +1881,9 @@ else{
 
             var ProcessID = document.getElementById(GetProcessID).value;
 
-           
+            var URL = "";
+
+            window.open(URL, "Lookup", "toolbar=0,location=0,menubar=0,scrollbars=no,resizable=no,titlebar=0,width=400,height=350",true);
 
 
         }
@@ -3307,7 +3276,17 @@ return rt
 
 }
 
+//Added for Text Editor Disabled
 
+function DSVLBLEXTEDITER()
+{
+	var textareas=document.getElementsByClassName('TEXTEDITDSBL');
+	
+	for(var i=0;i<textareas.length;i++)
+	{
+		textareas[i].disabled=true;
+	}
+}
 
 function CibilRpt(id,prfx,Screid,ApplNo,Prdcde,PrdctNme,SbPrdctNme,LnAmt)
 {
@@ -3356,7 +3335,7 @@ if($(op).find("Result").text()=='Yes')
    var FormName="LoanApplication";
    var AttchName="CIBIL REPORT";
    var AttchDescrptn="CIBILRPT_"+id;
-   var CntntURL="/CibilWebService/rest/Score/post";
+   var CntntURL="";
    var op= UI_getdata("CBLVRNO","","","","","Sam_sGetCOMSeqID")
 
    var Version=$(op).find("VR").text()
@@ -4469,7 +4448,8 @@ function DrctCmpleteWFlowPrcs(PRCSID,ActvtyIdVa,Action,USR,RtnVal)
 		
 var URL='/jw/web/json/workflow/assignment/completeWithVariable/'+ActvtyId+'?'+$(WFNxtActvy).find('NxtLvlVar').text()+'&'+$(WFNxtActvy).find('NxtLvlUsr').text()
 
-
+///jw/web/json/workflow/assignment/complete/879_223_crm_process1_approve_proposal ?var_status=Sent
+//http://14.192.17.61:3030/jw/web/json/workflow/assignment/complete/151381_78208_FEPTrans_process_Initiation?var_Link=DirectC,var_Usr=C19000065_U1
 	 $.ajax({
                         url: URL,
                         data: {},
@@ -4538,8 +4518,7 @@ function DrctFINCCmpleteWFlowPrcs(PRCSID,ActvtyIdVa,Action,USR,RtnVal)
 		
 var URL='/jw/web/json/workflow/assignment/completeWithVariable/'+ActvtyId+'?'+$(WFNxtActvy).find('NxtLvlVar').text()+'&'+$(WFNxtActvy).find('NxtLvlUsr').text()
 
-
-	 $.ajax({
+ $.ajax({
                         url: URL,
                         data: {},
                         async: false,
@@ -4872,20 +4851,6 @@ function CheckValidKyc(Id,Type,Verify,FstNam,LstNam,FatNam,DOB,CUSID)
        // contentType:'application/json',
         
         success: function(stm){        
-		
-		
-		if(typeof stm =="string")
-      {
-      	alert("Error Occured. Contant IT!!!");
-        		return false;
-      }
-        	if(stm=="")
-        		{
-        		alert("Error Occured. Contant IT!!!");
-        		return false;
-        		
-        		}
-		
        // var obj = JSON.parse(JSON.stringify(stm))
         	 var obj = JSON.parse(stm)
         //alert(obj);
@@ -4929,6 +4894,10 @@ function CheckValidKyc(Id,Type,Verify,FstNam,LstNam,FatNam,DOB,CUSID)
 	    	 var Data=str.replace(" ","|");
 	    	 var FirstName=Data.split("|")[0];
 	    	 var LastName=Data.split("|")[1];
+			 
+			 FirstName=FirstName.replace('&','and');
+			 LastName=LastName.replace('&','and');
+			 
 	    	 $("#"+FstNam).val(FirstName);
 	    	 $("#"+LstNam).val(LastName);
 	    	 //$("#"+FatNam).val(FatherName);
@@ -4961,22 +4930,24 @@ function CheckValidKyc(Id,Type,Verify,FstNam,LstNam,FatNam,DOB,CUSID)
 	    
 	    if(Type=="pan")
 	    	{
-	    	   Name=obj["result"].name;
+	    	   Name=(obj["result"].name).replace("&","and");
 	    	}
 	    else if(Type=="voter")
 	    	{
 	    	   Name=(obj["result"].name).replace("-"," ");
+			   Name=Name.replace("&","and");
 	    	   DOB=obj["result"].dob;
 	    	   GENDER=obj["result"].gender;
 	    	   AGE=obj["result"].age;
 	    	   FatherName=(obj["result"].rln_name).replace("-"," ");
+			   FatherName=FatherName.replace("&","and");
 	    	}
 	    else if(Type=="dl")
 	    	{
-	    	  Name=obj["result"].name
+	    	  Name=(obj["result"].name).replace("&","and");
 	    	 // FatherName=obj["result"].father/husband
 	    	  DOB=obj["result"].dob
-	    	  Address=obj["result"].address
+	    	  Address=(obj["result"].address).replace('&','and');
 	    	}
 	    else if(Type=="passport")
 	    	{
@@ -5041,7 +5012,1372 @@ else
      $(".KrazaPopup").click();
   }
 }
-function CheckValidPanKyc(Id,Verify,FstNam,LstNam,CusType,CUSID,Addr1,Addr2,INCM1,INCM2,PROFILE,EMPADDRI,EMPADDRII,NaturBusi)
+
+function GSTAnalysisFn(Gst,FrmDate,ToDate)
+{   
+      var OP="";
+	  //|| $("#"+CusName).val()==""  --CusName,
+	  if($("#"+Gst).val()==""  || $("#"+FrmDate).val()==""  || $("#"+ToDate).val()=="" )
+	  {
+		  alert("Kindly enter Mandatory Fields");
+		  return false;
+	  }
+	  $("#Save1").click();
+	  
+	  var Token=$(window.parent.parent.document).find("#Prvnt").val();
+	  var PRCSID=$("#PrcsID").val();
+      var Param1="";
+	  
+    	   $.ajax({
+
+               url: "/TPLSW/GSTAnalysisCall",
+               data: { SPNAME:"LSW_SGSTANALYSISCREATE", Param1: Param1, Param2: "Service",PRCSID: PRCSID,Prvnt:$(window.parent.parent.document).find("#Prvnt").val()  },
+               async: false,
+               //dataType: "json",
+			    dataType: "text",
+               type: 'POST',
+               complete: function OnSuccess_submit(xml1) {
+				   
+            	   	OP=xml1.responseText;
+					
+					OP=JSON.parse(OP);
+					
+					if(OP.url==undefined)
+					{
+						alert(OP.message);
+						return false;
+					}
+					else
+					{
+				if($("#SALE_MODE").val() == "Manual")
+				{
+					var OPxml=UI_getdata($("#PrcsID").val(),xml1.responseText,"","EMAIL","","LSW_SSENDGSTANALYSISLNK");
+					
+					if($(OPxml).find("Result").text()=="Success")
+					{
+					   alert("Link send successfully");	
+					}
+					else
+					{
+						
+					}
+				}
+				else if($("#SALE_MODE").val() == "Upload")
+				{
+					alert("Transaction Initiated Successfully. Upload the documents against the respective month");
+					$("#SALE_TRANSFLG").val("Initiated");
+					$("#Complete").show();
+					$("#gstbtn").hide();
+					$("#Save1").click();
+					$("#BTNSALESGRD").click();
+				}
+					}
+					//ajaxindicatorstop();
+            },
+            error: function (xml1)
+            {
+				//alertify.alert(LoadFrmXML("V0126"));
+					window.alert(LoadFrmXML("V0126"));
+				OP="Fail";
+				//ajaxindicatorstop();
+            }   
+    	   });     
+		  // ajaxindicatorstop();
+    	   return OP;	   
+ }
+
+function CheckKYCDetl(Event,Id,Verify,Type,HTML)
+{
+	var Fld1=$(Event).attr("data-field").split("|")[0];	
+    var Fld2=$(Event).attr("data-field").split("|")[1];
+	var Fld3=$(Event).attr("data-field").split("|")[2];
+	var Fld4=$(Event).attr("data-field").split("|")[3];
+	var Fld5=$(Event).attr("data-field").split("|")[4];
+	var Fld6=$(Event).attr("data-field").split("|")[5];
+	var Fld7=$(Event).attr("data-field").split("|")[6];
+	var Fld8=$(Event).attr("data-field").split("|")[7];
+	var Fld9=$(Event).attr("data-field").split("|")[8];
+	var Fld10=$(Event).attr("data-field").split("|")[9];
+	var Fld11=$(Event).attr("data-field").split("|")[10];
+	var Fld12=$(Event).attr("data-field").split("|")[11];
+	
+    if($("#"+Verify).val()!="Verified")
+	{	
+    var IdVal=$("#"+Id).val()
+	if(IdVal=="")
+	{
+	   alert("Kindly enter the Valid Number")
+	   return;
+	} 
+
+   if(Type=="IFSC")
+	 {
+		 if($(HTML).find("[name=DBFD_FAVOURTYPE]").val()=='Others')
+		 {
+			var AcctNo=$(HTML).find("[name=DBFD_ACCTNUM]").val()
+		 }
+		 else
+		 {
+				
+			var AcctNo=$(HTML).find("[name=DBFD_ACCTNUMB]").val()			  
+		 }
+	  	
+	   if(AcctNo=="")
+	   {
+		alert("Kindly enter the Valid Account Number")
+	    return;  
+	   }
+	    IdVal=IdVal+'/'+AcctNo
+      }
+	if(Type=="PASSPORT")
+      {
+		  if($("#"+Fld1).val()=="")
+		  {
+			 alert("Kindly enter the DOB") 
+			 return;
+		  }
+		 IdVal=$("#"+Id).val()+'-'+$("#"+Fld1).val()
+		 IdVal=IdVal.replaceAll(' ','')
+	  }
+	  if(Type=="DRIVING LICENSE")
+      {
+		 IdVal=$("#"+Id).val()+'-'+$("#"+Fld1).val()
+		 //IdVal=IdVal.replaceAll(' ','') 
+	  }
+	  
+	  if(Type=="ELECTRICITY BILL")
+	  {
+		  if($("#"+Fld1).val() == "Electricity Bill")
+		  {
+		    IdVal=$("#"+Id).val()+'/'+$("#"+Fld2).val() 
+		  }
+		  else if($("#"+Fld1).val()=="Landline Authentication (BSNL/MTNL only)")
+		  {
+			 Type="TELEPHONE"; 
+			 IdVal=$("#"+Id).val()+'/'+$("#"+Fld5).val() 
+		  }
+		  else if($("#"+Fld1).val()=="Mobile Authentication with OTP")
+		  {
+			 Type="MOBILE OTP"; 
+			 IdVal=$("#"+Id).val()
+		  }
+	  }
+	  if(Type=="MOBILE STATUS")
+	  {
+		IdVal=$("#"+Fld2).val()+'/'+$("#"+Id).val()  
+	  }
+	  if(Type=="IFSC")
+	   {
+		  $("#Save").click();
+		  var CusID=$(HTML).find("select[name="+Fld3+"]").val()
+	   }
+	   else
+	   {
+		 $("#Save1").click()
+	     var CusID=$("#"+Fld4).val();
+	   }
+	$.ajax({
+        url: "/TPLSW/KarzaKyc",
+        type: 'POST',
+        data: {Karzavalue:IdVal,CoAPlt:CusID,Type:Type,SPNAME:"LSW_SKARZAAPICREATE",APIType:Type,PRCSID:$("#PrcsID").val(),Prvnt:$(window.parent.parent.document).find("#Prvnt").val()},
+        async:false,
+        //dataType: 'json',
+       //contentType:'application/json',
+        success: function(stm){        
+       // var obj = JSON.parse(JSON.stringify(stm))
+	        var Status=stm.split("!@#")[0]
+			if(Status=="Success")
+			{
+				var DOB="";
+				var Address="";
+				var FatherName="";
+				
+	                stm=stm.split("!@#")[1]
+        	    var obj = JSON.parse(stm)
+              //alert(obj);
+		        if(obj["status-code"] =='101' || obj["statusCode"] =='101')
+                  {
+					 if(Type=="UDYAM")
+			          {
+				        var op= UI_getdata("DOCVRNO","","","","","Sam_sGetCOMSeqID")
+				        var vrsnno=$(op).find("VR").text()
+					  }
+					  
+	
+		$("[data-Validatearia="+Fld1+"]").text('Verified');
+ 	    $("[data-Validatearia="+Fld1+"]").removeClass("btn-yelInplain");	
+ 		$("[data-Validatearia="+Fld1+"]").removeClass("btn-RedInplain");
+ 		$("[data-Validatearia="+Fld1+"]").addClass("btn-GrnInplain"); 
+		$("input[name="+Fld1+"]").val('Verified')
+						
+ 	                    //$("#"+Verify).val('Verified')
+					
+				if(Type=="UDYAM")
+			          {
+				var settings = {
+    "url": window.location.origin+"/TPLSW/getPDFTag?DocName=UdyamCertificate&CusID="+$("#"+Fld4).val()+"&attachname=UdyamCertificate.pdf&attachdescrptn=UdyamCertificate&prcsid="+$("#PrcsID").val()+"&formName="+Type+"&version="+vrsnno+"&fileName=UdyamCertificate.pdf&filesize=25&Prvnt="+$(window.parent.parent.document).find("#Prvnt").val(),
+    "method": "POST",
+    "timeout": 0,
+    "headers": {
+    "Content-Type": "application/json"
+    },
+    "data": JSON.stringify(obj),
+    };
+	
+var OrgName=obj["result"].profile.name.replace("&", "AND");
+//var Enterprise=obj["result"].profile.enterpriseType
+var DateIncorp=obj["result"].profile.dateOfIncorporation
+	
+var Sector= obj["result"].profile.majorActivity	
+
+	/* var Enterprise= obj["result"].profile.enterpriseType
+Enterprise=Enterprise.replace('&','and')
+if(Enterprise.includes("MEDIUM")==true)
+{
+$("#"+Fld8).val('Medium');
+$("#"+Fld8+"option:contains(Medium)").attr("selected","selected");
+$("#"+Fld8).material_select();
+}
+else if(Enterprise.includes("MICRO")==true)
+{
+$("#"+Fld8).val('Micro');
+$("#"+Fld8+"option:contains(Micro)").attr("selected","selected");
+$("#"+Fld8).material_select();
+}
+else if(Enterprise.includes("SMALL")==true)
+{
+$("#"+Fld8).val('Small');
+$("#"+Fld8+"option:contains(Small)").attr("selected","selected");
+$("#"+Fld8).material_select();
+} */
+	
+	DateIncorp = new Date(DateIncorp);
+var year = DateIncorp.getFullYear();
+var month = (1 + DateIncorp.getMonth()).toString();
+month = month.length > 1 ? month : '0' + month;
+var day = DateIncorp.getDate().toString();
+day = day.length > 1 ? day : '0' + day;
+DateIncorp= day + '/' + month + '/' + year
+
+if($("#"+Fld3).val()=="Non-Individual")
+{
+$("#"+Fld7).val(OrgName);
+$("#"+Fld7).next().addClass('active');
+$("#"+Fld8).val(Sector);
+$("#"+Fld8).material_select();	
+$("#"+Fld9).val(DateIncorp);
+$("#"+Fld9).next().addClass('active');
+}
+else
+{
+$("#"+Fld10).val(OrgName);
+$("#"+Fld10).next().addClass('active');
+$("#"+Fld11).val(DateIncorp);
+$("#"+Fld11).next().addClass('active');
+}
+	//$("#"+Fld9).val(DateIncorp);
+	
+$.ajax(settings).done(function (response) {
+	$("."+Fld2).show();
+	$(".UAMNupload1").hide();
+	$(".UdyamView1").show();
+	$("input[name="+Fld2+"]").val(response);
+	
+	//$("#"+UAMUpd).val(response.split('~')[2]);
+	$("#Save1").click();	
+  //console.log(response);
+});
+					  }
+	
+	else
+	{
+		if(Type!="MOBILE OTP")
+         {
+	 $("[data-Validatearia="+Verify+"]").text('Verified');
+     $("[data-Validatearia="+Verify+"]").addClass("btn-GrnInplain");	
+     $("[data-Validatearia="+Verify+"]").removeClass("btn-yelInplain");
+     $("[data-Validatearia="+Verify+"]").removeClass("btn-RedInplain"); 
+     $("#"+Verify).val('Verified');	
+		 }
+	}					 
+			
+			  if(Type=="PAN")
+        	  {
+				if($("#"+Fld3).val()=="Individual")
+	              {
+        	    var str=obj["result"].name.replace("&", "AND");
+					str=str.replace(/["']/g, "");
+        	    var Data=str.replace(" ","|");
+        	    var FirstName=Data.split("|")[0]
+        	    var LastName=Data.split("|")[1]
+        	    	$("#"+Fld1).val(FirstName);
+					$("#"+Fld1).next().addClass('active');
+        	    	$("#"+Fld2).val(LastName);
+					$("#"+Fld2).next().addClass('active');
+					
+					if($("#"+Fld8).val()=="")
+					{
+					  $("."+Fld5).show();
+					  $("."+Fld6).show();
+					}
+					//$("#"+Fld1).attr("disabled",true);
+					//$("#"+Fld2).attr("disabled",true);
+					$(".DPAN").hide();
+					  
+	           $("#Save1").click()
+	          var xml=UI_getdata($("#PrcsID").val(),str+'|'+FatherName+'|'+Address+'|'+DOB,Type,CusID,"","LSW_TINSKARZADETL");
+				  }
+				  else if($("#"+Fld3).val()=="Non-Individual")
+				  {
+					var str=obj["result"].name.replace("&", "AND");
+					    str=str.replace(/["']/g, "");
+						$("#"+Fld1).val(str);
+						//$("#"+Fld2).attr("disabled",true);
+						$("#"+Fld1).val(str);
+					    $("#"+Fld1).next().addClass('active');
+						//$("#"+Fld1).attr("disabled",true);
+				if($("#"+Fld8).val()=="")
+					{
+					  $("."+Fld5).show();
+					  $("."+Fld6).show();
+					}
+					$(".DPAN").hide();
+					
+						  
+	  $("#Save1").click()
+	  var xml=UI_getdata($("#PrcsID").val(),str+'|'+FatherName+'|'+Address+'|'+DOB,Type,CusID,"","LSW_TINSKARZADETL");
+				  }
+			  }
+			  if(Type=="IFSC")
+	           {
+		         var AccNo=$(HTML).find("input[name="+Fld1+"]").val()
+				 
+				 var obj = JSON.parse(stm)
+				 var Alert1=obj["result"].data.source[0].data.bankResponse
+				 if(Alert1=="SUCCESSFUL TRANSACTION")
+				 {
+					var AlertD=obj["result"].data.source[0].data.bankResponse+'\nAccount Number : '+obj["result"].data.source[0].data.accountNumber+'\nIFSC : '+obj["result"].data.source[0].data.ifsc+'\nAccount Name : '+obj["result"].data.source[0].data.accountName
+					var Accno=obj["result"].data.source[0].data.accountNumber
+					var Ifsc=obj["result"].data.source[0].data.ifsc
+					var Accname=obj["result"].data.source[0].data.accountName
+				 }
+				 else
+				 {
+					var AlertD=obj["result"].data.source[0].data.bankResponse
+				  
+				 }
+				 alert(AlertD)
+				 if(AlertD=="INVALID BENEFICIARY ACCOUNT / IFSC")
+				 {
+				$(HTML).find("[data-Validatearia="+Fld1+"]").text('Failed');
+ 	            $(HTML).find("[data-Validatearia="+Fld1+"]").removeClass("btn-GrnInplain");	
+ 		        $(HTML).find("[data-Validatearia="+Fld1+"]").removeClass("btn-yelInplain");
+ 		        $(HTML).find("[data-Validatearia="+Fld1+"]").addClass("btn-RedInplain"); 
+ 	            $("#"+Verify).val('Failed')
+				 }
+				 var Tranche= $(".FormPageMultiTab li.active a div").text();
+				var xml=UI_getdata($("#PrcsID").val(),Accno+'|'+Ifsc+'|'+Accname,Type,CusID,Tranche,"LSW_TINSKARZADETLIFSC");
+				
+				
+	           }
+			  else if(Type=="UDYAM")
+			          {
+			if($("#"+Fld3).val()=="Non-Individual")
+				  {	  
+			         var op= UI_getdata("DOCVRNO","","","","","Sam_sGetCOMSeqID")
+				     var vrsnno=$(op).find("VR").text()			  
+				     var settings = {
+                       "url": window.location.origin+"/TPLSW/getPDFTag?DocName=UdyamCertificate&CusID="+$("#"+Fld4).val()+"&attachname=UdyamCertificate.pdf&attachdescrptn=UdyamCertificate&prcsid="+$("#PrcsID").val()+"&formName="+Type+"&version="+vrsnno+"&fileName=UdyamCertificate.pdf&filesize=25&Prvnt="+$(window.parent.parent.document).find("#Prvnt").val(),
+                       "method": "POST",
+                       "timeout": 0,
+                       "headers": {
+                        "Content-Type": "application/json"
+                         },
+                       "data": JSON.stringify(obj),
+                       };
+
+                       $.ajax(settings).done(function (response) {
+	                   $("."+Fld2).show();
+	                   $(".UAMNupload1").hide();
+	                   $(".UdyamView1").show();
+	                   $("#"+Fld2).val(response);
+	//$("#"+UAMUpd).val(response.split('~')[2]);
+	                   $("#Save1").click();	
+  //console.log(response);
+                      });
+				  }
+					  }
+			  else if(Type=="PASSPORT")
+			  {
+				  var str=obj.result.name.nameFromPassport.replace("&", "AND");
+					str=str.replace(/["']/g, "");
+			  }
+			  else if(Type=="VOTER ID")
+			  {
+				 var str=obj.result.name.replace("&", "AND").replace("-","");
+					str=str.replace(/["']/g, "");
+					
+				  FatherName=obj.result.rln_name.replace("&", "AND").replace("-","");
+				  FatherName=FatherName.replace(/["']/g, "");
+				  DOB=obj.result.dob
+				  
+				  if($("#"+Fld8).val()=="")
+					{
+					  $("."+Fld5).show();
+					  $("."+Fld6).show();
+					}
+			  }
+			  else if(Type=="DRIVING LICENSE")
+			  {
+				      Address=obj.result.address[0].completeAddress
+				      Address=Address.replace(/["']/g, "");
+				  var str=obj.result.name.replace("&", "AND").replace("-","");
+				      str=str.replace(/["']/g, "");
+					  
+					  DOB=obj.result.dob
+					  
+				if($("#"+Fld8).val()=="")
+					{
+					  $("."+Fld5).show();
+					  $("."+Fld6).show();
+					}
+			  }
+            else if(Type=="ELECTRICITY BILL")
+			  {
+				  Address=obj["result"].address
+				     Address=Address.replace(/["']/g, "");
+				  var str=obj["result"].consumer_name.replace("&", "AND").replace("-","");
+				      str=str.replace(/["']/g, "");
+			  }
+			 else if(Type=="TELEPHONE")
+			  {
+				  Address=obj["result"].address
+				     Address=Address.replace(/["']/g, "");
+				  var str=obj["result"].name.replace("&", "AND").replace("-","");
+				      str=str.replace(/["']/g, "");
+			  }
+			  else if(Type=="MOBILE OTP")
+			  {
+				   alert("OTP Sent Successfully");
+
+                   $("#EBMobPopup").click();
+                   $('#EBRequestId').val(obj.request_id)
+                   //$('#HdnFieldId').val(Verify)
+                   //$("#"+CONBTN).show();
+                   //$("#"+CONBTNI).hide();
+			  }
+			  else if(Type=="VEHICLE")
+			  {
+				  $("#LPDT_VENGNO").val(obj["result"].engineNumber);
+				  $("#LPDT_VENGNO").next().addClass('active');
+				  $("#LPDT_VCHASISNO").val(obj["result"].chassisNumber);
+				  $("#LPDT_VCHASISNO").next().addClass('active');
+				  
+				  var FinName=obj["result"].financier;
+				  if(FinName!=null)
+				  {
+				  FinName=FinName.replaceAll("&","and");
+				  $("#LPDT_VFINANCNAME").val(FinName);
+				  }
+				  var ComName=obj["result"].insuranceCompany
+				  ComName=ComName.replaceAll("&","and");
+				  $("#LPDT_VNAMEOFCOM").val(ComName);
+				  $("#LPDT_VNAMEOFCOM").next().addClass('active');
+				  var FCDate=obj["result"].insuranceUpto
+				  
+				    if(FCDate!=null)
+					{	
+				      FCDate=FCDate.replaceAll("-","/")
+				      $("#LPDT_VFCVALIDITY").val(FCDate);
+					  $("#LPDT_VFCVALIDITY").next().addClass('active');
+					}
+				  $("#LPDT_VPOLICYNO").val(obj["result"].insurancePolicyNumber);
+				  $("#LPDT_VPOLICYNO").next().addClass('active');
+				  
+				  var ManuDate=obj["result"].manufacturedMonthYear
+				  
+				    if(ManuDate!=null)
+					{
+					 ManuDate ="01-"+ManuDate;
+					 ManuDate=ManuDate.replaceAll("-","/")
+				     $("#LPDT_VMANUDATE").val(ManuDate); 
+					 $("#LPDT_VMANUDATE").next().addClass('active');
+					}
+			  }
+			var URL=stm.split("!@#")[2]  
+			
+			if(Type=="MOBILE STATUS")  
+			{
+				if(URL!="" && URL!=undefined)
+				{
+				  $("."+Fld5+"UPLOAD").hide();
+				  $("."+Fld5).show();
+			      $("#"+Fld5).val(URL);	
+				}
+				
+			   $("#EBMOBPOPCLOSE").click();	
+			}
+			
+			if(Type!="MOBILE STATUS" && Type!="MOBILE OTP" && Type!="VEHICLE")  
+			{
+			  var xml=UI_getdata($("#PrcsID").val(),str+'|'+FatherName+'|'+Address+'|'+DOB,Type,CusID,"","LSW_TINSKARZADETL");
+			}
+			$("#Save1").click();
+		 }
+		else
+		 {
+			if(Fld5=="MULTIEMP") 
+			{
+			
+				$(HTML).find("[data-Validatearia="+Fld1+"]").text('Failed');
+ 	            $(HTML).find("[data-Validatearia="+Fld1+"]").removeClass("btn-GrnInplain");	
+ 		        $(HTML).find("[data-Validatearia="+Fld1+"]").removeClass("btn-yelInplain");
+ 		        $(HTML).find("[data-Validatearia="+Fld1+"]").addClass("btn-RedInplain"); 
+ 	            $("#"+Verify).val('Failed')
+			}
+			 else
+			 { 
+			$("[data-Validatearia="+Verify+"]").text('Failed');
+ 	        $("[data-Validatearia="+Verify+"]").removeClass("btn-GrnInplain");	
+ 		    $("[data-Validatearia="+Verify+"]").removeClass("btn-yelInplain");
+ 		    $("[data-Validatearia="+Verify+"]").addClass("btn-RedInplain"); 
+ 	        $("#"+Verify).val('Failed')
+			$("#Save1").click();
+			 }
+		 }
+	}
+	else
+	{
+		alert(stm.split("!@#")[1]);
+		return false;
+	}
+		},
+    error: function(stm) {
+    	 //window.alert(LoadFrmXML("V0125"))
+    	alert("Error Occured. Contant IT!!!");
+    	   }
+	})
+  }
+  else
+  {	
+ if(Type=="IFSC")
+	 {
+		 FncallDocChkLst(this,'Table2',{spname:'LSW_SKARZALISTIFSC',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$(HTML).find("[name=DBFD_FAVOURTYPE]").val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4','KARZAGRDIFSC')
+     $(".KrazaPopupIFSC").click(); 
+	 }
+	 FncallDocChkLst(this,'Table2',{spname:'LSW_SKARZALIST',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$("#"+Fld4).val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||7','KARZAGRD')
+     $(".KrazaPopup").click();
+	
+  }
+}
+
+function CheckKYCUPLOADDOC(Event,Id,Verify,Type,HTML)
+{
+	
+	var IOP=LoadFrmXML("RS006");
+	//var processId= $(this).closest('tr').children('td:eq(4)').text();
+	var RedirectURL="";
+	//var AppNo=AppNo
+    var url= $("#DMY1").val()
+     if (url != "")
+	if ($("#"+Id).val().split("\\")[0] == "")
+	{
+	alert("No Attachments Available to View");
+	return;
+	}
+	//window.location.origin+
+	
+	RedirectURL ="/TPLSW/DMSVIEW?PrcsID=" + $("#PrcsID").val() + "&DMSID=" + $("#"+Id).val().split("\\")[0];
+	
+	Id=RedirectURL
+
+	var Fld1=$(Event).attr("data-field").split("|")[0];	
+    var Fld2=$(Event).attr("data-field").split("|")[1];
+	var Fld3=$(Event).attr("data-field").split("|")[2];
+	var Fld4=$(Event).attr("data-field").split("|")[3];
+	var Fld5=$(Event).attr("data-field").split("|")[4];
+	var Fld6=$(Event).attr("data-field").split("|")[5];
+	var Fld7=$(Event).attr("data-field").split("|")[6];
+	var Fld8=$(Event).attr("data-field").split("|")[7];
+	var Fld9=$(Event).attr("data-field").split("|")[8];
+	//var Constitution=$(Event).attr("data-field").split("|")[8];
+	
+	var Constitution=$("#"+Fld7).val();
+	
+    if($("#"+Verify).val()!="Upload Verified")
+	{	
+
+    var IdVal=Id
+	if(IdVal=="")
+	{
+	   alert("Kindly enter the Valid Number")
+	   return;
+	}   
+
+	if(Type=="PASSPORT")
+      {
+		  if($("#"+Fld1).val()=="")
+		  {
+			 alert("Kindly enter the DOB") 
+			 return;
+		  }
+		  
+		 IdVal=$("#"+Id).val()+'-'+$("#"+Fld1).val()
+		 IdVal=IdVal.replaceAll(' ','')
+	  }
+	  if(Type=="DRIVING LICENSE")
+      {
+		 IdVal=$("#"+Id).val()+'-'+$("#"+Fld1).val()
+		 //IdVal=IdVal.replaceAll(' ','') 
+	  }
+	  
+	  if(Type=="ELECTRICITY BILL")
+	  {
+		  if($("#"+Fld1).val() == "Electricity Bill")
+		  {
+		    IdVal=$("#"+Id).val()+'/'+$("#"+Fld2).val() 
+		  }
+		  else if($("#"+Fld1).val()=="Landline Authentication (BSNL/MTNL only)")
+		  {
+			 Type="TELEPHONE"; 
+			 IdVal=$("#"+Id).val()+'/'+$("#"+Fld5).val() 
+		  }
+	  }
+	  
+	  var flag=""
+	  
+	  if(Fld5=="DL")
+	  {
+	    flag="dl"
+	  }
+	  
+	  if(Fld5=="Aadhar")
+	  {
+		  if($("#"+Fld7).val()=="XML Verification")
+		  {
+			 Type="AADHAAR XML VERIFY" 
+		  }
+		  else if($("#"+Fld7).val()=="ZIP File Verification")
+		  {
+			 Type="AADHAAR ZIP VERIFY" 
+			 
+			 IdVal=IdVal+'~'+$("#"+Fld1).val()+'~'+$("#"+Fld2).val()
+		  }
+	  }
+	  
+	$("#Save1").click()
+	 var CusID=$("#"+Fld4).val();
+	$.ajax({
+        url: "/TPLSW/KarzaKyc",
+        type: 'POST',
+        data: {Karzavalue:IdVal,CoAPlt:CusID,Type:flag,SPNAME:"LSW_SKARZAAPICREATE",APIType:Type,PRCSID:$("#PrcsID").val(),Prvnt:$(window.parent.parent.document).find("#Prvnt").val()},
+        async:false,
+        //dataType: 'json',
+       //contentType:'application/json',
+        success: function(stm){        
+       // var obj = JSON.parse(JSON.stringify(stm))
+	        var Status=stm.split("!@#")[0]
+			if(Status=="Success")
+			{
+				var DOB="";
+				var Address="";
+				var FatherName="";
+				var Gender="";
+				var str="";
+				
+				
+	                stm=stm.split("!@#")[1]
+        	    var obj = JSON.parse(stm)
+              //alert(obj);
+		        if(obj["status-code"] =='101' || obj["statusCode"] =='101')
+                  {
+					  
+			            $("[data-Validatearia="+Verify+"]").text('Upload Verified');
+        	            $("[data-Validatearia="+Verify+"]").addClass("btn-GrnInplain");	
+                        $("[data-Validatearia="+Verify+"]").removeClass("btn-yelInplain");
+        	            $("[data-Validatearia="+Verify+"]").removeClass("btn-RedInplain"); 
+        	            $("#"+Verify).val('Upload Verified');						 
+			
+			  if(Fld5=="PAN")
+        	  {
+				  var FileType=obj.result[0].type;
+				   FileType=FileType.includes("Pan");
+				   
+	    	    if(FileType!=true)
+	    		  {
+					alert('Kindly upload the Pan');
+					$("[data-Validatearia="+Verify+"]").text('Upload Failed');
+ 	                $("[data-Validatearia="+Verify+"]").removeClass("btn-GrnInplain");	
+ 		            $("[data-Validatearia="+Verify+"]").removeClass("btn-yelInplain");
+ 		            $("[data-Validatearia="+Verify+"]").addClass("btn-RedInplain"); 
+ 	                $("#"+Verify).val('Upload Failed')
+		         	$("#Save1").click();
+					return false;
+				  }
+				 
+				if($("#"+Fld3).val()=="Individual")
+	              {
+					
+if (obj["result"][0].details.panNo.value != "") {
+        ObjVal = obj["result"][0].details.panNo.value.toUpperCase();
+        var panPat = /^([a-zA-Z]{5})(\d{4})([a-zA-Z]{1})$/;
+        var code = /([P p])/;
+         var code_chk = ObjVal.substring(3,4);
+       
+	   if (ObjVal.search(panPat) == -1) {
+             alert("Invalid Pan No eg.AAAPA1111A");
+            // Obj.focus();
+            // Obj.value="";
+			$("[data-Validatearia="+Verify+"]").text('Upload Failed');
+ 	                $("[data-Validatearia="+Verify+"]").removeClass("btn-GrnInplain");	
+ 		            $("[data-Validatearia="+Verify+"]").removeClass("btn-yelInplain");
+ 		            $("[data-Validatearia="+Verify+"]").addClass("btn-RedInplain"); 
+ 	                $("#"+Verify).val('Upload Failed')
+		         	$("#Save1").click();
+             return false;
+         }
+		 if (code.test(code_chk) == false) {
+             alert("Invalid Pan No eg.AAAPA1111A");
+            // Obj.value="";
+			$("[data-Validatearia="+Verify+"]").text('Upload Failed');
+ 	                $("[data-Validatearia="+Verify+"]").removeClass("btn-GrnInplain");	
+ 		            $("[data-Validatearia="+Verify+"]").removeClass("btn-yelInplain");
+ 		            $("[data-Validatearia="+Verify+"]").addClass("btn-RedInplain"); 
+ 	                $("#"+Verify).val('Upload Failed')
+		         	$("#Save1").click();
+             return false;
+         }	
+    }					
+					  
+					FatherName=obj["result"][0].details.father.value
+
+        	     str=obj["result"][0].details.name.value.replace("&", "AND");
+					str=str.replace(/["']/g, "");
+        	    var Data=str.replace(" ","|");
+				
+        	       var FirstName=Data.split("|")[0]
+        	       var LastName=Data.split("|")[1]
+				
+        	    	$("#"+Fld1).val(FirstName);
+					$("#"+Fld1).next().addClass('active');
+        	    	$("#"+Fld2).val(LastName);
+					$("#"+Fld2).next().addClass('active');
+					$("#"+Fld8).val(FatherName);
+					$("#"+Fld8).next().addClass('active');
+					
+					$(".TYP").show();
+					$(".PANVTyp").attr("disabled",true);
+					
+					
+
+					$("#"+Fld6).val(obj["result"][0].details.panNo.value);
+					$("#"+Fld6).next().addClass('active');
+  
+	                $("#Save1").click();
+					var DOB=obj["result"][0].details.date.value
+					if(str==undefined)
+				    { 
+				        str="";
+				    }
+					if(FatherName==undefined)
+				    { 
+				        FatherName="";
+				    }
+					if(DOB==undefined)
+				    { 
+				        DOB="";
+				    }
+					
+	               var xml=UI_getdata($("#PrcsID").val(),str+'|'+FatherName+'|'+Address+'|'+DOB,"PAN Upload",CusID,"","LSW_TINSKARZADETL");
+				  }
+				  else if($("#"+Fld3).val()=="Non-Individual")
+				  {
+					
+					
+
+if(Constitution=="Society" || Constitution=="Trustee")
+	{
+		Constitution=""
+	}
+	if(Constitution!="")
+	{
+	if(Constitution=='HUF')
+		{
+		    var code = /([H h])/;
+			alert1='Invalid Pan No eg.AAAHA1111A'
+        }
+	else if(Constitution=='Partnership firms')
+		{
+		    var code = /([F f])/;
+			alert1='Invalid Pan No eg.AAAFA1111A'	
+        }
+	else if(Constitution=='LLP')
+	    {
+	       var code = /([E e F f])/;
+		   alert1='Invalid Pan No eg.AAAEA1111A/AAAFA1111A' 
+        }
+	else if(Constitution=='Proprietorship')
+		{
+		  var code = /([C c P p])/;
+		  alert1='Invalid Pan No eg.AAACA1111A/AAAPA1111A'
+		}
+	else
+		{
+		  var code = /([C c])/;
+		  alert1='Invalid Pan No eg.AAACA1111A'
+        }
+	}
+
+     if (obj["result"][0].details.panNo.value != "") {
+         ObjVal = obj["result"][0].details.panNo.value.toUpperCase();
+         var panPat = /^([a-zA-Z]{5})(\d{4})([a-zA-Z]{1})$/;
+       //  var code = /([C c])/;
+         var code_chk = ObjVal.substring(3,4);
+		 if(Constitution=="")
+		 { 
+          if (ObjVal.search(panPat) == -1) {
+             alert('Invalid PAN Format');
+           //  Obj.focus();
+            // Obj.value="";
+			$("[data-Validatearia="+Verify+"]").text('Upload Failed');
+ 	                $("[data-Validatearia="+Verify+"]").removeClass("btn-GrnInplain");	
+ 		            $("[data-Validatearia="+Verify+"]").removeClass("btn-yelInplain");
+ 		            $("[data-Validatearia="+Verify+"]").addClass("btn-RedInplain"); 
+ 	                $("#"+Verify).val('Upload Failed')
+		         	$("#Save1").click();
+             return false;
+			 
+          }
+		 }
+		 else
+		 {
+			 if (ObjVal.search(panPat) == -1) {
+             alert(alert1);
+             //Obj.focus();
+            // Obj.value="";
+			$("[data-Validatearia="+Verify+"]").text('Upload Failed');
+ 	                $("[data-Validatearia="+Verify+"]").removeClass("btn-GrnInplain");	
+ 		            $("[data-Validatearia="+Verify+"]").removeClass("btn-yelInplain");
+ 		            $("[data-Validatearia="+Verify+"]").addClass("btn-RedInplain"); 
+ 	                $("#"+Verify).val('Upload Failed')
+		         	$("#Save1").click();
+             return false;
+         }
+         if (code.test(code_chk) == false) {
+             alert(alert1);
+            // Obj.value="";
+			$("[data-Validatearia="+Verify+"]").text('Upload Failed');
+ 	                $("[data-Validatearia="+Verify+"]").removeClass("btn-GrnInplain");	
+ 		            $("[data-Validatearia="+Verify+"]").removeClass("btn-yelInplain");
+ 		            $("[data-Validatearia="+Verify+"]").addClass("btn-RedInplain"); 
+ 	                $("#"+Verify).val('Upload Failed')
+		         	$("#Save1").click();
+             return false;
+         }
+		 }
+		  str=obj["result"][0].details.name.value.replace("&", "AND");
+					    str=str.replace(/["']/g, "");
+						$("#"+Fld1).val(str);
+					    $("#"+Fld1).next().addClass('active');
+		 
+     }					
+					$("#"+Fld6).val(obj["result"][0].details.panNo.value);
+					$("#"+Fld6).next().addClass('active');
+					
+					FatherName=obj["result"][0].details.father.value
+					
+					$(".TYP").show();
+					$(".PANVTyp").attr("disabled",true);
+					
+					$("#"+Fld6).val(obj["result"][0].details.panNo.value);
+					if($("#"+Fld6).val()!="")
+				     {
+					  $("#"+Fld6).next().addClass('active');
+					 }
+  
+	                $("#Save1").click()
+					var DOB=obj["result"][0].details.date.value
+					if(str==undefined)
+				    { 
+				        str="";
+				    }
+					if(FatherName==undefined)
+				    { 
+				        FatherName="";
+				    }
+					if(DOB==undefined)
+				    { 
+				        DOB="";
+				    }
+	        var xml=UI_getdata($("#PrcsID").val(),str+'|'+FatherName+'|'+Address+'|'+DOB,"PAN Upload",CusID,"","LSW_TINSKARZADETL");
+				  }
+			  }
+			  else if(Type=="AADHAAR XML VERIFY" || Type=="AADHAAR ZIP VERIFY")
+			  {
+				  
+				 var StDt = new Date(obj.result.dataFromAadhaar.generatedDateTime);
+                 var end  = new Date();
+                 var diff = new Date(end - StDt);
+                 var days = diff/1000/60/60/24;
+				     days = days.toFixed()
+				 if(days>3)
+				 {
+					alert("Kindly upload the latest xml file");
+					
+					$("[data-Validatearia="+Verify+"]").text('Upload Failed');
+ 	                $("[data-Validatearia="+Verify+"]").removeClass("btn-GrnInplain");	
+ 		            $("[data-Validatearia="+Verify+"]").removeClass("btn-yelInplain");
+ 		            $("[data-Validatearia="+Verify+"]").addClass("btn-RedInplain"); 
+ 	                $("#"+Verify).val('Upload Failed')
+		         	
+					$("#Save1").click();
+					
+					return false;
+				 }
+				  
+			     $(".AVER").show();
+				 $("#"+Fld6).val(obj.result.dataFromAadhaar.maskedAadhaarNumber);
+				 
+				 if($("#"+Fld6).val()!="")
+				 {
+					$("#"+Fld6).next().addClass('active'); 
+				 }
+				 
+				  Address=obj.result.dataFromAadhaar.address
+				 
+				  DOB=obj.result.dataFromAadhaar.dob
+				  DOB=DOB.replaceAll("-","/");
+				  
+				  Gender=obj.result.dataFromAadhaar.gender
+				  Gender=Gender.replaceAll("-","/");
+				  
+				  str=obj.result.dataFromAadhaar.name
+				  str=str.replaceAll("&","and");
+
+			var xml=UI_getdata($("#PrcsID").val(),str+'|'+FatherName+'|'+Address+'|'+DOB,"Aadhar XML Upload",CusID,Gender,"LSW_TINSKARZADETL"); 
+			  }
+			  else if(Fld5=="PASSPORT")
+			  {
+				  
+				  var FileType=obj.result[0].type;
+				   FileType=FileType.includes("Passport");
+				   var FileTypePass=obj.result[0].type;
+	    	    if(FileType!=true)
+	    		  {
+					alert('Kindly upload the Passport');
+					$("[data-Validatearia="+Verify+"]").text('Upload Failed');
+ 	                $("[data-Validatearia="+Verify+"]").removeClass("btn-GrnInplain");	
+ 		            $("[data-Validatearia="+Verify+"]").removeClass("btn-yelInplain");
+ 		            $("[data-Validatearia="+Verify+"]").addClass("btn-RedInplain"); 
+ 	                $("#"+Verify).val('Upload Failed')
+		         	$("#Save1").click();
+					return false;
+				  }
+				  
+				 $(".PVER").show();
+				 if(obj.result[0].type=="Passport Front")
+				 {
+				 var str=obj["result"][0].details.givenName.value
+				 var DOB=obj["result"][0].details.dob.value
+				 var gender=obj["result"][0].details.gender.value
+				 $("#"+Fld6).val(obj["result"][0].details.passportNum.value);
+				 
+				 if($("#"+Fld6).val()!="")
+				 {
+					$("#"+Fld6).next().addClass('active'); 
+				 }
+				 }
+				 if(obj.result[0].type=="Passport Back")
+				 {
+				 var FatherName=obj["result"][0].details.father.value
+				 var Address=obj["result"][0].details.address.value
+				 var Fileno=obj["result"][0].details.fileNum.value;
+				 var Passportnum=$("#"+Fld6).val()
+				 $("#"+Fld6).val(Fileno+"-"+Passportnum)
+				 Address=obj["result"][0].details.address.value
+				 }
+				  if(Address==undefined)
+				    { 
+				        Address="";
+				    }
+					  if(str==undefined)
+				    { 
+				        str="";
+				    }
+					  if(FatherName==undefined)
+				    { 
+				        FatherName="";
+				    }
+					 if(DOB==undefined)
+				    { 
+				        DOB="";
+				    }
+					 if(gender==undefined)
+				    { 
+				        gender="";
+				    }
+				 //FatherName=obj["result"][0].details.father.value
+			var xml=UI_getdata($("#PrcsID").val(),str+'|'+FatherName+'|'+Address+'|'+DOB,FileTypePass,CusID,gender,"LSW_TINSKARZADETL");
+			  }
+			  else if(Fld5=="VoterID")
+			  {
+				
+				 var FileType=obj.result[0].type;
+				   FileType=FileType.includes("Voter");
+				   var FileTypeVoter=obj.result[0].type;
+	    	  if(FileType!=true)
+	    		{
+					alert('Kindly upload the Voter');
+					$("[data-Validatearia="+Verify+"]").text('Upload Failed');
+ 	                $("[data-Validatearia="+Verify+"]").removeClass("btn-GrnInplain");	
+ 		            $("[data-Validatearia="+Verify+"]").removeClass("btn-yelInplain");
+ 		            $("[data-Validatearia="+Verify+"]").addClass("btn-RedInplain"); 
+ 	                $("#"+Verify).val('Upload Failed')
+		         	$("#Save1").click();
+					return false;
+				} 
+             if(obj.result[0].type=="Voterid Back")
+				{
+					
+					Address=obj.result[0].details.address.value
+					Address=Address.replaceAll('&','and');
+					Address=Address+" - "+obj.result[0].details.pin.value
+					
+					DOB=obj.result[0].details.dob.value
+					DOB=DOB.replaceAll(':','');
+					
+					Gender=obj.result[0].details.gender.value
+				}
+             else
+				{					
+				  
+				  str=obj.result[0].details.name.value.replace("&", "AND").replace("-","");
+					str=str.replace(/["']/g, "");
+					
+				  FatherName=obj.result[0].details.relation.value.replace("&", "AND").replace("-","");
+				  FatherName=FatherName.replace(/["']/g, "");
+				  
+				  $("#"+Fld6).val(obj.result[0].details.voterid.value);
+				  $("#"+Fld6).next().addClass('active');
+				  
+				   $(".VoterFld").show(); 
+				}
+				if(Address==undefined)
+				    { 
+				        Address="";
+				    }
+					  if(str==undefined)
+				    { 
+				        str="";
+				    }
+					  if(FatherName==undefined)
+				    { 
+				        FatherName="";
+				    }
+					 if(DOB==undefined)
+				    { 
+				        DOB="";
+				    }
+					 if(gender==undefined)
+				    { 
+				        gender="";
+				    }
+				    
+				var xml=UI_getdata($("#PrcsID").val(),str+'|'+FatherName+'|'+Address+'|'+DOB,FileTypeVoter,CusID,Gender,"LSW_TINSKARZADETL");
+				  
+			  }
+			 else if(Fld5=="Aadhar")
+			  {
+				   var FileType=obj.result[0].type;
+				   FileType=FileType.includes("Aadhaar");
+				   
+	    	    if(FileType!=true)
+	    		  {
+					alert('Kindly upload the Aadhaar');
+					$("[data-Validatearia="+Verify+"]").text('Upload Failed');
+ 	                $("[data-Validatearia="+Verify+"]").removeClass("btn-GrnInplain");	
+ 		            $("[data-Validatearia="+Verify+"]").removeClass("btn-yelInplain");
+ 		            $("[data-Validatearia="+Verify+"]").addClass("btn-RedInplain"); 
+ 	                $("#"+Verify).val('Upload Failed')
+		         	$("#Save1").click();
+					return false;
+				  }
+				  var FileType1=obj.result[0].type;
+				  if(FileType1=="Aadhaar Front Bottom")
+				  {
+				  var CusName=obj["result"][0].details.name.value
+				  var AadharNo=obj["result"][0].details.aadhaar.value
+				  var gender=obj["result"][0].details.gender.value
+				  if(obj["result"][1]==undefined)
+					{
+					  var DOB=obj["result"][0].details.dob.value
+					   $("#"+Fld8).val(obj["result"][0].details.imageUrl.value)
+					   $(".AadharMskImg").show();
+					   $(".AadharViewImg").hide();
+					}
+				  else
+					{
+					  var DOB=obj["result"][1].details.dob.value
+					  $("#"+Fld8).val(obj["result"][1].details.imageUrl.value)
+					  $(".AadharMskImg").show();
+					  $(".AadharViewImg").hide();
+					}
+				   }
+				   
+				   if(FileType1=="Aadhaar Front Top")
+				  {
+				  var CusName=obj["result"][0].details.name.value
+				  var AadharNo=obj["result"][0].details.aadhaar.value
+				  var gender=obj["result"][1].details.gender.value
+				  if(obj["result"][1]==undefined)
+					{
+					  var DOB=obj["result"][0].details.dob.value
+					  var address=obj["result"][0].details.address.value
+					   $("#"+Fld8).val(obj["result"][0].details.imageUrl.value)
+					   $(".AadharMskImg").show();
+					   $(".AadharViewImg").hide();
+					}
+				  else
+					{
+					  var DOB=obj["result"][1].details.dob.value
+					  var address=obj["result"][0].details.address.value
+					  $("#"+Fld8).val(obj["result"][1].details.imageUrl.value)
+					  $(".AadharMskImg").show();
+					  $(".AadharViewImg").hide();
+					}
+				   }
+				   
+				   if(FileType1=="Aadhaar Back")
+				  {
+				  var AadharNo=obj["result"][0].details.aadhaar.value
+				  if(obj["result"][1]==undefined)
+					{
+					  var address=obj["result"][0].details.address.value
+					   $("#"+Fld8).val(obj["result"][0].details.imageUrl.value)
+					   $(".AadharMskImgII").show();
+					   $(".AadharViewImgII").hide();
+					}
+				  else
+					{
+					  var address=obj["result"][1].details.address.value
+					  $("#"+Fld8).val(obj["result"][1].details.imageUrl.value)
+					  $(".AadharMskImgII").show();
+					  $(".AadharViewImgII").hide();
+					}
+				   }
+				   
+				   
+				   
+				 // var DOB=obj["result"][0].details.dob.value
+				  
+				  
+				  $("#"+Fld6).val(AadharNo);
+				  $("#"+Fld6).next().addClass('active');
+                  $("#"+Fld6).attr("disabled",true);
+				  
+				  $(".AVER").show();
+				  
+				  if(address==undefined)
+				    { 
+				        address="";
+				    }
+					  if(CusName==undefined)
+				    { 
+				        CusName="";
+				    }
+					  if(FatherName==undefined)
+				    { 
+				        FatherName="";
+				    }
+					 if(DOB==undefined)
+				    { 
+				        DOB="";
+				    }
+					 if(gender==undefined)
+				    { 
+				        gender="";
+				    }
+				  var xml=UI_getdata($("#PrcsID").val(),CusName+'|'+FatherName+'|'+address+'|'+DOB,FileType1,CusID,gender,"LSW_TINSKARZADETL");
+
+				  
+			  }
+			  else if(Fld5=="DL")
+			  {
+				var FileType=obj.result[0].type;
+				   FileType=FileType.includes("DL");
+				   var FileTypeDL=obj.result[0].type;
+				   
+	    	    if(FileType!=true)
+	    		  {
+					alert('Kindly upload the DL');
+					$("[data-Validatearia="+Verify+"]").text('Upload Failed');
+ 	                $("[data-Validatearia="+Verify+"]").removeClass("btn-GrnInplain");	
+ 		            $("[data-Validatearia="+Verify+"]").removeClass("btn-yelInplain");
+ 		            $("[data-Validatearia="+Verify+"]").addClass("btn-RedInplain"); 
+ 	                $("#"+Verify).val('Upload Failed')
+		         	$("#Save1").click();
+					return false;
+				  }
+				  
+				   $(".DVER").show();
+				   
+				   $("#"+Fld6).val(obj.result[0].details.dlNo.value);
+				   
+				    if($("#"+Fld6).val()!="")
+				     {
+					   $("#"+Fld6).next().addClass('active'); 
+				     }
+				     //Address=obj.result.address[0].completeAddress
+				     // Address=Address.replace(/["']/g, "");  
+				   str=obj.result[0].details.name.value.replace("&", "AND").replace("-","");
+				      str=str.replace(/["']/g, "");
+					  
+					  DOB=obj.result[0].details.dob.value
+					  if(address==undefined)
+				    { 
+				        address="";
+				    }
+					  if(str==undefined)
+				    { 
+				        str="";
+				    }
+					  if(FatherName==undefined)
+				    { 
+				        FatherName="";
+				    }
+					 if(DOB==undefined)
+				    { 
+				        DOB="";
+				    }
+					 if(gender==undefined)
+				    { 
+				        gender="";
+				    }
+					  var xml=UI_getdata($("#PrcsID").val(),str+'|'+FatherName+'|'+address+'|'+DOB,FileTypeDL,CusID,gender,"LSW_TINSKARZADETL");
+			  }
+            else if(Type=="ELECTRICITY BILL")
+			  {
+				  Address=obj["result"].address
+				     Address=Address.replace(/["']/g, "");
+				   str=obj["result"].consumer_name.replace("&", "AND").replace("-","");
+				      str=str.replace(/["']/g, "");
+			  }
+			 else if(Type=="TELEPHONE")
+			  {
+				  Address=obj["result"].address
+				     Address=Address.replace(/["']/g, "");
+				   str=obj["result"].name.replace("&", "AND").replace("-","");
+				      str=str.replace(/["']/g, "");
+			  }
+			  if(Type=="FACE LIVENESS")
+			  {
+				var Score=obj["result"].livenessScore.toFixed(2);
+				$("#"+Fld5).val(Score);
+				$(".ImgScore").text('Image Score : '+Score);
+			  }
+			//var xml=UI_getdata($("#PrcsID").val(),str+'|'+FatherName+'|'+Address+'|'+DOB,Type,CusID,"","LSW_TINSKARZADETL");
+			$("#Save1").click();
+		 }
+		 else if(obj["status-code"] =='103' || obj["statusCode"] =='103')
+         {
+			  if(Type=="FACE LIVENESS")
+			  {
+                 alert(obj["statusMessage"]);
+				 return false;
+			  }				  
+		 }
+		else if(obj["status-code"] =='102' || obj["statusCode"] =='102')
+         {
+		    alert("Kindly upload the valid document");
+			
+		    $("[data-Validatearia="+Verify+"]").text('Failed');
+ 	        $("[data-Validatearia="+Verify+"]").removeClass("btn-GrnInplain");	
+ 		    $("[data-Validatearia="+Verify+"]").removeClass("btn-yelInplain");
+ 		    $("[data-Validatearia="+Verify+"]").addClass("btn-RedInplain"); 
+ 	        $("#"+Verify).val('Failed')
+         }		 
+		else
+		 {
+			if(Fld5=="MULTIEMP") 
+			{
+			
+				$(HTML).find("[data-Validatearia=CEMI_UDYAMVERI]").text('Failed');
+				$(HTML).find("[data-Validatearia=CEMI_UDYAMVERI]").text('Failed');
+ 	            $(HTML).find("[data-Validatearia=CEMI_UDYAMVERI]").removeClass("btn-GrnInplain");	
+ 		        $(HTML).find("[data-Validatearia=CEMI_UDYAMVERI]").removeClass("btn-yelInplain");
+ 		        $(HTML).find("[data-Validatearia=CEMI_UDYAMVERI]").addClass("btn-RedInplain"); 
+ 	            $("#"+Verify).val('Failed')
+			}
+			 else
+			 { 
+			$("[data-Validatearia="+Verify+"]").text('Failed');
+ 	        $("[data-Validatearia="+Verify+"]").removeClass("btn-GrnInplain");	
+ 		    $("[data-Validatearia="+Verify+"]").removeClass("btn-yelInplain");
+ 		    $("[data-Validatearia="+Verify+"]").addClass("btn-RedInplain"); 
+ 	        $("#"+Verify).val('Failed')
+			$("#Save1").click();
+			 }
+		 }
+	}
+	else
+	{
+		alert(stm.split("!@#")[1]);
+		return false;
+	}
+		},
+    error: function(stm) {
+    	 //window.alert(LoadFrmXML("V0125"))
+    	alert("Error Occured. Contant IT!!!");
+    	   }
+	})
+  }
+  else
+  {	
+	 FncallDocChkLst(this,'Table2',{spname:'LSW_SKARZALIST',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$("#"+Fld4).val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||7','KARZAGRD')
+     $(".KrazaPopup").click();
+  }
+}
+
+function AutomPaym(LonID,Amt,GSTAmt,Page,AmtType)
+{
+	if($("#"+Amt).val()=="" || $("#"+GSTAmt).val()=="")
+	{
+		alert("Kindly enter the Payment Amount");
+		return false;
+	}
+	$("#Save").click();
+	
+	var LoanID=$("#"+LonID).val();
+	 
+	$.ajax({
+        url: "/TPLSW/Atom",
+        type: 'POST',
+        data: {Param1:LoanID,Param2:"Service|"+Page+"|"+AmtType,SPNAME:"LSW_SATOMAPICREATE",PRCSID:$("#PrcsID").val(),Prvnt:$(window.parent.parent.document).find("#Prvnt").val()},
+        async:false,
+        //dataType: 'json',
+       //contentType:'application/json',
+        success: function(stm){        
+       // var obj = JSON.parse(JSON.stringify(stm))
+	   	
+        var w = "600";
+        var h = "500";
+	    
+		var left = (screen.width/2)-(w/2);
+	    var top = (screen.height/2)-(h/2);
+	    var URL = stm;
+
+	  $(".loader").show();	  
+	  //childWindow =  window.open(URL, "PAYMENT GATEWAY", 'toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, copyhistory=no, //width='+w+', height='+h+', top='+top+', left='+left);
+	var xml=UI_getdata($("#PrcsID").val(),URL,'','EMAIL','ATOM',"LSW_SSENDATOMLNK");
+		},
+    error: function(stm) {
+    	 //window.alert(LoadFrmXML("V0125"))
+    	alert("Error Occured. Contant IT!!!");
+    	   }
+	})
+}
+
+function CheckValidPanKyc(Id,Verify,FstNam,LstNam,CusType,CUSID,Addr1,Addr2,INCM1,INCM2,PROFILE,EMPADDRI,EMPADDRII,CONSTI,NaturBusi)
 {
 	if($("#"+Verify).val()!="Verified")
 	{
@@ -5079,20 +6415,7 @@ function CheckValidPanKyc(Id,Verify,FstNam,LstNam,CusType,CUSID,Addr1,Addr2,INCM
        // dataType: 'json',
        // contentType:'application/json',
         
-        success: function(stm){ 
-            
-			/*if(typeof stm =="string")
-      {
-      	alert("Error Occured. Contant IT!!!");
-        		return false;
-      }*/
-        	if(stm=="")
-        		{
-        		alert("Error Occured. Contant IT!!!");
-        		return false;
-        		
-        		}
-		
+        success: function(stm){        
        // var obj = JSON.parse(JSON.stringify(stm))
         	 var obj = JSON.parse(stm)
         //alert(obj);
@@ -5117,12 +6440,12 @@ function CheckValidPanKyc(Id,Verify,FstNam,LstNam,CusType,CUSID,Addr1,Addr2,INCM
         	    	 var str=obj["result"].name.replace("&", "AND");
 					     str=str.replace(/["']/g, "");
         	    	 var Data=str.replace(" ","|");
-        	    	 var FirstName=Data.split("|")[0]//.replace("&", "and");
-        	    	 var LastName=Data.split("|")[1]//.replace("&", "and");
+        	    	 var FirstName=Data.split("|")[0]
+        	    	 var LastName=Data.split("|")[1]
         	    	 $("#"+FstNam).val(FirstName);
         	    	 $("#"+LstNam).val(LastName);
+					 $(".DPAN").hide();
         	    	 //$("#"+FatNam).val(FatherName);
-					  $(".DPAN").hide();
         	    	 $("#Save1").click();
         	    	/* if( $("#"+FatNam).val() != "")
             		 {
@@ -5179,19 +6502,6 @@ function CheckValidPanKyc(Id,Verify,FstNam,LstNam,CusType,CUSID,Addr1,Addr2,INCM
         	        
         	        success: function(stm){        
         	       // var obj = JSON.parse(JSON.stringify(stm))
-				   
-				 /*  if(typeof stm =="string")
-      {
-      	alert("Error Occured. Contant IT!!!");
-        		return false;
-      }*/
-        	if(stm=="")
-        		{
-        		alert("Error Occured. Contant IT!!!");
-        		return false;
-        		
-        		}
-				   
         	        	 var obj = JSON.parse(stm)
         	        //alert(obj);
         	   
@@ -5242,7 +6552,7 @@ function CheckValidPanKyc(Id,Verify,FstNam,LstNam,CusType,CUSID,Addr1,Addr2,INCM
          	 	     }
         		 else if(obj["status"]=='504')
                     {
-                	  $("[data-Validatearia="+Verify+"]").text('Failed');
+                	  /*$("[data-Validatearia="+Verify+"]").text('Failed');
                  	  $("[data-Validatearia="+Verify+"]").removeClass("btn-GrnInplain");	
                  	  $("[data-Validatearia="+Verify+"]").removeClass("btn-yelInplain");
                  	  $("[data-Validatearia="+Verify+"]").addClass("btn-RedInplain"); 
@@ -5251,28 +6561,28 @@ function CheckValidPanKyc(Id,Verify,FstNam,LstNam,CusType,CUSID,Addr1,Addr2,INCM
                 	  $("#"+INCM1+'1'). prop("checked", false);
                        //$('#'+INCM1).is(':checked')==false
                         $("#"+INCM1).attr('disabled',true)
-                 	    $("."+Type).hide();
+                 	    $("."+Type).hide();*/
                         alert(obj["error"]);
                         return false;
                     }
         		 else if(obj["status"]=='402')
              	   {
-        			  $("[data-Validatearia="+Verify+"]").text('Failed');
-                	  $("[data-Validatearia="+Verify+"]").removeClass("btn-GrnInplain");	
-                	  $("[data-Validatearia="+Verify+"]").removeClass("btn-yelInplain");
-                	  $("[data-Validatearia="+Verify+"]").addClass("btn-RedInplain"); 
-                	  $("#"+Verify).val('Failed')
-                      $("#"+INCM1+'1').val('No');
-               	      $("#"+INCM1+'1'). prop("checked", false);
-                      //$('#'+INCM1).is(':checked')==false
-                       $("#"+INCM1+'1').attr('disabled',true)
-                	    $("."+Type).hide();
+        			 /*$("[data-Validatearia="+Verify+"]").text('Failed');
+                	 $("[data-Validatearia="+Verify+"]").removeClass("btn-GrnInplain");	
+                	 $("[data-Validatearia="+Verify+"]").removeClass("btn-yelInplain");
+                	 $("[data-Validatearia="+Verify+"]").addClass("btn-RedInplain"); 
+                	 $("#"+Verify).val('Failed')
+                     $("#"+INCM1+'1').val('No');
+               	     $("#"+INCM1+'1'). prop("checked", false);
+                     $('#'+INCM1).is(':checked')==false
+                     $("#"+INCM1+'1').attr('disabled',true)
+                	 $("."+Type).hide();*/
                        alert(obj["error"]);
                        return false;
              	   }
               else
         	 	  {
-        	 	    $("[data-Validatearia="+Verify+"]").text('Failed');
+        	 	   /* $("[data-Validatearia="+Verify+"]").text('Failed');
         	 	    $("[data-Validatearia="+Verify+"]").removeClass("btn-GrnInplain");	
         	 		$("[data-Validatearia="+Verify+"]").removeClass("btn-yelInplain");
         	 		$("[data-Validatearia="+Verify+"]").addClass("btn-RedInplain"); 
@@ -5296,7 +6606,7 @@ function CheckValidPanKyc(Id,Verify,FstNam,LstNam,CusType,CUSID,Addr1,Addr2,INCM
         	     	 $("#"+FstNam).attr('disabled',false)
         	     	 $("#"+FstNam).attr('disabled',false)
         	     	 $("#"+FstNam).attr('disabled',false)
-        	     	}
+        	     	}*/
         	    }
         	      	 
         	    },
@@ -5385,15 +6695,14 @@ function CheckValidPanKyc(Id,Verify,FstNam,LstNam,CusType,CUSID,Addr1,Addr2,INCM
            $('#'+INCM2).attr("disabled",false)
         	   if(Type=="pan")
                 {
-           	     
-				 var str=obj["result"].name.replace("&", "AND");
+           	     var str=obj["result"].name.replace("&", "AND");
 					     str=str.replace(/["']/g, "");
            	     $("#"+FstNam).val(str);
            	     $("#"+FstNam).next().addClass('active');
            	     $("#"+FstNam).attr('disabled',true)
            	     $("."+Type).addClass('DOCMndtry');
          	     $("."+Type).show();
-				  $(".DPAN").hide();
+				 $(".DPAN").hide();
            	     $("#Save1").click();
            	     
          	    if(Type=="pan")
@@ -5461,31 +6770,31 @@ function CheckValidPanKyc(Id,Verify,FstNam,LstNam,CusType,CUSID,Addr1,Addr2,INCM
      	             }
         		 else if(obj["status"]=='504')
                     {
-                	  $("[data-Validatearia="+Verify+"]").text('Failed');
-                 	  $("[data-Validatearia="+Verify+"]").removeClass("btn-GrnInplain");	
-                 	  $("[data-Validatearia="+Verify+"]").removeClass("btn-yelInplain");
-                 	  $("[data-Validatearia="+Verify+"]").addClass("btn-RedInplain"); 
-                 	  $("#"+Verify).val('Failed')
-                      $("#"+INCM1).val('No');
-                	  $("#"+INCM1). prop("checked", false);
+                	 // $("[data-Validatearia="+Verify+"]").text('Failed');
+                 	 // $("[data-Validatearia="+Verify+"]").removeClass("btn-GrnInplain");	
+                 	  //$("[data-Validatearia="+Verify+"]").removeClass("btn-yelInplain");
+                 	  //$("[data-Validatearia="+Verify+"]").addClass("btn-RedInplain"); 
+                 	 // $("#"+Verify).val('Failed')
+                    //  $("#"+INCM1).val('No');
+                	//  $("#"+INCM1). prop("checked", false);
                        //$('#'+INCM1).is(':checked')==false
-                        $("#"+INCM1).attr('disabled',true)
-                 	    $("."+Type).hide();
+                       // $("#"+INCM1).attr('disabled',true)
+                 	   // $("."+Type).hide();
                         alert(obj["error"]);
                         return false;
                     }
         		 else if(obj["status"]=='402')
              	 {
-        			  $("[data-Validatearia="+Verify+"]").text('Failed');
-                	  $("[data-Validatearia="+Verify+"]").removeClass("btn-GrnInplain");	
-                	  $("[data-Validatearia="+Verify+"]").removeClass("btn-yelInplain");
-                	  $("[data-Validatearia="+Verify+"]").addClass("btn-RedInplain"); 
-                	  $("#"+Verify).val('Failed')
-                      $("#"+INCM1).val('No');
-               	      $("#"+INCM1). prop("checked", false);
+        			  //$("[data-Validatearia="+Verify+"]").text('Failed');
+                	  //$("[data-Validatearia="+Verify+"]").removeClass("btn-GrnInplain");	
+                	  //$("[data-Validatearia="+Verify+"]").removeClass("btn-yelInplain");
+                	 // $("[data-Validatearia="+Verify+"]").addClass("btn-RedInplain"); 
+                	 // $("#"+Verify).val('Failed')
+                      //$("#"+INCM1).val('No');
+               	      //$("#"+INCM1). prop("checked", false);
                       //$('#'+INCM1).is(':checked')==false
-                       $("#"+INCM1).attr('disabled',true)
-                	    $("."+Type).hide();
+                      // $("#"+INCM1).attr('disabled',true)
+                	   // $("."+Type).hide();
                        alert(obj["error"]);
                        return false;
              	 }
@@ -5605,10 +6914,17 @@ function CheckValidPanKyc(Id,Verify,FstNam,LstNam,CusType,CUSID,Addr1,Addr2,INCM
  	    	 $("#"+FstNam).next().addClass("active");
  	    	 $("#"+FstNam).attr('disabled',true)
  	       }*/
+		   	if($("#"+CONSTI).val()=="Proprietorship" || $("#"+CONSTI).val()=="Society" || $("#"+CONSTI).val()=="Trustee")
+ 	    	{
+				var TradName=obj["result"].tradeNam.replace("&", "AND");
+ 	    	 $("#"+FstNam).val(TradName);
+ 	    	 $("#"+FstNam).next().addClass('active');
+ 	    	}
  	    var GSTAddr=obj["result"].pradr.adr.replace("&", "AND");
-		    GSTAddr=GSTAddr.replace(/["']/g, "");
+		   GSTAddr=GSTAddr.replace(/["']/g, "");
 		var NTR=obj["result"].pradr.ntr.replace("&", "AND");
- 	     $("#"+NaturBusi).val(NTR);
+		
+ 	   $("#"+NaturBusi).val(NTR);
  	   if($("#"+LstNam).val()=="Non-Individual")
  		   {
  		   
@@ -5619,16 +6935,20 @@ function CheckValidPanKyc(Id,Verify,FstNam,LstNam,CusType,CUSID,Addr1,Addr2,INCM
 	    var Event=GSTAddr.split(',').length%2
 	    if(Event=="1")
 	    	{
-	    	  $("#"+Addr1).val((GSTAddr.split(',')[0])+','+(GSTAddr.split(',')[1])+','+(GSTAddr.split(',')[2])+','+(GSTAddr.split(',')[3]))
+				var NonIndAddr1=(GSTAddr.split(',')[0])+','+(GSTAddr.split(',')[1])+','+(GSTAddr.split(',')[2])+','+(GSTAddr.split(',')[3])
+	    	  $("#"+Addr1).val(NonIndAddr1.replace(/,undefined/g,' '))
 	    	  $("#"+Addr1).next().addClass("active")
-	    	  $("#"+Addr2).val((GSTAddr.split(',')[4])+','+(GSTAddr.split(',')[5])+','+(GSTAddr.split(',')[6]));
+			   var NonIndAddr2=(GSTAddr.split(',')[4])+','+(GSTAddr.split(',')[5])+','+(GSTAddr.split(',')[6])
+	    	  $("#"+Addr2).val(NonIndAddr2.replace(/,undefined/g,' '));
 	 	      $("#"+Addr2).next().addClass("active")
 	    	}
 	    else
 	    	{
-	    	  $("#"+Addr1).val((GSTAddr.split(',')[0])+','+(GSTAddr.split(',')[1])+','+(GSTAddr.split(',')[2]))
+				var NonIndAddr1=(GSTAddr.split(',')[0])+','+(GSTAddr.split(',')[1])+','+(GSTAddr.split(',')[2])
+	    	  $("#"+Addr1).val(NonIndAddr1.replace(/,undefined/g,' '))
 	    	  $("#"+Addr1).next().addClass("active")
-	    	  $("#"+Addr2).val((GSTAddr.split(',')[3])+','+(GSTAddr.split(',')[4])+','+(GSTAddr.split(',')[5]));
+			   var NonIndAddr2=(GSTAddr.split(',')[3])+','+(GSTAddr.split(',')[4])+','+(GSTAddr.split(',')[5])
+	    	  $("#"+Addr2).val(NonIndAddr2.replace(/,undefined/g,' '));
 	 	      $("#"+Addr2).next().addClass("active")
 	    	}
 	      }
@@ -5646,16 +6966,20 @@ function CheckValidPanKyc(Id,Verify,FstNam,LstNam,CusType,CUSID,Addr1,Addr2,INCM
 	    var Event=GSTAddr.split(',').length%2
 	    if(Event=="1")
 	    	{
-	    	  $("#"+EMPADDRI+"1").val((GSTAddr.split(',')[0])+','+(GSTAddr.split(',')[1])+','+(GSTAddr.split(',')[2])+','+(GSTAddr.split(',')[3]))
+				var IndAddr1=(GSTAddr.split(',')[0])+','+(GSTAddr.split(',')[1])+','+(GSTAddr.split(',')[2])+','+(GSTAddr.split(',')[3])
+	    	  $("#"+EMPADDRI+"1").val(IndAddr1.replace(/,undefined/g,' '))
 	    	  $("#"+EMPADDRI+"1").next().addClass("active")
-	    	  $("#"+EMPADDRII+"1").val((GSTAddr.split(',')[4])+','+(GSTAddr.split(',')[5])+','+(GSTAddr.split(',')[6]));
+			   var IndAddr2=(GSTAddr.split(',')[4])+','+(GSTAddr.split(',')[5])+','+(GSTAddr.split(',')[6])
+	    	  $("#"+EMPADDRII+"1").val(IndAddr2.replace(/,undefined/g,' '));
 	 	      $("#"+EMPADDRII+"1").next().addClass("active")
 	    	}
 	    else
 	    	{
-	    	  $("#"+EMPADDRI+"1").val((GSTAddr.split(',')[0])+','+(GSTAddr.split(',')[1])+','+(GSTAddr.split(',')[2]))
+				var IndAddr1=(GSTAddr.split(',')[0])+','+(GSTAddr.split(',')[1])+','+(GSTAddr.split(',')[2])
+	    	  $("#"+EMPADDRI+"1").val(IndAddr1.replace(/,undefined/g,' '))
 	    	  $("#"+EMPADDRI+"1").next().addClass("active")
-	    	  $("#"+EMPADDRII+"1").val((GSTAddr.split(',')[3])+','+(GSTAddr.split(',')[4])+','+(GSTAddr.split(',')[5]));
+			   var IndAddr2=(GSTAddr.split(',')[3])+','+(GSTAddr.split(',')[4])+','+(GSTAddr.split(',')[5])
+	    	  $("#"+EMPADDRII+"1").val(IndAddr2.replace(/,undefined/g,' '));
 	 	      $("#"+EMPADDRII+"1").next().addClass("active")
 	    	}
 	      }
@@ -5741,29 +7065,34 @@ function CheckValidPanKyc(Id,Verify,FstNam,LstNam,CusType,CUSID,Addr1,Addr2,INCM
 	  }
 }
 
-
-function CheckMobValidKyc(Id,Type,Verify,MOBCONT,CONBTN,CONBTNI,DOB)
+function CheckMobValidKyc(Id,Type,Cusid,Verify,Category,Y)
 {
+	if(Category=="SMS")
+	{
+		$(".TILE").text('Mobile OTP Verification');
+	}
+	else if(Category=="SMSII")
+	{
+		$(".TILE").text('Mobile 2 OTP Verification');
+	}
+	else
+	{	
+		$(".TILE").text('Email OTP Verification');
+	}
 	
 	if($("#"+Verify).val() !="Verified")
 	{
-      if(Type=="otp")
-
+     if(Type=="OTP")
      {
              IdVal=$("#"+Id).val()
 
             if(IdVal=="")
-
             {
-
-            alert("Kindly enter the Valid Number")
-
-            return;
-
+              alert("Kindly enter the Valid Mail ID")
+              return;
             }  
-			
-	
-         var param1="";
+			$("#Save2").click();
+       /*  var param1="";
 
     //var param2="C19000065_U1";
 
@@ -5851,21 +7180,54 @@ else
 
                   }
 
-           });
+           });*/
+		   
+		   
+		 var SendOTP=UI_getdata(Y,$("#PrcsID").val(),$("#"+Cusid).val(),Category,"OTP","LSW_SSMSEMAILVERIFY"); 
+		 
+		 if($(SendOTP).find("Result").text()=="Success")
+		 {
+		     alert("OTP Sent Successfully");
+			 if(Category=="SMS")
+				{
+				$("#MOBOTP").show();
+				$("#EMAILOTP").hide();
+				$("#MOBOTPII").hide();
+				}
+             else if(Category=="SMSII")
+				{
+				$("#MOBOTP").hide();
+				$("#EMAILOTP").hide();
+				$("#MOBOTPII").show();
+				}
+				else
+				{
+				$("#MOBOTP").hide();
+				$("#EMAILOTP").show();
+				$("#MOBOTPII").hide();
+				}
+
+               $("#MobPopup").click();
+			   $('#HdnFieldId').val(Verify);
+			   $('#FldVal').val(IdVal);
+               $('#RequestId').val($("#"+Cusid).val())
+              // $('#HdnFieldId').val(Verify)
+		 }
      }
-
-      else if(Type=="status")
-
-         {
-		
-             Verify = $('#HdnFieldId').val();
-             var LgnAttmpt =UI_getdata("","",$('#MobOTP').val(),$('#RequestId').val(),'',"SCF_sValdtOTP");          
+    else if(Type=="status")
+     {
+             var Verify = $('#HdnFieldId').val();
+			 
+             var LgnAttmpt =UI_getdata($("#PrcsID").val(),$('#RequestId').val(),$('#MobOTP').val(),$('#FldVal').val(),Category,"LSW_SValdtOTP1");          
 
              if($(LgnAttmpt).find('Result').text()=="OTP Verified")
-
                   {
+					  
+			var ver=UI_getdata("",$("#PrcsID").val(),$('#RequestId').val(),Category,"OTP Verification","LSW_SSMSEMAILVERIFY"); 		  
+		 
          $("[data-Validatearia="+Verify+"]").text('Verified');
-
+           
+		   
              $("[data-Validatearia="+Verify+"]").addClass("btn-GrnInplain"); 
 
                $("[data-Validatearia="+Verify+"]").removeClass("btn-yelInplain");
@@ -5875,17 +7237,14 @@ else
              $("#"+Verify).val('Verified');
                //$("[data-Validatearia="+Verify+"]").val('Verified')
              $("#MOBPOPCLOSE").click();
-
          $("#RequestId").val('');
-
          $('#MobOTP').val('');
-
-         $("#"+Id).val('')
-
+         //$("#"+Id).val('')
                   }
             else
          {
                    alert($(LgnAttmpt).find('Result').text());
+				   
          $("[data-Validatearia="+Verify+"]").text('Failed');
 
           $("[data-Validatearia="+Verify+"]").removeClass("btn-GrnInplain"); 
@@ -5904,19 +7263,30 @@ else
 
           $("#MOBPOPCLOSE").click();
          }
-	  
+	  }
          }
-	}
 	else
 		{
+		if(Category=="SMS")
+	     {	
 		alert("Mobile Number Already Verified.")
 		 return false;
+		 }
+		 else if(Category=="SMSII")
+	     {	
+		alert("Mobile Number 2 Already Verified.")
+		 return false;
+		 }
+		 else 
+		 {	
+		   alert("Email ID Already Verified.")
+		   return false;
+		 }
 		}
 }
 
 function WFComplete (ACTVID,WDATA,SNAME)
 {
-	
 	if (SNAME == "")
 		{
 		SNAME = "LSW_SWFCompleteCALL";
@@ -5934,22 +7304,50 @@ function WFComplete (ACTVID,WDATA,SNAME)
          if	(res.split("~")[1] == "Workflow Submitted")
          	{
          	alert("File Submitted Successful");
-         	 $(location).attr('href',window.location.origin + "/TPLSW/MyApplication")         	
+         	 
+         if($("#DMY5").val().split("|")[2]=="PreLogin" )	
+		 {
+			 UI_getdata($("#PrcsID").val(),"","","","Data Entry submission","LSW_SSMSEMAILLINKSND");
+		 }
+		 //if(($("#DMY5").val().split("|")[2]=="RCMDI")||($("#DMY5").val().split("|")[2]=="RCMDII"))
+		if(($("#DMY5").val().split("|")[2]=="RCMDII"))
+		 {
+			 UI_getdata($("#PrcsID").val(),"","","","In-principle approval - 1","LSW_SSMSEMAILLINKSND");
+			 UI_getdata($("#PrcsID").val(),"","","","In-principle approval - 2","LSW_SSMSEMAILLINKSND");
+		 }
+		 if($("#DMY5").val().split("|")[2]=="ReCredit" )	
+		 {
+			 UI_getdata($("#PrcsID").val(),"","","","Final Approval","LSW_SSMSEMAILLINKSND");
+		 }
+		 
+        	$(location).attr('href',window.location.origin + "/TPLSW/MyApplication")   
          	}
          else
          	{
+				// Added for Jira HE-5201 Start
+				if($("#DMY5").val().split("|")[2]=="RCMDII" || $("#DMY5").val().split("|")[2]=="RCMDI")
+				{
+					var xml=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHKWFRECMLEL");
+				}
+				// Added for Jira HE-5201 End
+				
          	alert("Loan Submission Failed");
          	}
              //console.log(res)
          },
          error: function(res) {
-         	
+			 // Added for Jira HE-5201 Start
+         	if($("#DMY5").val().split("|")[2]=="RCMDII" || $("#DMY5").val().split("|")[2]=="RCMDI")
+				{
+					var xml=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHKWFRECMLEL");
+				}
+			// Added for Jira HE-5201 End
          	alert("Loan Submission Failed");
 	            }
-       
      });
 	
 }
+
 
 function WFComplete_V1 (ACTVID,WDATA,SNAME,REDIRECTPG)
 {
@@ -5987,7 +7385,6 @@ function WFComplete_V1 (ACTVID,WDATA,SNAME,REDIRECTPG)
      });
 	
 }
-
 
 function WFVndActvInit(ACTVID,WDATA,SNAME)
 {
@@ -6060,6 +7457,10 @@ else if ($($(".admin-panel .Formaccordion .card")[parseInt($(event).attr("data-c
 		 {
 		 $($($(".admin-panel .Formaccordion .card")[parseInt($(event).attr("data-card")) + 2]).find("a.AFormaccordion")).click()
 		 }*/
+		 if($($(".admin-panel .Formaccordion .card")[0]).hasClass("CAM")==true && $("#PrMs9").val() == "FormPageTab5" && $("#PrMs10").val() == "FormMainTab6")
+		 {
+			 cardchk="N";
+		 }
 
 if (cardchk	== "Y")
 {
@@ -6116,7 +7517,11 @@ else if ($(".FormPageMultiTab li.active").next().length > 0)
 	  }	
 else if ($(".FormPageTab li.active").next().length > 0)
   { 
-	
+	if($("#VERTICAL").val() == "UCV Eco" && $("#PrMs10").val() == "FormMainTab4"  && $(".FormPageTab li.active").next().is(":visible") == false)
+	{
+		$(".FormMainTabs li.active").next().click();
+	}
+	else{
 	if($(".FormPageTab li.active").next().attr("data-required")=='Y')
 		{
 		  var xml=UI_getdata($(".FormPageTab li.active").attr('id'),$("#PrcsID").val(),"C",$(".FormMainTabs li.active").attr('id'),$("#PrcsID").val(),"LSW_SPAGEFILEMILESTONCOMPL");
@@ -6128,6 +7533,7 @@ else if ($(".FormPageTab li.active").next().length > 0)
 		   var xml=UI_getdata($(".FormMainTabs li.active").attr('id'),$("#PrcsID").val(),"C","","","LSW_TFILEMILESTONCOMPL")  
 	       $(".FormMainTabs li.active").next().click();
 		}
+	}
   }
  else
   {
@@ -6234,8 +7640,11 @@ var CountAttch=1;
 	 
 
  	 var FileSize=parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2);
-     var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
-	 
+   //  var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
+	    var Filename  = $(id).closest('td').find('input[type="file"]')[0].files[0].name
+	      var FileType= Filename.substring(Filename.lastIndexOf('.')+1);
+          var  Filename= Filename.substring(0, Filename.lastIndexOf('.'));
+          var names=Filename
 
 		var xml=UI_getdata(FileType,FileSize,"","","","LSW_SGETKYCDOCUMNTTYPE")
 		
@@ -6245,7 +7654,7 @@ var CountAttch=1;
 		alert("Upload Only Image and PDF")
 		return
     }	 
- names=names.slice(0,-1)+'.'+FileType	
+ names=names+'.'+FileType	
 var y=  names;
 var specialChars = "<>&#^|~`"
 var check = function(string){
@@ -6260,7 +7669,7 @@ var check = function(string){
 if(check(y) == false){
     // Code that needs to execute when none of the above is in the string
 }else{
-    alert('Special characters not allowed in the upload file');
+    alert('File name contains special character please remove and upload');
 	$(id).closest('td').find('input[type="file"]').val('')
 	return;
 }
@@ -6408,6 +7817,48 @@ var IOP=LoadFrmXML("RS006");
 	    	}
 }
 
+function GrdDocDwnldDB(id)
+{
+//ajaxindicatorstart("Generating, Please wait...");
+var IOP=LoadFrmXML("RS006");
+	//var processId= $(this).closest('tr').children('td:eq(4)').text();
+	var RedirectURL="";
+	//var AppNo=AppNo
+    var url= $("#DMY1").val()
+    
+    
+		    if (url != "")
+		    	{
+		    	
+	//if(AcctNo!=""){
+	//RedirectURL = url.replace("XXDMSIDXX",$("#"+id).val().split("\\")[0]);
+	
+	if ($("#"+id).val().split("\\")[0] == "")
+		
+		{
+			alert("No Attachments Available to View");
+			return;
+		}
+	
+	RedirectURL =window.location.origin+"/TPLSW/DMSVIEWDB?PrcsID=" + $("#PrcsID").val() + "&DMSID=" + $("#"+id).val().split("\\")[0];
+	
+	$("#DocView").attr("src", RedirectURL);
+	
+	/*var link = document.createElement("a");
+    link.download = 'Report';
+    link.href = RedirectURL;
+    link.click();*/
+	//ScrnFileDownload(RedirectURL);
+	//window.open(RedirectURL);
+	//WintabsCtrl(RedirectURL,'Term Sheet',AppNo,'yes');
+	//ajaxindicatorstop();
+		    	}
+		    else
+	    	{
+	    	alert("No Attachments Available to View");
+	    //	ajaxindicatorstop();
+	    	}
+}
 
 function ReuploadFile(id)
 {
@@ -6423,11 +7874,25 @@ if (strconfirm == true)
 	//$(id).closest('td').find('.View').remove();
 	
     $(id).closest('td').find('input[type="file"]').trigger('click')
+	
+	ReUpldVerifyButton(id);
     }
   
 	else
 	{
 		return;
+	}
+}
+
+function ReUpldVerifyButton(id)
+{
+	var Data=$(id).attr('data-field');
+	if(Data!=undefined){
+	$("[data-Validatearia="+Data+"]").text('Upload Verify');
+ 	$("[data-Validatearia="+Data+"]").removeClass("btn-GrnInplain");	
+ 	$("[data-Validatearia="+Data+"]").addClass("btn-yelInplain");
+ 	$("[data-Validatearia="+Data+"]").removeClass("btn-RedInplain");  
+ 	$("#"+Data).val('');
 	}
 }
 
@@ -6438,10 +7903,10 @@ function DupPanval(Prcsid,PAN,Constitution,CUSID)
 	var PANVAL=$("#"+PAN).val()
 	var cusidVAL=$("#"+CUSID).val()
 	var Constitution=$("#"+Constitution).val()
-	if(PANVAL != "")
-	{
-	  if(Constitution != "Partnership Firm")
-	   {
+	//if(PANVAL != "")
+	//{
+	  //if(Constitution != "Partnership Firm")
+	   //{
 		var xml=UI_getdata(PrcsId,PANVAL,cusidVAL,Constitution,"","LSW_SCHKDUPDATA");
 		
 		var Output=$(xml).find('RESULT').text()
@@ -6452,8 +7917,8 @@ function DupPanval(Prcsid,PAN,Constitution,CUSID)
 			  $("#"+PAN).val('')
 			  return false;
 			}
-	  }
-	}
+	  //}
+	//}
 }
 // End
 
@@ -6495,10 +7960,22 @@ $(document).on("click", ".ViewAttch" , function() {
 		    if ($(this).next().val().split("\\")[0] != "")
 		    	{
 		    	
+				
+			var FileStatus= $(this).next().val().split("\\")[0] 
+			
+			 FileStatus=FileStatus.includes("karza");
+			
+			if(FileStatus==true)
+			{
+			   RedirectURL=$(this).next().val().split("\\")[0]
+			}
+			else
+			{
+			    RedirectURL =window.location.origin+"/TPLSW/DMSVIEW?PrcsID="+$("#PrcsID").val() + "&DMSID=" + $(this).next().val().split("\\")[0];
+			}
 	//if(AcctNo!=""){
 	//RedirectURL = url.replace("XXDMSIDXX",$(this).next().val().split("\\")[0]);
 	
-	RedirectURL =window.location.origin+"/TPLSW/DMSVIEW?PrcsID=" + $("#PrcsID").val() + "&DMSID=" + $(this).next().val().split("\\")[0];
 	
 	$("#DocView").attr("src", RedirectURL);
 	
@@ -6549,6 +8026,20 @@ $(document).on("click", ".DELETETAP" , function() {
 	PrcsId=$("#"+PrcsId).val();
 	CusID=$("#"+CusID).val();
 	
+	// Added for Jira- Start
+	
+	if(Type=="CO-APPLICANT" || Type=="GUARANTOR")
+	{
+		var opxml=UI_getdata(PrcsId,CusID,"","","","LSW_SCHKCOAPP")
+		if($(opxml).find('MSG').text()!="Yes")
+			 {
+				alert($(opxml).find('MSG').text());
+				return;
+			 }
+	}
+	
+	// Added for Jira- End
+	
 	/* Added for PF Screen Start */
 	
 	 if($(".FormMainTabs").find('li.active').attr('id')=="FormMainTab3" && $(".FormPageTab").find('li.active').attr('id')=="FormPageTab1")
@@ -6578,14 +8069,33 @@ $(document).on("click", ".DELETETAP" , function() {
 	
 	/* Added for PF Screen End */
 	
+	
+	
 	 if(confirm('Delete '+ Type) == true)
 		{
-		  var xml=UI_getdata(PrcsId,CusID,Type,$("#LogUsr").val(),"","LSW_SCLEARCUSDATA");
+		  var xml=UI_getdata(PrcsId,CusID,Type,"","","LSW_SCLEARCUSDATA");
 		  var active = $(".FormPageTab").find("li.active").attr("id");
 		  var value = $(".FormPageTab").find("li.active").attr("value");
 		  var MainActive = $(".FormMainTabs").find("li.active").attr("id");
-		   RedirectURL = window.location.origin+"/TPLSW/"+value+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9="+active+"&PrMs10="+MainActive;
+		  
+		   //Added at 20/06/2020 for Business purpose start
+		 		   var BusinessId="";
+		 if($(".FormMainTabs").find('li.active').attr('id')=="FormMainTab7" && $(".FormPageTab").find('li.active').attr('id')=="FormPageTab9")
+		 {
+			 if($(".FormPageMultiTab").find("li.active").prev().length>0)
+			 {
+				 BusinessId=$(".FormPageMultiTab").find("li.active").prev().attr('id');
+			 }
+			 else
+			 {
+				 BusinessId='FIRM1'
+			 }
+		 }
+		   RedirectURL = window.location.origin+"/TPLSW/"+value+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9="+active+"&PrMs10="+MainActive+"&PrMs1="+$("#PrMs1").val()+"&PrMs3="+BusinessId;
+		 // RedirectURL = window.location.origin+"/TPLSW/"+value+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9="+active+"&PrMs10="+MainActive;
 		   $(location).attr('href',encodeURI(RedirectURL));
+		   
+		   //Added at 20/06/2020 for Business purpose end
 		}
 })
 
@@ -6606,8 +8116,6 @@ $(document).on("change", ".DataToFld" , function() {
 	     $("#"+ToFld).val($($(this).find('option[value="' + Datavalue + '"]')[0]).text());
 		}
 })
-
-
 
 function DataToProfFld(id)
 {
@@ -6735,104 +8243,6 @@ function TxtGridsubmitdata_V1(TableID,GrdPrfx,MnPrfx) {
 	return formxml;
 	}
 
-/* Special Grid Start*/
-
-function TxtGridsubmitdata_SV1(TableID,GrdPrfx,MnPrfx) {	   
-	var name="";
-	var fieldid="";
-	var value="";
-	var reg = new RegExp('^[0-9]+$');
-
-	var fieldname="";
-
-	var formxml="<Data>";
-
-	for(j=0;j<$("#"+TableID).find('.tbody').find('.tbodytr').length;j++)
-	{
-	formxml= formxml + "<row>";
-
-	var rowwise = $("#"+TableID).find('.tbody').find('.tbodytr')[j];
-	
-	if($(rowwise).find('.tbodytrtd').text()=="No data available in table"){
-		formxml+='</row></Data>'
-			return formxml;
-	}
-
-	for(i=0;i<$($("#Grid"+TableID)).find('thead').find('th').length;i++)
-	 {
-	    name = $($($("#Grid"+TableID)).find('thead').find('th')[i]).text();
-	   
-	    fieldname = name;
-	    
-	    
-	    if ($($(rowwise).find('.tbodytrtd')[i]).find('[name = '+fieldname+']').length > 0)
-	    	
-	    	{
-	        if($($(rowwise).find('.tbodytrtd')[i]).find('[name = '+fieldname+']').attr('type')=="radio")
-	        {
-	         value=$($(rowwise).find('.tbodytrtd')[i]).find('[name = '+fieldname+']:checked').val();
-	         if(value==undefined)
-	         {
-	          value = "";
-	      }
-	        }
-	        else if($($(rowwise).find('.tbodytrtd')[i]).find('[name = '+fieldname+']').attr('type')=="checkbox")
-	        {
-	         value=$($(rowwise).find('.tbodytrtd')[i]).find('[name = '+fieldname+']').prop("checked");
-	         if(value==undefined)
-	         {
-	          value = "";
-	      }
-	        }
-	        else if ($($(rowwise).find('.tbodytrtd')[i]).find('[name = '+fieldname+']').hasClass("IsCURCommaFields")) {
-	            value = $($(rowwise).find('.tbodytrtd')[i]).find('[name = '+fieldname+']').val().replace(/,/g, "");
-	        }
-	        else {
-
-	            value = $($(rowwise).find('.tbodytrtd')[i]).find('[name = '+fieldname+']').val();
-	 
-	        }
-	    	}
-	    else
-	    	{
-	    	 value= $($(rowwise).find('.tbodytrtd')[i]).text();
-	    	}
-	    	
-	   if(reg.test(value)==true)
-	  {
-	//if($($(rowwise).find('.tbodytrtd')[i]).text().match(/^((\d{0,3}(,\d{3})+)|\d+)(\.\d{2})?$/))
-		//{
-	  value = value.replace(/,/g, "");
-		}
-		else
-		{
-			value = value
-		}
-	  // value = $($(rowwise).find('.tbodytrtd')[i]).text().replace(/[^\d\.\-\ ]/g, '');
-	  
-	    //value =  value.replace(/\s/g, "");
-	   if(value != "" )
-	if(   value != undefined)
-	{
-	   {
-	    value = value.toString().replace(/\&/g, "and");
-	var formxml=formxml+"<"+name+">"+ value  +"</"+name+">";
-	   }
-	   }
-	}
-	formxml= formxml +"<"+GrdPrfx+"PRCSID>"+$("#"+MnPrfx+"PRCSID").val()+"</"+GrdPrfx+"PRCSID>"+"<"+GrdPrfx+"ACTIVITYID>"+$("#"+MnPrfx+"ACTIVITYID").val()+"</"+GrdPrfx+"ACTIVITYID>"
-	+"<"+GrdPrfx+"DTMODIFIED>"+$("#"+MnPrfx+"DTMODIFIED").val()+"</"+GrdPrfx+"DTMODIFIED>"+"<"+GrdPrfx+"DTCREATED>"+$("#"+MnPrfx+"DTCREATED").val()+"</"+GrdPrfx+"DTCREATED>"
-	+"<"+GrdPrfx+"MODIFIEDBY>"+$("#"+MnPrfx+"MODIFIEDBY").val()+"</"+GrdPrfx+"MODIFIEDBY>"+"<"+GrdPrfx+"CREATEDBY>"+$("#"+MnPrfx+"CREATEDBY").val()+"</"+GrdPrfx+"CREATEDBY>"+"</row>";
-	}
-	var formxml = formxml + "</Data>";
-	//alert(formxml);
-	return formxml;
-	}
-
-/* Special Grid End */
-
-
-
 /*
 jQuery(function($) { 
  $('.btn-primary').click(function() {
@@ -6952,7 +8362,8 @@ function FormDataToDB_V1(tablenameins,Prifix,ExtrData,html) {
              //alert("Data Inserted");
              //document.getElementById("SubmitSuccess").value = "Yes";
              //CHKresult = "Success";
-           toastr.success("Form Saved Successfully");
+			 toastr.success("Form Saved Successfully");
+           
           //alert("Form Saved Successfully");
           
          }
@@ -6961,8 +8372,8 @@ function FormDataToDB_V1(tablenameins,Prifix,ExtrData,html) {
             // alert("Insertion Failed");
             // document.getElementById("SubmitSuccess").value = "No";
             // CHKresult = "No";
-			 toastr.error("Form Submission Failed")
           //alert("Form Submission Failed");
+		   toastr.error("Form Submission Failed")
          }
      },
      error: function OnError_submit(xmlRequest) {
@@ -7266,8 +8677,9 @@ function AddPageMultiData (UniqFldID,PrcsVal,UniqNo,DV,FieldClass)
 
       $("."+DV).last().find(".AddMultiGridTrg").click();
       
-     // alert('Testing for AddPageMultiData');
-
+      
+      
+      
       // $($("."+DV).find('.DYNROW').last().find("." + FieldClass)[0]).focus();
       
      // var scrollPos =  $($("."+DV).find('.DYNROW').last().find("." + FieldClass)[0]).focus();
@@ -7617,12 +9029,12 @@ else{
               });
               
              // $("."+DV).last().find(".MultiGridTrg").click();
-			 $("."+DV).find(".DYNROW").last().find(".MultiGridTrg").click();
-			  //alert('Testing for LoadMultiData');
+			  $("."+DV).find(".DYNROW").last().find(".MultiGridTrg").click();
             }
 	   }
       //$("#COBI_CUSID").val($(CUSID).find("Val1").text());
-	  // FOR ONLOAD 1 STRIP OPEN FOR EXPANDABLE STRIPS START
+	  
+	    // FOR ONLOAD 1 STRIP OPEN FOR EXPANDABLE STRIPS START
 	    if ($(html).find('.FormaccordionSUB').length > 0)
       	   {
       	   
@@ -7632,7 +9044,6 @@ else{
 		   }
 	  // FOR ONLOAD 1 STRIP OPEN FOR EXPANDABLE STRIPS END
 }
-
 /***QUERY MODULE STRT***/
 
 function LoadMultiDataQuery (TblName,PrcsVal,UniqNo,DV,FieldClass,SP,HidnID)
@@ -7952,8 +9363,6 @@ if($(html).find('[name='+name+']').attr('type')=="checkbox")
               });
               
               $("."+DV).last().find(".MultiGridTrg").click();
-			  
-			  //alert('Testing for LoadMultiDataQuery')
             }
 	   }
       //$("#COBI_CUSID").val($(CUSID).find("Val1").text());
@@ -8298,8 +9707,6 @@ else{
               });
               
               $("."+DV).last().find(".MultiGridTrg").click();
-			  
-			 // alert('Testing for LoadMultiDataQuery_V1')
             }
 	   }
       //$("#COBI_CUSID").val($(CUSID).find("Val1").text());
@@ -8623,100 +10030,6 @@ function TxtGridsubmitdata_V4(TableID,GrdPrfx,MnPrfx,HTML) {
 	}
 
 //Pop up Grid END
-
-//Pop up1 Grid STRT
-function TxtGridsubmitdata_V7(TableID,GrdPrfx,MnPrfx,HTML,RowCnt) {	   
-	var name="";
-	var fieldid="";
-	var value="";
-	var reg = new RegExp('^[0-9]+$');
-
-	var fieldname="";
-
-	var formxml="<Data>";
-
-	for(j=0;j<$(HTML).find('table[name="'+TableID+'"]').find('.tbody').find('.tbodytr').length;j++)
-	{
-	formxml= formxml + "<row>";
-
-	var rowwise = $(HTML).find('table[name="'+TableID+'"]').find('.tbody').find('.tbodytr')[j];
-	
-	if($(rowwise).find('.tbodytrtd').text()=="No data available in table"){
-		formxml+='</row></Data>'
-			return formxml;
-	}
-	for(i=0;i<$($("#Grid"+TableID)).find('thead').find('th').length;i++)
-	 {
-	    name = $($($("#Grid"+TableID)).find('thead').find('th')[i]).text();
-	   
-	    fieldname = name + j;
-	    
-	    
-	    if ($($(rowwise).find('.tbodytrtd')[i]).find('[name = '+fieldname+']').length > 0)
-	    	
-	    	{
-	        if($($(rowwise).find('.tbodytrtd')[i]).find('[name = '+fieldname+']').attr('type')=="radio")
-	        {
-	         value=$($(rowwise).find('.tbodytrtd')[i]).find('[name = '+fieldname+']:checked').val();
-	         if(value==undefined)
-	         {
-	          value = "";
-	      }
-	        }
-	        else if($($(rowwise).find('.tbodytrtd')[i]).find('[name = '+fieldname+']').attr('type')=="checkbox")
-	        {
-	         value=$($(rowwise).find('.tbodytrtd')[i]).find('[name = '+fieldname+']').prop("checked");
-	         if(value==undefined)
-	         {
-	          value = "";
-	      }
-	        }
-	        else if ($($(rowwise).find('.tbodytrtd')[i]).find('[name = '+fieldname+']').hasClass("IsCURCommaFields")) {
-	            value = $($(rowwise).find('.tbodytrtd')[i]).find('[name = '+fieldname+']').val().replace(/,/g, "");
-	        }
-	        else {
-
-	            value = $($(rowwise).find('.tbodytrtd')[i]).find('[name = '+fieldname+']').val();
-	 
-	        }
-	    	}
-	    else
-	    	{
-	    	 value= $($(rowwise).find('.tbodytrtd')[i]).text();
-	    	}
-	    	
-	   if(reg.test(value)==true)
-	  {
-	//if($($(rowwise).find('.tbodytrtd')[i]).text().match(/^((\d{0,3}(,\d{3})+)|\d+)(\.\d{2})?$/))
-		//{
-	  value = value.replace(/,/g, "");
-		}
-		else
-		{
-			value = value
-		}
-	  // value = $($(rowwise).find('.tbodytrtd')[i]).text().replace(/[^\d\.\-\ ]/g, '');
-	  
-	    //value =  value.replace(/\s/g, "");
-	   if(value != "" )
-	if(   value != undefined)
-	{
-	   {
-	    value = value.toString().replace(/\&/g, "and");
-	var formxml=formxml+"<"+name+">"+ value  +"</"+name+">";
-	   }
-	   }
-	}
-	formxml= formxml +"<"+GrdPrfx+"PRCSID>"+$("#"+MnPrfx+"PRCSID"+RowCnt).val()+"</"+GrdPrfx+"PRCSID>"+"<"+GrdPrfx+"ACTIVITYID>"+$("#"+MnPrfx+"ACTIVITYID"+RowCnt).val()+"</"+GrdPrfx+"ACTIVITYID>"
-	+"<"+GrdPrfx+"DTMODIFIED>"+$("#"+MnPrfx+"DTMODIFIED"+RowCnt).val()+"</"+GrdPrfx+"DTMODIFIED>"+"<"+GrdPrfx+"DTCREATED>"+$("#"+MnPrfx+"DTCREATED"+RowCnt).val()+"</"+GrdPrfx+"DTCREATED>"
-	+"<"+GrdPrfx+"MODIFIEDBY>"+$("#"+MnPrfx+"MODIFIEDBY"+RowCnt).val()+"</"+GrdPrfx+"MODIFIEDBY>"+"<"+GrdPrfx+"CREATEDBY>"+$("#"+MnPrfx+"CREATEDBY"+RowCnt).val()+"</"+GrdPrfx+"CREATEDBY>"+"</row>";
-	}
-	var formxml = formxml + "</Data>";
-	//alert(formxml);
-	return formxml;
-	}
-
-//Pop up1 Grid END
 
 
 //V5 STRT
@@ -9055,7 +10368,6 @@ function TxtGridsubmitdata_V9(TableID,GrdPrfx,MnPrfx) {
 
 // Other Income Multi Row Grid Page Data Save End
 
-
 function CollectionINTR(TypeFieldID,AmtFieldID)
 {
 var Amount = $("#" + AmtFieldID).val().replace(/,/g, "");
@@ -9073,11 +10385,16 @@ var Prvnt = $("#Prvnt").val();
 			 }
 			if($(xml).find('RESULT').text()=="Success")
 			 {
+				 	
+				 
 				alert($(xml).find('MSG').text());
-				CheckCollectorNot();
+				
+				location.reload();
+				
 				return;
 			 }			 
-//PAYTM PROCESSING CHECK END	
+//PAYTM PROCESSING CHECK END
+
 
 
 var CollectionType=$("input[name='PFDT_COLECTIONTYP']:checked"). val();
@@ -9102,6 +10419,8 @@ if (Amount == "")
 
 if (Type == "Paytm")
 {
+	
+	
 var w = "600";
 var h = "500";
 	var left = (screen.width/2)-(w/2);
@@ -9109,8 +10428,11 @@ var h = "500";
 	  var URL =window.location.origin+"/TPLSW/PAYTM?UniqueID="+Amount+"&Type="+Type+"&PRCSID="+PRCSID+"&Prvnt="+Prvnt;
 
 	  $(".loader").show();	  
-	  childWindow =  window.open(URL, "PAYMENT GATEWAY", 'toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
-	  	
+	  childWindow =  window.open(URL, "PAYMENT GATEWAY", 'toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, copyhistory=no, //width='+w+', height='+h+', top='+top+', left='+left);
+	  //window.open(https://google.com/convert-tab-to-private-browsing-mode/, "PAYMENT GATEWAY", 'toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+	  //chrome.windows.create({"url": window.location.origin+"/TPLSW/PAYTM?UniqueID="+Amount+"&Type="+Type+"&PRCSID="+PRCSID+"&Prvnt="+Prvnt, "incognito": true});
+     //chrome.windows.create({url:window.location.origin+"/TPLSW/PAYTM?UniqueID="+Amount+"&Type="+Type+"&PRCSID="+PRCSID+"&Prvnt="+Prvnt,incognito: true});
+	//chrome.windows.create({"url": URL, "incognito": true});
 	//window.open(window.location.origin+"/TPLSW/PAYTMRes?PrMs1=REFID00004320200115215708", "", "width=200,height=100");
 }
 else
@@ -9121,14 +10443,13 @@ else
 	}
 }
 
-
-
 function CollectionINTRPF(TypeFieldID,AmtFieldID)
 {
 var Amount = $("#" + AmtFieldID).val().replace(/,/g, "");
 var Type = $("#" + TypeFieldID).val();
 var PRCSID = $("#PrcsID").val();
 var Prvnt = $("#Prvnt").val();
+
 
 
 //PAYTM PROCESSING CHECK START		
@@ -9140,11 +10461,16 @@ var Prvnt = $("#Prvnt").val();
 			 }
 			if($(xml).find('RESULT').text()=="Success")
 			 {
+				
+				  
 				alert($(xml).find('MSG').text());
-				CheckCollectorNot();
+				
+				location.reload();
+				
 				return;
 			 }			 
 //PAYTM PROCESSING CHECK END
+
 
 
 var CollectionType=$("input[name='PFDT_COLECTIONTYP']:checked"). val();
@@ -9169,28 +10495,47 @@ if (Amount == "")
 
 if (Type == "Paytm")
 {
-var w = "600";
-var h = "500";
-	var left = (screen.width/2)-(w/2);
-	  var top = (screen.height/2)-(h/2);
+	
+	$("#Save1").click();
+	
+	
+
+    var Payxml=UI_getdata($("#PrcsID").val(),$("#PFDT_PFNO").val(),"","","","LSW_SCHKPAYSTS")
+    
+     if($(Payxml).find("Result").text()=="Yes")
+     {
+      CheckPayStatus();
+     }
+	 else
+	 {
+
+     var w = "600";
+     var h = "500";
+	 var left = (screen.width/2)-(w/2);
+	 var top = (screen.height/2)-(h/2);
 	  
 	  Type=Type+",PF," + $("#PFDT_PFNO").val();
 	  
-	  var URL =window.location.origin+"/TPLSW/PAYTM?UniqueID="+Amount+"&Type="+Type+"&PRCSID="+PRCSID+"&Prvnt="+Prvnt+"&PFID="+$("#PFDT_PFNO").val();
-
+	  var URL =window.location.origin+"/TPLSW/PAYTM?UniqueID="+Amount+"&Type="+Type+"&PRCSID="+PRCSID+"&Prvnt="+Prvnt;
+	 
 	  $(".loader").show();	  
-	  childWindow =  window.open(URL, "PAYMENT GATEWAY", 'toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
-	  	
+	  
+	 // chrome.window.create({"url": URL, "incognito": true});
+	  
+	 childWindow =  window.open(URL, "PAYMENT GATEWAY", 'toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left +',incognito: true');
+ 
+	 }
+	// window.open("www.google.com", "PAYMENT GATEWAY", 'toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+
+	 // childWindow =  window.open(URL, window.location.origin+"/TPLSW/PAYTM?UniqueID="+Amount+"&Type="+Type+"&PRCSID="+PRCSID+"&Prvnt="+Prvnt);
+	   //chrome.windows.create({"url": url, "incognito": true});
 	//window.open(window.location.origin+"/TPLSW/PAYTMRes?PrMs1=REFID00004320200115215708", "", "width=200,height=100");
 }
 else
-	{
-	
-	alert("Select Paytm Online Mode");
-	
-	}
+{
+	   alert("Select Paytm Online Mode");
 }
-
+}
 
 var intervalID, childWindow;
 
@@ -9208,7 +10553,7 @@ function checkWindow() {
 var intervalID = window.setInterval(checkWindow, 500);
 
 
-$(document).on('change', '.datalink', function () 
+$(document).on('keypress', '.datalink', function () 
 		{
 	var FiledId=$(this).attr("data-link").split("|")[0]
 	var VerifyId=$(this).attr("data-link").split("|")[1]
@@ -9220,9 +10565,62 @@ $(document).on('change', '.datalink', function ()
 	var FiledIdVal=$("#"+FiledId).val();
 	var VerifyIdVal=$("#"+VerifyId).val();
 	
-	
-	
-	
+	if(Attachemnt=="pan")
+	{
+		var Dedupe=$(this).attr("data-link").split("|")[7]
+		
+		if($("#"+Dedupe).val()!="")
+		{
+			$("#"+Dedupe).val('');
+		   	$("."+Dedupe).text('Dedupe Check');
+			$("."+Dedupe).addClass("btn-yelInplain");
+		    $("."+Dedupe).removeClass("btn-GrnInplain");
+		    $("."+Dedupe).removeClass("btn-RedInplain");
+		} 
+	}
+	if(Attachemnt=="VEHICLE")
+	{
+		if($("#"+VerifyId).val()!="")
+		  {
+		    $("#"+VerifyId).val('');
+		    $("."+VerifyId).text('Verify');
+			$("."+VerifyId).addClass("btn-yelInplain");
+		    $("."+VerifyId).removeClass("btn-GrnInplain");
+		    $("."+VerifyId).removeClass("btn-RedInplain");
+		  }
+	}
+	if(Attachemnt=="Udyam")
+	{
+		if(Attachupload=="Multi")
+		{
+			//var HTML=$(this).closest('.DYNROW')
+			//var Row=$(this).closest('.DYNROW').attr('data-row')
+		if($("#"+VerifyId).val()!="")
+		  {
+		    $("#"+VerifyId).val('');
+			$("#"+UploadLabel).val('');
+
+		    $("."+Attachfield).text('Verify');
+			$("."+Attachfield).addClass("btn-yelInplain");
+		    $("."+Attachfield).removeClass("btn-GrnInplain");
+		    $("."+Attachfield).removeClass("btn-RedInplain");
+		  }
+		}
+		else
+		{
+		 if($("#"+VerifyId).val()!="")
+		  {
+		    $("#"+VerifyId).val('');
+			$("#"+Attachupload).val('');
+		    $("."+VerifyId).text('Verify');
+			$("."+VerifyId).addClass("btn-yelInplain");
+		    $("."+VerifyId).removeClass("btn-GrnInplain");
+		    $("."+VerifyId).removeClass("btn-RedInplain");
+		  }
+		}
+	}
+ else if(Attachemnt!="Udyam")
+	{
 	if(VerifyIdVal!="")
 		{
 		  $("#"+VerifyId).val('');
@@ -9250,6 +10648,7 @@ $(document).on('change', '.datalink', function ()
 		  $("input[name=datafile]").attr('display','block');
 		  $("."+Attachemnt).hide();
 		}
+	}
 		})
 
 function DocFldUpldHndlr_V1(id,HdnID,docu,KYCName,FrmName,UniqID,HTML)
@@ -9290,24 +10689,28 @@ function DocFldUpldHndlr_V1(id,HdnID,docu,KYCName,FrmName,UniqID,HTML)
 		         descrptns += 'FieldDocument'+',';
 		     }
 		 }
-		 var FileSize=parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2);
-     var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
-	 
-
-		var xml=UI_getdata(FileType,FileSize,"","","","LSW_SGETDOCUMNTSIZE")
+	 var FileSize=parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2);
+  //   var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
+ //    var Filename  = names.replace(',','')
+       var Filename  = $(id).closest('td').find('input[type="file"]')[0].files[0].name
+	      var FileType= Filename.substring(Filename.lastIndexOf('.')+1);
+          var  Filename= Filename.substring(0, Filename.lastIndexOf('.'));
+          var names=Filename
+ 
+		var xml=UI_getdata(FileType,FileSize,Filename,"","","LSW_SGETDOCUMNTSIZE")
 		var FileAccept=$(xml).find('RESULT').text()
-		
 	if(FileAccept == 'No')
 	{
 		alert($(xml).find("alert").text());
+		$(id).closest('td').find('input[type="file"]').val('')
 		return
     }
 	
-  names=names.slice(0,-1)+'.'+FileType	 
+  names=names+'.'+FileType	 
 		 
 		 
 	var y=  names;
-	var specialChars = "<>&#^|~`"
+/*	var specialChars = "<>&#^|~`"
 	var check = function(string){
 	    for(i = 0; i < specialChars.length;i++){
 	        if(string.indexOf(specialChars[i]) > -1){
@@ -9320,10 +10723,10 @@ function DocFldUpldHndlr_V1(id,HdnID,docu,KYCName,FrmName,UniqID,HTML)
 	if(check(y) == false){
 	    // Code that needs to execute when none of the above is in the string
 	}else{
-	    alert('Special characters not allowed in the upload file');
+	    alert('File name contains special character please remove and upload');
 		$(id).closest('td').find('input[type="file"]').val('')
 		return;
-	}
+	}*/
 	 ajaxindicatorstart("Uploading.. Please wait");
 		    $.ajax({
 		    	url:"/TPLSW/DMS?names="+names+"&PrcsID="+PrcsID+"&FormName="+FormName+"&descrptns="+descrptns+"&flsize="+flsize+"&vrsnno="+vrsnno+"&domain="+domain+"&usrpwd="+usrpwd+"&Prvnt="+$("#Prvnt").val()+"&CusID="+CusID+"&DocName="+DocName,
@@ -9428,30 +10831,23 @@ $($('input[type="file"]')[c]).closest('tr').find("#comments").val("No Descriptio
    }
 }
 
- var FileSize=parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2);
-    // var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
-   //  var Filename  = names.replace(',','')
-    var Filename  = $(id).closest('td').find('input[type="file"]')[0].files[0].name
-	      var FileType= Filename.substring(Filename.lastIndexOf('.')+1);
-          var  Filename= Filename.substring(0, Filename.lastIndexOf('.'));
-          var names=Filename
-		 
-
-
+var FileSize=parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2);
+var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
 
 //for UPLOAD  SIGNUPLOAD IMAGE
-	var xml=UI_getdata(FileType,FileSize,"","","","LSW_SGETSIGNUPLOADIMGE")
+
+    var Filename  = names.replace(',','')
+	var xml=UI_getdata(FileType,FileSize,Filename,"","","LSW_SGETSIGNUPLOADIMGE")
 	var FileAccept=$(xml).find('RESULT').text()
 if(FileAccept == 'NO')
 {
-	alert("Image format Photo only  Upload and file size should not greater than 50kb")
+	alert($(xml).find('alert').text())
+	$(id).closest('td').find('input[type="file"]').val('')
 	return
 }
 
- names=names+'.'+FileType	 
-
 var y=  names;
-var specialChars = "<>&#^|~`"
+/*var specialChars = "<>&#^|~`"
 var check = function(string){
   for(i = 0; i < specialChars.length;i++){
       if(string.indexOf(specialChars[i]) > -1){
@@ -9463,10 +10859,10 @@ var check = function(string){
 if(check(y) == false){
   // Code that needs to execute when none of the above is in the string
 }else{
-  alert('Special characters not allowed in the upload file');
+  alert('File name contains special character please remove and upload');
 $(id).closest('td').find('input[type="file"]').val('')
 return;
-}
+}*/
 var UploadId= $(id).attr('id');
 //var UpldImg;
 var UpldImg=$(id).closest('td').find('input[type="hidden"]').attr('id').replace(Prifx,'')
@@ -9497,7 +10893,8 @@ $(id).closest('td').find('input[type="file"]').hide();
 var ImgURL=data.split('~')[2]
 
 var url= $("#DMY1").val()
-RedirectURL = url.replace("XXDMSIDXX",ImgURL.split("\\")[0]);
+//RedirectURL = url.replace("XXDMSIDXX",ImgURL.split("\\")[0]);
+var RedirectURL =window.location.origin+"/TPLSW/DMSVIEW?PrcsID=" + $("#PrcsID").val() + "&DMSID=" + ImgURL.split("\\")[0];
 $('.tablezoom').addClass('zoom')
 //var IOP=LoadFrmXML("RS006");
 //var urlimage=url.replace("XXDMSIDXX",ImgURL.split("\\")[0]);
@@ -9551,7 +10948,10 @@ var url= $("#DMY1").val()
 //RedirectURL = url.replace("XXDMSIDXX",a.split("\\")[0]);
 
 //var IOP=LoadFrmXML("RS006");
-var urlimage=url.replace("XXDMSIDXX",a.split("\\")[0]);
+//var urlimage=url.replace("XXDMSIDXX",a.split("\\")[0]);
+var urlimage =window.location.origin+"/TPLSW/DMSVIEW?PrcsID=" + $("#PrcsID").val() + "&DMSID=" + a.split("\\")[0];
+	
+	//$("#DocView").attr("src", RedirectURL);
 if(a!='')
 {
 $("#"+Id).attr('src',urlimage);
@@ -9811,90 +11211,130 @@ function WFActvInit(ACTVID,WDATA,SNAME)
 	            }
        
      });
-	
 	 return result;
 }
 
-function KYCDELETE(Verify,FldId,Type,Attachment,CUSID,ULABEL)
+function KYCDELETE(Verify,FldId,Type,Attachment,CUSID,ULABEL,AttcVerify,KycDel)
 {	
 
 if(confirm('Are you sure you want to delete?') == true)
 	{
 	 $("#"+Attachment+"UPLOAD").css("display", "block")
 	 $("."+Attachment).attr('disabled',false);
-	 if($("."+Type).find('table').next().text()=="")
-	 {
-	 $("."+Type).find('table').next().text(ULABEL);
-	 }
-	 else
-	 {
-		$("."+Type).find('table').next().text(''); 
-	 }
+	 $("."+Type).find('table').next().text('');
 	 $("."+Type+"view").hide()
 	 $("."+Type+"upload").hide()
 	 $("."+Type).hide()
 	 $("#"+FldId).val('');
 	 $("#"+Verify).val('');
 	 $("#"+Attachment).val('');
+	 $("#"+AttcVerify).val('');
 	 $("#"+Attachment).removeClass('DOCMndtry');
 	 $("[data-Validatearia="+Verify+"]").text('Verify');
      $("[data-Validatearia="+Verify+"]").addClass("btn-yelInplain");	
      $("[data-Validatearia="+Verify+"]").removeClass("btn-GrnInplain");
      $("[data-Validatearia="+Verify+"]").removeClass("btn-RedInplain"); 
      var xml=UI_getdata($("#PrcsID").val(),Type,$("#"+CUSID).val(),"","","LSW_SDELKYCDETL")
+	 var kycdocdel=UI_getdata($("#PrcsID").val(), $("#"+CUSID).val(),"KycDocDel",KycDel,"","LSW_SCLEARCUSDATA")
+	 
     }
 }
 
-//Place At Last
-function PosdxChk(CUSID,Verify,Type,ExLon,CusName)
+function PosdxGenCusID(CUSID,CusType,Verify,Type,ExLon,CusName)
+	{
+		var CustName=$("#"+CusName).val();
+		var CusType=$("#"+CusType).val();
+		var CusID = $("#"+CUSID).val();
+		var PRCSID = $("#PrcsID").val();
+		$(".loader2").show();
+		$.ajax({
+	    url:"/TPLSW/GenPosidexID",
+	    type:'POST',
+	    data:{Param1:"",Param2:CusType,Param3:"initcustomerid",Param4:CusID,SPNAME:"LSW_SPOSIDEXAPICREATE",PRCSID:PRCSID,Prvnt:$(window.parent.parent.document).find("#Prvnt").val()},
+	    async:true,
+	   // dataType: 'json',
+	   // contentType:'application/json',
+	    
+	    success: function(stm){
+			if(stm.split("~")[0] == "Success")
+			{
+				alert("Customer ID Created Successfully")
+				$(".loader2").show();
+				window.location.reload();
+			}
+			else if(stm.split("~")[0] == "Error")
+			{
+				alert(stm.split("~")[1]);
+				$(".loader2").show();
+				return;
+			}
+			else{
+				alert("Customer ID Creation Failed");
+				$(".loader2").show();
+			}
+			},
+	error: function(stm) {
+		 //window.alert(LoadFrmXML("V0125"))
+		alert("Error Occured. Contant IT!!!");
+		$(".loader2").show();
+		   }
+	});
+	}
+function PosdxChk(CUSID,CusType,Verify,Type,ExLon,CusName)
 {	
-
-var CustName=$("#"+CusName)	.val();
 	
-	if(CustName != "")
+	$(".DedupeSmt").show();
+	$(".DedupeGenCusID").show();
+var CustName=$("#"+CusName).val();
+var CusType=$("#"+CusType).val();
+
+if(CustName != "")
 	{	
 $("#Save1").click();
 var CusID = $("#"+CUSID).val();
 var PRCSID = $("#PrcsID").val();
+
     if($('#DMY6').val()=="")
-     {
+    {
 	   $('#DMY6').val(CusID)
-     }
+    }
+	alert("Dedupe Initiated, System will show dedupe results after 30 seconds")
+	$(".loader2").show();
 	$.ajax({
-	    url: "/TPLSW/POSIDEX",
-	    type: 'POST',
-	    data: {PRCSID:PRCSID,CUSID:CusID,Prvnt:$(window.parent.parent.document).find("#Prvnt").val()},
+	    url:"/TPLSW/DedupePosidex",
+	    type:'POST',
+	    data:{Param1:"",Param2:CusType,Param3:"Insert",Param4:CusID,SPNAME:"LSW_SPOSIDEXAPICREATE",PRCSID:PRCSID,Prvnt:$(window.parent.parent.document).find("#Prvnt").val()},
 	    async:true,
 	   // dataType: 'json',
 	   // contentType:'application/json',
 	    
 	    success: function(stm){        
 	   // var obj = JSON.parse(JSON.stringify(stm))
-	   
-	    	if (stm == "")
-	    		{
-	    		alert("Error Occured. Contant IT!!!");
-	    		$("[data-Validatedata="+Verify+"]").text('Dedupe Failed');
-	    		$("[data-Validatedata="+Verify+"]").removeClass("btn-GrnInplain");	
-	    		$("[data-Validatedata="+Verify+"]").removeClass("btn-yelInplain");
-	    		$("[data-Validatedata="+Verify+"]").addClass("btn-RedInplain"); 
-	    		$("#"+Verify).val('Dedupe Failed')
-	    		return;
+	    	if(stm == "")
+	    	   {
+	    		 alert("Error Occured. Contant IT!!!");
+	    		 $("[data-Validatedata="+Verify+"]").text('Dedupe Failed');
+	    		 $("[data-Validatedata="+Verify+"]").removeClass("btn-GrnInplain");	
+	    		 $("[data-Validatedata="+Verify+"]").removeClass("btn-yelInplain");
+	    		 $("[data-Validatedata="+Verify+"]").addClass("btn-RedInplain"); 
+	    		 $("#"+Verify).val('Dedupe Failed')
+				 $(".loader2").fadeOut("slow");
+	    		 return;
 	    		}
-	    	else if (stm.split("|")[1] == "No Data")
+	    	else if (stm.split("~")[1] == "No Data")
     			{
-    			alert("Error Occured. Contant IT!!!");
-    			$("[data-Validatedata="+Verify+"]").text('Dedupe Failed');
-	    		$("[data-Validatedata="+Verify+"]").removeClass("btn-GrnInplain");	
-	    		$("[data-Validatedata="+Verify+"]").removeClass("btn-yelInplain");
-	    		$("[data-Validatedata="+Verify+"]").addClass("btn-RedInplain"); 
-	    		$("#"+Verify).val('Dedupe Failed')
-	    		return;
-    			
+    			  alert("Error Occured. Contant IT!!!");
+    			  $("[data-Validatedata="+Verify+"]").text('Dedupe Failed');
+	    		  $("[data-Validatedata="+Verify+"]").removeClass("btn-GrnInplain");	
+	    		  $("[data-Validatedata="+Verify+"]").removeClass("btn-yelInplain");
+	    		  $("[data-Validatedata="+Verify+"]").addClass("btn-RedInplain"); 
+	    		  $("#"+Verify).val('Dedupe Failed')
+				  $(".loader2").fadeOut("slow");
+	    		  return;
     			}
-	    	else if (stm.split("|")[1] == "No Matches Found")
+	    	else if (stm.split("~")[1] == "No Matches Found")
 	    		{
-	    		alert(stm.split("|")[1]);
+	    		alert(stm.split("~")[1]);
 				$(".DedupePopup").click();
 				
 				if(Type=="Applicant")
@@ -9902,18 +11342,18 @@ var PRCSID = $("#PrcsID").val();
 				  
 				  if($("#"+ExLon).val()=='C')
 					  {
-					    $("#HIDDENCOL").val('||8,9')
+					    $("#HIDDENCOL").val('||0,8,9,10,11,12')
 		    		    $("#BTNDEDUPEIVGRD").click();	
 					  }
 				  else
 					  {
-					    $("#HIDDENCOL").val('||9')
+					    $("#HIDDENCOL").val('||0,9,10,11,12')
 		    		    $("#BTNDEDUPEIVGRD").click();	
 					  }	
 				}
 				else
 				{
-				  $("#HIDDENCOL").val('||8,9')
+				  $("#HIDDENCOL").val('||0,8,9,10,11,12')
 	    		  $("#BTNDEDUPEIVGRD").click();	
 				}
 				
@@ -9928,9 +11368,16 @@ var PRCSID = $("#PrcsID").val();
 	    		$("[data-Validatedata="+Verify+"]").removeClass("btn-RedInplain"); 
 	    		$("#"+Verify).val('Dedupe Initiated')
 				var xml=UI_getdata(PRCSID,CusID,Type,"","","LSW_SUPDDEDUPE")
+				$(".loader2").fadeOut("slow");
 	    		}
-	    	else if (stm.split("|")[1] == "Success")
+	    	else if (stm.split("~")[1] == "Success")
 	    		{
+				var chkval = $("#"+CUSID).val().match("C") ? true : false;
+				if(chkval != true)
+				{
+				$(".DedupeSmt").hide();
+				$(".DedupeGenCusID").hide();
+				}
 	    		//alert("Data Found");
 	    		$(".DedupePopup").click();
 				
@@ -9939,18 +11386,18 @@ var PRCSID = $("#PrcsID").val();
 				  
 				  if($("#"+ExLon).val()=='C')
 					  {
-					    $("#HIDDENCOL").val('||8,9')
+					    $("#HIDDENCOL").val('||0,8,9,10,11,12')
 		    		    $("#BTNDEDUPEIVGRD").click();	
 					  }
 				  else
 					  {
-					    $("#HIDDENCOL").val('||9')
+					    $("#HIDDENCOL").val('||0,9,10,11,12')
 		    		    $("#BTNDEDUPEIVGRD").click();	
 					  }	
 				}
 				else
 				{
-				  $("#HIDDENCOL").val('||8,9')
+				  $("#HIDDENCOL").val('||0,8,9,10,11,12')
 	    		  $("#BTNDEDUPEIVGRD").click();	
 				}
 				
@@ -9967,6 +11414,7 @@ var PRCSID = $("#PrcsID").val();
 	    		$("[data-Validatedata="+Verify+"]").removeClass("btn-RedInplain"); 
 	    		$("#"+Verify).val('Dedupe Initiated')
 				var xml=UI_getdata(PRCSID,CusID,Type,"","","LSW_SUPDDEDUPE")
+				$(".loader2").fadeOut("slow");
 	    		}
 	    	else
 	    		{
@@ -9975,22 +11423,66 @@ var PRCSID = $("#PrcsID").val();
 	    		$("[data-Validatedata="+Verify+"]").removeClass("btn-yelInplain");
 	    		$("[data-Validatedata="+Verify+"]").addClass("btn-RedInplain"); 
 	    		$("#"+Verify).val('Dedupe Failed')	
+				alert(stm.split("~")[1]);
+				$(".loader2").fadeOut("slow");
 	    		}
 	},
 	error: function(stm) {
 		 //window.alert(LoadFrmXML("V0125"))
 		alert("Error Occured. Contant IT!!!");
+		$(".loader2").fadeOut("slow");
 		   }
 	});
-	alert("Dedupe Initiated, System will show dedupe results after 15 seconds")
-	}
+		}
 	else
 	{
 		alert($("#"+CusName).next().text().replace('*','')+" is Mandatory");
+		$(".loader2").fadeOut("slow");
 		return false;
 	}
 }
 
+function viewposidex(CUSID,CusType,Verify,Type,ExLon,CusName)
+{
+	//alert("Data Found");
+	$(".DedupePopup").click();
+	var CusID = $("#"+CUSID).val();
+	if($('#DMY6').val()=="")
+    {
+	   $('#DMY6').val(CusID)
+    }
+	if(Type=="Applicant")
+	{
+	  
+	  if($("#"+ExLon).val()=='C')
+		  {
+			$("#HIDDENCOL").val('||0,8,9,10,11,12')
+			$("#BTNDEDUPEIVGRD").click();	
+		  }
+	  else
+		  {
+			$("#HIDDENCOL").val('||0,9,10,11,12')
+			$("#BTNDEDUPEIVGRD").click();	
+		  }	
+	}
+	else
+	{
+	  $("#HIDDENCOL").val('||0,8,9,10,11,12')
+	  $("#BTNDEDUPEIVGRD").click();	
+	}
+	
+	$("#BTNDEDUPEIGRD").click();
+	$("#BTNDEDUPEIIGRD").click();
+	$("#BTNDEDUPEIIIGRD").click();
+	$("#BTNLSWINTER").click();
+	$("#BTNRBIDEDUPE").click();
+	var chkval = $("#"+CUSID).val().match("C") ? true : false;
+	if(chkval != true)
+	{
+	$(".DedupeSmt").hide();
+	$(".DedupeGenCusID").hide();
+	}
+}
 
 
 function DedupeChk(CUSID,GRDBTN,Verify,id)
@@ -9998,10 +11490,11 @@ function DedupeChk(CUSID,GRDBTN,Verify,id)
 var CusID = $("#"+CUSID).val();
 var PRCSID = $("#PrcsID").val();
 
-	if($("#DMY7").val().split("|")[8]=="HE02")
+  if($("#DMY7").val().split("|")[8]=="HE02")
 	{
 	  var Dedupexml=UI_getdata(PRCSID,CusID,"","","","LSW_SCHKGECLDEDUPE")
 	}
+	
 	//$("#Save1").click();
 	$.ajax({
 	    url: "/TPLSW/POSIDEX",
@@ -10059,58 +11552,6 @@ var PRCSID = $("#PrcsID").val();
 	});
 }
 
-function UniqueNoPOPUP(Evnt){
-	//var ClosID = $(Evnt).next()
-	//var val = ClosID.val();
-	var ClosID = $(Evnt).next()
-	var val =$("#"+ClosID.attr('id')).val()
-	
-	var DocName=$(Evnt).next().next()
-	var DDVal =$("#"+DocName.attr('id')).val()
-	
-	$("#UniqNoPopup").click();
-	$("#UniqNoModal").find("#UniqNoClose").attr("data-to",$(ClosID).attr("id"))
-	
-	
-	if($(Evnt).closest('td').next().find('input[type=text]').val() == "Yes")
-	{
-		$("#UniqNumber").attr("disabled","disabled");
-	}
-	else{
-		$("#UniqNumber").removeAttr("disabled", "disabled");
-	}
-	var op = UI_getdata(DDVal.replace(/ /g,""),$("#PrcsID").val(),$('.admin-panel .col-lg-12 .active').attr('id'),'','',"LSW_GETKYCSPEFYURL")
-		
-	$("#UniqNumber").attr("maxlength",$(op).find('SIZE').text())
-		if(DDVal=="Aadhar")
-		{
-		  $("#UniqNumber").addClass('IsNumberFields IsAadharFields')	
-		  $("#UniqNumber").removeClass('IsPanFields')
-		}
-		else if(DDVal=="PAN")
-		{
-		  $("#UniqNumber").addClass('IsPanFields')
-          $("#UniqNumber").removeClass('IsNumberFields IsAadharFields')		  
-		}
-		else
-		{
-			$("#UniqNumber").removeClass('IsNumberFields IsAadharFields')
-			$("#UniqNumber").removeClass('IsPanFields')
-		}
-	if(val != ""){
-		  
-		$("#UniqNumber").val(val);
-		$("#UniqNumber").next().addClass('active');
-	}
-	else
-	{
-		$("#UniqNumber").val("");
-		if(DDVal=="Aadhar")
-		{
-			$("#UniqNumber").val("XXXXXXXX");
-		}
-	}
-}
 
 function REMARKPOPUP(Evnt){
 	//var ClosID = $(Evnt).next()
@@ -10120,17 +11561,29 @@ function REMARKPOPUP(Evnt){
 	
 	$("#REMARKSPopup").click();
 	$("#REMARKSModal").find("#RemarksCONFIRM").attr("data-to",$(ClosID).attr("id"))
-	
 	if(val != ""){
-		  
 		$("#POPUPRemarks").val(val);
 		$("#POPUPRemarks").next().addClass('active');
 	}
-	else
-	{
+	else{
 		$("#POPUPRemarks").val("");
 	}
 }
+
+function CLOSEREMARKCONFIRM(Evnt){
+	var todata = $(Evnt).attr("data-to");
+	var totabel = $(Evnt).attr('data-tabel')
+	
+	if(totabel != undefined)
+	{
+		$("#"+totabel).find("#"+todata).val($("#POPUPRemarks").val())
+		$("#REMARKSPOPCLOSE").click();
+		return;
+	}
+	$("#"+todata).val($("#POPUPRemarks").val());
+	$("#REMARKSPOPCLOSE").click();
+}
+
 
 function PAGEREMARKPOPUP(Evnt,Prcsid,UniqId,AltUniqId){
 	//var ClosID = $(Evnt).next()
@@ -10168,37 +11621,6 @@ function REMARKPOPUPDSBLFTR(Evnt){
 	}
 }
 
-function CLOSEREMARKCONFIRM(Evnt){
-	var todata = $(Evnt).attr("data-to");
-	var totabel = $(Evnt).attr('data-tabel')
-	
-	if(totabel != undefined)
-	{
-		$("#"+totabel).find("#"+todata).val($("#POPUPRemarks").val())
-		$("#REMARKSPOPCLOSE").click();
-		return;
-	}
-	$("#"+todata).val($("#POPUPRemarks").val());
-	$("#REMARKSPOPCLOSE").click();
-}
-
-
-function UniqNoConf(Evnt){
-	var todata = $(Evnt).attr("data-to");
-	var totabel = $(Evnt).attr('data-tabel')
-	
-	if(totabel != undefined)
-	{
-		$("#"+totabel).find("#"+todata).val($("#UniqNumber").val())
-		$("#UniqNoModalCLOSE").click();
-		return;
-	}
-	$("#"+todata).val($("#UniqNumber").val());
-	$("#UniqNoModalCLOSE").click();
-}
-
-
-
 function DSVLBLALL(Evnt)
 {
 	  $(".form-control").attr('disabled',true);
@@ -10234,10 +11656,10 @@ function DSVLBLALL(Evnt)
 		  $('.datepicker').hide()
 		  $("#Reject").hide()
 		  $('.Griddatepicker').hide()
-	  
-	  	
-	// Credit Chenages for Sanction Amt Field enabled in Waiver Stage START
-	
+		  $('.dropdown-content').attr('disabled',true)
+		  
+		   	
+// Credit Chenages for Sanction Amt Field enabled in Waiver Stage START
 	if($("#DMY5").val().split("|")[2]=="Waiver")
       {
        if(($(".FormMainTab1 li.active").attr("id")=="FormPageTab5")&&($(".FormMainTabs li.active").attr("id")=="FormMainTab6")&&($("#PrMs1").val()!="View"))
@@ -10250,14 +11672,14 @@ function DSVLBLALL(Evnt)
 		     }			
 	     }
        }
-//End 
-	
+//End
+	  
 }
 
 
 function DSVLBLALLWS()
 {
-	    $(".form-control").attr('disabled',true);
+	  $(".form-control").attr('disabled',true);
 		$(".custom-control-input").attr('disabled',true);
 		$(".GridDocUpd").hide();
 		$(".Gridmdb-select").attr('disabled',true);
@@ -10323,20 +11745,6 @@ function ENABLEALL()
 	  
 }
 
-//Added for Text Editor Disabled
-
-function DSVLBLEXTEDITER()
-{
-	var textareas=document.getElementsByClassName('TEXTEDITDSBL');
-	
-	for(var i=0;i<textareas.length;i++)
-	{
-		textareas[i].disabled=true;
-	}
-}
-
-
-
 
 function RECOMMENDHIDE()
 {
@@ -10352,6 +11760,14 @@ function RECOMMENDHIDE()
      $("#FormPageTab7").show()
      $("#FormPageTab8").show()
     } 
+else if((SanctionType=="Yes")&&(ActivityName=="ReCredit"))
+	{
+	 $("#FormPageTab2").remove()
+//	$("#FormPageTab5").hide()
+	$("#FormPageTab6").remove()
+	$("#FormPageTab7").remove()
+	$("#FormPageTab8").remove()	
+	}
     else if(SanctionType=="Yes")
     {
      $("#FormPageTab2").show()
@@ -10367,149 +11783,15 @@ function RECOMMENDHIDE()
 	$("#FormPageTab6").remove()
 	$("#FormPageTab7").remove()
 	$("#FormPageTab8").remove()
+	$("#FormPageTab11").remove();
     }
 	
 	 if((SanctionType=="No")&&(ActivityName=="SendToCredit"))
 	{
 	$("#FormPageTab5").remove()	
-    }
+	$("#FormPageTab11").remove();
+    }	
 }
-
-
-function VerfyMail(Event,MailID,CusID){
-	
-	if($(Event).text() != "Verified")
-	{
-	 $.ajax({
-		 url: "/TPLSW/EmailVerfy",
-		 data: { URL: window.location.origin, PRCSID: $("#PrcsID").val(), CUSID: CusID, MAILID: MailID, PARAM5: "",Prvnt:$(window.parent.parent.document).find("#Prvnt").val()},
-	       async: true,
-	       //dataType: "json",
-		    dataType: "text",
-	       type: 'POST',
-	       success: function OnSuccess_submit(xml1) {
-			   
-			   if(xml1=="Success")
-			   {
-	    	   alert("Mail Successfully Sent");
-			   return;
-			   }
-			   else
-			   {
-			   alert("Mail Sending Failed");
-			   return;
-			   }
-	    	   
-	       },
-	       error: function (xml1)
-	       {
-	   			alert("Mail Sending Failed");
-	   			return;
-	       }	 		
-	 });
-	}
-}
-
-
-// For P2 Deliverable PAYTM SEND LINK 16042020 Start
-
-function PSendLink(TypeFieldID,AmtFieldID,CType,Verify)
-{
-	
-var Amount = $("#" + AmtFieldID).val().replace(/,/g, "");
-var Type = $("#" + TypeFieldID).val();
-var PRCSID = $("#PrcsID").val();
-var Prvnt = $("#Prvnt").val();
-
-
-
-//PAYTM PROCESSING CHECK START		
-		 var xml=UI_getdata($("#PrcsID").val(),$("#PFDT_PFNO").val(),"","","","LSW_SONLNEPAYMNTCHK")
-			if($(xml).find('RESULT').text()=="No")
-			 {
-				alert($(xml).find('MSG').text());
-				return;
-			 }
-			if($(xml).find('RESULT').text()=="Success")
-			 {
-				alert($(xml).find('MSG').text());
-				CheckCollectorNot();
-				return;
-			 }			 
-//PAYTM PROCESSING CHECK END	
-
-
-var CollectionType=$("input[name='PFDT_COLECTIONTYP']:checked"). val();
-
-if (CollectionType == undefined)
-{
-alert("Enter the Collection Type");
-return false;
-}
-
-if (CollectionType == "Deferred")
-{
-alert("Enter the Collection Type Collected");
-return false;
-}
-
-if (Amount == "")
-	{
-	alert("Enter the Amount");
-	return false;
-	}
-
-if (Type == "Paytm")
-{
-	
-	$("#Save1").click();
-	
-	if(CType=="SMS")
-	{
-	Type=Type+",PF," + $("#PFDT_PFNO").val();
-
-	var URL ="/TPLSW/PAYTMONL?UniqueID="+Amount+"&Type="+Type+"&PRCSID="+PRCSID+"&Prvnt="+Prvnt+"$PFNO="+$("#PFDT_PFNO").val();
-	
-	var op= UI_getdata(	encodeURI(URL),$("#PrcsID").val(),$("#" + AmtFieldID).val(),"SMS","","LSW_SSENDPAYMNTLINK");
-	
-	if ($(op).find('Result').text() == "Success")
-		{
-		alert("SMS Link Sent");
-		$("#"+Verify).val('Verified');
-		$(".SMSLINK").text('Re-Send Link :')
-		}
-	}
-	else if(CType=="EMAIL")
-	{
-		Type=Type+",PF," + $("#PFDT_PFNO").val();
-
-	var URL ="/TPLSW/PAYTMONL?UniqueID="+Amount+"&Type="+Type+"&PRCSID="+PRCSID+"&Prvnt="+Prvnt+"$PFID="+$("#PFDT_PFNO").val();
-	
-	var op= UI_getdata($("#PrcsID").val(),$("#" + AmtFieldID).val(),encodeURI(URL),"EMAIL","","LSW_SSENDPAYMNTLINK");
-	
-	if ($(op).find('Result').text() == "Success")
-		{
-		alert("EMAIL Link Sent");
-		$("#"+Verify).val('Verified');
-		$(".EMAILLINK").text('Re-Send Link :')
-		}
-	}
-	$("#Save1").click();
-}
-else
-	{
-	
-	alert("Select Paytm Online Mode");
-	
-	}
-}
-// For P2 Deliverable PAYTM SEND LINK 16042020 End 
-
-
-
-
-
-
 
 
 //Added for Application Query
@@ -10559,7 +11841,7 @@ $(document).on("click","#RaiseQry",function() {
 			
 			
 		 $('.RASHW').show();
-		 $(".OPSQRY").show()
+		 $(".OPSQRY").show();
 		 
   $('.RAISE').find("#MNGQ_ATTCHURLIUPLOAD").show();
   $('.RAISE').find('.rounded1').hide();
@@ -10575,9 +11857,165 @@ $(document).on("click","#RaiseQry",function() {
 			});
 	
 
+/* Special Grid Start*/
+
+function TxtGridsubmitdata_SV1(TableID,GrdPrfx,MnPrfx) {	   
+	var name="";
+	var fieldid="";
+	var value="";
+	var reg = new RegExp('^[0-9]+$');
+
+	var fieldname="";
+
+	var formxml="<Data>";
+
+	for(j=0;j<$("#"+TableID).find('.tbody').find('.tbodytr').length;j++)
+	{
+	formxml= formxml + "<row>";
+
+	var rowwise = $("#"+TableID).find('.tbody').find('.tbodytr')[j];
 	
+	if($(rowwise).find('.tbodytrtd').text()=="No data available in table"){
+		formxml+='</row></Data>'
+			return formxml;
+	}
+
+	for(i=0;i<$($("#Grid"+TableID)).find('thead').find('th').length;i++)
+	 {
+	    name = $($($("#Grid"+TableID)).find('thead').find('th')[i]).text();
+	   
+	    fieldname = name;
+	    
+	    
+	    if ($($(rowwise).find('.tbodytrtd')[i]).find('[name = '+fieldname+']').length > 0)
+	    	
+	    	{
+	        if($($(rowwise).find('.tbodytrtd')[i]).find('[name = '+fieldname+']').attr('type')=="radio")
+	        {
+	         value=$($(rowwise).find('.tbodytrtd')[i]).find('[name = '+fieldname+']:checked').val();
+	         if(value==undefined)
+	         {
+	          value = "";
+	      }
+	        }
+	        else if($($(rowwise).find('.tbodytrtd')[i]).find('[name = '+fieldname+']').attr('type')=="checkbox")
+	        {
+	         value=$($(rowwise).find('.tbodytrtd')[i]).find('[name = '+fieldname+']').prop("checked");
+	         if(value==undefined)
+	         {
+	          value = "";
+	      }
+	        }
+	        else if ($($(rowwise).find('.tbodytrtd')[i]).find('[name = '+fieldname+']').hasClass("IsCURCommaFields")) {
+	            value = $($(rowwise).find('.tbodytrtd')[i]).find('[name = '+fieldname+']').val().replace(/,/g, "");
+	        }
+	        else {
+
+	            value = $($(rowwise).find('.tbodytrtd')[i]).find('[name = '+fieldname+']').val();
+	 
+	        }
+	    	}
+	    else
+	    	{
+	    	 value= $($(rowwise).find('.tbodytrtd')[i]).text();
+	    	}
+	    	
+	   if(reg.test(value)==true)
+	  {
+	//if($($(rowwise).find('.tbodytrtd')[i]).text().match(/^((\d{0,3}(,\d{3})+)|\d+)(\.\d{2})?$/))
+		//{
+	  value = value.replace(/,/g, "");
+		}
+		else
+		{
+			value = value
+		}
+	  // value = $($(rowwise).find('.tbodytrtd')[i]).text().replace(/[^\d\.\-\ ]/g, '');
+	  
+	    //value =  value.replace(/\s/g, "");
+	   if(value != "" )
+	if(   value != undefined)
+	{
+	   {
+	    value = value.toString().replace(/\&/g, "and");
+	var formxml=formxml+"<"+name+">"+ value  +"</"+name+">";
+	   }
+	   }
+	}
+	formxml= formxml +"<"+GrdPrfx+"PRCSID>"+$("#"+MnPrfx+"PRCSID").val()+"</"+GrdPrfx+"PRCSID>"+"<"+GrdPrfx+"ACTIVITYID>"+$("#"+MnPrfx+"ACTIVITYID").val()+"</"+GrdPrfx+"ACTIVITYID>"
+	+"<"+GrdPrfx+"DTMODIFIED>"+$("#"+MnPrfx+"DTMODIFIED").val()+"</"+GrdPrfx+"DTMODIFIED>"+"<"+GrdPrfx+"DTCREATED>"+$("#"+MnPrfx+"DTCREATED").val()+"</"+GrdPrfx+"DTCREATED>"
+	+"<"+GrdPrfx+"MODIFIEDBY>"+$("#"+MnPrfx+"MODIFIEDBY").val()+"</"+GrdPrfx+"MODIFIEDBY>"+"<"+GrdPrfx+"CREATEDBY>"+$("#"+MnPrfx+"CREATEDBY").val()+"</"+GrdPrfx+"CREATEDBY>"+"</row>";
+	}
+	var formxml = formxml + "</Data>";
+	//alert(formxml);
+	return formxml;
+	}
+
+/* Special Grid End */
+
+function VerfyMail(Event,MailID,CusID){
 	
+	if($(Event).text() != "Verified")
+	{
+	 $.ajax({
+		 url: "/TPLSW/EmailVerfy",
+		 data: { URL: window.location.origin, PRCSID: $("#PrcsID").val(), CUSID: CusID, MAILID: MailID, PARAM5: "",Prvnt:$(window.parent.parent.document).find("#Prvnt").val()},
+	       async: true,
+	       //dataType: "json",
+		    dataType: "text",
+	       type: 'POST',
+	       success: function OnSuccess_submit(xml1) {
+			   
+			   if(xml1=="Success")
+			   {
+	    	   alert("Mail Successfully Sent");
+			   return;
+			   }
+			   else
+			   {
+			   alert("Mail Sending Failed");
+			   return;
+			   }
+	    	   
+	       },
+	       error: function (xml1)
+	       {
+	   			alert("Mail Sending Failed");
+	   			return;
+	       }	 		
+	 });
+	}
+}
+
+
+function SavePersInfo()
+{
+	$("#Save1").click();
+}
+
+function SaveContDetl()
+{
+	$("#Save2").click();
+}
+
+function ChkCusConti(CusType,Consti,OrgName)
+{
+	var CusTypeVal=$("#"+CusType).val();
+	var ConstiVal=$("#"+Consti).val();
 	
+	if(CusTypeVal=="Non-Individual")
+		{
+		  if(ConstiVal=="Proprietorship" || ConstiVal=="Society" || ConstiVal=="Trustee")
+			  {
+			    $("#"+OrgName).attr("disabled",false);
+			  }
+		}
+}
+
+
+
+//Session front-end start
+
 	var elem = timer1, timeout, startTimer = function timer() {
  clearTimeout(timeout);   
    timer1++;
@@ -10585,25 +12023,7 @@ $(document).on("click","#RaiseQry",function() {
 	
 	if (timer1 == "1200")
 	{		
-		/*swal({
-                title: "Session about to expire in 30 seconds...", 
-                text: "Click cancel to continue the session",
-                type: "warning", 
-                showCancelButton: true, 
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Logout!!!",
-                animation: "slide-from-top", 
-                closeOnConfirm: false,
-				timer: 30000
-            },
-			
-			
-            function () { 
-			
-			AppliLogout();
-		alert("Session logged out...");
-			
-			});*/
+	
 if(window.location.pathname !='/TPLSW/')
 {	
 			
@@ -10643,8 +12063,105 @@ if(timer1 !="")
 startTimer();
 }
 	});
+//Session front-end end
 
 
+// For P2 Deliverable PAYTM SEND LINK 15062020 Start
+
+function PSendLink(TypeFieldID,AmtFieldID,CType,Verify)
+{
+	
+var Amount = $("#" + AmtFieldID).val().replace(/,/g, "");
+var Type = $("#" + TypeFieldID).val();
+var PRCSID = $("#PrcsID").val();
+var Prvnt = $("#Prvnt").val();
+
+
+//PAYTM PROCESSING CHECK START		
+		 var xml=UI_getdata($("#PrcsID").val(),$("#PFDT_PFNO").val(),"","","","LSW_SONLNEPAYMNTCHK")
+			if($(xml).find('RESULT').text()=="No")
+			 {
+				alert($(xml).find('MSG').text());
+				return;
+			 }
+			if($(xml).find('RESULT').text()=="Success")
+			 {
+				 
+				  
+				alert($(xml).find('MSG').text());
+				
+				location.reload();
+				
+				return;
+			 }			 
+//PAYTM PROCESSING CHECK END	
+
+
+var CollectionType=$("input[name='PFDT_COLECTIONTYP']:checked"). val();
+
+if (CollectionType == undefined)
+{
+alert("Enter the Collection Type");
+return false;
+}
+
+if (CollectionType == "Deferred")
+{
+alert("Enter the Collection Type Collected");
+return false;
+}
+
+if (Amount == "")
+	{
+	alert("Enter the Amount");
+	return false;
+	}
+
+if (Type == "Paytm")
+{
+	
+	$("#Save1").click();
+	
+	if(CType=="SMS")
+	{
+	Type=Type+",PF," + $("#PFDT_PFNO").val();
+
+	var URL ="/TPLSW/PAYTMONL?UniqueID="+Amount+"&Type="+Type+"&PRCSID="+PRCSID+"&Prvnt="+Prvnt+"&PFID="+$("#PFDT_PFNO").val();
+	
+	var op= UI_getdata(	encodeURI(URL),$("#PrcsID").val(),$("#" + AmtFieldID).val(),"SMS","","LSW_SSENDPAYMNTLINK");
+	
+	if ($(op).find('Result').text() == "Success")
+		{
+		alert("SMS Link Sent");
+		$("#"+Verify).val('Verified');
+		$(".SMSLINK").text('Re-Send Link :')
+		}
+	}
+	else if(CType=="EMAIL")
+	{
+		Type=Type+",PF," + $("#PFDT_PFNO").val();
+
+	var URL ="/TPLSW/PAYTMONL?UniqueID="+Amount+"&Type="+Type+"&PRCSID="+PRCSID+"&Prvnt="+Prvnt+"&PFID="+$("#PFDT_PFNO").val();
+	
+	var op= UI_getdata($("#PrcsID").val(),$("#" + AmtFieldID).val(),encodeURI(URL),"EMAIL","","LSW_SSENDPAYMNTLINK");
+	
+	if ($(op).find('Result').text() == "Success")
+		{
+		alert("EMAIL Link Sent");
+		$("#"+Verify).val('Verified');
+		$(".EMAILLINK").text('Re-Send Link :')
+		}
+	}
+	$("#Save1").click();
+}
+else
+	{
+	
+	alert("Select Paytm Online Mode");
+	
+	}
+}
+// For P2 Deliverable PAYTM SEND LINK 15062020 End 
 
 function FindConstDD()
 {
@@ -10653,7 +12170,1512 @@ function FindConstDD()
 	
 	//$("#CoAppConsti").html("")
 	$("#CoAppConsti").append(obj.Constitution);
+	$("#Constitution1").append(obj.Constitution);
+}
+
+//CKYC Patch
+function UniqueNoPOPUP(Evnt){
+	//var ClosID = $(Evnt).next()
+	//var val = ClosID.val();
+	var ClosID = $(Evnt).next()
+	var val =$("#"+ClosID.attr('id')).val()
+	
+	var DocName=$(Evnt).next().next()
+	var DDVal =$("#"+DocName.attr('id')).val()
+	
+	$("#UniqNoPopup").click();
+	$("#UniqNoModal").find("#UniqNoClose").attr("data-to",$(ClosID).attr("id"))
+	
+	
+	if($(Evnt).closest('td').next().find('input[type=text]').val() == "Yes")
+	{
+		$("#UniqNumber").attr("disabled","disabled");
+	}
+	else{
+		$("#UniqNumber").removeAttr("disabled", "disabled");
+	}
+	var op = UI_getdata(DDVal.replace(/ /g,""),$("#PrcsID").val(),$('.admin-panel .col-lg-12 .active').attr('id'),'','',"LSW_GETKYCSPEFYURL")
+		
+	$("#UniqNumber").attr("maxlength",$(op).find('SIZE').text())
+		if(DDVal=="Aadhar")
+		{
+		  $("#UniqNumber").addClass('IsNumberFields IsAadharFields')	
+		  $("#UniqNumber").removeClass('IsPanFields')
+		}
+		else if(DDVal=="PAN")
+		{
+		  $("#UniqNumber").addClass('IsPanFields')
+          $("#UniqNumber").removeClass('IsNumberFields IsAadharFields')		  
+		}
+		else
+		{
+			$("#UniqNumber").removeClass('IsNumberFields IsAadharFields')
+			$("#UniqNumber").removeClass('IsPanFields')
+		}
+	if(val != ""){
+		  
+		$("#UniqNumber").val(val);
+		$("#UniqNumber").next().addClass('active');
+	}
+	else
+	{
+		$("#UniqNumber").val("");
+		if(DDVal=="Aadhar")
+		{
+			$("#UniqNumber").val("XXXXXXXX");
+		}
+		
+	}
+	  if($("#DMY5").val().split("|")[2] != "SendToCredit" && $("#DMY5").val().split("|")[2] != "PreLoginSB" && $("#DMY5").val().split("|")[2] != "PreLogin" && $("#DMY5").val().split("|")[2] != "BranchOPS"  )
+	{
+		$("#UniqNumber").attr('disabled',true);
+		$(".Rmrkh").hide();
+		
+	}  
+	
+	if($("#PrMs1").val()=="View")
+	{
+		$("#POPUPRemarks").attr('disabled',true);
+		$(".Rmrkh").hide();
+	}
+}
+
+function UniqNoConf(Evnt){
+	var todata = $(Evnt).attr("data-to");
+	var totabel = $(Evnt).attr('data-tabel')
+	
+	if(totabel != undefined)
+	{
+		$("#"+totabel).find("#"+todata).val($("#UniqNumber").val())
+		$("#UniqNoModalCLOSE").click();
+		return;
+	}
+	$("#"+todata).val($("#UniqNumber").val());
+	$("#UniqNoModalCLOSE").click();
 }
 
 
 
+
+
+function AddPageMultiData_v1 (UniqFldID,PrcsVal,UniqNo,DV,FieldClass,CrRow)
+{
+	
+	var MainPage=DV.split("|")[0];
+	var DV=DV.split("|")[1];
+      var html = $($("#"+DV).html());
+      var document = $(html);
+      
+      //$(html).find("[name="+PRCSID+"]").val(PrcsVal);
+      
+      var HeaderTXTID = $("#"+DV).attr("data-val").split("|")[0];
+      var HeaderTXT = $("#"+DV).attr("data-val").split("|")[1];
+      var row =$($("."+MainPage).find(".DYNROW")[CrRow-1]).find("."+ DV).find('.DYNROWOne').length;
+      var j = parseInt(row) + 1;
+      
+      if(UniqNo != "")
+    	  {
+    	  $(html).find("#"+UniqFldID).val(UniqNo);
+    	  }
+
+      if ($(html).find('.FormaccordionSUB').length > 0)
+	   {
+	   
+    	  $("."+DV).find('.FormaccordionSUB .active').find('a').click();
+    	  
+	  // var AccordionID = $(html).find('.Formaccordion').attr("id") + j
+	   
+	  // $(html).find('.Formaccordion').attr("id",AccordionID);
+	   
+	   var HeadingID = $(html).find('.FormaccordionSUB .card-header').attr("id") + j;
+	   
+	   $(html).find('.FormaccordionSUB .card-header').attr("id",HeadingID);
+	   
+	   $(html).find(".NXTBTNF").attr("data-card",j-1);
+	   
+	//   $(html).find('.Formaccordion .card-header a').attr("data-parent","#"+AccordionID);
+	   
+	   var CollapseID =  $(html).find('.FormaccordionSUB .collapse').attr("id") + j;
+	   
+	 //  $(html).find('.Formaccordion .collapse').attr("data-parent","#"+AccordionID);
+	   
+	   $(html).find('.FormaccordionSUB .collapse').attr("id",CollapseID);
+	   
+	   $(html).find('.FormaccordionSUB .collapse').attr("aria-labelledby",HeadingID);	   
+	   
+	   
+	   $(html).find('.FormaccordionSUB .card-header a').attr("href","#"+CollapseID);
+	   
+	   $(html).find('.FormaccordionSUB .card-header a').attr("aria-controls",CollapseID);
+	   
+	   }
+      
+      
+      
+      $(html).find("#"+HeaderTXTID).text(HeaderTXT + " " + j);
+      $(html).find("[data-row]").attr("data-row",j);
+      $(html).attr("data-row",j);
+      var n = $(html).find("." + FieldClass).length;
+        for (i = 0; i < n; i++) {
+         name = $($(html).find("." + FieldClass)[i]).attr("name");
+         
+         
+         if ($(html).find('[name='+name+']').is( "a"))
+   	      {
+   	  	
+   	  	
+   	  	if ($(html).find('[name='+name+']').attr('data-toggle') == "modal")
+   	  		{		
+   	  		$(html).find('[name='+name+']').attr("id",($(html).find('[name='+name+']').attr("id") + j));
+   	  		$(html).find('[name='+name+']').attr("data-target",("#" + name + j));	
+   	  		
+   	  		}
+   	  	
+   	  	$(html).find('[name='+name+']').attr('data-table', $(html).find('[name='+name+']').attr('data-table') + j);
+   	  	$(html).find('[name='+name+']').attr('href', "#" + $(html).find('[name='+name+']').attr('data-table') + j);
+   	  }
+   	  else if ($(html).find('[name='+name+']').attr("data-info") == "ModalWindow")
+   	  {
+   	  	$(html).find('[name='+name+']').attr("id",name.replace("Modal","") + j);
+   	  }
+        
+         
+   	  else if($(html).find('[name='+name+']').attr('type')=="button")
+   	{
+
+   	   if($(html).find('[name='+name+']').attr('data-button')=="GridButton")
+   	     {
+   	 
+   		var datavalue = $(html).find('[name='+name+']').attr('data-value');
+   		 
+   		var TableID = datavalue.split("|")[0] + j;
+   		var SPNAME = datavalue.split("|")[1];
+   		
+   		var Param1 = '$("#'+ datavalue.split("|")[2] +'").val()';	
+
+   		var params2 = datavalue.split("|")[3];
+   		
+   		var Param2 = "";
+   		for (y=0;y<params2.split("~").length;y++)
+   			{
+   			
+   			Param2 = Param2 + '$("#'+  params2.split("~")[y] + j +'").val()' + "+'|'+";
+   			
+   			}
+   		
+   		Param2 = Param2.slice(0,Param2.lastIndexOf("+'|'+"))
+   		
+   		var Param3 = '$("#'+ datavalue.split("|")[4] + j +'").val()';	
+   		
+   		var HdnClms = datavalue.split("|")[5];
+   		var Fnctype = datavalue.split("|")[6];
+   			   
+   		var BtnClick =  "FncallDocChkLst(this,'"+TableID+"',{spname:'"+SPNAME+"',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:"+Param1+",brid:"+Param2+",MnuId:"+Param3+"},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||"+HdnClms+"','"+Fnctype+"')"
+   	          			  
+   		$(html).find('[name='+name+']').attr("onclick",BtnClick);
+   	    
+   		$(html).find('[name='+name+']').attr('id', $(html).find('[name='+name+']').attr('id') + j);
+   		
+   	     }
+   	            		  
+   	            	  
+   	}
+   	else if ($(html).find('[name='+name+']').is( "table"))
+   	{
+   		
+   		$(html).find('[name='+name+']').attr('id', $(html).find('[name='+name+']').attr('id') + j);
+
+   	}
+         
+         
+         if($(html).find('[name='+name+']').attr('type')=="button")
+         {
+
+            if($(html).find('[name='+name+']').attr('data-button')=="GridButton")
+              {
+            	$(html).find('[name='+name+']').addClass("AddMultiGridTrg");
+              }
+            
+              }
+
+         if ($(html).find("[for="+name+"]").length > 0)
+         {
+         $(html).find("[for="+name+"]").attr("for",name + j)
+         }
+         
+         if($(html).find("#"+name).is("select"))
+         {
+        	  $(html).find("#"+ name).addClass("mdb-select");
+         }
+         
+         if($($(html).find("." + FieldClass)[i]).attr("type") == "radio")
+         {
+        	 var radioID = $($(html).find("." + FieldClass)[i]).attr("id")
+        	 
+        	 $($(html).find("." + FieldClass)[i]).attr("id",radioID + j);
+        	 $(html).find("[for="+radioID+"]").attr("for",radioID + j);
+         }
+         
+              
+         $(html).find("#"+name).attr("id",name + j);
+         
+      
+         
+         
+        }
+        
+      
+        
+      //$("."+DV).append(html);
+      
+      $($("."+MainPage).find(".DYNROW")[CrRow-1]).find('.'+DV).append(html);
+	  
+	 $($("."+MainPage).find(".DYNROW")[CrRow-1]).find('.'+DV).last().find('.mdb-select').material_select('destroy');
+      $($("."+MainPage).find(".DYNROW")[CrRow-1]).find('.'+DV).last().find('.mdb-select').material_select();
+	  
+     // $("."+DV).last().find('.mdb-select').material_select('destroy');
+     // $("."+DV).last().find('.mdb-select').material_select();
+   // Calendar
+      var $input = $(document).find('.datepicker').pickadate({
+          //editable: 'true',
+      format: 'dd/mm/yyyy',
+      selectYears: 200,
+      selectMonths: true
+      })
+      .on("change", function() {
+        $(this).prev().prev().val($(this).val());
+        $(this).prev().prev().focus();
+      });
+	  
+	   $($("."+MainPage).find(".DYNROW")[CrRow-1]).find('.'+DV).last().find(".AddMultiGridTrg").click();
+
+      //$("."+DV).last().find(".AddMultiGridTrg").click();
+      
+      
+      
+      
+      // $($("."+DV).find('.DYNROW').last().find("." + FieldClass)[0]).focus();
+      
+     // var scrollPos =  $($("."+DV).find('.DYNROW').last().find("." + FieldClass)[0]).focus();
+		 //$(window).scrollTop(parseInt(scrollPos));
+		    
+}
+
+
+
+
+
+function TxtGridsubmitdata_Attach(TableID,GrdPrfx,MnPrfx,FieldsClassName,Mhtml) {
+	   
+	var name="";
+	var fieldid="";
+	var value="";
+	var reg = new RegExp('^[0-9]+$');
+	var formxml="<Data>";
+
+	for(j=0;j<$(Mhtml).find('.'+TableID).find('.DYNROWOne').length;j++)
+	{
+	formxml= formxml + "<row>";
+
+	var html = $(Mhtml).find('.'+TableID).find('.DYNROWOne')[j] //$(html).find('.DYNROWOne')[j];
+
+	//$(html).find("." + FieldsClassName).length
+	
+	var x = $(html).find("." + FieldsClassName).length;//document.getElementsByClassName(FieldsClassName);
+	// var y = document.getElementsByTagName("select");
+	 var name = "";
+	 var fieldid = "";
+	 var value = "";
+	 var type = "";
+	
+	 for (i = 0; i < x; i++) {
+		 
+		 if($($(html).find("." + FieldsClassName)[i]).is("select")==true || $($(html).find("." + FieldsClassName)[i]).is("input")==true || $($(html).find("." + FieldsClassName)[i]).is("textarea")==true){
+
+		     name = $($(html).find("." + FieldsClassName)[i]).attr("name");
+		     fieldid = $($(html).find("." + FieldsClassName)[i]).attr("id");
+		   //  value = document.getElementsByClassName(FieldsClassName).item(i).value;
+		   
+		     if($(html).find('#' + fieldid).attr('type')=="radio")
+		     {
+		      //name=name.split('RVAL')[0];
+		      value=$(html).find('input[id='+fieldid+']:checked').val();
+		      if(value==undefined)
+		      {
+		       value = "";
+		   }
+		     }
+		     else if($(html).find('#' + fieldid).attr('type')=="checkbox")
+		     {
+		      value=$(html).find('input[id='+fieldid+']').prop("checked");
+		      if(value==undefined)
+		      {
+		       value = "";
+		   }
+		     }
+		     else if ($(html).find('#' + fieldid).hasClass("IsCURCommaFields")) {
+		         value = $($(html).find("." + FieldsClassName)[i]).val().replace(/,/g, "");
+		     }
+		     else {
+		if ($(html).find('#' + fieldid).hasClass("ImgIdnt")) {
+		if(document.getElementsByClassName(FieldsClassName).item(i).src.indexOf("/Attachments/")!=-1)
+		{
+		value = document.getElementsByClassName(FieldsClassName).item(i).src;
+		value = "/Attachments/" + value.split("/Attachments/")[1];
+		}
+		else{
+		value = "";
+		}
+		}
+		else
+		{
+		         value = $($(html).find("." + FieldsClassName)[i]).val().replace(/,/g, "");
+		}
+		     }
+		     //type = document.getElementsByTagName("input").item(i).type;
+		     //if(fieldid !="" && type!="submit")
+		     //{
+		     //if(fieldid !="" && type!="radio")
+		     //{
+		     
+		    // value = value.toString().replace(/\&/g, "and");
+		 	//var formxml=formxml+"<"+name+">"+ value  +"</"+name+">";
+		     
+		if(value != "")
+		{
+			var formxml=formxml+"<"+name+">"+ value  +"</"+name+">";
+		}
+		     //}
+		     //}
+
+
+		}
+	    
+	
+	}
+
+
+	formxml= formxml +"<"+GrdPrfx+"PRCSID>"+$("#"+MnPrfx+"PRCSID").val()+"</"+GrdPrfx+"PRCSID>"+"<"+GrdPrfx+"ACTIVITYID>"+$("#"+MnPrfx+"ACTIVITYID").val()+"</"+GrdPrfx+"ACTIVITYID>"
+	+"<"+GrdPrfx+"DTMODIFIED>"+$("#"+MnPrfx+"DTMODIFIED").val()+"</"+GrdPrfx+"DTMODIFIED>"+"<"+GrdPrfx+"DTCREATED>"+$("#"+MnPrfx+"DTCREATED").val()+"</"+GrdPrfx+"DTCREATED>"
+	+"<"+GrdPrfx+"MODIFIEDBY>"+$("#"+MnPrfx+"MODIFIEDBY").val()+"</"+GrdPrfx+"MODIFIEDBY>"+"<"+GrdPrfx+"CREATEDBY>"+$("#"+MnPrfx+"CREATEDBY").val()+"</"+GrdPrfx+"CREATEDBY>"+"</row>";
+	}
+	var formxml = formxml + "</Data>";
+	//alert(formxml);
+	return formxml;
+
+	}
+
+
+// Multi Row Attach Page Data Save End
+
+
+
+
+function DocFldUpldHndlr_MULTI(id,HdnID,docu,KYCName,FrmName,UniqID,HTML)
+{
+	var Val=$(id).val();
+
+	if(Val!="")
+	{
+	    var domain= LoadFrmXML("RS001");
+	    var usrpwd= LoadFrmXML("RS002");
+	    var PrcsID=getUrlParam("PrcsID");
+	    var FormName= FrmName;
+	  // var CusID=$('#CBSI_CUSID').val()
+	    var CusID=UniqID
+	    var DocName=KYCName
+	    var names="";
+	    var descrptns="";
+		var op= UI_getdata("DOCVRNO","","","","","Sam_sGetCOMSeqID")
+		var flsize = "";
+	 var fd = new FormData();
+	   var vrsnno= "";
+		var prodata = "";
+	var CountAttch=1;
+		
+		 for(var c=0;c<CountAttch;c++)
+		 {
+	      file_data = $(id).closest('td').find('input[type="file"]')[0].files; // for multiple files
+		     for(var i = 0;i<file_data.length;i++){
+				var op= UI_getdata("DOCVRNO","","","","","Sam_sGetCOMSeqID")
+		         fd.append("file_"+c, file_data[i]);
+		         names += $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[0]+',';
+				 flsize += parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2)+',';
+				 vrsnno += $(op).find("VR").text()+',';
+				 if($($('input[type="file"]')[c]).closest('tr').find("#comments").val()=="")
+				 {
+					 $($('input[type="file"]')[c]).closest('tr').find("#comments").val("No Description");
+				 }
+		         descrptns += 'FieldDocument'+',';
+		     }
+		 }
+	 var FileSize=parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2);
+  //   var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
+ //    var Filename  = names.replace(',','')
+       var Filename  = $(id).closest('td').find('input[type="file"]')[0].files[0].name
+	      var FileType= Filename.substring(Filename.lastIndexOf('.')+1);
+          var  Filename= Filename.substring(0, Filename.lastIndexOf('.'));
+          var names=Filename
+ 
+		var xml=UI_getdata(FileType,FileSize,Filename,"","","LSW_SGETDOCUMNTSIZE")
+		var FileAccept=$(xml).find('RESULT').text()
+	if(FileAccept == 'No')
+	{
+		alert($(xml).find("alert").text());
+		$(id).closest('td').find('input[type="file"]').val('')
+		return
+    }
+	
+  names=names+'.'+FileType	 
+		 
+		 
+	var y=  names;
+/*	var specialChars = "<>&#^|~`"
+	var check = function(string){
+	    for(i = 0; i < specialChars.length;i++){
+	        if(string.indexOf(specialChars[i]) > -1){
+	            return true
+	        }
+	    }
+	    return false;
+	}
+
+	if(check(y) == false){
+	    // Code that needs to execute when none of the above is in the string
+	}else{
+	    alert('File name contains special character please remove and upload');
+		$(id).closest('td').find('input[type="file"]').val('')
+		return;
+	}*/
+	 ajaxindicatorstart("Uploading.. Please wait");
+		    $.ajax({
+		    	url:"/TPLSW/DMS?names="+names+"&PrcsID="+PrcsID+"&FormName="+FormName+"&descrptns="+descrptns+"&flsize="+flsize+"&vrsnno="+vrsnno+"&domain="+domain+"&usrpwd="+usrpwd+"&Prvnt="+$("#Prvnt").val()+"&CusID="+CusID+"&DocName="+DocName,
+		        data: fd,
+				async:false,
+		        contentType: false,
+		        processData: false,
+		        type: 'POST',
+		        success: function(data){
+				
+				if(data=="Fail")
+		        		{
+							 ajaxindicatorstop();
+		        		alert(LoadFrmXML("V0119"));
+						return
+		        		}
+				else{
+					//AttchDmsIns(data,'upload',prodata);
+					//$(id).val('View');
+					//$("#"+HdnID).val(data.split('~')[2])
+					$(id).closest('td').find("#"+HdnID).val(data.split('~')[2]);
+					$(id).closest('td').find('input[type="file"]').attr('disabled',true)
+					$(id).closest('td').find('input[type="file"]').val('');
+					$(id).closest('td').find('input[type="file"]').hide();
+				//	$(id).closest('td').replace('','');
+				//	$(id).closest('td').append('<span class="name">'+names.slice(0,-1)+'</span> ')
+					
+					//
+					
+					$(id).closest('.md-form').find('span').remove()
+					 $(id).val('')
+			
+				   // $(id).val(data.split('~')[2])
+					var UPLOAD=docu+'UPLOAD'
+					$(HTML).find('#'+UPLOAD).hide();
+					$(HTML).find('.'+docu).show();
+					$(id).closest('.md-form').append('<span class="name">'+names+'</span>');
+					
+						ajaxindicatorstop();
+						alert(LoadFrmXML("V0118"));
+						return
+						
+					}	
+						 ajaxindicatorstop(); 
+		        },
+		        failure:function(data)
+		        {
+		     		  ajaxindicatorstop();
+						alert(LoadFrmXML("V0119"));
+						return
+		        	
+		        }
+		    });
+			
+			  ajaxindicatorstop();
+			  }
+			  else{
+			  
+			  alert('select the file to upload');
+			  }
+
+}
+
+
+
+
+
+
+/****LOAD MULTI INSIDE LOAD MULTI STRT*****/
+function LoadMultiData_V2 (TblName,PrcsVal,UniqNo,DV,FieldClass,SP)
+{
+	//$("#"+PRCSID).val(PrcsVal)
+	
+      var TechPropDetls = UI_getdata(TblName,PrcsVal,UniqNo,"","",SP);
+	 if(TechPropDetls!="<Resultset><a><XMLLRGResult><asetLRGDAta>NoData</asetLRGDAta></XMLLRGResult></a></Resultset>")
+      {
+      var xmlDoc = $.parseXML(TechPropDetls);
+      var rowno = $(xmlDoc.documentElement).find('a asetLRGDAta').length;
+      for(j=1;j<=rowno;j++)
+            {
+            //var html = $("#"+DV).html();
+            var html = $($("#"+DV).html());
+            var HeaderTXTID = $("#"+DV).attr("data-val").split("|")[0];
+            var HeaderTXT = $("#"+DV).attr("data-val").split("|")[1];
+            var document = $(html);
+            $(html).find("#"+HeaderTXTID).text(HeaderTXT + " " + j);
+            $(html).find("[data-row]").attr("data-row",j);
+            $(html).attr("data-row",j);
+            $(html).find('.mdb-select').material_select('destroy');
+            $(html).find('.mdb-select').material_select();
+            $(html).find(".NXTBTNF").attr("data-card",j-1);
+            
+            
+            if ($(html).find('.FormaccordionSUB').length > 0)
+      	   {
+      	   
+          	  $("."+DV).find('.FormaccordionSUB .active').find('a').click();
+          	  
+      	  // var AccordionID = $(html).find('.Formaccordion').attr("id") + j
+      	   
+      	  // $(html).find('.Formaccordion').attr("id",AccordionID);
+      	   
+      	   var HeadingID = $(html).find('.FormaccordionSUB .card-header').attr("id") + j;
+      	   
+      	   $(html).find('.FormaccordionSUB .card-header').attr("id",HeadingID);
+      	   
+      	//   $(html).find('.Formaccordion .card-header a').attr("data-parent","#"+AccordionID);
+      	   
+      	   var CollapseID =  $(html).find('.FormaccordionSUB .collapse').attr("id") + j;
+      	   
+      	 //  $(html).find('.Formaccordion .collapse').attr("data-parent","#"+AccordionID);
+      	   
+      	   $(html).find('.FormaccordionSUB .collapse').attr("id",CollapseID);
+      	   
+      	   $(html).find('.FormaccordionSUB .collapse').attr("aria-labelledby",HeadingID);	   
+      	   
+      	   
+      	   $(html).find('.FormaccordionSUB .card-header a').attr("href","#"+CollapseID);
+      	   
+      	   $(html).find('.FormaccordionSUB .card-header a').attr("aria-controls",CollapseID);
+      	   
+      	   }
+            
+            
+            
+      //    return;
+            var n = $(html).find("." + FieldClass).length;
+              for (i = 0; i < n; i++) {
+            	 
+            	  name = $($(html).find("." + FieldClass)[i]).attr("name");
+ 
+            	  if ($(html).find('[name='+name+']').is( "a"))
+            	  {
+            	  	
+            	  	
+            	  	if ($(html).find('[name='+name+']').attr('data-toggle') == "modal")
+            	  		{		
+            	  		$(html).find('[name='+name+']').attr("id",($(html).find('[name='+name+']').attr("id") + j));
+            	  		$(html).find('[name='+name+']').attr("data-target",("#" + name + j));	
+            	  		
+            	  		}
+            	  	
+            	  	$(html).find('[name='+name+']').attr('data-table', $(html).find('[name='+name+']').attr('data-table') + j);
+            	  	$(html).find('[name='+name+']').attr('href', "#" + $(html).find('[name='+name+']').attr('data-table') + j);
+
+            	  }
+            	  else if ($(html).find('[name='+name+']').attr("data-info") == "ModalWindow")
+            	  {
+
+            	  	$(html).find('[name='+name+']').attr("id",name.replace("Modal","") + j);
+
+            	  }
+            	  
+            	  else if($(html).find('[name='+name+']').attr('type')=="button")
+{
+
+   if($(html).find('[name='+name+']').attr('data-button')=="GridButton")
+     {
+ 
+	var datavalue = $(html).find('[name='+name+']').attr('data-value');
+	 
+	var TableID = datavalue.split("|")[0] + j;
+	var SPNAME = datavalue.split("|")[1];
+	
+	var Param1 = '$("#'+ datavalue.split("|")[2] +'").val()';	
+
+	var params2 = datavalue.split("|")[3];
+	
+	var Param2 = "";
+	for (y=0;y<params2.split("~").length;y++)
+		{
+		
+		Param2 = Param2 + '$("#'+  params2.split("~")[y] + j +'").val()' + "+'|'+";
+		
+		}
+	
+	Param2 = Param2.slice(0,Param2.lastIndexOf("+'|'+"))
+	
+	var Param3 = '$("#'+ datavalue.split("|")[4] + j +'").val()';	
+	
+	var HdnClms = datavalue.split("|")[5];
+	var Fnctype = datavalue.split("|")[6];
+		   
+	var BtnClick =  "FncallDocChkLst(this,'"+TableID+"',{spname:'"+SPNAME+"',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:"+Param1+",brid:"+Param2+",MnuId:"+Param3+"},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||"+HdnClms+"','"+Fnctype+"')"
+          			  
+	$(html).find('[name='+name+']').attr("onclick",BtnClick);
+    
+	$(html).find('[name='+name+']').attr('id', $(html).find('[name='+name+']').attr('id') + j);
+	
+     }
+            		  
+            	  
+}
+else if ($(html).find('[name='+name+']').is( "table"))
+{
+	
+	$(html).find('[name='+name+']').attr('id', $(html).find('[name='+name+']').attr('id') + j);
+
+}
+
+else
+ {
+            	              
+              var val = $($(xmlDoc.documentElement).find('a asetLRGDAta')[j-1]).find(name).text();
+              if (val != "") {
+                  if ($(html).find("#"+name).length > 0)
+                        {
+                        $(html).find("#"+name).val(val);
+               // added by bala Upload Image Show Start
+               if($(html).find("[data-Validate="+name+"]").length > 0)
+               {
+                   FileSplit=val.split('\\');
+                  var FileName=FileSplit[FileSplit.length - 1]
+                  $(html).find("#"+name+"UPLOAD").hide()
+                   $(html).find("#"+name+"UPLOAD").closest('.md-form').append(FileName);
+                  if(val != "")
+                  {
+                        $(html).find("."+name).show();
+                  }
+                  else
+                  {
+                        $(html).find("."+name).hide();
+                        $(html).find("#"+name+"UPLOAD").show()
+                  }
+               }
+               // End
+               if($(html).find("[data-Validatearia="+name+"]").length > 0)
+                   {
+                   if (val == "Verified")
+                         {
+                        $(html).find("[data-Validatearia="+name+"]").text(val);
+                        $(html).find("[data-Validatearia="+name+"]").addClass("btn-GrnInplain");
+                        $(html).find("." + $("[data-Validatearia="+name+"]").attr("data-validate")).show();
+                        $(html).find(".OtherKYCInfo").show();
+                         }
+                   else if (val == "Failed")
+                   {
+                        $(html).find("[data-Validatearia="+name+"]").text(val);
+                        $(html).find("[data-Validatearia="+name+"]").addClass("btn-RedInplain");
+                        $(html).find("." + $("[data-Validatearia="+name+"]").attr("data-validate")).show();
+                        $(html).find(".OtherKYCInfo").show();
+                   }
+                   }
+                        }
+                  if($(html).find("#"+name).val()  != "")
+                    {
+                    $(html).find('[for='+name+']').addClass('active');
+                    }
+                  //checkbox 11-01-2018
+if($(html).find('[name='+name+']').attr('type')=="radio")
+{
+      $(html).find('[name='+name+'][value="'+val+'"]').prop('checked', true);
+      //$(html).find('[name='+name+']').attr('name', $(html).find('[name='+name+']').attr('name') + 'RVAL'+j);
+}  
+if($(html).find('[name='+name+']').attr('type')=="checkbox")
+{
+      $(html).find('[name='+name+'][value="'+val+'"]').prop('checked', true);
+}
+
+  if ($(html).find('[name='+name+']').is( "span"))
+  {
+	  
+	  /*$(html).find('[name='+name+']').hasClass("DataFld")
+	  {
+		  
+		  $(html).find('[name='+name+']').text(val);
+		  
+	  }*/
+	  if($(html).find('[name='+name+']').hasClass("Datahtml"))
+	  {
+		  $(html).find('[name='+name+']').html(val);
+	  }
+	  else if($(html).find('[name='+name+']').hasClass("DataFld"))
+	  {
+		  
+		  $(html).find('[name='+name+']').text(val);
+		  
+	  }
+	  else{
+		  $(html).find('[name='+name+']').text(val);
+	  }
+  
+  }
+
+
+
+            /*if($("#"+ name).attr('type') == 'checkbox')
+                        {
+                  $("#"+ name).prop("checked",val);
+                        }*/
+            if($(html).find("#"+ name).is( "select" ))
+            {
+            var optn="<option  value='"+val+"'>" + val + "</option>"
+            if($(html).find("#"+name+" option[value='" + val + "']").length==0)
+            {
+                  $(html).find("#"+ name).append(optn)
+            $(html).find("#"+name+" option:contains("+val+")").attr("selected","selected")
+            }
+            else
+                  {
+                  $(html).find("#"+name+" option:contains("+val+")").attr("selected","selected")
+                  }
+      //    if($("#"+ name).prev('ul').length == 0)
+                  //{
+            
+            $(html).find("#"+ name).addClass("mdb-select");
+            
+                  //}
+            }
+            //IsCURCommaFields
+            var x = $(html).find("#" + name).hasClass("IsCURCommaFields");
+           if (x == true) {
+                        if(val=="")
+                        {
+                              val= "0";
+                        }
+						
+						
+			if (val.replace(/,/g,"").indexOf('.')>0)
+			{
+
+			if (val.replace(/,/g,"").split('.')[1] > 0)
+			{
+$(html).find("#" + name).val(CURCommaSep(parseFloat(val.replace(/,/g,"")).toFixed(2)));
+			}	
+else{
+$(html).find("#" + name).val(CURCommaSep(parseFloat(val.replace(/,/g,"")).toFixed(0)));
+}	
+			
+			
+			}
+else{			
+						
+                        $(html).find("#" + name).val(CURCommaSep(parseFloat(val.replace(/,/g,"")).toFixed(0)));
+}
+          }
+          else {
+                        //For Attached Photo identity Start
+                  var y = $(html).find("#" + name).hasClass("ImgIdnt");
+          if (y == true) {
+                  var IOP=LoadFrmXML("RS006");
+                  val = IOP+val;
+                  document.getElementById(name).src = val;
+          }
+                        //For Attached Photo identity End
+                  else
+                  {                      
+                        if ($(html).find("#"+name).length > 0)
+                  {
+                              $(html).find("#"+name).val(val);
+                  }
+                        }
+          }
+              }
+              else
+                  {
+                  if($(html).find("#"+ name).is( "select" ))
+                        {
+                	  
+                	    $(html).find("#"+ name).addClass("mdb-select");
+                	  
+                        //if($("#"+ name).prev('ul').length == 0)
+                              //{
+                	 //   $(html).find("#"+ name).material_select('destroy');
+                        
+                              //}
+                        }
+                  }
+              
+              if($($(html).find("." + FieldClass)[i]).attr("type") == "radio")
+              {
+             	 var radioID = $($(html).find("." + FieldClass)[i]).attr("id")
+             	 
+             	 $($(html).find("." + FieldClass)[i]).attr("id",radioID + j);
+             	 $(html).find("[for="+radioID+"]").attr("for",radioID + j);
+             	 
+             	//$(html).find('[name='+name+']').attr('name', $(html).find('[name='+name+']').attr('name') + 'RVAL'+j);
+              }
+              
+              $(html).find("#"+name).attr("id",name + j);
+              if ($(html).find("[for="+name+"]").length > 0)
+                    {
+                    $(html).find("[for="+name+"]").attr("for",name + j)
+                    }
+              
+              
+              
+             // $(html).find("#"+name).attr("id",name + j);
+             // $(html).find("#"+name).attr("id",name + j);
+          }
+            }    
+              
+			  if($(html).find('.MULTILOADMULTI').length > 0)
+			  {
+				  var MULTILOADMULTIlen =$(html).find('.MULTILOADMULTI').length;
+				  var multiloaddv="",multiloadTblName="",multiloadPrcsVal="",multiloadUniqNo="",multiloadFieldClass="",multiloadSP="",multiloadhtml= "";
+				  for(var multiload = 0;multiload<MULTILOADMULTIlen;multiload++)
+				  {
+					  multiloaddv = "",multiloadTblName="",multiloadPrcsVal="",multiloadUniqNo="",multiloadFieldClass="",multiloadSP="",multiloadhtml= "";
+					  multiloaddv = $($(html).find('.MULTILOADMULTI')[multiload]).attr("id");
+					  multiloadPrcsVal = $("#PrcsID").val();
+					  multiloadUniqNo =$(html).find("[name='"+$($(html).find('.MULTILOADMULTI')[multiload]).attr("data-multi-UniqNo")+"']").val();
+					  multiloadFieldClass =$($(html).find('.MULTILOADMULTI')[multiload]).attr("data-multi-FieldClass");
+					  multiloadSP =$($(html).find('.MULTILOADMULTI')[multiload]).attr("data-multi-SP");
+					  
+					  multiloadhtml = LoadMultiData_Supporting (multiloadTblName,multiloadPrcsVal,multiloadUniqNo,multiloaddv,multiloadFieldClass,multiloadSP,html)
+					 // $(html).find("."+$($(html).find('.MULTILOADMULTI')[multiload]).attr("id")).append(multiloadhtml);
+				  }
+			  }
+              $("."+DV).append(html);
+              
+              
+              $("."+DV).last().find('.mdb-select').material_select('destroy');
+              $("."+DV).last().find('.mdb-select').material_select();
+              
+           // Calendar
+              var $input = $(document).find('.datepicker').pickadate({
+                  //editable: 'true',
+              format: 'dd/mm/yyyy',
+              selectYears: 200,
+              selectMonths: true
+              })
+              .on("change", function() {
+                $(this).prev().prev().val($(this).val());
+                $(this).prev().prev().focus();
+              });
+              
+             // $("."+DV).last().find(".MultiGridTrg").click();
+			  $("."+DV).find(".DYNROW").last().find(".MultiGridTrg").click();
+			  
+			  
+            }
+	   }
+      //$("#COBI_CUSID").val($(CUSID).find("Val1").text());
+	  
+	    // FOR ONLOAD 1 STRIP OPEN FOR EXPANDABLE STRIPS START
+	    if ($(html).find('.FormaccordionSUB').length > 0)
+      	   {
+      	   
+          	  $("."+DV).find('.FormaccordionSUB .active').find('a').click();
+			  $($("."+DV).find('.FormaccordionSUB').find('a')[0]).click();
+			  $($($("."+DV).find('.FormaccordionSUB')[0]).find('div')[1]).addClass("show");
+		   }
+	  // FOR ONLOAD 1 STRIP OPEN FOR EXPANDABLE STRIPS END
+	  
+}
+
+
+
+
+
+
+
+
+function LoadMultiData_Supporting (TblName,PrcsVal,UniqNo,DV,FieldClass,SP,mainhtml)
+{
+	//$("#"+PRCSID).val(PrcsVal)
+	
+      var TechPropDetls = UI_getdata(TblName,PrcsVal,UniqNo,"","",SP);
+	 if(TechPropDetls!="<Resultset><a><XMLLRGResult><asetLRGDAta>NoData</asetLRGDAta></XMLLRGResult></a></Resultset>")
+      {
+      var xmlDoc = $.parseXML(TechPropDetls);
+      var rowno = $(xmlDoc.documentElement).find('a asetLRGDAta').length;
+	  var finalhtml = "";
+      for(multiloadj=1;multiloadj<=rowno;multiloadj++)
+            {
+            //var html = $("#"+DV).html();
+            var html = $($("#"+DV).html());
+            var HeaderTXTID = $("#"+DV).attr("data-val").split("|")[0];
+            var HeaderTXT = $("#"+DV).attr("data-val").split("|")[1];
+            var document = $(html);
+            $(html).find("#"+HeaderTXTID).text(HeaderTXT + " " + multiloadj);
+            $(html).find("[data-row]").attr("data-row",multiloadj);
+            $(html).attr("data-row",multiloadj);
+            $(html).find('.mdb-select').material_select('destroy');
+            $(html).find('.mdb-select').material_select();
+            $(html).find(".NXTBTNF").attr("data-card",multiloadj-1);
+            
+            
+            if ($(html).find('.FormaccordionSUB').length > 0)
+      	   {
+      	   
+          	  $("."+DV).find('.FormaccordionSUB .active').find('a').click();
+          	  
+      	  // var AccordionID = $(html).find('.Formaccordion').attr("id") + multiloadj
+      	   
+      	  // $(html).find('.Formaccordion').attr("id",AccordionID);
+      	   
+      	   var HeadingID = $(html).find('.FormaccordionSUB .card-header').attr("id") + multiloadj;
+      	   
+      	   $(html).find('.FormaccordionSUB .card-header').attr("id",HeadingID);
+      	   
+      	//   $(html).find('.Formaccordion .card-header a').attr("data-parent","#"+AccordionID);
+      	   
+      	   var CollapseID =  $(html).find('.FormaccordionSUB .collapse').attr("id") + multiloadj;
+      	   
+      	 //  $(html).find('.Formaccordion .collapse').attr("data-parent","#"+AccordionID);
+      	   
+      	   $(html).find('.FormaccordionSUB .collapse').attr("id",CollapseID);
+      	   
+      	   $(html).find('.FormaccordionSUB .collapse').attr("aria-labelledby",HeadingID);	   
+      	   
+      	   
+      	   $(html).find('.FormaccordionSUB .card-header a').attr("href","#"+CollapseID);
+      	   
+      	   $(html).find('.FormaccordionSUB .card-header a').attr("aria-controls",CollapseID);
+      	   
+      	   }
+            
+            
+            
+      //    return;
+            var n = $(html).find("." + FieldClass).length;
+              for (i = 0; i < n; i++) {
+            	 
+            	  name = $($(html).find("." + FieldClass)[i]).attr("name");
+ 
+            	  if ($(html).find('[name='+name+']').is( "a"))
+            	  {
+            	  	
+            	  	
+            	  	if ($(html).find('[name='+name+']').attr('data-toggle') == "modal")
+            	  		{		
+            	  		$(html).find('[name='+name+']').attr("id",($(html).find('[name='+name+']').attr("id") + multiloadj));
+            	  		$(html).find('[name='+name+']').attr("data-target",("#" + name + multiloadj));	
+            	  		
+            	  		}
+            	  	
+            	  	$(html).find('[name='+name+']').attr('data-table', $(html).find('[name='+name+']').attr('data-table') + multiloadj);
+            	  	$(html).find('[name='+name+']').attr('href', "#" + $(html).find('[name='+name+']').attr('data-table') + multiloadj);
+
+            	  }
+            	  else if ($(html).find('[name='+name+']').attr("data-info") == "ModalWindow")
+            	  {
+
+            	  	$(html).find('[name='+name+']').attr("id",name.replace("Modal","") + multiloadj);
+
+            	  }
+            	  
+            	  else if($(html).find('[name='+name+']').attr('type')=="button")
+{
+
+   if($(html).find('[name='+name+']').attr('data-button')=="GridButton")
+     {
+ 
+	var datavalue = $(html).find('[name='+name+']').attr('data-value');
+	 
+	var TableID = datavalue.split("|")[0] + multiloadj;
+	var SPNAME = datavalue.split("|")[1];
+	
+	var Param1 = '$("#'+ datavalue.split("|")[2] +'").val()';	
+
+	var params2 = datavalue.split("|")[3];
+	
+	var Param2 = "";
+	for (y=0;y<params2.split("~").length;y++)
+		{
+		
+		Param2 = Param2 + '$("#'+  params2.split("~")[y] + multiloadj +'").val()' + "+'|'+";
+		
+		}
+	
+	Param2 = Param2.slice(0,Param2.lastIndexOf("+'|'+"))
+	
+	var Param3 = '$("#'+ datavalue.split("|")[4] + multiloadj +'").val()';	
+	
+	var HdnClms = datavalue.split("|")[5];
+	var Fnctype = datavalue.split("|")[6];
+		   
+	var BtnClick =  "FncallDocChkLst(this,'"+TableID+"',{spname:'"+SPNAME+"',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:"+Param1+",brid:"+Param2+",MnuId:"+Param3+"},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||"+HdnClms+"','"+Fnctype+"')"
+          			  
+	$(html).find('[name='+name+']').attr("onclick",BtnClick);
+    
+	$(html).find('[name='+name+']').attr('id', $(html).find('[name='+name+']').attr('id') + multiloadj);
+	
+     }
+            		  
+            	  
+}
+else if ($(html).find('[name='+name+']').is( "table"))
+{
+	
+	$(html).find('[name='+name+']').attr('id', $(html).find('[name='+name+']').attr('id') + multiloadj);
+
+}
+
+else
+ {
+            	              
+              var val = $($(xmlDoc.documentElement).find('a asetLRGDAta')[multiloadj-1]).find(name).text();
+              if (val != "") {
+                  if ($(html).find("#"+name).length > 0)
+                        {
+                        $(html).find("#"+name).val(val);
+               // added by bala Upload Image Show Start
+               if($(html).find("[data-Validate="+name+"]").length > 0)
+               {
+                   FileSplit=val.split('\\');
+                  var FileName=FileSplit[FileSplit.length - 1]
+                  $(html).find("#"+name+"UPLOAD").hide()
+                   $(html).find("#"+name+"UPLOAD").closest('.md-form').append(FileName);
+                  if(val != "")
+                  {
+                        $(html).find("."+name).show();
+                  }
+                  else
+                  {
+                        $(html).find("."+name).hide();
+                        $(html).find("#"+name+"UPLOAD").show()
+                  }
+               }
+               // End
+               if($(html).find("[data-Validatearia="+name+"]").length > 0)
+                   {
+                   if (val == "Verified")
+                         {
+                        $(html).find("[data-Validatearia="+name+"]").text(val);
+                        $(html).find("[data-Validatearia="+name+"]").addClass("btn-GrnInplain");
+                        $(html).find("." + $("[data-Validatearia="+name+"]").attr("data-validate")).show();
+                        $(html).find(".OtherKYCInfo").show();
+                         }
+                   else if (val == "Failed")
+                   {
+                        $(html).find("[data-Validatearia="+name+"]").text(val);
+                        $(html).find("[data-Validatearia="+name+"]").addClass("btn-RedInplain");
+                        $(html).find("." + $("[data-Validatearia="+name+"]").attr("data-validate")).show();
+                        $(html).find(".OtherKYCInfo").show();
+                   }
+                   }
+                        }
+                  if($(html).find("#"+name).val()  != "")
+                    {
+                    $(html).find('[for='+name+']').addClass('active');
+                    }
+                  //checkbox 11-01-2018
+if($(html).find('[name='+name+']').attr('type')=="radio")
+{
+      $(html).find('[name='+name+'][value="'+val+'"]').prop('checked', true);
+      //$(html).find('[name='+name+']').attr('name', $(html).find('[name='+name+']').attr('name') + 'RVAL'+multiloadj);
+}  
+if($(html).find('[name='+name+']').attr('type')=="checkbox")
+{
+      $(html).find('[name='+name+'][value="'+val+'"]').prop('checked', true);
+}
+
+  if ($(html).find('[name='+name+']').is( "span"))
+  {
+	  
+	  /*$(html).find('[name='+name+']').hasClass("DataFld")
+	  {
+		  
+		  $(html).find('[name='+name+']').text(val);
+		  
+	  }*/
+	  if($(html).find('[name='+name+']').hasClass("Datahtml"))
+	  {
+		  $(html).find('[name='+name+']').html(val);
+	  }
+	  else if($(html).find('[name='+name+']').hasClass("DataFld"))
+	  {
+		  
+		  $(html).find('[name='+name+']').text(val);
+		  
+	  }
+	  else{
+		  $(html).find('[name='+name+']').text(val);
+	  }
+  
+  }
+
+
+
+            /*if($("#"+ name).attr('type') == 'checkbox')
+                        {
+                  $("#"+ name).prop("checked",val);
+                        }*/
+            if($(html).find("#"+ name).is( "select" ))
+            {
+            var optn="<option  value='"+val+"'>" + val + "</option>"
+            if($(html).find("#"+name+" option[value='" + val + "']").length==0)
+            {
+                  $(html).find("#"+ name).append(optn)
+            $(html).find("#"+name+" option:contains("+val+")").attr("selected","selected")
+            }
+            else
+                  {
+                  $(html).find("#"+name+" option:contains("+val+")").attr("selected","selected")
+                  }
+      //    if($("#"+ name).prev('ul').length == 0)
+                  //{
+            
+            $(html).find("#"+ name).addClass("mdb-select");
+            
+                  //}
+            }
+            //IsCURCommaFields
+            var x = $(html).find("#" + name).hasClass("IsCURCommaFields");
+           if (x == true) {
+                        if(val=="")
+                        {
+                              val= "0";
+                        }
+						
+						
+			if (val.replace(/,/g,"").indexOf('.')>0)
+			{
+
+			if (val.replace(/,/g,"").split('.')[1] > 0)
+			{
+$(html).find("#" + name).val(CURCommaSep(parseFloat(val.replace(/,/g,"")).toFixed(2)));
+			}	
+else{
+$(html).find("#" + name).val(CURCommaSep(parseFloat(val.replace(/,/g,"")).toFixed(0)));
+}	
+			
+			
+			}
+else{			
+						
+                        $(html).find("#" + name).val(CURCommaSep(parseFloat(val.replace(/,/g,"")).toFixed(0)));
+}
+          }
+          else {
+                        //For Attached Photo identity Start
+                  var y = $(html).find("#" + name).hasClass("ImgIdnt");
+          if (y == true) {
+                  var IOP=LoadFrmXML("RS006");
+                  val = IOP+val;
+                  document.getElementById(name).src = val;
+          }
+                        //For Attached Photo identity End
+                  else
+                  {                      
+                        if ($(html).find("#"+name).length > 0)
+                  {
+                              $(html).find("#"+name).val(val);
+                  }
+                        }
+          }
+              }
+              else
+                  {
+                  if($(html).find("#"+ name).is( "select" ))
+                        {
+                	  
+                	    $(html).find("#"+ name).addClass("mdb-select");
+                	  
+                        //if($("#"+ name).prev('ul').length == 0)
+                              //{
+                	 //   $(html).find("#"+ name).material_select('destroy');
+                        
+                              //}
+                        }
+                  }
+              
+              if($($(html).find("." + FieldClass)[i]).attr("type") == "radio")
+              {
+             	 var radioID = $($(html).find("." + FieldClass)[i]).attr("id")
+             	 
+             	 $($(html).find("." + FieldClass)[i]).attr("id",radioID + multiloadj);
+             	 $(html).find("[for="+radioID+"]").attr("for",radioID + multiloadj);
+             	 
+             	//$(html).find('[name='+name+']').attr('name', $(html).find('[name='+name+']').attr('name') + 'RVAL'+multiloadj);
+              }
+              
+              $(html).find("#"+name).attr("id",name + multiloadj);
+              if ($(html).find("[for="+name+"]").length > 0)
+                    {
+                    $(html).find("[for="+name+"]").attr("for",name + multiloadj)
+                    }
+              
+              
+              
+             // $(html).find("#"+name).attr("id",name + multiloadj);
+             // $(html).find("#"+name).attr("id",name + multiloadj);
+          }
+            }    
+              $(mainhtml).find("."+DV).append(html)
+              //$("."+DV).append(html);
+              //finalhtml=finalhtml+$(html)[0].outerHTML
+             //$(finalhtml).find(".DVZZZ").append(html)
+            /**  $("."+DV).last().find('.mdb-select').material_select('destroy');
+              $("."+DV).last().find('.mdb-select').material_select();
+              
+           // Calendar
+              var $input = $(document).find('.datepicker').pickadate({
+                  //editable: 'true',
+              format: 'dd/mm/yyyy',
+              selectYears: 200,
+              selectMonths: true
+              })
+              .on("change", function() {
+                $(this).prev().prev().val($(this).val());
+                $(this).prev().prev().focus();
+              });
+              
+             // $("."+DV).last().find(".MultiGridTrg").click();
+			  $("."+DV).find(".DYNROW").last().find(".MultiGridTrg").click();**/
+            }
+			//return finalhtml;
+	   }
+      //$("#COBI_CUSID").val($(CUSID).find("Val1").text());
+	  
+	    // FOR ONLOAD 1 STRIP OPEN FOR EXPANDABLE STRIPS START
+	    if ($(html).find('.FormaccordionSUB').length > 0)
+      	   {
+      	   
+          	  $("."+DV).find('.FormaccordionSUB .active').find('a').click();
+			  $($("."+DV).find('.FormaccordionSUB').find('a')[0]).click();
+			  $($($("."+DV).find('.FormaccordionSUB')[0]).find('div')[1]).addClass("show");
+		   }
+	  // FOR ONLOAD 1 STRIP OPEN FOR EXPANDABLE STRIPS END
+}
+
+/****LOAD MULTI INSIDE LOAD MULTI END*****/
+
+
+function DirImgDown(id)
+{
+	if ($("#"+id).val() == "")
+		{
+			alert("No Attachments Available to View");
+			return;
+		}
+	else{
+	RedirectURL =$("#"+id).val()
+	
+	$("#DocView").attr("src", RedirectURL);
+	}
+}
+
+
+
+function ViewDedupe()
+{
+$(".DedupePopup").click();
+$("#BTNDEDUPEIGRD").click();
+$("#BTNDEDUPEIIGRD").click();
+$("#BTNDEDUPEIIIGRD").click();
+$("#BTNLSWINTER").click()
+$("#BTNRBIDEDUPE").click()
+}
+
+function GridESIGNValidate(Evnt){
+	
+	var xml=UI_getdata($('#PrcsID').val(),'','','','','LSW_SCHECKESIGN');
+	var Checkverify= $(xml).find("RESULT").text();
+	
+	if(Checkverify=='X')
+	{
+		alert($(xml).find("ALERT").text());
+		return
+		
+	}
+	else
+	{
+		
+	
+	
+	var dmsid = $($(Evnt).closest(".tbodytrtd").prev().find("input[type=text]")).val().split("\\")[0];
+	var storeinithitfld = $(Evnt).closest(".tbodytrtd").find("input[type=text]");
+	var storeinithitfld_1 =  $($(Evnt).closest(".tbodytrtd").next().find("input[type=text]"));
+	$.ajax({
+		url: "/TPLSW/esignLegality",
+		data: {spname:"LSW_SESIGNAPICREATE",docurl:dmsid,hittype:"Create",prcsid:$("#PrcsID").val(),Prvnt:$("#Prvnt").val()},
+		async:true,
+		type: 'POST',
+		success: function(xml1)
+		{
+			if(xml1.split("~")[0] == "Error")
+			{
+				$("#"+$(storeinithitfld).attr("id")).val("Error");
+				alert(xml1.split("-")[1]);
+				$("#Save").click();
+				window.location.reload();
+				return;
+			}
+			else if(xml1.split("~")[0] == "Success")
+			{
+				$("#"+$(storeinithitfld).attr("id")).val(xml1.split("~")[1]);
+				$("#"+$(storeinithitfld_1).attr("id")).val("");
+				$("#Save").click();
+				window.location.reload();
+				return;
+			}
+			else
+			{
+				alert("Error Occurred, Contact ID");
+				return;
+			}
+		},
+		error: function (xml1)
+	   {
+			alert("Error Occurred, Contact ID");
+			return;
+	   }
+	});
+	}
+}
+
+function GridESIGNRetrieve(Evnt){
+	var dmsid = $($(Evnt).closest(".tbodytrtd").prev().find("input[type=text]")).val();
+	var storeinithitfld = $(Evnt).closest(".tbodytrtd").find("input[type=text]");
+	$.ajax({
+		url: "/TPLSW/esignLegality-GetStatus",
+		data: {spname:"LSW_SESIGNAPICREATE",docid:dmsid,hittype:"Get",prcsid:$("#PrcsID").val(),Prvnt:$("#Prvnt").val()},
+		async:true,
+		type: 'POST',
+		success: function(xml1)
+		{
+			if(xml1.split("~")[0] == "Error")
+			{
+				alert(xml1.split("~")[1]);
+				return;
+			}
+			else if(xml1.split("~")[0] == "Success")
+			{
+				$("#"+$(storeinithitfld).attr("id")).val(xml1.split("~")[1]);
+				$("#Save").click();
+				window.location.reload();
+				return;
+			}
+			else
+			{
+				alert("Error Occurred, Contact ID");
+				return;
+			}
+		},
+		error: function (xml1)
+	   {
+			alert("Error Occurred, Contact ID");
+			return;
+	   }
+	});
+}
+
+function GridGSTValidate(Evnt){
+
+	$("#Save1").click();
+	var mnth = $($(Evnt).closest(".tbodytr").find(".tbodytrtd")[0]).find("input[type=text]").val();
+	var storeinithitfld = $(Evnt).closest(".tbodytrtd").find("input[type=text]");
+	$.ajax({
+		url: "/TPLSW/GSTAnalysisCallUploadProcess",
+		data: {SPNAME:"LSW_SGSTANALYSISCREATE",Param1:"",Param2:"Upload",Param3:mnth,PRCSID:$("#PrcsID").val(),Prvnt:$("#Prvnt").val()},
+		async:true,
+		type: 'POST',
+		success: function(xml1)
+		{
+			if(xml1.split("~")[0] == "Error")
+			{
+				alert(xml1.split("~")[1]);
+				return;
+			}
+			else if(xml1.split("~")[0] == "Success")
+			{
+				$("#"+$(storeinithitfld).attr("id")).val(xml1.split("~")[1]);
+				$("#Save1").click();
+				window.location.reload();
+				return;
+			}
+			else
+			{
+				alert("Error Occurred, Contact ID");
+				return;
+			}
+		},
+		error: function (xml1)
+	   {
+			alert("Error Occurred, Contact ID");
+			return;
+	   }
+	});
+}
+
+function DSVLBLALLOUTSAVE(Evnt)
+{
+	  $(".form-control").attr('disabled',true);
+		$(".custom-control-input").attr('disabled',true);
+		$(".GridDocUpd").hide();
+		$(".Gridmdb-select").attr('disabled',true);
+		$(".tbodytrtd").attr('disabled',true);
+		 $(".BTNVerify").attr('disabled',true)
+		 $(".AddKYC").hide();
+		
+		
+	  // $(".FormSave").hide();
+       $(".DelGridrow").hide();
+	   $('.select-dropdown').attr('disabled',true)
+	   $('.BTNDedupe').attr('disabled',true)
+	   
+		  $(".DELBTN").hide();
+	      $(".DELBTNTXT").hide();
+		  $(".ADDBTN").hide();
+		  $(".ReUpld").hide();
+		  $(".KYCDEL").hide();
+		  
+		  $(".btn-sm").attr('disabled',true)
+		  $(".fa-plus").hide()
+		  $("input[name=datafile]").attr('disabled',true);
+		//  $(".BTNHIDE").hide()
+		  $(".RPTBTN").hide()
+		  $('.datepicker').attr('disabled',true)
+		  if(Evnt !="WA"){
+		  $(".FormPageMultiTabAdd").hide()
+		  }
+		  $('.RPTVIEW').show()
+		  $('.datepicker').hide()
+		  $("#Reject").hide()
+		  $('.Griddatepicker').hide()
+		  $('.dropdown-content').attr('disabled',true)
+		  
+		   	
+// Credit Chenages for Sanction Amt Field enabled in Waiver Stage START
+	if($("#DMY5").val().split("|")[2]=="Waiver")
+      {
+       if(($(".FormMainTab1 li.active").attr("id")=="FormPageTab5")&&($(".FormMainTabs li.active").attr("id")=="FormMainTab6")&&($("#PrMs1").val()!="View"))
+	     {
+	  	   if($("#DMY7").val().split("|")[12]=="Y")
+		     {
+              //$("#FCEB_VALUE4").attr('disabled',false)
+			  $(".ExpAmt").removeAttr('disabled')
+		      //$("[name=FCEB_HIDDENID]").prev().removeAttr("disabled"); 
+		     }			
+	     }
+       }
+//End
+
+$(".DISENAB").removeAttr('disabled') 
+$('.SENDBCK').attr('disabled',false)
+		  $(".SENDBCK").removeAttr('disabled') 
+	  
+}

@@ -76,7 +76,7 @@ alert('Invalid File Format');
  	  var op= UI_getdata("DOCVRNO","","","","","Sam_sGetCOMSeqID")
 	  $("#PrcsID").attr('value',$(op).find("VR").text())
  	var   param1=$(op).find("VR").text();
- 	var   param2="SCF_SEXCELMULTIUPLOADDATA";
+ 	var   param2="LSW_SEXCELMULTIUPLOADDATA";
  	var   param3="LSW_TCERSAIDOCUPLOAD";
  	
  		$.ajax({
@@ -326,16 +326,62 @@ function GENERATE_CERSAI()
 	alert('Upload the documents')
 	return  
 }
+  var mnth="";
+  var Hrs="";
+  var Min="";
+  var Sec="";
+  var dat="";
   var dt = new Date();
-  var dtme= dt.getFullYear()+''+(dt.getMonth()+1)+''+ dt.getDate()+ ''+dt.getHours() + '' + dt.getMinutes() + "" + dt.getSeconds(); 
-  var param1=$('#PrcsID').val(); //UNIQUE ID
+  if((dt.getMonth()+1).toString().length==1)
+  {
+    mnth=""+dt.getMonth()+1;
+  }
+  else
+  { 
+    mnth=dt.getMonth()+1;
+  }
+  if((dt.getHours()).toString().length==1)
+  {
+    Hrs=""+dt.getHours();
+  }
+  else
+  { 
+    Hrs=dt.getHours();
+  }
+   if((dt.getMinutes()).toString().length==1)
+  {
+    Min=""+dt.getMinutes();
+  }
+  else
+  { 
+    Min=dt.getMinutes();
+  }
+ if((dt.getDate()).toString().length==1)
+  {
+    dat=""+dt.getDate();
+  }
+  else
+  { 
+    dat=dt.getDate();
+  }
+   if((dt.getSeconds()).toString().length==1)
+  {
+    Sec=""+dt.getSeconds();
+  }
+  else
+  { 
+    Sec=dt.getSeconds();
+  }
+   
+  var dtme= dt.getFullYear()+''+mnth+''+ dat+ ''+Hrs + '' + Min+ "" + Sec; 
+ var param1=$('#PrcsID').val(); //UNIQUE ID
    
   var param2="";
     var param3="";
     var param4="";
     var param5="";
     var spname="LSW_SCersaiReport";
-    var FName="CRS_CERAD_012039_"+dtme;
+    var FName="CRS_J1047_012039_"+dtme;
     var FExtsn="dat";
    
 var RedirectURL="";

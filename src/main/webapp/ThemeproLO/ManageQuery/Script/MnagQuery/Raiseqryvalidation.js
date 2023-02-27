@@ -36,8 +36,8 @@ function RAISEQUERY(id)
 		var TOUSERID =$('.RAISE').find("#MNGQ_TOUSRIDI").val()
 	  $('.RAISE').find("#MNGQ_TOUSRID").val(TOUSERID.split("-")[0]);
 	  $('.RAISE').find("#MNGQ_CATGRY").val(TOUSERID.split("-")[1]);
-		
-		if($("#MNGQ_CATGRY").val()=="User"){
+	  
+	  if($("#MNGQ_CATGRY").val()=="User"){
 	  $('.RAISE').find("#MNGQ_TOUSRNAME").val(TouserName.split("-")[0]);
 	  $('.RAISE').find("#MNGQ_TOUSRROLE").val(TouserName.split("-")[1]);
 		}
@@ -60,7 +60,6 @@ function RAISEQUERY(id)
 	  
 	  if(($("#DMY5").val().split("|")[2]=="OPS"||$("#DMY5").val().split("|")[2]=="OPSQD") && $('.FormPageSubTab li.active a div').text()=="Disbursement Checklist" && QueryTypFlg=="DisbChkLst")
 		{
-			
 			var xml=UI_getdata($("#PrcsID").val(),TOUSERID,$('#LogUsr').val(),"",$("#DMY5").val().split("|")[2],"LSW_SPUSHDATATOQRYTBL3");
 	        var RESULT=$(xml).find('RESULT').text();
 	  
@@ -68,10 +67,14 @@ function RAISEQUERY(id)
 	 {
       $(".close").click();
 	 // location.reload(true);
-	    if($("#PrMs5").val()!="")
+	    if($("#PrMs5").val()!="" && window.location.pathname !="/TPLSW/IRCU")
  	    {
     	  location.reload(true);
         }
+		if(window.location.pathname == "/TPLSW/IRCU")
+		{
+			$("#Save4").click();
+		}
 	  
      }
 	else
@@ -89,10 +92,14 @@ function RAISEQUERY(id)
 	 {
       $(".close").click();
 	 // location.reload(true);
-	    if($("#PrMs5").val()!="")
+	    if($("#PrMs5").val()!="" && window.location.pathname !="/TPLSW/IRCU")
  	    {
     	  location.reload(true);
         }
+		if(window.location.pathname == "/TPLSW/IRCU")
+		{
+			$("#Save4").click();
+		}
 	  
      }
 	else
@@ -174,20 +181,26 @@ var CountAttch=1;
 	 }
 	 
 	 var FileSize=parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2);
-     var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
+    // var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
+    // var Filename  = names.replace(',','')
+	     var Filename  = $(id).closest('td').find('input[type="file"]')[0].files[0].name
+	      var FileType= Filename.substring(Filename.lastIndexOf('.')+1);
+          var  Filename= Filename.substring(0, Filename.lastIndexOf('.'));
+          var names=Filename 
 	 
-
-		var xml=UI_getdata(FileType,FileSize,"","","","LSW_SGETDOCUMNTSIZE")
+	 
+		var xml=UI_getdata(FileType,FileSize,Filename,"","","LSW_SGETDOCUMNTSIZE")
 		var FileAccept=$(xml).find('RESULT').text()
 	if(FileAccept == 'No')
 	{
-		alert("File Size not matched")
+		alert($(xml).find("alert").text());
+		$(id).closest('td').find('input[type="file"]').val('')
 		return
     }
 	
-	  names=names.slice(0,-1)+'.'+FileType	
+	  names=names+'.'+FileType	
 var y=  names;
-var specialChars = "<>&#^|~`"
+/*var specialChars = "<>&#^|~`"
 var check = function(string){
     for(i = 0; i < specialChars.length;i++){
         if(string.indexOf(specialChars[i]) > -1){
@@ -200,11 +213,11 @@ var check = function(string){
 if(check(y) == false){
     // Code that needs to execute when none of the above is in the string
 }else{
-    alert('Error in File Name');
+    alert('File name contains special character please remove and upload');
 	$(id).closest('td').find('input[type="file"]').val('')
 	return;
 }
-	 
+*/	 
 	 
 	 
 

@@ -49,7 +49,7 @@
 									  </div>
 									  <div class=" col-md-4">
 										 <div class="md-form">
-											<input type="text" id="GECL_UDYAADHAR" name="GECL_UDYAADHAR"  value="XXXXXXXX" class="form-control IsNumberFields IsAadharFields GECLDBfields">   
+											<input type="text" id="GECL_UDYAADHAR" name="GECL_UDYAADHAR" value="XXXXXXXX" maxlength="12"  class="form-control IsNumberFields NoSpecialChar IsAadharFields GECLDBfields  ">   
 										 </div>
 									  </div>
 								   </div>
@@ -107,7 +107,7 @@
 									  </div>
 									  <div class="col-md-4">
 										 <div class="md-form">
-											<input type="text" id="GECL_AADHAR" name="GECL_AADHAR" value="XXXXXXXX" class="form-control IsAadharFields GECLDBfields"> 
+											<input type="text" id="GECL_AADHAR" name="GECL_AADHAR" value="XXXXXXXX" maxlength="12" class="form-control IsNumberFields IsAadharFields GECLDBfields"> 
 										 </div>
 									  </div>
 								   </div>

@@ -186,15 +186,11 @@ $(document).ready(function() {
 					$(".Collected2", window.opener.document).trigger("click");	
 				}
 				else if ($("#PayType", window.opener.document).val() == "BT" )						
-				{
-					
+				{	
 				$("#APCM_BTDDNO", window.opener.document).val($("#BANKTXNID").val());
 				$("#APCM_BTDDDT", window.opener.document).val($("#TXNDATE").val());
-				$("#APCM_BTSTATUS", window.opener.document).val("Payment Success");	
-
-					
+				$("#APCM_BTSTATUS", window.opener.document).val("Payment Success");		
 				}
-				
 				}
 				else
 				{
@@ -202,10 +198,10 @@ $(document).ready(function() {
 					//window.opener.documentCollected
 				$("#PFDT_TRANSREFNO", window.opener.document).val($("#BANKTXNID").val());
 				$("#PFDT_TRANSREFDATE", window.opener.document).val($("#TXNDATE").val());
-				$("#PFDT_TRANSSTATUS", window.opener.document).val($("#Status").val());	
+				$("#PFDT_TRANSSTATUS", window.opener.document).val($("#Status").val());				
 				$("#PFDT_PFCOLLECT", window.opener.document).val("Collected");	 // Added for P2 DElivery on ONline Payment 16042020
 				
-				$(".Collected", window.opener.document).trigger("click");		
+				$(".CollectedPage", window.opener.document).trigger("click");		
 				
 					
 					

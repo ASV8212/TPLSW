@@ -48,7 +48,7 @@ function GridControlDetailLPDSGRID(popTableModPageGrid1, TableID, dtData, dtcolu
                 targets: 2,
                 "render": function(data, type, row, meta) {
                     var rowno = meta.row;
-                    var HTML = '<span><input type="text" style = "width:100px" id="LPDS_SHAREHOLD' + rowno + '" data-field="LPDS_SHAREHOLD'+rowno+'|Percentage"  name="LPDS_SHAREHOLD' + rowno + '" maxlength="5" class="form-control IsNumberFields GCLR IsPercentageFld NoSpecialChar">';
+                    var HTML = '<span><input type="text" style = "width:100px" id="LPDS_SHAREHOLD' + rowno + '" data-field="LPDS_SHAREHOLD'+rowno+'|Percentage" data-item="SH" name="LPDS_SHAREHOLD' + rowno + '" maxlength="5" class="form-control IsNumberFields GCLR IsPercentageFld NoSpecialChar">';
                     HTML = HTML + '</span>';
                     var htmldata = $(HTML);
                     if ($(htmldata).find('[name=LPDS_SHAREHOLD' + rowno + ']').hasClass("IsCURCommaFields")) {
@@ -61,8 +61,8 @@ function GridControlDetailLPDSGRID(popTableModPageGrid1, TableID, dtData, dtcolu
             { targets: 3, "render": function ( data, type, row, meta ) {                            
 	 			
    			 var rowno = meta.row;		 
-   		 		var HTML =	'<span class="RGCLR"><input type="radio" class="custom-control-input Mndtry  CBSIDBfields" value="Yes" id="ACTIONY'+rowno+'" name="LPDS_BRNIOWNER'+rowno+'"><label class="custom-control custom-control-label" for="ACTIONY'+rowno+'">Yes</label>';			 
-   		 		HTML = HTML + '<input type="radio" class="custom-control-input Mndtry CBSIDBfields" value="No" id="ACTIONN'+rowno+'" name="LPDS_BRNIOWNER'+rowno+'"><label class="custom-control custom-control-label" for="ACTIONN'+rowno+'">No</label></span>';			  
+   		 		var HTML =	'<span><input type="radio" class="custom-control-input GCLR CBSIDBfields" value="Yes" id="ACTIONY'+rowno+'" name="LPDS_BRNIOWNER'+rowno+'"><label class="custom-control custom-control-label" for="ACTIONY'+rowno+'">Yes</label>';			 
+   		 		HTML = HTML + '<input type="radio" class="custom-control-input GCLR CBSIDBfields" value="No" id="ACTIONN'+rowno+'" name="LPDS_BRNIOWNER'+rowno+'"><label class="custom-control custom-control-label" for="ACTIONN'+rowno+'">No</label></span>';			  
    		 		
    		 		var htmldata = $(HTML);
    					
@@ -78,8 +78,8 @@ function GridControlDetailLPDSGRID(popTableModPageGrid1, TableID, dtData, dtcolu
    				{ targets: 4, "render": function ( data, type, row, meta ) {                            
    		 			
    				 var rowno = meta.row;		 
-   			 		var HTML =	'<span class="RGCLR"><input type="radio" class="custom-control-input  CBSIDBfields" value="Yes" id="STRY'+rowno+'" name="LPDS_LONSTRU'+rowno+'"><label class="custom-control custom-control-label" for="STRY'+rowno+'">Yes</label>';			 
-   			 		HTML = HTML + '<input type="radio" class="custom-control-input CBSIDBfields" value="No" id="STRN'+rowno+'" name="LPDS_LONSTRU'+rowno+'"><label class="custom-control custom-control-label" for="STRN'+rowno+'">No</label></span>';			  
+   			 		var HTML =	'<span><input type="radio" class="custom-control-input GCLR CBSIDBfields" value="Yes" id="STRY'+rowno+'" name="LPDS_LONSTRU'+rowno+'"><label class="custom-control custom-control-label" for="STRY'+rowno+'">Yes</label>';			 
+   			 		HTML = HTML + '<input type="radio" class="custom-control-input GCLR CBSIDBfields" value="No" id="STRN'+rowno+'" name="LPDS_LONSTRU'+rowno+'"><label class="custom-control custom-control-label" for="STRN'+rowno+'">No</label></span>';			  
    			 		
    			 		var htmldata = $(HTML);
    						
@@ -92,7 +92,29 @@ function GridControlDetailLPDSGRID(popTableModPageGrid1, TableID, dtData, dtcolu
    						
    			         } 
    					 },
-                     { targets: 5, "render": function ( data, type, row, meta ) {                            
+					 { targets: 5, "render": function ( data, type, row, meta ) {                            
+   		 			
+   				 var rowno = meta.row;       			 
+			 
+	 		  var HTML ='<span><select class="Gridmdb-select md-form colorful-select dropdown-primary  "  id="LPDS_KYC'+rowno+'" name="LPDS_KYC'+rowno+'">';
+	 			HTML = HTML + '<option>--Select--</option>';
+	 			HTML = HTML + '<option value="Partner">Partner</option></span>';
+				HTML = HTML + '<option value="Director">Director</option></span>';
+				HTML = HTML + '<option value="Shareholder">Shareholder</option></span>';
+				HTML = HTML + '<option value="Proprietor">Proprietor</option></span>';
+				HTML = HTML + '<option value="Other">Other</option></span>';	
+			          			
+	 			var htmldata = $(HTML);
+	 			
+	 			$(htmldata).find("option[value='"+data+ "']").attr("selected","selected");
+
+	          return htmldata[0].outerHTML;   		
+   						
+   			         } 
+   					 }
+					 /* ,
+					 
+                     { targets: 6, "render": function ( data, type, row, meta ) {                            
      							var rowno = meta.row;		 
      					  		var HTML =	'<span><input type="checkbox" class="custom-control-input GCLR" value="'+data+'" name="LPDS_KYC'+rowno+'" id="LPDS_KYC'+rowno+'">';			 
      					  		HTML = HTML + '<label class="custom-control-label GridLabel" for="LPDS_KYC'+rowno+'"></label></span>';			  
@@ -108,7 +130,7 @@ function GridControlDetailLPDSGRID(popTableModPageGrid1, TableID, dtData, dtcolu
      					  		
      					  			 return HTML;
      	     			    } 
-     	     		     }
+     	     		     } */
         ],
         "fnDrawCallback": function(oSettings) {
         }
@@ -120,7 +142,7 @@ function GETFIRMDROPDOWNVAL()
 {
 	var LoanType = UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETBRROWERNAME");
 
-	$("#ABFD_FIRMNAME").html("")
+	//$("#ABFD_FIRMNAME").html("")
 	$("#ABFD_FIRMNAME").append($(LoanType).find("RESULT").html());
 	$("#ABFD_FIRMNAME").material_select();
 }
@@ -132,6 +154,7 @@ function GETSCHEME()
 	$("#APFS_SCHEME").val($(Scheme).find('Scheme').text())
 
 }
+
 
 function GetInduestry(FIRM,CATEGORY,CLASS,EVENT,HTML,CONSTITUTION,CUSTYPE)
 {
@@ -146,7 +169,7 @@ if(EVENT=="Load")
       {
  	   $('.ABFD_INDUSCATRY').hide()
       }
-	  if( $("#ABFD_FIRMNAMEVAL").val()=="Others")
+	  if( $("#ABFD_FIRMNAME").val()=="Others")
 		 {
 		    $('.OTHFIRM').show()
 		    $("#ABFD_CONSTITUTION").attr('disabled',false) 
@@ -223,7 +246,6 @@ else
 }
 
 
-
 function CheckConsti(FIRMID,CONSTITUTION,EVENT,HTML)
 {
 	if(EVENT=="Load")
@@ -254,16 +276,16 @@ function CheckConsti(FIRMID,CONSTITUTION,EVENT,HTML)
      if(CONSTITUTION.value=="Proprietorship" || CONSTITUTION.value=="HUF" || CONSTITUTION.value=="Society" || CONSTITUTION.value=="Trustee")
     	 {
     	     $('.PARTNERFARM').next().find('.GCLR').val('')
-    	     $($('.PARTNERFARM').next().find('.RGCLR')[0]).find('input[type=radio]:checked').prop('checked',false)
-    	     $($('.PARTNERFARM').next().find('.RGCLR')[1]).find('input[type=radio]:checked').prop('checked',false)
+    	     $("input[name='"+$($('.PARTNERFARM').next().find('.GCLR')[3]).attr('name')+"']:checked").prop('checked',false)
+    	     $("input[name='"+$($('.PARTNERFARM').next().find('.GCLR')[4]).attr('name')+"']:checked").prop('checked',false)
     		 $('.PARTNERFARM').hide() 
 		     $(".CONSM").removeClass('ABFDMndtry');
          }
        else
     	 {
     	  $('.PARTNERFARM').next().find('.GCLR').val('')
-  	      $($('.PARTNERFARM').next().find('.RGCLR')[0]).find('input[type=radio]:checked').prop('checked',false)
-    	  $($('.PARTNERFARM').next().find('.RGCLR')[1]).find('input[type=radio]:checked').prop('checked',false)
+  	      $("input[name='"+$($('.PARTNERFARM').next().find('.GCLR')[3]).attr('name')+"']:checked").prop('checked',false)
+  	      $("input[name='"+$($('.PARTNERFARM').next().find('.GCLR')[4]).attr('name')+"']:checked").prop('checked',false)
     	  $('.PARTNERFARM').show()
           $(".CONSM").addClass('ABFDMndtry');		  
          }	
@@ -276,6 +298,23 @@ function getOthname(id,Indus)
 	var Others=$(id).attr("id");
 	$("#"+Indus).val($("#"+Others).val())	
 }
+
+$(document).on("change", ".DataToFld1" , function() {
+
+	
+		 var Datavalue = $(this).val();
+		 var ToFld = $(this).attr("data-change");
+		 if(Datavalue=="Others")
+		 {
+			 $("#"+ToFld).val('')
+		 }
+		 else
+		 {
+	        $("#"+ToFld).val($(this).find('option[value="' + Datavalue + '"]').text());
+		 }
+		
+})
+
 
 function FindConstDropDown()
 {
@@ -327,3 +366,47 @@ function CheckBFMndtry(TableID,FldClas,HDR)
 	  }
 	 return RTNVAL;
 }
+
+$(document).on("change", ".SHCalc", function() {
+
+		var LPDSLength = $(this).closest('.tbody').find('[data-item=SH]').length;
+
+	Amount = 0;
+	val=0;
+
+	for (j=0;j<LPDSLength;j++)
+	{
+		  val=$($($("#LPDSTable").find('tbody tr')[j]).find('[data-item=SH]')[0]).val().replace(/,/g,'');
+		 
+		 if(val==NaN)
+		  {
+			 val=0 
+		  }
+		else if(val=="")
+		  {
+			 val=0  
+		  }
+		  
+	   Amount = parseFloat(Amount) + parseFloat(val);	
+ 
+   }
+   
+   if((Amount>100)&&($("#ABFD_CONSTITUTION").val()=="Partnership firms"))
+	   {
+		   $(this).val('');
+		   /* $($(this).closest('tbody tr').find('td')[3]).find('span').find('[data-item=BO]')[0].checked = false
+		   $($(this).closest('tbody tr').find('td')[3]).find('span').find('[data-item=BO]')[1].checked = false
+		   $($(this).closest('tbody tr').find('td')[8]).find('span').find('.LPDSRELA').hide() */
+		   alert('The sum of total Shareholding should not be greater than 100%');
+		
+		 //  $($(this).closest('tbody tr').find('td')[9]).find('span').find('.LPDSRELA').hide()
+		   return false;
+	   }
+	else if((Amount>51)&&($("#ABFD_CONSTITUTION").val()!="Partnership firms"))
+	{
+	 $(this).val('');
+	 alert('The sum of total Shareholding should not be greater than 51%');
+	}
+   
+});
+

@@ -6,7 +6,7 @@
 <div class="">
 <!--Admin panel-->
 <div class="admin-panel">
-   <div class="form-row">
+<div class="form-row">
       <div class="col-lg-12">
          <ul title="Bank" data-aria="LSW_TLONBANKDTLS|BKDT|" data-popup="No"  class="nav FormPageMultiTab">
             <%-- ${SUBPAGETABDATA} --%>
@@ -23,6 +23,22 @@
          </ul>
       </div>
    </div>
+   
+   <div class="row">
+         <div class="col-lg-12">
+            <ul title="Bank" data-aria="LSW_TAPPRCHRGHDR|APCM|" data-popup="No"  class="nav FormPageMultiTab">
+               ${SUBPAGETABDATA}
+               <!-- <li id="Co-Applicant1" value="" title = "Co-Applicant1" class="nav-item  active">
+                  <a> <div class="nav-link" href="#">Co-Applicant 1</div></a>
+                  </li>      
+                     
+                  <li id=""  value="Add" title = "" class="nav-item FormPageMultiTabAdd">
+                  <a> <div class="nav-link" href="#">+ Add</div>  </a>
+                  </li>
+                  --> 
+            </ul>
+         </div>
+      </div>
    </br>
    <!-- Start -->
    <!--Accordion wrapper-->
@@ -47,6 +63,8 @@
             <input type="text" id="ACSP_DTMODIFIED"  name="ACSP_DTMODIFIED" hidden="hidden"  class="form-control ACSPDBfields" value="">
             <input type="text" id="ACSP_MODIFIEDBY"  name="ACSP_MODIFIEDBY" hidden="hidden"  class="form-control ACSPDBfields" value="">
             <input type="text" id="ACSP_PROPDTL"  name="ACSP_PROPDTL" hidden="hidden"  class="form-control ACSPDBfields" value="">
+			
+			
             <div class="form-row" style="display:none" >
                <div class="col-md-4">
                   <div class="md-form">
@@ -108,8 +126,8 @@
                <div class=" col-md-1">
                </div>
                <div class=" col-md-3">
-                  <div class="md-form">
-                     <input type="text" id="ACSP_MPROD" name="ACSP_MPROD" value="Chola Group Hospital" class="form-control DSVLBL  ACSPDBfields  ">
+			   <div class="md-form">
+                     <input type="text" id="ACSP_MPROD" name="ACSP_MPROD" value="" class="form-control RMCD NoSpecialChar ACSPDBfields">
                   </div>
                </div>
             </div>
@@ -121,7 +139,7 @@
                </div>
                <div class=" col-md-3">
                   <div class="md-form">
-                     <input type="text" id="ACSP_MPOLCYTNR" name="ACSP_MPOLCYTNR" disabled  maxlength="2" class="form-control RMCD IsNumberFields  ACSPDBfields  ">
+                     <input type="text" id="ACSP_MPOLCYTNR" name="ACSP_MPOLCYTNR"  maxlength="2" class="form-control RMCD IsNumberFields  ACSPDBfields  ">
                   </div>
                </div>
             </div>
@@ -148,7 +166,7 @@
                </div>
                <div class=" col-md-3">
                   <div class="md-form">
-                     <input type="text" id="ACSP_MPREMINCLDGST" name="ACSP_MPREMINCLDGST" value="" disabled class="form-control  RMCD IsCURCommaFields IsNumberFields ACSPDBfields  ">
+                     <input type="text" id="ACSP_MPREMINCLDGST" name="ACSP_MPREMINCLDGST" value=""  class="form-control RMCD IsCURCommaFields IsNumberFields ACSPDBfields  ">
                   </div>
                </div>
             </div>
@@ -175,14 +193,18 @@
             <br>
             <div class="form-row">
               
-         <!--       <div class="md-form">
-                     <select class="md-form colorful-select dropdown-primary ACSPMndtry ACSPDBfields" id="ACSP_NOMNYNAME" name="ACSP_NOMNYNAME">
-                        <option value="">Select</option>
-                     </select>
-                     <label for="ACSP_NOMNYNAME" class="">Nominee Name<span class="MndtryAstr">*</span></label>
-                  </div>
-               </div>-->
-               
+      
+			   
+			    <div class="col-md-4">
+                          <div class="md-form">
+                              <select class="md-form colorful-select dropdown-primary   ACSPDBfields "  id="ACSP_LOANID" name="ACSP_LOANID">
+                               
+                              </select>
+                              <label class="mdb-main-label BTxt9">Loan Type<span class="MndtryAstr"></span></label>
+                           </div>
+                        </div>
+						
+						
                    <div class="col-md-4">
                            <div class="md-form">
                               <input type="text" id="ACSP_NOMNYNAME"  onchange="ChkNomiName('ACSP_INSURERNAME','ACSP_NOMNYNAME')"  maxlength="100" name="ACSP_NOMNYNAME" class="form-control RMCD ACSPMndtry ACSPDBfields  IsAlphaFields IsUpprCse ">
@@ -198,7 +220,9 @@
                   </div>
 				    <input type="text" id="ACSP_AGE"  name="ACSP_AGE" hidden="hidden"  class="form-control ACSPDBfields" >
                </div>
-               <div class="col-md-4">
+             
+            </div>
+            <div class="form-row">  <div class="col-md-4">
                   <div class="md-form">
                      <div id="" class="select-radio ">
                         <div class="custom-control custom-radio custom-control-inline">
@@ -210,15 +234,14 @@
                            <label class="custom-control-label" for="GenFemale1">Female</label>
                         </div>
                         <div class="custom-control custom-radio custom-control-inline">
-                           <input type="radio" class="custom-control-input ACSPDBfields" onclick="CheckGender1('Page')"  value="Transgender" id="GenTrancs1" name="ACSP_GENDR">
+                           <input type="radio" class="custom-control-input ACSPDBfields" onclick="CheckGender1('Page')" value="Transgender" id="GenTrancs1" name="ACSP_GENDR">
                            <label class="custom-control-label" for="GenTrancs1">Transgender</label>
                         </div>
                      </div>
                      <label  class="mdb-main-label BTxt9">Gender<span class="MndtryAstr">*</span></label>
                   </div>
                </div>
-            </div>
-            <div class="form-row">
+			   
                <div class="col-md-4">
                   <div class="md-form">
                      <input type="text" id="ACSP_MBLNO" maxlength="10"  name="ACSP_MBLNO" class="form-control ACSPMndtry RMCD ACSPDBfields IsNumberFields IsMobileFields ">
@@ -229,7 +252,7 @@
                   <div class="md-form">
                      <select class="md-form colorful-select dropdown-primary RMCDD ACSPDBfields ACSPMndtry" id="ACSP_RELVIDINSR" name="ACSP_RELVIDINSR">
                                  <option value="" >--Select--</option>
-                                         <!--<option value="Mother">Mother</option>
+                                       <!--  <option value="Mother">Mother</option>
                 					    <option value="Father">Father</option>
                   					   <option value="Brother">Brother</option>
              					 	   <option value="Spouse">Spouse</option>
@@ -251,7 +274,7 @@
             <div class="form-row">
                         <div class="col d-flex justify-content-center">
                            <button type="button" data-aria="LSW_TCRSSELPROPTY|ACSP||PROINSUR" data-form="Property Insurance" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Generate</button> 
-                            <button type="button" data-aria="LSW_TCRSSELPROPTY|ACSP||PROINSUR" style="display:none" data-form="CAM" data-card="0" class="btn btn-Syel waves-effect waves-light MCFormSave">Save</button> 
+                            <button type="button" data-aria="LSW_TCRSSELPROPTY|ACSP||PROINSUR" style="display:none" data-form="" data-card="0" class="btn btn-Syel waves-effect waves-light MCFormSave">Save</button> 
 					   </div>
                      </div>
 		  
@@ -278,10 +301,11 @@
                         <input type="text" id="AMPI_DTMODIFIED" hidden="hidden" name="AMPI_DTMODIFIED" class="form-control AMPIDBfields">
                         <input type="text" id="AMPI_MODIFIEDBY" hidden="hidden" name="AMPI_MODIFIEDBY" class="form-control AMPIDBfields">
                         
-                      <input type="text" id="AMPI_LOCATN" hidden="hidden" name="AMPI_LOCATN" class="form-control AMPIDBfields">
-                      <input type="text" id="AMPI_APPRUSAGE" hidden="hidden" name="AMPI_APPRUSAGE" class="form-control AMPIDBfields">
-					  <input type="text" id="AMPI_PROFLAG"  name="AMPI_PROFLAG" hidden="hidden"  class="form-control AMPIDBfields" value="">
-
+                        <input type="text" id="AMPI_LOCATN" hidden="hidden" name="AMPI_LOCATN" class="form-control AMPIDBfields">
+						<input type="text" id="AMPI_APPRUSAGE" hidden="hidden" name="AMPI_APPRUSAGE" class="form-control AMPIDBfields">
+						<input type="text" id="AMPI_PROFLAG"  name="AMPI_PROFLAG" hidden="hidden"  class="form-control AMPIDBfields" value="">
+						<input type="text" id="AMPI_LOANID" hidden="hidden" name="AMPI_LOANID" class="form-control AMPIDBfields">
+					 
                         <div class="form-row">
                            <div id="PROPTXTHDR" class="col Btxt10"></div>
                         </div>
@@ -298,14 +322,11 @@
                         
                  <div class="form-row" >
                 <div class="col-md-9">
-
                   <div class="md-form">
                      <input type="text" id="AMPI_PRONO" maxlength="11" disabled name="AMPI_PRONO" class=" DSVLBL form-control AMPIDBfields">
                      <label for="AMPI_PRONO" class="active">Location<span class="MndtryAstr"></span></label>
                   </div>
-    
                </div>
-
             <div class="col-md-3">
                  <div class="md-form FltRight  ">
                        <div class="custom-control custom-radio custom-control-inline ">
@@ -317,7 +338,7 @@
          </div>
          
          <div Class="Applicable">
-		 <div class="form-row">
+                   <div class="form-row">
 		               <div class="col-md-8 PolicyProperty" style="display:none"> 
 					   </div>
 		               <div class="col-md-4 PolicyProperty" style="display:none"> 
@@ -327,16 +348,16 @@
                             </div>
                               </div>
                              </div>
-                        </div>
+                        </div>     
                         <div class="form-row">
                            <div class=" col-md-4 Btxt17 GryShd">
                               Product
                            </div>
                            <div class=" col-md-1">
                            </div>
-                           <div class=" col-md-4 Btxt17  GryShd">
+                           <div class=" col-md-4 Btxt17">
                               <div class="md-form">
-                                 <input type="text" id="AMPI_PROD" name="AMPI_PROD" value="" class="form-control DSVLBL  AMPIDBfields  ">
+                                 <input type="text" id="AMPI_PROD" name="AMPI_PROD" value="" class="form-control IsAlphaFields AMPIDBfields  ">
                               </div>
                            </div>
                         </div>
@@ -348,7 +369,7 @@
                            </div>
                            <div class=" col-md-4    ">
                               <div class="md-form">
-                                 <input type="text" id="AMPI_PLCYTNR" name="AMPI_PLCYTNR" disabled  maxlength="2"class="form-control Tenure IsNumberFields  AMPIDBfields  ">
+                                 <input type="text" id="AMPI_PLCYTNR" name="AMPI_PLCYTNR"   maxlength="2"class="form-control Tenure IsNumberFields  AMPIDBfields  ">
                               </div>
                            </div>
                         </div>
@@ -360,7 +381,7 @@
                            </div>
                            <div class=" col-md-4 Btxt17">
                               <div class="md-form">
-                                 <input type="text" id="AMPI_SUMINSRD" name="AMPI_SUMINSRD" value="" disabled class="form-control IsCURCommaFields DSVLBL IsNumberFields AMPIDBfields  ">
+                                 <input type="text" id="AMPI_SUMINSRD" name="AMPI_SUMINSRD"  value="" class="form-control IsCURCommaFields IsNumberFields AMPIDBfields  ">
                               </div>
                            </div>
                         </div>
@@ -372,7 +393,7 @@
                            </div>
                            <div class=" col-md-4">
                               <div class="md-form">
-                                 <input type="text" id="AMPI_PRMINCLDGST" name="AMPI_PRMINCLDGST" value="" maxlength="10" disabled class="form-control RMCD PremiumEnabled IsCURCommaFields IsNumberFields AMPIDBfields  ">
+                                 <input type="text" id="AMPI_PRMINCLDGST" name="AMPI_PRMINCLDGST" value="" class="form-control RMCD IsCURCommaFields IsNumberFields AMPIDBfields  ">
                               </div>
                            </div>
                         </div>
@@ -396,7 +417,7 @@
                <div class="form-row">
                         <div class="col d-flex justify-content-center">
                            <button type="button" data-aria="LSW_TADPROPINSRNC|AMPI|AMPI_LOCATN|COAPPINSUR" data-form="Property Insurance" data-hit="Property" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save</button> 
-                          <button type="button" style="display:none" data-aria="LSW_TADPROPINSRNC|AMPI|AMPI_LOCATN|COAPPINSUR" data-form=""  data-card="0" class="btn btn-Syel waves-effect waves-light PIFormSave">Save</button> 
+                          <button type="button" style="display:none" data-aria="LSW_TADPROPINSRNC|AMPI|AMPI_LOCATN|COAPPINSUR" data-form="" data-card="0" class="btn btn-Syel waves-effect waves-light PIFormSave">Save</button> 
 						</div>
                      </div>
                      </form>
@@ -458,10 +479,12 @@
             <input type="text" id="ACHP_COMBOGRD"  name="ACHP_COMBOGRD" hidden="hidden"  class="form-control ACHPDBfields" value="">
              <input type="text" id="ACHP_CUSID"  name="ACHP_CUSID" hidden="hidden"  class="form-control ACHPDBfields" value="">
             <input type="text" id="ACHP_FAIMILYGRD"  name="ACHP_FAIMILYGRD" hidden="hidden"  class="form-control ACHPDBfields" value="">
-			 <input type="text" id="ACHP_HPFLAG"  name="ACHP_HPFLAG" hidden="hidden"  class="form-control ACHPDBfields" value="">
-             <div class="card-body px-lg-5 pt-0" >
-              <div class="form-row">  
-               <div class="col-md-4">
+			<input type="text" id="ACHP_HPFLAG"  name="ACHP_HPFLAG" hidden="hidden"  class="form-control ACHPDBfields" value="">
+			
+					 
+               <div class="card-body px-lg-5 pt-0" >
+           <div class="form-row">  
+              <div class="col-md-4">
                 <div class="md-form">
                       <select class="md-form colorful-select dropdown-primary  ACHPMndtry  ACHPDBfields " onchange="CheckApplicable(this,'Change');" id="ACHP_APPCONSIDER" name="ACHP_APPCONSIDER">
                             <!--<option value="" >--Select--</option>-->
@@ -471,7 +494,26 @@
                               <label class="mdb-main-label BTxt9">Applicable<span class="MndtryAstr">*</span></label>
                            </div>
                         </div>
-						 <div class="col-md-4 HealthPac" style="display:none">
+						
+						
+							 <div class="col-md-4">
+                          <div class="md-form">
+                              <select class="md-form colorful-select dropdown-primary   ACHPDBfields "  id="ACHP_LOANID" name="ACHP_LOANID">
+                               
+                              </select>
+                              <label class="mdb-main-label BTxt9">Loan Type<span class="MndtryAstr"></span></label>
+                           </div>
+                        </div>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						<div class="col-md-4 HealthPac" style="display:none">
 						 <div class="md-form">
                              <div class=" "> 
  <a type="button" class="Btxt4 FltLeft  ALIHDBfields"  onclick="generatePDF('ACHP_CUSID'+$(this).closest('.DYNROW').attr('data-row'),'','HealthPac',$(this).closest('.DYNROW')[0],'Health')">Health Policy Insured.pdf</a>
@@ -491,7 +533,7 @@
             <div class="form-row">
                <div class="col-md-4" style="display:none">
                   <div class="md-form">
-                     <input type="text" id="ACHP_SUMINSRD" maxlength="11"  name="ACHP_SUMINSRD" disabled class="form-control ACHPDBfields IsNumberFields IsLandlneFields ">
+                     <input type="text" id="ACHP_SUMINSRD" maxlength="30"  name="ACHP_SUMINSRD"  class="form-control ACHPDBfields IsNumberFields IsLandlneFields ">
                      <label for="ACHP_SUMINSRD" class="">Sum Assured<span class="MndtryAstr"></span></label>
                   </div>
                </div>
@@ -530,7 +572,7 @@
             
                         <div class="col-md-4">
                            <div class="md-form">
-                              <input type="text" id="ACHP_INSAMOUNT" maxlength="11"  name="ACHP_INSAMOUNT" disabled class="form-control ACHPDBfields   IsNumberFields IsCURCommaFields">
+                              <input type="text" id="ACHP_INSAMOUNT" maxlength="30"  name="ACHP_INSAMOUNT" disabled class="form-control ACHPDBfields   IsNumberFields IsCURCommaFields">
                               <label for="ACHP_INSAMOUNT" class="">Premium Amount<span class="MndtryAstr"></span></label>
                            </div>
                       </div>
@@ -541,7 +583,7 @@
             </div>
                    <div class="form-row">
                         <div class="col">
-                           <input type="button" data-button="GridButton" data-value="Table7|LSW_SMNDTRYCVRGINSR|PrcsID|ACHP_CUSID||4|HEALTHCOMBOGRD" style="display:none" class="DashTrg ACHPDBfields MultiGridTrg" id="BTNLYFINSRNC" name="BTNLYFINSRNC" />
+                           <input type="button" data-button="GridButton" data-value="Table7|LSW_SMNDTRYCVRGINSR|PrcsID|ACHP_CUSID~ACHP_LOANID||4,5|HEALTHCOMBOGRD" style="display:none" class="DashTrg ACHPDBfields MultiGridTrg" id="BTNLYFINSRNC" name="BTNLYFINSRNC" />
                            <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display ACHPDBfields DataGrid" name="Table7" id="Table7">
                            </table>
                         </div>
@@ -553,7 +595,7 @@
             </div>
                    <div class="form-row">
                         <div class="col">
-                           <input type="button" data-button="GridButton" data-value="Table8|LSW_SFAMILYCOMOGRID|PrcsID|ACHP_CUSID||4|FAMILYCOMBOGRD" style="display:none" class="DashTrg ACHPDBfields MultiGridTrg" id="BTNFAMILY" name="BTNFAMILY"/>
+                           <input type="button" data-button="GridButton" data-value="Table8|LSW_SFAMILYCOMOGRID|PrcsID|ACHP_CUSID~ACHP_LOANID||4,5|FAMILYCOMBOGRD" style="display:none" class="DashTrg ACHPDBfields MultiGridTrg" id="BTNFAMILY" name="BTNFAMILY"/>
                            <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display ACHPDBfields DataGrid" name="Table8" id="Table8">
                            </table>
                         </div>
@@ -582,7 +624,6 @@
                </div>
                         <input type="text" id="ACHP_AGE"  name="ACHP_AGE" hidden="hidden"  class="form-control ACHPDBfields" value="">
                <div class="col-md-4">
-
                            <div class="md-form">
                               <div id="" class="select-radio Applradio ">
                                  <div class="custom-control custom-radio custom-control-inline">
@@ -615,7 +656,7 @@
                   <div class="md-form">
                      <select class="md-form colorful-select dropdown-primary ACHPDBfields APPDROPDOWN APPSTA ACHPMndtry " id="ACHP_NOMINERELTN" name="ACHP_NOMINERELTN">
                                 <option value="" >--Select--</option>
-                                      <!--   <option value="Mother">Mother</option>
+                                       <!--  <option value="Mother">Mother</option>
                 					    <option value="Father">Father</option>
                   					   <option value="Brother">Brother</option>
              					 	   <option value="Spouse">Spouse</option>
@@ -633,15 +674,18 @@
                </div>
 
             </div>
-			<div class="form-row">
+		   <div class="form-row">
                  <div class="col d-flex justify-content-center">
-				      <button type="button" id="HPSave" data-aria="LSW_TCRSSELGLTHPAC|ACHP|ACHP_CUSID|COAPPINSUR" data-form="Health & Pac Insurance" data-hit="Health" data-card="" class="btn btn-Syel waves-effect waves-light FormSave">Generate Health Premium</button> 
+				      <!--<button type="button" id="HPSave" data-aria="LSW_TCRSSELGLTHPAC|ACHP|ACHP_CUSID|COAPPINSUR" data-form="Health & Pac Insurance" data-hit="Health" data-card="" class="btn btn-Syel waves-effect waves-light FormSave">Generate Health Premium</button> 
 				      <button type="button" id="HPSave" data-aria="LSW_TCRSSELGLTHPAC|ACHP|ACHP_CUSID|COAPPINSUR" data-form="Health & Pac Insurance" data-hit="Pac" data-card="" class="btn btn-Syel waves-effect waves-light FormSave">Generate Pac Premium</button> 
-                      <button type="button" id="HPSave" data-aria="LSW_TCRSSELGLTHPAC|ACHP|ACHP_CUSID|COAPPINSUR" data-form="Health & Pac Insurance" data-card="1" class="btn btn-Syel waves-effect waves-light FormSave">Save</button> 
+                      -->
+					  <button type="button" id="HPSave" data-aria="LSW_TCRSSELGLTHPAC|ACHP|ACHP_CUSID|COAPPINSUR" data-form="Health & Pac Insurance" data-card="1" class="btn btn-Syel waves-effect waves-light FormSave">Save</button> 
+					   <button type="button" id="HPSave" data-aria="LSW_TCRSSELGLTHPAC|ACHP|ACHP_CUSID|COAPPINSUR" data-form="Health & Pac Insurance" data-card="1" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
                  </div>
            </div>
          </div>
          </div>
+         
             </form>
        </div>
      </div>
@@ -672,6 +716,8 @@
       <th>AMPI_SUMINSRD</th>
       <th>AMPI_PRMINCLDGST</th>
       <th>AMPI_CUSID</th>
+	  <th>AMPI_LOANID</th>
+	  
       <!--<th>FPOI_PRCSID</th>
          <th>FPOI_ACTIVITYID</th>
          <th>FPOI_CREATEDBY</th>
@@ -688,6 +734,7 @@
       <th>HPFA_GENDOR</th>
       <th>HPFA_DOB</th>
       <th>HPFA_CUSID</th>
+	  <th>HPFA_LOANID</th>
       <!--<th>FPOI_PRCSID</th>
          <th>FPOI_ACTIVITYID</th>
          <th>FPOI_CREATEDBY</th>

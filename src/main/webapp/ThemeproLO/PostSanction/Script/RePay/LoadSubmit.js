@@ -1,11 +1,32 @@
 $(document).ready(function () {
 	
 	
+		$("#PRPM_LOANID").val($(".FormPageMultiTab li.active").attr("id"));
 	
-	
+	var xmlop=UI_getdata($("#PrcsID").val(),$("#PRPM_LOANID").val(),"","","","LSW_SCHECKLOANTY")
+	var CusName=$(xmlop).find('RESULT').html();
+	$("#PRPM_LOANTY").val(CusName);
+	$("#RPBD_PDCTYPE").val(CusName);
 	GetCustomerName();
 	
-	LoadMultiData("",$("#PrcsID").val(),"","Repayment","RPBDDBfields","LSW_sGETREPAYBNKDETL");
+	LoadMultiData("",$("#PrcsID").val(),$(".FormPageMultiTab li.active").attr("id"),"Repayment","RPBDDBfields","LSW_sGETREPAYBNKDETL");
+	
+	/* var xmlop=UI_getdata($("#PrcsID").val(),$("#PRPM_LOANID").val(),"","","","LSW_SCHECKLOANTY")
+	var CusName=$(xmlop).find('RESULT').html();
+	$("#PRPM_LOANTY").val(CusName); */
+	if(CusName=="Bill Discounting" || CusName=="DLOD" || CusName=="Over Draft" || CusName=="WCDL")
+	{	
+		
+		$(".MPDC"). attr('disabled', true);
+		//$(".MENACH"). attr('disabled', true);
+		//$("#MODEACH").attr('disabled',true);
+	}
+/* 	 if(CusName=="DLOD" || CusName=="Over Draft")
+		 {
+		 $("#MODEACH"). attr('disabled', true);
+		 $(".MPDC"). attr('disabled', true);
+	     }  */
+	
      var DATA=["Repayment|"];
 	 for (j=0;j<DATA.length;j++)
 		 {
@@ -18,7 +39,7 @@ $(document).ready(function () {
 	         GetBnkName(HTML,'Load');
 	       }
 	     }
-	FormDataFromDB("LSW_TPOATREPAY","PRPM_","PRPMDBfields","");
+	FormDataFromDB("LSW_TPOATREPAY","PRPM_","PRPMDBfields",$("#PRPM_LOANID").val()+"|PRPM_LOANID");
 	
 	
 	var DATA=["Repayment|"];
@@ -39,10 +60,12 @@ $(document).ready(function () {
 	
 	//FormDataFromDB("LSW_TPOATREPAY","PRPM_","PRPMDBfields", $("#BKDT_BNKNO").val()+"|BKDT_BNKNO");
 	
-	var op = UI_getdata($("#PrcsID").val(),"CHK","","","","LSW_SREPYBASCDTL");
+	var op = UI_getdata($("#PrcsID").val(),$(".FormPageMultiTab li.active").attr("id"),"CHK","","","LSW_SREPYBASCDTL");
+	
 	if($(op).find("RESULT").text()=="ALLOW")
-		{
-		op = UI_getdata($("#PrcsID").val(),"","","","","LSW_SREPYBASCDTL");
+	{
+		op = UI_getdata($("#PrcsID").val(),$(".FormPageMultiTab li.active").attr("id"),"","","","LSW_SREPYBASCDTL");
+		
 		/*var text = op;
 		var parser = new DOMParser();
 		var xmlDoc = parser.parseFromString(text,"text/xml");
@@ -67,16 +90,16 @@ $(document).ready(function () {
         	  $("#"+ name).next().addClass('active');
           } 
         }
-		}
+    }
 		
-		if($("#PRPM_EMI").val() == "")
+    if($("#PRPM_EMI").val() == "")
 	  {
 		$("#PRPM_EMI").val(CURCommaSep($("#DMY3").val().split("|")[6]))
 	  }
 	
 	if($("#PRPM_REPAY").val() == "")
 	  {
-		$("#PRPM_REPAY").val(($("#DMY3").val().split("|")[4])*12)
+		$("#PRPM_REPAY").val($("#DMY3").val().split("|")[4])
 	  }
 	
 	/*var DATA=["Repayment|"];
@@ -95,42 +118,36 @@ $(document).ready(function () {
     //$("#RPCD_UNIQNO").val($("#PRPM_ACCNUM").val())
 	$("#BTNRPCHQGRD").click();
 	
-	//PUTID();
-	
-	//$("#BMTD_UNIQNO1").val($("#RPBD_ACCNUM1").val())
-	
-	
-	
-	
-	if($("#DMY7").val().split('|')[11]!="")
+	if($(xmlop).find('ENACHUID').text()!="")
 	  {
 	         if($("#PRPM_URMNNO").val() == "")
 				{
 	                  var PRCSID = $("#PrcsID").val();
 	            $.ajax({
-	              url: "/TPLSW/ENACHFETCH",
-	              type: 'POST',
-	              data: {PRCSID:PRCSID,UID:$("#DMY7").val().split('|')[11],Prvnt:$(window.parent.parent.document).find("#Prvnt").val()},
-	              async:false,
+	    url: "/TPLSW/EmandateAPI",
+	    type: 'POST',
+	    data: {SPNAME:"LSW_SEMANDATEAPICREATE",Param1:$(xmlop).find('ENACHUID').text(),Param2:"Get",Param3:$("#PRPM_LOANID").val(),Param4:"",PRCSID:PRCSID,Prvnt:$(window.parent.parent.document).find("#Prvnt").val()},
+	    async:true,
 	   // dataType: 'json',
 	   // contentType:'application/json',
 	    
-	           success: function(stm){
-			if(stm == "")
+	    success: function(stm){  
+			  if(stm == "")
 	    		{
 					//alert('E-NACH Failed')
 					//return false;
 				}
-             else if (stm.split("|")[0]=="FAILURE" || stm.split("|")[0]=="No Data")
+             else if(stm.split("~")[0]=="Failed")
 	    		{
-                  //alert(stm.split("|")[3])
+                 // alert(stm.split("~")[1])
 				  //return false;
 				}
-				else if (stm.split("|")[0]=="SUCCESS")
+				else if (stm.split("~")[0]=="Success")
 	    		{
-					if(stm.split("|")[2]!="")
+					if(stm.split("~")[1]!="")
 					{
-				      $("#PRPM_URMNNO").val(stm.split("|")[2])
+				      $("#PRPM_URMNNO").val(stm.split("~")[1])
+					  $("#PRPM_URMNNO").next().addClass('active');
 					  
                     //alert(stm.split("|")[3]+'. UMR No -'+stm.split("|")[2])
 					}
@@ -148,8 +165,6 @@ $(document).ready(function () {
 	               });
 			   }
 	  }
-	  
-	  
 	  if($("#PRPM_URMNNO").val() != "")
 	  {
 	     $('input:radio[name=PRPM_MODE]')[2].checked = true;
@@ -168,6 +183,11 @@ $(document).ready(function () {
 		  }
 	  }
 	ChkEnachReson();
+	
+	//PUTID();
+	
+	//$("#BMTD_UNIQNO1").val($("#RPBD_ACCNUM1").val())
+	
 	//$('.FormSave').on('click', function() {
 	 $(document).on("click", ".FormSave", function(){
 		
@@ -179,7 +199,7 @@ $(document).ready(function () {
 		
 		if(MndtryChk == "Mandatory")
 			{
-			alert("Fill the Mandatory Fields");
+			alert("Fill the Mandatory Fields / Document(s)");
 			return false;
 			}
 		}
@@ -270,7 +290,7 @@ $(document).ready(function () {
 				var table = $("#"+TableID).DataTable();
 				 
 				var rowNode = table
-				    .row.add( [ '', '', '','','', '','', '','','', '','',''] )
+				    .row.add( [ '', '', '','','', '','', '','','', '','','',''] )
 				    .draw()
 				    .node();
 				

@@ -101,13 +101,13 @@
            <div class="form-row">
                 <div class="col-md-4">
                    <div class="md-form">
-                     <input type="text" id="FELD_INSINAME"  maxlength="25" name="FELD_INSINAME" class="form-control IsAlphaFields  FELDDBfields FELDMndtry">
-                     <label for="FELD_INSINAME" class="">Name of Institution<span class="MndtryAstr">*</span></label>
+                     <input type="text" id="FELD_INSINAME"  maxlength="25" name="FELD_INSINAME" class="form-control IsAlphaFields  FELDDBfields ">
+                     <label for="FELD_INSINAME" class="">Name of Institution<span class="MndtryAstr"></span></label>
                    </div>
                 </div>
                 <div class="col-md-4">
                    <div class="md-form">
-                     <select class="md-form colorful-select dropdown-primary FELDDBfields FELDMndtry" id="FELD_EXLONTYP" name="FELD_EXLONTYP">
+                     <select class="md-form colorful-select dropdown-primary FELDDBfields " id="FELD_EXLONTYP" name="FELD_EXLONTYP">
                   	    <option value="">--Select--</option>
   					    <option value="Home Loan">Home Loan</option>
   					    <option value="LAP">LAP</option>
@@ -125,27 +125,27 @@
 						<option value="OverDraft/cash credit ">OverDraft/cash credit </option>
 						<option value="Others">Others</option>
 				     </select>
-                     <label class="mdb-main-label BTxt9" >Existing Loan Type<span class="MndtryAstr">*</span></label>
+                     <label class="mdb-main-label BTxt9" >Existing Loan Type<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
                 <div class="col-md-4">
                    <div class="md-form">
-                      <input type="text" id="FELD_LONAMT" name="FELD_LONAMT" maxlength="30" class="form-control IsCURCommaFields IsNumberFields NoSpecialChar  FELDDBfields FELDMndtry">
-                      <label for="FELD_LONAMT" class="">Loan Amount &#x20b9;<span class="MndtryAstr">*</span></label>
+                      <input type="text" id="FELD_LONAMT" name="FELD_LONAMT" maxlength="30" class="form-control IsCURCommaFields IsGreaterThoundsFld IsNumberFields NoSpecialChar  FELDDBfields ">
+                      <label for="FELD_LONAMT" class="">Loan Amount &#x20b9;<span class="MndtryAstr"></span></label>
                    </div>
                 </div>
            </div>
            <div class="form-row">
                 <div class="col-md-4">
                    <div class="md-form">
-                     <input type="text" id="FELD_ROI" maxlength="5" data-field="FELD_ROI|ROI|Yes" name="FELD_ROI" class="form-control FELDMndtry IsPercentageFld IsNumberFields NoSpecialChar  FELDDBfields">
-                     <label for="FELD_ROI" class="">ROI (In %)<span class="MndtryAstr">*</span></label>
+                     <input type="text" id="FELD_ROI" maxlength="5" data-field="FELD_ROI|ROI|Yes" name="FELD_ROI" class="form-control  IsPercentageFld IsNumberFields NoSpecialChar  FELDDBfields">
+                     <label for="FELD_ROI" class="">ROI (In %)<span class="MndtryAstr"></span></label>
                    </div>
                 </div>
                 <div class="col-md-4">
                    <div class="md-form">
-                     <input type="text" id="FELD_EMIAMT" maxlength="30"  name="FELD_EMIAMT"   class="FELDMndtry form-control IsCURCommaFields IsNumberFields NoSpecialChar  FELDDBfields">
-                     <label for="FELD_EMIAMT" class="">EMI Amount &#x20b9;<span class="MndtryAstr">*</span></label>
+                     <input type="text" id="FELD_EMIAMT" maxlength="30"  name="FELD_EMIAMT"   class=" form-control IsCURCommaFields IsGreaterThoundsFld IsNumberFields NoSpecialChar  FELDDBfields">
+                     <label for="FELD_EMIAMT" class="">EMI Amount &#x20b9;<span class="MndtryAstr"></span></label>
                    </div>
                 </div>
                <!-- <div class="col-md-4">
@@ -156,30 +156,30 @@
                 </div>-->
 				<div class="col-md-4">
                  <div class="md-form">
-                   <select class="md-form colorful-select dropdown-primary  FELDDBfields FELDMndtry" id="FELD_EMIBNKACCT" name="FELD_EMIBNKACCT">
+                   <select class="md-form colorful-select dropdown-primary  FELDDBfields " id="FELD_EMIBNKACCT" name="FELD_EMIBNKACCT">
                    </select>
-                 <label class="mdb-main-label BTxt9">EMI Debit Bank Account<span class="MndtryAstr">*</span></label>
+                 <label class="mdb-main-label BTxt9">EMI Debit Bank Account<span class="MndtryAstr"></span></label>
                </div>
                </div>
            </div>
            <div class="form-row">
                 <div class="col-md-4">
                    <div class="md-form">
-                     <input type="text" id="FELD_POS" maxlength="30"  name="FELD_POS"    class="form-control FELDMndtry IsNumberFields NoSpecialChar IsCURCommaFields FELDDBfields">
-                     <label for="FELD_POS" class="">POS &#x20b9;<span class="MndtryAstr">*</span></label>
+                     <input type="text" id="FELD_POS" maxlength="30"  name="FELD_POS"    class="form-control  IsNumberFields IsGreaterzeroFld NoSpecialChar IsCURCommaFields FELDDBfields">
+                     <label for="FELD_POS" class="">POS &#x20b9;<span class="MndtryAstr"></span></label>
                    </div>
                 </div>
                 <div class="col-md-4">
                    <div class="md-form">
-                     <input type="text" id="FELD_LONTENURE" maxlength="4" name="FELD_LONTENURE" class="form-control IsNumberFields NoSpecialChar  FELDMndtry FELDDBfields">
-                     <label for="FELD_LONTENURE" class="">Loan Tenure (In Months)<span class="MndtryAstr">*</span></label>
+                     <input type="text" id="FELD_LONTENURE" maxlength="4" name="FELD_LONTENURE" class="form-control IsNumberFields NoSpecialChar IsGreaterzeroFld  FELDDBfields">
+                     <label for="FELD_LONTENURE" class="">Loan Tenure (In Months)<span class="MndtryAstr"></span></label>
                    </div>
                 </div>
                 <div class="col-md-4">
                    <div class="md-form">
-                      <input type="text" id="FELD_EMIBEGNDAT" maxlength="10"  name="FELD_EMIBEGNDAT" onblur="CALCULATEMOB('FELD_EMIBEGNDAT'+$(this).closest('.DYNROW').attr('data-row'),'FELD_MOB'+$(this).closest('.DYNROW').attr('data-row'),'FELD_LONSTATUS'+$(this).closest('.DYNROW').attr('data-row'),'FELD_CLOSEDATE'+$(this).closest('.DYNROW').attr('data-row'));" 
-                      class="form-control ISFutureDateFields IsNumberFields NoSpecialChar  ISDatefield FELDDBfields FELDMndtry">
-                      <label for="FELD_EMIBEGNDAT" class="">EMI Beginning Date<span class="MndtryAstr">*</span></label>
+                      <input type="text" id="FELD_EMIBEGNDAT" maxlength="10"  name="FELD_EMIBEGNDAT" onblur="CALCULATEMOB('FELD_EMIBEGNDAT'+$(this).closest('.DYNROW').attr('data-row'),'FELD_MOB'+$(this).closest('.DYNROW').attr('data-row'),'FELD_LONSTATUS'+$(this).closest('.DYNROW').attr('data-row'),'FELD_CLOSEDATE'+$(this).closest('.DYNROW').attr('data-row'));"
+                      class="form-control ISFutureDateFields IsNumberFields NoSpecialChar  ISDatefield FELDDBfields ">
+                      <label for="FELD_EMIBEGNDAT" class="">EMI Beginning Date<span class="MndtryAstr"></span></label>
                       <img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"/>
                    </div>
                 </div>
@@ -187,19 +187,19 @@
            <div class="form-row">
                 <div class="col-md-4">
                    <div class="md-form">
-                     <input type="text" id="FELD_MOB" maxlength="5" disabled name="FELD_MOB" class="form-control IsNumberFields NoSpecialChar FELDMndtry FELDDBfields">
-                     <label for="FELD_MOB" class="">MOB<span class="MndtryAstr">*</span></label>
+                     <input type="text" id="FELD_MOB" maxlength="5" disabled name="FELD_MOB" class="form-control IsNumberFields NoSpecialChar  FELDDBfields">
+                     <label for="FELD_MOB" class="">MOB<span class="MndtryAstr"></span></label>
                    </div>
                 </div>
                 <div class="col-md-4">
                    <div class="md-form">
-                     <input type="text" id="FELD_NUMOFBOUNCE" maxlength="4" name="FELD_NUMOFBOUNCE"  onblur="CHKNOBOUNCE();" class="form-control IsNumberFields FELDMndtry NoSpecialChar  FELDDBfields">
-                     <label for="FELD_NUMOFBOUNCE" class="">Number of Bounces<span class="MndtryAstr">*</span></label>
+                     <input type="text" id="FELD_NUMOFBOUNCE" maxlength="4" name="FELD_NUMOFBOUNCE"  onblur="CHKNOBOUNCE();" class="form-control IsNumberFields  NoSpecialChar  FELDDBfields">
+                     <label for="FELD_NUMOFBOUNCE" class="">Number of Bounces<span class="MndtryAstr"></span></label>
                    </div>
                 </div>
                 <div class="col-md-2">
                    <div class="md-form">
-                   	  <select class="md-form colorful-select dropdown-primary FELDDBfields BONMNTRY" id="FELD_LSTMONBOUNCED" onchange="ChangeMonth('FELD_LSTMONBOUNCED'+$(this).closest('.DYNROW').attr('data-row'),'FELD_LSTMONYRBOUNCED'+$(this).closest('.DYNROW').attr('data-row'));" name="FELD_LSTMONBOUNCED">
+                   	  <select class="md-form colorful-select dropdown-primary FELDDBfields BONMNTRY" id="FELD_LSTMONBOUNCED" onchange="ChangeMonth('FELD_LSTMONBOUNCED'+$(this).closest('.DYNROW').attr('data-row'),'FELD_LSTMONYRBOUNCED'+$(this).closest('.DYNROW').attr('data-row'));CHECKBOUNCEDDT('FELD_LSTMONBOUNCED'+$(this).closest('.DYNROW').attr('data-row'),'FELD_LSTMONYRBOUNCED'+$(this).closest('.DYNROW').attr('data-row'),'FELD_EMIBEGNDAT'+$(this).closest('.DYNROW').attr('data-row'));" name="FELD_LSTMONBOUNCED">
                   	    <option value="">--Select--</option>
   					    <option value="January">January</option>
   					    <option value="February">February</option>
@@ -221,7 +221,7 @@
                 </div>
                 <div class="col-md-2">
                 	<div class="md-form">
-                   	  <select class="md-form colorful-select dropdown-primary FELDDBfields BONYEARS  BONMNTRY" onchange="ChangeMonth('FELD_LSTMONBOUNCED'+$(this).closest('.DYNROW').attr('data-row'),'FELD_LSTMONYRBOUNCED'+$(this).closest('.DYNROW').attr('data-row'));" id="FELD_LSTMONYRBOUNCED" name="FELD_LSTMONYRBOUNCED">
+                   	  <select class="md-form colorful-select dropdown-primary FELDDBfields BONYEARS   BONMNTRY" onchange= "ChangeMonth('FELD_LSTMONBOUNCED'+$(this).closest('.DYNROW').attr('data-row'),'FELD_LSTMONYRBOUNCED'+$(this).closest('.DYNROW').attr('data-row'));CHECKBOUNCEDDT('FELD_LSTMONBOUNCED'+$(this).closest('.DYNROW').attr('data-row'),'FELD_LSTMONYRBOUNCED'+$(this).closest('.DYNROW').attr('data-row'),'FELD_EMIBEGNDAT'+$(this).closest('.DYNROW').attr('data-row')); CACLYEAR('FELD_EMIBEGNDAT','FELD_LSTMONYRBOUNCED');"  id="FELD_LSTMONYRBOUNCED" name="FELD_LSTMONYRBOUNCED">
                       </select>
                       <!-- <input type="text" id="" maxlength="10"  name="FELD_LSTMONBOUNCED" class="form-control ISPastDateFields IsNumberFields NoSpecialChar ISDatefield FELDDBfields"> -->
                       <!-- <label for="FELD_LSTMONBOUNCED" class="">Last Month Bounced<span class="MndtryAstr"></span></label> -->
@@ -238,23 +238,23 @@
                 </div>
                 <div class="col-md-4">
                    <div class="md-form">
-                    <select class="md-form colorful-select dropdown-primary FELDDBfields FELDMndtry"  onchange="CHKLOANSTATUS();CALCULATEMOB('FELD_EMIBEGNDAT'+$(this).closest('.DYNROW').attr('data-row'),'FELD_MOB'+$(this).closest('.DYNROW').attr('data-row'),'FELD_LONSTATUS'+$(this).closest('.DYNROW').attr('data-row'),'FELD_CLOSEDATE'+$(this).closest('.DYNROW').attr('data-row'));"  id="FELD_LONSTATUS" name="FELD_LONSTATUS">
+                    <select class="md-form colorful-select dropdown-primary FELDDBfields "  onchange="CHKLOANSTATUS();CALCULATEMOB('FELD_EMIBEGNDAT'+$(this).closest('.DYNROW').attr('data-row'),'FELD_MOB'+$(this).closest('.DYNROW').attr('data-row'),'FELD_LONSTATUS'+$(this).closest('.DYNROW').attr('data-row'),'FELD_CLOSEDATE'+$(this).closest('.DYNROW').attr('data-row'));"  id="FELD_LONSTATUS" name="FELD_LONSTATUS">
                   	    <option value="">--Select--</option>
   					    <option value="Active">Active</option>
   					    <option value="Closed">Closed</option>
   					    <option value="Duplicate">Duplicate</option>
 				     </select>
-                     <label  class="mdb-main-label BTxt9" >Status of Loan<span class="MndtryAstr">*</span></label>
+                     <label  class="mdb-main-label BTxt9" >Status of Loan<span class="MndtryAstr"></span></label>
                    </div>
                 </div>
                 <div class="col-md-4">
                    <div class="md-form">
-                      <select class="md-form colorful-select dropdown-primary FELDDBfields FELDMndtry" id="FELD_LONTYP" name="FELD_LONTYP">
+                      <select class="md-form colorful-select dropdown-primary FELDDBfields " id="FELD_LONTYP" name="FELD_LONTYP">
                   	    <option value="">--Select--</option>
   					    <option value="Joint">Joint</option>
   					     <option value="Sole">Sole</option>
 				      </select>
-                      <label class="mdb-main-label BTxt9" >Loan Type<span class="MndtryAstr">*</span></label>
+                      <label class="mdb-main-label BTxt9" >Loan Type<span class="MndtryAstr"></span></label>
                    </div>
                 </div>
            </div>
@@ -285,6 +285,37 @@
                </div>
                </div>
            </div>
+		   <form>
+		    <div class="form-row">
+                <div class="col-md-4">
+                     <div class="md-form">
+                    <div id="gstRAD" class="select-radio FELDMndtry	"> 
+                       <div class="custom-control custom-radio custom-control-inline">
+                          <input type="radio" class="custom-control-input   FELDDBfields"  value="Yes" id="RTRYes" name="FELD_RTRAVAILB">
+                          <label class="custom-control-label" for="RTRYes">Yes</label>
+                       </div>
+                       <div class="custom-control custom-radio custom-control-inline">
+                           <input type="radio" class="custom-control-input  FELDDBfields"  value="No" id="RTRNo" name="FELD_RTRAVAILB">
+                           <label class="custom-control-label" for="RTRNo">No</label>
+                       </div>
+                   </div>
+                   <label class="mdb-main-label BTxt9">RTR Availability<span class="MndtryAstr">*</span></label>      
+               </div>
+                </div>
+				
+				<div class="col-md-4">
+                   <div class="md-form">
+                      <input type="text" id="FELD_LONSCNDATE" maxlength="10"  name="FELD_LONSCNDATE" 
+                      class="form-control  IsNumberFields NoSpecialChar  ISDatefield FELDDBfields ">
+                      <label for="FELD_LONSCNDATE" class="">Loan Sanction Date<span class="MndtryAstr"></span></label>
+                      <img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"/>
+                   </div>
+                </div>
+          
+           </div>
+		   </form>
+		   
+		   
 
 		   
            </br>

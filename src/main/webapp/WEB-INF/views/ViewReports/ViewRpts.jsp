@@ -7,10 +7,47 @@
                         <div class="">
                             <!--Admin panel-->
                             <div class="admin-panel">
+							
+							<div class="HiddenBTN">
+         <input type="button" style="display:none" class="DashTrg"  id="BTNTECHIIVALUER" name="BTNTECHIIVALUER" /><!-- TECHIIVALUER 2-->
+      </div>     
+       <div class="HiddenBTN">
+         <input type="button" style="display:none" class="DashTrg"  id="BTNTECHIIIVALUER" name="BTNTECHIIIVALUER" /><!-- TECHIIIVALUER 3 -->
+      </div> 
+      <div class="HiddenBTN">
+         <input type="button" style="display:none" class="DashTrg"  id="BTNLEGALI" name="BTNLEGALI" /><!-- Legal 1 -->
+      </div> 
+      <div class="HiddenBTN">
+         <input type="button" style="display:none" class="DashTrg"  id="BTNLEGALII" name="BTNLEGALII" /><!-- legal 2 -->
+      </div> 
+       <div class="HiddenBTN">
+         <input type="button" style="display:none" class="DashTrg"  id="BTNFIRESI" name="BTNFIRESI" /><!-- FI RES  -->
+      </div> 
+                
+        <div class="HiddenBTN">
+         <input type="button" style="display:none" class="DashTrg"  id="BTNFIOFFICE" name="BTNFIOFFICE" /><!-- FI OFFICE  -->
+      </div> 
+                
+         <div class="HiddenBTN">
+         <input type="button" style="display:none" class="DashTrg"  id="BTNMCAVERIFI" name="BTNMCAVERIFI" /><!--MCA -->
+      </div> 
+               
+               
+      <div class="HiddenBTN">
+         <input type="button" style="display:none" class="DashTrg"  id="BTNPROPERVISIT" name="BTNPROPERVISIT" /><!-- PROPERTY VISIT -->
+      </div> 
+               
+     <div class="HiddenBTN">
+         <input type="button" style="display:none" class="DashTrg"  id="BTNRCU" name="BTNRCU" /><!-- RCU-->
+      </div> 
+      
+      <div class="HiddenBTN">
+         <input type="button" style="display:none" class="DashTrg"  id="BTNADVSMART" name="BTNADVSMART" /><!-- ADVA-->
+      </div> 
  <div class="card CardNS">
     <!-- Card body -->
  <div class="Formaccordion accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
-   <div class="card active">
+   <div class="card active LNSEC">
     <!-- Card header -->
     <div class="card-header Btxt7 active" role="tab" id="heading1">
       <a class="collapsed Btxt8 AFormaccordion" data-toggle="collapse" data-multidata="" data-load="Yes" data-aria="LSW_TECHNICALVALUER|TEVD|TEVD_PROPERTYNO" data-parent="#accordionEx" href="#collapse1"
@@ -25,7 +62,7 @@
 </div>-->
       <div data-for="PropertyValuer1" class="PropertyValuer1 TECHDSBL"> 
       </div>
-      <div class="DynamicPageGrid" data-val="PROPTXTHDR|PROPERTY" id="PropertyValuer1" style="display:none">
+      <div class="DynamicPageGrid" data-val="PROPTXTHDR|SECURITY" id="PropertyValuer1" style="display:none">
       <div data-row="" class="card-body px-lg-5 pt-0 BSbrd DYNROW">
           </br>
         <form>
@@ -48,23 +85,37 @@
        <input type="text" id="TEVD_VENDORID"   hidden="hidden"  name="TEVD_VENDORID" class="form-control TEVDDBfields">
 	   <input type="text" id="TEVD_DEVSTATUS"   hidden="hidden"  name="TEVD_DEVSTATUS" class="form-control TEVDDBfields">
        <input type="text" id="TEVD_CURSTATUS"   hidden="hidden"  name="TEVD_CURSTATUS" class="form-control TEVDDBfields">
+	   
+       <input type="text" id="TEVD_SECURITYTYPE"   hidden="hidden"  name="TEVD_SECURITYTYPE" class="form-control TEVDDBfields">
+	   
+       <input type="text" id="TEVD_PROPERTYNAME"   hidden="hidden"  name="TEVD_PROPERTYNAME" class="form-control TEVDDBfields">
       
          <div class="form-row">
-        	<div id="PROPTXTHDR" class="col Btxt10"></div>
+	          <!--  <div class="col-md-6">
+                  <div class="md-form">
+                    <input type="text" id="TEVD_PROPERTYNAME" disabled name="TEVD_PROPERTYNAME" class="form-control Schname TEVDDBfields  ">
+                    <label id="TEVD_PROPERTYNAME" class="Schname"></label>
+                  </div>
+				  <div  name="TEVD_PROPERTYNAME" class="col Btxt10 Schname"></div>-->
+				  <div class="col Btxt10">
+               <input type="text" id="TEVD_PROPERTYNAME" disabled name="TEVD_PROPERTYNAME" class="form-control Schname DSVLBL TEVDDBfields  ">
+                    </div>
+        	<!--<div id="PROPTXTHDR" class="col Btxt10">security</div>
+			<div id="TEVD_PROPERTYNAME" name="TEVD_PROPERTYNAME" class="col Btxt10 SECNAME"></div>-->
         </div>    
            </br>
             <div class="form-row">
               <div class=" col-md-12">
-                 <div class="md-form">
-                    <input type="text" id="TEVD_ADDPROPERTY" disabled name="TEVD_ADDPROPERTY" class="form-control AddrNoSpecialChar TEVDDBfields  ">
-                    <label for="TEVD_ADDPROPERTY" class=""> Address of Property<span class="MndtryAstr"></span></label>
+                 <div class="md-form CHKADRS">
+                    <input type="text" id="TEVD_ADDPROPERTY" disabled name="TEVD_ADDPROPERTY" class="form-control AddrNoSpecialChar  TEVDDBfields  ">
+                    <label for="TEVD_ADDPROPERTY" class=""> Address<span class="MndtryAstr"></span></label>
                   </div>
               </div>
            </div>    
            <div class="form-row">
             <div class="col">
                <div class="md-form">
-                  <select class=" md-form colorful-select dropdown-primary TEVDMndtry VENDDATA TEVDDBfields DataToFld"  data-change="TEVD_BRANCHID"    searchable="Search here.."  data-vendor="Valuation|TEVD_BRANCNAME|TEVD_VENDORNAME|TEVD_ALTERPERTYNO" id="TEVD_BRANCNAME" name="TEVD_BRANCNAME">
+                  <select class=" md-form colorful-select dropdown-primary TEVDMndtry VENDDATA TEVDDBfields DataToFld"  data-change="TEVD_BRANCHID"    searchable="Search here.."  data-vendor="Valuation|TEVD_BRANCNAME|TEVD_VENDORNAME|TEVD_PROPERTYNO" id="TEVD_BRANCNAME" name="TEVD_BRANCNAME">
             <!--    	<option value="" selected>--Select--</option>
   					<option value="101">Perungudi</option>
  					 <option value="102">Anakapalli</option>  -->  
@@ -74,7 +125,7 @@
             </div>
            	<div class="col">
            		<div class="md-form">
-                  <select class="mdb-select md-form colorful-select dropdown-primary TEVDMndtry TEVDDBfields DataToFld " searchable="Search here.."   data-change="TEVD_VENDORID"   id="TEVD_VENDORNAME" name="TEVD_VENDORNAME">
+                  <select class="mdb-select md-form colorful-select dropdown-primary TEVDMndtry VENIDRELOAD  TEVDDBfields DataToFld " searchable="Search here.."   data-change="TEVD_VENDORID"  data-vendor="Valuation|TEVD_BRANCNAME|TEVD_VENDORNAME|TEVD_PROPERTYNO|TEVD_ALTERPERTYNO"   id="TEVD_VENDORNAME" name="TEVD_VENDORNAME">
 				 
 				</select>
 				<label class="mdb-main-label BTxt9">Vendor Name<span class="MndtryAstr">*</span></label>
@@ -102,7 +153,7 @@
             <div class="form-row">
               <div class="col-md-6">
                   <div class="md-form">
-                    <input type="text" id="TEVD_STATUS" disabled name="TEVD_STATUS" class="form-control Status TEVDDBfields IsAlphaFields ">
+                    <input type="text" id="TEVD_STATUS" disabled name="TEVD_STATUS" onchange="DocView();" class="form-control Status TEVDDBfields IsAlphaFields ">
                     <label for="TEVD_STATUS" class="">Status<span class="MndtryAstr"></span></label>
                   </div>
               </div>
@@ -111,11 +162,11 @@
                               <div class="md-form">
                                  <div class="select-radio ">
                                     <div class="custom-control custom-radio custom-control-inline">
-                                       <input type="radio" class="custom-control-input  TEVDDBfields VerStatus" data-info="TEVD_PROPERTYNO" value="Verify" id="Verify" name="TEVD_VERIFY">
+                                       <input type="radio" class="custom-control-input  TEVDDBfields VerStatus INPRINCSANC" data-info="TEVD_PROPERTYNO|Valuation"  value="Verify" id="Verify" name="TEVD_VERIFY">
                                        <label class="custom-control-label" for="Verify">Verify</label>
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                       <input type="radio" class="custom-control-input  TEVDDBfields CORRDISB   VerStatus " data-info="TEVD_PROPERTYNO"  value="Correction" id="Correction" name="TEVD_VERIFY">
+                                       <input type="radio" class="custom-control-input  TEVDDBfields CORRDISB VerStatus" data-info="TEVD_PROPERTYNO|Valuation"  value="Correction" id="Correction" name="TEVD_VERIFY">
                                        <label class="custom-control-label" for="Correction">Correction</label>
                                     </div>
                                     <input type="text" id="TEVD_VERIFY" hidden="hidden" name="TEVD_VERIFY" class="form-control  TEVDDBfields">
@@ -124,18 +175,71 @@
                               </div>
                            </div>
               </div> 
+			  
+			  <div class="form-row">
+				<div class="col-md-6">
+					<div class="md-form">
+						<input type="text" id="TEVD_PROPERSTATUS" disabled name="TEVD_PROPERSTATUS"  class="form-control  TEVDDBfields IsAlphaFields ">
+						<label for="TEVD_PROPERSTATUS" class="">Property Status<span class="MndtryAstr"></span></label>
+					</div>
+				</div>
+			  </div>
+			  
+			  <div class="form-row PORDOC" style="display:none">
+			    <div class="col-md-6"style="display:none">
+							<div class="md-form">
+											<div class=""> </div>
+											<div class="row UAMN" >
+							<div class="col-md-8  Formcol-mdLR UAMNupload" >
+							<div class="md-form"style="display:none">
+							<table><tr>
+							<td>
+							<div id="TEVD_PROPERTYDOCUPLOAD"  class="file-field" style="display:none" >
+								 
+							<input type="text" id="TEVD_PROPERTYDOC" data-val="Upload Document"    data-Validate="TEVD_PROPERTYDOC"  name="TEVD_PROPERTYDOC" class="form-control voter File TEVDDBfields">
+							<span class="name1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Technical Document</span>
+							</div>
+							</td>
+							</tr></table>
+							</div>    
+							</div>  
+							<div class="md-form" style="display:none"> 
+							<img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW"  class="rounded" onclick="GrdDocDwnld('TEVD_PROPERTYDOC'+$(this).closest('.DYNROW').attr('data-row'))" alt="Cinque Terre" width="35" height="25"> </div>
+							</div>
+							</div>  
+							</div>
+							 
           
-            
+            </div>
+			 <div class="form-row">
+          <div class="md-form">
+                    <div  class="select-radio COLLATLON"> 
+                       <div class="custom-control custom-radio custom-control-inline">
+                          <input type="radio" class="custom-control-input TEVDDBfields APPLIC" onclick="Applicable(this)" value="Applicable" id="GenApplicable" name="TEVD_WAVIER">
+                          <label class="custom-control-label" for="GenApplicable">Applicable</label>
+                       </div>
+                       <div class="custom-control custom-radio custom-control-inline">
+                           <input type="radio" class="custom-control-input TEVDDBfields APPLIC" onclick="Applicable(this)"  value="Not Applicable" id="GenNotapp" name="TEVD_WAVIER">
+                           <label class="custom-control-label" for="GenNotapp">Not Applicable</label>
+                       </div>
+                       <div class="custom-control custom-radio custom-control-inline">
+                             <input type="radio" class="custom-control-input TEVDDBfields APPLIC" onclick="Applicable(this)" value="Waiver" id="GenWaiver" name="TEVD_WAVIER">
+                             <label class="custom-control-label" for="GenWaiver">Waiver</label>
+                       </div>
+                   </div>
+                   <label class="mdb-main-label BTxt9">Valution<span class="MndtryAstr">*</span></label>      
+               </div>
+				</div>
            <div class="form-row">
              <div class="col d-flex justify-content-center">
-                   <button type="button" id="Inti" data-for="PropertyValuer1" data-info="TEVD_VENDORNAME|TEVD_PROPERTYNO|TEVD_ALTERPERTYNO|Valuation|TEVD_ADDPROPERTY" data-Status="TEVD_STATUS" data-row="" data-aria="LSW_TECHNICALVALUER|TEVD|TEVD_ALTERPERTYNO" class="btn btn-Syel waves-effect waves-light ValuationInit RPTBTN">Initiate</button>   
+                   <button type="button" id="Inti" data-for="PropertyValuer1" data-info="TEVD_VENDORNAME|TEVD_PROPERTYNO|TEVD_ALTERPERTYNO|Valuation|TEVD_ADDPROPERTY|TEVD_BRANCNAME" data-Status="TEVD_STATUS" data-row="" data-aria="LSW_TECHNICALVALUER|TEVD|TEVD_ALTERPERTYNO"  class="btn btn-Syel waves-effect waves-light ValuationInitone ValuationInit VALUE RPTBTN Chkinit">Initiate</button>   
              </div>
           </div>
           <div class="form-row">
               <div class="col d-flex justify-content-center">
-                  <button type="button" id="UpdateRpt" data-for="PropertyValuer1" data-row="" data-aria="LSW_TECHNICALVALUER|TEVD|TEVD_PROPERTYNO|TechIIPropeInfo|TEVD_ALTERPERTYNO|heading1" style="padding-left: 25px;width: 166px;" class="ViewRpt ViewUptRpt btn btn-Syeloutline waves-effect waves-light RPTBTN">Update Report</button>   
+                  <button type="button" id="UpdateRpt" data-for="PropertyValuer1" data-row="" data-aria="LSW_TECHNICALVALUER|TEVD|TEVD_PROPERTYNO|TechIIPropeInfo|TEVD_ALTERPERTYNO|heading1|TEVD_SECURITYTYPE" style="padding-left: 25px;width: 166px;" class="ViewRpt ViewUptRpt btn btn-Syeloutline waves-effect waves-light RPTBTN">Update Report</button>   
                   <button type="button" id="ReAssignpop"  data-for="PropertyValuer1" data-row="" data-aria="TEVD_ADDPROPERTY|TEVD_BRANCNAME|TEVD_REMARKS|TEVD_REASSVENDOR|Valuation|TEVD_PROPERTYNO|TEVD_ALTERPERTYNO|Valuation|TEVD_VENDORNAME|TEVD_VENDORID|TEVD_BRANCNAME|TEVD_BRANCHID|TEVD_CURSTATUS"  class="ReAssignPopup btn btn-Syel waves-effect waves-light RPTBTN">Re-assign</button> 
-                  <button type="button" id="ViewDataRpt"  data-for="PropertyValuer1" data-row="" data-aria="LSW_TECHNICALVALUER|TEVD|TEVD_PROPERTYNO|TechIIPropeInfo|TEVD_ALTERPERTYNO|heading1" class="ViewDataRpt ViewUptRpt btn btn-Syeloutline waves-effect waves-light  RPTBTN  RPTVIEW ">View Report</button> 
+                  <button type="button" id="ViewDataRpt"  data-for="PropertyValuer1" data-row="" data-aria="LSW_TECHNICALVALUER|TEVD|TEVD_PROPERTYNO|TechIIPropeInfo|TEVD_ALTERPERTYNO|heading1|TEVD_SECURITYTYPE" class="ViewDataRpt ViewUptRpt btn btn-Syeloutline waves-effect waves-light  RPTBTN  RPTVIEW ">View Report</button> 
                   <button type="button" id="SaveRpt"  data-for="PropertyValuer1" data-row="" data-aria="LSW_TECHNICALVALUER|TEVD|TEVD_ALTERPERTYNO"  class="SaveRpt btn btn-Syel waves-effect waves-light FormSave RPTBTN">Save</button>
             </div>
           </div>  
@@ -148,10 +252,10 @@
 
    <!-- Tech Valuation 2 Start -->
   
-  <div class="card">
+  <div class="card LNSEC">
     <!-- Card header -->
     <div class="card-header Btxt7" role="tab" id="heading2">
-      <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse" data-multidata="" data-load="Yes" data-aria="LSW_TECHNICALVALUERII|TVII|TVII_PROPERTYNO" data-parent="#accordionEx" href="#collapse2"
+      <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse" data-load="" data-multidata="BTNTECHIIVALUER"  data-aria="LSW_TECHNICALVALUERII|TVII|TVII_PROPERTYNO" data-parent="#accordionEx" href="#collapse2"
         aria-expanded="true" aria-controls="collapse2">
           Technical Valuation 2<i class="fa fa-plus-circle rotate-icon"></i>
       </a>
@@ -165,7 +269,7 @@
       </div> -->
        <div data-for="PropertyValuer2" class="PropertyValuer2 TECHDSBL"> 
       </div>
-      <div class="DynamicPageGrid" data-val="PROPTXTHDR|PROPERTY" id="PropertyValuer2" style="display:none">
+      <div class="DynamicPageGrid" data-val="PROPTXTHDR|SECURITY" id="PropertyValuer2" style="display:none">
       
         <div data-row="" class="card-body px-lg-5 pt-0 BSbrd DYNROW">
          </br>
@@ -180,30 +284,34 @@
         <input type="text" id="TVII_PROPERTYNO" hidden="hidden" name="TVII_PROPERTYNO" class="form-control TVIIDBfields">
         <input type="text" id="TVII_REMARKS" hidden="hidden" name="TVII_REMARKS" class="form-control TVIIDBfields">
         <input type="text" id="TVII_REASSVENDOR" hidden="hidden" name="TVII_REASSVENDOR" class="form-control TVIIDBfields"> 
-        <input type="text" id="TVII_ALTERPERTYNO"   hidden="hidden"  name="TVII_ALTERPERTYNO" class="form-control TVIIDBfields">
-         
-         <input type="text" id="TVII_BRANCHID"   hidden="hidden"  name="TVII_BRANCHID" class="form-control TVIIDBfields">
-       
+        <input type="text" id="TVII_ALTERPERTYNO"   hidden="hidden"  name="TVII_ALTERPERTYNO" class="form-control TVIIDBfields">         
+        <input type="text" id="TVII_BRANCHID"   hidden="hidden"  name="TVII_BRANCHID" class="form-control TVIIDBfields">       
         <input type="text" id="TVII_VENDORID"   hidden="hidden"  name="TVII_VENDORID" class="form-control TVIIDBfields">
-		 <input type="text" id="TVII_DEVSTATUS"  hidden="hidden"   name="TVII_DEVSTATUS" class="form-control TVIIDBfields">
-         <input type="text" id="TVII_CURSTATUS"  hidden="hidden"  name="TVII_CURSTATUS" class="form-control TVIIDBfields">
+		<input type="text" id="TVII_DEVSTATUS"  hidden="hidden"   name="TVII_DEVSTATUS" class="form-control TVIIDBfields">
+        <input type="text" id="TVII_CURSTATUS"  hidden="hidden"  name="TVII_CURSTATUS" class="form-control TVIIDBfields">
+		<input type="text" id="TVII_SECURITYTYPE"   hidden="hidden"  name="TVII_SECURITYTYPE" class="form-control TVIIDBfields">
+        <input type="text" id="TVII_PROPERTYNAME"  hidden="hidden"  name="TVII_PROPERTYNAME" class="form-control TVIIDBfields">
+		
        
            <div class="form-row">
-        	<div id="PROPTXTHDR" class="col Btxt10"></div>
+        	<!--<div id="PROPTXTHDR" class="col Btxt10"></div>-->
+				<div class="col Btxt10">
+					<input type="text" id="TVII_PROPERTYNAME" disabled name="TVII_PROPERTYNAME" class="form-control Schname DSVLBL TVIIDBfields  ">
+                </div>
            </div> 
            </br>
            <div class="form-row">
                <div class=" col-md-12">
-                  <div class="md-form">
-                    <input type="text" id="TVII_ADDPROPERTY" disabled name="TVII_ADDPROPERTY" class="form-control AddrNoSpecialChar TVIIDBfields  ">
-                    <label for="TVII_ADDPROPERTY" class=""> Address of Property<span class="MndtryAstr"></span></label>
+                  <div class="md-form CHKADRSII">
+                    <input type="text" id="TVII_ADDPROPERTY" disabled name="TVII_ADDPROPERTY" class="form-control AddrNoSpecialChar  TVIIDBfields  ">
+                    <label for="TVII_ADDPROPERTY" class=""> Address<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
            </div>    
         <div class="form-row ">
             <div class="col">
                  <div class="md-form">
-                  <select class=" md-form colorful-select dropdown-primary VENDDATA TVIIMndtry TVIIDBfields DataToFld" data-change="TVII_BRANCHID"   searchable="Search here.." data-vendor="Valuation|TVII_BRANCNAME|TVII_VENDORNAME|TVII_ALTERPERTYNO"  id="TVII_BRANCNAME" name="TVII_BRANCNAME">
+                  <select class=" md-form colorful-select dropdown-primary VENDDATA TVIIMndtry TVIIDBfields DataToFld" data-change="TVII_BRANCHID"   searchable="Search here.." data-vendor="Valuation|TVII_BRANCNAME|TVII_VENDORNAME|TVII_PROPERTYNO"  id="TVII_BRANCNAME" name="TVII_BRANCNAME">
                <!--  	<option value="" selected>--Select--</option>
   					<option value="101">Perangudi</option>
  					 <option value="102">Anakapalli</option> -->  
@@ -213,7 +321,7 @@
             </div>
            	<div class="col">
            		<div class="md-form">
-                  <select class="mdb-select md-form colorful-select dropdown-primary TVIIDBfields TVIIMndtry DataToFld" searchable="Search here.."   data-change="TVII_VENDORID"        data-vendor="Valuation" id="TVII_VENDORNAME" name="TVII_VENDORNAME">
+                  <select class=" md-form colorful-select dropdown-primary TVIIDBfields VENIDRELOAD TVIIMndtry DataToFld" searchable="Search here.."   data-change="TVII_VENDORID"   data-vendor="Valuation|TVII_BRANCNAME|TVII_VENDORNAME|TVII_PROPERTYNO|TVII_ALTERPERTYNO"     id="TVII_VENDORNAME" name="TVII_VENDORNAME">
 				  
 				</select>
 				<label class="mdb-main-label BTxt9">Vendor Name<span class="MndtryAstr">*</span></label>
@@ -241,7 +349,7 @@
             <div class="form-row">
             <div class="col-md-6">
                   <div class="md-form ">
-                    <input type="text" id="TVII_STATUS" disabled name="TVII_STATUS" class="form-control Status TVIIDBfields IsAlphaFields ">
+                    <input type="text" id="TVII_STATUS" disabled name="TVII_STATUS" onchange="DocView2();" class="form-control Status TVIIDBfields IsAlphaFields ">
                     <label for="TVII_STATUS" class="">Status<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
@@ -249,11 +357,11 @@
                               <div class="md-form">
                                  <div class="select-radio ">
                                     <div class="custom-control custom-radio custom-control-inline">
-                                       <input type="radio" class="custom-control-input  TVIIDBfields VerStatus" data-info="TVII_PROPERTYNO"  value="Verify" id="VerifyII" name="TVII_VERIFY">
+                                       <input type="radio" class="custom-control-input  TVIIDBfields VerStatus INPRINCSANC" data-info="TVII_PROPERTYNO|Valuation"  value="Verify" id="VerifyII" name="TVII_VERIFY">
                                        <label class="custom-control-label" for="VerifyII">Verify</label>
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                       <input type="radio" class="custom-control-input  TVIIDBfields VerStatus CORRDISB" data-info="TVII_PROPERTYNO"  value="Correction" id="CorrectionII" name="TVII_VERIFY">
+                                       <input type="radio" class="custom-control-input  TVIIDBfields VerStatus CORRDISB" data-info="TVII_PROPERTYNO|Valuation"  value="Correction" id="CorrectionII" name="TVII_VERIFY">
                                        <label class="custom-control-label" for="CorrectionII">Correction</label>
                                     </div>
                                     <input type="text" id="TVII_VERIFY" hidden="hidden" name="TVII_VERIFY" class="form-control IsNumberFields TVIIDBfields">
@@ -261,18 +369,73 @@
   
                               </div>
                            </div>
-                 </div>   
+                 </div>  
+			<div class="form-row">
+				<div class="col-md-6">
+					<div class="md-form">
+						<input type="text" id="TVII_PROPERSTATUS" disabled name="TVII_PROPERSTATUS"  class="form-control  TVIIDBfields IsAlphaFields ">
+						<label for="TVII_PROPERSTATUS" class="">Property Status<span class="MndtryAstr"></span></label>
+					</div>
+				</div>
+			</div>	 
+			<div class="form-row PORDOC" style="display:none">
+			    <div class="col-md-6" style="display:none">
+							<div class="md-form">
+											<div class=""> </div>
+											<div class="row UAMN" >
+							<div class="col-md-8  Formcol-mdLR UAMNupload">
+							<div class="md-form">
+							<table><tr>
+							<td>
+							<div id="TVII_PROPERTYDOCUPLOAD"  class="file-field"  >
+								 
+							<input type="text" id="TVII_PROPERTYDOC" data-val="Upload Document"    data-Validate="TVII_PROPERTYDOC"  name="TVII_PROPERTYDOC" class="form-control voter File TVIIDBfields">
+							 <span class="name1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Technical Document</span> 
+							
+							</div>
+							</td>
+							</tr></table>
+							</div>    
+							</div>  
+							<div class="md-form">
+							 
+							<img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW"  class="rounded" onclick="GrdDocDwnld('TVII_PROPERTYDOC'+$(this).closest('.DYNROW').attr('data-row'))" alt="Cinque Terre" width="35" height="25"> </div>
+							</div>
+							</div>  
+							</div>
+							 
+          
+				</div>	
+          <div class="form-row">
+          <div class="md-form">
+                    <div  class="select-radio"> 
+                       <div class="custom-control custom-radio custom-control-inline">
+                          <input type="radio" class="custom-control-input TVIIDBfields APPLIC" onclick="Notapplicable(this)" value="Applicable" id="Gapplicable" name="TVII_WAVIER">
+                          <label class="custom-control-label" for="Gapplicable">Applicable</label>
+                       </div>
+                       <div class="custom-control custom-radio custom-control-inline" >
+                           <input type="radio" class="custom-control-input TVIIDBfields Inti APPLIC" onclick="Notapplicable(this)" value="Not Applicable" id="Gnotapp" name="TVII_WAVIER">
+                           <label class="custom-control-label" for="Gnotapp">Not Applicable</label>
+                       </div>
+                       <div class="custom-control custom-radio custom-control-inline" >
+                             <input type="radio" class="custom-control-input TVIIDBfields Inti APPLIC" onclick="Notapplicable(this)" value="Waiver" id="Gwaiver" name="TVII_WAVIER">
+                             <label class="custom-control-label" for="Gwaiver">Waiver</label>
+                       </div>
+                   </div>
+                   <label class="mdb-main-label BTxt9">Valution<span class="MndtryAstr">*</span></label>      
+               </div>
+				</div>				
                 <div class="form-row">
                  <div class="col d-flex justify-content-center">
-                 <button type="button" id="Inti" data-for="PropertyValuer2" data-row="" data-info="TVII_VENDORNAME|TVII_PROPERTYNO|TVII_ALTERPERTYNO|Valuation|TVII_ADDPROPERTY" data-status="TVII_STATUS" data-aria="LSW_TECHNICALVALUERII|TVII|TVII_ALTERPERTYNO" class="btn btn-Syel ValuationInit waves-effect waves-light RPTBTN">Initiate</button>   
+                 <button type="button" id="Inti" data-for="PropertyValuer2" data-row="" data-info="TVII_VENDORNAME|TVII_PROPERTYNO|TVII_ALTERPERTYNO|Valuation|TVII_ADDPROPERTY|TVII_BRANCNAME" data-status="TVII_STATUS" data-aria="LSW_TECHNICALVALUERII|TVII|TVII_ALTERPERTYNO" class="btn btn-Syel  ValuationInittwo ValuationInit waves-effect waves-light INTYT RPTBTN">Initiate</button>   
                  </div>
                  </div>
             <div class="form-row">
               <div class="col d-flex justify-content-center">
-                   <button type="button" id="ViewRpt" data-for="PropertyValuer2" data-row="" data-aria="LSW_TECHNICALVALUERII|TVII|TVII_PROPERTYNO|TechIIPropeInfo|TVII_ALTERPERTYNO|heading2" style="padding-left: 25px;width: 166px;" class= "btn btn-Syeloutline waves-effect waves-light ViewUptRpt ViewRpt  RPTBTN">Update Report</button>   
+                   <button type="button" id="ViewRpt" data-for="PropertyValuer2" data-row="" data-aria="LSW_TECHNICALVALUERII|TVII|TVII_PROPERTYNO|TechIIPropeInfo|TVII_ALTERPERTYNO|heading2|TVII_SECURITYTYPE" style="padding-left: 25px;width: 166px;" class= "btn btn-Syeloutline waves-effect waves-light ViewUptRpt ViewRpt  RPTBTN">Update Report</button>   
                    <button type="button" id="ReAssignpop"  data-for="PropertyValuer2" data-row="" data-aria="TVII_ADDPROPERTY|TVII_BRANCNAME|TVII_REMARKS|TVII_REASSVENDOR|Valuation|TVII_PROPERTYNO|TVII_ALTERPERTYNO|Valuation|TVII_VENDORNAME|TVII_VENDORID|TVII_BRANCNAME|TVII_BRANCHID|TVII_CURSTATUS"  class="ReAssignPopup btn btn-Syel waves-effect waves-light RPTBTN">Re-assign</button>
-                   <button type="button" id="ViewDataRpt"  data-for="PropertyValuer2" data-row="" data-aria="LSW_TECHNICALVALUERII|TVII|TVII_PROPERTYNO|TechIIPropeInfo|TVII_ALTERPERTYNO|heading2" class="ViewUptRpt ViewDataRpt btn btn-Syeloutline waves-effect waves-light RPTBTN RPTVIEW ">View Report</button> 
-                   <button type="button" id="SaveRpt"  data-for="PropertyValuer2" data-row="" data-aria="LSW_TECHNICALVALUERII|TVII|TVII_ALTERPERTYNO"  class="SaveRpt btn btn-Syel waves-effect waves-light FormSave">Save</button> 
+                   <button type="button" id="ViewDataRpt"  data-for="PropertyValuer2" data-row="" data-aria="LSW_TECHNICALVALUERII|TVII|TVII_PROPERTYNO|TechIIPropeInfo|TVII_ALTERPERTYNO|heading2|TVII_SECURITYTYPE" class="ViewUptRpt ViewDataRpt btn btn-Syeloutline waves-effect waves-light RPTBTN RPTVIEW ">View Report</button> 
+                   <button type="button" id="SaveRpt"  data-for="PropertyValuer2" data-row="" data-aria="LSW_TECHNICALVALUERII|TVII|TVII_ALTERPERTYNO"  class="SaveRpt btn btn-Syel waves-effect waves-light RPTBTN FormSave">Save</button>  
              
               </div>
            </div>  
@@ -285,10 +448,10 @@
   
    <!-- Tech Valuation 3 Start -->
   
-  <div class="card">
+  <div class="card LNSEC">
     <!-- Card header -->
     <div class="card-header Btxt7" role="tab" id="heading10">
-      <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse" data-multidata="" data-load="Yes" data-aria="LSW_TECHNICALVALUERIII|TIII|TIII_PROPERTYNO" data-parent="#accordionEx" href="#collapse10"
+      <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse" data-load="" data-multidata="BTNTECHIIIVALUER"  data-aria="LSW_TECHNICALVALUERIII|TIII|TIII_PROPERTYNO" data-parent="#accordionEx" href="#collapse10"
         aria-expanded="true" aria-controls="collapse10">
           Technical Valuation 3<i class="fa fa-plus-circle rotate-icon"></i>
       </a>
@@ -302,7 +465,7 @@
       </div> -->
        <div data-for="PropertyValuer3" class="PropertyValuer3 TECHDSBL"> 
       </div>
-      <div class="DynamicPageGrid" data-val="PROPTXTHDR|PROPERTY" id="PropertyValuer3" style="display:none">
+      <div class="DynamicPageGrid" data-val="PROPTXTHDR|SECURITY" id="PropertyValuer3" style="display:none">
       
         <div data-row="" class="card-body px-lg-5 pt-0 BSbrd DYNROW">
          </br>
@@ -324,24 +487,29 @@
            <input type="text" id="TIII_VENDORID"   hidden="hidden"  name="TIII_VENDORID" class="form-control TIIIDBfields">
 		   <input type="text" id="TIII_DEVSTATUS"   hidden="hidden"    name="TIII_DEVSTATUS" class="form-control TIIIDBfields">
             <input type="text" id="TIII_CURSTATUS"  hidden="hidden"    name="TIII_CURSTATUS" class="form-control TIIIDBfields">
+			<input type="text" id="TIII_SECURITYTYPE"   hidden="hidden"  name="TIII_SECURITYTYPE" class="form-control TIIIDBfields">
+            <input type="text" id="TIII_PROPERTYNAME"  hidden="hidden"    name="TIII_PROPERTYNAME" class="form-control TIIIDBfields">
            
            
            <div class="form-row">
-        	<div id="PROPTXTHDR" class="col Btxt10"></div>
+        	<!--<div id="PROPTXTHDR" class="col Btxt10"></div>-->
+				<div class="col Btxt10">
+					<input type="text" id="TIII_PROPERTYNAME" disabled name="TIII_PROPERTYNAME" class="form-control Schname DSVLBL TVIIDBfields  ">
+                </div>
            </div> 
            </br>
            <div class="form-row">
                <div class=" col-md-12">
-                  <div class="md-form">
-                    <input type="text" id="TIII_ADDPROPERTY" disabled name="TIII_ADDPROPERTY" class="form-control AddrNoSpecialChar TIIIDBfields  ">
-                    <label for="TIII_ADDPROPERTY" class=""> Address of Property<span class="MndtryAstr"></span></label>
+                  <div class="md-form CHKADRSIII">
+                    <input type="text" id="TIII_ADDPROPERTY" disabled name="TIII_ADDPROPERTY" class="form-control AddrNoSpecialChar  TIIIDBfields  ">
+                    <label for="TIII_ADDPROPERTY" class=""> Address<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
            </div>    
         <div class="form-row ">
             <div class="col">
                  <div class="md-form">
-                  <select class=" md-form colorful-select dropdown-primary VENDDATA TIIIMndtry TIIIDBfields DataToFld"  data-change="TIII_BRANCHID"   searchable="Search here.."  data-vendor="Valuation|TIII_BRANCNAME|TIII_VENDORNAME|TIII_ALTERPERTYNO"  id="TIII_BRANCNAME" name="TIII_BRANCNAME">
+                  <select class=" md-form colorful-select dropdown-primary VENDDATA TIIIMndtry TIIIDBfields DataToFld"  data-change="TIII_BRANCHID"   searchable="Search here.."  data-vendor="Valuation|TIII_BRANCNAME|TIII_VENDORNAME|TIII_PROPERTYNO"  id="TIII_BRANCNAME" name="TIII_BRANCNAME">
                 <!-- 	<option value="" selected>--Select--</option>
   					<option value="101">Perangudi</option>
  					 <option value="102">Anakapalli</option>-->
@@ -351,7 +519,7 @@
             </div>
            	<div class="col">
            		<div class="md-form">
-                  <select class="mdb-select md-form colorful-select dropdown-primary TIIIDBfields TIIIMndtry DataToFld"   searchable="Search here.."  data-change="TIII_VENDORID"  data-vendor="Valuation" id="TIII_VENDORNAME" name="TIII_VENDORNAME">
+                  <select class=" md-form colorful-select dropdown-primary VENIDRELOAD  TIIIDBfields TIIIMndtry DataToFld"   searchable="Search here.."  data-vendor="Valuation|TIII_BRANCNAME|TIII_VENDORNAME|TIII_PROPERTYNO|TIII_ALTERPERTYNO"  data-change="TIII_VENDORID"   id="TIII_VENDORNAME" name="TIII_VENDORNAME">
 				 
 				  
 				</select>
@@ -389,11 +557,11 @@
                               <div class="md-form">
                                  <div class="select-radio ">
                                     <div class="custom-control custom-radio custom-control-inline">
-                                       <input type="radio" class="custom-control-input  TIIIDBfields VerStatus" data-info="TIII_PROPERTYNO"  value="Verify" id="VerifyIII" name="TIII_VERIFY">
+                                       <input type="radio" class="custom-control-input  TIIIDBfields VerStatus INPRINCSANC" data-info="TIII_PROPERTYNO|Valuation"   value="Verify" id="VerifyIII" name="TIII_VERIFY">
                                        <label class="custom-control-label" for="VerifyIII">Verify</label>
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                       <input type="radio" class="custom-control-input  TIIIDBfields VerStatus CORRDISB " data-info="TIII_PROPERTYNO" value="Correction" id="CorrectionIII" name="TIII_VERIFY">
+                                       <input type="radio" class="custom-control-input  TIIIDBfields VerStatus CORRDISB" data-info="TIII_PROPERTYNO|Valuation"    value="Correction" id="CorrectionIII" name="TIII_VERIFY">
                                        <label class="custom-control-label" for="CorrectionIII">Correction</label>
                                     </div>
                                     <input type="text" id="TIII_VERIFY" hidden="hidden" name="TIII_VERIFY" class="form-control IsNumberFields TIIIDBfields">
@@ -402,16 +570,75 @@
                               </div>
                            </div>
            </div>   
+		   	<div class="form-row">
+				<div class="col-md-6">
+					<div class="md-form">
+						<input type="text" id="TIII_PROSTATUS" disabled name="TIII_PROSTATUS"  class="form-control  TIIIDBfields IsAlphaFields ">
+						<label for="TIII_PROSTATUS" class="">Property Status<span class="MndtryAstr"></span></label>
+					</div>
+				</div>
+				
+						   </div>
+				
+			
+		   	<div class="form-row  PORDOC" style="display:none">
+			    <div class="col-md-6" style="display:none">
+							<div class="md-form">
+											<div class=""> </div>
+											<div class="row UAMN" >
+							<div class="col-md-8  Formcol-mdLR UAMNupload">
+							<div class="md-form">
+							<table><tr>
+							<td>
+							<div id="TIII_PROPERTYDOCUPLOAD"  class="file-field"   >
+								 
+							<input type="text" id="TIII_PROPERTYDOC" data-val="Upload Document"    data-Validate="TIII_PROPERTYDOC"  name="TIII_PROPERTYDOC" class="form-control voter File TIIIDBfields">
+							
+							 <span class="name1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Technical Document</span>
+							</div>
+							</td>
+							</tr></table>
+							</div>    
+							</div>  
+							<div class="md-form">
+							  
+							<img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW"  class="rounded" onclick="GrdDocDwnld('TIII_PROPERTYDOC'+$(this).closest('.DYNROW').attr('data-row'))" alt="Cinque Terre" width="35" height="25"> </div>
+							</div>
+							</div>  
+							</div>
+							</div>
+		 <div class="form-row">
+          <div class="md-form">
+                    <div  class="select-radio"> 
+                       <div class="custom-control custom-radio custom-control-inline">
+                          <input type="radio" class="custom-control-input TIIIDBfields APPLIC" onclick="AppWaiver(this)" value="Applicable" id="Applicable" name="TIII_WAVIER">
+                          <label class="custom-control-label" for="Applicable">Applicable</label>
+                       </div>
+                       <div class="custom-control custom-radio custom-control-inline">
+                           <input type="radio" class="custom-control-input TIIIDBfields APPLIC" onclick="AppWaiver(this)" value="Not Applicable" id="Notapp" name="TIII_WAVIER">
+                           <label class="custom-control-label" for="Notapp">Not Applicable</label>
+                       </div>
+                       <div class="custom-control custom-radio custom-control-inline">
+                             <input type="radio" class="custom-control-input TIIIDBfields APPLIC" onclick="AppWaiver(this)"  value="Waiver" id="Waiver" name="TIII_WAVIER">
+                             <label class="custom-control-label" for="Waiver">Waiver</label>
+                       </div>
+                   </div>
+                   <label class="mdb-main-label BTxt9">Valution<span class="MndtryAstr">*</span></label>      
+               </div>
+				</div>
+				
+				
+				
                 <div class="form-row">
                  <div class="col d-flex justify-content-center">
-                 <button type="button" id="Inti" data-for="PropertyValuer3" data-row="" data-info="TIII_VENDORNAME|TIII_PROPERTYNO|TIII_ALTERPERTYNO|Valuation|TIII_ADDPROPERTY" data-status="TIII_STATUS" data-aria="LSW_TECHNICALVALUERIII|TIII|TIII_ALTERPERTYNO" class="btn btn-Syel ValuationInit waves-effect waves-light RPTBTN">Initiate</button>   
+                 <button type="button" id="Inti" data-for="PropertyValuer3" data-row="" data-info="TIII_VENDORNAME|TIII_PROPERTYNO|TIII_ALTERPERTYNO|Valuation|TIII_ADDPROPERTY|TIII_BRANCNAME" data-status="TIII_STATUS" data-aria="LSW_TECHNICALVALUERIII|TIII|TIII_ALTERPERTYNO" class="btn btn-Syel ValuationInitthree ValuationInit waves-effect waves-light  RPTBTN">Initiate</button>   
                  </div>
                  </div>
             <div class="form-row">
               <div class="col d-flex justify-content-center">
-                   <button type="button" id="ViewRpt" data-for="PropertyValuer3" data-row="" data-aria="LSW_TECHNICALVALUERIII|TIII|TIII_PROPERTYNO|TechIIPropeInfo|TIII_ALTERPERTYNO|heading10" style="padding-left: 25px;width: 166px;" class= "btn btn-Syeloutline waves-effect waves-light ViewUptRpt RPTBTN ViewRpt ">Update Report</button>   
+                   <button type="button" id="ViewRpt" data-for="PropertyValuer3" data-row="" data-aria="LSW_TECHNICALVALUERIII|TIII|TIII_PROPERTYNO|TechIIPropeInfo|TIII_ALTERPERTYNO|heading10|TIII_SECURITYTYPE" style="padding-left: 25px;width: 166px;" class= "btn btn-Syeloutline waves-effect waves-light ViewUptRpt RPTBTN ViewRpt ">Update Report</button>   
                    <button type="button" id="ReAssignpop"  data-for="PropertyValuer3" data-row="" data-aria="TIII_ADDPROPERTY|TIII_BRANCNAME|TIII_REMARKS|TIII_REASSVENDOR|Valuation|TIII_PROPERTYNO|TIII_ALTERPERTYNO|Valuation|TIII_VENDORNAME|TIII_VENDORID|TIII_BRANCNAME|TIII_BRANCHID|TIII_CURSTATUS"  class="ReAssignPopup btn btn-Syel waves-effect waves-light RPTBTN">Re-assign</button> 
-                   <button type="button" id="ViewDataRpt"  data-for="PropertyValuer3" data-row="" data-aria="LSW_TECHNICALVALUERIII|TIII|TIII_PROPERTYNO|TechIIPropeInfo|TIII_ALTERPERTYNO|heading10" class="ViewUptRpt ViewDataRpt btn btn-Syeloutline waves-effect waves-light RPTBTN RPTVIEW ">View Report</button> 
+                   <button type="button" id="ViewDataRpt"  data-for="PropertyValuer3" data-row="" data-aria="LSW_TECHNICALVALUERIII|TIII|TIII_PROPERTYNO|TechIIPropeInfo|TIII_ALTERPERTYNO|heading10|TIII_SECURITYTYPE" class="ViewUptRpt ViewDataRpt btn btn-Syeloutline waves-effect waves-light RPTBTN RPTVIEW ">View Report</button> 
                    <button type="button" id="SaveRpt"  data-for="PropertyValuer3" data-row="" data-aria="LSW_TECHNICALVALUERIII|TIII|TIII_ALTERPERTYNO"  class="SaveRpt btn btn-Syel waves-effect waves-light FormSave">Save</button> 
              </div>
            </div>  
@@ -424,10 +651,10 @@
 
    <!--  Legal Start  -->
   
-  <div class="card">
+  <div class="card LEGAL">
     <!-- Card header -->
     <div class="card-header Btxt7" role="tab" id="heading3">
-      <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse"  data-multidata="" data-load="Yes" data-aria="LSW_TLEGALVENDOR|LEGD|LEGD_PROPERTYNO" data-parent="#accordionEx" href="#collapse3"
+      <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse"   data-load="" data-multidata="BTNLEGALI"   data-aria="LSW_TLEGALVENDOR|LEGD|LEGD_PROPERTYNO" data-parent="#accordionEx" href="#collapse3"
         aria-expanded="true" aria-controls="collapse3">
           Legal Report 1<i class="fa fa-plus-circle rotate-icon"></i>
       </a>
@@ -440,7 +667,7 @@
       </div>
        <div data-for="LegalRpt" class="LegalRpt "> 
       </div>
-      <div class="DynamicPageGrid" data-val="PROPTXTHDR|PROPERTY" id="LegalRpt" style="display:none">
+      <div class="DynamicPageGrid" data-val="PROPTXTHDR|SECURITY" id="LegalRpt" style="display:none">
       
         <div data-row="" class="card-body px-lg-5 pt-0 BSbrd DYNROW">
          </br>
@@ -464,23 +691,27 @@
           
       <input type="text" id="LEGD_DEVSTATUS"    hidden="hidden" name="LEGD_DEVSTATUS" class="form-control LEGDDBfields"> 
 		 <input type="text" id="LEGD_CURSTATUS"    hidden="hidden"  name="LEGD_CURSTATUS" class="form-control LEGDDBfields"> 
+		 <input type="text" id="LEGD_PROPERTYNAME"    hidden="hidden"  name="LEGD_PROPERTYNAME" class="form-control LEGDDBfields"> 
 		 
            <div class="form-row">
-        	   <div id="PROPTXTHDR" class="col Btxt10"></div>
+        	  <!-- <div id="PROPTXTHDR" class="col Btxt10"></div>-->
+			   	<div class="col Btxt10">
+					<input type="text" id="LEGD_PROPERTYNAME" disabled name="LEGD_PROPERTYNAME" class="form-control Schname DSVLBL TVIIDBfields  ">
+                </div>
           </div> 
            </br>
                 <div class="form-row">
                <div class=" col-md-12">
                   <div class="md-form">
                     <input type="text" id="LEGD_ADDPROPERTY" disabled name="LEGD_ADDPROPERTY" class="form-control LEGDDBfields  ">
-                    <label for="LEGD_ADDPROPERTY" class=""> Address of Property<span class="MndtryAstr"></span></label>
+                    <label for="LEGD_ADDPROPERTY" class=""> Address<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
            </div>    
         <div class="form-row ">
             <div class="col">
                  <div class="md-form">
-                  <select class="mdb-select md-form colorful-select VENDDATA dropdown-primary LEGDDBfields LEGDMndtry DataToFld "  searchable="Search here.."    data-change="LEGD_BRANCHID"    data-vendor="LEGAL|LEGD_BRANCNAME|LEGD_VENDORNAME|LEGD_ALTERPERTYNO"  id="LEGD_BRANCNAME" name="LEGD_BRANCNAME">
+                  <select class=" md-form colorful-select VENDDATA dropdown-primary LEGDDBfields LEGDMndtry DataToFld "  searchable="Search here.."    data-change="LEGD_BRANCHID"    data-vendor="LEGAL|LEGD_BRANCNAME|LEGD_VENDORNAME|LEGD_PROPERTYNO"  id="LEGD_BRANCNAME" name="LEGD_BRANCNAME">
                  <!--  <option value="" selected>--Select--</option>
   					<option value="101">Perangudi</option>
  					 <option value="102">Anakapalli</option>  -->
@@ -490,7 +721,7 @@
             </div>
            	<div class="col">
            		<div class="md-form">
-                  <select class="mdb-select md-form colorful-select dropdown-primary LEGDDBfields LEGDMndtry DataToFld" data-change="LEGD_VENDORID"   searchable="Search here.."   id="LEGD_VENDORNAME" name="LEGD_VENDORNAME">
+                  <select class=" md-form colorful-select dropdown-primary VENIDRELOAD  LEGDDBfields LEGDMndtry DataToFld" data-change="LEGD_VENDORID"   data-vendor="LEGAL|LEGD_BRANCNAME|LEGD_VENDORNAME|LEGD_PROPERTYNO"   searchable="Search here.."   id="LEGD_VENDORNAME" name="LEGD_VENDORNAME">
 				 
 				</select>
 				<label class="mdb-main-label BTxt9">Vendor Name<span class="MndtryAstr">*</span></label>
@@ -527,11 +758,11 @@
                               <div class="md-form">
                                  <div class="select-radio ">
                                     <div class="custom-control custom-radio custom-control-inline">
-                                       <input type="radio" class="custom-control-input  LEGDDBfields VerStatus" data-info="LEGD_PROPERTYNO"  value="Verify" id="legalVerify" name="LEGD_VERIFY">
+                                       <input type="radio" class="custom-control-input  LEGDDBfields VerStatus INPRINCSANC"  data-info="LEGD_PROPERTYNO|Legal" value="Verify" id="legalVerify" name="LEGD_VERIFY">
                                        <label class="custom-control-label" for="legalVerify">Verify</label>
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                       <input type="radio" class="custom-control-input  LEGDDBfields VerStatus CORRDISB" data-info="LEGD_PROPERTYNO"   value="Correction" id="legalCorrection" name="LEGD_VERIFY">
+                                       <input type="radio" class="custom-control-input  LEGDDBfields VerStatus CORRDISB"  data-info="LEGD_PROPERTYNO|Legal"  value="Correction" id="legalCorrection" name="LEGD_VERIFY">
                                        <label class="custom-control-label" for="legalCorrection">Correction</label>
                                     </div>
                                     <input type="text" id="LEGD_VERIFY" hidden="hidden" name="LEGD_VERIFY" class="form-control  LEGDDBfields">
@@ -540,15 +771,43 @@
                               </div>
                            </div>
              
-           </div>      
+           </div>  
+	<div class="form-row PORDOC" style="display:none">
+			    <div class="col-md-6">
+							<div class="md-form">
+											<div class=""> </div>
+											<div class="row UAMN" >
+							<div class="col-md-8  Formcol-mdLR UAMNupload">
+							<div class="md-form">
+							<table><tr>
+							<td>
+							<div id="LEGD_PROPERTYDOCUPLOAD"  class="file-field"  >
+								 
+							<input type="text" id="LEGD_PROPERTYDOC" data-val="Upload Document"    data-Validate="LEGD_PROPERTYDOC"  name="LEGD_PROPERTYDOC" class="form-control voter File LEGDDBfields">
+							 <span class="name1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Legal Document</span> 
+							
+							</div>
+							</td>
+							</tr></table>
+							</div>    
+							</div>  
+							<div class="md-form">
+							 
+							<img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW"  class="rounded" onclick="GrdDocDwnld('LEGD_PROPERTYDOC'+$(this).closest('.DYNROW').attr('data-row'))" alt="Cinque Terre" width="35" height="25"> </div>
+							</div>
+							</div>  
+							</div>
+							 
+          
+				</div>		   
                 <div class="form-row">
                  <div class="col d-flex justify-content-center">
-                     <button type="button" id="Inti" data-for="LegalRpt" data-info="LEGD_VENDORNAME|LEGD_PROPERTYNO|LEGD_ALTERPERTYNO|Legal|LEGD_ADDPROPERTY" data-status="LEGD_STATUS" data-row="" data-aria="LSW_TLEGALVENDOR|LEGD|LEGD_ALTERPERTYNO|Initiate" class="btn btn-Syel ValuationInit waves-effect waves-light RPTBTN">Initiate</button>   
+                     <button type="button" id="Inti" data-for="LegalRpt" data-info="LEGD_VENDORNAME|LEGD_PROPERTYNO|LEGD_ALTERPERTYNO|Legal|LEGD_ADDPROPERTY|LEGD_BRANCNAME" data-status="LEGD_STATUS" data-row="" data-aria="LSW_TLEGALVENDOR|LEGD|LEGD_ALTERPERTYNO|Initiate" class="btn btn-Syel ValuationInit waves-effect waves-light RPTBTN">Initiate</button>   
                  </div>
                  </div>
             <div class="form-row">
               <div class="col d-flex justify-content-center">
-                  <button type="button" id="ViewRpt" data-for="LegalRpt" data-row="" data-aria="LSW_TLEGALVENDOR|LEGD|LEGD_PROPERTYNO|LegalUpdateReport|LEGD_ALTERPERTYNO|heading3" style="padding-left: 25px;width: 166px;" class= "btn btn-Syeloutline waves-effect waves-light ViewUptRpt ViewRpt RPTBTN">Update Report</button>   
+                  <button type="button" id="ViewRpt" data-for="LegalRpt" data-row="" data-aria="LSW_TLEGALVENDOR|LEGD|LEGD_PROPERTYNO|LegalUpdateReport|LEGD_ALTERPERTYNO|heading3" style="padding-left: 25px;width: 166px;" class= "btn btn-Syeloutline waves-effect waves-light ViewUptRpt RPTBTN  ViewRpt ">Update Report</button>   
                   <button type="button" id="ReAssignpop"  data-for="LegalRpt" data-row="" data-aria="LEGD_ADDPROPERTY|LEGD_BRANCNAME|LEGD_REMARKS|LEGD_REASSVENDOR|Legal|LEGD_PROPERTYNO|LEGD_ALTERPERTYNO|Legal|LEGD_VENDORNAME|LEGD_VENDORID|LEGD_BRANCNAME|LEGD_BRANCHID|LEGD_CURSTATUS"  class="ReAssignPopup btn btn-Syel waves-effect waves-light RPTBTN">Re-assign</button> 
                    <button type="button" id="ViewDataRpt"  data-for="LegalRpt" data-row="" data-aria="LSW_TLEGALVENDOR|LEGD|LEGD_PROPERTYNO|LegalUpdateReport|LEGD_ALTERPERTYNO|heading3" class="ViewDataRpt ViewUptRpt btn btn-Syeloutline waves-effect waves-light RPTBTN  RPTVIEW">View Report</button> 
                    <button type="button" id="SaveRpt" data-for="LegalRpt" data-row="" data-aria="LSW_TLEGALVENDOR|LEGD|LEGD_ALTERPERTYNO|" style="padding-left: 25px;width: 166px;" class= "btn btn-Syel waves-effect waves-light  SaveRpt FormSave">Save</button>   
@@ -565,10 +824,10 @@
   
   <!--  Legal II Start  -->
   
-  <div class="card">
+  <div class="card LEGAL">
     <!-- Card header -->
     <div class="card-header Btxt7" role="tab" id="heading9">
-      <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse"  data-multidata="" data-load="Yes" data-aria="LSW_TLEGALVENDOR|LEGD|LEGD_PROPERTYNO" data-parent="#accordionEx" href="#collapse9"
+      <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse" data-load="" data-multidata="BTNLEGALII"  data-aria="LSW_TLEGALVENDOR|LEGD|LEGD_PROPERTYNO" data-parent="#accordionEx" href="#collapse9"
         aria-expanded="true" aria-controls="collapse9">
           Legal Report 2<i class="fa fa-plus-circle rotate-icon"></i>
       </a>
@@ -581,7 +840,7 @@
       </div>
        <div data-for="LegalIIRpt" class="LegalIIRpt "> 
       </div>
-      <div class="DynamicPageGrid" data-val="PROPTXTHDR|PROPERTY" id="LegalIIRpt" style="display:none">
+      <div class="DynamicPageGrid" data-val="PROPTXTHDR|SECURITY" id="LegalIIRpt" style="display:none">
       
         <div data-row="" class="card-body px-lg-5 pt-0 BSbrd DYNROW">
          </br>
@@ -604,22 +863,27 @@
           
 		    <input type="text" id="LDII_DEVSTATUS"   hidden="hidden" name="LDII_DEVSTATUS" class="form-control LDIIDBfields">
 			<input type="text" id="LDII_CURSTATUS"  hidden="hidden"  name="LDII_CURSTATUS" class="form-control LDIIDBfields">
+			<input type="text" id="LDII_PROPERTYNAME"  hidden="hidden"  name="LDII_PROPERTYNAME" class="form-control LDIIDBfields">
+			
            <div class="form-row">
-        	   <div id="PROPTXTHDR" class="col Btxt10"></div>
+        	  <!-- <div id="PROPTXTHDR" class="col Btxt10"></div>-->
+			   	<div class="col Btxt10">
+					<input type="text" id="LDII_PROPERTYNAME" disabled name="LDII_PROPERTYNAME" class="form-control Schname DSVLBL TVIIDBfields  ">
+                </div>
           </div> 
            </br>
                 <div class="form-row">
                <div class=" col-md-12">
                   <div class="md-form">
                     <input type="text" id="LDII_ADDPROPERTY" disabled name="LDII_ADDPROPERTY" class="form-control LDIIDBfields  ">
-                    <label for="LDII_ADDPROPERTY" class=""> Address of Property<span class="MndtryAstr"></span></label>
+                    <label for="LDII_ADDPROPERTY" class=""> Address<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
            </div>    
         <div class="form-row ">
             <div class="col">
                  <div class="md-form">
-                  <select class="mdb-select md-form colorful-select VENDDATA dropdown-primary LDIIDBfields LDIIMndtry DataToFld "  searchable="Search here.."  data-change="LDII_BRANCHID" data-vendor="LEGAL|LDII_BRANCNAME|LDII_VENDORNAME|LDII_ALTERPERTYNO"  id="LDII_BRANCNAME" name="LDII_BRANCNAME">
+                  <select class=" md-form colorful-select VENDDATA dropdown-primary LDIIDBfields LDIIMndtry DataToFld "  searchable="Search here.."  data-change="LDII_BRANCHID" data-vendor="LEGAL|LDII_BRANCNAME|LDII_VENDORNAME|LDII_PROPERTYNO"  id="LDII_BRANCNAME" name="LDII_BRANCNAME">
                  <!-- <option value="" selected>--Select--</option>
   					<option value="101">Perangudi</option>
  					 <option value="102">Anakapalli</option>-->
@@ -629,7 +893,7 @@
             </div>
            	<div class="col">
            		<div class="md-form">
-                  <select class="mdb-select md-form colorful-select dropdown-primary LDIIDBfields LDIIMndtry DataToFld" data-change="LDII_VENDORID"     searchable="Search here.."  id="LDII_VENDORNAME" name="LDII_VENDORNAME">
+                  <select class=" md-form colorful-select dropdown-primary VENIDRELOAD LDIIDBfields LDIIMndtry DataToFld" data-change="LDII_VENDORID"  data-vendor="LEGAL|LDII_BRANCNAME|LDII_VENDORNAME|LDII_PROPERTYNO"    searchable="Search here.."  id="LDII_VENDORNAME" name="LDII_VENDORNAME">
 				 
 				  
 				</select>
@@ -667,11 +931,11 @@
                               <div class="md-form">
                                  <div class="select-radio ">
                                     <div class="custom-control custom-radio custom-control-inline">
-                                       <input type="radio" class="custom-control-input  LDIIDBfields VerStatus" data-info="LDII_PROPERTYNO"    value="Verify" id="LGVerify" name="LDII_VERIFY">
+                                       <input type="radio" class="custom-control-input  LDIIDBfields VerStatus INPRINCSANC" data-info="LDII_PROPERTYNO|Legal"   value="Verify" id="LGVerify" name="LDII_VERIFY">
                                        <label class="custom-control-label" for="LGVerify">Verify</label>
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                       <input type="radio" class="custom-control-input  LDIIDBfields VerStatus CORRDISB" data-info="LDII_PROPERTYNO"    value="Correction" id="LGCorrection" name="LDII_VERIFY">
+                                       <input type="radio" class="custom-control-input  LDIIDBfields VerStatus CORRDISB" data-info="LDII_PROPERTYNO|Legal"   value="Correction" id="LGCorrection" name="LDII_VERIFY">
                                        <label class="custom-control-label" for="LGCorrection">Correction</label>
                                     </div>
                                     <input type="text" id="LDII_VERIFY" hidden="hidden" name="LDII_VERIFY" class="form-control IsNumberFields LDIIDBfields">
@@ -680,15 +944,43 @@
                               </div>
                            </div>
                 
-           </div>      
+           </div>  
+		<div class="form-row PORDOC" style="display:none">
+			    <div class="col-md-6">
+							<div class="md-form">
+											<div class=""> </div>
+											<div class="row UAMN" >
+							<div class="col-md-8  Formcol-mdLR UAMNupload">
+							<div class="md-form">
+							<table><tr>
+							<td>
+							<div id="LDII_PROPERTYDOCUPLOAD"  class="file-field" >
+								 
+							<input type="text" id="LDII_PROPERTYDOC" data-val="Upload Document"    data-Validate="LDII_PROPERTYDOC"  name="LDII_PROPERTYDOC" class="form-control voter File LDIIDBfields">
+							 <span class="name1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Legal Document</span> 
+							
+							</div>
+							</td>
+							</tr></table>
+							</div>    
+							</div>  
+							<div class="md-form">
+							 
+							<img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW"  class="rounded" onclick="GrdDocDwnld('LDII_PROPERTYDOC'+$(this).closest('.DYNROW').attr('data-row'))" alt="Cinque Terre" width="35" height="25"> </div>
+							</div>
+							</div>  
+							</div>
+							 
+          
+				</div>		   
                 <div class="form-row">
                  <div class="col d-flex justify-content-center">
-                     <button type="button" id="Inti" data-for="LegalIIRpt" data-info="LDII_VENDORNAME|LDII_PROPERTYNO|LDII_ALTERPERTYNO|Legal|LDII_ADDPROPERTY" data-status="LDII_STATUS" data-row="" data-aria="LSW_TLEGALIIVENDOR|LDII|LDII_ALTERPERTYNO|Initiate" class="btn btn-Syel ValuationInit waves-effect waves-light RPTBTN">Initiate</button>   
+                     <button type="button" id="Inti" data-for="LegalIIRpt" data-info="LDII_VENDORNAME|LDII_PROPERTYNO|LDII_ALTERPERTYNO|Legal|LDII_ADDPROPERTY|LDII_BRANCNAME" data-status="LDII_STATUS" data-row="" data-aria="LSW_TLEGALIIVENDOR|LDII|LDII_ALTERPERTYNO|Initiate" class="btn btn-Syel ValuationInit waves-effect waves-light RPTBTN">Initiate</button>   
                  </div>
                  </div>
             <div class="form-row">
               <div class="col d-flex justify-content-center">
-                  <button type="button" id="ViewRpt" data-for="LegalIIRpt" data-row="" data-aria="LSW_TLEGALIIVENDOR|LDII|LDII_PROPERTYNO|LegalUpdateReport|LDII_ALTERPERTYNO|heading9" style="padding-left: 25px;width: 166px;" class= "btn btn-Syeloutline waves-effect waves-light ViewUptRpt ViewRpt RPTBTN">Update Report</button>   
+                  <button type="button" id="ViewRpt" data-for="LegalIIRpt" data-row="" data-aria="LSW_TLEGALIIVENDOR|LDII|LDII_PROPERTYNO|LegalUpdateReport|LDII_ALTERPERTYNO|heading9" style="padding-left: 25px;width: 166px;" class= "btn btn-Syeloutline waves-effect waves-light ViewUptRpt RPTBTN ViewRpt">Update Report</button>   
                   <button type="button" id="ReAssignpop"  data-for="LegalIIRpt" data-row="" data-aria="LDII_ADDPROPERTY|LDII_BRANCNAME|LEGD_REMARKS|LDII_REASSVENDOR|Legal|LDII_PROPERTYNO|LDII_ALTERPERTYNO|Legal|LDII_VENDORNAME|LDII_VENDORID|LDII_BRANCNAME|LDII_BRANCHID|LDII_CURSTATUS"  class="ReAssignPopup btn btn-Syel waves-effect waves-light RPTBTN">Re-assign</button> 
                    <button type="button" id="ViewDataRpt"  data-for="LegalIIRpt" data-row="" data-aria="LSW_TLEGALIIVENDOR|LDII|LDII_PROPERTYNO|LegalUpdateReport|LDII_ALTERPERTYNO|heading9" class="ViewDataRpt ViewUptRpt btn btn-Syeloutline waves-effect waves-light RPTBTN RPTVIEW ">View Report</button> 
                    <button type="button" id="SaveRpt" data-for="LegalIIRpt" data-row="" data-aria="LSW_TLEGALIIVENDOR|LDII|LDII_ALTERPERTYNO|" style="padding-left: 25px;width: 166px;" class= "btn btn-Syel waves-effect waves-light  SaveRpt FormSave">Save</button>   
@@ -705,10 +997,10 @@
 
  <!-- Property Visit Start -->
   
-  <div class="card">
+  <div class="card PROP">
     <!-- Card header -->
     <div class="card-header Btxt7" role="tab" id="heading4">
-      <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse" data-multidata="" data-load="Yes" data-aria="LSW_TECHNICALVALUER|TEVD|TEVD_PROPERTYNO" data-parent="#accordionEx" href="#collapse4"
+      <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse" data-load="" data-multidata="BTNPROPERVISIT"  data-aria="LSW_TECHNICALVALUER|TEVD|TEVD_PROPERTYNO" data-parent="#accordionEx" href="#collapse4"
         aria-expanded="true" aria-controls="collapse4">
           Property Visit<i class="fa fa-plus-circle rotate-icon"></i>
       </a>
@@ -718,7 +1010,7 @@
 
       <div data-for="PropVisit" class="PropVisit"> 
       </div>
-     <div class="DynamicPageGrid" data-val="PROPTXTHDR|PROPERTY" id="PropVisit" style="display:none">
+     <div class="DynamicPageGrid" data-val="PROPTXTHDR|SECURITY" id="PropVisit" style="display:none">
       <div data-row="" class="card-body px-lg-5 pt-0 BSbrd DYNROW">
        <form>
         <input type="text" id="PRVM_PRCSID" hidden="hidden" name="PRVM_PRCSID" class="form-control PRVMDBfields">
@@ -730,7 +1022,7 @@
         
         <input type="text" id="PRVM_PROPNUM" hidden="hidden" name="PRVM_PROPNUM" class="form-control PRVMDBfields">
         <input type="text" id="PRVM_ALTRPROPNUM" hidden="hidden" name="PRVM_ALTRPROPNUM" class="form-control PRVMDBfields">
-        
+        </br>
     <!--    <input type="text" id="PRVM_MULTIDOC" hidden="hidden" name="PRVM_MULTIDOC" class="form-control PRVMDBfields">-->
         <div class="form-row">
         	<div id="PROPTXTHDR" class="col Btxt10"></div>
@@ -739,17 +1031,28 @@
             <div class="form-row">
             <div class="col">
                 <div class="md-form">
-                    <input type="text" id="PRVM_PROPVISTDAT"  maxlength="10"  name="PRVM_PROPVISTDAT" class=" ISFutureDateFields form-control NoSpecialChar IsNumberFields ISDatefield   PRVMDBfields">
+                    <input type="text" id="PRVM_PROPVISTDAT"  maxlength="10"  name="PRVM_PROPVISTDAT" onblur="CheckFutureDt(this)" class="form-control NoSpecialChar IsNumberFields ISDatefield   PRVMDBfields">
                     <label for="PRVM_PROPVISTDAT" class="">Date of Property Visit<span class="MndtryAstr"></span></label>
                     <img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"  />
                </div>
             </div>
-            <div class="col">
-               <div class="md-form">
-                    <input type="text" id="PRVM_VISITBY"  maxlength="25"  name="PRVM_VISITBY" class="form-control NoSpecialChar PRVMMndtry IsAlphaFields PRVMDBfields">
-                    <label for="PRVM_VISITBY" class="">Property Visit Done By<span class="MndtryAstr">*</span></label>
-               </div>
-            </div>
+			
+			   
+			
+			   <div class="col">
+			  <div class="md-form">
+                  <select class="md-form colorful-select dropdown-primary PRVMMndtry PRVMDBfields" id="PRVM_VISITBY" name="PRVM_VISITBY">
+                  	<option value="" selected>--Select--</option>
+  					<option value="Credit Manager">Credit Manager</option>
+  					<option value="Sales Manager">Sales Manager</option>
+  					<option value="RM">RM</option>
+  					<option value="RO">RO</option>
+                  </select>
+				<label class="mdb-main-label BTxt9">Property Visit Done By<span class="MndtryAstr">*</span></label>
+             </div>
+            </div> 
+			
+			
            </div> 
            
       <!-- <div class="form-row">
@@ -841,7 +1144,7 @@
             </div>
             <div class="col">
                 <div class="md-form">
-                    <input type="text" id="PRVM_PROPOWNDBY" name="PRVM_PROPOWNDBY" maxlength="25" class="form-control  IsAlphaFields PRVMDBfields">
+                    <input type="text" id="PRVM_PROPOWNDBY" name="PRVM_PROPOWNDBY" maxlength="300" class="form-control  IsAlphaFields PRVMDBfields">
                     <label for="PRVM_PROPOWNDBY" class="">Property Owned by<span class="MndtryAstr"></span></label>
                </div>
             </div>    
@@ -916,7 +1219,7 @@
           <div class="form-row">
            		    <div class="col">
            			   <div class="md-form">
-                           <textarea id="PRVM_ADDICOMMENTS" name="PRVM_ADDICOMMENTS" maxlength="1000" class="form-control  PRVMDBfields"   style="height: 130px;width:800px;"></textarea>
+                           <textarea id="PRVM_ADDICOMMENTS" name="PRVM_ADDICOMMENTS" maxlength="1000" class="form-control IsRmkField PRVMDBfields"   style="height: 130px;width:800px;"></textarea>
            			  </div>
            		   </div>
                </div>
@@ -947,7 +1250,7 @@
           <div class="form-row">
           <div class="col-md-6">
                 <div class="md-form">
-                  <select class="mdb-select md-form colorful-select dropdown-primary PRVMDBfields" id="PRVM_NEIGHBOUR" name="PRVM_NEIGHBOUR" >
+                  <select class=" md-form colorful-select dropdown-primary PRVMDBfields" id="PRVM_NEIGHBOUR" name="PRVM_NEIGHBOUR" >
                   	<option value="" selected>--Select--</option>
   					<option value="Positive">Positive</option>
   					<option value="Negative">Negative</option>
@@ -966,7 +1269,7 @@
           <div class="form-row">
              <div class="col-md-6">
                 <div class="md-form">
-                  <select class="mdb-select md-form colorful-select dropdown-primary PRVMMndtry PRVMDBfields" id="PRVM_VENDSTATUS" name="PRVM_VENDSTATUS" >
+                  <select class=" md-form colorful-select dropdown-primary PRVMMndtry PRVMDBfields" id="PRVM_VENDSTATUS" name="PRVM_VENDSTATUS" >
                   	<option value="" selected>--Select--</option>
   					<option value="Positive">Positive</option>
   					<option value="Negative">Negative</option>
@@ -1066,7 +1369,7 @@
 <div class="card">
     <!-- Card header -->
     <div class="card-header Btxt7" role="tab" id="heading5">
-      <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse" data-multidata="" data-aria="LSW_TECHNICALVALUER|TEVD|TEVD_PROPERTYNO" data-parent="#accordionEx" href="#collapse5"
+      <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse" data-load="" data-multidata="BTNRCU"   data-aria="LSW_TECHNICALVALUER|TEVD|TEVD_PROPERTYNO" data-parent="#accordionEx" href="#collapse5"
         aria-expanded="true" aria-controls="collapse5">
           RCU<i class="fa fa-plus-circle rotate-icon"></i>
       </a>
@@ -1094,12 +1397,13 @@
          <input type="text" id="RCUI_FILESTATSU" hidden="hidden" name="RCUI_FILESTATSU" class="form-control RCUIDBfields"> 
 
 		   <input type="text" id="RCUI_BRANCHID" hidden="hidden" name="RCUI_BRANCHID" class="form-control RCUIDBfields"> 
-		  <input type="text" id="RCUI_VENDORID" hidden="hidden" name="RCUI_VENDORID" class="form-control RCUIDBfields"> 
+		  <input type="text" id="RCUI_VENDORID" hidden="hidden" name="RCUI_VENDORID" class="form-control RCUIDBfields">
+			<input type="text" id="RCUI_UNIQID" hidden="hidden" name="RCUI_UNIQID" class="form-control RCUIDBfields INTIMndtry">		  
 		  </br>
 		     <div class="form-row INIT">
                        <div class="col">
                 <div class="md-form">
-                  <select class="mdb-select md-form colorful-select dropdown-primary RCUIDBfields DataToFld INTIMndtry" disabled onchange="GetRCUVENDOR()" searchable="Search here.."  data-change="RCUI_BRANCHID" id="RCUI_BRANCHNAME" name="RCUI_BRANCHNAME" >
+                  <select class=" md-form colorful-select dropdown-primary RCUIDBfields DataToFld INTIMndtry" disabled onchange="GetRCUVENDOR()" searchable="Search here.."  data-change="RCUI_BRANCHID" id="RCUI_BRANCHNAME" name="RCUI_BRANCHNAME" >
                   	
 				   </select>
                    <label class="mdb-main-label BTxt9">Branch Name<span class="MndtryAstr">*</span></label>
@@ -1107,7 +1411,7 @@
             </div>
            	<div class="col">
                 <div class="md-form">
-                  <select class="mdb-select md-form colorful-select dropdown-primary RCUIDBfields DataToFld INTIMndtry" disabled data-change="RCUI_VENDORID" searchable="Search here.."  id="RCUI_VENDORNAME" name="RCUI_VENDORNAME" >
+                  <select class=" md-form colorful-select dropdown-primary RCUIDBfields DataToFld INTIMndtry" disabled data-change="RCUI_VENDORID" searchable="Search here.."  id="RCUI_VENDORNAME" name="RCUI_VENDORNAME" >
                   
 				   </select>
                    <label class="mdb-main-label BTxt9">Vendor Name<span class="MndtryAstr">*</span></label>
@@ -1120,12 +1424,14 @@
                 <div class="INITIATE" > 
                   <div class="form-row">
                      <div class="col">
-                        <div class="Btxt10">CLICK INITIATE TO ASSIGN VENDOR</div>
+                        <div class="Btxt10">VENDOR INITIATION WILL BE AUTO INITIATION PROCESS, WILL BE INITIATED POST APPROVAL</div>
                      </div>
                  </div>
                <div class="form-row">
                   <div class="col d-flex justify-content-center">
-                    <button type="button" data-aria="LSW_TRCUINITIATION|RCUI|RCUI_PRCSID|RCU"  data-for="RCU" data-row=""  data-card="0"  class="btn btn-Syel waves-effect waves-light FormSave ">Initiate</button> 
+                    <!--<button type="button" data-aria="LSW_TRCUINITIATION|RCUI|RCUI_PRCSID|RCU" data-info="RCUI_VENDORNAME|RCUI_UNIQID"  data-for="RCU" data-row=""  data-card="0"  class="btn btn-Syel waves-effect waves-light FormSave">Initiate</button> -->
+					<button type="button" data-aria="LSW_TRCUINITIATION|RCUI|RCUI_PRCSID|RCU" data-info="RCUI_VENDORNAME|RCUI_UNIQID"  data-for="RCU" data-row=""  data-card="0"  class="btn btn-Syel waves-effect waves-light FormSave">Save for Initiation</button> 
+					
                  </div>
               </div>
             </div>  
@@ -1140,7 +1446,7 @@
             </div>
             <div class="col">
                <div class="md-form">
-                    <input type="text" id="RCUI_DATEOFCOMP" name="RCUI_DATEOFCOMP" disabled class="form-control NoSpecialChar IsNumberFields ISPastDateFields ISDatefield   RCUIDBfields">
+                    <input type="text" id="RCUI_DATEOFCOMP" name="RCUI_DATEOFCOMP" disabled class="form-control NoSpecialChar IsNumberFields  ISDatefield   RCUIDBfields">
                     <label for="RCUI_DATEOFCOMP" class="">Date of Completion<span class="MndtryAstr"></span></label>
                     <img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker" style="display:none"/>
                </div>
@@ -1149,7 +1455,7 @@
              <div class="form-row">
             <div class="col">
                 <div class="md-form">
-                  <select class="mdb-select md-form colorful-select dropdown-primary RCUIDBfields RCUIMndtry" id="RCUI_RCUSTATSU" name="RCUI_RCUSTATSU" >
+                  <select class=" md-form colorful-select dropdown-primary RCUIDBfields RCUIMndtry" id="RCUI_RCUSTATSU" name="RCUI_RCUSTATSU" >
                   	<option value="" selected>--Select--</option>
   					<option value="Positive">Positive</option>
   					<option value="Negative">Negative</option>
@@ -1164,11 +1470,11 @@
               <div class="md-form">
                 <div class="select-radio RCUIMndtry"> 
                     <div class="custom-control custom-radio custom-control-inline">
-                          <input type="radio" class="custom-control-input RCUIDBfields" value="Verify" id="MODESEREEN" name="RCUI_RCUMODE">
+                          <input type="radio" class="custom-control-input RCUIDBfields " value="Verify" id="MODESEREEN" name="RCUI_RCUMODE">
                           <label class="custom-control-label" for="MODESEREEN">Screened</label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                          <input type="radio" class="custom-control-input RCUIDBfields" value="Collection" id="MODESAMPLED" name="RCUI_RCUMODE">
+                          <input type="radio" class="custom-control-input RCUIDBfields " value="Collection" id="MODESAMPLED" name="RCUI_RCUMODE">
                           <label class="custom-control-label" for="MODESAMPLED">Sampled</label>
                     </div>
                 </div> 
@@ -1205,7 +1511,7 @@
                   <!--   <img src="ThemeproLO/Common/Images/UploadImg.png" class="rounded" title="UPLOAD" onclick="ReuploadFile(RCUI_UPLDDOC);" alt="Cinque Terre" width="20" height="20">  -->
                     
                     <img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW" onclick="GrdDocDwnld('RCUI_UPLDDOC')" class="rounded" alt="Cinque Terre" width="35" height="25"> 
-                      <img src="ThemeproLO/Common/Images/Delete_Img.png" onclick="DeleteUPLOAD(RCUI_UPLDDOC);"  style="height:25px;width:25px"  />
+                      <img src="ThemeproLO/Common/Images/Delete_Img.png" class="DELBTN" onclick="DeleteUPLOAD(RCUI_UPLDDOC);"  style="height:25px;width:25px"  />
                  </div>
                  </div>
             </div>   
@@ -1216,6 +1522,15 @@
       </div>
     </div> 
          <div class="form-row">
+            <div class="col-md-6">
+               <div class="md-form">
+                <input type="text" id="RCUI_STATUS" disabled name="RCUI_STATUS" class="form-control  RCUIDBfields">
+                   <label for="RCUI_STATUS" class="mdb-main-label BTxt9 active">Status<span class="MndtryAstr"></span></label>
+               </div>
+            </div>
+         </div> 
+			
+         <div class="form-row">
            <div class="col">
              <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table2',{spname:'LSW_SRCUGRIDLIST',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'',MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||3','RCU');" id="BTNRCUGRD" name="BTNRCUGRD" />
              <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" id="Table2">
@@ -1225,7 +1540,7 @@
            <div class="form-row" style="dispay:none">
                <div class="col d-flex justify-content-center">
                    <button type="button" data-for="RCU" data-row="" data-aria="LSW_TRCUINITIATION|RCUI|RCUI_PRCSID|RCU"  class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button> 
-                   <button type="button" data-for="RCU" data-row="" data-aria="LSW_TRCUINITIATION|RCUI|RCUI_PRCSID|RCU" class="btn btn-Syel waves-effect waves-light FormSave">Submit</button> 
+                   <button type="button" data-for="RCU" data-row="" data-aria="LSW_TRCUINITIATION|RCUI|RCUI_PRCSID|RCU" class="btn btn-Syel waves-effect waves-light RCUSUB FormSave">Submit</button> 
                </div>
            </div>
            </div>
@@ -1240,10 +1555,10 @@
 
 <!-- FI Residence Verification Start -->
 
-<div class="card">
+<div class="card FIRESI">
     <!-- Card header -->
     <div class="card-header Btxt7" role="tab" id="heading6">
-      <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse" data-multidata="" data-load="Yes" data-aria="LSW_TFIRESVERIFICATION|FIRV|FIRV_REFERNO" data-parent="#accordionEx" href="#collapse6"
+      <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse" data-load="" data-multidata="BTNFIRESI"   data-aria="LSW_TFIRESVERIFICATION|FIRV|FIRV_REFERNO" data-parent="#accordionEx" href="#collapse6"
         aria-expanded="true" aria-controls="collapse6">
           FI Residence Verification<i class="fa fa-plus-circle rotate-icon"></i>
       </a>
@@ -1302,7 +1617,20 @@
                </div>
             </div>
            </div>
-           
+		   
+            <div class="form-row">
+		      <div class="col-md-6">
+                <div class="md-form">
+                    <select class=" md-form colorful-select dropdown-primary FIRVDBfields FIRVMndtry DataToFldFIRESI"     data-vendor="FI" onchange="FIRESIADDRESS('FIRV_REFERNO'+$(this).closest('.DYNROW').attr('data-row'),'FIRV_PROPADDR'+$(this).closest('.DYNROW').attr('data-row'),'FIRV_FITYPECHK'+$(this).closest('.DYNROW').attr('data-row'));" id="FIRV_FITYPECHK" name="FIRV_FITYPECHK">
+				       <option value="Select">Select</option>
+					   <option value="Residence">Residence</option>
+					   <option value="Permanent">Permanent</option>
+				    </select>
+                    <label class="mdb-main-label BTxt9">FI to be Done at<span class="MndtryAstr"></span></label>
+               </div>
+              </div>
+			</div>  
+		   
            
            <div class="form-row">
             <div class="col">
@@ -1315,7 +1643,7 @@
              <div class="form-row">
             <div class="col">
                 <div class="md-form">
-                  <select class="mdb-select md-form colorful-select dropdown-primary  VENDDATA FIRVDBfields FIRVMndtry DataToFld"  searchable="Search here.."  data-change="FIRV_BRANCHID"  data-vendor="FI|FIRV_BRNAME|FIRV_VENDNAME" id="FIRV_BRNAME" name="FIRV_BRNAME" >
+                  <select class=" md-form colorful-select dropdown-primary  VENDDATA FIRVDBfields FIRVMndtry DataToFld"  searchable="Search here.."  data-change="FIRV_BRANCHID"  data-vendor="FI|FIRV_BRNAME|FIRV_VENDNAME" id="FIRV_BRNAME" name="FIRV_BRNAME" >
                     <option value="" selected>--Select--</option>
   				<!-- 	<option value="101">Perungudi</option>
  					 <option value="102">Anakapalli</option> --> 
@@ -1325,7 +1653,7 @@
             </div>
              <div class="col">
                 <div class="md-form">
-                    <select class="mdb-select md-form colorful-select dropdown-primary FIRVDBfields FIRVMndtry DataToFldFIRESI" searchable="Search here.."  data-change="FIRV_VENDORID"      data-vendor="FI"  id="FIRV_VENDNAME" name="FIRV_VENDNAME">
+                    <select class=" md-form colorful-select dropdown-primary FIRVDBfields FIRVMndtry DataToFldFIRESI" searchable="Search here.."  data-change="FIRV_VENDORID"      data-vendor="FI"  id="FIRV_VENDNAME" name="FIRV_VENDNAME">
 				   
 				    </select>
                     <label class="mdb-main-label BTxt9">Vendor Name<span class="MndtryAstr"></span></label>
@@ -1351,11 +1679,28 @@
           <div class="form-row">
             <div class="col-md-6">
                <div class="md-form">
-                <input type="text" id="FIRV_STATUS" disabled name="FIRV_STATUS" class="form-control ISDatefield FIRVDBfields">
-                   <label class="mdb-main-label BTxt9">Status<span class="MndtryAstr"></span></label>
+                <input type="text" id="FIRV_STATUS" disabled name="FIRV_STATUS" class="form-control  FIRVDBfields">
+                   <label for="FIRV_STATUS" class="mdb-main-label BTxt9 active">Status<span class="MndtryAstr"></span></label>
                </div>
             </div>
-         </div> 
+			<div class="col-md-6 RADCOMPL">
+			  <div class="md-form">
+				 <div class="select-radio ">
+					<div class="custom-control custom-radio custom-control-inline">
+					   <input type="radio" class="custom-control-input  FIRVDBfields VerStatus INPRINCSANC" data-info="FIRV_VENDNAME|FIRV_REFERNO|FIRV_ALTERREFERNO|FIR|FIRV_PROPADDR"   value="Verify" id="FIRVVerify" name="FIRV_VERIFY">
+					   <label class="custom-control-label" for="FIRVVerify">Verify</label>
+					</div>
+					<!--<div class="custom-control custom-radio custom-control-inline">
+					   <input type="radio" class="custom-control-input  LDIIDBfields VerStatus CORRDISB INPRINCSANC" data-info="LDII_PROPERTYNO|Legal"   value="Correction" id="LGCorrection" name="LDII_VERIFY">
+					   <label class="custom-control-label" for="LGCorrection">Correction</label>
+					</div>-->
+					<input type="text" id="FIRV_VERIFY" hidden="hidden" name="FIRV_VERIFY" class="form-control IsNumberFields FIRVDBfields">
+				 </div>
+
+			  </div>
+		   </div>
+         </div>
+		
          
          <div class="form-row">
                  <div class="col d-flex justify-content-center">
@@ -1367,7 +1712,7 @@
               <div class="col d-flex justify-content-center">
                   <button type="button" id="UPDateRptPopup" style="display:none;padding-left: 25px;width: 166px;" data-for="FIResidVerify|FIRV_ALTERREFERNO|FIRV_UPDATEDTINIT|FIRV_UPDATEDTCOMP|FIRV_UPDATESTATUS|FIRV_UPDATEREPORT|FIRV_UPDATEDATTAC|FIRV_UPDATEREMARK" data-row=""  data-aria="LSW_TFIRESVERIFICATION|FIRV|FIRV_REFERNO|FIRV_ALTERREFERNO"  class="ViewRpt UPDateRptPopup  btn btn-Syeloutline waves-effect waves-light RPTBTN">Update Report</button>  
                    <button type="button" id="ReAssignpop"  data-for="FIResidVerify" data-row="" data-aria="FIRV_PROPADDR|FIRV_BRNAME|FIRV_REMARKS|FIRV_REASSVENDOR|FI|FIRV_REFERNO|FIRV_ALTERREFERNO|FIR|FIRV_VENDNAME|FIRV_VENDORID|FIRV_BRNAME|FIRV_BRANCHID|FIRV_CURSTATUS"  class="ReAssignPopup btn btn-Syel waves-effect waves-light RPTBTN">Re-assign</button> 
-                  <button type="button" id="ViewDataRpt"  data-row="" data-for="FIResidVerify|FIRV_ALTERREFERNO|FIRV_UPDATEDTINIT|FIRV_UPDATEDTCOMP|FIRV_UPDATESTATUS|FIRV_UPDATEREPORT|FIRV_UPDATEDATTAC|FIRV_UPDATEREMARK"    data-aria="FIRV_PROPADDR|FIRV_BRNAME|FIRV_REMARKS|FIRV_REASSVENDOR|FI|FIRV_REFERNO|FIRV_ALTERREFERNO|FIR" class="ViewDataRpt UPDateRptPopup  btn btn-Syeloutline  waves-effect waves-light RPTBTN">View Report</button>
+                  <button type="button" id="ViewDataRpt"  data-row="" data-for="FIResidVerify|FIRV_ALTERREFERNO|FIRV_UPDATEDTINIT|FIRV_UPDATEDTCOMP|FIRV_UPDATESTATUS|FIRV_UPDATEREPORT|FIRV_UPDATEDATTAC|FIRV_UPDATEREMARK"    data-aria="FIRV_PROPADDR|FIRV_BRNAME|FIRV_REMARKS|FIRV_REASSVENDOR|FI|FIRV_REFERNO|FIRV_ALTERREFERNO|FIR" class="ViewDataRpt UPDateRptPopup  btn btn-Syeloutline  waves-effect waves-light RPTVIEW  RPTBTN">View Report</button>
                <!--   <button type="button" id="ViewDataRpt"  data-row="" data-for="FIResidVerify|FIRV_UPDATEDATTAC"    data-aria="FIRV_PROPADDR|FIRV_BRNAME|FIRV_REMARKS|FIRV_REASSVENDOR|FI|FIRV_REFERNO|FIRV_ALTERREFERNO|FIR" class="ViewDataRpt UPDateRptPopup  btn btn-Syeloutline  waves-effect waves-light">View Report</button> -->
                   <button type="button" id="SaveRpt" data-for="FIResidVerify" data-row="" data-aria="LSW_TFIRESVERIFICATION|FIRV|FIRV_ALTERREFERNO" style="padding-left: 25px;width: 166px;" class= "rpt  btn btn-Syel  waves-effect waves-light SaveRpt  Save RPTBTN">Save</button>
               </div>
@@ -1382,10 +1727,10 @@
 
 <!-- FI Office Verification Start -->
 
-<div class="card">
+<div class="card FIOFF">
     <!-- Card header -->
     <div class="card-header Btxt7" role="tab" id="heading7">
-      <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse" data-multidata="" data-load="Yes" data-aria="LSW_TFIOFFVARIFICATION|FIOV|FIOV_REFERNO" data-parent="#accordionEx" href="#collapse7"
+      <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse" data-load="" data-multidata="BTNFIOFFICE" data-aria="LSW_TFIOFFVARIFICATION|FIOV|FIOV_REFERNO" data-parent="#accordionEx" href="#collapse7"
         aria-expanded="true" aria-controls="collapse7">
           FI Office Verification <i class="fa fa-plus-circle rotate-icon"></i>
       </a>
@@ -1466,7 +1811,7 @@
             </div>
              <div class="col">
                 <div class="md-form">
-                 <select class=" mdb-select md-form colorful-select dropdown-primary FIOVDBfields FIOVMndtry DataToFld"   searchable="Search here.."  data-change="FIOV_VENDORID"   data-vendor="FI"  id="FIOV_VENDNAME" name="FIOV_VENDNAME">
+                 <select class="  md-form colorful-select dropdown-primary FIOVDBfields FIOVMndtry DataToFld"   searchable="Search here.."  data-change="FIOV_VENDORID"   data-vendor="FI"  id="FIOV_VENDNAME" name="FIOV_VENDNAME">
 				  
 				    </select>
                     <label class="mdb-main-label BTxt9">Vendor Name<span class="MndtryAstr">*</span></label>
@@ -1500,6 +1845,22 @@
                    <label class="mdb-main-label BTxt9">Status<span class="MndtryAstr"></span></label>
                </div>
             </div>
+			<div class="col-md-6 RADCOMPL">
+			  <div class="md-form">
+				 <div class="select-radio ">
+					<div class="custom-control custom-radio custom-control-inline">
+					   <input type="radio" class="custom-control-input  FIOVDBfields VerStatus INPRINCSANC" data-info="FIOV_VENDNAME|FIOV_REFERNO|FIOV_ALTERREFERNO|FIO|FIOV_PROPADDR"   value="Verify" id="FIOVVerify" name="FIOV_VERIFY">
+					   <label class="custom-control-label" for="FIOVVerify">Verify</label>
+					</div>
+					<!--<div class="custom-control custom-radio custom-control-inline">
+					   <input type="radio" class="custom-control-input  LDIIDBfields VerStatus CORRDISB INPRINCSANC" data-info="LDII_PROPERTYNO|Legal"   value="Correction" id="LGCorrection" name="LDII_VERIFY">
+					   <label class="custom-control-label" for="LGCorrection">Correction</label>
+					</div>-->
+					<input type="text" id="FIOV_VERIFY" hidden="hidden" name="FIOV_VERIFY" class="form-control IsNumberFields FIOVDBfields">
+				 </div>
+
+			  </div>
+		   </div>
          </div>
           <div class="form-row">
              <div class="col d-flex justify-content-center">
@@ -1511,7 +1872,7 @@
              <!--  <button type="button" id="Save2" data-for="FIOfficeVerify" data-row="" data-aria="LSW_TFIOFFVARIFICATION|FIOV|FIOV_REFERNO|FIEmployementInfo" style="padding-left: 25px;width: 166px;" class= "ViewRpt btn btn-Syeloutline waves-effect waves-light FormSave">Update Report</button>   -->
                  <button type="button" id="UPDateRptPopup" style="display:none;padding-left: 25px;width: 166px;" data-for="FIOfficeVerify|FIOV_ALTERREFERNO|FIOV_UPDATEDTINIT|FIOV_UPDATEDTCOMP|FIOV_UPDATESTATUS|FIOV_UPDATEREPORT|FIOV_UPDATEDATTAC|FIOV_UPDATEREMARK"  data-row=""  data-aria="LSW_TFIOFFVARIFICATION|FIOV|FIOV_REFERNO||FIOV_ALTERREFERNO"  class="ViewRpt UPDateRptPopup  btn btn-Syeloutline waves-effect waves-light RPTBTN">Update Report</button> 
                  <button type="button" id="ReAssignpop" style="display:none"  data-for="FIOfficeVerify" data-row="" data-aria="FIOV_PROPADDR|FIOV_BRNAME|FIOV_REMARKS|FIOV_REASSVENDOR|FI|FIOV_REFERNO|FIOV_ALTERREFERNO|FIO|FIOV_VENDNAME|FIOV_VENDORID|FIOV_BRNAME|FIOV_BRANCHID|FIOV_CURSTATUS"  class="ReAssignPopup btn btn-Syel waves-effect waves-light RPTBTN">Re-assign</button> 
-                  <button type="button" id="ViewDataRpt" style="display:none"  data-for="FIOfficeVerify|FIOV_ALTERREFERNO|FIOV_UPDATEDTINIT|FIOV_UPDATEDTCOMP|FIOV_UPDATESTATUS|FIOV_UPDATEREPORT|FIOV_UPDATEDATTAC|FIOV_UPDATEREMARK"  data-row="" data-aria="LSW_TFIOFFVARIFICATION|FIOV|FIOV_REFERNO||FIOV_ALTERREFERNO" class="ViewDataRpt UPDateRptPopup btn btn-Syeloutline waves-effect waves-light RPTBTN">View Report</button> 
+                  <button type="button" id="ViewDataRpt" style="display:none"  data-for="FIOfficeVerify|FIOV_ALTERREFERNO|FIOV_UPDATEDTINIT|FIOV_UPDATEDTCOMP|FIOV_UPDATESTATUS|FIOV_UPDATEREPORT|FIOV_UPDATEDATTAC|FIOV_UPDATEREMARK"  data-row="" data-aria="LSW_TFIOFFVARIFICATION|FIOV|FIOV_REFERNO||FIOV_ALTERREFERNO" class="ViewDataRpt UPDateRptPopup btn btn-Syeloutline waves-effect waves-light RPTVIEW RPTBTN">View Report</button> 
                 <!--   <button type="button" id="ViewDataRpt" style="display:none"  data-for="FIOfficeVerify|FIOV_UPDATEDATTAC"  data-row="" data-aria="LSW_TFIOFFVARIFICATION|FIOV|FIOV_REFERNO||FIOV_ALTERREFERNO" class="ViewDataRpt ViewRPTPDF btn btn-Syel waves-effect waves-light">View Report</button> -->
                   <button type="button" id="SaveRpt" data-for="FIResidVerify" style="display:none;  data-row="" data-aria="LSW_TFIOFFVARIFICATION|FIOV|FIOV_ALTERREFERNO" style="padding-left: 25px;width: 166px;" class= "rpt  btn btn-Syel  waves-effect waves-light SaveRpt  Save RPTBTN">Save</button>  
               </div>
@@ -1523,10 +1884,10 @@
   </div>
 <!-- FI Office Verification End -->
 <!-- MCA Verification Start -->
-<div class="card">
+<div class="card" style="display:none">
     <!-- Card header -->
     <div class="card-header Btxt7" role="tab" id="heading8">
-      <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse" data-multidata="" data-aria="LSW_TMCAVARIFICATION|MCAV|MCAV_MCAREFID" data-parent="#accordionEx" href="#collapse8"
+      <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse" data-load="" data-multidata="BTNMCAVERIFI"  data-aria="LSW_TMCAVARIFICATION|MCAV|MCAV_MCAREFID" data-parent="#accordionEx" href="#collapse8"
         aria-expanded="true" aria-controls="collapse8">
           MCA Verification<i class="fa fa-plus-circle rotate-icon"></i>
       </a>
@@ -1536,7 +1897,7 @@
     <!-- Card body -->
     <div id="collapse8" class="collapse" role="tabpanel" aria-labelledby="heading8" data-parent="#accordionEx">
          <div class="HyperControls FltRight" > 
-      <a onclick="AddPageMultiData('','','','MCAVerify','MCAVDBfields');MCAADDOFFICE();" class="Btxt4 ADDBTN FltRight"  href="#">+ Another Office Address</a>
+      <a onclick="AddPageMultiData('','','','MCAVerify','MCAVDBfields');MCAADDOFFICE()" class="Btxt4 ADDBTN FltRight"  href="#">+ Another Office Address</a>
      </div> 
 	 </br>
        <div data-for="MCAVerify" class="MCAVerify TECHDSBL"> 
@@ -1586,7 +1947,7 @@
             <div class="col">
                 <div class="md-form">
 			    	<button type="button" data-validatearia="CBSI_GSTVERIFY" onclick="HndlCheckMCAClk(this,'MCAV_HYPERLINK');" data-validate="gstin" class="btn btn-Verify CBSI_GSTNUM waves-effect btn-yelInplain btn-sm BTNVerify INTDSBV" >Check MCA</button>
-                    <input type="text" id="MCAV_CIN"  maxlength="22"  name="MCAV_CIN"  onchange="MCACINCHANGE(this,'MCAV_HYPERLINK')"  class="IsCINno form-control  NoSpecialChar   MCAVDBfields">
+                    <input type="text" id="MCAV_CIN"  maxlength="22"  name="MCAV_CIN" onchange="MCACINCHANGE(this,'MCAV_HYPERLINK')"   class="IsCINno form-control  NoSpecialChar   MCAVDBfields">
                     <label for="MCAV_CIN" class="">CIN<span class="MndtryAstr"></span></label>
                </div>
             </div>
@@ -1633,11 +1994,11 @@
 </div> 
 
 
- <div class="form-row MCAV_MCARPTREQ  MCAV_HYPERLINK" style="display:none;">
+ <div class="form-row MCAV_MCARPTREQ MCAV_HYPERLINK" style="display:none;">
      <div class="col">
              <div class="md-form">
              <div class="HyperControls "> 
-      <a onclick="GETMCARPT(this,'MCAV_CIN')" class="Btxt4  " href="#">MCA Verification Report.pdf</a>
+      <a onclick="GETMCARPT(this,'MCAV_CIN')" class="Btxt4 " href="#">MCA Verification Report.pdf</a>
      </div>
              </div>
              </div>
@@ -1673,12 +2034,15 @@
   </div>
   
   
+  
+  
+   
 <!-- Adv Samrt Start -->
   
-  <div class="card ADVA">
+  <div class="card ADVA" style="display:none">
     <!-- Card header -->
     <div class="card-header Btxt7" role="tab" id="heading11">
-      <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse"  data-load="Yes"  data-aria="LSW_TADVSMART|ADSM|ADSM_PROPERTYNO" data-parent="#accordionEx" href="#collapse11"
+      <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse"    data-load="" data-multidata="BTNADVSMART"  data-aria="LSW_TADVSMART|ADSM|ADSM_PROPERTYNO" data-parent="#accordionEx" href="#collapse11"
         aria-expanded="true" aria-controls="collapse11">
           AdvaSmart<i class="fa fa-plus-circle rotate-icon"></i>
       </a>
@@ -1835,13 +2199,13 @@
   
   <!-- Adv Smart End -->
   
-  
+ 
   
   </div>
   
   
   
-
+  
   <!-- Accordion card -->
     </div>
          <a type="button" id="Reassign" class="btn btn-floating btn-large red" style="display:none" data-toggle="modal" data-target="#CUSSELECTIONModal">
@@ -1928,7 +2292,7 @@
              <div class="form-row">
            		 <div class="col">
            			<div class="md-form">
-                      <textarea class="form-control"  id="RSREASSREMARKS" name="RSREASSREMARKS" Placeholder="Type Here.." class="form-control TEVDDBfields"   style="height: 130px;width:720px;"></textarea>
+                      <textarea class="form-control"  id="RSREASSREMARKS" name="RSREASSREMARKS" Placeholder="Type Here.." class="form-control IsRmkField TEVDDBfields"   style="height: 130px;width:720px;"></textarea>
            			</div>
            		 </div>
            </div>
@@ -2018,7 +2382,7 @@
   <span class="name">Click Here to Upload</span> 
   </div> 
 </td>
- <div class="FIOFFICEATT" style="display:none">
+ <div class="FIOFFICEATT reupload" style="display:none">
 <img src="ThemeproLO/Common/Images/UploadImg.png" class="rounded" title="UPLOAD" onclick="ReuploadFile(FIOFFICEATT);" alt="Cinque Terre" width="20" height="20">  <img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW" onclick="GrdDocDwnld('FIOFFICEATT')" class="rounded" alt="Cinque Terre" width="35" height="25"> </div>
 </tr>
 </table>

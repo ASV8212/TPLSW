@@ -257,6 +257,10 @@ function GetMarginVal()
 		{
 			mul2=0;
 		}
+		if(mul2=='Infinity')
+		{
+			mul2=0;
+		}
  $("#CGST_NETPROFIT").val(CURINRCommaSep(parseFloat(mul2).toFixed(2)));
 $("#CGST_NETPROFIT").next().addClass('active');
  
@@ -314,11 +318,19 @@ $(document).on("blur",".INCOM",function(){
 		{
 			val1=0;
 		}
+		if(val1=='Infinity')
+		{
+			val1=0;
+		}
 	if(val2=='')
 	{
 		val2=0;
 	}
 	if(isNaN(val2))
+		{
+			val2=0;
+		}
+		if(val2=='Infinity')
 		{
 			val2=0;
 		}
@@ -329,6 +341,10 @@ $(document).on("blur",".INCOM",function(){
 		amt=0;
 	}
 	if(isNaN(amt))
+		{
+			amt=0;
+		}
+		if(amt=='Infinity')
 		{
 			amt=0;
 		}
@@ -406,7 +422,11 @@ $(document).on("blur",".INCM",function()
 	if(isNaN(amt))
 		{
 			amt=0;
-		}   
+		} 
+      if(amt=='Infinity')	
+	  {
+		  amt=0;
+	  }		  
 	$("#CGST_PROPSEDEMI").val(CURINRCommaSep(parseFloat(amt).toFixed(2)));
 	$("#CGST_PROPSEDEMI").next().addClass('active');	 	 
 	//EMI Per Lakh
@@ -423,6 +443,10 @@ $(document).on("blur",".INCM",function()
 		EMI=0;
 	}
 	if(isNaN(EMI))
+		{
+			EMI=0;
+		}
+		if(EMI=='Infinity')
 		{
 			EMI=0;
 		}
@@ -444,29 +468,46 @@ $(document).on("blur",".INCM",function()
 		{
 			ProposedEMI=0;
 		}
+		if(ProposedEMI=='Infinity')
+		{
+			ProposedEMI=0;
+		}
 		if(EMIPerLakh=='')
-	{
+	    {
 		EMIPerLakh=0;
-	}
-	if(isNaN(EMIPerLakh))
+	     }
+	   if(isNaN(EMIPerLakh))
 		{
 			EMIPerLakh=0;
 		}
-	if(MarginVal=='')
-	{
+		if(EMIPerLakh=='Infinity')
+		{
+			EMIPerLakh=0;
+		}
+			
+	  if(MarginVal=='')
+	   {
 		
 		MarginVal=0;
-	}
-	if(isNaN(MarginVal))
+	    }
+	  if(isNaN(MarginVal))
 		{
 			MarginVal=0;
 		}
-	if(Proval=='')
-	{
+		if(MarginVal=='Infinity')
+		{
+			MarginVal=0;
+		}
+	  if(Proval=='')
+	  {
 		
 		Proval=0;
-	}
-	if(isNaN(Proval))
+	  }
+	  if(isNaN(Proval))
+		{
+			Proval=0;
+		}
+		if(Proval=='Infinity')
 		{
 			Proval=0;
 		}
@@ -482,6 +523,10 @@ $(document).on("blur",".INCM",function()
 		{
 			amt=0;
 		}
+		if(amt=='Infinity')
+		{
+			amt=0;
+		}
 	$("#CGST_LOANELIGIBIL").val(CURINRCommaSep(parseFloat(amt).toFixed(2)));
 	$("#CGST_LOANELIGIBIL").next().addClass('active');	 	 
 	
@@ -490,20 +535,29 @@ $(document).on("blur",".INCM",function()
 	var val2=0;
 	val1=$("#CGST_LOANELIGIBIL").val().replace(/\,/g,'');
 	val2= $("#DMY3").val().split('|')[3];
-	if(val1=='')
-	{
+	  if(val1=='')
+	    {
 		val1=0;
 		
-	}
-	if(isNaN(val1))
+	     }
+	   
+	   if(isNaN(val1))
 		{
 			val1=0;
 		}
-	if(val2=='')
-	{
+		if(val1=='Infinity')
+	     {
+		val1=0;
+	    }
+	  if(val2=='')
+	   {
 		val2=0;
-	}
-	if(isNaN(val2))
+	    }
+	   if(isNaN(val2))
+		{
+			val2=0;
+		}
+		if(val2=='Infinity')
 		{
 			val2=0;
 		}
@@ -514,6 +568,10 @@ $(document).on("blur",".INCM",function()
 		amt=0;
 	}
 	if(isNaN(amt))
+		{
+			amt=0;
+		}
+		if(amt=='Infinity')
 		{
 			amt=0;
 		}
@@ -552,6 +610,10 @@ $(document).on("blur",".INCM",function()
 		{
 			amt=0;
 		}
+		if(amt=='Infinity')
+		{
+			amt=0;
+		}
 	$("#CGST_FINALLTV").val(CURINRCommaSep(parseFloat(amt).toFixed(2)));
     $("#CGST_FINALLTV").next().addClass('active');	 	 
 
@@ -564,7 +626,19 @@ $(document).on("blur",".INMUL",function(){
 	$("#CRTR_PROPOSEDLNAMT").val(Math.min($("#CRTR_LOANAMT").val(),$("#CRTR_ELIGIBLELNAMT").val()));
 })
 
-
+function Getgstsls()
+{
+	 var GSTSALES1=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETGSTSALES");
+	       var GSTSALES= $(GSTSALES1).find ('GSTSALES').text();
+		   if(GSTSALES=='')
+		 {
+			 GSTSALES=0;
+		 }
+		 
+	$("#CGST_AVGOF12MONSAL").val(CURINRCommaSep(parseFloat(GSTSALES).toFixed(0)));
+	$('#CGST_AVGOF12MONSAL').next().addClass('active');
+		 
+}
 
 
 

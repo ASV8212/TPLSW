@@ -21,7 +21,7 @@ $(document).ready(function () {
 	//LoadMultiData("",$("#PrcsID").val(),"","APPVERIFICATION","PRVEDBfields","LSW_SGETAPPVERFI");
 	
 	//LoadMultiData("",$("#PrcsID").val(),"","COAPPVERIFICATION","PVCODBfields","LSW_SGETCOAPPVERFI");
-	
+	GetMarginVal();
     //$("#BTNRCUGRD").click();
 	$(document).on("click", ".FormSave", function(){
 		
@@ -33,7 +33,7 @@ $(document).ready(function () {
 		
 		if(MndtryChk == "Mandatory")
 			{
-			alert("Fill the Mandatory Fields");
+			alert("Fill the Mandatory Fields / Document(s)");
 			return false;
 			}
 		}

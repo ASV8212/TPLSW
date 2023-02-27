@@ -210,11 +210,19 @@ $(document).on("blur",".SUB",function(){
 	{
 		sub=0;
 	}
+	if(sub=='Infinity')
+	{
+	sub=0;	
+	}
 	if(sub2=='')
 	{
 		sub2=0;
 	}
 	if(isNaN(sub2))
+	{
+		sub2=0;
+	}
+	if(sub2=='Infinity')
 	{
 		sub2=0;
 	}
@@ -236,6 +244,10 @@ $(document).on("blur",".INMUL",function(){
 	{
 		mul=0;
 	}
+	if(mul=='Infinity')
+	{
+	  mul=0;	
+	}
 	if(mul1=='')
 	{
 		mul1=0;
@@ -243,6 +255,10 @@ $(document).on("blur",".INMUL",function(){
 	if(isNaN(mul1))
 	{
 		mul1=0;
+	}
+	if(mul1=='Infinity')
+	{
+	  mul1=0;	
 	}
 	var mul2=parseFloat(mul)*parseFloat(mul1);
 	mul2=CURINRCommaSep(parseFloat(mul2).toFixed(0));

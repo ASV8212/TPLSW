@@ -439,7 +439,7 @@ alert('Invalid File Format');
  	  var op= UI_getdata("DOCVRNO","","","","","Sam_sGetCOMSeqID")
 	  $("#PrcsID").attr('value',$(op).find("VR").text())
  	var   param1=$(op).find("VR").text();
- 	var   param2="SCF_SEXCELMULTIUPLOADDATA";
+ 	var   param2="LSW_SEXCELMULTIUPLOADDATA";
  	var   param3="LSW_TDSACNCTRVNDR";
  	
  		$.ajax({
@@ -625,10 +625,28 @@ function ChkCategory()
 		else
 		{
 			FncallMyAppl(this,'Table2',{spname:'LSW_SGETVENDORMST',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:'Search',brid:$("#SRCCATRY").val(),MnuId:$("#SearchField").val()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||8','VENDORMST');
+			
+			oTable = $('#Table2').DataTable();
+		    $('#SearchTable2').keyup(function(){
+		      oTable.search($(this).val()).draw() ;
+		    })	
 		}
+	}
+	else if($("#SearchField").val()!="")
+	{
+		if($("#SRCCATRY").val()=="")
+		{
+			alert('Sourcing Category is Mandatory')
+			return false;
+		}	
 	}
 	else
 	{
 		FncallMyAppl(this,'Table2',{spname:'LSW_SGETVENDORMST',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:'Load',brid:'',MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||8','VENDORMST');
+		
+		oTable = $('#Table2').DataTable();
+		$('#SearchTable2').keyup(function(){
+		      oTable.search($(this).val()).draw() ;
+		})	
 	}
 }

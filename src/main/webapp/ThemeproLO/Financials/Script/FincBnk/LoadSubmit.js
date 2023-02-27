@@ -3,6 +3,14 @@ $(document).ready(function () {
 	
 	//$($('.AFormaccordion')[0]).click();
 	//$("#BKDT_CUSID").val($(".FormPageMultiTab li.active").attr("id"));
+		var result=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHKVIABILITYTAB");
+	var chk=$(result).find("RESULT").text();
+	 
+	if(chk=='Y')	
+	{
+		$("#FormPageTab9").remove()
+	}
+	
 	
 	$("#FCBD_PRCSID").attr("value",$("#PrcsID").val());
 	$("#FCBD_CUSID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
@@ -36,6 +44,17 @@ $(document).ready(function () {
 	{
 		$(".BnkNotes").hide();
 	}
+	var DATA=["BankDetail1|"];
+	for (j=0;j<DATA.length;j++)
+		 {
+		 var ValuationID=DATA[j].split("|")[0];
+	 var row = $("." + ValuationID).find(".DYNROW").length;
+	 for (i=0;i<row;i++)
+	 {
+	var HTML =	 $("." + ValuationID).find(".DYNROW")[i];
+	ODCCLOAD(HTML);
+	}
+	}
 	
 	$(document).on("click", ".BALANCE", function(){
 		/*var html=$(this).closest('.DYNROW')
@@ -68,10 +87,18 @@ $(document).on("click", ".DELETEFINCBANKDET" , function() {
  	PrcsId=$("#"+PrcsId).val();
 	 var html=$(this).closest('.DYNROW')
      var UNIQID=$(html).find("[name=FCBD_BNKNO]").val() 
-
+	 var lenbankaccnt = $($(".BankDetail1").find(".DYNROW")).length;
+	 if(lenbankaccnt!="")
+	 {
+		 if(parseInt(lenbankaccnt)-1==0)
+		 {
+			 alert("Atleast one Banking Details is Mandatory. Kindly proceed the case without deleting the same");
+			 return;
+		 }
+	 }
  	 if(confirm('Delete Banking Details ') == true)
  		{
- 		  var xml=UI_getdata(PrcsId,UNIQID,Type,"","","LSW_SCLEARCUSDATA");
+		  var xml=UI_getdata(PrcsId,UNIQID,Type,"","","LSW_SCLEARCUSDATA");
 
  	 	   $(this).closest('.DYNROW').remove()	
  	 		var k= $('.BankDetail1').find('.DYNROW').length
@@ -119,7 +146,7 @@ $(document).on("click", ".DELETEFINCBANKDET" , function() {
 	 for (i=0;i<row;i++)
 	 {
 	var HTML =	 $("." + ValuationID).find(".DYNROW")[i];
-	//LoadManualAvailable(HTML,"");
+	LoadManualAvailable(HTML,"");
 	 }
 	}
 	
@@ -129,13 +156,6 @@ $(document).on("click", ".DELETEFINCBANKDET" , function() {
 		 $('.NODATA').show()
 		 }
 	 
-	
-	
-	
-	
-	
-	
-	
 	 $(document).on("click", ".FormSave", function(){
 		
 		 var html=$(this).closest('.DYNROW')
@@ -147,7 +167,7 @@ $(document).on("click", ".DELETEFINCBANKDET" , function() {
 		
 		if(MndtryChk == "Mandatory")
 			{
-			alert("Fill the Mandatory Fields");
+			alert("Fill the Mandatory Fields / Document(s)");
 			return false;
 			}
 
@@ -160,6 +180,20 @@ $(document).on("click", ".DELETEFINCBANKDET" , function() {
 			    alert('Average Monthly Balance should be greater than Zero')
 			    return false;
 			  }
+			  
+			  if($(html).find("[name=FCBD_INFLWSUM]").val()=="0" || $(html).find("[name=FCBD_INFLWSUM]").val()=="0.00")
+			  {
+			    alert('Update Flow - Inflow should be greater than Zero')
+			    return false;
+			  }
+			  
+			   if($(html).find("[name=FCBD_OUTFLWSUM]").val()=="0" || $(html).find("[name=FCBD_OUTFLWSUM]").val()=="0.00")
+			  {
+			    alert('Update Flow - Outflow should be greater than Zero')
+			    return false;
+			  }
+			  
+			  
 			 }
 			}
 		}
@@ -205,6 +239,8 @@ $(document).on("click", ".DELETEFINCBANKDET" , function() {
 					       var row = $("." + BNKDATA).find(".DYNROW").length;
 					       for (i=0;i<row;i++)
 					       {
+							 
+							   
 					         var BnkHtml = $("." + BNKDATA).find(".DYNROW")[i];
 					         $(BnkHtml).find('[name = FCBD_INFLOW]').val(UPDFLOW)
 					        // SchemeBasedCAM(HTML,"CACL_INCCONSID"+(parseInt([i])+1));

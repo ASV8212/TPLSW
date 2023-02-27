@@ -39,7 +39,7 @@
 				  <input type="text" id="CLTV_SCHEMENAME" hidden="hidden" name="CLTV_SCHEMENAME" class="form-control CLTVDBfields">
 				   <input type="text"  id="CLTV_PRODUCTID" hidden="hidden" name="CLTV_PRODUCTID" class="form-control  CLTVDBfields">
 				  <input type="text" id="CLTV_PRODUCTAME" hidden="hidden" name="CLTV_PRODUCTAME" class="form-control CLTVDBfields">
-				  
+				  <input type="text"  id="CLTV_LOANID" hidden="hidden" name="CLTV_LOANID" class="form-control  CLTVDBfields">
                    
 				 </br>
 				 <div class="form-row">

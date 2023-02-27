@@ -89,6 +89,17 @@ function GetTyProperty(){
 	$("#ASST_TYPEPROPE").append($(xml).find("RESULT").html());
 	$("#ASST_TYPEPROPE").material_select(); 
 	
+	var chknl=UI_getdata($("#PrcsID").val(),$("#ASST_SCHEMEID").val(),"","","","LSW_SGETLOANDETAILS");
+	var chkfl=($(chknl).find('PRODUCT').text());
+	if(chkfl=='T201')
+	{
+		$(".CHKLNTY").hide()
+		
+	}
+	else
+	{
+		$(".CHKLNTY").show()
+	}
 }
 
 $(document).on("blur",".TIMSABB",function(){
@@ -96,7 +107,14 @@ $(document).on("blur",".TIMSABB",function(){
 var check1=UI_getdata($("#PrcsID").val(),$("#ASST_SCHEMEID").val(),"","","","LSW_SGETLOANDETAILS");
 var pro3=($(check1).find('PRODUCT').text());	
 var check=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETABBDETAILS");
+if(pro3=='T201')
+{
+var pro=($(check).find ('ADJUSTABB').text());
+}
+else
+{
 var pro=($(check).find ('FINALABB').text());
+}
 var LnAt=0;
 LnAt= $("#DMY3").val().split('|')[3].replace(/,/g,'');
 
@@ -134,13 +152,29 @@ $("#ASST_TWICETRACKER").next().addClass('active');
 var adjust=$("#ASST_MONTHCONTR").val().replace(/,/g,'');
 var adjust1=$("#ASST_TIMEABB").val().replace(/,/g,'');
 var adjust2=$("#ASST_TWICETRACKER").val().replace(/,/g,'');
-if(adjust2>8400)
+/* if(adjust2>8400)
 {	
 	var finladjust=Math.min((adjust),(adjust1),(adjust2));
 }
 else
 {
 	var finladjust=Math.min((adjust),(adjust1));
+} */
+
+//var adjust2=$("#ASST_TOTALASSETS").val().replace(/,/g,'');
+if(pro3=='T201')
+{
+	if(adjust2>8400)
+	{	
+		var finladjust=Math.min((adjust),(adjust1),(adjust2));
+	}
+	else{
+		var finladjust=Math.min((adjust),(adjust1));
+	}
+}
+else
+{
+	var finladjust=Math.min((adjust),(adjust1),(adjust2));
 }
 finladjust=CURINRCommaSep(parseFloat(finladjust).toFixed(0));
 $("#ASST_ASSTSFUN").val(finladjust);
@@ -246,9 +280,25 @@ $("#ASST_ASSTSFUN").next().addClass('active');
 		Proval=0;
 	}
 	var  amt1=0,amt2=0,amt=0;
-	amt2=parseFloat(MarginVal/100)*parseFloat(Proval);
+	
+	/* var chknl=UI_getdata($("#PrcsID").val(),$("#ASST_SCHEMEID").val(),"","","","LSW_SGETLOANDETAILS");
+	var chkfl=($(chknl).find('PRODUCT').text()); */
+	if(pro3=='T201')
+	{
+		amt=parseFloat(ProposedEMI)/parseFloat(EMIPerLakh)*100000;
+		
+	}
+	else
+	{
+		amt1=parseFloat(ProposedEMI)/parseFloat(EMIPerLakh)*100000;
+		amt2=parseFloat(MarginVal/100)*parseFloat(Proval);		
+		amt=Math.min(amt1,amt2);
+	}
+	
+	
+	/* amt2=parseFloat(MarginVal/100)*parseFloat(Proval);
 	amt1=parseFloat(ProposedEMI)/parseFloat(EMIPerLakh)*100000;
-	amt=Math.min(amt1,amt2);
+	amt=Math.min(amt1,amt2); */
 	$("#ASST_LOANELIGIBIL").val(CURINRCommaSep(parseFloat(amt).toFixed(0)));
 	$("#ASST_LOANELIGIBIL").next().addClass('active'); 
 	
@@ -288,5 +338,161 @@ $("#ASST_ASSTSFUN").next().addClass('active');
 	
 	
 })
+
+
+function DocFldUpldHndlr(id,docu,KYCName,UploadView)
+{
+
+var Val=$(id).val()
+
+
+if($(id).closest('td').find('input[type="file"]').val()!="")
+{
+    var domain= LoadFrmXML("RS001");
+    var usrpwd= LoadFrmXML("RS002");
+    var PrcsID=getUrlParam("PrcsID");
+    var FormName= 'Property';
+    var CusID=$('#LPDT_PROPERTYNO').val()
+    var DocName=KYCName
+    var names="";
+    var descrptns="";
+	//var op= UI_getdata("DOCVRNO","","","","","Sam_sGetCOMSeqID")
+	var flsize = "";
+ var fd = new FormData();
+   var vrsnno= "";
+	var prodata = "";
+var CountAttch=1;
+	
+	 for(var c=0;c<CountAttch;c++)
+	 {
+      file_data = $(id).closest('td').find('input[type="file"]')[0].files; // for multiple files
+	     for(var i = 0;i<file_data.length;i++){
+			var op= UI_getdata("DOCVRNO","","","","","Sam_sGetCOMSeqID")
+	         fd.append("file_"+c, file_data[i]);
+	         names += $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[0]+',';
+			 flsize += parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2)+',';
+			 vrsnno += $(op).find("VR").text()+',';
+			 if($($('input[type="file"]')[c]).closest('tr').find("#comments").val()=="")
+			 {
+				 $($('input[type="file"]')[c]).closest('tr').find("#comments").val("No Description");
+			 }
+	         descrptns += 'FieldDocument'+',';
+	     }
+	 }
+	 var FileSize=parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2);
+   //  var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
+  //   var Filename  = names.replace(',','')
+          var Filename  = $(id).closest('td').find('input[type="file"]')[0].files[0].name
+	      var FileType= Filename.substring(Filename.lastIndexOf('.')+1);
+          var  Filename= Filename.substring(0, Filename.lastIndexOf('.'));
+          var names=Filename
+       
+	     if($("#COBI_CUSTYPE").val()=='Individual')
+	   {
+		  var ADDRTYPE = "ADDRESSPROOF"
+	   }
+	   else
+	   {
+		var ADDRTYPE = "Others"   
+		   
+	   }
+		/*var xml=UI_getdata(FileType,FileSize,Filename,ADDRTYPE,$("#COBI_CUSTYPE").val()+'|'+$("#PrcsID").val(),"LSW_SGETKYCDOCUMNTTYPE")
+		var FileAccept=$(xml).find('RESULT').text()
+		
+		
+	if(FileAccept == 'No')
+	{
+		alert($(xml).find("alert").text());
+		$(id).closest('td').find('input[type="file"]').val('')
+		return
+    } */
+names=names+'.'+FileType
+var y=  names;
+/*  var specialChars = "<>&#^|~`"
+var check = function(string){
+    for(i = 0; i < specialChars.length;i++){
+        if(string.indexOf(specialChars[i]) > -1){
+            return true
+        }
+    }
+    return false;
+}
+
+if(check(y) == false){
+    // Code that needs to execute when none of the above is in the string
+}else{
+    alert('File name contains special character please remove and upload');
+	$(id).closest('td').find('input[type="file"]').val('')
+	return;
+}
+	 
+	*/ 
+	 
+
+ ajaxindicatorstart("Uploading.. Please wait");
+	    $.ajax({
+	    	url:"/TPLSW/DMS?names="+names+"&PrcsID="+PrcsID+"&FormName="+FormName+"&descrptns="+descrptns+"&flsize="+flsize+"&vrsnno="+vrsnno+"&domain="+domain+"&usrpwd="+usrpwd+"&Prvnt="+$("#Prvnt").val()+"&CusID="+CusID+"&DocName="+DocName,
+	        data: fd,
+			async:false,
+	        contentType: false,
+	        processData: false,
+	        type: 'POST',
+	        success: function(data){
+			
+			if(data=="Fail")
+	        		{
+						 ajaxindicatorstop();
+	        		alert(LoadFrmXML("V0119"));
+					return
+	        		}
+			else{
+				//AttchDmsIns(data,'upload',prodata);
+				//$(id).val('View');
+				$(id).closest('td').find('input[type="hidden"]').val(data.split('~')[2])
+				$(id).closest('td').find('input[type="file"]').attr('disabled',true)
+				$(id).closest('td').find('input[type="file"]').val('');
+				$(id).closest('td').find('input[type="file"]').hide();
+			//	$(id).closest('td').replace('','');
+			//	$(id).closest('td').append('<span class="name">'+names.slice(0,-1)+'</span> ')
+				
+				//
+				
+				$(id).closest('.md-form').find('span').remove()
+				 $(id).val('')
+		
+			    $(id).val(data.split('~')[2])
+				var UPLOAD=docu+'UPLOAD'
+				$('#'+UPLOAD).hide();
+				$('.'+docu).show();
+				$('.'+UploadView).show();
+				$(id).closest('.md-form').append('<span class="name">'+names+'</span>');
+
+					ajaxindicatorstop();
+					alert(LoadFrmXML("V0118"));
+					return
+					
+				}	
+					 ajaxindicatorstop(); 
+	        },
+	        failure:function(data)
+	        {
+	     		  ajaxindicatorstop();
+					alert(LoadFrmXML("V0119"));
+					return
+	        	
+	        }
+	    });
+		
+		  ajaxindicatorstop();
+		  }
+		  else{
+		  
+		  alert('select the file to upload');
+		  }
+
+		 
+
+	  
+}
 
 

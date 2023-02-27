@@ -31,7 +31,7 @@
       
       <div class="Formaccordion accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
   <!-- Accordion card -->
-  
+  <button type="button" style="display:none" class="btn CollectedPage  waves-effect btn-yelInplain btn-sm BTNVerify">CollectedPage</button>
    <div data-for="BankDetail1" class="BankDetail1"> 
 
    </div>
@@ -65,6 +65,8 @@
          <input type="text" id="FCBD_BNKNO" hidden="hidden" name="FCBD_BNKNO" class="form-control FCBDDBfields">
          <input type="text" id="FCBD_BNKBALANCE" hidden="hidden" name="FCBD_BNKBALANCE" class="form-control FCBDDBfields">
          <input type="text" id="FCBD_INFLOW" hidden="hidden" name="FCBD_INFLOW" class="form-control FCBDDBfields">
+		 
+		 <input type="text" id="FCBD_NETBNKDATA" hidden="hidden" name="FCBD_NETBNKDATA" class="form-control FCBDDBfields">
         <!-- <input type="text" id="FCBD_SUMAVG" hidden="hidden" name="FCBD_SUMAVG" class="form-control FCBDDBfields">-->
          <input type="text" id="Hiddenrow" hidden="hidden" name="Hiddenrow" value="">
      
@@ -82,83 +84,66 @@
        <div id="PROPTXTHDR" class="col Btxt10"></div>
              </div>
        <div class="form-row">
-            <div class="col-md-4">
+            <div class="col-md-4" style="display:none">
                   <div class="md-form">
                <div class="select-radio FCBDMndtry BnkMndtry"> 
-                    <div class="custom-control custom-radio custom-control-inline">
-  <input type="radio" class="custom-control-input FCBDDBfields" onclick="ManualAvailable($(this).closest('.DYNROW')[0],this.id);" value="Manual" id="Manual" name="FCBD_RPTGENR">
+                    <div class="custom-control custom-radio custom-control-inline"><!--onclick="ManualAvailable($(this).closest('.DYNROW')[0],this.id);"-->
+  <input type="radio" class="custom-control-input FCBDDBfields"  value="Manual" id="Manual" name="FCBD_RPTGENR">
   <label class="custom-control-label" for="Manual">Manual</label>
 </div>
-<div class="custom-control custom-radio custom-control-inline">
-<input type="radio" class="custom-control-input FCBDDBfields"  onclick="ManualAvailable($(this).closest('.DYNROW')[0],this.id);" value="Auto" id="Auto" name="FCBD_RPTGENR">
+<div class="custom-control custom-radio custom-control-inline"><!--onclick="ManualAvailable($(this).closest('.DYNROW')[0],this.id);"-->
+<input type="radio" class="custom-control-input FCBDDBfields"   value="Auto" id="Auto" name="FCBD_RPTGENR">
 <label class="custom-control-label" for="Auto">Auto</label>
 </div>
 </div>
                   <label class="mdb-main-label BTxt9">Report Generation<span class="MndtryAstr">*</span></label>      
                   </div>
                 </div>
-                 <div class="col-md-4 ManualRpt"> 
+				</div>
+			<div class="form-row"><!--ManualRpt-->
+                 <div class="col-md-4 "> 
                   <div class="md-form">
                   <div class="HyperControls"> 
                   <a type="button" class="Btxt4 FltLeft BALANCE FCBDDBfields" data-toggle="modal" name="UpdateBalance" data-target="#UpdateBalance" href="#">Update Balance</a>
                 </div>
                   </div>
-                  </div>
-                  <div class="col-md-4 ManualRpt">
+                  </div><!--ManualRpt-->
+                  <div class="col-md-4 ">
                   <div class="md-form">
                    <div class="HyperControls"> 
                   <a type="button" class="Btxt4 FltLeft UPDateFlow FCBDDBfields" data-toggle="modal" name="UPDATEINFLOW" data-target="#UPDATEINFLOW" href="#">Update Inflow</a>
                   </div>
                   </div>
-                  </div>        
+                  </div>   
+			</div>				  
          <div class="form-row AutoRpt" style="display:none">
               <div class="col">
-                 <!-- <div class="md-form">
-                      <table>
-                          <tr>
-                            <td>
-                                <div id="FCBD_UPLOADFILEUPLOAD"  class="file-field">
-                                    <a class="">
-                                       <i class="fa fa-plus imgAdd" aria-hidden=""></i>
-                                         <input type="file"  name="datafile" onchange="DocFldUpldHndlr_V1(this,'FCBD_UPLOADFILE'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_UPLOADFILE','FincBankDetails','Collection','PF',$(this).closest('.DYNROW'));UploadFile();" class="FCBD_UPLOADFILE"  >
-                                    </a>
-                                    <input type="text" id="FCBD_UPLOADFILE" hidden="hidden" data-Validate="FCBD_UPLOADFILE"  name="FCBD_UPLOADFILE" class="form-control File FCBDDBfields">
-                                    <span class="name">Click Here to Upload</span> 
-                                </div>
-                            </td>
-                          </tr>
-                        </table>
-                       <div class="md-form">
-                           <div class="md-form Formcol-mdLR">
-                              <div class="FCBD_UPLOADFILE" style="display:none"> <img src="ThemeproLO/Common/Images/UploadImg.png" class="rounded" title="UPLOAD" onclick="ReuploadFile($('#FCBD_UPLOADFILE'+$(event.target).closest('.DYNROW').attr('data-row')));" alt="Cinque Terre" width="20" height="20">  <img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW" onclick="GrdDocDwnld('FCBD_UPLOADFILE'+$(this).closest('.DYNROW').attr('data-row'))" class="rounded" alt="Cinque Terre" width="35" height="25"> </div>
-                            </div>
-                       </div>
-                  </div>-->
-				 <div class="md-form">
-					<button type="button" onclick="NetBankingInteg('startTransaction')" class="btn btn-Syel waves-effect waves-light">Upload</button> 
+			   <div class="md-form">
+					<button type="button" onclick="NetBankingInteg('Statement','FCBD_BNKNO'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_STDATE'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_ENDDATE'+$(this).closest('.DYNROW').attr('data-row'))" class="btn btn-Syel waves-effect waves-light">Upload</button> 
 				</div>
               </div>
 			  <div class="col">
                   <div class="md-form">
-					<button type="button" onclick="NetBankingInteg('NetBanking')" class="btn btn-Syel waves-effect waves-light">Net Banking</button> 
+					<button type="button" onclick="NetBankingInteg('NetBanking','FCBD_BNKNO'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_STDATE'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_ENDDATE'+$(this).closest('.DYNROW').attr('data-row'))" class="btn btn-Syel waves-effect waves-light">Net Banking</button> 
 				  </div>
               </div>
         </div>
-         </div>
+         </br>
+		 </br>
         <div class="form-row DetailRpt ">
             <div class="col-md-4">
-                  <div class="md-form">
-                  	<input type="text" id="FCBD_STDATE" name="FCBD_STDATE"  maxlength="10" class="DetRpt form-control  ISFutureDateFields IsNumberFields  NoSpecialChar FCBDDBfields ISDatefield">
-                    <label for="FCBD_STDATE" class="BNKL">Start Date<span class="MndtryAstr"></span></label>
+                <div class="md-form">
+                  	<input type="text" id="FCBD_STDATE" name="FCBD_STDATE"  maxlength="10" class=" form-control DetRpt ISFutureDateFields IsNumberFields  NoSpecialChar FCBDDBfields ISDatefield">
+                    <label for="FCBD_STDATE" class="">Start Date<span class="MndtryAstr">*</span></label>
                     <img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"/>
-             </div>
-                </div> 
-              <div class="col-md-4">
-                 <div class="md-form">
-                  	<input type="text" id="FCBD_ENDDATE" name="FCBD_ENDDATE" onchange="DateValidate('FCBD_STDATE'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_ENDDATE'+$(this).closest('.DYNROW').attr('data-row'));"  maxlength="10"  class="form-control   ISFutureDateFields IsNumberFields NoSpecialChar  FCBDDBfields ISDatefield">
-                    <label for="FCBD_ENDDATE" class="BNKL">End Date<span class="MndtryAstr"></span></label>
+				</div>
+            </div> 
+            <div class="col-md-4">
+                <div class="md-form">
+                  	<input type="text" id="FCBD_ENDDATE" name="FCBD_ENDDATE" onblur="DateValidate('FCBD_STDATE'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_ENDDATE'+$(this).closest('.DYNROW').attr('data-row'));"  maxlength="10"  class="form-control DetRpt  ISFutureDateFields IsNumberFields NoSpecialChar  FCBDDBfields ISDatefield">
+                    <label for="FCBD_ENDDATE" class="">End Date<span class="MndtryAstr">*</span></label>
                     <img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"/>
-               </div>
+				</div>
             </div>
             <div class="col-md-4">
                    <select class="md-form colorful-select dropdown-primary FCBDMndtry FCBDDBfields" disabled id="FCBD_ACCTTYPE" name="FCBD_ACCTTYPE">
@@ -181,25 +166,40 @@
                 </div>
                 <div class="col-md-4">
                   <div class="md-form">
-                    <input type="text" id="FCBD_ACCTNUM" disabled maxlength="15" onchange="GetAccountField('FCBD_ACCTNUM'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_EACCTNUM'+$(this).closest('.DYNROW').attr('data-row'))" name="FCBD_ACCTNUM" class="form-control DetRpt FCBDMndtry  IsNumberFields BnkMndtry NoSpecialChar  FCBDDBfields">
-                    <label for="FCBD_ACCTNUM" class="BNKL">Acccount Number <span class="MndtryAstr">*</span></label>
+                    <input type="text" id="FCBD_ACCTNUM" disabled maxlength="15" onchange="GetAccountField('FCBD_ACCTNUM'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_EACCTNUM'+$(this).closest('.DYNROW').attr('data-row'))" name="FCBD_ACCTNUM" class="form-control  FCBDMndtry  IsNumberFields BnkMndtry NoSpecialChar  FCBDDBfields">
+                    <label for="FCBD_ACCTNUM" class="">Acccount Number <span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
                  <div class="col-md-4">
                   <div class="md-form">
-                    <input type="text" id="FCBD_BNKNAMBR" disabled maxlength="30"  name="FCBD_BNKNAMBR" class="form-control IsAlphaFields DetRpt FCBDMndtry BnkMndtry NoSpecialChar   FCBDDBfields">
-                    <label for="FCBD_BNKNAMBR" class="BNKL">Bank Name & Branch  <span class="MndtryAstr">*</span></label>
+                    <input type="text" id="FCBD_BNKNAMBR" disabled maxlength="30"  name="FCBD_BNKNAMBR" class="form-control IsAlphaFields  FCBDMndtry BnkMndtry NoSpecialChar   FCBDDBfields">
+                    <label for="FCBD_BNKNAMBR" class="">Bank Name & Branch  <span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
           </div>
           <div class="form-row DetailRpt">
+			<div class="col ODCC">
+                <div class="md-form">
+                    <input type="text" id="FCBD_SANCTIONLIM" disabled maxlength="40" name="FCBD_SANCTIONLIM" class="form-control FCBDMndtry FCBDDBfields">
+                    <label for="FCBD_SANCTIONLIM" class="">Sanctioned Limit<span class="MndtryAstr">*</span></label>
+                </div>
+			</div>
+			<div class="col ODCC">
+                <div class="md-form">
+                    <input type="text" id="FCBD_DRAWPWR" disabled maxlength="40" name="FCBD_DRAWPWR" class="form-control FCBDMndtry FCBDDBfields">
+                    <label for="FCBD_DRAWPWR" class="">Drawing Power<span class="MndtryAstr">*</span></label>
+                </div>
+			</div>
             <div class="col-md-4">
                   <div class="md-form">
                   	<input type="text" id="FCBD_INWCHQBOUNS" onchange="CalcInOutCkhPerc('FCBD_INWCHQBOUNS'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_OUTWCHQBOUNS'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_TOTINWTRANC'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_TOTOUTWTRANC'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_PERCINWTRANC'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_PERCOUTWTRANC'+$(this).closest('.DYNROW').attr('data-row'),'Inward Transaction')" maxlength="3"  name="FCBD_INWCHQBOUNS" class="DetRpt form-control IsNumberFields FCBDMndtry BnkMndtry NoSpecialChar  FCBDDBfields">
                     <label for="FCBD_INWCHQBOUNS" class="BNKL">No. of Inward Cheque Bounce<span class="MndtryAstr">*</span></label>
              </div>
                 </div>
-                <div class="col-md-4">
+                
+         </div>
+         <div class="form-row  DetailRpt">
+		 <div class="col-md-4">
                   
                   <div class="md-form">
                     <input type="text" id="FCBD_OUTWCHQBOUNS" onchange="CalcInOutCkhPerc('FCBD_INWCHQBOUNS'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_OUTWCHQBOUNS'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_TOTINWTRANC'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_TOTOUTWTRANC'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_PERCINWTRANC'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_PERCOUTWTRANC'+$(this).closest('.DYNROW').attr('data-row'),'Inward Transaction')" maxlength="3" name="FCBD_OUTWCHQBOUNS" class="DetRpt form-control  IsNumberFields FCBDMndtry BnkMndtry NoSpecialChar FCBDDBfields">
@@ -210,92 +210,101 @@
                  <div class="col-md-4">
                   
                   <div class="md-form">
-                    <input type="text" id="FCBD_MINBALCHARGE" maxlength="5"  name="FCBD_MINBALCHARGE" class="DetRpt form-control IsNumberFields FCBDMndtry BnkMndtry NoSpecialChar  FCBDDBfields">
-                    <label for="FCBD_MINBALCHARGE" class="BNKL">No. of Minimum Balance Charges <span class="MndtryAstr">*</span></label>
+                    <input type="text" id="FCBD_MINBALCHARGE" maxlength="5"  name="FCBD_MINBALCHARGE" class="DetRpt form-control IsNumberFields  NoSpecialChar  FCBDDBfields">
+                    <label for="FCBD_MINBALCHARGE" class="BNKL">No. of Minimum Balance Charges <span class="MndtryAstr"></span></label>
                   </div>
                 </div>
-         </div>
-         <div class="form-row  DetailRpt">
             <div class="col-md-4">
                   <div class="md-form">
                   	<input type="text" id="FCBD_STOPPAY" maxlength="3" name="FCBD_STOPPAY" class="DetRpt form-control BnkMndtry FCBDMndtry IsNumberFields  NoSpecialChar  FCBDDBfields">
                     <label for="FCBD_STOPPAY" class="BNKL">No. of Stop Payments<span class="MndtryAstr">*</span></label>
                  </div>
                 </div> 
-                    <div class="col-md-4">
+                 <!--   <div class="col-md-4">
                   <div class="md-form">
                <div class="select-radio FCBDMndtry BnkMndtry"> 
                     <div class="custom-control custom-radio custom-control-inline">
-  <input type="radio" class="custom-control-input FCBDDBfields" value="Yes" id="RetYes" name="FCBD_EMIRUTN">
+  <input type="radio" class="custom-control-input DetRpt FCBDDBfields" value="Yes" id="RetYes" name="FCBD_EMIRUTN">
   <label class="custom-control-label" for="RetYes">Yes</label>
 </div>
 <div class="custom-control custom-radio custom-control-inline">
-<input type="radio" class="custom-control-input FCBDDBfields" value="No" id="RetNo" name="FCBD_EMIRUTN">
+<input type="radio" class="custom-control-input DetRpt FCBDDBfields" value="No" id="RetNo" name="FCBD_EMIRUTN">
 <label class="custom-control-label" for="RetNo">No</label>
 </div>
  <input type="text" id="FCBD_EMIRUTN" hidden="hidden" name="FCBD_EMIRUTN" class="form-control  FCBDDBfields">
 </div>
                   <label class="mdb-main-label BTxt9">EMI Returns<span class="MndtryAstr">*</span></label>      
-                  </div>
-                </div>
+                  </div> 
+                </div>-->
                 
-                <div class="col-md-4">
-                  
-                  <div class="md-form">
-          
-               <div class="select-radio FCBDMndtry BnkMndtry"> 
-                    <div class="custom-control custom-radio custom-control-inline">
-  <input type="radio" class="custom-control-input FCBDDBfields" value="Yes" id="MatchYes" name="FCBD_NAMEMATCH">
-  <label class="custom-control-label" for="MatchYes">Yes</label>
-</div>
-<div class="custom-control custom-radio custom-control-inline">
-<input type="radio" class="custom-control-input FCBDDBfields" value="No" id="MatchNo" name="FCBD_NAMEMATCH">
-<label class="custom-control-label" for="MatchNo">No</label>
-</div>
- <input type="text" id="FCBD_NAMEMATCH" hidden="hidden" name="FCBD_NAMEMATCH" class="form-control  FCBDDBfields">
-</div>
-                  <label class="mdb-main-label BTxt9">If the Front Page/Name Matching<span class="MndtryAstr">*</span></label>      
-                  </div>
-                </div>
+ 
                 </div> 
                <div class="form-row DetailRpt">   
+					<div class="col-md-4">                 
+						<div class="md-form">          
+							<div class="select-radio FCBDMndtry BnkMndtry"> 
+								<div class="custom-control custom-radio custom-control-inline">
+									<input type="radio" class="custom-control-input DetRpt FCBDDBfields" value="Yes" id="MatchYes" name="FCBD_NAMEMATCH">
+									<label class="custom-control-label" for="MatchYes">Yes</label>
+								</div>
+								<div class="custom-control custom-radio custom-control-inline">
+									<input type="radio" class="custom-control-input DetRpt FCBDDBfields" value="No" id="MatchNo" name="FCBD_NAMEMATCH">
+									<label class="custom-control-label" for="MatchNo">No</label>
+								</div>
+									<input type="text" id="FCBD_NAMEMATCH" hidden="hidden" name="FCBD_NAMEMATCH" class="form-control  FCBDDBfields">
+							</div>
+								<label class="mdb-main-label BTxt9">If the Front Page/Name Matching<span class="MndtryAstr">*</span></label>      
+						</div>
+					</div>
 				<div class="col-md-4">			   
                   <div class="md-form">
                     <input type="text" id="FCBD_AVGMONBLNC" value="0" maxlength="10" name="FCBD_AVGMONBLNC" disabled class="DetRpt DSVLBL form-control ABBMndtry BnkMndtry IsNumberFields IsCURCommaFields NoSpecialChar  FCBDDBfields">
                     <label for="FCBD_AVGMONBLNC" class="BNKL">Average Monthly Balance<span class="MndtryAstr">*</span></label>
                   </div>
 				  </div>
-				  <div class="col-md-4">	
-					<div class="md-form">
+				  <!--<div class="col-md-4">	
+					 <div class="md-form">
                <div class="select-radio"> 
                   <div class="custom-control custom-radio custom-control-inline">
-                       <input type="radio" class="custom-control-input FCBDDBfields"  onclick="" value="Yes" id="BNKSRGYES" name="FCBD_BNKSRG">
+                       <input type="radio" class="custom-control-input DetRpt FCBDDBfields"  onclick="" value="Yes" id="BNKSRGYES" name="FCBD_BNKSRG">
                        <label class="custom-control-label" for="BNKSRGYES">Yes</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input FCBDDBfields" onclick="" value="No" id="BNKSRGNO" name="FCBD_BNKSRG">
+                        <input type="radio" class="custom-control-input DetRpt FCBDDBfields" onclick="" value="No" id="BNKSRGNO" name="FCBD_BNKSRG">
                         <label class="custom-control-label" for="BNKSRGNO">No</label>
                   </div>
                </div>
                  <label class="mdb-main-label BTxt9">Consider for Banking Surrogate<span class="MndtryAstr"></span></label>      
-            </div>
-				  </div>
+            </div> 
+				  </div>-->
+				  <div class="col-md-4 AutoOnly" style="display:none">
+                  <div class="md-form">
+                  	<input type="text" id="FCBD_SANLIMIT" maxlength="15" name="FCBD_SANLIMIT" class="form-control AutoOnlyMnd IsCURCommaFields IsNumberFields FCBDDBfields">
+                    <label for="FCBD_SANLIMIT" class="BNKL">Sanction Limit<span class="MndtryAstr">*</span></label>
+                 </div>
+                </div> 
              </div>
 			  <div class="form-row DetailRpt">
 			  <div class="col-md-4">
                   <div class="md-form">
                   	<input type="text" id="FCBD_TOTINWTRANC"  maxlength="3"  onchange="CalcInOutCkhPerc('FCBD_INWCHQBOUNS'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_OUTWCHQBOUNS'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_TOTINWTRANC'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_TOTOUTWTRANC'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_PERCINWTRANC'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_PERCOUTWTRANC'+$(this).closest('.DYNROW').attr('data-row'),'Inward Transaction')" name="FCBD_TOTINWTRANC" class="DetRpt form-control IsNumberFields FCBDMndtry  NoSpecialChar  FCBDDBfields">
-                    <label for="FCBD_TOTINWTRANC" class="">Total inward transaction<span class="MndtryAstr">*</span></label>
+                    <label for="FCBD_TOTINWTRANC" class="">Total Cheques Issued<span class="MndtryAstr">*</span></label>
              </div>
                 </div>
-            
                 <div class="col-md-4">
                   <div class="md-form">
-                    <input type="text" id="FCBD_PERCINWTRANC" maxlength="5" disabled name="FCBD_PERCINWTRANC" class="DetRpt form-control  IsNumberFields  FCBDMndtry NoSpecialChar FCBDDBfields">
+                    <input type="text" id="FCBD_PERCINWTRANC" maxlength="5" disabled name="FCBD_PERCINWTRANC" class="DetRpt PERCEN form-control  IsNumberFields  FCBDMndtry NoSpecialChar FCBDDBfields">
                     <label for="FCBD_PERCINWTRANC" class="">Percentage of inward cheque bounce<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
-                 
+		    <div class="form-row">
+			   <div class="FCBD_NETBNKDATA"> 
+			     <span class="name1 ">Banking Document</span>
+			     <input type="text" id="FCBD_NETBNKDATA" hidden="hidden" name="FCBD_NETBNKDATA" class="form-control  DetRpt FCBDDBfields">
+                 <img src="ThemeproLO/Common/Images/UploadImg.png" style="display:none" class="rounded  ReUpld" title="UPLOAD" onclick="ReuploadFile(FCBD_NETBNKDATA);" alt="Cinque Terre" width="20" height="20">  
+				 <img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW" onclick="GrdDocDwnld('FCBD_NETBNKDATA'+$(this).closest('.DYNROW').attr('data-row'))" class="rounded " alt="Cinque Terre" width="35" height="25"> 
+               </div>
+            </div>
          </div>
 		 <div class="form-row DetailRpt">
 		     <div class="col-md-4">
@@ -306,13 +315,13 @@
                 </div>
 				<div class="col-md-4">
                   <div class="md-form">
-                    <input type="text" id="FCBD_PERCOUTWTRANC" maxlength="5" disabled name="FCBD_PERCOUTWTRANC" class="DetRpt form-control IsNumberFields  FCBDMndtry NoSpecialChar  FCBDDBfields">
+                    <input type="text" id="FCBD_PERCOUTWTRANC" maxlength="5" disabled name="FCBD_PERCOUTWTRANC" class="DetRpt PERCEN form-control IsNumberFields  FCBDMndtry NoSpecialChar  FCBDDBfields">
                     <label for="FCBD_PERCOUTWTRANC" class="">Percentage of outward cheque bounce <span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
 				<div class="col-md-4">
                   <div class="md-form">
-                    <input type="text" id="FCBD_CASHTRPERC" maxlength="5"  name="FCBD_CASHTRPERC" class="form-control IsNumberFields   NoSpecialChar IsPercentageSPLCashTr FCBDDBfields">
+                    <input type="text" id="FCBD_CASHTRPERC" maxlength="5"  name="FCBD_CASHTRPERC" class="form-control DetRpt IsNumberFields NoSpecialChar IsPercentageSPLCashTr FCBDDBfields">
                     <label for="FCBD_CASHTRPERC" class="">Cash Transaction %<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
@@ -428,7 +437,7 @@
   </a>
 <div class="modal fade FCBDDBfields" id="UPDATEINFLOW" data-info="ModalWindow" name="UPDATEINFLOWModal" tabindex="-1" role="dialog" aria-labelledby="UPDATEINFLOWLabel"
   aria-hidden="true">
-  <div class="modal-dialog" style="max-width:800px" role="document">
+  <div class="modal-dialog" style="max-width:1000px" role="document">
     <div class="modal-content">
        <div class="modal-header">
        <div class="Btxt10"></div> 
@@ -446,19 +455,19 @@
           </div> 
           <div class="form-row">
             <div class="col">
-                <input type="button" data-button="GridButton" data-value="FLOWTable|LSW_SGETUPDATEFLOWGRID|PrcsID|FCBD_ACCTNUM|FCBD_BNKNO|3,4|UPDATEFLOWGRID" style="display:none" class="DashTrg FCBDDBfields AddMultiGridTrg MultiGridTrg" id="BTNINCMGRD" name="BTNINCMGRD" />
+                <input type="button" data-button="GridButton" data-value="FLOWTable|LSW_SGETUPDATEFLOWGRID|PrcsID|FCBD_ACCTNUM|FCBD_BNKNO|5,6|UPDATEFLOWGRID" style="display:none" class="DashTrg FCBDDBfields AddMultiGridTrg MultiGridTrg" id="BTNINCMGRD" name="BTNINCMGRD" />
                 <table cellpadding="0"  cellspacing="0" border="0" style="width: 80%" class="display FCBDDBfields DataGrid" name="FLOWTable" id="FLOWTable">
                 </table>
             </div>
           </div>
           <div class="form-row ">
-              <div class="col-md-4 BluShd"> 
+              <div class="col-md-3 BluShd"> 
                    <label for="" class="Btxt10">Total &#8377;<span class="MndtryAstr"></span></label>
               </div>
-              <div class="col-md-4 BluShd"> 
+              <div class="col-md-2 BluShd"> 
                    <input type="text" id="FCBD_INFLWSUM" disabled name="FCBD_INFLWSUM" value="0" class="form-control DSVLBL Btxt04 IsCURCommaFields  IsNumberFields NoSpecialChar  FCBDDBfields">
               </div>
-              <div class="col-md-4 BluShd"> 
+              <div class="col-md-2 BluShd"> 
                    <input type="text" id="FCBD_OUTFLWSUM" disabled name="FCBD_OUTFLWSUM" value="0" class="form-control DSVLBL Btxt04 IsCURCommaFields  IsNumberFields NoSpecialChar  FCBDDBfields">
               </div>
          </div>
@@ -473,7 +482,7 @@
       </div>
   <div class="form-row">
           <div class="col d-flex justify-content-center">
-          <button type="button" id="Save" data-aria="LSW_TFINANCBNKDETL|FCBD|FCBD_BNKNO" style="display:none" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button> 
+              <button type="button" id="Save" data-aria="LSW_TFINANCBNKDETL|FCBD|FCBD_BNKNO"  class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>
               <button type="button" data-aria="LSW_TFINANCBNKDETL|FCBD|FCBD_BNKNO" data-card="0"  class="btn btn-Syel waves-effect waves-light FormSave NXTBTNF">Save & Next</button> 
         </div>
  </div>
@@ -530,6 +539,8 @@
 <th>UPFD_MOUNTH</th>
 <th>UPFD_INFLOW</th>
 <th>UPFD_OUTFLOW</th>
+<th>UPFD_TOTALINFLOW</th>
+<th>UPFD_TOTALOUTFLOW</th>
 <th>UPFD_UNIQID</th>
 <!--<th>UPFD_PRCSID</th>
 <th>UPFD_ACTIVITYID</th>

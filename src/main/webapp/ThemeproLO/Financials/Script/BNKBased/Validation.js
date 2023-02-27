@@ -245,11 +245,19 @@ $(document).on("blur",".PERCEN",function(){
 	{
 		net=0;
 	}
+	if(net==Infinity)
+	{
+		net=0;
+	}
 	 if(net2=='')
 	{
 		net2=0;
 	}
 	if(isNaN(net2))
+	{
+		net2=0;
+	}
+	if(net2==Infinity)
 	{
 		net2=0;
 	}

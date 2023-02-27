@@ -22,16 +22,21 @@
 				  <input type="text" id="PRST_SCHEMENAME" hidden="hidden" name="PRST_SCHEMENAME" class="form-control PRSTDBfields">
 				  <input type="text" id="PRST_SCHEMEID" hidden="hidden" name="PRST_SCHEMEID" class="form-control PRSTDBfields">
 				  <input type="text" id="PRST_PROJECT" hidden="hidden" name="PRST_PROJECT" class="form-control PRSTDBfields">
+				  <input type="text" id="PRST_LOANID" hidden="hidden" name="PRST_LOANID" class="form-control PRSTDBfields">
 				  
                    
 				 </br>
 				   <div class="form-row">
         	<div class="col Btxt10">TurnOver Method - originally suggested by Nayak Committee for SSI units</div>
         </div>
-      	</br>
+			 </br>
+		<div class="form-row">
+        	<div class="col Btxt10" style="color: rgb(255, 0, 0);">Details to be entered in actuals (Rs)</div>
+        </div>
+     
        <div class="form-row">
            <div class="col">
-             <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table6',{spname:'LSW_STURNOVERIII',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#PRST_SCHEMEID').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||3,4','TRNOVERIII');" id="BTNTRNOVERIIIGRD" name="BTNTRNOVERIIIGRD" />
+             <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table6',{spname:'LSW_STURNOVERIII',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#PRST_SCHEMEID').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||2,3,4','TRNOVERIII');" id="BTNTRNOVERIIIGRD" name="BTNTRNOVERIIIGRD" />
              <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display DataGrid" id="Table6">
              </table>
            </div>

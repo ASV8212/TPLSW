@@ -12,7 +12,8 @@ $(document).ready(function () {
 
 	
 	FormDataFromDB("LSW_TCAMSTML", "STML_", "STMLDBfields", DATA);
-	
+	GETGSTSALS();
+	Chkbuss();
 	$("#STML_SCHEMEID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
 	$("#STML_SCHEMENAME").attr("value",$(".FormPageMultiTab li.active").text());
 
@@ -27,7 +28,7 @@ $(document).ready(function () {
 		
 		if(MndtryChk == "Mandatory")
 			{
-			alert("Fill the Mandatory Fields");
+			alert("Fill the Mandatory Fields / Document(s)");
 			return false;
 			}
 		}

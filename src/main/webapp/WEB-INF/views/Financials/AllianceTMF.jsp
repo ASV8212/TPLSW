@@ -22,6 +22,7 @@
 				  <input type="text" id="TOMF_SCHEMENAME" hidden="hidden" name="TOMF_SCHEMENAME" class="form-control TOMFDBfields">
 				  <input type="text" id="TOMF_SCHEMEID" hidden="hidden" name="TOMF_SCHEMEID" class="form-control TOMFDBfields">
 				  <input type="text" id="TOMF_TURNOVERFIN" hidden="hidden" name="TOMF_TURNOVERFIN" class="form-control TOMFDBfields">
+				  <input type="text" id="TOMF_LOANID" hidden="hidden" name="TOMF_LOANID" class="form-control TOMFDBfields">
 				  
                    
 				 </br>
@@ -29,9 +30,13 @@
         	<div class="col Btxt10">TurnOver Method - originally suggested by Nayak Committee for SSI units</div>
         </div>
       	</br>
+		  <div class="form-row">
+        	<div class="col Btxt10" style="color: rgb(255, 0, 0);">Details to be entered in actuals (Rs)</div>
+        </div>
+
        <div class="form-row">
            <div class="col">
-             <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table4',{spname:'LSW_STURNOVERI',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#TOMF_SCHEMEID').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||3,4','TRNOVERI');" id="BTNTRNOVERIGRD" name="BTNTRNOVERIGRD" />
+             <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table4',{spname:'LSW_STURNOVERI',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#TOMF_SCHEMEID').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||2,3,4','TRNOVERI');" id="BTNTRNOVERIGRD" name="BTNTRNOVERIGRD" />
              <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display DataGrid" id="Table4">
              </table>
            </div>

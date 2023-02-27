@@ -10,8 +10,11 @@ $(document).ready(function () {
 	
 	$(".FormPageMultiTabAdd").hide();
 	FormDataFromDB("LSW_TSCHEMEABB","SABB_","SABBDBfields", "");
+	$("#SABB_SHEMEID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
+	$("#SABB_SCHEMENAME").attr("value",$(".FormPageMultiTab li.active").text());
 	
-
+	
+ FINALABB();
 	//	var xmlSTATUS=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETACCESSCREADATA")
     	
 
@@ -26,7 +29,7 @@ $(document).ready(function () {
 			
 			if(MndtryChk == "Mandatory")
 				{
-				alert("Fill the Mandatory Fields");
+				alert("Fill the Mandatory Fields / Document(s)");
 				return false;
 				}
 			}

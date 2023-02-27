@@ -10,71 +10,82 @@
       <div class="col-lg-12">
          <ul title="Tranche" data-aria="LSW_TLONBANKDTLS|BKDT|" data-popup="No"  class="nav FormPageMultiTab">
             <%-- ${SUBPAGETABDATA}  --%>
-            <!--  <li id="Tranche1" value="Disbrsmnt" title="Tranche 1" class="nav-item active">
+          <!--  <li id="Tranche1" value="Disbrsmnt" title="Tranche 1" class="nav-item active">
                <a>
                   <div class="nav-link" href="#">Tranche 1</div>
                </a>
-               </li> 
-               <li id="Tranche2" value="Disbrsmnt" title="Tranche 2" class="nav-item ">
+            </li> 
+            <li id="Tranche2" value="Disbrsmnt" title="Tranche 2" class="nav-item ">
                <a>
                   <div class="nav-link" href="#">Tranche 2</div>
                </a>
-               </li> 
-               <li id="Tranche3" value="Disbrsmnt" title="Tranche 3" class="nav-item ">
+            </li> 
+            <li id="Tranche3" value="Disbrsmnt" title="Tranche 3" class="nav-item ">
                <a>
                   <div class="nav-link" href="#">Tranche 3</div>
                </a>
-               </li> 
-               <li id="Tranche4" value="Disbrsmnt" title="Tranche 4" class="nav-item ">
+            </li> 
+            <li id="Tranche4" value="Disbrsmnt" title="Tranche 4" class="nav-item ">
                <a>
                   <div class="nav-link" href="#">Tranche 4</div>
                </a>
-               </li> 
-               <li id="Tranche5" value="Disbrsmnt" title="Tranche 5" class="nav-item ">
+            </li> 
+            <li id="Tranche5" value="Disbrsmnt" title="Tranche 5" class="nav-item ">
                <a>
                   <div class="nav-link" href="#">Tranche 5</div>
                </a>
-               </li>  -->
+            </li>  -->
          </ul>
       </div>
    </div>
    </br>
-   <div class="card CardNS">
-      <div class="card-body px-lg-5 pt-0 BSbrdlight">
-         <div class="row">
-            <div class="col-lg-12">
-               </br>
-               <ul class="nav FormPageSubTab FormPageSubTab1">
-                  <li id="DisbursementChecklist" value="Disbrsmnt" title="Disbursement Checklist" class="nav-item active">
-                     <a>
-                        <div class="nav-link" href="#">Disbursement Checklist</div>
-                     </a>
-                  </li>
-                  <li id="OpsAcknowledgement" value="OpsAck" title="Ops Acknowledgement" class="nav-item ">
-                     <a>
-                        <div class="nav-link" href="#">Ops Acknowledgement</div>
-                     </a>
-                  </li>
-                  <li id="DisbursementMemo" value="DisbMemo" title="Disbursement Memo" class="nav-item ">
-                     <a>
-                        <div class="nav-link" href="#">Disbursement Memo</div>
-                     </a>
-                  </li>
-                  <li id="OTC" value="OTC" title="OTC" class="nav-item ">
-                     <a>
-                        <div class="nav-link" href="#">OTC</div>
-                     </a>
-                  </li>
-                  <li id="PDD" value="PDD" title="PDD" class="nav-item ">
-                     <a>
-                        <div class="nav-link" href="#">PDD</div>
-                     </a>
-                  </li>
-               </ul>
-            </div>
-         </div>
+ 
+ <div class="card CardNS">
+       
+   <div class="card-body px-lg-5 pt-0 BSbrdlight">
+     
+     <div class="row">
+	<div class="col-lg-12">
+		</br>
+		  <ul class="nav FormPageSubTab FormPageSubTab1">      
+       <li id="DisbursementChecklist" value="Disbrsmnt" title="Disbursement Checklist" class="nav-item active">
+               <a>
+                  <div class="nav-link" href="#">Disbursement Checklist</div>
+               </a>
+            </li>
+            <li id="OpsAcknowledgement" value="OpsAck" title="Ops Acknowledgement" class="nav-item ">
+               <a>
+                  <div class="nav-link" href="#">Ops Acknowledgement</div>
+               </a>
+            </li>
+            <li id="DisbursementMemo" value="DisbMemo" title="Disbursement Memo" class="nav-item ">
+               <a>
+                  <div class="nav-link" href="#">Disbursement Memo</div>
+               </a>
+            </li>
+            <li id="OTC" value="OTC" title="OTC" class="nav-item ">
+               <a>
+                  <div class="nav-link" href="#">OTC</div>
+               </a>
+            </li>
+            <li id="PDD" value="PDD" title="PDD" class="nav-item ">
+               <a>
+                  <div class="nav-link" href="#">PDD</div>
+               </a>
+            </li>
+
+      </ul>
+	
+
+	
+	</div>
+</div>
+     
+     
       </div>
    </div>
+   
+   
    <!-- Start -->
    <!--Accordion wrapper-->
    <div class="HiddenBTN">
@@ -84,298 +95,306 @@
       <input type="button" style="display:none" class="DashTrg" data="OPSMINI"  id="BTNOpsMINICl" name="BTNOpsMINICl" />
    </div>
    <input type="text" id="ODCH_PRCSID" hidden="hidden" name="ODCH_PRCSID" value="" class="form-control ODCHDBfields">
-   <input type="text" id="ODCH_ACTIVITYID" hidden="hidden" name="ODCH_ACTIVITYID" class="form-control ODCHDBfields">
-   <input type="text" id="ODCH_CREATEDBY" hidden="hidden" name="ODCH_CREATEDBY" class="form-control ODCHDBfields">
-   <input type="text" id="ODCH_DTCREATED" hidden="hidden" name="ODCH_DTCREATED" class="form-control ODCHDBfields">
-   <input type="text" id="ODCH_MODIFIEDBY" hidden="hidden" name="ODCH_MODIFIEDBY" class="form-control ODCHDBfields">
-   <input type="text" id="ODCH_DTMODIFIED" hidden="hidden" name="ODCH_DTMODIFIED" class="form-control ODCHDBfields">
-   <input type="text" id="ODCH_GRDDTL" hidden="hidden" name="ODCH_GRDDTL" class="form-control ODCHDBfields">
-   <input type="text" id="ODCH_TRNCHID" hidden="hidden" name="ODCH_TRNCHID" class="form-control ODCHDBfields">
-   <input type="text" id="ODCH_TRNCHNAME" hidden="hidden" name="ODCH_TRNCHNAME" class="form-control ODCHDBfields">
-   <input type="text" id="hiddenid" hidden="hidden" name="hiddenid" class="form-control ODCHDBfields">
-   <input type="text" id="hiddenactivity" hidden="hidden" name="hiddenactivity" class="form-control ODCHDBfields">
-   <input type="text" id="HiddenActID" hidden="hidden" name="HiddenActID" class="form-control ">
+    <input type="text" id="ODCH_ACTIVITYID" hidden="hidden" name="ODCH_ACTIVITYID" class="form-control ODCHDBfields">
+    <input type="text" id="ODCH_CREATEDBY" hidden="hidden" name="ODCH_CREATEDBY" class="form-control ODCHDBfields">
+    <input type="text" id="ODCH_DTCREATED" hidden="hidden" name="ODCH_DTCREATED" class="form-control ODCHDBfields">
+    <input type="text" id="ODCH_MODIFIEDBY" hidden="hidden" name="ODCH_MODIFIEDBY" class="form-control ODCHDBfields">
+    <input type="text" id="ODCH_DTMODIFIED" hidden="hidden" name="ODCH_DTMODIFIED" class="form-control ODCHDBfields">
+    <input type="text" id="ODCH_GRDDTL" hidden="hidden" name="ODCH_GRDDTL" class="form-control ODCHDBfields">
+    
+    <input type="text" id="ODCH_TRNCHID" hidden="hidden" name="ODCH_TRNCHID" class="form-control ODCHDBfields">
+    <input type="text" id="ODCH_TRNCHNAME" hidden="hidden" name="ODCH_TRNCHNAME" class="form-control ODCHDBfields">
+    
+    <input type="text" id="hiddenid" hidden="hidden" name="hiddenid" class="form-control ODCHDBfields">
+    <input type="text" id="hiddenactivity" hidden="hidden" name="hiddenactivity" class="form-control ODCHDBfields">
+    
+    <input type="text" id="HiddenActID" hidden="hidden" name="HiddenActID" class="form-control ">
+    
+    
    <div class="Formaccordion accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
       <!-- Branch Start -->
+     
       <div id = "Branch">
-         <div class = "card">
-            <div class="card-header Btxt7 active" role="tab" id="headingOne1">
-               <!-- data-multidata="|PrcsID||ApproveNote1|AAPRDBfields|LSW_SGETFMLYDTL" -->
-               <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse" data-load="" data-multidata="BTNBranchCheckList" data-aria="" data-parent="#accordionEx" href="#collapseOne1"
-                  aria-expanded="false" aria-controls="collapse1">
-               Branch CheckList<i class="fa fa-plus-circle rotate-icon"></i>
-               </a>
-            </div>
-            <div id="collapseOne1" class="collapse " role="tabpanel" aria-labelledby="headingOne1"
-               data-parent="#accordionEx">
-               <div class="card-body px-lg-5 pt-0  ">
-                  </br>
-                  <form>
-                     <div class="form-row ML01">
-                        <div class="col  BluShd">
-                           <label class="Btxt10"> KYC </label>
-                        </div>
+      <div class = "card">
+         <div class="card-header Btxt7 active" role="tab" id="headingOne1">
+            <!-- data-multidata="|PrcsID||ApproveNote1|AAPRDBfields|LSW_SGETFMLYDTL" -->
+            <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse" data-load="" data-multidata="BTNBranchCheckList" data-aria="" data-parent="#accordionEx" href="#collapseOne1"
+               aria-expanded="false" aria-controls="collapse1">
+            Branch CheckList<i class="fa fa-plus-circle rotate-icon"></i>
+            </a>
+         </div>
+         <div id="collapseOne1" class="collapse " role="tabpanel" aria-labelledby="headingOne1"
+            data-parent="#accordionEx">
+            <div class="card-body px-lg-5 pt-0  ">
+               </br>
+               <form>
+                  
+                  <div class="form-row ML01">
+                     <div class="col  BluShd">
+                        <label class="Btxt10 SANHEAD"> Pre Sanction Documents </label>
                      </div>
-                     <div class="form-row ML01">
-                        <div class="col">
-                           <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable2A',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'KYC'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'KYCDTL');" id="BTNKYCDTL" name="BTNKYCDTL" />
-                           <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display"  name="DisbChkTable" id="DisbChkTable2A">
-                           </table>
-                        </div>
+                  </div>
+                  <div class="form-row ML01">
+                     <div class="col">
+                        <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable2A',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'KYC'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'KYCDTL');" id="BTNKYCDTL" name="BTNKYCDTL" />
+                        <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display"  name="DisbChkTable" id="DisbChkTable2A">
+                        </table>
                      </div>
-                     <div class="form-row ML01">
-                        <div class="col  BluShd">
-                           <label class="Btxt10"> Credit KYC </label>
-                        </div>
+                  </div>
+                  <div class="form-row ML01">
+                     <div class="col  BluShd">
+                        <label class="Btxt1 SANHEAD"> Repayment Instruments </label>
                      </div>
-                     <div class="form-row ML01">
-                        <div class="col">
-                           <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable3A',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Credit KYC'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'SANCTIONFILEDTL');" id="BTNSANCTIONFILEDTL" name="BTNSANCTIONFILEDTL" />
-                           <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable3A">
-                           </table>
-                        </div>
+                  </div>
+                  <div class="form-row ML01">
+                     <div class="col">
+                        <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable3A',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Credit KYC'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'SANCTIONFILEDTL');" id="BTNSANCTIONFILEDTL" name="BTNSANCTIONFILEDTL" />
+                        <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable3A">
+                        </table>
                      </div>
-                     <div class="form-row ML01">
-                        <div class="col  BluShd">
-                           <label class="Btxt10">PF</label>
-                        </div>
+                  </div>
+                  <div class="form-row ML01">
+                     <div class="col  BluShd">
+                        <label class="Btxt10 SANHEAD">Sanction Conditions</label>
                      </div>
-                     <div class="form-row ML01">
-                        <div class="col">
-                           <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable4',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'PF'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'TechGDTL');" id="BTNTechGDTL" name="BTNTechDTL" />
-                           <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable4">
-                           </table>
-                        </div>
+                  </div>
+                  <div class="form-row ML01">
+                     <div class="col">
+                        <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable4',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'PF'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'TechGDTL');" id="BTNTechGDTL" name="BTNTechDTL" />
+                        <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable4">
+                        </table>
                      </div>
-                     <div class="form-row ML01">
-                        <div class="col  BluShd">
-                           <label class="Btxt10">Application Form</label>
-                        </div>
+                  </div>
+                  <div class="form-row ML01">
+                     <div class="col  BluShd">
+                        <label class="Btxt10 SANHEAD">Additional Documents</label>
                      </div>
-                     <div class="form-row ML01">
-                        <div class="col">
-                           <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable5',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Applicationform'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'Applnnform');" id="BTNApplnnform" name="BTNApplnnform" />
-                           <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable5">
-                           </table>
-                        </div>
+                  </div>
+                  <div class="form-row ML01">
+                     <div class="col">
+                        <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable5',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Applicationform'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'Applnnform');" id="BTNApplnnform" name="BTNApplnnform" />
+                        <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable5">
+                        </table>
                      </div>
-                     <div class="form-row">
-                        <div class="col  BluShd">
-                           <label class="Btxt10">Other File</label>
-                        </div>
+                  </div>
+                  <div class="form-row">
+                     <div class="col  BluShd">
+                        <label class="Btxt10 SANHEAD">Other File</label>
                      </div>
-                     <div class="form-row">
-                        <div class="col">
-                           <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable6',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'OtherFile'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'OthrFile');" id="BTNOthrFile" name="BTNOthrFile" />
-                           <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable6">
-                           </table>
-                        </div>
+                  </div>
+                  <div class="form-row">
+                     <div class="col">
+                        <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable6',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'OtherFile'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'OthrFile');" id="BTNOthrFile" name="BTNOthrFile" />
+                        <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable6">
+                        </table>
                      </div>
-                     <div class="form-row">
-                        <div class="col  BluShd">
-                           <label class="Btxt10">FI Reports</label>
-                        </div>
+                  </div>
+                  <div class="form-row" >
+                     <div class="col  BluShd">
+                        <label class="Btxt10 SANHEAD ">FI Reports</label>
                      </div>
-                     <div class="form-row">
-                        <div class="col">
-                           <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable7',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Fi reports'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'FIRprt');" id="BTNFIRprt" name="BTNFIRprt" />
-                           <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable7">
-                           </table>
-                        </div>
+                  </div>
+                  <div class="form-row">
+                     <div class="col">
+                        <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable7',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Fi reports'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'FIRprt');" id="BTNFIRprt" name="BTNFIRprt" />
+                        <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable7">
+                        </table>
                      </div>
-                     <div class="form-row">
-                        <div class="col  BluShd">
-                           <label class="Btxt10">RCU Report</label>
-                        </div>
+                  </div>
+                  <div class="form-row" >
+                     <div class="col  ">
+                        <label class="Btxt10 SANHEAD">RCU Report</label>
                      </div>
-                     <div class="form-row">
-                        <div class="col">
-                           <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable8',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Rcu report'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'RCURprt');" id="BTNRCURprt" name="BTNRCURprt" />
-                           <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable8">
-                           </table>
-                        </div>
+                  </div>
+                  <div class="form-row" >
+                     <div class="col">
+                        <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable8',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Rcu report'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'RCURprt');" id="BTNRCURprt" name="BTNRCURprt" />
+                        <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable8">
+                        </table>
                      </div>
-                     <div class="form-row">
-                        <div class="col  BluShd">
-                           <label class="Btxt10">Property visit report</label>
-                        </div>
+                  </div>
+                  <div class="form-row">
+                     <div class="col  ">
+                        <label class="Btxt10 SANHEAD">Property visit report</label>
                      </div>
-                     <div class="form-row">
-                        <div class="col">
-                           <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable9',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Property visit report'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'PropVst');" id="BTNPropVst" name="BTNPropVst" />
-                           <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable9">
-                           </table>
-                        </div>
+                  </div>
+                  <div class="form-row">
+                     <div class="col">
+                        <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable9',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Property visit report'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'PropVst');" id="BTNPropVst" name="BTNPropVst" />
+                        <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable9">
+                        </table>
                      </div>
-                     <div class="form-row">
-                        <div class="col  BluShd">
-                           <label class="Btxt10">Cibil reports</label>
-                        </div>
+                  </div>
+                  <div class="form-row" style="display:none">
+                     <div class="col  ">
+                        <label class="Btxt10">Cibil reports</label>
                      </div>
-                     <div class="form-row">
-                        <div class="col">
-                           <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable10',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Cibil reports'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'Cibil');" id="BTNCibil" name="BTNCibil" />
-                           <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable10">
-                           </table>
-                        </div>
+                  </div>
+                  <div class="form-row">
+                     <div class="col">
+                        <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable10',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Cibil reports'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'Cibil');" id="BTNCibil" name="BTNCibil" />
+                        <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable10">
+                        </table>
                      </div>
-                     <div class="form-row">
-                        <div class="col  BluShd">
-                           <label class="Btxt10">TECH REPORTS</label>
-                        </div>
+                  </div>
+                  <div class="form-row" style="display:none">
+                     <div class="col  ">
+                        <label class="Btxt10">TECH REPORTS</label>
                      </div>
-                     <div class="form-row">
-                        <div class="col">
-                           <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable11',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'TECH REPORTS'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'TechRPRT');" id="BTNTechRPRT" name="BTNTechRPRT" />
-                           <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable11">
-                           </table>
-                        </div>
+                  </div>
+                  <div class="form-row">
+                     <div class="col">
+                        <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable11',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'TECH REPORTS'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'TechRPRT');" id="BTNTechRPRT" name="BTNTechRPRT" />
+                        <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable11">
+                        </table>
                      </div>
-                     <div class="form-row">
-                        <div class="col  BluShd">
-                           <label class="Btxt10">Income AND CAM</label>
-                        </div>
+                  </div>
+                  <div class="form-row" style="display:none">
+                     <div class="col  ">
+                        <label class="Btxt10">Income AND CAM</label>
                      </div>
-                     <div class="form-row">
-                        <div class="col">
-                           <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable12',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Income AND CAM'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'Incm');" id="BTNIncm" name="BTNIncm" />
-                           <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable12">
-                           </table>
-                        </div>
+                  </div>
+                  <div class="form-row">
+                     <div class="col">
+                        <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable12',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Income AND CAM'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'Incm');" id="BTNIncm" name="BTNIncm" />
+                        <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable12">
+                        </table>
                      </div>
-                     <div class="form-row">
-                        <div class="col  BluShd">
-                           <label class="Btxt10">Approvals</label>
-                        </div>
+                  </div>
+                  <div class="form-row" style="display:none">
+                     <div class="col  ">
+                        <label class="Btxt10">Approvals</label>
                      </div>
-                     <div class="form-row">
-                        <div class="col">
-                           <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable13',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Approvals'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'Apprvl');" id="BTNApprvl" name="BTNApprvl" />
-                           <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable13">
-                           </table>
-                        </div>
+                  </div>
+                  <div class="form-row">
+                     <div class="col">
+                        <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable13',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Approvals'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'Apprvl');" id="BTNApprvl" name="BTNApprvl" />
+                        <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable13">
+                        </table>
                      </div>
-                     <div class="form-row">
-                        <div class="col  BluShd">
-                           <label class="Btxt10">BT process</label>
-                        </div>
+                  </div>
+                  <div class="form-row" style="display:none">
+                     <div class="col  ">
+                        <label class="Btxt10">BT process</label>
                      </div>
-                     <div class="form-row">
-                        <div class="col">
-                           <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable14',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'BT process'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'BTPrcs');" id="BTNBTPrcs" name="BTNBTPrcs" />
-                           <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable14">
-                           </table>
-                        </div>
+                  </div>
+                  <div class="form-row">
+                     <div class="col">
+                        <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable14',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'BT process'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'BTPrcs');" id="BTNBTPrcs" name="BTNBTPrcs" />
+                        <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable14">
+                        </table>
                      </div>
-                     <div class="form-row">
-                        <div class="col  BluShd">
-                           <label class="Btxt10">Sanction letter</label>
-                        </div>
+                  </div>
+                  <div class="form-row" style="display:none">
+                     <div class="col  ">
+                        <label class="Btxt10">Sanction letter</label>
                      </div>
-                     <div class="form-row">
-                        <div class="col">
-                           <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable15',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Sanction letter'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'SancLtr');" id="BTNSancLtr" name="BTNSancLtr" />
-                           <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable15">
-                           </table>
-                        </div>
+                  </div>
+                  <div class="form-row">
+                     <div class="col">
+                        <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable15',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Sanction letter'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'SancLtr');" id="BTNSancLtr" name="BTNSancLtr" />
+                        <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable15">
+                        </table>
                      </div>
-                     <div class="form-row">
-                        <div class="col  BluShd">
-                           <label class="Btxt10">legal report and property document</label>
-                        </div>
+                  </div>
+                  <div class="form-row" style="display:none">
+                     <div class="col  ">
+                        <label class="Btxt10">legal report and property document</label>
                      </div>
-                     <div class="form-row">
-                        <div class="col">
-                           <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable17',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'legal report and property document'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'Legl');" id="BTNLegl" name="BTNLegl" />
-                           <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable17">
-                           </table>
-                        </div>
+                  </div>
+                  <div class="form-row">
+                     <div class="col">
+                        <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable17',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'legal report and property document'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'Legl');" id="BTNLegl" name="BTNLegl" />
+                        <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable17">
+                        </table>
                      </div>
-                     <div class="form-row">
-                        <div class="col  BluShd">
-                           <label class="Btxt10">DM</label>
-                        </div>
+                  </div>
+                  <div class="form-row" style="display:none">
+                     <div class="col  ">
+                        <label class="Btxt10">DM</label>
                      </div>
-                     <div class="form-row">
-                        <div class="col">
-                           <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable18',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'DM'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'DM');" id="BTNDM" name="BTNDM" />
-                           <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable18">
-                           </table>
-                        </div>
+                  </div>
+                  <div class="form-row">
+                     <div class="col">
+                        <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable18',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'DM'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'DM');" id="BTNDM" name="BTNDM" />
+                        <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable18">
+                        </table>
                      </div>
-                     <div class="form-row">
-                        <div class="col  BluShd">
-                           <label class="Btxt10">Loan agreement</label>
-                        </div>
+                  </div>
+                  <div class="form-row" style="display:none">
+                     <div class="col  ">
+                        <label class="Btxt10">Loan agreement</label>
                      </div>
-                     <div class="form-row">
-                        <div class="col">
-                           <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable19',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Loan agreement'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'LonAgr');" id="BTNLonAgr" name="BTNLonAgr" />
-                           <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable19">
-                           </table>
-                        </div>
+                  </div>
+                  <div class="form-row">
+                     <div class="col">
+                        <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable19',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Loan agreement'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'LonAgr');" id="BTNLonAgr" name="BTNLonAgr" />
+                        <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable19">
+                        </table>
                      </div>
-                     <div class="form-row">
-                        <div class="col  BluShd">
-                           <label class="Btxt10">Cross sell</label>
-                        </div>
+                  </div>
+                  <div class="form-row" style="display:none">
+                     <div class="col  ">
+                        <label class="Btxt10">Cross sell</label>
                      </div>
-                     <div class="form-row">
-                        <div class="col">
-                           <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable20',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Cross sell'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'CrsSell');" id="BTNCrsSell" name="BTNCrsSell" />
-                           <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable20">
-                           </table>
-                        </div>
+                  </div>
+                  <div class="form-row">
+                     <div class="col">
+                        <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable20',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Cross sell'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'CrsSell');" id="BTNCrsSell" name="BTNCrsSell" />
+                        <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable20">
+                        </table>
                      </div>
-                     <div class="form-row">
-                        <div class="col  BluShd">
-                           <label class="Btxt10">BT Process - Ops</label>
-                        </div>
+                  </div>
+                  <div class="form-row" style="display:none">
+                     <div class="col  ">
+                        <label class="Btxt10">BT Process - Ops</label>
                      </div>
-                     <div class="form-row">
-                        <div class="col">
-                           <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable21',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'BT Process - Ops'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'BTOPS');" id="BTNBTOPS" name="BTNBTOPS" />
-                           <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable21">
-                           </table>
-                        </div>
+                  </div>
+                  <div class="form-row">
+                     <div class="col">
+                        <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable21',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'BT Process - Ops'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'BTOPS');" id="BTNBTOPS" name="BTNBTOPS" />
+                        <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable21">
+                        </table>
+                      </div>
+                  </div>
+
+                  <div class="form-row" style="display:none">
+                     <div class="col  ">
+                        <label class="Btxt10">Repayment kit</label>
                      </div>
-                     <div class="form-row">
-                        <div class="col  BluShd">
-                           <label class="Btxt10">Repayment kit</label>
-                        </div>
-                     </div>
-                     <div class="form-row">
-                        <div class="col">
-                           <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable24',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Repayment kit'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'Repaymentkit');" id="BTNRepaymentkit" name="BTNRepaymentkit" />
-                           <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable24">
-                           </table>
-                        </div>
-                     </div>
-                     <div class="form-row ML01">
-                        <div class="col d-flex justify-content-center">
-                           <button type="button" id="Save1" data-aria="LSW_TOPSDISBCHKLSTHDR|ODCH|ODCH_TRNCHID" data-form="CAM" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
-                           <button type="button" data-aria="LSW_TOPSDISBCHKLSTHDR|ODCH|ODCH_TRNCHID" data-form="CAM" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button>
-                        </div>
-                     </div>
-                  </form>
-               </div>
+                  </div>
+                  <div class="form-row">
+                     <div class="col">
+                        <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable24',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Repayment kit'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'Repaymentkit');" id="BTNRepaymentkit" name="BTNRepaymentkit" />
+                        <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable24">
+                        </table>
+                      </div>
+                  </div>
+                  <div class="form-row ML01">
+                     <div class="col d-flex justify-content-center">
+                        <button type="button" id="Save1" data-aria="LSW_TOPSDISBCHKLSTHDR|ODCH|ODCH_TRNCHID" data-form="CAM" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
+                        <button type="button" data-aria="LSW_TOPSDISBCHKLSTHDR|ODCH|ODCH_TRNCHID" data-form="CAM" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button>
+                      </div>
+                  </div>
+               </form>
             </div>
          </div>
+      </div>
       </div>
       <!-- Branch End -->
       <!--  Credit Ops Checklist Start -->
       <div id = "Credit">
-         <div class="card">
-            <div class="card-header Btxt7" role="tab" id="headingTwo2">
-               <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse" data-load="" data-multidata="BTNCreditOpsChecklist" data-aria="" data-parent="#accordionEx" href="#collapseTwo2"
-                  aria-expanded="false" aria-controls="collapse2">
-               Credit Ops Checklist<i class="fa fa-plus-circle rotate-icon"></i>
-               </a>
-            </div>
-            <div id="collapseTwo2" class="collapse" role="tabpanel" aria-labelledby="headingTwo2"
-               data-parent="#accordionEx">
-               <div class="card-body px-lg-5 pt-0" >
-                  <div class="form-row ML01">
+      	<div class="card">
+      	<div class="card-header Btxt7" role="tab" id="headingTwo2">
+      	<a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse" data-load="" data-multidata="BTNCreditOpsChecklist" data-aria="" data-parent="#accordionEx" href="#collapseTwo2"
+               aria-expanded="false" aria-controls="collapse2">
+            Credit Ops Checklist<i class="fa fa-plus-circle rotate-icon"></i>
+            </a>
+      	</div>
+      	<div id="collapseTwo2" class="collapse" role="tabpanel" aria-labelledby="headingTwo2"
+            data-parent="#accordionEx">
+            <div class="card-body px-lg-5 pt-0" >
+            	<div class="form-row ML01">
                      <div class="col  BluShd">
                         <label class="Btxt10"> Credit KYC </label>
                      </div>
@@ -411,7 +430,7 @@
                         </table>
                      </div>
                   </div>
-                  <div class="form-row ML01">
+                   <div class="form-row ML01">
                      <div class="col  BluShd">
                         <label class="Btxt10">FI Reports</label>
                      </div>
@@ -535,27 +554,27 @@
                      <div class="col d-flex justify-content-center">
                         <button type="button" id="Save2" data-aria="LSW_TOPSDISBCHKLSTHDR|ODCH|ODCH_TRNCHID" data-form="CAM" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
                         <button type="button" data-aria="LSW_TOPSDISBCHKLSTHDR|ODCH|ODCH_TRNCHID" data-form="CAM" data-card="1" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button>
-                        <!--  <button type="button" id="SaveCROPS" style="display:none;" data-aria="LSW_TOPSDISBCHKLSTHDR|ODCH|ODCH_TRNCHID" data-form="CAM" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Send to OPS</button>-->
+                         <!--  <button type="button" id="SaveCROPS" style="display:none;" data-aria="LSW_TOPSDISBCHKLSTHDR|ODCH|ODCH_TRNCHID" data-form="CAM" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Send to OPS</button>-->
                      </div>
                   </div>
-               </div>
             </div>
-         </div>
+            </div>
+      </div>
       </div>
       <!--  Credit Ops Checklist End -->
       <!--  Ops Checklist Start -->
       <div id = "OPS">
-         <div class="card">
-            <div class="card-header Btxt7" role="tab" id="headingThree3">
-               <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse" data-load="" data-multidata="BTNOpsChecklist" data-aria="" data-parent="#accordionEx" href="#collapseThree3"
-                  aria-expanded="false" aria-controls="collapse3">
-               Ops Checklist<i class="fa fa-plus-circle rotate-icon"></i>
-               </a>
-            </div>
-            <div id="collapseThree3" class="collapse" role="tabpanel" aria-labelledby="headingThree3"
-               data-parent="#accordionEx">
-               <div class="card-body px-lg-5 pt-0" >
-                  <div class="form-row ML01">
+      <div class="card">
+      	<div class="card-header Btxt7" role="tab" id="headingThree3">
+      	<a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse" data-load="" data-multidata="BTNOpsChecklist" data-aria="" data-parent="#accordionEx" href="#collapseThree3"
+               aria-expanded="false" aria-controls="collapse3">
+            Ops Checklist<i class="fa fa-plus-circle rotate-icon"></i>
+            </a>
+      	</div>
+      	<div id="collapseThree3" class="collapse" role="tabpanel" aria-labelledby="headingThree3"
+            data-parent="#accordionEx">
+            <div class="card-body px-lg-5 pt-0" >
+            	 <div class="form-row ML01">
                      <div class="col  BluShd">
                         <label class="Btxt10"> KYC </label>
                      </div>
@@ -627,48 +646,52 @@
                         </table>
                      </div>
                   </div>
-               </div>
-               <div class="form-row">
-                  <div class="col  BluShd">
-                     <label class="Btxt10">Repayment kit</label>
                   </div>
-               </div>
-               <div class="form-row">
-                  <div class="col">
-                     <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable24',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Repayment kit'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'Repaymentkit');" id="BTNRepaymentkit" name="BTNRepaymentkit" />
-                     <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable24">
-                     </table>
+				  <div class="form-row">
+                     <div class="col  BluShd">
+                        <label class="Btxt10">Repayment kit</label>
+                     </div>
                   </div>
-               </div>
-               <div class="form-row ML01">
-                  <div class="col d-flex justify-content-center">
-                     <button type="button" id="RaiseQueryCo2" data-aria="LSW_TOPSDISBCHKLSTHDR|ODCH|ODCH_TRNCHID" data-form="PersonalInfo" QueryType="DisbChkLst" style="height:35px" class="btn btn-Syeloutline waves-effect waves-light FormSave PODSave RaiseQry">Raise Query</button>
-                     <button type="button" id="OPSSave" data-aria="LSW_TOPSDISBCHKLSTHDR|ODCH|ODCH_TRNCHID" data-form="CAM" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
-                     <button type="button" data-aria="LSW_TOPSDISBCHKLSTHDR|ODCH|ODCH_TRNCHID" data-form="CAM" data-card="2" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
+                  <div class="form-row">
+                     <div class="col">
+                        <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable24',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Repayment kit'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'Repaymentkit');" id="BTNRepaymentkit" name="BTNRepaymentkit" />
+                        <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable24">
+                        </table>
+                      </div>
                   </div>
-               </div>
+                  <div class="form-row ML01">
+                     <div class="col d-flex justify-content-center">
+                          <button type="button" id="RaiseQueryCo2" data-aria="LSW_TOPSDISBCHKLSTHDR|ODCH|ODCH_TRNCHID" data-form="PersonalInfo" QueryType="DisbChkLst" style="height:35px" class="btn btn-Syeloutline waves-effect waves-light FormSave PODSave RaiseQry">Raise Query</button>
+                        <button type="button" id="OPSSave" data-aria="LSW_TOPSDISBCHKLSTHDR|ODCH|ODCH_TRNCHID" data-form="CAM" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
+                        <button type="button" data-aria="LSW_TOPSDISBCHKLSTHDR|ODCH|ODCH_TRNCHID" data-form="CAM" data-card="2" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
+                      </div>
+                  </div>
+                  
             </div>
-         </div>
       </div>
+      </div>
+      
       <!--  Credit Ops Checklist End -->
-      <!--  Ops MINI Checklist Start -->
-      <div id = "OPSMINI">
-         <div class="card">
-            <div class="card-header Btxt7" role="tab" id="headingFour4">
-               <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse" data-load="" data-multidata="BTNOpsMINICl" data-aria="" data-parent="#accordionEx" href="#collapseFour4"
-                  aria-expanded="false" aria-controls="collapse4">
-               Ops MINI Checklist<i class="fa fa-plus-circle rotate-icon"></i>
-               </a>
-            </div>
-			<div class="HyperControls card-body px-lg-5 pt-0" style="display:none" id="GECLPOPUP1"> 
+      
+       <!--  Ops MINI Checklist Start -->
+       <div id = "OPSMINI">
+       	<div class="card">
+       	<div class="card-header Btxt7" role="tab" id="headingFour4">
+      	<a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse" data-load="" data-multidata="BTNOpsMINICl" data-aria="" data-parent="#accordionEx" href="#collapseFour4"
+               aria-expanded="false" aria-controls="collapse4">
+            Branch Checklist<i class="fa fa-plus-circle rotate-icon"></i>
+            </a>
+      	</div>
+		<div class="HyperControls card-body px-lg-5 pt-0" style="display:none" id="GECLPOPUP1"> 
                         <a type="button" class="Btxt4 FltRight" onclick='$("#GECLPOPUP").click()' href="#">View GECL Additional CheckList</a>
                      </div>
-            <div id="collapseFour4" class="collapse" role="tabpanel" aria-labelledby="headingFour4"
-               data-parent="#accordionEx">
-               <div class="card-body px-lg-5 pt-0" >
-                  <div class="form-row">
+      	<div id="collapseFour4" class="collapse" role="tabpanel" aria-labelledby="headingFour4"
+            data-parent="#accordionEx">
+            <div class="card-body px-lg-5 pt-0" >
+            	<div class="form-row">
                      <div class="col  BluShd">
                         <label class="Btxt10"> MINI CheckList KYC </label>
+						<!--MINI CheckList KYC-->
                      </div>
                   </div>
                   <div class="form-row">
@@ -690,7 +713,7 @@
                         </table>
                      </div>
                   </div>
-				  <div class="form-row ML01">
+                   <div class="form-row ML01">
                         <div class="col  BluShd">
                            <label class="Btxt10"> KYC </label>
                         </div>
@@ -772,7 +795,7 @@
 									  </div>
 									  <div class=" col-md-4">
 										 <div class="md-form">
-											<input type="text" id="ODCH_UDAADHAR" name="ODCH_UDAADHAR" class="form-control IsNumberFields IsAadharFields ODCHDBfields  ">   
+											<input type="text" id="ODCH_UDAADHAR" name="ODCH_UDAADHAR" maxlength='12' class="form-control  IsNumberFields IsAadharFields  ODCHDBfields  ">   
 										 </div>
 									  </div>
 									  
@@ -831,7 +854,7 @@
 									  </div>
 									  <div class="col-md-4">
 										 <div class="md-form">
-											<input type="text" id="ODCH_AADRNO" name="ODCH_AADRNO" value="XXXXXXXX" class="form-control IsAadharFields ODCHDBfields"> 
+											<input type="text" id="ODCH_AADRNO" name="ODCH_AADRNO" maxlength='12' class="form-control IsNumberFields IsAadharFields ODCHDBfields  "> 
 										 </div>
 									  </div>
 								   </div>
@@ -882,7 +905,7 @@
 								   <div class="form-row NormalFld">
 									  <div class=" col-md-4 GryShd ">
 										 <div class="md-form">
-											<input type="text" value="Type of Borrower" disabled style="height: 130px;width:300px;" class="form-control Btxt17  DSVLBL  ">
+											<input type="text" value="Type of Borrower" disabled style="height: 130px;width:300px;" class="form-control Btxt17  DSVLBL   ">
 										 </div>
 									  </div>
 									  <div class=" col-md-1">
@@ -901,33 +924,34 @@
 				   </div>
 				</div>
 			   </div>
-               </div>
             </div>
-         </div>
-      </div>
-      <!--  Ops MINI Checklist END -->
-      <!--  T2 Checklist Start -->
-      <div id = "T2">
+            </div>
+       	</div>
+       </div>
+        <!--  Ops MINI Checklist END -->
+        <!--  T2 Checklist Start -->
+         <div id = "T2">
          <div class="card">
-            </br>
-            <div class="card-body px-lg-5 pt-0" >
-               <div class="form-row">
-                  <div class="col">
-                     <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'DisbChkTable23',{spname:'LSW_SGETTRNCHDISBCHKLST',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|OPSMC'+'|'+$('#DMY7').val().split('|')[8],MnuId:'T2'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'T2CheckLst');" id="BTNT2" name="BTNT2" />
-                     <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display"  name="DisbChkTable" id="DisbChkTable23">
-                     </table>
+         </br>
+		 
+         <div class="card-body px-lg-5 pt-0" >
+         <div class="form-row">
+                     <div class="col">
+                        <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'DisbChkTable23',{spname:'LSW_SGETTRNCHDISBCHKLST',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|OPSMC'+'|'+$('#DMY7').val().split('|')[8],MnuId:'T2'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'T2CheckLst');" id="BTNT2" name="BTNT2" />
+                        <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display"  name="DisbChkTable" id="DisbChkTable23">
+                        </table>
+                     </div>
                   </div>
-               </div>
-               <div class="form-row">
-                  <div class="col d-flex justify-content-center">
-                     <button type="button" id="SaveTrnch2" data-aria="LSW_TOPSDISBCHKLSTHDR|ODCH|ODCH_TRNCHID" data-form="CAM" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
-                     <button type="button" id="SaveTrnch2Nxt" data-aria="LSW_TOPSDISBCHKLSTHDR|ODCH|ODCH_TRNCHID" data-form="CAM" data-card="4" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
+      		      <div class="form-row">
+                     <div class="col d-flex justify-content-center">
+                        <button type="button" id="SaveTrnch2" data-aria="LSW_TOPSDISBCHKLSTHDR|ODCH|ODCH_TRNCHID" data-form="CAM" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
+                        <button type="button" id="SaveTrnch2Nxt" data-aria="LSW_TOPSDISBCHKLSTHDR|ODCH|ODCH_TRNCHID" data-form="CAM" data-card="4" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
+					  </div>
                   </div>
-               </div>
-            </div>
-         </div>
+                  </div>
+                  </div>
       </div>
-      <!--  GECL Checklist Start -->
+	  <!--  GECL Checklist Start -->
       <div id = "GECL">
          <div class="card">
             </br>
@@ -955,7 +979,7 @@
 					  </div>
 					  <div class=" col-md-4">
 						 <div class="md-form">
-							<input type="text" id="ODCH_UDAADHAR"  maxlength="12" value="XXXXXXXX" name="ODCH_UDAADHAR" class="form-control IsNumberFields IsAadharFields ODCHDBfields  ">   
+							<input type="text" id="ODCH_UDAADHAR" name="ODCH_UDAADHAR" class="form-control  NoSpecialChar ODCHDBfields  ">   
 						 </div>
 					  </div>
 					  
@@ -1014,7 +1038,7 @@
 					  </div>
 					  <div class="col-md-4">
 						 <div class="md-form">
-							<input type="text" id="ODCH_AADRNO" name="ODCH_AADRNO" maxlength="12" value="XXXXXXXX" class="form-control IsNumberFields IsAadharFields ODCHDBfields  "> 
+							<input type="text" id="ODCH_AADRNO" name="ODCH_AADRNO"  class="form-control IsNumberFields IsAadharFields ODCHDBfields  "> 
 						 </div>
 					  </div>
 				   </div>
@@ -1114,6 +1138,6 @@
       <th>ODCL_TRDT</th>
       <th>ODCL_REMRK</th>
       <th>ODCL_OTHRSTATS</th>
-      <th>ODCL_OTHRREMRK</th>
+       <th>ODCL_OTHRREMRK</th>
    </thead>
 </table>

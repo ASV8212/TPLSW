@@ -14,7 +14,8 @@
                 <input type="text" id="CITR_MODIFIEDBY" hidden="hidden" name="CITR_MODIFIEDBY" class="form-control CITRDBfields">
                 <input type="text" id="CITR_DTMODIFIED" hidden="hidden" name="CITR_DTMODIFIED" class="form-control CITRDBfields">
 				<input type="text" id="CITR_SCHEMEID" hidden="hidden" name="CITR_SCHEMEID" class="form-control  CITRDBfields">
-				<input type="text" id="CITR_SCHEMENAME" hidden="hidden" name="CITR_SCHEMENAME" class="form-control CITRDBfields">  
+				<input type="text" id="CITR_SCHEMENAME" hidden="hidden" name="CITR_SCHEMENAME" class="form-control CITRDBfields">
+				<input type="text" id="CITR_LOANID" hidden="hidden" name="CITR_LOANID" class="form-control  CITRDBfields">
 		</br>
 			<div class="form-row">
 				<div class="col Btxt3">ITR Based Eligibility Calculator</div>

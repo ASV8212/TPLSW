@@ -10,7 +10,7 @@ $(document).ready(function() {
 		$(".GECLNormalFld1").remove();
 	}
 
- if($("#DMY7").val().split("|")[8]=="HE02")
+   if($("#DMY7").val().split("|")[8]=="HE02")
    {
 	  // $($(".FormPageSubTab").find('li')[1]).hide()
 	 //  $($(".FormPageSubTab").find('li')[3]).hide()
@@ -40,20 +40,20 @@ $(document).ready(function() {
 		$("#ODCH_TRNCHID").val($(".FormPageMultiTab li.active a div").text())
 		$("#ODCH_TRNCHNAME").val($(".FormPageMultiTab li.active a div").text())
 	/*}*/
-	
+    
 	if($("#DMY7").val().split('|')[10]=="HEGECL"){
 		LoadCheckLSTDropDown();
 		if($("#DMY7").val().split('|')[10]=="HEGECL" && $("#DMY5").val().split('|')[2]=="BranchOPS"){
 			$(".GECLBROPSMNDTRY").addClass("ODCHMndtry");
 		}
 	}
-    
-    FormDataFromDB("LSW_TOPSDISBCHKLSTHDR", "ODCH_", "ODCHDBfields", $("#ODCH_TRNCHID").val()+"|ODCH_TRNCHID");
 	
+    FormDataFromDB("LSW_TOPSDISBCHKLSTHDR", "ODCH_", "ODCHDBfields", $("#ODCH_TRNCHID").val()+"|ODCH_TRNCHID");
+    
 	if($("#DMY7").val().split('|')[10]=="HEGECL" && $("#ODCH_INSSECTR").val()!=""){
 		CheckLSTDropDownOnChng1();
 	}
-    
+	
 	$("#HiddenActID").val(activityname);
     
     
@@ -79,7 +79,7 @@ $(document).ready(function() {
         if ($(this).text() == "Save & Next") {
             var MndtryChk = ChkMandatoryFlds(prfx + "Mndtry");
             if (MndtryChk == "Mandatory") {
-                alert("Fill the Mandatory Fields");
+                alert("Fill the Mandatory Fields / Document(s)");
                 return false;
             }
 			
@@ -148,10 +148,9 @@ $(document).ready(function() {
     });
     $(document).on("click", "#BTNBranchCheckList", function() {
 	GridTgrTyp="Branch";
-	
-	ChklstMstrXML = UI_GetData_Disb($("#PrcsID").val(), $(".FormPageMultiTab li.active a div").text()+'|'+GridTgrTyp+'|'+$("#DMY7").val().split("|")[8], "", "", "", "LSW_SGETTRNCHDISBCHKLST2");
-   
-    for(var i = 0;i<$("#"+$(this).attr('data')).find('.BluShd').length;i++)
+	//ChklstMstrXML = UI_getdata($("#PrcsID").val(), $(".FormPageMultiTab li.active a div").text()+'|'+GridTgrTyp+'|'+$("#DMY7").val().split("|")[8], "", "", "", "LSW_SGETTRNCHDISBCHKLST1");
+    ChklstMstrXML = UI_GetData_Disb($("#PrcsID").val(), $(".FormPageMultiTab li.active a div").text()+'|'+GridTgrTyp+'|'+$("#DMY7").val().split("|")[8], "", "", "", "LSW_SGETTRNCHDISBCHKLST2");
+	for(var i = 0;i<$("#"+$(this).attr('data')).find('.BluShd').length;i++)
 	{
 	CtgryXML=ChklstMstrXML.split('|')[i].replace('<Resultset><a><XMLLRGResult>','').replace('</XMLLRGResult></a></Resultset>','');
 	CtgryXML='<Resultset><a><XMLLRGResult>'+CtgryXML+'</XMLLRGResult></a></Resultset>';
@@ -160,8 +159,9 @@ $(document).ready(function() {
     });
     $(document).on("click", "#BTNCreditOpsChecklist", function() {
 		GridTgrTyp="CREDIT OPS";
-		ChklstMstrXML = UI_GetData_Disb($("#PrcsID").val(), $(".FormPageMultiTab li.active a div").text()+'|'+GridTgrTyp+'|'+$("#DMY7").val().split("|")[8], "", "", "", "LSW_SGETTRNCHDISBCHKLST2");
-    	for(var i = 0;i<$("#"+$(this).attr('data')).find('.BluShd').length;i++)
+		//ChklstMstrXML = UI_getdata($("#PrcsID").val(), $(".FormPageMultiTab li.active a div").text()+'|'+GridTgrTyp+'|'+$("#DMY7").val().split("|")[8], "", "", "", "LSW_SGETTRNCHDISBCHKLST1");
+    	ChklstMstrXML = UI_GetData_Disb($("#PrcsID").val(), $(".FormPageMultiTab li.active a div").text()+'|'+GridTgrTyp+'|'+$("#DMY7").val().split("|")[8], "", "", "", "LSW_SGETTRNCHDISBCHKLST2");
+		for(var i = 0;i<$("#"+$(this).attr('data')).find('.BluShd').length;i++)
     	{
 		CtgryXML=ChklstMstrXML.split('|')[i].replace('<Resultset><a><XMLLRGResult>','').replace('</XMLLRGResult></a></Resultset>','');
 		CtgryXML='<Resultset><a><XMLLRGResult>'+CtgryXML+'</XMLLRGResult></a></Resultset>';
@@ -170,8 +170,9 @@ $(document).ready(function() {
         });
     $(document).on("click", "#BTNOpsChecklist", function() {
 		GridTgrTyp="OPS";
-		ChklstMstrXML = UI_GetData_Disb($("#PrcsID").val(), $(".FormPageMultiTab li.active a div").text()+'|'+GridTgrTyp+'|'+$("#DMY7").val().split("|")[8], "", "", "", "LSW_SGETTRNCHDISBCHKLST2");
-    	for(var i = 0;i<$("#"+$(this).attr('data')).find('.BluShd').length;i++)
+		//ChklstMstrXML = UI_getdata($("#PrcsID").val(), $(".FormPageMultiTab li.active a div").text()+'|'+GridTgrTyp+'|'+$("#DMY7").val().split("|")[8], "", "", "", "LSW_SGETTRNCHDISBCHKLST1");
+    	ChklstMstrXML = UI_GetData_Disb($("#PrcsID").val(), $(".FormPageMultiTab li.active a div").text()+'|'+GridTgrTyp+'|'+$("#DMY7").val().split("|")[8], "", "", "", "LSW_SGETTRNCHDISBCHKLST2");
+		for(var i = 0;i<$("#"+$(this).attr('data')).find('.BluShd').length;i++)
     	{
 		CtgryXML=ChklstMstrXML.split('|')[i].replace('<Resultset><a><XMLLRGResult>','').replace('</XMLLRGResult></a></Resultset>','');
 		CtgryXML='<Resultset><a><XMLLRGResult>'+CtgryXML+'</XMLLRGResult></a></Resultset>';
@@ -183,6 +184,7 @@ $(document).ready(function() {
 		if($("#DMY7").val().split("|")[8]=="ML01")
 		{
 			GridTgrTyp="OPSMC";
+			//ChklstMstrXML = UI_getdata($("#PrcsID").val(), $(".FormPageMultiTab li.active a div").text()+'|'+GridTgrTyp+'|'+$("#DMY7").val().split("|")[8], "", "", "", "LSW_SGETTRNCHDISBCHKLST1");
 			ChklstMstrXML = UI_GetData_Disb($("#PrcsID").val(), $(".FormPageMultiTab li.active a div").text()+'|'+GridTgrTyp+'|'+$("#DMY7").val().split("|")[8], "", "", "", "LSW_SGETTRNCHDISBCHKLST2");
 			for(var i = 0;i<$("#"+$(this).attr('data')).find('.BluShd').length;i++)
 			{
@@ -216,7 +218,15 @@ $(document).ready(function() {
 			$(this).closest('.tbodytrtd').next().find('input').removeClass("GridMndtryTrDt");
     	}
     });
-    var activityname = GetActivityName();
+	
+	if($("#DMY5").val().split('|')[2]!="")
+	{
+		var activityname=$("#DMY5").val().split('|')[2]
+	}
+	else
+	{
+      var activityname = GetActivityName();
+	}
     
     	if(activityname == "CreditOPS"){
 			$('#headingOne1').parent().hide();
@@ -315,7 +325,8 @@ $(document).ready(function() {
             	$('#headingThree3').remove();
 				$("#GECL").remove();
         	}
-        	sel = $('input[type=radio]:checked');
+			sel = $('input[type=radio]:checked');
+        	
         }
         else if(activityname == "OPSMC" || activityname == "OPSQD"){
 			if(($("#DMY7").val().split("|")[8]!="ML01") || ($("#DMY7").val().split("|")[8]=="ML01" && $(".FormPageMultiTab li.active").attr("id")=="Tranche1")){
@@ -343,10 +354,10 @@ $(document).ready(function() {
 				}
 				else if($("#DMY7").val().split("|")[10]=="HEGECL"){
 					$("#GECLPOPUP1").show();
-					$('.Formaccordion').find('.AFormaccordion')[0].click();
-					//$('#T2').parent().hide();
-					$("#T2").remove();
-					$("#GECL").remove();
+        	$('.Formaccordion').find('.AFormaccordion')[0].click();
+			//$('#T2').parent().hide();
+        	$("#T2").remove();
+			$("#GECL").remove();
 					//$("#GECL").find(".form-row").not('.NormalFld').remove();
 					//$("#GECL").hide();
 					$("#OPSMINI").find('.NormalFld').find('.ODCHDBfields').attr("disabled","disabled");
@@ -402,7 +413,7 @@ $(document).ready(function() {
 					$('#headingOne1').parent().hide();
             		$('#headingOne1').remove();
 					$("#BTNTGECL").click();
-					//$("#GECL").find('.NormalFld').find('.ODCHDBfields').attr("disabled","disabled");
+					$("#GECL").find('.NormalFld').find('.ODCHDBfields').attr("disabled","disabled");
 				}
             	}
 				else if($(".FormPageMultiTab li.active").attr("id")!="Tranche1" && $("#DMY7").val().split("|")[8]=="ML01")
@@ -429,13 +440,74 @@ $(document).ready(function() {
         		{
         		$("#SaveBR").show();
         		}*/
+				
+				
+				
+				if($("#DMY7").val().split("|")[8]=="T201"||$("#DMY7").val().split("|")[8]=="T204"||$("#DMY7").val().split("|")[8]=="T205"||$("#DMY7").val().split("|")[8]=="T206"||$("#DMY7").val().split("|")[8]=="T207"||$("#DMY7").val().split("|")[8]=="T208"||$("#DMY7").val().split("|")[8]=="T209"||$("#DMY7").val().split("|")[8]=="T210"||$("#DMY7").val().split("|")[8]=="T211")
+				{  
+					$($("#Branch").find(".SANHEAD")[0]).text("Additional Documents")
+					$($("#Branch").find(".SANHEAD")[1]).text("Pre Sanction Documents")
+					$($("#Branch").find(".SANHEAD")[2]).text("Post sanction Documents")
+					$($("#Branch").find(".SANHEAD")[3]).text("Repayment Instruments")
+					$($("#Branch").find(".SANHEAD")[4]).text("Reports")
+					$($("#Branch").find(".SANHEAD")[5]).text("Sanction Conditions")	
+					$($("#Branch").find(".SANHEAD")[6]).text("")	
+					$($("#Branch").find(".SANHEAD")[7]).text("")	
+					$($("#Branch").find(".SANHEAD")[8]).text("")	
+					$($("#Branch").find(".SANHEAD")[9]).text("")	
+					$($("#Branch").find(".SANHEAD")[10]).text("")
+				}
+				
+				
+				if($("#DMY7").val().split("|")[8]=="T202")
+				{
+					$($("#Branch").find(".SANHEAD")[0]).text("Balance Transfer")
+					$($("#Branch").find(".SANHEAD")[1]).text("Additional Documents")
+					$($("#Branch").find(".SANHEAD")[2]).text("Other Collateral")
+					$($("#Branch").find(".SANHEAD")[3]).text("Pre Sanction Documents")
+					$($("#Branch").find(".SANHEAD")[4]).text("Reports")
+					$($("#Branch").find(".SANHEAD")[5]).text("Sanction Conditions")	
+					$($("#Branch").find(".SANHEAD")[6]).text("")	
+					$($("#Branch").find(".SANHEAD")[7]).text("")	
+					$($("#Branch").find(".SANHEAD")[8]).text("")	
+					$($("#Branch").find(".SANHEAD")[9]).text("")	
+					$($("#Branch").find(".SANHEAD")[10]).text("")
+				}
+				
+				if($("#DMY7").val().split("|")[8]=="T203")
+				{
+					$($("#Branch").find(".SANHEAD")[0]).text("Additional Documents")
+					$($("#Branch").find(".SANHEAD")[1]).text("Balance Transfer")
+					$($("#Branch").find(".SANHEAD")[2]).text("Collateral")
+					$($("#Branch").find(".SANHEAD")[3]).text("Other Collateral")
+					$($("#Branch").find(".SANHEAD")[4]).text("PDD")
+					$($("#Branch").find(".SANHEAD")[5]).text("Pre Sanction Documents")	
+					$($("#Branch").find(".SANHEAD")[6]).text("Reports")	
+					$($("#Branch").find(".SANHEAD")[7]).text("Repayment Instruments")	
+					$($("#Branch").find(".SANHEAD")[8]).text("Sanction Conditions")	
+					$($("#Branch").find(".SANHEAD")[9]).text("")	
+					$($("#Branch").find(".SANHEAD")[10]).text("")
+				}
+				
+				if($("#DMY7").val().split("|")[8]=="T301"||$("#DMY7").val().split("|")[8]=="T302"||$("#DMY7").val().split("|")[8]=="T303"||$("#DMY7").val().split("|")[8]=="T304"||$("#DMY7").val().split("|")[8]=="T305"||$("#DMY7").val().split("|")[8]=="T306"||$("#DMY7").val().split("|")[8]=="T307"||$("#DMY7").val().split("|")[8]=="T308"||$("#DMY7").val().split("|")[8]=="T309"||$("#DMY7").val().split("|")[8]=="T310"||$("#DMY7").val().split("|")[8]=="T311")
+				{
+					$($("#Branch").find(".SANHEAD")[0]).text("Additional Documents")
+					$($("#Branch").find(".SANHEAD")[1]).text("Pre Sanction Documents")
+					$($("#Branch").find(".SANHEAD")[2]).text("Post sanction Documents")
+					$($("#Branch").find(".SANHEAD")[3]).text("Reports")
+					$($("#Branch").find(".SANHEAD")[4]).text("Repayment Instruments")
+					$($("#Branch").find(".SANHEAD")[5]).text("Sanction Conditions")	
+					$($("#Branch").find(".SANHEAD")[6]).text("")	
+					$($("#Branch").find(".SANHEAD")[7]).text("")	
+					$($("#Branch").find(".SANHEAD")[8]).text("")	
+					$($("#Branch").find(".SANHEAD")[9]).text("")	
+					$($("#Branch").find(".SANHEAD")[10]).text("")
+				}
+				 
+				
+				
         }
-//});
-
-
-
-
-$(document).on("click",".RaiseQry",function() {
+		$(document).on("click",".RaiseQry",function() {
 		
          $("#OPSSave").click();
 		var op=UI_getdata("Disbursement Checklist",$("#PrcsID").val(),"","",$("#DMY5").val().split('|')[2],"LSW_SCHKQURYRAISED")
@@ -462,7 +534,14 @@ $(document).on("click",".RaiseQry",function() {
 		$('.RAISE').find("#MNGQ_QURYNAME").val('');
 		
 	
+       //Added  for   Details hide
 
+        $('.RAISE').find("#MNGQ_SECTNID").removeClass('MNGOMndtry');
+		$('.RAISE').find("#MNGQ_TYP").removeClass('MNGOMndtry');
+		$('.RAISE').find("#MNGQ_QURYNAME").removeClass('MNGOMndtry');
+		$('.RAISE').find("#MNGQ_DESC").removeClass('MNGOMndtry');
+		$('.RAISE').find("#MNGQ_APPLNO").removeClass('MNGOMndtry');
+         $('.RASHW').hide();
 			
 	
   $('.RAISE').find("#MNGQ_ATTCHURLIUPLOAD").show();
@@ -472,22 +551,13 @@ $(document).on("click",".RaiseQry",function() {
   $('.RAISE').find("input[name=datafile]").attr('display','block');
   
   $('.RAISE').find('.FIDU').find('.name').text('Click Here to Upload')
-  
-  
-       $('.RAISE').find("#MNGQ_SECTNID").removeClass('MNGOMndtry');
-		$('.RAISE').find("#MNGQ_TYP").removeClass('MNGOMndtry');
-		$('.RAISE').find("#MNGQ_QURYNAME").removeClass('MNGOMndtry');
-		$('.RAISE').find("#MNGQ_DESC").removeClass('MNGOMndtry');
-		$('.RAISE').find("#MNGQ_APPLNO").removeClass('MNGOMndtry');
 		
 	$(".OPSQRY").hide();
-	$('.RASHW').hide();
 			
 			
 			 $("#RAISEQUERY").click();
 		}
 		else{
-			
 			alert($(op).find("RESULT").text());
 			return;
 		}

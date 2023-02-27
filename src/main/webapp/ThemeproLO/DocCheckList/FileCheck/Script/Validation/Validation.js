@@ -39,8 +39,8 @@ function GridControlDetailUPLDFILECHECK  (popTableModPageGrid1,TableID,dtData,dt
 		 { targets: 2, "render": function ( data, type, row, meta ) {                            
 	 			
 			 var rowno = meta.row;		 
-		 		var HTML =	'<span><input type="radio" class="custom-control-input UCLDDBfields RADIOACTNCHK" value="Yes" data-uniq-type="CAM Checklist"  id="ACTIONY'+rowno+'" name="UCLD_ACTION'+rowno+'"><label class="custom-control custom-control-label" for="ACTIONY'+rowno+'">Yes</label>';			 
-		 		HTML = HTML + '<input type="radio" class="custom-control-input UCLDDBfields RADIOACTNCHK" value="No" data-uniq-type="CAM Checklist"  id="ACTIONN'+rowno+'" name="UCLD_ACTION'+rowno+'"><label class="custom-control custom-control-label" for="ACTIONN'+rowno+'">No</label></span>';			  
+		 		var HTML =	'<span><input type="radio" class="custom-control-input UCLDDBfields RADIOACTNCHK" data-uniq-type="CAM Checklist" value="Yes" id="ACTIONY'+rowno+'" name="UCLD_ACTION'+rowno+'"><label class="custom-control custom-control-label" for="ACTIONY'+rowno+'">Yes</label>';			 
+		 		HTML = HTML + '<input type="radio" class="custom-control-input UCLDDBfields RADIOACTNCHK" data-uniq-type="CAM Checklist" value="No" id="ACTIONN'+rowno+'" name="UCLD_ACTION'+rowno+'"><label class="custom-control custom-control-label" for="ACTIONN'+rowno+'">No</label></span>';			  
 		 		
 		 		var htmldata = $(HTML);
 					
@@ -58,14 +58,14 @@ function GridControlDetailUPLDFILECHECK  (popTableModPageGrid1,TableID,dtData,dt
 						if((row[2]=="")||(row[2]=="Yes"))
 							{
 							var rowno = meta.row;	 
-							var HTML =	'<span><button type="button" style="display:none" id="RaiseQuery'+rowno+'" data-aria="" data-uniq-type="CAM Checklist" data-quey-sec="S05" data-form="PersonalInfo" style="height:15px" class="btn btn-Syeloutline waves-effect waves-light PODSave RaiseQry">Raise Query</button>';			 
+							var HTML =	'<span><button type="button" style="display:none" id="RaiseQuery'+rowno+'" data-uniq-type="CAM Checklist" data-quey-sec="S05" data-aria="" data-form="PersonalInfo" style="height:15px" class="btn btn-Syeloutline waves-effect waves-light BTNDedupe INTDSBV PODSave RaiseQry">Raise Query</button>';			 
 							HTML = HTML + '</span>'; 
 							var htmldata = $(HTML);							
 							return htmldata[0].outerHTML;  
 							}
 						else{
 							var rowno = meta.row;	 
-							var HTML =	'<span><button type="button" id="RaiseQuery'+rowno+'" data-aria="" data-quey-sec="S05" data-uniq-type="CAM Checklist" data-form="PersonalInfo" style="height:15px" class="btn btn-Syeloutline waves-effect waves-light PODSave RaiseQry">Raise Query</button>';			 
+							var HTML =	'<span><button type="button" id="RaiseQuery'+rowno+'" data-aria="" data-uniq-type="CAM Checklist" data-quey-sec="S05" data-form="PersonalInfo" style="height:15px" class="btn btn-Syeloutline waves-effect waves-light BTNDedupe INTDSBV PODSave RaiseQry">Raise Query</button>';			 
 							HTML = HTML + '</span>'; 
 							var htmldata = $(HTML);							
 							return htmldata[0].outerHTML;  
@@ -181,7 +181,7 @@ function getApplName()
 		        $(".ANSRTRBS").show()
 		        $(".AINCY").show()
 		       }
-			else if(Scheme=="S00001" || Scheme=="S00006" || Scheme=="S00008")
+			else if(Scheme=="S00001" || Scheme=="S00006")
 		       {
 		        $(".CUSNAME").show()
 		        $(".AINCY").show()
@@ -323,10 +323,4 @@ function CheckRadio()
 	  {
 	     $('input:radio[name=UCLH_CARPT]')[1].checked = true;
 	  }
-	  //Credit Change Start
-    if($("input[name='UCLH_ITRGAP']:checked"). val() == undefined)
-	  {
-	    $('input:radio[name=UCLH_ITRGAP]')[1].checked = true;
-	  }
-     //Credit Change End
 }

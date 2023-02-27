@@ -230,7 +230,17 @@ function GridControlDetailCASHFLOWGRD (popTableModPageGrid1,TableID,dtData,dtcol
 function Getbussiness()
 { 
 var xml=UI_getdata("TYPEBUSINESS","","","","","LSW_SGETFINANCIALVAL");
-    $("#FLOW_TYPOBUSS").html("");
+$("#FLOW_TYPOBUSS").html("");
 $("#FLOW_TYPOBUSS").append($(xml).find("RESULT").html());
 $("#FLOW_TYPOBUSS").material_select(); 
+}
+
+
+function Product()
+{
+	
+	var xmlSTATUS=UI_getdata($("#PrcsID").val(),$("#ABBL_SCHEMEID").val(),"","","","LSW_SGETLOANDET");
+	$("#ABBL_LOANAMT").val($(xmlSTATUS).find('LOANAMOUNT').text());
+	$("#ABBL_LOANINREST").val($(xmlSTATUS).find('INTERESTRATE').text());
+	$("#ABBL_LOANTENT").val($(xmlSTATUS).find('TENTURE').text())
 }

@@ -1,24 +1,49 @@
-function CheckPrimAcct(html,id)
+function CheckPrimAcct(html,id,Event)
 {
 	var PrimAcct=$(html).find("input[name='BKDT_PRIMARYACCT']:checked"). val();
+	if(Event=="Load")
+	{
+		var row=id
+		if(PrimAcct=="Yes")
+		{
+		$(html).find(".MODE").attr("disabled",true)
+		$(html).find(".MODE").addClass('disabled');
+		//$("#BKDT_ACCTTYPE"+row).val('');
+		//$("#BKDT_ACCTTYPE"+row).material_select("destroy");	
+		//$("#BKDT_ACCTTYPE"+row).material_select();
+		}
+	else
+		{
+		$(html).find(".MODE").attr("disabled",false)
+		//$(html).find(".disabled").addClass('MODE');
+		$(html).find(".disabled").removeClass('disabled');
+		//$("#BKDT_ACCTTYPE"+row).val('');
+		//$("#BKDT_ACCTTYPE"+row).material_select("destroy");	
+		
+		}
+	}
+	else
+	{
 	var row=$($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).attr('data-row');
+	
 	if(PrimAcct=="Yes")
 		{
-		$(".MODE").attr("disabled",true)
-		$(".MODE").addClass('disabled');
+		$(html).find(".MODE").attr("disabled",true)
+		$(html).find(".MODE").addClass('disabled');
 		$("#BKDT_ACCTTYPE"+row).val('');
 		$("#BKDT_ACCTTYPE"+row).material_select("destroy");	
 		$("#BKDT_ACCTTYPE"+row).material_select();
 		}
 	else
 		{
-		$(".MODE").attr("disabled",false)
-		$(".disabled").addClass('MODE');
-		$(".disabled").removeClass('disabled');
+		$(html).find(".MODE").attr("disabled",false)
+		$(html).find(".disabled").addClass('MODE');
+		$(html).find(".disabled").removeClass('disabled');
 		$("#BKDT_ACCTTYPE"+row).val('');
 		$("#BKDT_ACCTTYPE"+row).material_select("destroy");	
 		$("#BKDT_ACCTTYPE"+row).material_select();
 		}
+	}
 }
 
 function Ifscdetls(IDVAL,BNKNAME,BRANCH,CITY,STATE)
@@ -90,7 +115,7 @@ if($(id).closest('td').find('input[type="file"]').val()!="")
     var DocName=KYCName
     var names="";
     var descrptns="";
-	//var op= UI_getdata("DOCVRNO","","","","","Sam_sGetCOMSeqID")
+	var op= UI_getdata("DOCVRNO","","","","","Sam_sGetCOMSeqID")
 	var flsize = "";
  var fd = new FormData();
    var vrsnno= "";
@@ -118,17 +143,18 @@ var CountAttch=1;
 	 var FileSize=parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2);
      var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
 	 
-
-		var xml=UI_getdata(FileType,FileSize,"","","","LSW_SGETDOCUMNTSIZE")
+        var Filename  = names.replace(',','')
+		var xml=UI_getdata(FileType,FileSize,Filename,"","","LSW_SGETDOCUMNTSIZE")
 		var FileAccept=$(xml).find('RESULT').text()
 	if(FileAccept == 'No')
 	{
 		alert($(xml).find("alert").text());
+		$(id).closest('td').find('input[type="file"]').val('')
 		return
     }
 names=names.slice(0,-1)+'.'+FileType
 var y=  names;
-var specialChars = "<>&#^|~`"
+/*var specialChars = "<>&#^|~`"
 var check = function(string){
     for(i = 0; i < specialChars.length;i++){
         if(string.indexOf(specialChars[i]) > -1){
@@ -144,7 +170,7 @@ if(check(y) == false){
     alert('Special characters not allowed in the upload file');
 	$(id).closest('td').find('input[type="file"]').val('')
 	return;
-}
+}*/
  ajaxindicatorstart("Uploading.. Please wait");
 	    $.ajax({
 	    	url:"/TPLSW/DMS?names="+names+"&PrcsID="+PrcsID+"&FormName="+FormName+"&descrptns="+descrptns+"&flsize="+flsize+"&vrsnno="+vrsnno+"&domain="+domain+"&usrpwd="+usrpwd+"&Prvnt="+$("#Prvnt").val()+"&CusID="+CusID+"&DocName="+DocName,
@@ -338,6 +364,8 @@ $(document).on("click", ".PrimAcct", function() {
 		    if(AcctIIIdVal == AcctIIdVal && AcctIIdVal=="Yes")
 		    	{
 		    	alert("Primary Account is already selected");
+				$($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find(".MODE").attr("disabled",false)
+		        $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find(".disabled").removeClass('disabled');
 		    	//$(this).val('');
 		    	return false;
 		    	}
@@ -391,7 +419,7 @@ function GentrateApplicform()
 	var IOP=window.location.origin;
 	var PrcsId=$("#PrcsID").val()
 
-	var flname = IOP+LoadFrmXML("RT089")+"&__format=pdf&Param1="+PrcsId+"&__filename=Applicationform_"+$("#DMY7").val().split("|")[7]+".pdf";
+	var flname = IOP+LoadFrmXML("RT089")+"&__format=pdf&Param1="+PrcsId+"&Param2="+$("#DMY7").val().split("|")[8]+"&__filename=Applicationform_"+$("#DMY7").val().split("|")[7]+".pdf";
 	
 	var link=document.createElement('a');
 		document.body.appendChild(link);
@@ -406,7 +434,7 @@ function GentrateEndUse()
 	var IOP=window.location.origin;
 	var PrcsId=$("#PrcsID").val()
 
-	var flname = IOP+LoadFrmXML("RT090")+"&__format=pdf&@PARAM1="+PrcsId+"&__filename=EndUse_"+$("#DMY7").val().split("|")[7]+".pdf";
+	var flname = IOP+LoadFrmXML("RT090")+"&__format=pdf&@PARAM1="+PrcsId+"&@PARAM2="+$("#DMY7").val().split("|")[8]+"&__filename=EndUse_"+$("#DMY7").val().split("|")[7]+".pdf";
 	
 	var link=document.createElement('a');
 		document.body.appendChild(link);
@@ -414,4 +442,145 @@ function GentrateEndUse()
 			link.href=flname;
 			link.click();
 			ajaxindicatorstop();
+}
+function ODCC(html,acctype)
+//function ODCC(html)
+{
+//var acctype=$(html).find("input[name='BKDT_ACCTTYPE']"). val();
+//var row=$($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).attr('data-row');
+var acctype=$(acctype).val();
+//var acctype=($(html).find("input[select='BKDT_ACCTTYPE']").val())
+if((acctype=="Over Draft Account")||(acctype=="Cash Credit"))
+{
+$(html).find(".ODCC").show()
+//$('.ODCC').show();
+$(html).find("input[name='BKDT_SANCTIONLIM']").addClass('BKDTMndtry')
+$(html).find("input[name='BKDT_DRAWPWR']").addClass('BKDTMndtry')
+}
+else
+{
+$(html).find('.ODCC').hide();
+$(html).find("input[name='BKDT_SANCTIONLIM']").removeClass('BKDTMndtry')
+$(html).find("input[name='BKDT_DRAWPWR']").removeClass('BKDTMndtry')
+}
+}
+
+
+function ODCCLOAD(html)
+//function ODCC(html)
+{
+//var acctype=$(html).find("input[name='BKDT_ACCTTYPE']"). val();
+//var row=$($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).attr('data-row');
+//var acctype=$(acctype).val();
+var acctype=$(html).find("select[name='BKDT_ACCTTYPE']").val()
+if((acctype=="Over Draft Account")||(acctype=="Cash Credit"))
+{
+$(html).find(".ODCC").show();
+//$('.ODCC').show();
+$(html).find("input[name='BKDT_SANCTIONLIM']").addClass('BKDTMndtry')
+$(html).find("input[name='BKDT_DRAWPWR']").addClass('BKDTMndtry')
+}
+else
+{
+$(html).find('.ODCC').hide();
+$(html).find("input[name='BKDT_SANCTIONLIM']").removeClass('BKDTMndtry')
+$(html).find("input[name='BKDT_DRAWPWR']").removeClass('BKDTMndtry')
+}
+/* 
+var Stdate=$(html).find("select[name='BKDT_STDATE']").val()
+var Endate=$(html).find("select[name='BKDT_ENDDATE']").val()
+if(Stdate!='') */
+
+
+}
+
+function Chkbutton(html,id)
+{
+	$(html).find("input[name=BKDT_INITIATEBSA]").val('Initiated');
+	$(html).find(".Auto").show()
+	$(html).find(".Rpt").show()
+	$(html).find("#InitiateBSA").hide();
+	$(html).find("#Save").click();
+	
+}
+
+function NetBankingInteg(Type,BnkID,StDate,EndDate)
+{
+	var OP=""
+	if($("#"+StDate).val()=="" || $("#"+EndDate).val()=="")
+	{
+		alert('Start Date and End Date is Mandatory');
+		return false;
+	}
+	$("#Save").click();
+    var w = "600";
+    var h = "500";
+	var left = (screen.width/2)-(w/2);
+	var top = (screen.height/2)-(h/2);
+	
+if(Type=="NetBanking")	
+{
+	var URL=window.location.origin+"/TPLSW/BankingPage?Type="+Type+"&PRCSID="+$("#PrcsID").val()+"&CUSID="+$("#BKDT_CUSID").val()+"&BNKID="+$("#"+BnkID).val()+"&Prvnt="+$(window.parent.parent.document).find("#Prvnt").val();
+	//OP=URL.responseText;					
+				//	OP=JSON.parse(OP);
+					
+						
+	var OPxml=UI_getdata($("#PrcsID").val(),URL,"","EMAIL","","LSW_SSENDNETBANKLNK");
+		if($(OPxml).find("Result").text()=="Success")
+				{
+				   alert("Link send successfully");	
+				}
+				else
+				{
+					
+				}	
+									
+}
+else
+{
+  var URL=window.location.origin+"/TPLSW/BankingPage?Type="+Type+"&PRCSID="+$("#PrcsID").val()+"&CUSID="+$("#BKDT_CUSID").val()+"&BNKID="+$("#"+BnkID).val()+"&Prvnt="+$(window.parent.parent.document).find("#Prvnt").val();	
+
+	$(".loader").show();	  
+	childWindow = window.open(URL, Type, 'toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, copyhistory=no, //width='+w+', height='+h+', top='+top+', left='+left);
+}
+}
+$('.CollectedPage').on('click', function() {
+   //location.reload();
+   $(".FormPageMultiTab").find("li.active").click();
+
+ //window.location.reload()
+});
+
+
+function DateValidate(XID,YID)
+{
+if(YID.value!='')	
+{
+if(XID.value!='')	
+{	
+	var STDATE=$("#"+XID).val()
+	var ENDDATE=$("#"+YID).val()
+
+	      date = new Date();
+	    var y = date.getFullYear();
+	    var STDATE1 = STDATE.split("/");
+	    var dd = STDATE1[0];
+	    var mm = STDATE1[1];
+	    var yy = STDATE1[2];
+
+	var STDATE2=yy+mm+dd
+
+	    var ENDDATE1 = ENDDATE.split("/");
+	     var dd1 = ENDDATE1[0];
+	     var mm1 = ENDDATE1[1];
+	     var yy1 = ENDDATE1[2];
+     var ENDDATE2=yy1+mm1+dd1
+     
+	    if(STDATE2>ENDDATE2)
+	    	{
+	    	 window.alert('End Date should not be less than Start Date');
+	    	 $("#"+YID).val('')
+	    	}
+}
+}
 }

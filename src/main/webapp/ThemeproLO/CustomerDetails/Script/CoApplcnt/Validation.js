@@ -13,7 +13,8 @@ function residentaddr()
 	if(AddrI =="" || PIN == "" || LndMrk == "" || ResType == "")
 		{
 		 alert('Fill the mandatory fields  in Applicant Permanent Address');
-		 $("#COAI_SAMRESIDADDR"). prop("checked", false);
+		 //$("#COAI_SAMRESIDADDR"). prop("checked", false);
+		 $('input[name="COAI_SAMRESIDADDR"]').prop('checked', false);
 		 return false;
 		}
 	else
@@ -39,7 +40,7 @@ function residentaddr()
 		  $('.PRADDR').find('.select-dropdown').attr('disabled',true)
 		  $('.ADDR').addClass('active');
 		  
-		  //added for radio disapled
+		    //added for radio disapled
 		  if($( '#COAI_SAMAPPLADDR').is(':checked')==false)
 		  {
 		    $('.APADDR').attr('disabled',false)
@@ -47,9 +48,6 @@ function residentaddr()
 			$('.APADDR').find('.select-dropdown').attr('disabled',false)
 			$('.APADDR').find('.select-dropdown').attr('disabled',false)
 		  }
-		  
-		  $('.SAMEASAPPL').attr('disabled',false)
-		  
 		}
   }
   else
@@ -57,6 +55,7 @@ function residentaddr()
 	//$('#CADI_SAMRESIDADDR').val('No');   
 	$('.PRADDR').find('.select-dropdown').attr('disabled',false)
 	$('.PRADDR').attr('disabled',false)
+	 $('.ALLDIS').attr('disabled',true);
 	$('.PRADDR').val('');
 	$('#COAI_PERMRESIDTYPE').material_select("destroy");
 	$('#COAI_PERMMONTHS').material_select("destroy");
@@ -65,7 +64,8 @@ function residentaddr()
 	$('.PINL').removeClass('active');
 	$('.ADDR').removeClass('active');
 	
-	//added radio to disabled
+		
+		//added radio to disabled
     if($( '#COAI_SAMAPPLADDR').is(':checked')==false)
 	  {
     $('.APADDR').attr('disabled',false)
@@ -73,15 +73,51 @@ function residentaddr()
 	$('.APADDR').find('.select-dropdown').attr('disabled',false)
 	$('.APADDR').find('.select-dropdown').attr('disabled',false)
     
-	 $('.SAMEASAPPL').attr('disabled',false)
 	  }
   }
   
-  if( $("#COBI_RESCOMPETED").val()=="Completed")
+   if( $("#COBI_RESCOMPETED").val()=="Completed")
  {
 	 $('.RESSTAT').attr('disabled',true) 
  }
-  
+}
+
+
+function Loadresidentaddr()
+{
+   var PrcsId=$("#COBI_PRCSID").val();
+   var xml=UI_getdata(PrcsId,"","","","","LSW_SGETAPPLADDRDETLS");
+	
+ if($("input[name='COAI_SAMRESIDADDR']:checked"). val()=="Applicant Permanent Address")
+  {
+	    var AddrI=$(xml).find('COAI_PREMADDRLINI').text();
+		var PIN=$(xml).find('COAI_PERMPINCODE').text();
+		var LndMrk=$(xml).find('COAI_PERMLNDMARK').text();
+		var ResType=$(xml).find('COAI_PERMRESIDTYPE').text();
+	  
+
+		 //$('#COAI_SAMRESIDADDR').val('Yes');
+		  document.getElementById('COAI_PREMADDRLINI').value=$(xml).find('COAI_PREMADDRLINI').text();
+		  document.getElementById('COAI_PERMADDRLINII').value=$(xml).find('COAI_PERMADDRLINII').text();
+		  document.getElementById('COAI_PERMPINCODE').value=$(xml).find('COAI_PERMPINCODE').text();
+		  document.getElementById('COAI_PERMCITY').value=$(xml).find('COAI_PERMCITY').text();
+		  document.getElementById('COAI_PERMSTATE').value=$(xml).find('COAI_PERMSTATE').text();
+		  document.getElementById('COAI_PERMLNDMARK').value=$(xml).find('COAI_PERMLNDMARK').text();
+		  document.getElementById('COAI_PERMLNDLINENO').value = $(xml).find('COAI_PERMLNDLINENO').text();
+		  document.getElementById('COAI_PERMYEAROFRESID').value =$(xml).find('COAI_PERMYEAROFRESID').text();
+		  document.getElementById('COAI_PSTDC').value =$(xml).find('COAI_PSTDC').text();
+		    var ResType=$(xml).find('COAI_PERMRESIDTYPE').text();
+		    var Month=$(xml).find('COAI_PERMMONTHS').text();
+
+		  $("#COAI_PERMRESIDTYPE").val(ResType);
+		  $("#COAI_PERMMONTHS").val(Month)
+		  $('#COAI_PERMRESIDTYPE').material_select();
+		  $('#COAI_PERMMONTHS').material_select();
+		  $('.PRADDR').attr('disabled',true)
+		  $('.PRADDR').find('.select-dropdown').attr('disabled',true)
+		  $('.ADDR').addClass('active');
+		
+  }
 }
 
 function CheckAddrMndtry()
@@ -156,6 +192,9 @@ function CheckAppltype()
 	if(ApplCusType=="Non-Individual")
 		{
 		$("#COBI_CUSFISNAM").next().text('Organisation Name *');
+		$("#COBI_CUSFISNAM").removeClass('IsAlphaFields');
+		
+		 $(".NINDM").addClass('COBIMndtry');
 		$(".INDU").hide();
 		$(".NINDU").show();
 		$(".AddKYC").hide();
@@ -171,9 +210,8 @@ function CheckAppltype()
 	//	 $("#COAI_ORGRESIDTYPE").removeClass('COAIMndtry');
 		 var element = document.getElementById("RadINDU");
 		  element.classList.remove("COBIMndtry");
-		  $("#COBI_TITLE").empty();
-		  $("#COBI_TITLE").append('<option id="M/S">M/S</option>') 
-		  $("#COBI_TITLE").val('M/S');
+		  
+		
 		var Constitution=$("#COBI_CONSTITUTION").val()
           if(Constitution=="Public Ltd"||Constitution=="Private Ltd")
 			 {
@@ -207,12 +245,20 @@ function CheckAppltype()
 			 }*/
 		 $("#COBI_NPROFILE").empty();
 		 $("#COBI_NPROFILE").append('<option value="SENP">SENP</option>') 
-		 $("#COBI_PROFILE").val('SENP');
 		 $('#COBI_NPROFILE').material_select();
+		 $("#COBI_PROFILE").val('SENP');
+		 
+		 $("#COBI_TITLE").empty();
+		  $("#COBI_TITLE").append('<option id="M/S">M/S</option>') 
+		  $('#COBI_TITLE').material_select();
+		  $("#COBI_TITLE").val('M/S');
+		 
 		 $(".PROFILE").show();
 		}
 	else
 		{
+			
+		 $(".NINDM").removeClass('COBIMndtry');
 		 $(".INDU").show();
 		 $(".NINDU").hide();
 		 $(".AddKYC").show();
@@ -230,12 +276,13 @@ function CheckAppltype()
 }
 
 
-function CheckProfile()
+function CheckProfile(Event)
 {
 	var Profile=$("#COBI_PROFILE").val();
 	var ApplCusType=$("#COBI_CUSTYPE").val()
+	
 	// Credit Change Start
-	var Qualification=$("#COBI_QUALIFICATION").val();
+	/* var Qualification=$("#COBI_QUALIFICATION").val();
 	if(Profile=="SEP")
 	{
 	     $("#COBI_QUALIFICATION").empty();
@@ -252,7 +299,7 @@ append('<option value="">--Select--</option><option value="Matriculation" disabl
 append('<option value="">--Select--</option><option value="Matriculation">Matriculation</option><option value="UG">UG</option><option value="PG">PG</option><option value="Graduate">Graduate</option>') 
 		 $('#COBI_QUALIFICATION').material_select();
 		  $('#COBI_QUALIFICATION').val(Qualification);
-	}
+	} */
 	// Credit Change End
 	
 	if(ApplCusType=="Individual")
@@ -283,8 +330,8 @@ append('<option value="">--Select--</option><option value="Matriculation">Matric
 	else if(Profile=="Retired" || Profile=="Housewife" )
 		{
 		  $(".EMP").hide()
-		  $("#COEI_ORGANINAME").attr('disabled',true);
-		  $("#COEI_ADDRLINEI").attr('disabled',true);
+		  //$("#COEI_ORGANINAME").attr('disabled',true);
+		  //$("#COEI_ADDRLINEI").attr('disabled',true);
 		  $("#COEI_ORGANINAME").removeClass('COEIMndtry');
 		  $("#COEI_ADDRLINEI").removeClass('COEIMndtry');
 		  $("#COEI_ORGANINAME").next().find(".MndtryAstr").html("");
@@ -317,6 +364,12 @@ if(ApplCusType=="Non-Individual")
 	$(".ORG").show();
 	
 	}
+	RmoveEmpFlds();
+	
+	if(Event=="Change")
+	{
+		CheckChangeProfile()
+	}
 }
 
 function CheckMarStatus()
@@ -324,17 +377,20 @@ function CheckMarStatus()
 	var MaritStatus=$("#COBI_MARITSTUS").val()
 	if(MaritStatus=="Married")
 		{
-		  $("#COBI_SPOUSNAME").addClass('COBIMndtry');
-		  $("#COBI_SPOUSNAME").next().find(".MndtryAstr").html("*");
-		  $("#COBI_SPOUSNAME").attr("disabled",false)
-		  $("#COBI_SPOUSNAME").val('')
+		//  $("#COBI_SPOUSNAME").addClass('COBIMndtry');
+		  //$("#COBI_SPOUSNAME").next().find(".MndtryAstr").html("*");
+		  $("#COBI_SPOUSNAME").attr("disabled",false) 
+		//$('#COBI_NPROFILE').material_select();
+	
 		}
 	else
 		{
-		$("#COBI_SPOUSNAME").next().find(".MndtryAstr").html("");
-		$("#COBI_SPOUSNAME").removeClass('COBIMndtry');
+		//$("#COBI_SPOUSNAME").next().find(".MndtryAstr").html("");
+		//$("#COBI_SPOUSNAME").removeClass('COBIMndtry');
 		$("#COBI_SPOUSNAME").attr("disabled",true)
 		$("#COBI_SPOUSNAME").val('')
+		//$('#COBI_NPROFILE').material_select();
+		  
 		}
 }
 
@@ -391,6 +447,27 @@ function GetNaturBusness(Category,Nature,Cluster)
 	$("#"+Nature+row).material_select();	
 	$("#"+Cluster+row).val('');
 }
+
+
+function EmpNaturBusness(html,row)
+{
+		//var CATEGORY=$("#CEMI_INDUSCATRGORY"+row).val().replace(/,/g,'');
+		//var row=$($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).attr('data-row');
+		//var row=$(row).val();
+		var CATEGORY=$("#COEI_INDUSCATRGORY"+row).val();
+		var Naturebusiness=$("#COEI_NATRBUSINESS"+row).val();
+		//var Cluster=$("#CEMI_CLUSTER"+row).val();
+		//var CATEGORY=$(CATEGORY).val();
+		var xml=UI_getdata(CATEGORY,"","","","","LSW_SGETNATUROFBUSSINESS")
+		var NATURE=$(xml).find('NATURE').html();
+		$("#COEI_NATRBUSINESS"+row).append(NATURE)
+		if(Naturebusiness!="")
+		{
+		$("#COEI_NATRBUSINESS"+row+" option:contains("+Naturebusiness+")").attr("selected","selected")
+		}
+		$("#COEI_NATRBUSINESS"+row).material_select("destroy");	
+		$("#COEI_NATRBUSINESS"+row).material_select();
+} 
 
 
 function CheckLoanType(Prifx1,Prifx2,Prifx3,Prifx4)
@@ -466,29 +543,42 @@ var CountAttch=1;
 	         descrptns += 'FieldDocument'+',';
 	     }
 	 }
-	  var FileSize=parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2);
-    // var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
-   //  var Filename  = names.replace(',','')
-    var Filename  = $(id).closest('td').find('input[type="file"]')[0].files[0].name
+	 var FileSize=parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2);
+   //  var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
+  //   var Filename  = names.replace(',','')
+          var Filename  = $(id).closest('td').find('input[type="file"]')[0].files[0].name
 	      var FileType= Filename.substring(Filename.lastIndexOf('.')+1);
           var  Filename= Filename.substring(0, Filename.lastIndexOf('.'));
           var names=Filename
-		  
-		  
-		var xml=UI_getdata(FileType,FileSize,Filename,'ADDRESSPROOF',"","LSW_SGETKYCDOCUMNTTYPE")
+       
+	   if($("#COBI_CUSTYPE").val()=='Individual')
+	   {
+		   if(DocName=="Aadhar")
+		   {
+			   var ADDRTYPE =DocName
+		   }
+		   else
+		   {
+		     var ADDRTYPE = "ADDRESSPROOF"
+		   }
+	   }
+	   else
+	   {
+		 var ADDRTYPE = "Others"   
+	   }
+		var xml=UI_getdata(FileType,FileSize,Filename,ADDRTYPE,$("#COBI_CUSTYPE").val()+'|'+$("#PrcsID").val(),"LSW_SGETKYCDOCUMNTTYPE")
 		var FileAccept=$(xml).find('RESULT').text()
 		
-		
+	/*	
 	if(FileAccept == 'No')
 	{
 		alert($(xml).find("alert").text());
+		$(id).closest('td').find('input[type="file"]').val('')
 		return
-    }
-	
-	
+    } */
 names=names+'.'+FileType
 var y=  names;
-var specialChars = "<>&#^|~`"
+/*  var specialChars = "<>&#^|~`"
 var check = function(string){
     for(i = 0; i < specialChars.length;i++){
         if(string.indexOf(specialChars[i]) > -1){
@@ -501,12 +591,12 @@ var check = function(string){
 if(check(y) == false){
     // Code that needs to execute when none of the above is in the string
 }else{
-    alert('Special characters not allowed in the upload file');
+    alert('File name contains special character please remove and upload');
 	$(id).closest('td').find('input[type="file"]').val('')
 	return;
 }
 	 
-	 
+	*/ 
 	 
 
  ajaxindicatorstart("Uploading.. Please wait");
@@ -627,6 +717,13 @@ function getSameaApplAddr()
 	  $('.APADDR').find('.select-dropdown').attr('disabled',true)
 	  $('.APADDR').find('.select-dropdown').attr('disabled',true)
 	  $('.APDR').addClass('active');
+	  
+	  
+	  if($("input[name='COAI_SAMRESIDADDR']:checked").val()=="Co-Applicant Residence Address")
+	  {
+		 SameCoAppresiaddr(); 
+	  }
+	  
 	  }
 	  else
 	  {
@@ -634,6 +731,7 @@ function getSameaApplAddr()
 		$('.APADDR').val('');
         $('.APADDR').attr('disabled',false)
 		$('.APADDR').attr('disabled',false)
+		$('.ALLDIS').attr('disabled',true);
 		$('.APADDR').find('.select-dropdown').attr('disabled',false)
 		$('.APADDR').find('.select-dropdown').attr('disabled',false)
 		$('#COAI_RESIDTYPE').material_select("destroy");
@@ -641,10 +739,65 @@ function getSameaApplAddr()
 		$('#COAI_RESIDTYPE').material_select();
 		$('#COAI_MONTHS').material_select();
         $('.APDR').removeClass('active');
+		
+		
+		        //added for radio disabled
+           $('.PRADDR').attr('disabled',false)
+		  $('.PRADDR').find('.select-dropdown').attr('disabled',false)
+		  $('.ADDR').removeClass('active');
+          $('.PRADDR').val('');
+          
+        $('#COAI_PERMRESIDTYPE').material_select("destroy");
+      	$('#COAI_PERMMONTHS').material_select("destroy");
+      	$('#COAI_PERMRESIDTYPE').material_select();
+      	$('#COAI_PERMMONTHS').material_select();
+        
+      	$('input:radio[name=COAI_SAMRESIDADDR]')[1].checked = false;
 	  }
 }
 
+function LoadgetSameaApplAddr()
+{	
+	var PrcsId=$("#COBI_PRCSID").val();
+	
+	var xml=UI_getdata(PrcsId,"","","","","LSW_SGETAPPLADDRDETLS");
+	
+	if($( '#COAI_SAMAPPLADDR').is(':checked')==true)
+	  {
+	  
+	  $('#COAI_SAMAPPLADDR').val('Yes');
 
+	  var APPAdr1 =$(xml).find('COAI_ADDRLINI').text();
+	  var APPAdr2 =$(xml).find('COAI_ADDRLINII').text();
+	  var APPPincode =$(xml).find('COAI_PINCODE').text();
+	  var APPCITY  =$(xml).find('COAI_CITY').text();
+	  var APPSTATE =$(xml).find('COAI_STATE').text();
+	  var APPLNDMARK =$(xml).find('COAI_LNDMARK').text();
+	  var APPLNDLINE =$(xml).find('COAI_LNDLINENO').text();
+	  var APPYRPRE =$(xml).find('COAI_YEAROFRESID').text();
+	  var ResType=$(xml).find('COAI_RESIDTYPE').text();
+	  var Month=$(xml).find('COAI_MONTHS').text();
+	  
+	  document.getElementById('COAI_ADDRLINI').value=$(xml).find('COAI_ADDRLINI').text();
+	  document.getElementById('COAI_ADDRLINII').value=$(xml).find('COAI_ADDRLINII').text();
+	  document.getElementById('COAI_PINCODE').value=$(xml).find('COAI_PINCODE').text();
+	  document.getElementById('COAI_CITY').value=$(xml).find('COAI_CITY').text();
+	  document.getElementById('COAI_STATE').value=$(xml).find('COAI_STATE').text();
+	  document.getElementById('COAI_LNDMARK').value=$(xml).find('COAI_LNDMARK').text();
+	  document.getElementById('COAI_LNDLINENO').value=$(xml).find('COAI_LNDLINENO').text();
+	  document.getElementById('COAI_YEAROFRESID').value=$(xml).find('COAI_YEAROFRESID').text();
+	  document.getElementById('COAI_STDC').value=$(xml).find('COAI_STDC').text();
+      $("#COAI_RESIDTYPE").val(ResType);
+	  $("#COAI_MONTHS").val(Month)
+	  $('#COAI_RESIDTYPE').material_select();
+	  $('#COAI_MONTHS').material_select();
+	  $('.APADDR').attr('disabled',true)
+	  $('.APADDR').attr('disabled',true)
+	  $('.APADDR').find('.select-dropdown').attr('disabled',true)
+	  $('.APADDR').find('.select-dropdown').attr('disabled',true)
+	  $('.APDR').addClass('active');
+	  }
+}
 
 
 function checkPAN(Event)
@@ -656,11 +809,14 @@ function checkPAN(Event)
 		$('#COBI_PANNAVAIL').val('Yes');
 		$(".FORM").show();
 		$("#COBI_PAN").val('');
-		$("#COBI_PAN").next().removeClass('active');
-		$("#COBI_PAN").removeClass('COBIMndtry');
+		$("#COBI_PAN").next().removeClass('active');		
+		$("#COBI_PAN").removeClass('COBIMndtry');		
+		$(".PANTYPE").removeClass('COBIMndtry');
 		$("#COBI_PAN").attr('disabled',true);
+		$(".PANVTyp").attr('disabled',true);
 		$("#COBI_PAN").next().find(".MndtryAstr").html("");
 		$("#COBI_PANVERIFY").val('');
+		$(".CHK").attr('disabled',true);
 		$("[data-Validatearia=COBI_PANVERIFY]").text('Verify');
         $("[data-Validatearia=COBI_PANVERIFY]").removeClass("btn-GrnInplain");	
         $("[data-Validatearia=COBI_PANVERIFY]").addClass("btn-yelInplain");
@@ -670,9 +826,12 @@ function checkPAN(Event)
 	else
 		{
 		$('#COBI_PANNAVAIL').val('No');
-		$(".FORM").hide();
+		$(".FORM").hide();		
+		$(".PANTYPE").addClass('COBIMndtry');
 		$("#COBI_PAN").addClass('COBIMndtry');
 		$("#COBI_PAN").attr('disabled',false);
+		$(".CHK").attr('disabled',false);
+		$(".PANVTyp").attr('disabled',false);
 		$("#COBI_PAN").next().find(".MndtryAstr").html("*");
 		}
 }
@@ -788,10 +947,15 @@ function CheckGenter()
 		{
 	     $('input:radio[name=COBI_GENTER]')[1].checked = true;
 		}
+		else if(Title=="NA" || Title=="NA")
+		{
+		 $('input:radio[name=COBI_GENTER]')[2].checked = true;
+		}
 	    else
 	    {
 	    	$('input:radio[name=COBI_GENTER]')[0].checked = false;
 	    	$('input:radio[name=COBI_GENTER]')[1].checked = false;
+			$('input:radio[name=COBI_GENTER]')[2].checked = false;
 	    }
 }
 
@@ -827,6 +991,31 @@ function CheckCusType()
 		 $("#CoAppcin").val('')
 		 $(".Constitution").hide();
 		 $(".CIN").hide();
+		 }
+}
+
+function CheckCusType1()
+{
+	var CusType=$("input[name='CoAppType1']:checked"). val();
+
+	 if(CusType=="Non-Individual")
+		{
+		 $(".Constitution").show();
+		 $("#Constitution1").val('')
+		 $("#Constitution1").addClass('LDCOMndtry');
+		 $("#Constitution1").parent().next().find(".MndtryAstr").html("*");
+	     $('#Constitution1').material_select("destroy");	
+		 $('#Constitution1').material_select();
+		}
+	 else
+		 {
+		 $('#Constitution1').find('.select-dropdown').val('')
+		 $("#Constitution1").val('')
+	     $('#Constitution1').material_select("destroy");	
+		 $('#Constitution1').material_select();
+		 $("#Constitution1").removeClass('LDCOMndtry');
+		 $("#Constitution1").parent().next().find(".MndtryAstr").html("");
+		 $(".Constitution").hide();
 		 }
 }
 
@@ -913,6 +1102,44 @@ function CHKSameCoAppresiaddr()
 
 
 
+function ONLOADCOAPPResidence()
+{
+	if($("input[name='COAI_SAMRESIDADDR']:checked"). val()=="Co-Applicant Residence Address")
+	  {
+	 // $('#COAI_SAMCOAPPRESIDADDR').val('Yes');
+	  document.getElementById('COAI_PREMADDRLINI').value=document.getElementById('COAI_ADDRLINI').value;
+	  document.getElementById('COAI_PERMADDRLINII').value=document.getElementById('COAI_ADDRLINII').value; 
+	  document.getElementById('COAI_PERMPINCODE').value=document.getElementById('COAI_PINCODE').value;
+	  document.getElementById('COAI_PERMCITY').value=document.getElementById('COAI_CITY').value;
+	  document.getElementById('COAI_PERMSTATE').value=document.getElementById('COAI_STATE').value; 
+	  document.getElementById('COAI_PERMLNDMARK').value=document.getElementById('COAI_LNDMARK').value; 
+	  document.getElementById('COAI_PERMLNDLINENO').value =document.getElementById('COAI_LNDLINENO').value; 
+	  document.getElementById('COAI_PERMYEAROFRESID').value =document.getElementById('COAI_YEAROFRESID').value;
+	  document.getElementById('COAI_PSTDC').value =document.getElementById('COAI_STDC').value;
+	  var ResType=document.getElementById('COAI_RESIDTYPE').value;
+	  var Month=document.getElementById('COAI_MONTHS').value;
+       $("#COAI_PERMRESIDTYPE").val(ResType);
+	  $("#COAI_PERMMONTHS").val(Month)
+	  $('#COAI_PERMRESIDTYPE').material_select();
+	  $('#COAI_PERMMONTHS').material_select();
+	  $('.PRADDR').attr('disabled',true)
+	  $('.PRADDR').find('.select-dropdown').attr('disabled',true)
+	  $('.ADDR').addClass('active');
+	 
+	  
+	  //added to disabled
+		 
+	  $('.APADDR').attr('disabled',true)
+	  $('.APADDR').attr('disabled',true)
+	  $('.APADDR').find('.select-dropdown').attr('disabled',true)
+	  $('.APADDR').find('.select-dropdown').attr('disabled',true)
+	  $('.APDR').addClass('active');
+	  
+	  }	
+}
+
+
+
 function SameCoAppresiaddr()
 {	  
 	if($("input[name='COAI_SAMRESIDADDR']:checked"). val()=="Co-Applicant Residence Address")
@@ -937,7 +1164,9 @@ function SameCoAppresiaddr()
 	  $('.PRADDR').find('.select-dropdown').attr('disabled',true)
 	  $('.ADDR').addClass('active');
 	  
-	  //added to radio disabled
+	  
+	  
+	    //added to radio disabled
 		 
 	  $('.APADDR').attr('disabled',true)
 	  $('.APADDR').attr('disabled',true)
@@ -946,14 +1175,13 @@ function SameCoAppresiaddr()
 	  $('.APDR').addClass('active');
 	  
 	  
-	  $('.SAMEASAPPL').attr('disabled',true)
-	  
 	  }
 	  else
 	  {
 		//$('#COAI_SAMCOAPPRESIDADDR').val('No');   
 		$('.PRADDR').find('.select-dropdown').attr('disabled',false)
 		$('.PRADDR').attr('disabled',false)
+		$('.ALLDIS').attr('disabled',true);
 		$('.PRADDR').val('');
 		$('#COAI_PERMRESIDTYPE').material_select("destroy");
 		$('#COAI_PERMMONTHS').material_select("destroy");
@@ -961,8 +1189,8 @@ function SameCoAppresiaddr()
 		$('#COAI_PERMMONTHS').material_select();
 		$('.PINL').removeClass('active');
 		$('.ADDR').removeClass('active');
-			
-			
+		
+		
 			//added to radio disabled
 		
 		  if($( '#COAI_SAMAPPLADDR').is(':checked')==false)
@@ -972,16 +1200,48 @@ function SameCoAppresiaddr()
 			$('.APADDR').find('.select-dropdown').attr('disabled',false)
 			$('.APADDR').find('.select-dropdown').attr('disabled',false)
 		  }
-		$('.SAMEASAPPL').attr('disabled',false)
 	  }
 	  
-	  
-	  
-	   if( $("#COBI_RESCOMPETED").val()=="Completed")
+	 if( $("#COBI_RESCOMPETED").val()=="Completed")
  {
 	 $('.RESSTAT').attr('disabled',true) 
  }  
+	  
 }
+
+function LoadSameCoAppresiaddr()
+{	  
+	if($("input[name='COAI_SAMRESIDADDR']:checked"). val()=="Co-Applicant Residence Address")
+	  {
+	 // $('#COAI_SAMCOAPPRESIDADDR').val('Yes');
+	  document.getElementById('COAI_PREMADDRLINI').value=document.getElementById('COAI_ADDRLINI').value;
+	  document.getElementById('COAI_PERMADDRLINII').value=document.getElementById('COAI_ADDRLINII').value; 
+	  document.getElementById('COAI_PERMPINCODE').value=document.getElementById('COAI_PINCODE').value;
+	  document.getElementById('COAI_PERMCITY').value=document.getElementById('COAI_CITY').value;
+	  document.getElementById('COAI_PERMSTATE').value=document.getElementById('COAI_STATE').value; 
+	  document.getElementById('COAI_PERMLNDMARK').value=document.getElementById('COAI_LNDMARK').value; 
+	  document.getElementById('COAI_PERMLNDLINENO').value =document.getElementById('COAI_LNDLINENO').value; 
+	  document.getElementById('COAI_PERMYEAROFRESID').value =document.getElementById('COAI_YEAROFRESID').value;
+	  document.getElementById('COAI_PSTDC').value =document.getElementById('COAI_STDC').value;
+	  var ResType=document.getElementById('COAI_RESIDTYPE').value;
+	  var Month=document.getElementById('COAI_MONTHS').value;
+      $("#COAI_PERMRESIDTYPE").val(ResType);
+	  $("#COAI_PERMMONTHS").val(Month)
+	  $('#COAI_PERMRESIDTYPE').material_select();
+	  $('#COAI_PERMMONTHS').material_select();
+	  $('.PRADDR').attr('disabled',true)
+	  $('.PRADDR').find('.select-dropdown').attr('disabled',true)
+	  $('.ADDR').addClass('active');
+	  }
+	  
+	  
+ if( $("#COBI_RESCOMPETED").val()=="Completed")
+ {
+	 $('.RESSTAT').attr('disabled',true) 
+ }
+}
+
+
 /*	
 function ChkBoxdisbAppAddr()
 {
@@ -1138,20 +1398,6 @@ function GridControlDetailPANKARZAGRD (popTableModPageGrid1,TableID,dtData,dtcol
 
         });
 }
-/*
-function CheckPanORNot()
-{
-	var PAN=$("#COBI_PAN").val()
-	
-	if(PAN=="")
-		{
-		 $(".DPAN").show()
-		}
-	else
-		{
-		 $(".DPAN").hide()
-		}
-}*/
 
 function CheckPanORNot()
 {
@@ -1166,7 +1412,6 @@ function CheckPanORNot()
 		 $(".DPAN").show()
 		}
 }
-
 
 
 $(document).on("blur", ".JOINDATE", function() {
@@ -1205,7 +1450,8 @@ function CheckNegativeList(HTML,id)
 	$(HTML).find("[name='COEI_CAUTLIST']").empty();
 	$(HTML).find("[name='COEI_CAUTLIST']").append($(CautionList).find("RESULT").html());
 	$(HTML).find("[name='COEI_CAUTLIST']").material_select(); 	
-}*/
+}
+*/
 
 
 function CheckNegativeList()
@@ -1386,10 +1632,24 @@ function GridControlDetailDEDUPEAIFGRD(popTableModPageGrid1,TableID,dtData,dtcol
 "aoColumnDefs": [ 
 	   { "sClass": "dpass", "aTargets": jQuery.parseJSON(hideClm)},
 	   { targets: 5, "render": function ( data, type, row, meta ) {                            
-			
+			if($("#COBI_CUSTYPE").val()=="Non-Individual")
+	         {
 		   var rowno = meta.row;       			 
 			 
 	 		var HTML =    '<span><select class="Gridmdb-select md-form colorful-select dropdown-primary" id="RXLD_ADDRTYPE'+rowno+'" name="RXLD_ADDRTYPE'+rowno+'">';
+	 			HTML = HTML + '<option value="">--Select--</option>';
+	 			HTML = HTML + '<option value="Office Address">Office Address</option></span>';
+			          			
+	 			var htmldata = $(HTML);
+	 			
+	 			$(htmldata).find("option[value='"+data+ "']").attr("selected","selected");
+
+	          return htmldata[0].outerHTML; 
+			 }
+          else
+            {
+               var rowno = meta.row;       			 
+	 		   var HTML =    '<span><select class="Gridmdb-select md-form colorful-select dropdown-primary" id="RXLD_ADDRTYPE'+rowno+'" name="RXLD_ADDRTYPE'+rowno+'">';
 	 			HTML = HTML + '<option value="">--Select--</option>';
 	 			HTML = HTML + '<option value="Residence Address">Residence Address</option>';
 	 			HTML = HTML + '<option value="Permanent Address">Permanent Address</option>';
@@ -1399,10 +1659,10 @@ function GridControlDetailDEDUPEAIFGRD(popTableModPageGrid1,TableID,dtData,dtcol
 	 			
 	 			$(htmldata).find("option[value='"+data+ "']").attr("selected","selected");
 
-	          return htmldata[0].outerHTML; 		
-					
-		         } 
-				 },   
+	            return htmldata[0].outerHTML;
+             }		
+		 } 
+	    },   
 	   { targets: 6, "render": function ( data, type, row, meta ) {                            
 			
 			 var rowno = meta.row;		 
@@ -1481,7 +1741,7 @@ function RelationShipDropdown()
             if(ApplCusType=="Non-Individual")
 			{
             	$("#COBI_RELASAPPL").empty();
-        		$("#COBI_RELASAPPL").append('<option value="" selected>--Select--</option><option value="Partner">Partner</option><option value="Director">Director</option><option value="Shareholder">Shareholder</option><option value="Other">Other</option>') 
+        		$("#COBI_RELASAPPL").append('<option value="" selected>--Select--</option><option value="Partner">Partner</option><option value="Director">Director</option><option value="Shareholder">Shareholder</option><option value="Proprietor">Proprietor</option><option value="Other">Other</option>') 
         		$('#COBI_RELASAPPL').material_select("destroy");	
         		$('#COBI_RELASAPPL').material_select();
         		$('#COBI_RELASAPPL').val(CoAppRelation);
@@ -1503,7 +1763,7 @@ function RelationShipDropdown()
 		if(ApplCusType=="Non-Individual")
 		{
         	$("#COBI_RELASAPPL").empty();
-    		$("#COBI_RELASAPPL").append('<option value="" selected>--Select--</option><option value="Other">Other</option>') 
+    		$("#COBI_RELASAPPL").append('<option value="" selected>--Select--</option><option value="Partner">Partner</option><option value="Director">Director</option><option value="Shareholder">Shareholder</option><option value="Proprietor">Proprietor</option><option value="Other">Other</option>') 
     		$('#COBI_RELASAPPL').material_select("destroy");	
     		$('#COBI_RELASAPPL').material_select();
     		$('#COBI_RELASAPPL').val(CoAppRelation);
@@ -1512,7 +1772,7 @@ function RelationShipDropdown()
 		else
 			{
 			$("#COBI_RELASAPPL").empty();
-    		$("#COBI_RELASAPPL").append('<option value="" selected>--Select--</option><option value="Partner">Partner</option><option value="Director">Director</option><option value="Shareholder">Shareholder</option><option value="Other">Other</option>') 
+    		$("#COBI_RELASAPPL").append('<option value="" selected>--Select--</option><option value="Partner">Partner</option><option value="Director">Director</option><option value="Shareholder">Shareholder</option><option value="Proprietor">Proprietor</option><option value="Other">Other</option>') 
     		$('#COBI_RELASAPPL').material_select("destroy");	
     		$('#COBI_RELASAPPL').material_select();
     		$('#COBI_RELASAPPL').val(CoAppRelation);
@@ -1533,17 +1793,17 @@ function RmoveEmpFlds()
 		  	$($('.BankDetail1').find(".DYNROW")[i]).find(".OEMPONE").hide(); 
 			$($('.BankDetail1').find(".DYNROW")[i]).find(".DLTICON").show(); 
 		  	$($('.BankDetail1').find(".DYNROW")[i]).find(".EMPI").removeClass("COEIMndtry")
+			$($('.BankDetail1').find(".DYNROW")[i]).find(".SALM").removeClass("COEIMndtry")
+			$($('.BankDetail1').find(".DYNROW")[i]).find(".OEMPM").removeClass("COEIMndtry")
 		  }
 		 else
 		 {
-			//$($('.BankDetail1').find(".DYNROW")[i]).find(".EMPI").addClass("COEIMndtry")
 			 $($('.BankDetail1').find(".DYNROW")[i]).find(".DLTICON").hide();
-			// $($('.BankDetail1').find(".DYNROW")[i]).find(".EMPI").addClass("CEMIMndtry")
+			 $($('.BankDetail1').find(".DYNROW")[i]).find(".OEMPM").addClass("COEIMndtry")
+			//$($('.BankDetail1').find(".DYNROW")[i]).find(".EMPI").addClass("COEIMndtry")
 		 }
 		 
 		  $($('.BankDetail1').find(".DYNROW")[i]).find("input[name='COEI_CUSID']" ).val($("#COBI_CUSID").val())
-		  
-		  
 	 } 
 }
 
@@ -1567,7 +1827,8 @@ if(Resi=="Resi-cum-office")
  document.getElementById('COEI_LNDMARK'+row).value=document.getElementById('COAI_LNDMARK').value;
  document.getElementById('COEI_LNDLINENO'+row).value=document.getElementById('COAI_LNDLINENO').value;
  document.getElementById('COEI_STDC'+row).value=document.getElementById('COAI_STDC').value;
-
+ $("#COEI_CITY"+row).next().addClass('active')
+ $("#COEI_STATE"+row).next().addClass('active')
  $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.OFFADDR').attr('disabled',true)
   //$('.OFFADDR').attr('disabled',true)
   $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.OADDR').addClass('active');
@@ -1583,7 +1844,8 @@ if(Resi=="Resi-cum-office")
 	  document.getElementById('COEI_LNDMARK'+row).value=document.getElementById('COAI_LNDMARK').value;
 	  document.getElementById('COEI_LNDLINENO'+row).value=document.getElementById('COAI_LNDLINENO').value;
 	  document.getElementById('COEI_STDC'+row).value=document.getElementById('COAI_STDC').value;
-
+$("#COEI_CITY"+row).next().addClass('active')
+ $("#COEI_STATE"+row).next().addClass('active')
 	  $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.OFFADDR').attr('disabled',true)
 	   //$('.OFFADDR').attr('disabled',true)
 	   $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.OADDR').addClass('active');
@@ -1598,6 +1860,10 @@ if(Resi=="Resi-cum-office")
 			//$('.OFFADDR').attr('disabled',false)
 			   $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.OFFADDR').val('');	
 			//$('.PINL').removeClass('active');
+			$("#COEI_CITY"+row).next().removeClass('active')
+			$("#COEI_CITY"+row).val('');
+			 $("#COEI_STATE"+row).val('');
+            $("#COEI_STATE"+row).next().removeClass('active')
 			   $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.OADDR').removeClass('active');
 		   }
 		 }
@@ -1607,6 +1873,10 @@ if(Resi=="Resi-cum-office")
 			//$('.OFFADDR').attr('disabled',false)
 			   $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.OFFADDR').val('');	
 			//$('.PINL').removeClass('active');
+			$("#COEI_CITY"+row).next().removeClass('active')
+            $("#COEI_STATE"+row).next().removeClass('active')
+			$("#COEI_CITY"+row).val('');
+			 $("#COEI_STATE"+row).val('');
 			   $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.OADDR').removeClass('active');
 		 }
    }
@@ -1653,39 +1923,42 @@ function  ExperYrsCompareAge(XID,YID)
 
 }
 
-function CheckPan()
+
+function CheckPani()
 {
 	var PANVerify=$("#COBI_PANVERIFY").val();
 	if($("#KARZASTATUS").val()=="Active")
 	{
 	if(PANVerify=="Verified")
 		{
-		 //$("#COEI_INCCONSID1"). prop("checked", false);
-		// $("#COEI_INCCONSID1").val('No');
-	     $("#COEI_INCCONSID1").attr('disabled',false);
-		 // $("#COEI_INCCONSID1").val('Yes');
-		 // $("#COEI_INCCONSID1").prop("checked", true);
-		 // $("#COEI_INCCONSID1").attr('disabled',false);
-		  //$("#COEI_INCCONSID1").addClass("COEIMndtry");
+		 if($("#COBI_CUSFISNAM").val()!="")
+		  {
+			 // $("#COBI_CUSFISNAM").attr('disabled',true)
+		  }
+		  if($("#COBI_CUSLSTNAM").val()!="")
+		  {
+			 // $("#COBI_CUSLSTNAM").attr('disabled',true)
+		  }
+	     //$("#COEI_INCCONSID1").attr('disabled',false);
+		
 		}
 	else
 		{
-		  //$("#COEI_INCCONSID1").val('No');
-		 // $("#COEI_INCCONSID1"). prop("checked", false);
-		  $("#COEI_INCCONSID1").attr('disabled',true);
-		//  $("#COEI_INCCONSID1").removeClass("COEIMndtry");
+		  
+		//  $("#COEI_INCCONSID1").attr('disabled',true);
+		
 		}
 	}
 	else
 	{
-		if($("#COBI_PAN").val()=="")
+		/*if($("#COBI_PAN").val()=="")
 		{
 		  $("#COEI_INCCONSID1").attr('disabled',true);
 		}
 		else
 		{
 		 $("#COEI_INCCONSID1").attr('disabled',false);
-		}
+		}*/
 	}
 }
 
@@ -1724,6 +1997,7 @@ function NotIndiPan()
 		
 	}
 }
+
 
 function CheckCIN()
 {
@@ -1972,6 +2246,56 @@ if($("#COBI_DOB").val()!="")
 }
 }
 
+
+function CheckChangeProfile()
+{
+	 var html=$('.BankDetail1').find(".DYNROW")
+	 var row = $('.BankDetail1').find(".DYNROW").length;
+	 
+	 for (i=0;i<row;i++)
+	 {
+		    var Profile=$("#COBI_PROFILE").val();
+			var ApplCusType=$("#COBI_CUSTYPE").val()
+			
+			if(ApplCusType=="Individual")
+				{
+			     if(Profile=="Salaried")
+				   {
+					   $($('.BankDetail1').find(".DYNROW")[i]).find("[name=COEI_DATOFESTABLIS]").val('');
+					   $($('.BankDetail1').find(".DYNROW")[i]).find("[name=COEI_NOOFYERBUSINESS]").val('');
+					   $($('.BankDetail1').find(".DYNROW")[i]).find("[name=COEI_DATOFESTABLIS]").next().removeClass('active');
+					   $($('.BankDetail1').find(".DYNROW")[i]).find("[name=COEI_NOOFYERBUSINESS]").next().removeClass('active');
+				
+					  // $($('.BankDetail1').find(".DYNROW")[i]).find('input:radio[name=COEI_ORGANIADDR]')[0].checked = false;
+	    	//$($('.BankDetail1').find(".DYNROW")[i]).find('input:radio[name=COEI_ORGANIADDR]')[1].checked = false;
+	    	//$($('.BankDetail1').find(".DYNROW")[i]).find('input:radio[name=COEI_ORGANIADDR]')[2].checked = false;
+
+			//$($('.BankDetail1').find(".DYNROW")[i]).find('input:radio[name=COEI_PREFCOMMUADDR]')[0].checked = false;
+	    	//$($('.BankDetail1').find(".DYNROW")[i]).find('input:radio[name=COEI_PREFCOMMUADDR]')[1].checked = false;
+	    	//$($('.BankDetail1').find(".DYNROW")[i]).find('input:radio[name=COEI_PREFCOMMUADDR]')[2].checked = false;
+		  	         $($('.BankDetail1').find(".DYNROW")[i]).find("[name=COEI_DATOFESTABLIS]").next().text('Joining date in present organisation *'); 
+		  	         $($('.BankDetail1').find(".DYNROW")[i]).find("[name=COEI_NOOFYERBUSINESS]").next().text('No of years in present organisation');
+				   }
+			     else if(Profile=="SEP" || Profile=="SENP")
+					{
+						$($('.BankDetail1').find(".DYNROW")[i]).find("[name=COEI_DATOFESTABLIS]").val('');
+					   $($('.BankDetail1').find(".DYNROW")[i]).find("[name=COEI_NOOFYERBUSINESS]").val('');
+					   $($('.BankDetail1').find(".DYNROW")[i]).find("[name=COEI_DATOFESTABLIS]").next().removeClass('active');
+					   $($('.BankDetail1').find(".DYNROW")[i]).find("[name=COEI_NOOFYERBUSINESS]").next().removeClass('active');
+					  // $($('.BankDetail1').find(".DYNROW")[i]).find('input:radio[name=CEMI_ORGANIADDR]')[0].checked = false;
+	    	//$($('.BankDetail1').find(".DYNROW")[i]).find('input:radio[name=COEI_ORGANIADDR]')[1].checked = false;
+	    	//$($('.BankDetail1').find(".DYNROW")[i]).find('input:radio[name=COEI_ORGANIADDR]')[2].checked = false;
+			//$($('.BankDetail1').find(".DYNROW")[i]).find('input:radio[name=COEI_PREFCOMMUADDR]')[0].checked = false;
+	    	//$($('.BankDetail1').find(".DYNROW")[i]).find('input:radio[name=COEI_PREFCOMMUADDR]')[1].checked = false;
+	    	//$($('.BankDetail1').find(".DYNROW")[i]).find('input:radio[name=COEI_PREFCOMMUADDR]')[2].checked = false;
+			    	 $($('.BankDetail1').find(".DYNROW")[i]).find("[name=COEI_DATOFESTABLIS]").next().text('Date of Establishment *'); 
+		  	         $($('.BankDetail1').find(".DYNROW")[i]).find("[name=COEI_NOOFYERBUSINESS]").next().text('No. of Years in Business');
+					}
+				}
+	 } 
+}
+
+
 function GridControlDetailINTERDEDUPE (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm)
 {
 	 popTableModPageGrid1 = $('#'+TableID).DataTable({ 
@@ -2112,15 +2436,15 @@ function InactivePanCheck()
 		{
 		 $("#COOA_INCCONSID").attr('disabled',true);
 		 $("#COOA_INCCONSID").removeClass("CDOGMndtry");
-		 $("#COEI_INCCONSID1").attr('disabled',true);
-		 $("#COEI_INCCONSID1").removeClass("CEMIMndtry");
+		 //$("#COEI_INCCONSID1").attr('disabled',true);
+		// $("#COEI_INCCONSID1").removeClass("CEMIMndtry");
 		}
 		else
 		{
 		 $("#COOA_INCCONSID").attr('disabled',false);
 		 $("#COOA_INCCONSID").addClass("CDOGMndtry");
-		 $("#COEI_INCCONSID1").attr('disabled',false);
-		 $("#COEI_INCCONSID1").addClass("CEMIMndtry");
+		// $("#COEI_INCCONSID1").attr('disabled',false);
+		// $("#COEI_INCCONSID1").addClass("CEMIMndtry");
 		}
 	}
 }
@@ -2131,77 +2455,7 @@ function disbRmk()
 	$("#RemarksCONFIRM").hide();
 }
 
-/*
-function getSameAs()
-{
-	if($('#COAI_SAMEAS').is(':checked')==true)
-	  {
-		$('.PRADDR').find('.select-dropdown').attr('disabled',true)
-		$('.PRADDR').attr('disabled',true)
-	  }
-	else
-	  {
-		$('.PRADDR').find('.select-dropdown').attr('disabled',false)
-		$('.PRADDR').attr('disabled',false)
-		$('input:radio[name=COAI_SAMRESIDADDR]')[0].checked = false;
-	    $('input:radio[name=COAI_SAMRESIDADDR]')[1].checked = false;
-	  }
-}*/
 
-
-
-function LoadSameCoAppresiaddr()
-{	  
-	if($("input[name='COAI_SAMRESIDADDR']:checked"). val()=="Co-Applicant Residence Address")
-	  {
-	 // $('#COAI_SAMCOAPPRESIDADDR').val('Yes');
-	  document.getElementById('COAI_PREMADDRLINI').value=document.getElementById('COAI_ADDRLINI').value;
-	  document.getElementById('COAI_PERMADDRLINII').value=document.getElementById('COAI_ADDRLINII').value; 
-	  document.getElementById('COAI_PERMPINCODE').value=document.getElementById('COAI_PINCODE').value;
-	  document.getElementById('COAI_PERMCITY').value=document.getElementById('COAI_CITY').value;
-	  document.getElementById('COAI_PERMSTATE').value=document.getElementById('COAI_STATE').value; 
-	  document.getElementById('COAI_PERMLNDMARK').value=document.getElementById('COAI_LNDMARK').value; 
-	  document.getElementById('COAI_PERMLNDLINENO').value =document.getElementById('COAI_LNDLINENO').value; 
-	  document.getElementById('COAI_PERMYEAROFRESID').value =document.getElementById('COAI_YEAROFRESID').value;
-	  document.getElementById('COAI_PSTDC').value =document.getElementById('COAI_STDC').value;
-	  var ResType=document.getElementById('COAI_RESIDTYPE').value;
-	  var Month=document.getElementById('COAI_MONTHS').value;
-      $("#COAI_PERMRESIDTYPE").val(ResType);
-	  $("#COAI_PERMMONTHS").val(Month)
-	  $('#COAI_PERMRESIDTYPE').material_select();
-	  $('#COAI_PERMMONTHS').material_select();
-	  $('.PRADDR').attr('disabled',true)
-	  $('.PRADDR').find('.select-dropdown').attr('disabled',true)
-	  
-	  $('.ADDR').addClass('active');
-	  
-	  $('.APADDR').find('.select-dropdown').attr('disabled',true)
-	  $('.APADDR').attr('disabled',true)
-	   $('.SAMEASAPPL').attr('disabled',true)
-	  }
-	  
-	  
- if( $("#COBI_RESCOMPETED").val()=="Completed")
- {
-	 $('.RESSTAT').attr('disabled',true) 
-	
-	 
- }
-}
-
-function LoadgetSameaApplAddr()
-{	
-	$('.PRADDR').attr('disabled',true)
-	$('.PRADDR').find('.select-dropdown').attr('disabled',true) 
-
-if( $("#COBI_RESCOMPETED").val()=="Completed")
- {
-	 $('.RESSTAT').attr('disabled',true) 
-	 $('.APADDR').find('.select-dropdown').attr('disabled',true)
-	  $('.APADDR').attr('disabled',true)
-	  
- }	 
-}
 
 
 
@@ -2229,90 +2483,732 @@ function DELEMPDETAILS()
     }
 }
 
-
-
-function CHKLOADSAMEASAPPLICANT()
-{	
-	var PrcsId=$("#COBI_PRCSID").val();
-	
-	var xml=UI_getdata(PrcsId,"","","","","LSW_SGETAPPLADDRDETLS");
-	
-	if($( '#COAI_SAMAPPLADDR').is(':checked')==true)
+function getSameAs(Event)
+{
+	if(Event=="Load")
 	  {
-	  
-	  $('#COAI_SAMAPPLADDR').val('Yes');
-
-	  var APPAdr1 =$(xml).find('COAI_ADDRLINI').text();
-	  var APPAdr2 =$(xml).find('COAI_ADDRLINII').text();
-	  var APPPincode =$(xml).find('COAI_PINCODE').text();
-	  var APPCITY  =$(xml).find('COAI_CITY').text();
-	  var APPSTATE =$(xml).find('COAI_STATE').text();
-	  var APPLNDMARK =$(xml).find('COAI_LNDMARK').text();
-	  var APPLNDLINE =$(xml).find('COAI_LNDLINENO').text();
-	  var APPYRPRE =$(xml).find('COAI_YEAROFRESID').text();
-	  var ResType=$(xml).find('COAI_RESIDTYPE').text();
-	  var Month=$(xml).find('COAI_MONTHS').text();
-	  
-	  
-	
-	  document.getElementById('COAI_ADDRLINI').value=$(xml).find('COAI_ADDRLINI').text();
-	  document.getElementById('COAI_ADDRLINII').value=$(xml).find('COAI_ADDRLINII').text();
-	  document.getElementById('COAI_PINCODE').value=$(xml).find('COAI_PINCODE').text();
-	  document.getElementById('COAI_CITY').value=$(xml).find('COAI_CITY').text();
-	  document.getElementById('COAI_STATE').value=$(xml).find('COAI_STATE').text();
-	  document.getElementById('COAI_LNDMARK').value=$(xml).find('COAI_LNDMARK').text();
-	  document.getElementById('COAI_LNDLINENO').value=$(xml).find('COAI_LNDLINENO').text();
-	  document.getElementById('COAI_YEAROFRESID').value=$(xml).find('COAI_YEAROFRESID').text();
-	  document.getElementById('COAI_STDC').value=$(xml).find('COAI_STDC').text();
-      $("#COAI_RESIDTYPE").val(ResType);
-	  $("#COAI_MONTHS").val(Month)
-	  $('#COAI_RESIDTYPE').material_select();
-	  $('#COAI_MONTHS').material_select();
-	  $('.APADDR').attr('disabled',true)
-	  $('.APADDR').attr('disabled',true)
-	  $('.APADDR').find('.select-dropdown').attr('disabled',true)
-	  $('.APADDR').find('.select-dropdown').attr('disabled',true)
-	  $('.APDR').addClass('active');
+	if($('#COAI_SAMEAS').is(':checked')==true)
+	  {
+		  $('.PRADDR').find('.select-dropdown').attr('disabled',true)
+		  $('.PRADDR').attr('disabled',true)
+		  $($('input:radio[name=COAI_SAMRESIDADDR]')[0]).attr('disabled',false)
+		  $($('input:radio[name=COAI_SAMRESIDADDR]')[1]).attr('disabled',false)
 	  }
-	 
+	else
+	  {
+		$('.PRADDR').find('.select-dropdown').attr('disabled',false)
+		$('.PRADDR').attr('disabled',false)
+		$('.ALLDIS').attr('disabled',true);
+		$('input:radio[name=COAI_SAMRESIDADDR]')[0].checked = false;
+	    $('input:radio[name=COAI_SAMRESIDADDR]')[1].checked = false;
+		$($('input:radio[name=COAI_SAMRESIDADDR]')[0]).attr('disabled',true)
+		$($('input:radio[name=COAI_SAMRESIDADDR]')[1]).attr('disabled',true)
+	  }
+	  CHKAPPResidType();
+	  }
+	  else
+	  {
+		if($('#COAI_SAMEAS').is(':checked')==true)
+	    {
+		  $('.PRADDR').find('.select-dropdown').attr('disabled',true)
+		  $('.PRADDR').attr('disabled',true)
+		  $('.PRADDR').val('');
+		  $('.PRADDR').next().removeClass('active');
+		   $('#COAI_PERMRESIDTYPE').material_select("destroy");
+	       $('#COAI_PERMMONTHS').material_select("destroy");
+	       $('#COAI_PERMRESIDTYPE').material_select();
+	       $('#COAI_PERMMONTHS').material_select();
+		  $($('input:radio[name=COAI_SAMRESIDADDR]')[0]).attr('disabled',false)
+		  $($('input:radio[name=COAI_SAMRESIDADDR]')[1]).attr('disabled',false)
+	    }
+	else
+	   {
+		 $('.PRADDR').find('.select-dropdown').attr('disabled',false)
+		 $('.PRADDR').attr('disabled',false)
+		 $('.ALLDIS').attr('disabled',true);
+		 $('.APADDR').find('.select-dropdown').attr('disabled',false)
+		 $('.APADDR').attr('disabled',false)
+		 $('input:radio[name=COAI_SAMRESIDADDR]')[0].checked = false;
+	     $('input:radio[name=COAI_SAMRESIDADDR]')[1].checked = false;
+		 $($('input:radio[name=COAI_SAMRESIDADDR]')[0]).attr('disabled',true)
+		 $($('input:radio[name=COAI_SAMRESIDADDR]')[1]).attr('disabled',true)
+		 $('.PRADDR').val('');
+		 $('.PRADDR').next().removeClass('active');
+		 $('#COAI_PERMRESIDTYPE').material_select("destroy");
+	     $('#COAI_PERMMONTHS').material_select("destroy");
+	     $('#COAI_PERMRESIDTYPE').material_select();
+	     $('#COAI_PERMMONTHS').material_select();
+	   }
+	   CHKAPPResidType();
+	  }
 }
 
-
-
-function CheckRESICUMOFFICE(HTML)
-{
-
-	if($(HTML).find("[name='COEI_ORGANIADDR']:checked").val()=="Resi-cum-office")
-	{
-     $(HTML).find('.OFFADDR').attr('disabled',true)
-	} 
-  
+ /* function CheckDirectt()
+ {
+	
+	 var borrower=$("#COBI_BORROWER").val()
+      if(borrower=="Yes")
+	  {
+		 //$(".NINDU").show();
+		 
+         $("#COEI_EUAMNO").addClass('COEIMndtry');
+         $("#COEI_EUAMNO").next().find(".MndtryAstr").html("*");
+		 
+         $("#COOA_UAMNO").addClass('COOAMndtry');
+         $("#COOA_UAMNO").next().find(".MndtryAstr").html("*");
+	  }
+	  else
+	  {
+		 //$(".NINDU").hide();
+		 
+         $("#COEI_EUAMNO").removeClass('COEIMndtry');
+         $("#COEI_EUAMNO").next().find(".MndtryAstr").html("");
+		 
+         $("#COOA_UAMNO").removeClass('COOAMndtry');
+         $("#COOA_UAMNO").next().find(".MndtryAstr").html("");
+	  }
+		  
+ } */
+ 
+ function CoCheckborrower()
+ {
+	 var borrower=$("#COBI_BORROWER").val()
+      if(borrower=="Yes")
+	  {
+		$(".COAP").show();
+		$("#COBI_UAMNO").addClass('COBIMndtry');
 		
-}
-
-
-
-function CheckFIOFFICECOMP(HTML)
-{
-
-	if($(HTML).find("[name='COEI_OFFICESTATUS']").val()=="FICOMPLETED")
+        /*$(".COEUDHA").addClass('COEIMndtry'); 
+         $(".COEUDHA").next().find(".MndtryAstr").html("*");
+		 
+		 $(".CEUDHA").removeClass('COEIMndtry'); 
+         $(".CEUDHA").next().find(".MndtryAstr").html("");
+		 
+		 // $("#CDOG_UAMNO").addClass('COOAMndtry');
+		 $(".COUDHA").addClass('COOAMndtry');
+         $(".COUDHA").next().find(".MndtryAstr").html("*");
+		 
+		 $(".CUDHA").removeClass('COOAMndtry');
+         $(".CUDHA").next().find(".MndtryAstr").html(""); */ 
+	  }
+	  else
+	  {
+		$("#COBI_UAMNO").val('');
+ 		 $("#COBI_UAMNO").removeClass('COBIMndtry');
+		 $(".COAP").hide();
+		/*  $(".COEUDHA").removeClass('COEIMndtry');
+         $(".COEUDHA").next().find(".MndtryAstr").html("");
+		 
+		 $(".CEUDHA").addClass('COEIMndtry'); 
+         $(".CEUDHA").next().find(".MndtryAstr").html("*");
+		 // $("#CDOG_UAMNO").removeClass('COOAMndtry');
+		 
+		 $(".COUDHA").removeClass('COOAMndtry');
+         $(".COUDHA").next().find(".MndtryAstr").html("");
+		 
+		 //$(".CUDHA").addClass('COOAMndtry');
+         $(".CUDHA").next().find(".MndtryAstr").html(""); 
+		 //$("#COOA_CUAMNO").addClass('COOAMndtry');
+		 //$("#COOA_CUAMNO").next().find(".MndtryAstr").html("*"); */
+	  }
+		  
+ }
+ 
+ function CheckMsme()
+ {
+	 if($("#VERTICAL").val()=="MSME")
+		{
+			$(".CKMSME").hide();
+			 $(".CKMSME").find("select").material_select("destroy");
+			$("#COBI_BORROWER").removeClass("COBIMndtry");			 
+		}
+ }
+ function CheckNumber()
+ {
+	 
+	$("#COBI_GSTNUM").attr('disabled',false);
+	
+	var GST=$("input[name='COBI_GST']:checked"). val();
+	
+	if(GST=="Yes")
 	{
-     $(HTML).find('.OFFADDR').attr('disabled',true)
-	  $(HTML).find('.OFFTYPE').attr('disabled',true)
-	} 	
-}
-/*
-function AddUAMDocMnd()
-{
-	var UAM= $("#COBI_UAMNO").val();
-	var UAMDOC=$("#COBI_UPDUAMNO").val();
-	if(UAM!="")
-	{
-		$("#COBI_UPDUAMNO").addClass("DOCMndtry");
+		$("#COBI_GSTAPPLILE").addClass('COBIMndtry');
+		$("#COBI_GSTAPPLILE").parent().next().find(".MndtryAstr").html("*");
+		$(".GSTAPP").show(); 
+        /*  $("#COBI_EXEMPTED").addClass('COBIMndtry');
+		 $("#COBI_GSTNUM").addClass('COBIMndtry');
+		 $("#COBI_GSTNUM").next().find(".MndtryAstr").html("*");
+         $("#COBI_EXEMPTED").parent().next().find(".MndtryAstr").html("*");
+		 $(".EXEM").show();
+		 $(".GSTF").show(); */
 	}
 	else
 	{
-		$("#COBI_UPDUAMNO").removeClass("DOCMndtry");
+		$("#COBI_GSTAPPLILE").val('');
+		$("#COBI_GSTAPPLILE").removeClass('COBIMndtry');
+		$("#COBI_GSTAPPLILE").parent().next().find(".MndtryAstr").html("");
+		$('#COBI_GSTAPPLILE').material_select("destroy");	
+		$("#COBI_GSTAPPLILE").material_select();
+		$(".GSTAPP").hide();
+		$(".BankDetail2").html('');
+		
+		$("#COBI_EXEMPTED").val('');
+		$("#COBI_EXEMPTED").removeClass('COBIMndtry');
+		$("#COBI_GSTNUM").val('');
+		$("#COBI_GSTNUM").removeClass('COBIMndtry');
+		$("#COBI_EXEMPTED").parent().next().find(".MndtryAstr").html("");
+		$('#COBI_EXEMPTED').material_select("destroy");	
+		$("#COBI_EXEMPTED").material_select();
+		$("#COBI_GSTNUM").next().find(".MndtryAstr").html("");
+		$(".EXEM").hide();
+		$(".GSTF").hide();
+		$(".CHKBOX").hide();
+		/*  $("#COBI_EXEMPTED").val('');
+		 $("#COBI_GSTNUM").val('');
+         $("#COBI_EXEMPTED").removeClass('COBIMndtry');
+		 $("#COBI_GSTNUM").removeClass('COBIMndtry');
+		 $("#COBI_GSTNUM").next().find(".MndtryAstr").html("*");
+         $("#COBI_EXEMPTED").parent().next().find(".MndtryAstr").html("");
+		// $("#COBI_GSTNUM").attr('disabled',true);
+		 $(".EXEM").hide(); 
+		 $(".GSTF").hide(); */
+	}
+	Checkgstapp();
+ }
+ function Checkgstapp()
+ {
+	  var Gstapp=$("#COBI_GSTAPPLILE").val()
+	 var GST=$("input[name='COBI_GST']:checked"). val();
+	 if(Gstapp=="Single" && GST=="Yes")
+	 {
+		$("#COBI_EXEMPTED").addClass('COBIMndtry');
+		$("#COBI_GSTNUM").addClass('COBIMndtry');
+		$("#COBI_EXEMPTED").parent().next().find(".MndtryAstr").html("*");
+		$("#COBI_GSTNUM").next().find(".MndtryAstr").html("*");
+		$(".GSTCLER").val('')
+		$(".CHKCLER").prop("checked", false);
+		$(".EXEM").show();
+		$(".GSTF").show(); 
+		$(".CHKBOX").hide();
+		$(".BankDetail2").html('');
+		 
+	 }
+	 else if(Gstapp=="Multiple" && GST=="Yes")
+	 {
+		 $("#COBI_EXEMPTED").addClass('COBIMndtry');
+		 $("#COBI_EXEMPTED").parent().next().find(".MndtryAstr").html("*");
+		 $(".EXEM").show();
+		 $(".CHKBOX").show();			 
+		 $("#COBI_GSTNUM").val('');
+		 $("#COBI_GSTNUM").removeClass('COBIMndtry');
+		 $("#COBI_GSTNUM").next().find(".MndtryAstr").html("");
+		 $(".GSTF").hide();
+	 }
+/* 	 else
+	 {
+		$("#COBI_EXEMPTED").val('');
+		$("#COBI_EXEMPTED").removeClass('COBIMndtry');
+		$("#COBI_GSTNUM").val('');
+		$("#COBI_GSTNUM").removeClass('COBIMndtry');
+		$("#COBI_EXEMPTED").parent().next().find(".MndtryAstr").html("");
+		$("#COBI_GSTNUM").next().find(".MndtryAstr").html("");
+		$(".EXEM").hide();
+		$(".GSTF").hide();
+		$(".CHKBOX").hide();
+	 } */
+ }
+function Chkqualify(Input1,Input2,Type,Event)
+{
+	if(Event=="Load")
+	{
+		if($("#COBI_QUALIFICATION").val()=="Others")
+		{
+		  $(".OTHERS").show();
+		  $("#COBI_OTHER").addClass("COBIMndtry");	
+		  $("#COBI_OTHER").next().find(".MndtryAstr").html("*");
+		}
+		else
+		{
+		  $(".OTHERS").hide();
+		  $("#COBI_OTHER").removeClass("COBIMndtry");
+		  $("#COBI_OTHER").next().find(".MndtryAstr").html("");
+		}
+		
+	}
+	else
+	{
+	if(Type=="Category")
+	{
+		if($("#"+Input1).val()=="Others")
+		{
+		  $(".OTHERS").show();
+		  $("#"+Input2).addClass("COBIMndtry");	
+		  $("#"+Input2).next().find(".MndtryAstr").html("*");
+		}
+		else
+		{
+		  $(".OTHERS").hide();
+		  $("#"+Input2).val('');
+		  $("#"+Input2).next().removeClass('active');
+		  $("#"+Input2).removeClass("COBIMndtry");
+          $("#"+Input2).next().find(".MndtryAstr").html("");		  
+		}
 	}
 }
-*/
+}
+
+function Chkudyam(){
+	if ($("#COBI_UDYAMVERI").val()=='Verified')
+		{
+		$("#COBI_CUAMNO").attr("disabled",true)
+		}
+		else
+		{
+		$("#COBI_CUAMNO").attr("disabled",false)
+		}
+	var borrower=$("#COBI_BORROWER").val()
+    if(borrower=="Yes")
+	{
+	if($("#COBI_CUAMNO").prop('checked') == true){
+		$("#COBI_UAMNO").val('');
+		$("#COBI_UAMNO").removeClass("COBIMndtry");
+		$("#COBI_UAMNO").next().find(".MndtryAstr").html("");
+		$("#COBI_UAMNO").attr("disabled",true);
+		$(".veri").hide();
+	}
+	else {
+
+		$("#COBI_UAMNO").addClass("COBIMndtry");
+		$("#COBI_UAMNO").next().find(".MndtryAstr").html("*");
+		$("#COBI_UAMNO").attr("disabled",false);
+		$(".veri").show();
+	}
+	/* if ($("#COBI_UDYAMVERI").val()=='Verified')
+		{
+		$("#COBI_CUAMNO").attr("disabled",true)
+		}
+		else
+		{
+		$("#COBI_CUAMNO").attr("disabled",false)
+		} */
+	}
+	
+}
+ function GetSec()
+ {
+	var xml=UI_getdata("TypeSec","","","","","LSW_SGETFINANCIALVAL");
+	
+    $("#COOA_SECTOR").html("");
+	$("#COOA_SECTOR").append($(xml).find("RESULT").html());
+	$("#COOA_SECTOR").material_select(); 
+}
+function ChkProf()
+{
+	var Mar=$("#COBI_MARITSTUS").val();
+	
+	var Gen=$("input[name='COBI_GENTER']:checked"). val();
+	if((Mar=='Single') || Gen=='Male')
+	{
+		  
+		 $(".PROFILEVAL").find('.HSWF').attr('disabled',true)
+	     $("span:contains('Housewife')").parent().addClass('HSWF');
+		 $(".HSWF").addClass('disabled');
+		 $("#COBI_NPROFILE").val('')		 
+		 $("#COBI_NPROFILE").material_select(); 
+
+	
+	}
+	else{
+		 
+		 $(".PROFILEVAL").find('.HSWF').attr('disabled',false)
+	     $("span:contains('Housewife')").parent().addClass('HSWF');
+		 $(".HSWF").removeClass('disabled');
+		 $("#COBI_NPROFILE").val('')
+	     $("#COBI_NPROFILE").material_select(); 
+	
+
+	}
+}
+function Chkresi()
+{
+	var resi=$("#COAI_YEAROFRESID").val()
+	var month=$("#COAI_MONTHS").val()
+		
+	var perresi=$("#COAI_PERMYEAROFRESID").val()
+	var permonth=$("#COAI_PERMMONTHS").val()
+	
+	var orgresi=$("#COAI_ORGYEAROFRESID").val()
+	var orgmonth=$("#COAI_ORGMONTHS").val()
+	
+	if(resi=="0" && month=="0")
+	{
+		alert("In year of residence is 0 then at least enter month should be greater than 0 ");
+		
+		$("#COAI_MONTHS").val(''); 
+		$("#COAI_MONTHS").material_select(); 
+	}
+	if(perresi=="0" && permonth=="0")
+	{
+		alert("In year of residence is 0 then at least enter month should be greater than 0 ");
+		$("#COAI_PERMMONTHS").val(''); 
+		$("#COAI_PERMMONTHS").material_select(); 
+	}
+	if(orgresi=="0" && orgmonth=="0")
+	{
+		alert("In year of residence is 0 then at least enter month should be greater than 0 ");
+		$("#COAI_ORGMONTHS").val(''); 
+		$("#COAI_ORGMONTHS").material_select(); 
+	}
+}
+
+
+function Chkdirect()
+{
+	var dir=$("input[name='COBI_PANTYPE']:checked"). val();
+if($("#COBI_PANVERIFY").val()=="")
+	{	
+	if(dir=="Direct")
+	{
+		
+		$("#COBI_PAN").addClass("COBIMndtry");	
+		$("#COBI_PAN").next().find(".MndtryAstr").html("*");
+		$(".TYP").show();
+		$(".UPLD").hide();
+		$(".KYCPROOF").show();
+	}
+	else if(dir=="OCR")
+	{
+		
+		$("#COBI_PAN").removeClass("COBIMndtry");	
+		$("#COBI_PAN").next().find(".MndtryAstr").html("");
+		$(".TYP").hide();
+		//$("#CBSI_PAN").val("");
+		$("#COBI_PAN").removeClass('active');
+		$(".UPLD").show();
+		$(".KYCPROOF").show();
+	}
+}
+	else
+	{
+		$(".TYP").show();
+		$(".UPLD").show();
+		$(".KYCPROOF").hide();
+	}
+	/* var KYCDOCPROOF = UI_getdata("PAN","","","","","LSW_SKYCPROOFTYPELIST");
+	$("#COBI_KYCPROOFTYP").html("")
+	$("#COBI_KYCPROOFTYP").append($(KYCDOCPROOF).find("RESULT").html());
+	$("#COBI_KYCPROOFTYP").material_select(); */
+	if((($("#COBI_VOTERIDPROOF").val()).includes ("ID PROOF"))||(($("#COBI_AADHARPROOF").val()).includes ("ID PROOF"))||(($("#COBI_DLPROOF").val()).includes ("ID PROOF"))||(($("#COBI_PASSPORTPROOF").val()).includes ("ID PROOF"))||(($("#COBI_UTILITYPROOF").val()).includes ("ID PROOF")))
+	{
+	   $("#COBI_KYCPROOFTYP option[value='ID PROOF']").attr('disabled',true);
+	   $("#COBI_KYCPROOFTYP").material_select();
+	}
+	 if((($("#COBI_VOTERIDPROOF").val()).includes ("DOB PROOF"))||(($("#COBI_AADHARPROOF").val()).includes ("DOB PROOF"))||(($("#COBI_DLPROOF").val()).includes ("DOB PROOF"))||(($("#COBI_PASSPORTPROOF").val()).includes ("DOB PROOF"))||(($("#COBI_UTILITYPROOF").val()).includes ("DOB PROOF")))
+	{
+	   $("#COBI_KYCPROOFTYP option[value='DOB PROOF']").attr('disabled',true);
+	   $("#COBI_KYCPROOFTYP").material_select();
+	}
+	if((($("#COBI_VOTERIDPROOF").val()).includes ("ADDRESS PROOF 2"))||(($("#COBI_AADHARPROOF").val()).includes ("ADDRESS PROOF 2"))||(($("#COBI_DLPROOF").val()).includes ("ADDRESS PROOF 2"))||(($("#COBI_PASSPORTPROOF").val()).includes ("ADDRESS PROOF 2"))||(($("#COBI_UTILITYPROOF").val()).includes ("ADDRESS PROOF 2")))
+	{
+	   $("#COBI_KYCPROOFTYP option[value='ADDRESS PROOF 2']").attr('disabled',true);
+	   $("#COBI_KYCPROOFTYP").material_select();
+	}
+	if((($("#COBI_VOTERIDPROOF").val()).includes ("ADDRESS PROOF 1"))||(($("#COBI_AADHARPROOF").val()).includes ("ADDRESS PROOF 1"))||(($("#COBI_DLPROOF").val()).includes ("ADDRESS PROOF 1"))||(($("#COBI_PASSPORTPROOF").val()).includes ("ADDRESS PROOF 1"))||(($("#COBI_UTILITYPROOF").val()).includes ("ADDRESS PROOF 1")))
+	{
+	   $("#COBI_KYCPROOFTYP option[value='ADDRESS PROOF 1']").attr('disabled',true);
+	   $("#COBI_KYCPROOFTYP").material_select();
+	}
+	if((($("#COBI_VOTERIDPROOF").val()).includes ("SIGN PROOF"))||(($("#COBI_AADHARPROOF").val()).includes ("SIGN PROOF"))||(($("#COBI_DLPROOF").val()).includes ("SIGN PROOF"))||(($("#COBI_PASSPORTPROOF").val()).includes ("SIGN PROOF"))||(($("#COBI_UTILITYPROOF").val()).includes ("SIGN PROOF")))
+	{
+	   $("#COBI_KYCPROOFTYP option[value='SIGN PROOF']").attr('disabled',true);
+	   $("#COBI_KYCPROOFTYP").material_select();
+	}
+
+}
+
+
+
+
+function ChkLanMark(html,row)
+{
+	             var lanmark=$("#"+[row]).val()
+				 
+				 
+				 if(isNumeric(lanmark))
+				 {
+					 alert("LandMark Should be AlphaNumeric");
+					 $("#"+[row]).val('');
+				 }
+
+}
+function Filesizepop(KYCName,Evnt)
+{
+	if(KYCName == "PAN"|| "Aadhar"|| "COBI_FORM60A")
+	{
+		if($("#COBI_CUSTYPE").val()=='Individual')
+		   {
+			  var ADDRTYPE1 = "ADDRESSPROOF"
+		   }
+		   else
+		   {
+			var ADDRTYPE1 = "Others"   
+		   }
+		   
+		   var xmlDocSize=UI_getdata($("#COBI_CUSTYPE").val(),ADDRTYPE1,"","","","LSW_SGETDOCSIZELST")
+		   if($(xmlDocSize).find("RESULT").text() != "")
+		   {
+			   alert($(xmlDocSize).find("RESULT").text());
+			   $(Evnt).next().click();
+		   }
+		   else{
+			   alert("Invalid Format");
+			   return;
+		   }
+	}
+}
+
+
+function Checkcin(Prcsid,CIN,CUSID)
+{
+	var PrcsId=$("#"+Prcsid).val()
+	var CINVAL=$("#"+CIN).val()
+	var cusidVAL=$("#"+CUSID).val()
+var xml=UI_getdata(PrcsId,CINVAL,cusidVAL,"","","LSW_SCHECKCINDATA");
+		
+		var Output=$(xml).find('RESULT').text()
+		
+		if(Output != "OK")
+			{
+			  alert(Output);
+			  $("#"+CIN).val('')
+			  return false;
+			}
+}
+
+
+function Checkudym(Prcsid,UDYM,CUSID)
+{
+	var PrcsId=$("#"+Prcsid).val()
+	var UDYMVAL=$("#"+UDYM).val()
+	var cusidVAL=$("#"+CUSID).val()
+	var xml=UI_getdata(PrcsId,UDYMVAL,cusidVAL,"","","LSW_SCHECKUDAYAMDATA");
+		
+	var Output=$(xml).find('RESULT').text()
+		
+		if(Output != "OK")
+			{
+			  alert(Output);
+			  $("#"+UDYM).val('')
+			  return false;
+			}
+}
+function CheckGst(Prcsid,GST,CUSID)
+{
+	var PrcsId=$("#"+Prcsid).val()
+	var GSTVAL=$("#"+GST).val()
+	var cusidVAL=$("#"+CUSID).val()
+	var xml=UI_getdata(PrcsId,GSTVAL,cusidVAL,"","","LSW_SCHECKGSTDATA");
+		
+	var Output=$(xml).find('RESULT').text()
+		
+		if(Output != "OK")
+			{
+			  alert(Output);
+			  $("#"+GST).val('')
+			  return false;
+			}
+}
+
+function Chkcogst(id)
+{
+                   var inputvalues = $(id).val(); 
+                   var GstNumber= inputvalues.toUpperCase()				 
+                 var gstinformat = new RegExp('^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$');    
+                 if (gstinformat.test(GstNumber)) {
+                 //  $(".gst").val(GstNumber);					 
+                   return true;    
+                 }
+             else
+             {    
+                 alert('Please Enter Valid GSTIN Number - Eg.27AACCH5453M1Z9');    
+                 $(id).val('');    
+                 $(id).focus();    
+			 }
+}
+
+
+
+function ChkGstPrimary (Gstnum,PGst){
+	
+
+	if($("#"+Gstnum).val()=='')
+{
+	alert ("Kindly fill GST Number")
+	$("#"+PGst).prop('checked', false)
+	return false;
+}
+
+else
+{
+	$("input[name='COGS_GSTCHK']").prop('checked',false)	
+	$("#"+PGst).prop('checked', true);
+}
+}
+
+function OtherKYC() 
+{
+if(($("#COBI_VOTERIDTYPE").val()!="") && ($("#COBI_VOTERIDTYPE").val()!=undefined))
+{
+	$(".voter").show();
+	if($("#COBI_VOTERIDTYPE").val()=="Direct")
+	{
+		if($("#COBI_VOTERIDVEIRFY").val()=="Verified")
+		{
+		$(".voterupload").show();
+		}
+		else
+		{
+		$(".voterupload").hide();
+		}
+	}
+	if($("#COBI_VOTERIDTYPE").val()=="OCR")
+	{
+		if($("#COBI_VOTERUPLOADVERIFY").val()=="Upload Verified")
+		{
+		$(".VoterFld").show();
+		}
+		else
+		{
+		$(".VoterFld").hide();
+		}
+	}
+}
+
+if(($("#COBI_AADHARTYPE").val()!="") && ($("#COBI_AADHARTYPE").val()!=undefined))
+{
+	$(".AADHAR").show();
+	if($("#COBI_AADHARTYPE").val()=="OCR")
+	{
+		if($("#COBI_AADHARUPLOADVERIFY").val()=="Upload Verified")
+		{
+		//$(".AUPLDXML").show();
+		//$(".AUPLDXMLII").show();
+		$(".AVER").show();
+		}
+		else
+		{
+		//$(".AUPLDXML").hide();
+		//$(".AUPLDXMLII").hide();
+		$(".AVER").hide();
+		}
+	}
+	if($("#COBI_AADHARTYPE").val()=="XML Verification")
+	{
+		if($("#COBI_AADHARUPLOADVERIFY").val()=="Upload Verified")
+		{
+		//$(".AUPLDXML").show();
+		$(".AUPLDXMLII").hide();
+		$(".AVER").show();
+		}
+		else
+		{
+		//$(".AUPLDXML").hide();
+		$(".AUPLDXMLII").hide();
+		$(".AVER").hide();
+		}
+	}
+	if($("#COBI_AADHARTYPE").val()=="ZIP File Verification")
+	{
+		if($("#COBI_AADHARUPLOADVERIFY").val()=="Upload Verified")
+		{
+		//$(".AUPLDXML").show();
+		$(".AUPLDXMLII").hide();
+		$(".AVER").show();
+		}
+		else
+		{
+		//$(".AUPLDXML").hide();
+		$(".AUPLDXMLII").hide();
+		$(".AVER").hide();
+		}
+	}
+}
+
+if(($("#COBI_DRIVNGTYPE").val()!="") && ($("#COBI_DRIVNGTYPE").val()!=undefined))
+{
+	$(".dl").show();
+	if($("#COBI_DRIVNGTYPE").val()=="Direct")
+	{
+		if($("#COBI_DRIVLICNSVERIFY").val()=="Verified")
+		{
+		$(".DUPLD").show();
+		}
+		else
+		{
+		$(".DUPLD").hide();
+		}
+	}
+	if($("#COBI_DRIVNGTYPE").val()=="OCR")
+	{
+		if($("#COBI_DLUPLOADVERIFY").val()=="Upload Verified")
+		{
+		$(".DVER").show();
+		}
+		else
+		{
+		$(".DVER").hide();
+		}
+	}
+}
+
+if(($("#COBI_PASPRTTYPE").val()!="") && ($("#COBI_PASPRTTYPE").val()!=undefined))
+{
+	$(".passport").show();
+	if($("#COBI_PASPRTTYPE").val()=="Direct")
+	{
+		if($("#COBI_PASSPORTVERIFY").val()=="Verified")
+		{
+		$(".passportupload").show();
+		}
+		else
+		{
+		$(".passportupload").hide();
+		}
+	}
+	if($("#COBI_PASPRTTYPE").val()=="OCR")
+	{
+		if(($("#COBI_PASSUPLOADVERIFY").val()=="Upload Verified")&&($("#COBI_PASSUPLOADIIVERIFY").val()=="Upload Verified"))
+		{
+		$(".PVER").show();
+		}
+		else
+		{
+		$(".PVER").hide();
+		}
+	}
+}
+
+if(($("#COBI_UBVERIFYTYPE").val()!="") && ($("#COBI_UBVERIFYTYPE").val()!=undefined))
+{
+$(".Utility").show();
+}
+}
+
+
+function GETPROOFTYP()
+{
+
+var k=	$("#COBI_KYCPROOFTYP").val().length	
+var PROOFTYPE=""
+ for(i=0;i<k;i++)
+	 {
+	 var PROOFTYPE1=$("#COBI_KYCPROOFTYP").val()[i]
+		
+	 if(PROOFTYPE1!=undefined)
+		 {
+	      var PROOFTYPE= PROOFTYPE+','+PROOFTYPE1
+		}
+	 }
+       var PROOFTYPE =PROOFTYPE.replace(',','')
+       $("#COBI_HIDPROFTYP").val(PROOFTYPE)	
+}

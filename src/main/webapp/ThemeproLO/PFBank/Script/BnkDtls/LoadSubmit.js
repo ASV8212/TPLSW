@@ -2,6 +2,8 @@ var MndtryFlg = ""
 $(document).ready(function () {
 	
 	
+	
+	
 	//$($('.AFormaccordion')[0]).click();
 	//$("#BKDT_CUSID").val($(".FormPageMultiTab li.active").attr("id"));
 	
@@ -12,8 +14,10 @@ $(document).ready(function () {
 	var prfx = $("#heading1 a").attr("data-aria").split("|")[1];
 	var DATA = $("#heading1 a").attr("data-aria").split("|")[2];
 	
-	LoadMultiData("",$("#PrcsID").val(),$("#BKDT_CUSID").val(),"BankDetail1","BKDTDBfields","LSW_sGETBANKDLT");
-	
+	     //LoadMultiData("",$("#PrcsID").val(),$("#BKDT_CUSID").val(),"BankDetail1","BKDTDBfields","LSW_sGETBANKDLT");
+		 LoadMultiData_V2("",$("#PrcsID").val(),$("#BKDT_CUSID").val(),"BankDetail1","BKDTDBfields","LSW_sGETBANKDLT");
+	  // LoadMultiData_V2("",$("#PrcsID").val(),"","ApproveNote2","HUNTDBfields","LSW_SGETHUNTERDATA");
+	  
 	if ($(".FormPageMultiTab li.active").attr("id").indexOf($(".FormPageMultiTab").attr("title")) < 0)
 		{
 	$("#BKDT_BNKNO").val($(".FormPageMultiTab li.active").attr("id"))
@@ -30,10 +34,62 @@ $(document).ready(function () {
 	 {
 	var HTML =	 $("." + ValuationID).find(".DYNROW")[i];
 	ChequeAvailable (HTML,"");
+	CheckPrimAcct(HTML,i,'Load')
+	//var acctype=($(html).find("input[select='BKDT_ACCTTYPE']").val())
+	ODCCLOAD(HTML);
+	
+	if($(HTML).find("input[name=BKDT_INITIATEBSA]").val()=="Initiated")
+	{
+			$(HTML).find(".Auto").show()
+			$(HTML).find(".Rpt").show()
+			$(HTML).find("#InitiateBSA").hide();
+			
+	}
+	else
+	{
+			$(HTML).find(".Auto").hide()
+			$(HTML).find(".Rpt").hide()
+			$(HTML).find("#InitiateBSA").show();
+	}
+	//ODCC(HTML,acctype);
 	 }
 	}
+	
+	
+	
+	
+	/* var DATA=["BankDetail1|"];
+
+    for (P=0;P<DATA.length;P++){
+    	var ValuationID=DATA[P].split("|")[0];
+    	var row = $("." + ValuationID).find(".DYNROW").length;
+    	for (S=0;S<row;S++){
+    		var HTML =	 $("." + ValuationID).find(".DYNROW")[S];
+    		
+			
+			LoadMultiData("",$("#PrcsID").val(),$(HTML).find("[name='BKDT_BNKNO']").val(),"MultiAttach","LIMADBfields","LSW_SGETBANKATTACHMENT");
+			
+			
+    	}
+      }
+	   */
+	  
+	  
+	  
+	  
+	  
 	 
 	 
+	 if($(".FormPageMultiTab li.active").attr('id')==$($(".FormPageMultiTab li")[0]).attr("id"))
+	{
+		$('.APPSHOW').show()
+	}
+	else
+	{
+		$('.APPSHOW').hide()
+	}
+	
+	
 	if($("#DMY7").val().split("|")[8] =="HE02"&&$("#DMY5").val().split("|")[2] =="PreLogin")
 	{
 		$('.SNDCRD').show()
@@ -50,7 +106,10 @@ $(document).ready(function () {
 	 
 	 if($("#DMY7").val().split("|")[8] =="HE02")
 	{
-	 var Role=$("#DMY5").val().split("|")[1]
+		
+	 if($(".FormPageMultiTab li.active").attr('id')==$($(".FormPageMultiTab li")[0]).attr("id"))
+	 {
+	   var Role=$("#DMY5").val().split("|")[1]
 	
 	    if(Role=="Yes")
 		  {
@@ -60,18 +119,26 @@ $(document).ready(function () {
 		{
 			$(".GenApplForm").show()
 		}
+		 else if($("#DMY5").val().split("|")[2]!="PreLogin")
+		  {
+			  $(".GenApplForm").show()
+		  }
 	  else
 		 {
 		   $(".GenApplForm").hide()
 		 }
+	  }
 	}
+	
+	
+	
+	
+	
 	$(document).on("click", "#Reject", function() {
 			$("#REJECTREMARKSPopup").click();
 			
 		});
-
-
-		
+	
 	 $(document).on("blur", ".ACCNO", function() {
 			
 			var DateVal=$(this).val()	
@@ -91,6 +158,7 @@ $(document).ready(function () {
 				    	return false;
 				    	}
 				   }
+				   
 			 }
 		});
 	 
@@ -132,6 +200,23 @@ $(document).ready(function () {
 		
 		 var html=$(this).closest('.DYNROW')
 		
+		  if($(html).find("[name=BKDT_ACCTNO]").val() == "")
+			   {
+			   
+			   alert("Fill the Account Number");
+			   return false;
+			   
+			   }
+			   
+			   
+			     if($(html).find("[name=BKDT_BNKNAME]").val() == "")
+			   {
+			   
+			   alert("Fill the Bank Name");
+			   return false;
+			   
+			   }
+
 		if($(this).text() == "Save & Next")
 		{
 		
@@ -139,12 +224,17 @@ $(document).ready(function () {
 		
 		if(MndtryChk == "Mandatory")
 			{
-			MndtryFlg="Mandatory";
-			alert("Fill the Mandatory Fields");
+				MndtryFlg="Mandatory";
+			alert("Fill the Mandatory Fields / Document(s)");
 			return false;
 			}
 		
 		
+		/* if($(html).find("[name=BKDT_STATEMENT]").val() == "")
+		{
+			alert("File upload to be uploaded");
+			return false;
+		} */
 		if($($(html).find("input[name='BKDT_CHEQAVAILABLE']:checked")).val()=="Yes")
 	 	{
 		   if($(html).find("[name=BKDT_COLLATTACHMENT]").val() == "")
@@ -161,17 +251,38 @@ $(document).ready(function () {
 	//var FormXML =	submitdata("CBSIDBfields");
 		
 		// Customer Seq ID Gen Start		
+		
+		
+		
 	
 		if($(html).find("[name=BKDT_BNKNO]").val() == "")
 		{
-		var CUSID = UI_getdata("BNK","","Yes","","","Sam_sGetSeqID");
+		var CUSID = UI_getdata("BNK",$("#PrcsID").val(),"Yes",$(html).find("[name=BKDT_CUSID]").val(),"","Sam_sGetSeqID");
 		
 		$(html).find("[name=BKDT_BNKNO]").val($(CUSID).find("Val1").text());
-	//	$(".BKDT_BNKNO").text($(CUSID).find("Val1").text());
+		$(html).find("[name=LIMA_UNIQID]").val($(CUSID).find("Val1").text());
+	
 	    }
 		// Customer Seq ID Gen End 
 		
-		$("#BKDT_BNKREFNAME").val($(".FormPageMultiTab li.active a div").text())
+		 var MultiAttach = TxtGridsubmitdata_Attach("MultiAttach","LIMA_","BKDT_","LIMADBfields",html);
+		 
+		 
+		 var BALANCEDATA=["BankDetail1|"];
+		 for (j=0;j<BALANCEDATA.length;j++)
+			 {
+			   var BNKDATA=BALANCEDATA[j].split("|")[0];
+		       var row = $("." + BNKDATA).find(".DYNROW").length;
+		       for (i=0;i<row;i++)
+		       {
+		         var BnkHtml = $("." + BNKDATA).find(".DYNROW")[i];
+		         $(BnkHtml).find('[name = BKDT_MULTIATTACH]').val(MultiAttach)
+				}
+		     }
+			 
+			 
+			 
+		$(this).closest(".DYNROW").find("[name=BKDT_BNKREFNAME]").val($(".FormPageMultiTab li.active a div").text())
 		
 		
 		
@@ -186,16 +297,16 @@ $(document).ready(function () {
 				
 				if (CHKresult == "Fail")
 					{
-					MndtryFlg="Submission Failed";
+						MndtryFlg="Mandatory";
 					alert("Submission Failed");
 					return false;			
 					}
 				else
 				{
-				//	alert("Account Details Saved Successfully")
+					alert("Account Details Saved Successfully")
 				}
 
-     var BankUpdate=   UI_getdata($("#PrcsID").val(),$(html).find("[name=BKDT_BNKNO]").val(),"","","","LSW_SUPDATEBANKDETAILS");
+            var BankUpdate=   UI_getdata($("#PrcsID").val(),$(html).find("[name=BKDT_BNKNO]").val(),"","","","LSW_SUPDATEBANKDETAILS");
 		
 		
 		// Tab Header Change End
@@ -208,7 +319,6 @@ $(document).ready(function () {
 		
 	});
 	
-	
 	 $(document).on("click", ".SNDCRD", function(){
 		
 		for(var i = 0;i<$('.BankDetail1').find('.Formnxt').length;i++)
@@ -220,8 +330,8 @@ $(document).ready(function () {
                 var MndtryChk = ChkMandatoryFlds_V1("BKDTMndtry",html);
                 if(MndtryChk == "Mandatory")
 			    {
-			     MndtryFlg="Mandatory";
-			     alert("Fill the Mandatory Fields");
+			  //   MndtryFlg="Mandatory";
+			     alert("Fill the Mandatory Fields / Document(s)");
 			     return false;
 			    }
 			}
@@ -283,6 +393,8 @@ $(document).ready(function () {
 //	$(this).closest('.BankDetail1').find('.Formnxt').click()
 	  
 	});
+	
+	
 	
 });
 

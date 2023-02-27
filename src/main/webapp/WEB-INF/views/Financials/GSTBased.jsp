@@ -39,6 +39,7 @@
 				  <input type="text" id="CGST_SCHEMENAME" hidden="hidden" name="CGST_SCHEMENAME" class="form-control CGSTDBfields">
 				  <input type="text" id="CGST_PRODUCTID" hidden="hidden" name="CGST_PRODUCTID" class="form-control CGSTDBfields">
                    <input type="text" id="CGST_PRODUCTNAME" hidden="hidden" name="CGST_PRODUCTNAME" class="form-control CGSTDBfields">
+				   <input type="text"  id="CGST_LOANID" hidden="hidden" name="CGST_LOANID" class="form-control  CGSTDBfields">
 				 </br>
 				 <div class="form-row">
                      <div class="col Btxt3">GST Based</div>

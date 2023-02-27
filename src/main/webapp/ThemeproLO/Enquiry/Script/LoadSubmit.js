@@ -46,7 +46,7 @@ today = dd+'/'+mm+'/'+yyyy;
 			 {
 	FncallMyAppl(this,'Table3',{spname:'LSW_SENQUIRYVIEWTAB',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',
 	Param:$('#LogUsr').val(),brid:'Loan|'+$('#FromDate').val()+'|'+$('#ToDate').val()+'|'+$('#ApplNo').val()+'|'+$('#AggrNo').val()
-	+'|'+$('#DOB').val()+'|'+$('#PAN').val()+'|'+$('#MOB').val()+'|'+$('#CKYC').val()+'|'+$('#Name').val()+'|'+$('#CusType').val()+'|'+$('#PrdName').val(),MnuId:'Search'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||3,10','ENQUIRTYTAB');
+	+'|'+$('#DOB').val()+'|'+$('#PAN').val()+'|'+$('#MOB').val()+'|'+$('#CKYC').val()+'|'+$('#Name').val()+'|'+$('#CusType').val()+'|'+$('#PrdName').val()+'|'+$('#VERTICAL').val(),MnuId:'Search'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||3,10','ENQUIRTYTAB');
 			 }
  });
 

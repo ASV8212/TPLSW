@@ -81,6 +81,11 @@ randomnum();
 			
 		//	return;
 			}*/
+			if(document.getElementById("TXTusername").value == "" || document.getElementById("TXTpwd").value == "")
+			{
+				alert('Please enter user name and password');
+				return
+			}
 	 var value= ValidCaptcha()
 	if(value==false)
 	{

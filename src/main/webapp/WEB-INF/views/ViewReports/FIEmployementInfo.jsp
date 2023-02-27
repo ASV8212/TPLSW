@@ -54,7 +54,7 @@
                 </div>
               <div class=" col-md-4">
                  <div class="md-form">
-                    <input type="text" id="FIED_LANDMARK" name="FIED_LANDMARK" maxlength="25" class="NoSpecialChar FIEDMndtry form-control FIEDDBfields  ">
+                    <input type="text" id="FIED_LANDMARK" name="FIED_LANDMARK" maxlength="25" class=" FIEDMndtry form-control FIEDDBfields  ">
                     <label for="FIED_LANDMARK" class=""> Landmark <span class="MndtryAstr">*</span></label>
                   </div>
                 </div>  
@@ -162,7 +162,7 @@
                <div class="col-md-4">
                   
                   <div class="md-form">
-                   <input type="text" id="FIED_EMPSALARYDRA" maxlength="10"  name="FIED_EMPSALARYDRA" class="IsNumberFields NoSpecialChar IsCURCommaFields form-control FIEDDBfields   ">
+                   <input type="text" id="FIED_EMPSALARYDRA" maxlength="30"  name="FIED_EMPSALARYDRA" class="IsNumberFields NoSpecialChar IsCURCommaFields form-control FIEDDBfields   ">
                     <label for="FIED_EMPSALARYDRA" class="">Salary Drawn<span class="MndtryAstr"></span></label>
                   </div>
                </div> 
@@ -415,7 +415,7 @@
             </div>  
             <div class=" col-md-4">
                 <div class="md-form">
-                    <input type="text" id="FIED_AVGMONTHTURNOV" maxlength="10" name="FIED_AVGMONTHTURNOV" class="form-control IsNumberFields IsCURCommaFields NoSpecialChar FIEDDBfields  ">
+                    <input type="text" id="FIED_AVGMONTHTURNOV" maxlength="30" name="FIED_AVGMONTHTURNOV" class="form-control IsNumberFields IsCURCommaFields NoSpecialChar FIEDDBfields  ">
                     <label for="FIED_AVGMONTHTURNOV" class=""> Average Monthly Turnover(if Self Employed) <span class="MndtryAstr"></span></label>
                 </div>
            </div>  
@@ -717,10 +717,10 @@
                     <label for="FIED_ANYOTHREASONS" class="">Any Other Reasons<span class="MndtryAstr"></span></label>
                   </div>
                 </div>   		
-        </div>  
+        </div> 
 
-  		
-			 <div class="form-row ">
+
+        	 <div class="form-row ">
                   <div class="col-md-4">
                     <div class="col Btxt10">Upload Photos</div>
                      <div data-for="BankDetail1" class="BankDetail1"> 
@@ -779,9 +779,7 @@
 					 
                   </div>
              </div>
-			
-
-		
+					
         <div class="form-row">
                <div class="col d-flex justify-content-center">
                      <button type="button" id="Save1" data-aria="LSW_TFEMPLOYINFO|FIED|FIED_ALTNUNIQEID"  class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   

@@ -104,9 +104,7 @@
 						<input type="text" id="MNGQ_QURYID" hidden="hidden"  name="MNGQ_QURYID" class="form-control MNGQDBfields">
 						<input type="text" id="MNGQ_FRMUSRID" hidden="hidden"  name="MNGQ_FRMUSRID" class="form-control MNGQDBfields">
 						<input type="text" id="MNGQ_TOUSRID" hidden="hidden"  name="MNGQ_TOUSRID" class="form-control MNGQDBfields">
-						
-						<input type="text" id="MNGQ_QRYSTUS" hidden="hidden"  name="MNGQ_QRYSTUS" class="form-control MNGQDBfields">
-
+  <input type="text" id="MNGQ_QRYSTUS" hidden="hidden"  name="MNGQ_QRYSTUS" class="form-control MNGQDBfields">
 </br>
 <div class="FLDCOMP">
 						<div class="form-row">
@@ -277,7 +275,7 @@
 						<input type="text" id="MNGQ_QURYID" hidden="hidden"  name="MNGQ_QURYID" class="form-control MNGQDBfields">
 						<input type="text" id="MNGQ_FRMUSRID" hidden="hidden"  name="MNGQ_FRMUSRID" class="form-control MNGQDBfields">
 						<input type="text" id="MNGQ_TOUSRID" hidden="hidden"  name="MNGQ_TOUSRID" class="form-control MNGQDBfields">
-                        <input type="text" id="MNGQ_QRYSTUS" hidden="hidden"  name="MNGQ_QRYSTUS" class="form-control MNGQDBfields">
+  <input type="text" id="MNGQ_QRYSTUS" hidden="hidden"  name="MNGQ_QRYSTUS" class="form-control MNGQDBfields">
 </br>
 <div class="FLDCOMP">
 						<div class="form-row">
@@ -450,7 +448,7 @@
 						<input type="text" id="MNGQ_QURYID" hidden="hidden"  name="MNGQ_QURYID" class="form-control MNGQDBfields">
 						<input type="text" id="MNGQ_FRMUSRID" hidden="hidden"  name="MNGQ_FRMUSRID" class="form-control MNGQDBfields">
 						<input type="text" id="MNGQ_TOUSRID" hidden="hidden"  name="MNGQ_TOUSRID" class="form-control MNGQDBfields">
-                         <input type="text" id="MNGQ_QRYSTUS" hidden="hidden"  name="MNGQ_QRYSTUS" class="form-control MNGQDBfields">
+  <input type="text" id="MNGQ_QRYSTUS" hidden="hidden"  name="MNGQ_QRYSTUS" class="form-control MNGQDBfields">
 </br>
 <div class="FLDCOMP">
 						<div class="form-row">
@@ -566,8 +564,8 @@
                         </div>
 						<div class="form-row OQBTN " style="display:none">
                            <div class="col d-flex justify-content-center">
-                              <button type="button" id="SaveOI" data-aria="MNGQ_QURYID|MNGQ_TYP|MNGQ_TYMSTMP|MNGQ_FRMUSRNAME|MNGQ_TOUSRNAME|MNGQ_QURYNAME|MNGQ_DESC|MNGQ_FRMUSRID|MNGQ_TOUSRID|MNGQ_FRMUSRROLE|MNGQ_TOUSRROLE|MNGQ_QRYSTUS" data-resolve="RESOLUTION"  class="btn RESOLUTION MNGQDBfields btn-Syeloutline waves-effect waves-light">Resolution</button>   
-							  <!--IQQRBTN-->
+                              <button type="button" id="SaveOI" data-aria="MNGQ_QURYID|MNGQ_TYP|MNGQ_TYMSTMP|MNGQ_FRMUSRNAME|MNGQ_TOUSRNAME|MNGQ_QURYNAME|MNGQ_DESC|MNGQ_FRMUSRID|MNGQ_TOUSRID|MNGQ_FRMUSRROLE|MNGQ_TOUSRROLE|MNGQ_QRYSTUS" data-resolve="RESOLUTION"  class="btn RESOLUTION MNGQDBfields btn-Syeloutline waves-effect waves-light">Resolution</button>  
+								<!--IQQRBTN-->							  
                               <button type="button" data-aria="MNGQ_QURYID|MNGQ_TYP|MNGQ_TYMSTMP|MNGQ_FRMUSRNAME|MNGQ_TOUSRNAME|MNGQ_QURYNAME|MNGQ_DESC|MNGQ_FRMUSRID|MNGQ_TOUSRID|MNGQ_FRMUSRROLE|MNGQ_TOUSRROLE|MNGQ_QRYSTUS" id="ReAssign" data-toggle="modal" data-target="#ReAssignQry" href="#" data-card="2" style="display:none" class="btn btn-Syel waves-effect waves-light  ">Re-Assign</button> 
                            </div>
                         </div>
@@ -624,8 +622,7 @@
 						<input type="text" id="MNGQ_QURYID" hidden="hidden"  name="MNGQ_QURYID" class="form-control MNGQDBfields">
 						<input type="text" id="MNGQ_FRMUSRID" hidden="hidden"  name="MNGQ_FRMUSRID" class="form-control MNGQDBfields">
 						<input type="text" id="MNGQ_TOUSRID" hidden="hidden"  name="MNGQ_TOUSRID" class="form-control MNGQDBfields">
-						 <input type="text" id="MNGQ_QRYSTUS" hidden="hidden"  name="MNGQ_QRYSTUS" class="form-control MNGQDBfields">
-
+  <input type="text" id="MNGQ_QRYSTUS" hidden="hidden"  name="MNGQ_QRYSTUS" class="form-control MNGQDBfields">
 </br>
 <div class="FLDCOMP">
 						<div class="form-row">
@@ -742,7 +739,7 @@
 						<div class="form-row OQBTN " style="display:none">
                            <div class="col d-flex justify-content-center">
                               <button type="button" id="SaveOI" data-aria="MNGQ_QURYID|MNGQ_TYP|MNGQ_TYMSTMP|MNGQ_FRMUSRNAME|MNGQ_TOUSRNAME|MNGQ_QURYNAME|MNGQ_DESC|MNGQ_FRMUSRID|MNGQ_TOUSRID|MNGQ_FRMUSRROLE|MNGQ_TOUSRROLE|MNGQ_QRYSTUS" data-resolve="RESOLUTION"  class="btn RESOLUTION MNGQDBfields btn-Syeloutline waves-effect waves-light">Resolution</button>   
-							  <!--IQQRBTN-->
+							   <!--IQQRBTN-->
                               <button type="button" data-aria="MNGQ_QURYID|MNGQ_TYP|MNGQ_TYMSTMP|MNGQ_FRMUSRNAME|MNGQ_TOUSRNAME|MNGQ_QURYNAME|MNGQ_DESC|MNGQ_FRMUSRID|MNGQ_TOUSRID|MNGQ_FRMUSRROLE|MNGQ_TOUSRROLE|MNGQ_QRYSTUS" id="ReAssign" data-toggle="modal" data-target="#ReAssignQry" href="#" data-card="2" style="display:none" class="btn btn-Syel waves-effect waves-light  ">Re-Assign</button> 
                            </div>
                         </div>
@@ -798,8 +795,7 @@
 						<input type="text" id="MNGQ_QURYID" hidden="hidden"  name="MNGQ_QURYID" class="form-control MNGQDBfields">
 						<input type="text" id="MNGQ_FRMUSRID" hidden="hidden"  name="MNGQ_FRMUSRID" class="form-control MNGQDBfields">
 						<input type="text" id="MNGQ_TOUSRID" hidden="hidden"  name="MNGQ_TOUSRID" class="form-control MNGQDBfields">
-						 <input type="text" id="MNGQ_QRYSTUS" hidden="hidden"  name="MNGQ_QRYSTUS" class="form-control MNGQDBfields">
-
+  <input type="text" id="MNGQ_QRYSTUS" hidden="hidden"  name="MNGQ_QRYSTUS" class="form-control MNGQDBfields">
 </br>
 <div class="FLDCOMP">
 						<div class="form-row">
@@ -915,8 +911,8 @@
                         </div>
 						<div class="form-row OQBTN " style="display:none">
                            <div class="col d-flex justify-content-center">
-                              <button type="button" id="SaveOI" data-aria="MNGQ_QURYID|MNGQ_TYP|MNGQ_TYMSTMP|MNGQ_FRMUSRNAME|MNGQ_TOUSRNAME|MNGQ_QURYNAME|MNGQ_DESC|MNGQ_FRMUSRID|MNGQ_TOUSRID|MNGQ_FRMUSRROLE|MNGQ_TOUSRROLE|MNGQ_QRYSTUS" data-resolve="RESOLUTION"  class="btn RESOLUTION MNGQDBfields btn-Syeloutline waves-effect waves-light">Resolution</button>   
-							  <!--IQQRBTN-->
+                              <button type="button" id="SaveOI" data-aria="MNGQ_QURYID|MNGQ_TYP|MNGQ_TYMSTMP|MNGQ_FRMUSRNAME|MNGQ_TOUSRNAME|MNGQ_QURYNAME|MNGQ_DESC|MNGQ_FRMUSRID|MNGQ_TOUSRID|MNGQ_FRMUSRROLE|MNGQ_TOUSRROLE|MNGQ_QRYSTUS" data-resolve="RESOLUTION"  class="btn RESOLUTION MNGQDBfields btn-Syeloutline waves-effect waves-light">Resolution</button>
+								<!--IQQRBTN-->							  
                               <button type="button" data-aria="MNGQ_QURYID|MNGQ_TYP|MNGQ_TYMSTMP|MNGQ_FRMUSRNAME|MNGQ_TOUSRNAME|MNGQ_QURYNAME|MNGQ_DESC|MNGQ_FRMUSRID|MNGQ_TOUSRID|MNGQ_FRMUSRROLE|MNGQ_TOUSRROLE|MNGQ_QRYSTUS" id="ReAssign" data-toggle="modal" data-target="#ReAssignQry" href="#" data-card="2" style="display:none" class="btn btn-Syel waves-effect waves-light  ">Re-Assign</button> 
                            </div>
                         </div>
@@ -972,8 +968,7 @@
 						<input type="text" id="MNGQ_QURYID" hidden="hidden"  name="MNGQ_QURYID" class="form-control MNGQDBfields">
 						<input type="text" id="MNGQ_FRMUSRID" hidden="hidden"  name="MNGQ_FRMUSRID" class="form-control MNGQDBfields">
 						<input type="text" id="MNGQ_TOUSRID" hidden="hidden"  name="MNGQ_TOUSRID" class="form-control MNGQDBfields">
-						 <input type="text" id="MNGQ_QRYSTUS" hidden="hidden"  name="MNGQ_QRYSTUS" class="form-control MNGQDBfields">
-
+  <input type="text" id="MNGQ_QRYSTUS" hidden="hidden"  name="MNGQ_QRYSTUS" class="form-control MNGQDBfields">
 </br>
 <div class="FLDCOMP">
 						<div class="form-row">
@@ -1090,7 +1085,7 @@
 						<div class="form-row OQBTN " style="display:none">
                            <div class="col d-flex justify-content-center">
                               <button type="button" id="SaveOI" data-aria="MNGQ_QURYID|MNGQ_TYP|MNGQ_TYMSTMP|MNGQ_FRMUSRNAME|MNGQ_TOUSRNAME|MNGQ_QURYNAME|MNGQ_DESC|MNGQ_FRMUSRID|MNGQ_TOUSRID|MNGQ_FRMUSRROLE|MNGQ_TOUSRROLE|MNGQ_QRYSTUS" data-resolve="RESOLUTION"  class="btn RESOLUTION MNGQDBfields btn-Syeloutline waves-effect waves-light">Resolution</button>   
-							  <!--IQQRBTN-->
+							   <!--IQQRBTN-->
                               <button type="button" data-aria="MNGQ_QURYID|MNGQ_TYP|MNGQ_TYMSTMP|MNGQ_FRMUSRNAME|MNGQ_TOUSRNAME|MNGQ_QURYNAME|MNGQ_DESC|MNGQ_FRMUSRID|MNGQ_TOUSRID|MNGQ_FRMUSRROLE|MNGQ_TOUSRROLE|MNGQ_QRYSTUS" id="ReAssign" data-toggle="modal" data-target="#ReAssignQry" href="#" data-card="2" style="display:none" class="btn btn-Syel waves-effect waves-light  ">Re-Assign</button> 
                            </div>
                         </div>
@@ -1143,8 +1138,7 @@
 						<input type="text" id="MNGQ_QURYID" hidden="hidden"  name="MNGQ_QURYID" class="form-control MNGQDBfields">
 						<input type="text" id="MNGQ_FRMUSRID" hidden="hidden"  name="MNGQ_FRMUSRID" class="form-control MNGQDBfields">
 						<input type="text" id="MNGQ_TOUSRID" hidden="hidden"  name="MNGQ_TOUSRID" class="form-control MNGQDBfields">
-						 <input type="text" id="MNGQ_QRYSTUS" hidden="hidden"  name="MNGQ_QRYSTUS" class="form-control MNGQDBfields">
-
+  <input type="text" id="MNGQ_QRYSTUS" hidden="hidden"  name="MNGQ_QRYSTUS" class="form-control MNGQDBfields">
 </br>
 <div class="FLDCOMP">
 						<div class="form-row">
@@ -1261,7 +1255,7 @@
 						<div class="form-row OQBTN " style="display:none">
                            <div class="col d-flex justify-content-center">
                               <button type="button" id="SaveOI" data-aria="MNGQ_QURYID|MNGQ_TYP|MNGQ_TYMSTMP|MNGQ_FRMUSRNAME|MNGQ_TOUSRNAME|MNGQ_QURYNAME|MNGQ_DESC|MNGQ_FRMUSRID|MNGQ_TOUSRID|MNGQ_FRMUSRROLE|MNGQ_TOUSRROLE|MNGQ_QRYSTUS" data-resolve="RESOLUTION"  class="btn RESOLUTION MNGQDBfields btn-Syeloutline waves-effect waves-light">Resolution</button>   
-							  <!--IQQRBTN-->
+							   <!--IQQRBTN-->
                               <button type="button" data-aria="MNGQ_QURYID|MNGQ_TYP|MNGQ_TYMSTMP|MNGQ_FRMUSRNAME|MNGQ_TOUSRNAME|MNGQ_QURYNAME|MNGQ_DESC|MNGQ_FRMUSRID|MNGQ_TOUSRID|MNGQ_FRMUSRROLE|MNGQ_TOUSRROLE|MNGQ_QRYSTUS" id="ReAssign" data-toggle="modal" data-target="#ReAssignQry" href="#" data-card="2" style="display:none" class="btn btn-Syel waves-effect waves-light  ">Re-Assign</button> 
                            </div>
                         </div>
@@ -1315,8 +1309,7 @@
 						<input type="text" id="MNGQ_QURYID" hidden="hidden"  name="MNGQ_QURYID" class="form-control MNGQDBfields">
 						<input type="text" id="MNGQ_FRMUSRID" hidden="hidden"  name="MNGQ_FRMUSRID" class="form-control MNGQDBfields">
 						<input type="text" id="MNGQ_TOUSRID" hidden="hidden"  name="MNGQ_TOUSRID" class="form-control MNGQDBfields">
-						 <input type="text" id="MNGQ_QRYSTUS" hidden="hidden"  name="MNGQ_QRYSTUS" class="form-control MNGQDBfields">
-
+  <input type="text" id="MNGQ_QRYSTUS" hidden="hidden"  name="MNGQ_QRYSTUS" class="form-control MNGQDBfields">
 </br>
 <div class="FLDCOMP">
 						<div class="form-row">
@@ -1433,8 +1426,8 @@
 						<div class="form-row OQBTN " style="display:none">
                            <div class="col d-flex justify-content-center">
                               <button type="button" id="SaveOI" data-aria="MNGQ_QURYID|MNGQ_TYP|MNGQ_TYMSTMP|MNGQ_FRMUSRNAME|MNGQ_TOUSRNAME|MNGQ_QURYNAME|MNGQ_DESC|MNGQ_FRMUSRID|MNGQ_TOUSRID|MNGQ_FRMUSRROLE|MNGQ_TOUSRROLE|MNGQ_QRYSTUS" data-resolve="RESOLUTION"  class="btn RESOLUTION MNGQDBfields btn-Syeloutline waves-effect waves-light">Resolution</button>   
-							  <!-- IQQRBTN -->
-                              <button type="button" data-aria="MNGQ_QURYID|MNGQ_TYP|MNGQ_TYMSTMP|MNGQ_FRMUSRNAME|MNGQ_TOUSRNAME|MNGQ_QURYNAME|MNGQ_DESC|MNGQ_FRMUSRID|MNGQ_TOUSRID|MNGQ_FRMUSRROLE|MNGQ_TOUSRROLE|MNGQ_QRYSTUS" id="ReAssign" data-toggle="modal" data-target="#ReAssignQry" href="#" data-card="2" style="display:none" class="btn btn-Syel waves-effect waves-light">Re-Assign</button>  
+							   <!--IQQRBTN-->
+                              <button type="button" data-aria="MNGQ_QURYID|MNGQ_TYP|MNGQ_TYMSTMP|MNGQ_FRMUSRNAME|MNGQ_TOUSRNAME|MNGQ_QURYNAME|MNGQ_DESC|MNGQ_FRMUSRID|MNGQ_TOUSRID|MNGQ_FRMUSRROLE|MNGQ_TOUSRROLE|MNGQ_QRYSTUS" id="ReAssign" data-toggle="modal" data-target="#ReAssignQry" href="#" data-card="2" style="display:none" class="btn btn-Syel waves-effect waves-light  ">Re-Assign</button>  
                            </div>
                         </div>
 						<div class="form-row CQBTN " style="display:none">
@@ -1573,9 +1566,7 @@
               <input type="text" id="MNGD_QURYSTATUS" hidden="hidden" name="MNGD_QURYSTATUS" class="form-control SRFDDBfields">     
               <input type="text" id="MNGD_ACTNTYP" hidden="hidden" name="MNGD_ACTNTYP" class="form-control SRFDDBfields"> 
 			  
-			  <input type="text" id="MNGD_QRYSTUS" hidden="hidden" name="MNGD_QRYSTUS" class="form-control SRFDDBfields"> 
-			  
-			  
+			   <input type="text" id="MNGD_QRYSTUS" hidden="hidden" name="MNGD_QRYSTUS" class="form-control SRFDDBfields"> 
         </div>
               <div data-for="RESOLUTIONPOP" class="RESOLUTIONPOP">  
                </div>
@@ -1594,7 +1585,7 @@
                         <input type="text" id="MQMR_TOUSRID" hidden="hidden" name="MQMR_TOUSRID" class="form-control MQMRDBfields">
                         <input type="text" id="MQMR_TOUSRROLE" hidden="hidden" name="MQMR_TOUSRROLE" class="form-control MQMRDBfields">
                         <input type="text" id="MQMR_QURYSTATUS" hidden="hidden" name="MQMR_QURYSTATUS" class="form-control MQMRDBfields">  
-                        <input type="text" id="MQMR_QRYSTUS" hidden="hidden" name="MQMR_QRYSTUS" class="form-control MQMRDBfields"> 						
+						<input type="text" id="MQMR_QRYSTUS" hidden="hidden" name="MQMR_QRYSTUS" class="form-control MQMRDBfields"> 						
            </br>
                          <div class="form-row">
 						   <div class="col">
@@ -1792,8 +1783,8 @@
               <input type="text" id="MNGQ_TOUSRROLE" hidden="hidden" name="MNGQ_TOUSRROLE" class="form-control MQRODBfields">
               <input type="text" id="MNGQ_QURYSTATUS" hidden="hidden" name="MNGQ_QURYSTATUS" class="form-control MQRODBfields">     
 			  <input type="text" id="MNGQ_DESC" hidden="hidden" name="MNGQ_DESC" class="form-control MQRODBfields">
-              <input type="text" id="MNGQ_ATTACHURL" hidden="hidden" name="MNGQ_ATTACHURL" class="form-control MQRODBfields">
-              <input type="text" id="MNGQ_QRYSTUS" hidden="hidden" name="MNGQ_QRYSTUS" class="form-control MQRODBfields"> 			  
+              <input type="text" id="MNGQ_ATTACHURL" hidden="hidden" name="MNGQ_ATTACHURL" class="form-control MQRODBfields"> 
+			   <input type="text" id="MNGQ_QRYSTUS" hidden="hidden" name="MNGQ_QRYSTUS" class="form-control MQRODBfields"> 	
         </div> 
           
  <div class="form-row">            

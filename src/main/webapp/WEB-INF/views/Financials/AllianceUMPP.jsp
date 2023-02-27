@@ -22,6 +22,7 @@
 				  <input type="text" id="PRPM_SCHEMENAME" hidden="hidden" name="PRPM_SCHEMENAME" class="form-control PRPMDBfields">
 				  <input type="text" id="PRPM_SCHEMEID" hidden="hidden" name="PRPM_SCHEMEID" class="form-control PRPMDBfields">
 				  <input type="text" id="PRPM_PURCHASEMETHOD" hidden="hidden" name="PRPM_PURCHASEMETHOD" class="form-control PRPMDBfields">
+				  <input type="text" id="PRPM_LOANID" hidden="hidden" name="PRPM_LOANID" class="form-control PRPMDBfields">
 				  
                    
 				 </br>
@@ -29,9 +30,12 @@
         	<div class="col Btxt10">Eligibility Calculation - Projected Purchase Method</div>
         </div>
       	</br>
+		<div class="form-row">
+        	<div class="col Btxt10" style="color: rgb(255, 0, 0);">Details to be entered in actuals (Rs)</div>
+        </div>
        <div class="form-row">
            <div class="col">
-             <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table8',{spname:'LSW_SELIGCALCII',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#PRPM_SCHEMEID').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||3,4','ELIGCALCII');" id="BTNELIGCALCIIGRD" name="BTNELIGCALCIIGRD" />
+             <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table8',{spname:'LSW_SELIGCALCII',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#PRPM_SCHEMEID').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||2,3,4','ELIGCALCII');" id="BTNELIGCALCIIGRD" name="BTNELIGCALCIIGRD" />
              <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display DataGrid" id="Table8">
              </table>
            </div>
@@ -68,8 +72,8 @@
     card 
    </div>
 </div>-->
-<!--   </div>
-   </div>   -->      
+<!--   </div>--> 
+   </div>        
 <script type="text/javascript" src="ThemeproLO/Financials/Script/AllianceUMPP/LoadSubmit.js${DMY13}"></script>
 <script type="text/javascript" src="ThemeproLO/Financials/Script/AllianceUMPP/Validation.js${DMY13}"></script>                            
  

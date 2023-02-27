@@ -17,7 +17,9 @@ $(function () {
             return false;
         }
     });
-		$(document).on("keypress", ".IsRmkField", function(e){
+	
+	
+	$(document).on("keypress", ".IsRmkField", function(e){
 	  	  if((event.keyCode == 36 || event.keyCode == 35 || event.keyCode == 62 || event.keyCode == 60 || event.keyCode == 96 || event.keyCode == 126 || event.keyCode == 39 || event.keyCode == 34 || event.keyCode == 38 ))
 	  	  {
 	          event.returnValue = false;
@@ -26,6 +28,38 @@ $(function () {
 	      event.returnValue = true;
 	  	 
 	      }); 
+		  
+		 
+		 
+		$(document).on("keypress", ".NONumber", function(e) {
+        var regex = new RegExp("^[0-9]+$");
+        var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+        if (regex.test(str)) {
+			  e.preventDefault();
+          //  alertify.alert(LoadFrmXML("V0054")+'|'+e);
+            return false;
+            
+        }
+        else {
+          return true;
+        }
+    });
+	  
+		 $(document).on("keypress", ".underscorehiphendot", function(e) {
+	  //if(!((event.keyCode > 64 && event.keyCode < 91) || (event.keyCode > 96 && event.keyCode < 123) || event.keyCode == 8 || event.keyCode == 32 || (event.keyCode >= 48 && event.keyCode <= 57) || event.keyCode == 190 || event.keyCode == 188 || event.keyCode == 46))
+	  if(!((event.keyCode > 96 && event.keyCode < 123) || (event.keyCode >= 48 && event.keyCode <= 57) || event.keyCode == 46 || event.keyCode == 45 || event.keyCode == 95))
+	  {
+        event.returnValue = false;
+        return;
+    }
+    event.returnValue = true;
+	 
+    }); 
+		  
+		  
+
+
+		  
 		   // $('.NoSpecialChar').keypress(function (e) {
 	$(document).on("keypress", ".NoSpecialChar", function(e) {
 	  if(!((event.keyCode > 64 && event.keyCode < 91) || (event.keyCode > 96 && event.keyCode < 123) || event.keyCode == 8 || event.keyCode == 32 || (event.keyCode >= 48 && event.keyCode <= 57) || event.keyCode == 190 || event.keyCode == 188 || event.keyCode == 46))
@@ -37,6 +71,18 @@ $(function () {
 	 
     });
 	
+	$(document).on("keypress", ".NoSpecialCharNOTDOT", function(e) {
+	  if(!((event.keyCode > 64 && event.keyCode < 91) || (event.keyCode > 96 && event.keyCode < 123) || event.keyCode == 8 || event.keyCode == 32 || (event.keyCode >= 48 && event.keyCode <= 57) || event.keyCode == 190 || event.keyCode == 188))
+	  {
+        event.returnValue = false;
+        return;
+    }
+    event.returnValue = true;
+	 
+    });
+	
+	
+	
 	$(document).on("keypress", ".AddrNoSpecialChar", function(e){
 	  	  if(!((event.keyCode > 64 && event.keyCode < 91) || (event.keyCode > 96 && event.keyCode < 123) || event.keyCode == 8 || event.keyCode == 32 || (event.keyCode >= 48 && event.keyCode <= 57) || event.keyCode == 190 || event.keyCode == 188 || event.keyCode == 46||event.keyCode == 47||event.keyCode == 44||event.keyCode == 45))
 	  	  {
@@ -46,6 +92,18 @@ $(function () {
 	      event.returnValue = true;
 	  	 
 	      });   
+		  
+		  $(document).on("keypress", ".NewVoterField", function(e){
+	  	  if((event.keyCode == 36 || event.keyCode == 35 || event.keyCode == 62 || event.keyCode == 60 || event.keyCode == 96 || event.keyCode == 126 || event.keyCode == 39 || event.keyCode == 34 || event.keyCode == 38 || event.keyCode == 33 || event.keyCode == 40 || event.keyCode == 41 
+		  || event.keyCode == 43 || event.keyCode == 61 || event.keyCode == 37 || event.keyCode == 44 || event.keyCode == 46 || event.keyCode == 64 || event.keyCode == 124 || event.keyCode == 92 || event.keyCode == 42 || event.keyCode == 94 || event.keyCode == 91 || event.keyCode == 93 || event.keyCode == 123
+|| event.keyCode == 125 || event.keyCode == 63 || event.keyCode == 45 || event.keyCode == 95 || event.keyCode == 59 || event.keyCode == 58 ))
+	  	  {
+	          event.returnValue = false;
+	          return;
+	      }
+	      event.returnValue = true;
+	  	 
+	      }); 
     });
 //IsCURCommaFields
 
@@ -54,6 +112,17 @@ $(function () {
         //$('.IsCURCommaFields').on('keyup', function() {
        $(document).on("keyup", ".IsCURCommaFields", function() {
     	   var currentVal = $(this).val();
+		   
+		   //Added for Jira - HE-5099 start
+		   var Second=currentVal.split('.')[1];
+		     if(Second=="-")
+		     {
+		     	if(event.which == 189)
+		     	{
+		     		currentVal = currentVal.slice(00, -1);
+		     	}
+		     }
+		    //Added for Jira - HE-5099 end
            if (currentVal.length == 2 && (event.which == 48 || event.which == 96)) {
             	if(parseInt(currentVal)==00)
             		{
@@ -80,7 +149,7 @@ $(function () {
  
         });
        
-       $(document).on("blur", ".IsCURCommaFields", function() {
+      /* $(document).on("blur", ".IsCURCommaFields", function() {
       
     	   var currentVal = $(this).val();
 		   if(parseFloat(currentVal)!=0.00)
@@ -96,8 +165,42 @@ $(function () {
       	      }
 			}
 
-          });
+          });*/
 		
+		 $(document).on("blur", ".IsCURCommaFields", function() {
+      
+    	   var currentVal = $(this).val();
+    	      currentVal=currentVal.replace(/,/g,'')
+		   if(parseInt(currentVal)!=0)
+      	    {
+      	    if (currentVal.length > 1){
+				var currentVal1=currentVal[0]
+         if(currentVal1=="-")
+         {
+         	currentVal=currentVal.replace("-","")
+         }
+              	var FirstLetter=currentVal.substring(0, 1)
+      	    	if(parseInt(FirstLetter)==0)
+      	    		{
+						/*if(currentVal1=="-")
+                          {
+							  var OutPut=currentVal.replace(currentVal.substring(0, 1),"")
+							  $(this).val(currentVal1+OutPut)
+						  }
+						  else
+						  {
+      	    		//alert ("Enter the Valid Amount,Cannot be Start with Zero")
+      	    		        $(this).val(currentVal.replace(currentVal.substring(0, 1),""))
+						  }*/
+						  alert ("Enter the Valid Amount,Cannot be Start with Zero");
+						   $(this).val('');
+						   $(this).next().removeClass('active')
+						 
+                    }
+      	      }
+			}
+
+          });
 		
 		       $(document).on("blur", ".NoSpecialChar", function() {
     	     var currentVal = $(this).val();
@@ -107,7 +210,10 @@ $(function () {
         	{
         	if(re.indexOf(currentVal.charAt(i))!=-1)
         	{
-        		alert("special Character Not allowed")
+				
+			alert("Mentioned special characters are not allowed !~`@#$%^&*()+=-[]\\\';{}|\":<>?~_");
+				
+        		//alert("special Character Not allowed")
         		$(this).val('')
         		$(this).next().removeClass('active')
     	        return
@@ -117,16 +223,35 @@ $(function () {
     	     
     	     
           });
+		             $(".IsGstValid").change(function () {    
+                 var inputvalues = $(this).val();  
+                   var GstNumber= inputvalues.toUpperCase()				 
+                 var gstinformat = new RegExp('^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$');    
+                 if (gstinformat.test(GstNumber)) {
+                   $(".gst").val(GstNumber);					 
+                   return true;    
+                 }
+             else
+             {    
+                 alert('Please Enter Valid GSTIN Number - Eg.27AACCH5453M1Z9');    
+                 $(".gst").val('');    
+                 $(".gst").focus();    
+                }    
+             });
 		
-		   $(document).on("blur", ".IsTimeField", function() {
+		
+		$(document).on("blur", ".NoSpecialCharNOTDOT", function() {
     	     var currentVal = $(this).val();
-               re="!~`@#$%^&*()+=-[]\\\';{}|\"<>?~_";
+               re="!~`@#$%^&*()+=-[]\\\';{}|\":<>?~._";
         
         for(var i=0;i<currentVal.length;i++)
         	{
         	if(re.indexOf(currentVal.charAt(i))!=-1)
         	{
-        		alert("Invalid time formate")
+				
+			alert("Mentioned special characters are not allowed !~`@#$%^&*()+=-[]\\\';{}|\":<>?~._");
+				
+        		//alert("special Character Not allowed")
         		$(this).val('')
         		$(this).next().removeClass('active')
     	        return
@@ -139,11 +264,6 @@ $(function () {
 		
 		
 		
-		$(document).on("keypress", ".NoSpacFields", function(e) {
-      if ((e.which == 32)) {
-		     return false;
-		   }
-		});
 		
 		
 		$(document).on('input',".IsNegNumFields",function() {
@@ -181,14 +301,6 @@ $(function () {
     //$(".ISDatefield").keyup(function (e) {
        $(this).val(DateSepValid(this));
     });
-	
-	//Udayam Start
-	 $(document).on("keyup", ".Udayamfield", function(e) {
-	 //$(".ISDatefield").on("blur", function () {
-	  $(this).val(UdayamSepValid(this));
-    });
-	//Udayam End
-	
     });
 	
 	
@@ -232,7 +344,7 @@ $(function () {
         }
 		}
     });
-	
+
 	   $(document).on("change", ".ISPastDateFields", function() {
    // $('.ISPastDateFields').on("change", function () {
         var t1 = get2date();
@@ -368,14 +480,51 @@ if((e.which>31 && e.which < 45)||(e.which == 47))
     if(dotPos > -1 && (number[1].length > 1)){
         return false;
     }
-	
+		
+		
 });
 
-$(document).on("blur", ".IsNumberFields", function() {
-   NumOnly(this);
-})
-
-  
+/*
+$(document).on("blur", ".IsNumberFields", function(e) {
+//$(".IsNumberFields").keypress(function (e) {
+    //if the letter is not digit then display error and don't type anything
+	
+	/*var Value=$(this).val()
+	
+	if(Value!="") 
+	 {
+      if($.isNumeric(Value)==false)
+	  {
+		$(this).val('');
+		$(this).next().removeClass('active');
+		return false;
+	  }
+	 }//
+	
+    if ((e.which > 64 && e.which < 91) || (e.which > 96 && e.which < 123) || (e.which == 8)) {
+            //display error message
+          //  alertify.alert(LoadFrmXML("V0062")+'|'+e.id);
+            return false;
+        }
+	
+if((e.which>31 && e.which < 45)||(e.which == 47))
+{
+		return false;
+}
+	
+			var el=this;
+     var number = el.value.split('.');
+ 
+    if(number.length>1 && e.which == 46){
+         return false;
+    }
+    var dotPos = el.value.indexOf(".");
+    if(dotPos > -1 && (number[1].length > 1)){
+        return false;
+    }
+		
+		
+}); */
 	$(document).on("keypress", ".IsNumberFieldsSpl", function(e) {
 		//$(".IsNumberFieldsSpl").keypress(function (e) {
       if ((e.which > 64 && e.which < 91) || (e.which > 96 && e.which < 123) || (e.which == 8)|| (e.which == 46)) {
@@ -384,10 +533,13 @@ $(document).on("blur", ".IsNumberFields", function() {
 		     return false;
 		   }
 		});
+		
+$(document).on("blur", ".IsNumberFields", function() {
+   NumOnly(this);
+})
+		
   });
   
-  
- 
 function NumOnly(Event)
 {
    var FldVal=$(Event).val()
@@ -395,15 +547,26 @@ function NumOnly(Event)
   {
   
   }
+   else if($(Event).hasClass("IsAadharFields"))
+  {
+  
+  }
  else if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(FldVal))
  {
+	 if(FldVal!="")
+	 {
   if(isNumeric(FldVal)== false)
    {
+	   alert('Kindly enter valid format')
     $(Event).val('');
     $(Event).next().removeClass('active');
    }
+	 }
  }
 }
+  
+ 
+
 
 
   
@@ -536,11 +699,77 @@ $(this).val($(this).val().toUpperCase())
 	$(this).val($(this).val().toUpperCase())	
 	}	
 	});
+	
+	//Udayam Start
+	$(document).on("blur", ".IsUAMFields", function() {
 
-$(document).on("blur", ".IsUAMFields", function() {
+       ChkValidUAM(this);
+    });
 
-  ChkValidUAM(this);
-});
+	 $(document).on("keyup", ".Udayamfield", function(e) {
+	 //$(".ISDatefield").on("blur", function () {
+	  $(this).val(UdayamSepValid(this));
+    });
+	
+function ChkValidUAM(Obj) {
+	
+	if (Obj == null) Obj = window.event.srcElement;
+     if (Obj.value != "") {
+       /*  ObjVal = Obj.value;
+         var panPat = /^([a-zA-Z]{2})(\d{2})([a-zA-Z]{1})(\d{7})$/;
+       //  var code = /([C c])/;
+         var code_chk = ObjVal.substring(3,4);
+         if (ObjVal.search(panPat) == -1) {
+             alert("Enter Valid UAM Number eg.AA11A1111111");
+             Obj.focus();
+             Obj.value="";
+             return false;
+         }*/
+		 
+		 ObjVal = Obj.value;
+		 
+		  var regex = RegExp('UDYAM-[a-zA-Z]{2}-[0-9]{2}-[0-9]{7}','g');
+    //var str1 = 'applicationcode1234';
+		 
+         //var panPat = /^([UDAYAM]{5})(\d{2})([a-zA-Z]{1})(\d{7})$/;
+       //  var code = /([C c])/;
+         //var code_chk = ObjVal.substring(3,4);
+         if (regex.test(ObjVal) != true) {
+             alert("Enter Valid Udyam Registration No eg.UDYAM-XX-00-0000000");
+             Obj.focus();
+             Obj.value="";
+             return false;
+         }
+		 
+     }
+}
+
+ function UdayamSepValid(Evnt)  
+  {
+	  
+	  if (Evnt.keyCode != 16) {
+            if ($(Evnt).val().length == 5) {
+                return $(Evnt).val() + "-";
+            } else if ($(Evnt).val().length == 8) {
+                return $(Evnt).val() + "-";
+            }
+			else if ($(Evnt).val().length == 11) {
+                return $(Evnt).val() + "-";
+            }
+			else{
+				return $(Evnt).val();
+				
+			}
+			/*else if ($(Evnt).val().length >= 10)
+			{
+			return false;
+			}*/
+        }
+	  
+  }
+
+//Udayam End
+
 
   $(document).on("blur", ".IsNormalPanFields", function() {
 			 
@@ -1187,9 +1416,8 @@ window.alert(LoadFrmXML("V0014"));
   
   
   function AadharValid(Evnt)
-  {
-	  
-	   var id = $(Evnt).attr('id');
+  { 
+	 var id = $(Evnt).attr('id');
 	
 	var Val = $(Evnt).val();
 	
@@ -1214,7 +1442,9 @@ window.alert(LoadFrmXML("V0014"));
 	}
 	}
   }
-
+  
+  
+  
    function VoterID(Evnt)
   {
 	  
@@ -1341,7 +1571,7 @@ if (Val != "") {
   function EmailValid(Evnt)
   {  $('span.error-keyup-7').remove();
     var inputVal = $(Evnt).val();
-    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    var emailReg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	if(inputVal!="" && inputVal !="NA")
 	{
     if (!emailReg.test(inputVal)) {
@@ -1704,14 +1934,14 @@ if (Val != "") {
   }*/
  
  function CurSepValid(Evnt)
-  { // skip for arrow keys
+ { // skip for arrow keys
         if (Evnt.which >= 37 && Evnt.which <= 40) {
           Evnt.preventDefault();
       }
         var x = $(Evnt).val().split('.')[0];
 		if($(Evnt).val().split('.')[1] != undefined)
         {
-        	var dec=$(Evnt).val().split('.')[1].substring(0, 2)
+        	var dec=$(Evnt).val().split('.')[1]//.substring(0, 2)
         }
         else
         {
@@ -1723,8 +1953,21 @@ if (Val != "") {
          var Symple=x[0]
          if(Symple=="-")
          {
-         	x=x.replace("-","")
+         	x=x.replace("-","");
          }
+    	      x=x.replace(/,/g,'')
+		   if(parseInt(x)!=0)
+      	    {
+      	    if (x.length > 1){
+              	var FirstLetter=x.substring(0, 1)
+      	    	if(parseInt(FirstLetter)==0)
+      	    		{
+      	    		//alert ("Enter the Valid Amount,Cannot be Start with Zero")
+      	    		$(this).val('')
+      	    		$(this).next().removeClass('active')
+                    }
+      	      }
+			}
         var lastThree = x.substring(x.length-3);
         var otherNumbers = x.substring(0,x.length-3);
         if(otherNumbers != '')
@@ -1735,7 +1978,12 @@ if (Val != "") {
 		var Finl;
 		if(dec!=undefined)
 		{
-			Finl=res+"."+dec;
+			dec=dec.replace(/(?!^-)[^0-9.]/g, "");
+		
+         	dec=dec.replace("-","")
+            Finl=res+"."+dec.substring(0, 2);
+			
+			//Finl=res+"."+dec;
 		}
 		else
 		{
@@ -2020,6 +2268,8 @@ function CompareDateFields(startDate, endDate) {
 
 
 
+
+
 function ValidateDoc(XID,YID)
 {
 var x= XID;//document.getElementById('LCCR_DOBProof').value;
@@ -2261,12 +2511,12 @@ var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
 		age ="0";
 	}	
 	
-    if(age<18)
+    if(age<18 || 85<age)
     	{
 		 YID.value="";
 		XID.value=""; 
     	// alertify.alert('Age Should be Greater than 18'+'|'+XID.id);
-		  window.alert('Age Should be Greater than 18');
+		  window.alert('Age Should between Greater than 18 to 85');
     	 //document.getElementById('LCCR_Age').value = '';	 
     	}
     else{
@@ -2968,12 +3218,12 @@ var OPXML = UI_getdata(DINNO,"","","","","LSW_SPrmDirList");
 }
 
 function NonIndPanValid(Obj,Constitution) {
-	
 	if(Constitution=="Society" || Constitution=="Trustee")
 	{
-		Constitution="Proprietorship"
+		Constitution=""
 	}
-	
+	if(Constitution!="")
+	{
 	if(Constitution=='HUF')
 		{
 		    var code = /([H h])/;
@@ -2999,13 +3249,25 @@ function NonIndPanValid(Obj,Constitution) {
 		  var code = /([C c])/;
 		  alert1='Invalid Pan No eg.AAACA1111A'
         }
+	}
      if (Obj == null) Obj = window.event.srcElement;
      if (Obj.value != "") {
          ObjVal = Obj.value;
          var panPat = /^([a-zA-Z]{5})(\d{4})([a-zA-Z]{1})$/;
        //  var code = /([C c])/;
          var code_chk = ObjVal.substring(3,4);
-         if (ObjVal.search(panPat) == -1) {
+		 if(Constitution=="")
+		 { 
+          if (ObjVal.search(panPat) == -1) {
+             alert('Invalid PAN Format');
+             Obj.focus();
+             Obj.value="";
+             return false;
+          }
+		 }
+		 else
+		 {
+			 if (ObjVal.search(panPat) == -1) {
              alert(alert1);
              Obj.focus();
              Obj.value="";
@@ -3016,65 +3278,9 @@ function NonIndPanValid(Obj,Constitution) {
              Obj.value="";
              return false;
          }
+		 }
      }
 }
-
-function ChkValidUAM(Obj) {
-	
-	if (Obj == null) Obj = window.event.srcElement;
-     if (Obj.value != "") {
-       /*  ObjVal = Obj.value;
-         var panPat = /^([a-zA-Z]{2})(\d{2})([a-zA-Z]{1})(\d{7})$/;
-       //  var code = /([C c])/;
-         var code_chk = ObjVal.substring(3,4);
-         if (ObjVal.search(panPat) == -1) {
-             alert("Enter Valid UAM Number eg.AA11A1111111");
-             Obj.focus();
-             Obj.value="";
-             return false;
-         }*/
-		 
-		 ObjVal = Obj.value;
-		 
-		  var regex = RegExp('UDYAM-[a-zA-Z]{2}-[0-9]{2}-[0-9]{7}','g');
-    //var str1 = 'applicationcode1234';
-		 
-         //var panPat = /^([UDAYAM]{5})(\d{2})([a-zA-Z]{1})(\d{7})$/;
-       //  var code = /([C c])/;
-         //var code_chk = ObjVal.substring(3,4);
-         if (regex.test(ObjVal) != true) {
-             alert("Enter Valid Udyam Reregistration No eg.UDYAM-XX-00-0000000");
-             Obj.focus();
-             Obj.value="";
-             return false;
-         }
-		 
-     }
-}
-
- function UdayamSepValid(Evnt)  
-  {
-	  
-	  if (Evnt.keyCode != 16) {
-            if ($(Evnt).val().length == 5) {
-                return $(Evnt).val() + "-";
-            } else if ($(Evnt).val().length == 8) {
-                return $(Evnt).val() + "-";
-            }
-			else if ($(Evnt).val().length == 11) {
-                return $(Evnt).val() + "-";
-            }
-			else{
-				return $(Evnt).val();
-				
-			}
-			/*else if ($(Evnt).val().length >= 10)
-			{
-			return false;
-			}*/
-        }
-	  
-  }
 
 function yearsCompare(XID,YID,alert1)
 {
@@ -3146,23 +3352,13 @@ function inWords (num) {
 $(document).on("change", ".IsPercentageSPL", function() {
 	  //$('.IsIFSCFields').change(function () {	 	    
 	  var Percentage=$(this).val()
-
-	  /*if(parseInt(Percentage)>parseInt('100'))
-		  {
-		  
-		  alert ('Percentage Should be Greater than 0 and Less than 100')
-		  $(this).val('')
-		  }*/
-		  
-	if(Percentage!="") 
+	 if(Percentage!="") 
 	 {
      if($.isNumeric(Percentage)==true)
 	{
 	  if(Percentage<=Number(0) || Percentage>Number(100))
 		  {
-		  //alert ('Percentage Should be Greater than 0 and Less than 100');
 		  alert ('Percentage Should be Greater than 0 and Less than or equal to 100');
-		  
 		  $(this).val('')
 		  }
 	}
@@ -3172,7 +3368,6 @@ $(document).on("change", ".IsPercentageSPL", function() {
 		  $(this).val('')
 	}
 	 }
-		  
 	 	});
 
 $(document).on('change', '.IsPercentageFld', function () 
@@ -3225,7 +3420,7 @@ $(document).on('change', '.IsPercentageFld', function ()
 	 {
      if($.isNumeric(FiledIdVal)==true)
 	{
-	if(FiledIdVal<Number(0) || FiledIdVal>Number(50))
+	if(FiledIdVal<=Number(0) || FiledIdVal>Number(50))
 	{
 	 alert(Type+' Should be Greater than 0 and Less than or equal to 50')
 	 //alert(Type+'Should be Greater than 0 and Less than 50')
@@ -3266,6 +3461,7 @@ $(document).on('change', '.IsPercentageFld', function ()
       }	  
 }
 
+
 function CompareJointoDOB(XID,YID,ZID,Profile)
 {
 	
@@ -3301,7 +3497,7 @@ if(validdt!="")
           if(parseInt(DOBIRTH)>parseInt(JOINDATE))
 	    	{
 	    	 window.alert('Joining date in present organisation should not greater than Date of Birth');
-	    	 XID.value = "0";
+	    	 XID.value = "";
 	    	 ZID.value = "";
 	    	 return false;
 	    	}
@@ -3311,6 +3507,130 @@ if(validdt!="")
 }
 }
 
+// Special Characters Restrict Start//
+
+	$(document).on("keypress", "input[type=text]", function(e) {
+
+ var currentVal = e.key;
+               re="~`#^&'|\"<>?~";
+	
+	if(re.indexOf(currentVal)!=-1)
+        	{
+        event.returnValue = false;
+        return;
+    }
+    event.returnValue = true;
+	 
+    });	
+
+	$(document).on("keypress", "textarea", function(e) {
+	
+	  var currentVal = e.key;
+               re="~`#^&'|\"<>?~";
+	
+	if(re.indexOf(currentVal)!=-1)
+        	{
+        event.returnValue = false;
+        return;
+    }
+    event.returnValue = true;
+	 
+    });	
+
+
+	
+		       $(document).on("blur", "input[type=text]", function() {
+    	     var currentVal = $(this).val();
+               re="~`#^&'|\"<>?~";
+        
+        for(var i=0;i<currentVal.length;i++)
+        	{
+        	 if(re.indexOf(currentVal.charAt(i))!=-1)
+        	 {
+        		alert("Mentioned special characters are not allowed ~`#^&'|\"<>?~")
+        		$(this).val('')
+        		$(this).next().removeClass('active')
+    	        return
+        	 }
+        	 else
+			 {
+				var Data=$(this).val()
+				//Data=Data.replace("–",'-');
+				//.replace(/[_\s]/g, '-').replace(/[^a-z0-9\s]/gi, '-').replace(/[_\W]+/g, "-");
+				$(this).val(Data);
+			 }
+        	}
+    	     
+          });
+		  	  
+		  	
+		       $(document).on("blur", "textarea", function() {
+    	     var currentVal = $(this).val();
+             //  re="!~`@#$%^&*()+=-[]\\\';{}|\":<>?~_";
+         re="~`#^&'|\"<>?~";
+        for(var i=0;i<currentVal.length;i++)
+        	{
+        	if(re.indexOf(currentVal.charAt(i))!=-1)
+        	{
+        		alert("Mentioned special characters are not allowed ~`#^&'|\"<>?~")
+        		$(this).val('')
+        		$(this).next().removeClass('active')
+    	        return
+        	}
+        	
+        	}
+    	     
+    	     
+          });
+		  
+		  
+		  // Special Characters Restrict End//
 
 
 
+  
+  $(document).on("change", ".IsGreaterzeroFld", function() {
+	  //$('.IsIFSCFields').change(function () {	 	    
+	  var Percentage=$(this).val().replace(/,/g,'');
+	 if(Percentage!="") 
+	 {
+     if($.isNumeric(Percentage)==true)
+	{
+	  if(Percentage<=Number(0) || Percentage==Number(0))
+		  {
+		  alert ('Enter the value Should be Greater than 0 ');
+		  $(this).val('')
+		  }
+	}
+	else
+	{
+		alert ('Kindly enter valid format');
+		  $(this).val('')
+	}
+	 }
+	 	});
+		
+		
+		  
+  $(document).on("change", ".IsGreaterThoundsFld", function() {
+	  //$('.IsIFSCFields').change(function () {	 	    
+	  var Percentage=$(this).val().replace(/,/g,'');
+	 if(Percentage!="") 
+	 {
+     if($.isNumeric(Percentage)==true)
+	{
+	  if(Percentage<=Number(1000) || Percentage==Number(1000))
+		  {
+		  alert ('Enter the value Should be Greater than 1000 ');
+		  $(this).val('')
+		  }
+	}
+	else
+	{
+		alert ('Kindly enter valid format');
+		  $(this).val('')
+	}
+	 }
+	 	});
+		
+		
