@@ -1,10 +1,7 @@
 package Controls;
 
-import com.squareup.okhttp.MediaType;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
+import java.util.concurrent.TimeUnit;
+
 
 public class InterfaceEsignlegality {
 
@@ -17,21 +14,20 @@ public class InterfaceEsignlegality {
 		try
 		{
 			
-		  OkHttpClient client = new OkHttpClient(); 
+			okhttp3.OkHttpClient client = new okhttp3.OkHttpClient.Builder().connectTimeout(10, TimeUnit.SECONDS)
+					.writeTimeout(180, TimeUnit.SECONDS).readTimeout(180, TimeUnit.SECONDS).build(); 
 	    
-	      MediaType mediaType = MediaType.parse(contenttype);
-	      RequestBody body = RequestBody.create(mediaType, JsonData);
-	      
-	      Request request = (new Request.Builder())        
-	        .url(APiURL)
-	        .post(body)
-	        .addHeader("x-auth-token", Authtoken)
-	        .addHeader("content-type", contenttype)
-	        .addHeader("cache-control", "no-cache")
-	        .build();
+			okhttp3.MediaType mediaType = okhttp3.MediaType.parse(contenttype);
+			okhttp3.RequestBody body = okhttp3.RequestBody.create(mediaType, JsonData);
+			okhttp3.Request request = new okhttp3.Request.Builder()
+				 	  .url(APiURL)
+				 	 .addHeader("x-auth-token", Authtoken)
+					  .addHeader("content-type", contenttype)
+				 	.post(body)
+				 	  .build();
 
-	      
-	      Response response = client.newCall(request).execute();
+			okhttp3.Response response = client.newCall(request).execute();
+
 		
 	      System.out.println("InterfaceKYCCall Response Code "+ response.code());
 
@@ -66,18 +62,19 @@ public class InterfaceEsignlegality {
 			
 		try
 		{
-			
-		  OkHttpClient client = new OkHttpClient(); 
-	      Request request = (new Request.Builder())        
-	        .url(APiURL)
-	        .get()
-	        .addHeader("x-auth-token", Authtoken)
-	        .addHeader("content-type", contenttype)
-	        .addHeader("cache-control", "no-cache")
-	        .build();
-
+			okhttp3.OkHttpClient client = new okhttp3.OkHttpClient.Builder().connectTimeout(10, TimeUnit.SECONDS)
+					.writeTimeout(180, TimeUnit.SECONDS).readTimeout(180, TimeUnit.SECONDS).build(); 
+		  
+			okhttp3.Request request = new okhttp3.Request.Builder()
+				 	  .url(APiURL)
+				 	 .addHeader("x-auth-token", Authtoken)
+					  .addHeader("content-type", contenttype)
+					  .addHeader("cache-control", "no-cache")
+					  .get()
+				 	  .build();
+	  
+			okhttp3.Response response = client.newCall(request).execute();
 	      
-	      Response response = client.newCall(request).execute();
 		
 	      System.out.println("InterfaceKYCCall Response Code "+ response.code());
 
