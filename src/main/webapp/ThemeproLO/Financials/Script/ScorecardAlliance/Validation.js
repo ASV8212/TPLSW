@@ -131,7 +131,6 @@ function LIMITELIGIBLE()
 	
 	
 	
-	
 	if(isNaN(TOTAL))
 	{
 		TOTAL=0;

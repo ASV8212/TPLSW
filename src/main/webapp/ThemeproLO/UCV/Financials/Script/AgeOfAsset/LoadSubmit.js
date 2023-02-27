@@ -7,7 +7,7 @@ $(document).ready(function () {
 	//FormDataFromDB(tbl, prfx + "_", prfx+"DBfields", DATA);
 	
 	//CheckTenure();
-	;
+		 $("#AGEA_LOANID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
 	
 	FormDataFromDB("LSW_TAGEOFASSETDTLS","AGEA_", "AGEADBfields", "")
 	

@@ -12,8 +12,7 @@
 				  <input type="text" id="CAFL_SCHEMENAME" hidden="hidden" name="CAFL_SCHEMENAME" class="form-control CAFLDBfields">
 				  <input type="text" id="CAFL_SCHEMEID" hidden="hidden" name="CAFL_SCHEMEID" class="form-control CAFLDBfields">
 				  <input type="text" id="CAFL_CASHGRID" hidden="hidden" name="CAFL_CASHGRID" class="form-control CAFLDBfields">
-                  <input type="text" id="CAFL_LOANID" hidden="hidden" name="CAFL_LOANID" class="form-control CAFLDBfields">
-				  
+                   
 				 </br>
 				 <div class="form-row">
 			    <div class="Btxt10">CASH FLOW</div>
@@ -225,7 +224,7 @@
 		
 			 
 				  </br>
-                  <div class="form-row">
+                  <div class="form-row"style="display:none">
                      <div class="col d-flex justify-content-center">
                         <button type="button" id="Save" data-aria="LSW_TCASHFLOW|CAFL" class="btn btn-Syeloutline waves-effect waves-light Save FormSave">Save</button>   
                         <button type="button" data-aria="LSW_TCASHFLOW|CAFL" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 

@@ -363,7 +363,7 @@ Other KYC Details
 <div class="col-md-8  Formcol-mdLR">
 
 <div class="md-form">
-<input type="text" id="COBI_PASSPORT" data-FetchValidateArea="passport" data-FetchValidate="COBI_PASSPORT" maxlength="24" data-link="COBI_PASSPORT|COBI_PASSPORTVERIFY|passport|passportupload|passportview|COBI_PASSPORTATTACHMENT" onblur="CHKSAMEKYC('COBI_PASSPORT','PASSPORT');" name="COBI_PASSPORT" class="COBIDBfields datalink form-control validate">
+<input type="text" id="COBI_PASSPORT" data-FetchValidateArea="passport" data-FetchValidate="COBI_PASSPORT" maxlength="20" data-link="COBI_PASSPORT|COBI_PASSPORTVERIFY|passport|passportupload|passportview|COBI_PASSPORTATTACHMENT" onblur="CHKSAMEKYC('COBI_PASSPORT','PASSPORT');" name="COBI_PASSPORT" class="COBIDBfields datalink form-control validate">
 <label for="COBI_PASSPORT" class="">File No.- Passport No. *</label>
 </div>    
 </div>  

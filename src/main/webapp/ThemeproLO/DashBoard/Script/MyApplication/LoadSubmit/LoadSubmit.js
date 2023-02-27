@@ -86,7 +86,10 @@ $(document).ready(function () {
 				{
 				 $(".FileInitiation").remove()
 				}
-
+	if($("#VERTICAL").val()=="MSME Alliance")
+	{
+		$(".FileInitiation").remove()
+	}
 	
 			
 		$("#LCR").click(function () {
@@ -179,6 +182,8 @@ $(document).ready(function () {
 					 }
 					 
 	        		var output=UI_getdata(ProcessID,ActivityID,xml,'','','LSW_sInsLoanBaseInfo');
+					UI_getdata(ProcessID,'PRELOGIN','','','','LSW_SSTP_INTI_HNDLR');
+					
 	            	// var OldProcessID=$("#OLDPRCSID").val();
 	            	 if($("#LBSI_LONTYPE").val()=="Registered Mortgage"||$("#LBSI_LONTYPE").val()=="Re-Punch")
 	            	 { 
@@ -342,27 +347,59 @@ $(document).ready(function () {
 			$(document).on("click",".VendorPG1",function() {
 				
 				//$(".InitWF1").click(function () {
-							
-	$(location).attr('href',window.location.origin + "/TPLSW/"
-			+$($(this).parent().parent().parent().find('td')[13]).text()+"?PrcsID="
+					var PrMst8 = 'AdditionalURL|Appl|No Add';
+						var Vertical=$("#VERTICAL").val();
+				if($("#DMY1").val()=='ERCU')
+				{
+	                var Page="IRCU";
+					var FORMMAINTAB="FormMainTab9";
+				}
+				else
+				{
+					var Page="Applcnt";
+					var FORMMAINTAB="FormMainTab1";
+					  
+					 if(Vertical=="UCV" || Vertical=="UCV Eco")
+					 {
+						Page="UCVApplcnt"
+					 }
+				}
+	$(location).attr('href',encodeURI(window.location.origin + "/TPLSW/"
+			+Page+"?PrcsID="
 			+$($(this).parent().parent().parent().find('td')[10]).text()
 			+"&ActvID="+$($(this).parent().parent().parent().find('td')[11]).text()
 						+"&PrMs6="+$($(this).parent().parent().parent().find('td')[14]).text()
 						+"&PrMs5="+$($(this).parent().parent().parent().find('td')[12]).text()
-						+"&PrMs9=&PrMs10=FormMainTab1&PrMs1=View");         	
+						+"&PrMs8="+PrMst8+"&PrMs9=FormPageTab1&PrMs10="+FORMMAINTAB+"&PrMs1=View"));         	
 							 
 						});	
 $(document).on("click",".VendorPG2",function() {
 	var op = UI_getdata($($(this).parent().parent().find('td')[10]).text(),$($(this).parent().parent().find('td')[11]).text(),"","","","LSW_SCHKMULTIACESS")
 			if($(op).find("RESULT").text()=="SUCCESS"){
 	var PrMst8 = 'AdditionalURL|Appl|No Add';
+	var Vertical=$("#VERTICAL").val();
+				if($("#DMY1").val()=='ERCU')
+				{
+	                var Page="IRCU";
+					var FORMMAINTAB="FormMainTab9";
+				}
+				else
+				{
+					var Page="Applcnt";
+					var FORMMAINTAB="FormMainTab1";
+					  
+					 if(Vertical=="UCV" || Vertical=="UCV Eco")
+					 {
+						Page="UCVApplcnt"
+					 }
+				}
 	$(location).attr('href',encodeURI(window.location.origin + "/TPLSW/"
-			+$($(this).parent().parent().find('td')[13]).text()+"?PrcsID="
+			+Page+"?PrcsID="
 			+$($(this).parent().parent().find('td')[10]).text()
 			+"&ActvID="+$($(this).parent().parent().find('td')[11]).text()
 						+"&PrMs6="+$($(this).parent().parent().find('td')[14]).text()
 						+"&PrMs5="+$($(this).parent().parent().find('td')[12]).text()
-						+"&PrMs8="+PrMst8+"&PrMs9=FormPageTab1&PrMs10=FormMainTab9")); 
+						+"&PrMs8="+PrMst8+"&PrMs9=FormPageTab1&PrMs10="+FORMMAINTAB)); 
 }
 			else{
 				alert($(op).find("RESULT").text());
@@ -673,7 +710,7 @@ today = dd+'/'+mm+'/'+yyyy;
 	
 	if ($(evnt).attr("value") == "GENERAL")
 	{	
-	 FncallMyAppl(this,'Table3',{spname:'LSW_SMYAPPLICATIONDTLS2',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#LogUsr').val(),brid:$('#DMY4').val().split("|")[0],MnuId:$('#DMY1').val()+'|'+$('#GridCategory').val()+'|'+$("#VERTICAL").val()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||3,7,8',$(evnt).attr("value"));
+	 FncallMyAppl(this,'Table3',{spname:'LSW_SMYAPPLICATIONDTLS2',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#LogUsr').val(),brid:$('#DMY4').val().split("|")[0],MnuId:$('#DMY1').val()+'|'+$('#GridCategory').val()+'|'+$("#VERTICAL").val()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||3,7,8,10',$(evnt).attr("value"));
 	}
 	if ($(evnt).attr("value") == "GENERALQUEUE")
 	{

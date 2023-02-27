@@ -55,6 +55,7 @@ Application Info
 </br>
 </br>
 <input type="text" id="KARZASTATUS" name="KARZASTATUS" hidden="hidden" class="form-control DataNormal" value="">
+<input type="text" id="AADHARHITFROM" name="AADHARHITFROM" hidden="hidden" class="form-control DataNormal" value="">
 <div class="">
 
 <div class="row FormRows m-b-0">
@@ -91,7 +92,9 @@ Application Info
 
 </div>
 <div class="">
+
 <input type="text" id="COBI_HIDPROFTYP" name="COBI_HIDPROFTYP" hidden="hidden" class="form-control DataNormal COBIDBfields" value="">
+
  <div class="row FormRows m-b-0 KYCInfo">
 
                                     <!--First column-->
@@ -122,7 +125,7 @@ Fill KYC Details
                    <label class="mdb-main-label BTxt9">Pan Verification Type<span class="MndtryAstr">*</span></label>      
                </div>
            </div>
-		<div class="col-md-8 KYCPROOF"style="display:none">
+		<div class="col-md-8">
 		<div class="md-form">
                      <div class="" id="">
                         <select class="mdb-select md-form colorful-select dropdown-primary COBIDBfields" multiple id="COBI_KYCPROOFTYP" onchange="GETPROOFTYP();" name="COBI_KYCPROOFTYP">
@@ -134,7 +137,7 @@ Fill KYC Details
 			                  <!--<option value="ADDRESS PROOF 1">ADDRESS PROOF 1</option>
 			                  <option value="ADDRESS PROOF 2">ADDRESS PROOF 2</option>-->
                          </select>
-                        <label class="mdb-main-label BTxt9">Proof Type *</label>
+                        <label class="mdb-main-label BTxt9">Proof Type <span class="MndtryAstr">*</span></label>
                     </div>
                    </div>
 		</div>
@@ -371,7 +374,7 @@ Other KYC Details
 </div> 
 </div>
 </br>
-<img src="ThemeproLO/Common/Images/delete.png"  title="Delete" onclick="KYCDELETE('COBI_VOTERIDVEIRFY','COBI_VOTERID','voter','COBI_VOTERATTACHMENT','COBI_CUSID','Upload Voters ID','COBI_VOTERUPLOADVERIFY','Voter ID')"  class="rounded KYCDEL" alt="Cinque Terre" width="20" height="20">  
+<img src="ThemeproLO/Common/Images/delete.png"  title="Delete" onclick="KYCDELETEFRTADBCK('COBI_VOTERIDVEIRFY','COBI_VOTERID','voter','COBI_VOTERATTACHMENT','COBI_VOTERATTACHMENTII','COBI_CUSID','Upload Voters ID','COBI_VOTERUPLOADVERIFY','COBI_VOTERUPLOADIIVERIFY','Voter ID','COBI_VOTERIDPROOF','COBI_VOTERIDTYPE')"  class="rounded KYCDEL" alt="Cinque Terre" width="20" height="20">  
 </div>        
   </br>   
 <div class="row FormRows FormRowsNS m-b-0 AADHAR" style="display:none">
@@ -412,7 +415,7 @@ Other KYC Details
 <label for="COBI_AADHAR" class="">Aadhar *</label>
 </div>    
 </div>  
-<div class="col-md-4 Formcol-mdLR TxtCenter">
+<div class="col-md-4 Formcol-mdLR TxtCenter" style="display:none">
 <div class="md-form">
 <input type="text" id="COBI_AADHARVERIFY" hidden="hidden" name="COBI_AADHARVERIFY" class="form-control COBIDBfields">
 <!-- <button type="button" data-Validatearia="COBI_AADHARVERIFY" data-validate="AADHAR" class="btn  waves-effect btn-yelInplain btn-sm BTNVerify">Verify</button>-->
@@ -443,9 +446,9 @@ Other KYC Details
 <div class="md-form">
 <div class="COBI_AADHARATTACHMENT" style="display:none"> 
 <img src="ThemeproLO/Common/Images/UploadImg.png"  title="UPLOAD"  onclick="ReuploadFile(COBI_AADHARATTACHMENT);" class="rounded ReUpld" alt="Cinque Terre" width="20" height="20">  <img src="ThemeproLO/Common/Images/Eyeview.png"  title="VIEW"  onclick="GrdDocDwnld('COBI_AADHARATTACHMENT')" class="rounded AadharViewImg" alt="Cinque Terre" width="35" height="25"> 
-<img src="ThemeproLO/Common/Images/Eyeview.png" style="display:none"  title="Marking Aadhar Image" class="rounded AadharMskImg" onclick="DirImgDown('COBI_MSKAADHARATTACHMENT')" alt="Cinque Terre" width="35" height="25"> 
+<img src="ThemeproLO/Common/Images/Eyeview.png" style="display:none"  title="Marking Aadhar Image" class="rounded AadharMskImg" onclick="GrdDocDwnld('COBI_MSKAADHARATTACHMENT')" alt="Cinque Terre" width="35" height="25"> 
 <input type="text" id="COBI_AADHARUPLOADVERIFY" hidden="hidden" name="COBI_AADHARUPLOADVERIFY" class="form-control COBIDBfields">
-<button type="button" onclick="CheckKYCUPLOADDOC(this,'COBI_AADHARATTACHMENT','COBI_AADHARUPLOADVERIFY','KYC OCR');" data-field="COBI_SHARECODE|COBI_AADHARMOB|COBI_CUSTYPE|COBI_CUSID|Aadhar|COBI_AADHAR|COBI_AADHARTYPE|COBI_MSKAADHARATTACHMENT" data-Validatearia="COBI_AADHARUPLOADVERIFY" data-validate="aadhar" class="btn COBI_AADHARATTACHMENT waves-effect btn-yelInplain btn-sm BTNVerify INTDSBV">Upload Verify</button>
+<button type="button" onclick="CheckKYCUPLOADDOC(this,'COBI_AADHARATTACHMENT','COBI_AADHARUPLOADVERIFY','KYC OCR');" data-field="COBI_SHARECODE|COBI_AADHARMOB|COBI_CUSTYPE|COBI_CUSID|Aadhar|COBI_AADHAR|COBI_AADHARTYPE|COBI_MSKAADHARATTACHMENT|Front" data-Validatearia="COBI_AADHARUPLOADVERIFY" data-validate="aadhar" class="btn COBI_AADHARATTACHMENT waves-effect btn-yelInplain btn-sm BTNVerify INTDSBV">Upload Verify</button>
 </div>
 </div>
 </div>
@@ -474,9 +477,9 @@ Other KYC Details
 <img src="ThemeproLO/Common/Images/UploadImg.png"  title="UPLOAD"  onclick="ReuploadFile(COBI_AADHARATTACHMENTII);" class="rounded ReUpld" alt="Cinque Terre" width="20" height="20"> 
 <img src="ThemeproLO/Common/Images/Eyeview.png"  title="VIEW"  class="rounded AadharViewImgII" onclick="GrdDocDwnld('COBI_AADHARATTACHMENTII')" alt="Cinque Terre" width="35" height="25"> 
 
-<img src="ThemeproLO/Common/Images/Eyeview.png" style="display:none"  title="Marking Aadhar Image" class="rounded AadharMskImgII" onclick="DirImgDown('COBI_MSKAADHARATTACHMENTII')" alt="Cinque Terre" width="35" height="25"> 
+<img src="ThemeproLO/Common/Images/Eyeview.png" style="display:none"  title="Marking Aadhar Image" class="rounded AadharMskImgII" onclick="GrdDocDwnld('COBI_MSKAADHARATTACHMENTII')" alt="Cinque Terre" width="35" height="25"> 
 <input type="text" id="COBI_AADHARUPLOADVERIFYII" hidden="hidden" name="COBI_AADHARUPLOADVERIFYII" class="form-control COBIDBfields">
-<button type="button" onclick="CheckKYCUPLOADDOC(this,'COBI_AADHARATTACHMENTII','COBI_AADHARUPLOADVERIFYII','KYC OCR');" data-field="COBI_SHARECODE|COBI_AADHARMOB|COBI_CUSTYPE|COBI_CUSID|Aadhar|COBI_AADHAR|COBI_AADHARTYPE|COBI_MSKAADHARATTACHMENTII" data-Validatearia="COBI_AADHARUPLOADVERIFYII" data-validate="aadhar" class="btn COBI_AADHARATTACHMENTII waves-effect btn-yelInplain btn-sm BTNVerify INTDSBV">Upload Verify</button>
+<button type="button" onclick="CheckKYCUPLOADDOC(this,'COBI_AADHARATTACHMENTII','COBI_AADHARUPLOADVERIFYII','KYC OCR');" data-field="COBI_SHARECODE|COBI_AADHARMOB|COBI_CUSTYPE|COBI_CUSID|Aadhar|COBI_AADHAR|COBI_AADHARTYPE|COBI_MSKAADHARATTACHMENTII|Back" data-Validatearia="COBI_AADHARUPLOADVERIFYII" data-validate="aadhar" class="btn COBI_AADHARATTACHMENTII waves-effect btn-yelInplain btn-sm BTNVerify INTDSBV">Upload Verify</button>
 </div>
 </div>
 </div>
@@ -487,7 +490,7 @@ Other KYC Details
 <input type="text" id="COBI_MSKAADHARATTACHMENT" hidden="hidden" data-Validate="COBI_MSKAADHARATTACHMENT" name="COBI_MSKAADHARATTACHMENT"  data-field=""  class="form-control File AADHARMndtry COBIDBfields">  
 </div>
 </br>
-<img src="ThemeproLO/Common/Images/delete.png"  title="Delete" onclick="KYCDELETE('COBI_AADHARVERIFY','COBI_AADHAR','AADHAR','COBI_AADHARATTACHMENT','COBI_CUSID','Upload Aadhar ID','COBI_AADHARUPLOADVERIFY','Aadhar')"  class="rounded KYCDEL" alt="Cinque Terre" width="20" height="20"> 
+<img src="ThemeproLO/Common/Images/delete.png"  title="Delete" onclick="KYCDELETEFRTADBCK('COBI_AADHARVERIFY','COBI_AADHAR','AADHAR','COBI_AADHARATTACHMENT','COBI_AADHARATTACHMENTII','COBI_CUSID','Upload Aadhar ID','COBI_AADHARUPLOADVERIFY','COBI_AADHARUPLOADVERIFYII','Aadhar','COBI_AADHARPROOF','COBI_AADHARTYPE','COBI_MSKAADHARATTACHMENT','COBI_MSKAADHARATTACHMENTII')"  class="rounded KYCDEL" alt="Cinque Terre" width="20" height="20"> 
 
 </div>
 </div>
@@ -591,7 +594,7 @@ Other KYC Details
 
 </div> 
 </br>
-<img src="ThemeproLO/Common/Images/delete.png"  title="Delete" onclick="KYCDELETE('COBI_DRIVLICNSVERIFY','COBI_DRIVLICNS','dl','COBI_DRIVLICATTACHMENT','COBI_CUSID','Upload Driving License ID','COBI_DLUPLOADVERIFY','Driving License')"  class="rounded KYCDEL" alt="Cinque Terre" width="20" height="20"> 
+<img src="ThemeproLO/Common/Images/delete.png"  title="Delete" onclick="KYCDELETEFRTADBCK('COBI_DRIVLICNSVERIFY','COBI_DRIVLICNS','dl','COBI_DRIVLICATTACHMENT','COBI_DRIVINGLICATTACHMENTII','COBI_CUSID','Upload Driving License ID','COBI_DLUPLOADVERIFY','COBI_DLUPLOADIIVERIFY','Driving License','COBI_DLPROOF','COBI_DRIVNGTYPE')"  class="rounded KYCDEL" alt="Cinque Terre" width="20" height="20"> 
 </div>
 </div>   
 </br>     
@@ -617,7 +620,7 @@ Other KYC Details
 <div class="col-md-8  Formcol-mdLR">
 
 <div class="md-form">
-<input type="text" id="COBI_PASSPORT" data-FetchValidateArea="passport" data-FetchValidate="COBI_PASSPORT" maxlength="24" data-link="COBI_PASSPORT|COBI_PASSPORTVERIFY|passport|passportupload|passportview|COBI_PASSPORTATTACHMENT" onblur="CHKSAMEKYC('COBI_PASSPORT','PASSPORT');" name="COBI_PASSPORT" class="COBIDBfields datalink form-control validate">
+<input type="text" id="COBI_PASSPORT" data-FetchValidateArea="passport" data-FetchValidate="COBI_PASSPORT" maxlength="20" data-link="COBI_PASSPORT|COBI_PASSPORTVERIFY|passport|passportupload|passportview|COBI_PASSPORTATTACHMENT" onblur="CHKSAMEKYC('COBI_PASSPORT','PASSPORT');" name="COBI_PASSPORT" class="COBIDBfields datalink form-control validate">
 <label for="COBI_PASSPORT" class="">File No.- Passport No. *</label>
 </div>    
 </div>  
@@ -687,7 +690,7 @@ Other KYC Details
   <!-- Second Upload End-->
 </div> 
 </br>
-<img src="ThemeproLO/Common/Images/delete.png"  title="Delete" onclick="KYCDELETE('COBI_PASSPORTVERIFY','COBI_PASSPORT','passport','COBI_PASSPORTATTACHMENT','COBI_CUSID','Upload Passport','COBI_PASSUPLOADVERIFY','Passport')"  class="rounded KYCDEL" alt="Cinque Terre" width="20" height="20"> 
+<img src="ThemeproLO/Common/Images/delete.png"  title="Delete" onclick="KYCDELETEFRTADBCK('COBI_PASSPORTVERIFY','COBI_PASSPORT','passport','COBI_PASSPORTATTACHMENT','COBI_PASSPORTATTACHMENTII','COBI_CUSID','Upload Passport','COBI_PASSUPLOADVERIFY','COBI_PASSUPLOADIIVERIFY','Passport','COBI_PASSPORTPROOF','COBI_PASPRTTYPE')"  class="rounded KYCDEL" alt="Cinque Terre" width="20" height="20"> 
 </div>        
  </div> 
  </br>

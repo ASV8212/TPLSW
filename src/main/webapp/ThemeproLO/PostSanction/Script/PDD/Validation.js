@@ -117,8 +117,8 @@ function GridControlDetailBRANCH(popTableModPageGrid1, TableID, dtData, dtcolumn
       	 		 if(row[1] == "Approved" && row[3]=="" )
       	 			 {
       	 			var rowno = meta.row;	
-      	 			var HTML =	'<span><input type="radio" class="custom-control-input OOTDRADIOCHK OOPDDBfields" value="Collected" id="Collected'+rowno+'" name="OOPD_STUS'+rowno+'"><label class="custom-control-label" for="Collected'+rowno+'">Collected</label>';
-      	 			HTML = HTML + '<input type="radio" class="custom-control-input OOTDRADIOCHK OOPDDBfields" value="Waiver" id="Waiver'+rowno+'" name="OOPD_STUS'+rowno+'"><label class="custom-control-label" for="Waiver'+rowno+'">Waiver</label>'
+      	 			var HTML =	'<span><input type="radio" class="custom-control-input OOTDRADIOCHK OOPDDBfields"  value="Collected" id="Collected'+rowno+'" name="OOPD_STUS'+rowno+'"><label class="custom-control-label" for="Collected'+rowno+'">Collected</label>';
+      	 			HTML = HTML + '<input type="radio" class="custom-control-input OOTDRADIOCHK OOPDDBfields"  value="Waiver" id="Waiver'+rowno+'" name="OOPD_STUS'+rowno+'"><label class="custom-control-label" for="Waiver'+rowno+'">Waiver</label>'
       	      		HTML = HTML + '</span>';			  
       	      		var htmldata = $(HTML);
       	  			$(htmldata).find('[name=OOPD_STUS'+rowno+'][value="'+data+'"]').attr('checked', 'checked');
@@ -161,6 +161,47 @@ function GridControlDetailBRANCH(popTableModPageGrid1, TableID, dtData, dtcolumn
 					var htmldata = $(HTML);
 					$(htmldata).find('[name=OOPD_SALSREMRK'+rowno+']').attr("value",data);
 					return htmldata[0].outerHTML;
+                }
+            }
+			,
+			{
+                targets: 14,
+                "render": function(data, type, row, meta) {
+					var rowno = meta.row;	
+    			
+    			var Addvalue = row[14];
+    			
+    			if (data == "")
+    				{
+    				data = Addvalue;
+    				}
+				
+    			if(data=="" && row[1] == "Approved")
+    				{
+    				var HTML="";					
+					HTML =	'<span id=""><img src="ThemeproLO/Common/Images/UploadImg.png" class="GridDocUpd" title="UPLOAD" attr-Upd="OOPD_1PDDDOCUPLOAD'+rowno+'"  width="20" height="20"/>';	
+    	    		HTML = HTML + '<input style="display:none" id="OOPD_1PDDDOCUPLOAD'+rowno+'" class="GridDocFil" onchange="HndlUpldAfrLod(OOPD_PDDDOCUPLOAD'+rowno+',id)" type="file" />';
+    	    			HTML = HTML + '<img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW" class="ViewAttch" style="display:none" width="35" height="25">';
+    	    				HTML = HTML + '<input type="text" value="'+data+'" id="OOPD_PDDDOCUPLOAD'+rowno+'" hidden="hidden" name="OOPD_PDDDOCUPLOAD'+rowno+'" class="form-control"/>';
+    	    						HTML = HTML + '</span>';	
+    				}
+    			else if(data!="" && row[1] == "Approved"){
+    				var HTML="";
+    				HTML =	'<span id="">'
+    	    		HTML = HTML + '<input style="display:none" id="OOPD_1PDDDOCUPLOAD'+rowno+'" class="GridDocFil" onchange="HndlUpldAfrLod(OOPD_PDDDOCUPLOAD'+rowno+',id)" type="file" />';
+    	    			HTML = HTML + '<img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW" class="ViewAttch" width="35"  height="25">';
+    	    				HTML = HTML + '<input type="text" value="'+data+'" id="OOPD_PDDDOCUPLOAD'+rowno+'" hidden="hidden" name="OOPD_PDDDOCUPLOAD'+rowno+'" class="form-control"/>';
+    	    						HTML = HTML + '</span>';	
+    			}
+				else{
+					var HTML="";
+    				HTML =	'<span id="">'
+					HTML = HTML + '</span>';	
+				}
+    			 
+    		  
+    		    	 
+    			 return HTML;
                 }
             }
         ],
@@ -268,7 +309,7 @@ function GridDecider(Role)
 {
 	if(Role == "SALES")
 	{
-	FncallDocChkLst(this,'Table2',{spname:'LSW_SGETPDDFRPRCS',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'SALES',MnuId:$(".FormPageMultiTab li.active a div").text()+'|'+$("#LogUsr").val()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5,6,7,8,9,10,11,12','SALES');
+	FncallDocChkLst(this,'Table2',{spname:'LSW_SGETPDDFRPRCS',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'SALES',MnuId:$(".FormPageMultiTab li.active a div").text()+'|'+$("#LogUsr").val()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5,6,7,8,9,10,11,12,14,15','SALES');
 	}
 	else if(Role == "BRANCH")
 	{
@@ -316,3 +357,125 @@ function REMARKPOPUPDSBL(Evnt){
 		$("#POPUPRemarks").next().addClass('active');
 	}
 }
+
+
+
+function HndlUpldAfrLod(id,docu)
+ {
+
+ var Val=$(id).val()
+
+
+ if($(id).closest('td').find('input[type="file"]').val()!="")
+ {
+     var domain= LoadFrmXML("RS001");
+     var usrpwd= LoadFrmXML("RS002");
+     var PrcsID=$('#PrcsID').val()
+     var FormName= 'DOCU_Upload';
+     var names="";
+     var descrptns="";
+ 	var op= UI_getdata("DOCVRNO","","","","","Sam_sGetCOMSeqID")
+ 	var flsize = "";
+  var fd = new FormData();
+    var vrsnno= "";
+ 	var prodata = "";
+ var CountAttch=1;
+ 	
+ 	 for(var c=0;c<CountAttch;c++)
+ 	 {
+       file_data = $(id).closest('td').find('input[type="file"]')[0].files; // for multiple files
+ 	     for(var i = 0;i<file_data.length;i++){
+ 			var op= UI_getdata("DOCVRNO","","","","","Sam_sGetCOMSeqID")
+ 	         fd.append("file_"+c, file_data[i]);
+ 	         names += $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[0]+',';
+ 			 flsize += parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2)+',';
+ 			 vrsnno += $(op).find("VR").text()+',';
+ 			 if($($('input[type="file"]')[c]).closest('tr').find("#comments").val()=="")
+ 			 {
+ 				 $($('input[type="file"]')[c]).closest('tr').find("#comments").val("No Description");
+ 			 }
+ 	         descrptns += 'FieldDocument'+',';
+ 	     }
+ 	 }
+ 	 
+
+  	 var FileSize=parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2);
+      var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
+ 	 
+
+ 	 
+
+ var y=  names;
+ var specialChars = "<>&#^|~`"
+ var check = function(string){
+     for(i = 0; i < specialChars.length;i++){
+         if(string.indexOf(specialChars[i]) > -1){
+             return true
+         }
+     }
+     return false;
+ }
+
+ if(check(y) == false){
+     // Code that needs to execute when none of the above is in the string
+ }else{
+     alert('Special characters not allowed in the upload file');
+ 	$(id).closest('td').find('input[type="file"]').val('')
+ 	
+ 	return;
+ }
+ 	 
+  ajaxindicatorstart("Uploading.. Please wait");
+ 	    $.ajax({
+ 	        url:"/TPLSW/DMS?names="+names+"&PrcsID="+PrcsID+"&FormName="+FormName+"&descrptns="+descrptns+"&flsize="+flsize+"&vrsnno="+vrsnno+"&domain="+domain+"&usrpwd="+usrpwd+"&Prvnt="+$("#Prvnt").val(),
+ 	        data: fd,
+ 			async:false,
+ 	        contentType: false,
+ 	        processData: false,
+ 	        type: 'POST',
+ 	        success: function(data){
+ 			
+ 			if(data=="Fail")
+ 	        		{
+ 						 ajaxindicatorstop();
+ 	        		alert(LoadFrmXML("V0119"));
+ 	        		$("#HIDDENIPLDST").val('Fail');
+ 					return
+ 	        		}
+ 			else{
+ 				$(id).val(data.split('~')[2])
+ 				
+
+ 					ajaxindicatorstop();
+ 					alert(LoadFrmXML("V0118"));
+ 					$("#HIDDENIPLDST").val('Success');
+					$(id).closest('td').find(".GridDocUpd").hide();
+					$(id).closest('td').find('.ViewAttch').show()
+ 					return
+ 					
+ 				}	
+ 					 ajaxindicatorstop(); 
+ 	        },
+ 	        failure:function(data)
+ 	        {
+ 	     		  ajaxindicatorstop();
+ 					alert(LoadFrmXML("V0119"));
+ 					$("#HIDDENIPLDST").val('Fail');
+ 					return
+ 	        	
+ 	        }
+ 	    });
+ 		
+ 		  ajaxindicatorstop();
+ 		  }
+ 		  else{
+ 		  
+ 		  alert('select the file to upload');
+ 		  }
+
+ 		 
+
+ 	  
+ }
+ 
+ 

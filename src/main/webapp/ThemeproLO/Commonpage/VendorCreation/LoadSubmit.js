@@ -518,7 +518,7 @@ if(activityname=="Checker")
 
 		if($(this).text() == "Submit" || $(this).text() == "Approve")
 			{
-
+			chksapcodeex();
 			var MndtryChk = ChkMandatoryFlds("VECRMndtry");
 			
 			if(MndtryChk == "Mandatory")
@@ -618,6 +618,7 @@ if(activityname=="Checker")
 			 $("[name=VETE_USERNAME]").val(ID)
 			
 		    }
+			
 		var VECR_BANKDETAILS = TxtGridsubmitdata_V2("VENDORBANK","VEBN_","VECR_","VEBNDBfields"); 
 		AssignGridXmltoField("VECR_BANKDETAILS", VECR_BANKDETAILS) 
 		

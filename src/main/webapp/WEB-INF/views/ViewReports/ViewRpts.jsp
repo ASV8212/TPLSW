@@ -1453,7 +1453,14 @@
             </div>
            </div>
              <div class="form-row">
-            <div class="col">
+			 <div class="col" style="display:none">
+                <div class="md-form">
+                    <input type="text" id="RCUI_RPTDATE" name="RCUI_RPTDATE" maxlength="10" onblur="CHKRCUREPTDT('RCUI_RPTDATE');"  class="form-control NoSpecialChar ISFutureDateFields IsNumberFields ISDatefield RCUIDBfields">
+                    <label for="GRBI_CUSFISNAM" class="">Report Date<span class="MndtryAstr"></span></label>
+                    <img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker" />
+               </div>
+            </div>
+            <!--<div class="col">
                 <div class="md-form">
                   <select class=" md-form colorful-select dropdown-primary RCUIDBfields RCUIMndtry" id="RCUI_RCUSTATSU" name="RCUI_RCUSTATSU" >
                   	<option value="" selected>--Select--</option>
@@ -1462,10 +1469,16 @@
   			    	<option value="Fraud">Fraud</option>
 					<option value="Refer to Credit">Refer to Credit</option>
 					<option value="Failed ">Failed </option>
+                    <option  value="Query">Query</option>
+					<option  value="Recommended">Recommended</option>
+					<option  value="Deferral">Deferral</option>
+					<option  value="No Deferral">No Deferral</option>
+					<option  value="Not Recommended">Not Recommended</option>
+					<option  value="Failed">Failed</option>
 				   </select>
                    <label class="mdb-main-label BTxt9">RCU Status<span class="MndtryAstr">*</span></label>
                </div>
-            </div>
+            </div>-->
              <div class="col">
               <div class="md-form">
                 <div class="select-radio RCUIMndtry"> 
@@ -1483,13 +1496,12 @@
               </div>
            </div>
            <div class="form-row">
-            <div class="col">
-                <div class="md-form">
-                    <input type="text" id="RCUI_RPTDATE" name="RCUI_RPTDATE" maxlength="10" onblur="CHKRCUREPTDT('RCUI_RPTDATE');"  class="form-control NoSpecialChar ISFutureDateFields IsNumberFields ISDatefield RCUIDBfields">
-                    <label for="GRBI_CUSFISNAM" class="">Report Date<span class="MndtryAstr"></span></label>
-                    <img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker" />
+		   	  <div class="col-md-6">
+               <div class="md-form">
+                <input type="text" id="RCUI_STATUS" disabled name="RCUI_STATUS" class="form-control  RCUIDBfields">
+                   <label for="RCUI_STATUS" class="mdb-main-label BTxt9 active">Status<span class="MndtryAstr"></span></label>
                </div>
-            </div>
+       </div>
             <div class="col">
            	  <div class="md-form">
                 <div class="BTxt9 UPLOAD" id="" value=""></div>
@@ -1522,23 +1534,15 @@
       </div>
     </div> 
          <div class="form-row">
-            <div class="col-md-6">
-               <div class="md-form">
-                <input type="text" id="RCUI_STATUS" disabled name="RCUI_STATUS" class="form-control  RCUIDBfields">
-                   <label for="RCUI_STATUS" class="mdb-main-label BTxt9 active">Status<span class="MndtryAstr"></span></label>
-               </div>
-            </div>
-         </div> 
-			
-         <div class="form-row">
            <div class="col">
-             <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table2',{spname:'LSW_SRCUGRIDLIST',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'',MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||3','RCU');" id="BTNRCUGRD" name="BTNRCUGRD" />
+             <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table2',{spname:'LSW_SRCUGRIDLIST',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'',MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||1,4','RCU');" id="BTNRCUGRD" name="BTNRCUGRD" />
              <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" id="Table2">
              </table>
           </div>
         </div>         
            <div class="form-row" style="dispay:none">
                <div class="col d-flex justify-content-center">
+			   <button type="button"  data-row=""  data-card="0"  class="btn btn-Syeloutline waves-effect waves-light ViewRCUReport">View RCU Report</button>
                    <button type="button" data-for="RCU" data-row="" data-aria="LSW_TRCUINITIATION|RCUI|RCUI_PRCSID|RCU"  class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button> 
                    <button type="button" data-for="RCU" data-row="" data-aria="LSW_TRCUINITIATION|RCUI|RCUI_PRCSID|RCU" class="btn btn-Syel waves-effect waves-light RCUSUB FormSave">Submit</button> 
                </div>
@@ -1623,8 +1627,8 @@
                 <div class="md-form">
                     <select class=" md-form colorful-select dropdown-primary FIRVDBfields FIRVMndtry DataToFldFIRESI"     data-vendor="FI" onchange="FIRESIADDRESS('FIRV_REFERNO'+$(this).closest('.DYNROW').attr('data-row'),'FIRV_PROPADDR'+$(this).closest('.DYNROW').attr('data-row'),'FIRV_FITYPECHK'+$(this).closest('.DYNROW').attr('data-row'));" id="FIRV_FITYPECHK" name="FIRV_FITYPECHK">
 				       <option value="Select">Select</option>
-					   <option value="Residence">Residence</option>
-					   <option value="Permanent">Permanent</option>
+					  <!-- <option value="Residence">Current</option>-->
+					   <option value="Permanent">Correspondence</option>
 				    </select>
                     <label class="mdb-main-label BTxt9">FI to be Done at<span class="MndtryAstr"></span></label>
                </div>
@@ -2411,6 +2415,7 @@
    <thead>
 <th>RCUS_APPLNAME</th>
 <th>RCUS_NAGATIVSTATUS</th>
+<th>RCUS_RCUSTATUS</th>
 <th>RCUS_REMARKS</th>
 <th>RCUS_CUSID</th>
 
@@ -2424,6 +2429,7 @@
    </thead>
    
     </table>
+		  
 <script type="text/javascript" src="ThemeproLO/ViewRpt/Script/ViewRpt/LoadSubmit.js${DMY13}"></script>
 <script type="text/javascript" src="ThemeproLO/ViewRpt/Script/ViewRpt/Validation.js${DMY13}"></script>
   

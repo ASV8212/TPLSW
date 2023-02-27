@@ -14,7 +14,6 @@
          <input type="text" id="SABB_MODIFIEDBY" hidden="hidden" name="SABB_MODIFIEDBY" class="form-control SABBDBfields">
 		 <input type="text" id="SABB_SHEMEID" hidden="hidden" name="SABB_SHEMEID" class="form-control SABBDBfields">
 		 <input type="text" id="SABB_SCHEMENAME" hidden="hidden" name="SABB_SCHEMENAME" class="form-control SABBDBfields">
-		 <input type="text" id="SABB_LOANID" hidden="hidden" name="SABB_LOANID" class="form-control SABBDBfields">
 	 
 		        <div class="form-row ">
 		           <div class="col-md-4">
@@ -200,7 +199,7 @@
                      </div>
                   </div>
 				</div>  
-                <div class="form-row">
+                <div class="form-row" style="display:none">
                     <div class="col d-flex justify-content-center">
                         <button type="button" id="save3" data-form="LSW_TSCHEMEABB"  data-aria="LSW_TSCHEMEABB|SABB|SABB_SCHEMEID" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
                         <!--<button type="button" data-form="LSW_TSCHEMEABB"  data-aria="LSW_TSCHEMEABB|SABB|SABB_SCHEMEID"data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> -->

@@ -1,7 +1,7 @@
 
 function Product()
 {
-	var xmlSTATUS=UI_getdata($("#PrcsID").val(),$("#FOIR_LOANID").val(),"","","","LSW_SGETLOANDETAILS")
+	var xmlSTATUS=UI_getdata($("#PrcsID").val(),$("#FOIR_SCHEMEID").val(),"","","","LSW_SGETLOANDETAILS")
 	$("#FOIR_PRODUCT").val($(xmlSTATUS).find('PRODUCT').text());
 	$("#FOIR_PRDNAME").val($(xmlSTATUS).find('PRDNAME').text());
 	$("#FOIR_INAPPROIPRO").val($(xmlSTATUS).find('INTERESTRATE').text());
@@ -51,25 +51,13 @@ $(document).on("blur", ".Charges", function() {
 		{
 			den=0;
 		}
-		if(den=='Infinity')
-		{
-			den=0;
-		}
 	 var pen=parseFloat(ONBI)*parseFloat(25)/parseFloat(100);
 	 if(isNaN(pen))
 		{
 			pen=0;
 		}//*parseFloat(75)/parseFloat(100)
-		if(pen=='Infinity')
-		{
-			pen=0;
-		}
 	 var gen = parseFloat(AIOI);
 	 if(isNaN(gen))
-		{
-			gen=0;
-		}
-		if(gen=='Infinity')
 		{
 			gen=0;
 		}
@@ -80,10 +68,6 @@ $(document).on("blur", ".Charges", function() {
 		{
 			TotEligVal=0;
 		}
-		if(TotEligVal=='Infinity')
-		{
-			TotEligVal=0;
-		}
 		
 	 //(d*75%)-(e*25%)-(f*75%)-g
 	 var TotEligPM=parseFloat(TotEligVal/12);
@@ -91,10 +75,6 @@ $(document).on("blur", ".Charges", function() {
 		{
 			TotEligPM=0;
 		} 
-		if(TotEligPM=='Infinity')
-		{
-			TotEligPM=0;
-		}
 	 $("#FOIR_TOEGPERANM").val(CURINRCommaSep(parseFloat(TotEligVal).toFixed(2)));
      $("#FOIR_TOEGPERANM").next().addClass('active');
 	 
@@ -103,10 +83,6 @@ $(document).on("blur", ".Charges", function() {
 	var FOIR=$("#FOIR_FOIRPER").val();
 	var nun=parseFloat(TotEligPM)*(parseFloat(FOIR)/100); 
 	if(isNaN(nun))
-		{
-			nun=0;
-		}
-		if(nun=='Infinity')
 		{
 			nun=0;
 		}
@@ -121,17 +97,13 @@ $(document).on("blur", ".Charges", function() {
 	 
 	ROI=$("#FOIR_INAPPROIPRO").val();
 	Tenur=$("#FOIR_SETENUREPRO").val();
-	 var result=UI_getdata(ROI,Tenur,LnAmt,"","","LSW_SGETEMI_DATA");
+	 var result=UI_getdata(ROI,Tenur,LnAmt,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 	 var EMI=$(result).find("EMI").text();
 	 	if(EMI=='')
 	{
 		EMI=0;
 	}
 	if(isNaN(EMI))
-		{
-			EMI=0;
-		}
-		if(EMI=='Infinity')
 		{
 			EMI=0;
 		}
@@ -143,27 +115,15 @@ $(document).on("blur", ".Charges", function() {
  
     var ExEMI=$("#FOIR_EXEMIBORFUN").val().replace(/,/g,'');
 	if(ExEMI=="")
-	   {
+	{
 		ExEMI=0;
-	   }
-	if(ExEMI=='Infinity')
-		{
-			ExEMI=0;
-		}
+	}
 	if(nun=="")
 	{
 		nun=0;
 	}
-	if(nun=='Infinity')
-		{
-			nun=0;
-		}
 	var PREFUNFCF = (parseFloat(nun)-parseFloat(ExEMI));
 	 if(isNaN(PREFUNFCF))
-		{
-			PREFUNFCF=0;
-		}
-		if(PREFUNFCF=='Infinity')
 		{
 			PREFUNFCF=0;
 		}
@@ -178,24 +138,13 @@ $(document).on("blur", ".Charges", function() {
 	{
 		PreFun=0;
 	}
-	if(PreFun=='Infinity')
-		{
-		PreFun=0;
-		}
+	
 	if(EMI=="")
 	{
 		EMI=0;
 	}
-	if(EMI=='Infinity')
-		{
-		EMI=0;
-		}
 	var LOANEGBI=(parseFloat(PreFun)/parseFloat(EMI)*100000);
 	 if(isNaN(LOANEGBI))
-		{
-			LOANEGBI=0;
-		}
-		if(LOANEGBI=='Infinity')
 		{
 			LOANEGBI=0;
 		}
@@ -204,10 +153,6 @@ $(document).on("blur", ".Charges", function() {
 	 var LonElig=$("#FOIR_LOANEGBI").val().replace(/,/g,'');
          var LOANPROP =Math.min(LonElig,$("#DMY3").val().split('|')[0]);
 		 if(isNaN(LOANPROP))
-		{
-			LOANPROP=0;
-		}
-		if(LOANPROP=='Infinity')
 		{
 			LOANPROP=0;
 		}
@@ -231,7 +176,7 @@ var ROI=0;
 var Tenur=0; 
 ROI=$("#FOIR_INAPPROIPRO").val();
 Tenur=$("#FOIR_SETENUREPRO").val();
-var result=UI_getdata(ROI,Tenur,LOANPROP,"","","LSW_SGETEMI_DATA");
+var result=UI_getdata(ROI,Tenur,LOANPROP,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 var EMI1=$(result).find("EMI").text();
 if(EMI1=='')
 {
@@ -240,10 +185,6 @@ EMI1=0;
 if(isNaN(EMI1))
 {
 EMI1=0;
-}
-if(EMI1=='Infinity')
-{
-	EMI1=0;
 }
 /* $("#FOIR_EMIASPRO").val(CURINRCommaSep(parseFloat(EMI1).toFixed(2)));
 $("#FOIR_EMIASPRO").next().addClass('active');  */

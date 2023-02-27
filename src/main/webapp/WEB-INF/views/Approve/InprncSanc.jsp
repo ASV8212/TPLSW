@@ -35,7 +35,7 @@
                            <div class="col d-flex justify-content-center">
 						   <button type="button" data-aria="LSW_TINPRINCSANC|IPRS" data-card="0"  id="Recredit" style="display:none" class="btn btn-Syeloutline1 waves-effect waves-light FormSave UCVWFRECMFLOW">Send to credit</button>
 							<button type="button" data-aria="LSW_TINPRINCSANC|IPRS" data-card="0"  id="PDisb" style="display:none" onclick="" class="btn btn-Syel1 waves-effect waves-light FormSave UCVWFRECMFLOW">Proceed Post-Sanction</button>
-							<button type="button" data-aria="LSW_TINPRINCSANC|IPRS" data-card="0"  id="Save" style="display:none" onclick="" class="btn btn-Syel1 waves-effect waves-light FormSave">Save</button>
+							<button type="button" data-aria="LSW_TINPRINCSANC|IPRS" data-card="0"  id="Save"  onclick="" class="btn btn-Syel1 waves-effect waves-light FormSave">Save</button>
                               <!--<button type="button" id="Save1" data-aria="LSW_TPDDTLS|APDD"  class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
                               <button type="button" data-aria="LSW_TPDDTLS|APDD" data-card="2" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> -->
                            </div>

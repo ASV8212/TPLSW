@@ -23,6 +23,19 @@ $(document).ready(function () {
          $("#DOCP_PROPSTATUS").addClass('DOCPMndtry')
          $("#BNKS_FINANCCOLLCT").addClass('UPDCMndtry')		 
 	 }
+	 
+	 	 if($("#DMY7").val().split('|')[0]=="Bill Discounting" && $("#VERTICAL").val()=="UCV")
+	{
+		$(".NGECL").hide();
+		 $("#DOCP_PROPSTATUS").removeClass('DOCPMndtry')
+	}
+	else
+	{		
+		 $(".NGECL").show();
+         $("#DOCP_PROPSTATUS").addClass('DOCPMndtry')
+	}
+	
+	
 	if($("#VERTICAL").val()=="UCV Eco")
 	{
 		
@@ -441,7 +454,21 @@ if($("#DOCP_PROPERTYDOC").val()=='')
 	 }
 		 if(activityname=="PLVer"){
 			 $("#Reject").hide();
-		 }			 
+		 }
+		 
+		if(ButtonName=="Save & Submit" && activityname=="PreLoginSB")
+		   {
+			 var CHKREJECT=UI_getdata($("#PrcsID").val(),"","","","","LSW_SREJECTBTN")
+			 if($(CHKREJECT).find('RESULT').text()=='REJECT')
+			 {
+				$("#Reject").show();  
+			 }
+			 else
+			 {
+				$("#Reject").hide();  
+			 }
+			 
+		   }
 	  
 	  if(activityname=="DEFAppr")
 		  {
@@ -460,6 +487,8 @@ if($("#DOCP_PROPERTYDOC").val()=='')
 			{
 		         $('.BTNDOCMVL').hide()
 		    }
+			
+		
 
             			
 		 if($(op).find("COAPPLI").text()=="NO")
@@ -1066,11 +1095,12 @@ if($("#DOCP_PROPERTYDOC").val()=='')
 				        UI_getdata($("#PrcsID").val(),activityname,"","","","LSW_SUPDTPFSTST");
 					 }
 				        var Button = "DAS";
-				    WFComplete ($("#ActvID").val(),"var_status="+Button,"");
+				    var opxml = UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETPERLOGINPERFUSR");
+				    WFComplete ($("#ActvID").val(),"var_status="+Button+$(opxml).find("RESULT").text(),"");
 				 }
 			 if(($(this).text() == "Save & Submit") && (activityname == "PLVer"))
 			 {
-				 if($("#VERTICAL").val() == "UCV")
+				 if(($("#VERTICAL").val() == "UCV") || ($("#VERTICAL").val() == "UCV Eco" && $("#DMY7").val().split("|")[8] == "T316"))
 				 {
 					 var RCUUNIQID=UI_getdata($("#PrcsID").val(),"","","","","LSW_SPUSHDATATORCUTBL");
 					 if($(RCUUNIQID).find("RESULT").text() == "Y")

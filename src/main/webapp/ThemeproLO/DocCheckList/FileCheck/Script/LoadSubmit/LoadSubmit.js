@@ -12,7 +12,16 @@ $(document).ready(function () {
 		 $("#UCLH_SCHEM").val($(xml).find('SCHEME').text())
 		 }
 	
-  
+    var xml=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETPRODUCTNAME")
+    var CROSS=$(xml).find('PRODUCT').text() 
+	if(CROSS=='T316')
+	{
+	$("#FormPageTab6").show()
+	}
+	else
+	{
+	$("#FormPageTab6").hide()
+	}
 	 var op = UI_getdata($("#LogUsr").val(),$("#PrcsID").val(),"","","","LSW_SGETUSRGRP1")
 
 	 if($(op).find("COAPPLI").text()=="NO")

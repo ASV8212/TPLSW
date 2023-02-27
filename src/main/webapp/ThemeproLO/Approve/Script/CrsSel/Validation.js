@@ -736,13 +736,13 @@ function CheckGender(Gender,Relation,Event)
 	   if(Gend=="Male")
 	{
 	     $(Gender).find("[name='ALIH_RELVID']").empty();
-		 $(Gender).find("[name='ALIH_RELVID']").append('<option value="" >--Select--</option><option value="Father">Father</option><option value="Brother">Brother</option><option value="Brother In-Law">Brother In-Law</option><option value="Nephew">Nephew</option><option value="Uncle">Uncle</option><option value="Other">Other</option>') 
+		 $(Gender).find("[name='ALIH_RELVID']").append('<option value="" >--Select--</option><option value="Mother">Mother</option><option value="Spouse">Spouse</option><option value="Sister">Sister</option><option value="Sister In-Law">Sister In-Law</option><option value="Neice">Neice</option><option value="Aunty">Aunty</option><option value="Father">Father</option><option value="Brother">Brother</option><option value="Brother In-Law">Brother In-Law</option><option value="Nephew">Nephew</option><option value="Uncle">Uncle</option><option value="Other">Other</option>') 
 		 $(Gender).find("[name='ALIH_RELVID']").material_select();
 	}
 	else if(Gend=="Female")
 	{
 		$(Gender).find("[name='ALIH_RELVID']").empty();
-		$(Gender).find("[name='ALIH_RELVID']").append('<option value="" >--Select--</option><option value="Mother">Mother</option><option value="Spouse">Spouse</option><option value="Sister">Sister</option><option value="Sister In-Law">Sister In-Law</option><option value="Neice">Neice</option><option value="Aunty">Aunty</option><option value="Other">Other</option>') 
+		$(Gender).find("[name='ALIH_RELVID']").append('<option value="" >--Select--</option><option value="Mother">Mother</option><option value="Spouse">Spouse</option><option value="Sister">Sister</option><option value="Sister In-Law">Sister In-Law</option><option value="Neice">Neice</option><option value="Aunty">Aunty</option><option value="Father">Father</option><option value="Brother">Brother</option><option value="Brother In-Law">Brother In-Law</option><option value="Nephew">Nephew</option><option value="Uncle">Uncle</option><option value="Other">Other</option>') 
 		$(Gender).find("[name='ALIH_RELVID']").material_select();
 	}
 	else
@@ -766,13 +766,13 @@ function CheckGender(Gender,Relation,Event)
 	if(Gender=="Male")
 	{
 	     $("#"+Relation).empty();
-		 $("#"+Relation).append('<option value="" >--Select--</option><option value="Father">Father</option><option value="Brother">Brother</option><option value="Brother In-Law">Brother In-Law</option><option value="Nephew">Nephew</option><option value="Uncle">Uncle</option><option value="Other">Other</option>') 
+		 $("#"+Relation).append('<option value="" >--Select--</option><option value="Mother">Mother</option><option value="Spouse">Spouse</option><option value="Sister">Sister</option><option value="Sister In-Law">Sister In-Law</option><option value="Neice">Neice</option><option value="Aunty">Aunty</option><option value="Father">Father</option><option value="Brother">Brother</option><option value="Brother In-Law">Brother In-Law</option><option value="Nephew">Nephew</option><option value="Uncle">Uncle</option><option value="Other">Other</option>') 
 		 $("#"+Relation).material_select();
 	}
 	else if(Gender=="Female")
 	{
 		$("#"+Relation).empty();
-		$("#"+Relation).append('<option value="" >--Select--</option><option value="Mother">Mother</option><option value="Spouse">Spouse</option><option value="Sister">Sister</option><option value="Sister In-Law">Sister In-Law</option><option value="Neice">Neice</option><option value="Aunty">Aunty</option><option value="Other">Other</option>') 
+		$("#"+Relation).append('<option value="" >--Select--</option><option value="Mother">Mother</option><option value="Spouse">Spouse</option><option value="Sister">Sister</option><option value="Sister In-Law">Sister In-Law</option><option value="Neice">Neice</option><option value="Aunty">Aunty</option><option value="Father">Father</option><option value="Brother">Brother</option><option value="Brother In-Law">Brother In-Law</option><option value="Nephew">Nephew</option><option value="Uncle">Uncle</option><option value="Other">Other</option>') 
 		$("#"+Relation).material_select();
 	}
 	else

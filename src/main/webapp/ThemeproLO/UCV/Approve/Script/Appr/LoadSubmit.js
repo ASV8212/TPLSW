@@ -257,7 +257,7 @@ $(document).ready(function() {
 		  var Level=$("#DMY6").val();
 			  Level= Level.replace('L','')
 			  Level= parseInt(Level)-parseInt(1)
-			  $("#RECMTO").val('L'+Level)
+			  $("#RECMTO").val('');
 		 }
 	
 		 

@@ -809,6 +809,11 @@ function checkPAN(Event)
 		$("#COBI_PAN").removeClass('COBIMndtry');
 		$("#COBI_PAN").attr('disabled',true);
 		$(".PANVTyp").attr('disabled',true);
+		$("#COBI_KYCPROOFTYP").val('')
+		$("#COBI_KYCPROOFTYP").attr('disabled',true);
+		$("#COBI_KYCPROOFTYP").material_select();
+		$("#COBI_KYCPROOFTYP").removeClass('COBIMndtry')
+		$("#COBI_KYCPROOFTYP").next().find(".MndtryAstr").html("");
 		$("#COBI_PAN").next().find(".MndtryAstr").html("");
 		$("#COBI_PANVERIFY").val('');
 		$("[data-Validatearia=COBI_PANVERIFY]").text('Verify');
@@ -825,6 +830,8 @@ function checkPAN(Event)
 		$("#COBI_PAN").attr('disabled',false);
 		$(".PANVTyp").attr('disabled',false);
 		$("#COBI_PAN").next().find(".MndtryAstr").html("*");
+		$("#COBI_KYCPROOFTYP").attr('disabled',false);
+		$("#COBI_KYCPROOFTYP").material_select();
 		}
 }
 
@@ -1301,8 +1308,24 @@ function GridControlDetailKARZAGRD (popTableModPageGrid1,TableID,dtData,dtcolumn
   
 		 
 		 { targets: 6, "render": function ( data, type, row, meta ) {                            
-	 			
+	 		if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))	
+			{				
 			 var rowno = meta.row;		 
+		 		var HTML =	'<span><input type="radio" disabled class="custom-control-input CBSIDBfields" value="Yes" id="MULTIPLY'+rowno+'" name="ACTION"><label class="custom-control custom-control-label" for="MULTIPLY'+rowno+'"></label>';			 
+		 		HTML = HTML + '</span>';			  
+		 		
+		 		var htmldata = $(HTML);
+					
+					$(htmldata).find('[name=RXLD_MULTIPLIER'+rowno+'][value="'+data+'"]').attr('checked', 'checked');
+
+					//alert($(htmldata).find('[name=OKYD_DOCSTATUS'+rowno+'][value="'+data+'"]').length)
+					//alert(htmldata[0].outerHTML);
+					
+		        return htmldata[0].outerHTML;  
+			}
+					else
+					{
+						var rowno = meta.row;		 
 		 		var HTML =	'<span><input type="radio" class="custom-control-input CBSIDBfields" value="Yes" id="MULTIPLY'+rowno+'" name="ACTION"><label class="custom-control custom-control-label" for="MULTIPLY'+rowno+'"></label>';			 
 		 		HTML = HTML + '</span>';			  
 		 		
@@ -1313,7 +1336,8 @@ function GridControlDetailKARZAGRD (popTableModPageGrid1,TableID,dtData,dtcolumn
 					//alert($(htmldata).find('[name=OKYD_DOCSTATUS'+rowno+'][value="'+data+'"]').length)
 					//alert(htmldata[0].outerHTML);
 					
-		        return htmldata[0].outerHTML;   		
+		        return htmldata[0].outerHTML;
+					}
 					
 		         } 
 				 }				 
@@ -2779,7 +2803,7 @@ if($("#COBI_PANVERIFY").val()=="")
 	{	
 	if(dir=="Direct")
 	{
-		
+		$("#COBI_PANNAVAIL").attr('disabled',true)
 		$("#COBI_PAN").addClass("COBIMndtry");	
 		$("#COBI_PAN").next().find(".MndtryAstr").html("*");
 		$(".TYP").show();
@@ -2788,7 +2812,7 @@ if($("#COBI_PANVERIFY").val()=="")
 	}
 	else if(dir=="OCR")
 	{
-		
+		$("#COBI_PANNAVAIL").attr('disabled',true)
 		$("#COBI_PAN").removeClass("COBIMndtry");	
 		$("#COBI_PAN").next().find(".MndtryAstr").html("");
 		$(".TYP").hide();
@@ -2828,6 +2852,11 @@ if($("#COBI_PANVERIFY").val()=="")
 	{
 	   $("#COBI_KYCPROOFTYP option[value='SIGN PROOF']").attr('disabled',true);
 	   $("#COBI_KYCPROOFTYP").material_select();
+	}
+	if($("#COBI_CUSTYPE").val() == "Non-Individual")
+	{
+		$("#COBI_KYCPROOFTYP option[value='SIGN PROOF']").attr('disabled',true);
+		$("#COBI_KYCPROOFTYP option[value='DOB PROOF']").attr('disabled',true);
 	}
 
 }
@@ -3101,4 +3130,22 @@ if(($("#COBI_UBVERIFYTYPE").val()!="") && ($("#COBI_UBVERIFYTYPE").val()!=undefi
 {
 $(".Utility").show();
 }
+}
+
+function GETPROOFTYP()
+{
+
+var k=	$("#COBI_KYCPROOFTYP").val().length	
+var PROOFTYPE=""
+ for(i=0;i<k;i++)
+	 {
+	 var PROOFTYPE1=$("#COBI_KYCPROOFTYP").val()[i]
+		
+	 if(PROOFTYPE1!=undefined)
+		 {
+	      var PROOFTYPE= PROOFTYPE+','+PROOFTYPE1
+		}
+	 }
+       var PROOFTYPE =PROOFTYPE.replace(',','')
+       $("#COBI_HIDPROFTYP").val(PROOFTYPE)	
 }

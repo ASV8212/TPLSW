@@ -5,6 +5,7 @@ if (!window.location.origin) {
 var timer1="-1";
 
 
+
 function SessionStChk()
 {
 	 var CHK="";
@@ -5202,13 +5203,26 @@ function CheckKYCDetl(Event,Id,Verify,Type,HTML)
 				        var op= UI_getdata("DOCVRNO","","","","","Sam_sGetCOMSeqID")
 				        var vrsnno=$(op).find("VR").text()
 					  }
-					  
-	
+		 if(Type=="UDYAM")
+			          {
+				        var op= UI_getdata("DOCVRNO","","","","","Sam_sGetCOMSeqID")
+				        var vrsnno=$(op).find("VR").text()
+						
 		$("[data-Validatearia="+Fld1+"]").text('Verified');
  	    $("[data-Validatearia="+Fld1+"]").removeClass("btn-yelInplain");	
  		$("[data-Validatearia="+Fld1+"]").removeClass("btn-RedInplain");
  		$("[data-Validatearia="+Fld1+"]").addClass("btn-GrnInplain"); 
 		$("input[name="+Fld1+"]").val('Verified')
+						
+					  }
+	         else
+			 {
+		       $("[data-Validatearia="+Verify+"]").text('Verified');
+ 	           $("[data-Validatearia="+Verify+"]").removeClass("btn-yelInplain");	
+ 		       $("[data-Validatearia="+Verify+"]").removeClass("btn-RedInplain");
+ 		       $("[data-Validatearia="+Verify+"]").addClass("btn-GrnInplain"); 
+		       $("input[name="+Verify+"]").val('Verified')
+			 }
 						
  	                    //$("#"+Verify).val('Verified')
 					
@@ -5468,26 +5482,118 @@ $.ajax(settings).done(function (response) {
 			  }
 			  else if(Type=="VEHICLE")
 			  {
-				  $("#LPDT_VENGNO").val(obj["result"].engineNumber);
+			  
+				  var Engno=obj["result"].engineNumber;
+				  if(Engno!=null)
+				  {
+				  Engno=Engno.replace(/&/g,"AND");
+				  $("#LPDT_VENGNO").val(Engno);
+				   $("#LPDT_VENGNO").next().addClass('active');
+				  }
+				  
+				  var Chassno=obj["result"].chassisNumber;
+				  if(Chassno!=null)
+				  {
+				  Chassno=Chassno.replace(/&/g,"AND");
+				  $("#LPDT_VCHASISNO").val(Chassno);
+				   $("#LPDT_VCHASISNO").next().addClass('active');
+				  }
+				  
+				  var Ownrname=obj["result"].ownerName;
+				  if(Ownrname!=null)
+				  {
+				  Ownrname=Ownrname.replace(/&/g,"AND");
+				  $("#LPDT_VNAMEOFOWN").val(Ownrname);
+				   $("#LPDT_VNAMEOFOWN").next().addClass('active');
+				  }
+				  
+				  var Makermodl=obj["result"].makerModel;
+				  if(Makermodl!=null)
+				  {
+				  Makermodl=Makermodl.replace(/&/g,"AND");
+				  $("#LPDT_VMAKERMODEL").val(Makermodl);
+				   $("#LPDT_VMAKERMODEL").next().addClass('active');
+				  }
+				  
+				  var Regisdate=obj["result"].registrationDate;
+				  if(Regisdate!=null)
+				  {
+				  Regisdate=Regisdate.replace(/&/g,"AND");
+				  $("#LPDT_VREGDATE").val(Regisdate);
+				   $("#LPDT_VREGDATE").next().addClass('active');
+				  }
+				  
+				  var Finance=obj["result"].financier;
+				  if(Finance!=null)
+				  {
+				  Finance=Finance.replace(/&/g,"AND");
+				  $("#LPDT_VFINANCIER").val(Finance);
+				   $("#LPDT_VFINANCIER").next().addClass('active');
+				  }
+				  
+				  var Vehiclecls=obj["result"].vehicleClassDescription;
+				  if(Vehiclecls!=null)
+				  {
+				  Vehiclecls=Vehiclecls.replace(/&/g,"and");
+				  $("#LPDT_VVEHICLECLASS").val(Vehiclecls);
+				   $("#LPDT_VVEHICLECLASS").next().addClass('active');
+				  }
+				  
+				   var Ownerserilno=obj["result"].ownerSerialNumber;
+				  if(Ownerserilno!=null)
+				  {
+				  Ownerserilno=Ownerserilno.replace(/&/g,"and");
+				  $("#LPDT_VOWNERSERNO").val(Ownerserilno);
+				   $("#LPDT_VOWNERSERNO").next().addClass('active');
+				  }
+				  
+				  /* $("#LPDT_VENGNO").val(obj["result"].engineNumber);
 				  $("#LPDT_VENGNO").next().addClass('active');
+				  
 				  $("#LPDT_VCHASISNO").val(obj["result"].chassisNumber);
 				  $("#LPDT_VCHASISNO").next().addClass('active');
+				  
+				  $("#LPDT_VNAMEOFOWN").val(obj["result"].ownerName);
+				  $("#LPDT_VNAMEOFOWN").next().addClass('active');
+				  
+				  $("#LPDT_VMAKERMODEL").val(obj["result"].makerModel);
+				  $("#LPDT_VMAKERMODEL").next().addClass('active');
+				  
+				  $("#LPDT_VREGDATE").val(obj["result"].registrationDate);
+				  $("#LPDT_VREGDATE").next().addClass('active');
+				  
+				  $("#LPDT_VFINANCIER").val(obj["result"].financier);
+				  $("#LPDT_VFINANCIER").next().addClass('active');
+				  
+				  $("#LPDT_VVEHICLECLASS").val(obj["result"].vehicleClassDescription);
+				  $("#LPDT_VVEHICLECLASS").next().addClass('active');
+				  
+				  $("#LPDT_VOWNERSERNO").val(obj["result"].ownerSerialNumber);
+				  $("#LPDT_VOWNERSERNO").next().addClass('active'); */
 				  
 				  var FinName=obj["result"].financier;
 				  if(FinName!=null)
 				  {
-				  FinName=FinName.replaceAll("&","and");
+				  
+				  FinName=FinName.replace(/&/g,"and");
 				  $("#LPDT_VFINANCNAME").val(FinName);
+				   $("#LPDT_VFINANCNAME").next().addClass('active');
 				  }
+				  
+				  
 				  var ComName=obj["result"].insuranceCompany
-				  ComName=ComName.replaceAll("&","and");
+				  if(ComName!=null)
+				  {
+				  ComName=ComName.replace(/&/g,"and");
 				  $("#LPDT_VNAMEOFCOM").val(ComName);
-				  $("#LPDT_VNAMEOFCOM").next().addClass('active');
+				   $("#LPDT_VNAMEOFCOM").next().addClass('active');
+				  }
+				 
 				  var FCDate=obj["result"].insuranceUpto
 				  
 				    if(FCDate!=null)
 					{	
-				      FCDate=FCDate.replaceAll("-","/")
+				      FCDate=FCDate.replace(/-/g,"/"); //replaceAll("-","/")
 				      $("#LPDT_VFCVALIDITY").val(FCDate);
 					  $("#LPDT_VFCVALIDITY").next().addClass('active');
 					}
@@ -5499,7 +5605,7 @@ $.ajax(settings).done(function (response) {
 				    if(ManuDate!=null)
 					{
 					 ManuDate ="01-"+ManuDate;
-					 ManuDate=ManuDate.replaceAll("-","/")
+					 ManuDate=ManuDate.replace(/-/g,"/"); //replaceAll("-","/")
 				     $("#LPDT_VMANUDATE").val(ManuDate); 
 					 $("#LPDT_VMANUDATE").next().addClass('active');
 					}
@@ -5523,6 +5629,8 @@ $.ajax(settings).done(function (response) {
 			  var xml=UI_getdata($("#PrcsID").val(),str+'|'+FatherName+'|'+Address+'|'+DOB,Type,CusID,"","LSW_TINSKARZADETL");
 			}
 			$("#Save1").click();
+			$("#Save").click();
+			
 		 }
 		else
 		 {
@@ -5565,8 +5673,11 @@ $.ajax(settings).done(function (response) {
 		 FncallDocChkLst(this,'Table2',{spname:'LSW_SKARZALISTIFSC',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$(HTML).find("[name=DBFD_FAVOURTYPE]").val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4','KARZAGRDIFSC')
      $(".KrazaPopupIFSC").click(); 
 	 }
+	 if(Type!="VEHICLE")
+	 {
 	 FncallDocChkLst(this,'Table2',{spname:'LSW_SKARZALIST',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$("#"+Fld4).val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||7','KARZAGRD')
      $(".KrazaPopup").click();
+	 }
 	
   }
 }
@@ -5601,7 +5712,7 @@ function CheckKYCUPLOADDOC(Event,Id,Verify,Type,HTML)
 	var Fld8=$(Event).attr("data-field").split("|")[7];
 	var Fld9=$(Event).attr("data-field").split("|")[8];
 	//var Constitution=$(Event).attr("data-field").split("|")[8];
-	
+	$("#AADHARHITFROM").val($(Event).attr("data-field").split("|")[8]);
 	var Constitution=$("#"+Fld7).val();
 	
     if($("#"+Verify).val()!="Upload Verified")
@@ -6088,10 +6199,44 @@ if(Constitution=="Society" || Constitution=="Trustee")
 			  }
 			 else if(Fld5=="Aadhar")
 			  {
-				   var FileType=obj.result[0].type;
-				   FileType=FileType.includes("Aadhaar");
-				   
-	    	    if(FileType!=true)
+				  var multiresp = "";
+				  for(var zx= 0;zx<obj.result.length;zx++)
+				  {
+					  
+					  if(obj.result.length == 3)
+					  {
+						  multiresp = "Yes"
+						  if(obj.result[zx].type == "Aadhaar Front Top")
+						  {
+							  if(obj.result.length ==zx)
+							  {
+							  break;
+							  }
+							  else{
+								  zx++;
+							  }
+						  }
+					  }
+					  else if(obj.result.length == 2)
+                      {
+                                          
+                          multiresp = "Yes"
+                          if(obj.result[zx].type == "Aadhaar Front Top")
+                          {
+                              if(obj.result.length ==zx)
+                              {
+                              break;
+                              }
+                              else{
+                                  zx++;
+                              }
+                          }
+                      }
+					  
+					var FileType=obj.result[zx].type;
+					FileType=FileType.includes("Aadhaar");
+					
+					if(FileType!=true)
 	    		  {
 					alert('Kindly upload the Aadhaar');
 					$("[data-Validatearia="+Verify+"]").text('Upload Failed');
@@ -6102,13 +6247,36 @@ if(Constitution=="Society" || Constitution=="Trustee")
 		         	$("#Save1").click();
 					return false;
 				  }
-				  var FileType1=obj.result[0].type;
-				  if(FileType1=="Aadhaar Front Bottom")
+				  var FileType1=obj.result[zx].type;
+				  
+				  if(FileType1=="Aadhaar Front Bottom"&& $("#AADHARHITFROM").val() == "Front")
 				  {
-				  var CusName=obj["result"][0].details.name.value
-				  var AadharNo=obj["result"][0].details.aadhaar.value
-				  var gender=obj["result"][0].details.gender.value
-				  if(obj["result"][1]==undefined)
+				  var CusName=obj["result"][zx].details.name.value
+				  var AadharNo=obj["result"][zx].details.aadhaar.value
+				  var gender=obj["result"][zx].details.gender.value
+				  var DOB=obj["result"][zx].details.dob.value
+					   $("#"+Fld8).val(obj["result"][zx].details.imageUrl.value)
+					   $(".AadharMskImg").show();
+					   $(".AadharViewImg").hide();
+					  
+					   if(obj["result"][1]==undefined)
+					{
+					  var DOB=obj["result"][0].details.dob.value
+					  
+					   $("#"+Fld8).val(convertKarzaURLtoDMS(CusID,obj["result"][0].details.imageUrl.value))
+					   $(".AadharMskImg").show();
+					   $(".AadharViewImg").hide();
+					   break;
+					}
+					 
+				  else
+					{
+					  var DOB=obj["result"][1].details.dob.value
+					  $("#"+Fld8).val(convertKarzaURLtoDMS(CusID,obj["result"][1].details.imageUrl.value))
+					  $(".AadharMskImg").show();
+					  $(".AadharViewImg").hide();
+					}
+				  /***if(obj["result"][1]==undefined)
 					{
 					  var DOB=obj["result"][0].details.dob.value
 					   $("#"+Fld8).val(obj["result"][0].details.imageUrl.value)
@@ -6121,15 +6289,38 @@ if(Constitution=="Society" || Constitution=="Trustee")
 					  $("#"+Fld8).val(obj["result"][1].details.imageUrl.value)
 					  $(".AadharMskImg").show();
 					  $(".AadharViewImg").hide();
-					}
+					}***/
 				   }
-				   
 				   if(FileType1=="Aadhaar Front Top")
 				  {
-				  var CusName=obj["result"][0].details.name.value
-				  var AadharNo=obj["result"][0].details.aadhaar.value
-				  var gender=obj["result"][1].details.gender.value
-				  if(obj["result"][1]==undefined)
+				  var CusName=obj["result"][zx].details.name.value
+				  var AadharNo=obj["result"][zx].details.aadhaar.value
+				  var gender=obj["result"][zx].details.gender.value
+				  var DOB=obj["result"][zx].details.dob.value
+				  var address=obj["result"][zx].details.address.value
+				  $("#"+Fld8).val(obj["result"][zx].details.imageUrl.value)
+					   $(".AadharMskImg").show();
+					   $(".AadharViewImg").hide();
+					   
+					   if(obj["result"][1]==undefined)
+					{
+					  var DOB=obj["result"][0].details.dob.value
+					  var address=obj["result"][0].details.address.value
+					   $("#"+Fld8).val(convertKarzaURLtoDMS(CusID,obj["result"][0].details.imageUrl.value))
+					   $(".AadharMskImg").show();
+					   $(".AadharViewImg").hide();
+					   break;
+					}
+					
+				  else
+					{
+					  var DOB=obj["result"][1].details.dob.value
+					  var address=obj["result"][0].details.address.value
+					  $("#"+Fld8).val(convertKarzaURLtoDMS(CusID,obj["result"][1].details.imageUrl.value))
+					  $(".AadharMskImg").show();
+					  $(".AadharViewImg").hide();
+					}
+				  /***if(obj["result"][1]==undefined)
 					{
 					  var DOB=obj["result"][0].details.dob.value
 					  var address=obj["result"][0].details.address.value
@@ -6144,13 +6335,33 @@ if(Constitution=="Society" || Constitution=="Trustee")
 					  $("#"+Fld8).val(obj["result"][1].details.imageUrl.value)
 					  $(".AadharMskImg").show();
 					  $(".AadharViewImg").hide();
-					}
+					}***/
 				   }
-				   
-				   if(FileType1=="Aadhaar Back")
+				if(FileType1=="Aadhaar Back" && $("#AADHARHITFROM").val() == "Back" )
 				  {
-				  var AadharNo=obj["result"][0].details.aadhaar.value
-				  if(obj["result"][1]==undefined)
+				  var AadharNo=obj["result"][zx].details.aadhaar.value
+				  var address=obj["result"][zx].details.address.value
+					   $("#"+Fld8).val(obj["result"][zx].details.imageUrl.value)
+					   $(".AadharMskImgII").show();
+					   $(".AadharViewImgII").hide();
+					  
+					   if(obj["result"][1]==undefined)
+					{
+					  var address=obj["result"][0].details.address.value
+					   $("#"+Fld8).val(convertKarzaURLtoDMS(CusID,obj["result"][0].details.imageUrl.value))
+					   $(".AadharMskImgII").show();
+					   $(".AadharViewImgII").hide();
+					    break;
+					}
+					
+				  else
+					{
+					  var address=obj["result"][1].details.address.value
+					  $("#"+Fld8).val(convertKarzaURLtoDMS(CusID,obj["result"][1].details.imageUrl.value))
+					  $(".AadharMskImgII").show();
+					  $(".AadharViewImgII").hide();
+					}
+				 /*** if(obj["result"][1]==undefined)
 					{
 					  var address=obj["result"][0].details.address.value
 					   $("#"+Fld8).val(obj["result"][0].details.imageUrl.value)
@@ -6163,15 +6374,10 @@ if(Constitution=="Society" || Constitution=="Trustee")
 					  $("#"+Fld8).val(obj["result"][1].details.imageUrl.value)
 					  $(".AadharMskImgII").show();
 					  $(".AadharViewImgII").hide();
-					}
+					}***/
 				   }
-				   
-				   
-				   
-				 // var DOB=obj["result"][0].details.dob.value
-				  
-				  
-				  $("#"+Fld6).val(AadharNo);
+				  }
+				   $("#"+Fld6).val(AadharNo);
 				  $("#"+Fld6).next().addClass('active');
                   $("#"+Fld6).attr("disabled",true);
 				  
@@ -6197,10 +6403,12 @@ if(Constitution=="Society" || Constitution=="Trustee")
 				    { 
 				        gender="";
 				    }
+				  
 				  var xml=UI_getdata($("#PrcsID").val(),CusName+'|'+FatherName+'|'+address+'|'+DOB,FileType1,CusID,gender,"LSW_TINSKARZADETL");
 
 				  
 			  }
+			   
 			  else if(Fld5=="DL")
 			  {
 				var FileType=obj.result[0].type;
@@ -6369,6 +6577,7 @@ function AutomPaym(LonID,Amt,GSTAmt,Page,AmtType)
 	  $(".loader").show();	  
 	  //childWindow =  window.open(URL, "PAYMENT GATEWAY", 'toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, copyhistory=no, //width='+w+', height='+h+', top='+top+', left='+left);
 	var xml=UI_getdata($("#PrcsID").val(),URL,'','EMAIL','ATOM',"LSW_SSENDATOMLNK");
+	alert("Link send successfully");
 		},
     error: function(stm) {
     	 //window.alert(LoadFrmXML("V0125"))
@@ -7309,17 +7518,20 @@ function WFComplete (ACTVID,WDATA,SNAME)
 		 {
 			 UI_getdata($("#PrcsID").val(),"","","","Data Entry submission","LSW_SSMSEMAILLINKSND");
 		 }
-		 //if(($("#DMY5").val().split("|")[2]=="RCMDI")||($("#DMY5").val().split("|")[2]=="RCMDII"))
-		if(($("#DMY5").val().split("|")[2]=="RCMDII"))
+		 /* if(($("#DMY5").val().split("|")[2]=="RCMDI")||($("#DMY5").val().split("|")[2]=="RCMDII"))
+		//if(($("#DMY5").val().split("|")[2]=="RCMDII"))
 		 {
+			 if(parseInt($("#HIDNLVL").val().replace('L',''))<=parseInt($("#DMY6").val().replace('L','')))
+			 {
 			 UI_getdata($("#PrcsID").val(),"","","","In-principle approval - 1","LSW_SSMSEMAILLINKSND");
 			 UI_getdata($("#PrcsID").val(),"","","","In-principle approval - 2","LSW_SSMSEMAILLINKSND");
+			 }
 		 }
-		 if($("#DMY5").val().split("|")[2]=="ReCredit" )	
+		 if($("#DMY5").val().split("|")[2]=="ReCredit")	
 		 {
 			 UI_getdata($("#PrcsID").val(),"","","","Final Approval","LSW_SSMSEMAILLINKSND");
-		 }
-		 
+		 } */
+		 UI_getdata($("#PrcsID").val(),"","","","","LSW_SSMSEMAIL_SEND");
         	$(location).attr('href',window.location.origin + "/TPLSW/MyApplication")   
          	}
          else
@@ -7960,8 +8172,11 @@ $(document).on("click", ".ViewAttch" , function() {
 		    if ($(this).next().val().split("\\")[0] != "")
 		    	{
 		    	
-				
-			var FileStatus= $(this).next().val().split("\\")[0] 
+	//if(AcctNo!=""){
+	//RedirectURL = url.replace("XXDMSIDXX",$(this).next().val().split("\\")[0]);
+	
+	
+	     var FileStatus= $(this).next().val().split("\\")[0] 
 			
 			 FileStatus=FileStatus.includes("karza");
 			
@@ -7973,9 +8188,8 @@ $(document).on("click", ".ViewAttch" , function() {
 			{
 			    RedirectURL =window.location.origin+"/TPLSW/DMSVIEW?PrcsID="+$("#PrcsID").val() + "&DMSID=" + $(this).next().val().split("\\")[0];
 			}
-	//if(AcctNo!=""){
-	//RedirectURL = url.replace("XXDMSIDXX",$(this).next().val().split("\\")[0]);
 	
+	//RedirectURL =window.location.origin+"/TPLSW/DMSVIEW?PrcsID=" + $("#PrcsID").val() + "&DMSID=" + $(this).next().val().split("\\")[0];
 	
 	$("#DocView").attr("src", RedirectURL);
 	
@@ -8017,6 +8231,80 @@ $(document).on("click", ".ViewAttch" , function() {
 	    	}*/
 });
 
+
+function MULTIDOWNLOADER1(CUSID)
+ {
+	 
+	 var CusID = $("#"+CUSID).val();
+	//ajaxindicatorstart("Generating, Please wait...");
+	
+	var IOP=LoadFrmXML("RS006");
+	//var processId= $(this).closest('tr').children('td:eq(4)').text();
+	var RedirectURL="";
+	//var AppNo=AppNo
+    var url= $("#DMY1").val()
+    
+    
+			    RedirectURL =window.location.origin+"/TPLSW/DocMultiDownload?PrcsID="+$("#PrcsID").val() + "&CusID=" + CusID;
+			
+
+	$.ajax({
+        url:RedirectURL,
+async:false,
+        contentType: false,
+        processData: false,
+        type: 'GET',
+        success: function(data, textStatus, request){
+
+	//$("#DocView").attr("src", RedirectURL);
+		    	
+	var objbuilder = '';
+var a = getResponseHeaders(request);
+if(request.responseHeaders["failure-msg"] != "" && typeof request.responseHeaders["failure-msg"] !== 'undefined')
+{
+	alert(request.responseHeaders["failure-msg"] +" Contact IT!");
+ }
+ else if(request.responseHeaders["missing-file"] != "" && typeof request.responseHeaders["missing-file"] !== 'undefined')
+{
+	alert("Missing Document in the DMS : "+request.responseHeaders["missing-file"]);
+ }
+ $("#DocView").attr("src", RedirectURL);
+ },
+        failure:function(data)
+        {
+     ajaxindicatorstop();
+alert(LoadFrmXML("V0119"));
+return
+        
+        }
+    });
+ }
+function getResponseHeaders(jqXHR){ 
+  jqXHR.responseHeaders = {};
+  var headers = jqXHR.getAllResponseHeaders();
+  headers = headers.split("\n");
+  headers.forEach(function (header) {
+    header = header.split(": ");
+    var key = header.shift();
+    if (key.length == 0) return
+    // chrome60+ force lowercase, other browsers can be different
+    key = key.toLowerCase(); 
+    jqXHR.responseHeaders[key] = header.join(": ");
+  });
+}
+
+ /**function MULTIDOWNLOADER1(CUSID)
+ {
+	 
+	 var CusID = $("#"+CUSID).val();
+	 var RedirectURL=window.location.origin+"/TPLSW/DocMultiDownload?PrcsID="+$("#PrcsID").val() + "&CusID=" + CusID;
+	 var req = new XMLHttpRequest();
+	req.open('GET', RedirectURL, false);
+	req.send(null);
+	var headers = req.getAllResponseHeaders().toLowerCase();
+	alert(headers);
+	 
+ }**/
 
 $(document).on("click", ".DELETETAP" , function() {
 
@@ -8068,7 +8356,17 @@ $(document).on("click", ".DELETETAP" , function() {
 		 }
 	
 	/* Added for PF Screen End */
-	
+	if($("#VERTICAL").val() == "UCV"){
+	 if($(".FormMainTabs").find('li.active').attr('id')=="FormMainTab2" && $(".FormPageTab").find('li.active').attr('id')=="FormPageTab2")
+		 {
+			 var xmlscrtag=UI_getdata($("#PrcsID").val(),$("#LPDT_PROPERTYNO").val(),"","","","LSW_SCHKPROPERTYTAGGED")
+			 if($(xmlscrtag).find('PROPTAGFLG').text()=="Y")
+			 {
+				alert("Unable to delete Primary Security, As this was tagged under other Security, Contact IT!");
+				return;
+			 }
+		 }
+	}
 	
 	
 	 if(confirm('Delete '+ Type) == true)
@@ -8695,6 +8993,10 @@ function LoadMultiData (TblName,PrcsVal,UniqNo,DV,FieldClass,SP)
 	 if(TechPropDetls!="<Resultset><a><XMLLRGResult><asetLRGDAta>NoData</asetLRGDAta></XMLLRGResult></a></Resultset>")
       {
       var xmlDoc = $.parseXML(TechPropDetls);
+	  if(xmlDoc == null)
+	  {
+		  return;
+	  }
       var rowno = $(xmlDoc.documentElement).find('a asetLRGDAta').length;
       for(j=1;j<=rowno;j++)
             {
@@ -9057,6 +9359,10 @@ function LoadMultiDataQuery (TblName,PrcsVal,UniqNo,DV,FieldClass,SP,HidnID)
 	 if(TechPropDetls!="<Resultset><a><XMLLRGResult><asetLRGDAta>NoData</asetLRGDAta></XMLLRGResult></a></Resultset>")
       {
       var xmlDoc = $.parseXML(TechPropDetls);
+	  if(xmlDoc == null)
+	  {
+		  return;
+	  }
       var rowno = $(xmlDoc.documentElement).find('a asetLRGDAta').length;
       for(j=1;j<=rowno;j++)
             {
@@ -9376,6 +9682,10 @@ function LoadMultiDataQuery_V1 (TblName,PrcsVal,UniqNo,DV,FieldClass,SP)
 	 if(TechPropDetls!="<Resultset><a><XMLLRGResult><asetLRGDAta>NoData</asetLRGDAta></XMLLRGResult></a></Resultset>")
       {
       var xmlDoc = $.parseXML(TechPropDetls);
+	  if(xmlDoc == null)
+	  {
+		  return;
+	  }
       var rowno = $(xmlDoc.documentElement).find('a asetLRGDAta').length;
       for(j=1;j<=rowno;j++)
             {
@@ -10368,6 +10678,101 @@ function TxtGridsubmitdata_V9(TableID,GrdPrfx,MnPrfx) {
 
 // Other Income Multi Row Grid Page Data Save End
 
+//MULTI GRID IN LOAD MULTI STRT
+function TxtGridsubmitdata_V10(TableID,GrdPrfx,MnPrfx,HTML) {	   
+	var name="";
+	var fieldid="";
+	var value="";
+	var reg = new RegExp('^[0-9]+$');
+
+	var fieldname="";
+	var loadmultirow = $(HTML).attr("data-row")
+
+	var formxml="<Data>";
+
+	for(j=0;j<$(HTML).find('table[name="'+TableID+'"]').find('.tbody').find('.tbodytr').length;j++)
+	{
+	formxml= formxml + "<row>";
+
+	var rowwise = $(HTML).find('table[name="'+TableID+'"]').find('.tbody').find('.tbodytr')[j];
+	
+	if($(rowwise).find('.tbodytrtd').text()=="No data available in table"){
+		formxml+='</row></Data>'
+			return formxml;
+	}
+
+	for(i=0;i<$($("#Grid"+TableID)).find('thead').find('th').length;i++)
+	 {
+	    name = $($($("#Grid"+TableID)).find('thead').find('th')[i]).text();
+	   
+	    fieldname = name+loadmultirow+TableID+loadmultirow+j;
+	    
+	    
+	    if ($($(rowwise).find('.tbodytrtd')[i]).find("[id="+fieldname+"]").length > 0)
+	    	
+	    	{
+	        if($($(rowwise).find('.tbodytrtd')[i]).find('.'+fieldname).attr('type')=="radio")
+	        {
+	         value=$($(rowwise).find('.tbodytrtd')[i]).find('.'+fieldname+':checked').val();
+	         if(value==undefined)
+	         {
+	          value = "";
+	      }
+	        }
+	        else if($($(rowwise).find('.tbodytrtd')[i]).find('.'+fieldname).attr('type')=="checkbox")
+	        {
+	         value=$($(rowwise).find('.tbodytrtd')[i]).find('.'+fieldname).prop("checked");
+	         if(value==undefined)
+	         {
+	          value = "";
+	      }
+	        }
+	        else if ($($(rowwise).find('.tbodytrtd')[i]).find("[id="+fieldname+"]").hasClass("IsCURCommaFields")) {
+	            value = $($(rowwise).find('.tbodytrtd')[i]).find("[id="+fieldname+"]").val().replace(/,/g, "");
+	        }
+	        else {
+
+	            value = $($(rowwise).find('.tbodytrtd')[i]).find("[id="+fieldname+"]").val();
+	 
+	        }
+	    	}
+	    else
+	    	{
+	    	 value= $($(rowwise).find('.tbodytrtd')[i]).text();
+	    	}
+	    	
+	   if(reg.test(value)==true)
+	  {
+	//if($($(rowwise).find('.tbodytrtd')[i]).text().match(/^((\d{0,3}(,\d{3})+)|\d+)(\.\d{2})?$/))
+		//{
+	  value = value.replace(/,/g, "");
+		}
+		else
+		{
+			value = value
+		}
+	  // value = $($(rowwise).find('.tbodytrtd')[i]).text().replace(/[^\d\.\-\ ]/g, '');
+	  
+	    //value =  value.replace(/\s/g, "");
+	   if(value != "" )
+	if(   value != undefined)
+	{
+	   {
+	    value = value.toString().replace(/\&/g, "and");
+	var formxml=formxml+"<"+name+">"+ value  +"</"+name+">";
+	   }
+	   }
+	}
+	formxml= formxml +"<"+GrdPrfx+"PRCSID>"+$("#"+MnPrfx+"PRCSID").val()+"</"+GrdPrfx+"PRCSID>"+"<"+GrdPrfx+"ACTIVITYID>"+$("#"+MnPrfx+"ACTIVITYID").val()+"</"+GrdPrfx+"ACTIVITYID>"
+	+"<"+GrdPrfx+"DTMODIFIED>"+$("#"+MnPrfx+"DTMODIFIED").val()+"</"+GrdPrfx+"DTMODIFIED>"+"<"+GrdPrfx+"DTCREATED>"+$("#"+MnPrfx+"DTCREATED").val()+"</"+GrdPrfx+"DTCREATED>"
+	+"<"+GrdPrfx+"MODIFIEDBY>"+$("#"+MnPrfx+"MODIFIEDBY").val()+"</"+GrdPrfx+"MODIFIEDBY>"+"<"+GrdPrfx+"CREATEDBY>"+$("#"+MnPrfx+"CREATEDBY").val()+"</"+GrdPrfx+"CREATEDBY>"+"</row>";
+	}
+	var formxml = formxml + "</Data>";
+	//alert(formxml);
+	return formxml;
+	}
+//MULTI GRID IN LOAD MULTI END	
+
 function CollectionINTR(TypeFieldID,AmtFieldID)
 {
 var Amount = $("#" + AmtFieldID).val().replace(/,/g, "");
@@ -11214,6 +11619,50 @@ function WFActvInit(ACTVID,WDATA,SNAME)
 	 return result;
 }
 
+
+
+function KYCDELETEFRTADBCK(Verify,FldId,Type,Attachment,AttachmentII,CUSID,ULABEL,AttcVerify,AttcVerifyII,KycDel,Prooftype,Verifytype,AadharMask1,AadharMask2)
+{	
+
+if(confirm('Are you sure you want to delete?') == true)
+	{
+	 $("#"+Attachment+"UPLOAD").css("display", "block")
+	 $("."+Attachment).attr('disabled',false);
+	 $("#"+AttachmentII+"UPLOAD").css("display", "block")
+	 $("."+AttachmentII).attr('disabled',false);
+	 $("."+Type).find('table').next().text('');
+	 $("."+Type+"view").hide()
+	 $("."+Type+"upload").hide()
+	 $("."+Type).hide()
+	 $("#"+FldId).val('');
+	 $("#"+Verify).val('');
+	 $("#"+Attachment).val('');
+	 $("#"+AttachmentII).val('');
+	 $("#"+Prooftype).val('');
+	 $("#"+Verifytype).val('');
+	 
+	 $("#"+AttcVerify).val('');
+	 $("#"+AttcVerifyII).val('');
+	 
+	 $("#"+AadharMask1).val('');
+	 $("#"+AadharMask2).val('');
+	 
+	 
+	 $("#"+Attachment).removeClass('DOCMndtry');
+	 $("#"+AttachmentII).removeClass('DOCMndtry');
+	 
+	 $("[data-Validatearia="+Verify+"]").text('Verify');
+     $("[data-Validatearia="+Verify+"]").addClass("btn-yelInplain");	
+     $("[data-Validatearia="+Verify+"]").removeClass("btn-GrnInplain");
+     $("[data-Validatearia="+Verify+"]").removeClass("btn-RedInplain"); 
+     var xml=UI_getdata($("#PrcsID").val(),Type,$("#"+CUSID).val(),"","","LSW_SDELKYCDETL")
+	 var kycdocdel=UI_getdata($("#PrcsID").val(), $("#"+CUSID).val(),"KycDocDel",KycDel,"","LSW_SCLEARCUSDATA")
+	 
+    }
+	 $("#Save1").click();
+	 window.location.reload();
+}
+
 function KYCDELETE(Verify,FldId,Type,Attachment,CUSID,ULABEL,AttcVerify,KycDel)
 {	
 
@@ -11228,8 +11677,14 @@ if(confirm('Are you sure you want to delete?') == true)
 	 $("#"+FldId).val('');
 	 $("#"+Verify).val('');
 	 $("#"+Attachment).val('');
+	 $("#"+AttachmentII).val('');
+	 
 	 $("#"+AttcVerify).val('');
+	 
+	 
+	 
 	 $("#"+Attachment).removeClass('DOCMndtry');
+	 
 	 $("[data-Validatearia="+Verify+"]").text('Verify');
      $("[data-Validatearia="+Verify+"]").addClass("btn-yelInplain");	
      $("[data-Validatearia="+Verify+"]").removeClass("btn-GrnInplain");
@@ -11293,6 +11748,13 @@ if(CustName != "")
 $("#Save1").click();
 var CusID = $("#"+CUSID).val();
 var PRCSID = $("#PrcsID").val();
+
+var xmlchkman=UI_getdata(PRCSID,CusID,"","","","LSW_SCHKPOSIDEXMANDATORYASTHOSEIDIOTSNEEDSTHIS")
+if($(xmlchkman).find("RESULT_FLG").text() != "Y")
+{
+	alert($(xmlchkman).find("RESULT_MSG").text());
+	return;
+}
 
     if($('#DMY6').val()=="")
     {
@@ -11369,6 +11831,12 @@ var PRCSID = $("#PrcsID").val();
 	    		$("#"+Verify).val('Dedupe Initiated')
 				var xml=UI_getdata(PRCSID,CusID,Type,"","","LSW_SUPDDEDUPE")
 				$(".loader2").fadeOut("slow");
+				if(stm.split("~")[2] == "Y")
+					{
+						alert(stm.split("~")[1]+", Click View Dedupe to Check the Match Details");
+						window.location.reload();
+						return;
+					}
 	    		}
 	    	else if (stm.split("~")[1] == "Success")
 	    		{
@@ -11415,6 +11883,12 @@ var PRCSID = $("#PrcsID").val();
 	    		$("#"+Verify).val('Dedupe Initiated')
 				var xml=UI_getdata(PRCSID,CusID,Type,"","","LSW_SUPDDEDUPE")
 				$(".loader2").fadeOut("slow");
+				if(stm.split("~")[2] == "Y")
+					{
+						alert("Customer ID Created Successfully");
+						window.location.reload();
+						return;
+					}
 	    		}
 	    	else
 	    		{
@@ -11603,7 +12077,8 @@ function RemarksClose()
 
 function REMARKPOPUPDSBLFTR(Evnt){
 	var ClosID = $(Evnt).next()
-	var val =ClosID.val()
+	//var val =ClosID.val()
+	var val =$("#"+ClosID.attr('id')).val().replace(/\\n/g,"\n")
 	
 	$("#REMARKSPopup").click();
 	$("#REMARKSModal").find("#RemarksCONFIRM").attr("data-to",$(ClosID).attr("id"))
@@ -11634,6 +12109,8 @@ function DSVLBLALL(Evnt)
 		
 	   $(".FormSave").hide();
        $(".DelGridrow").hide();
+	   $(".DelGridrowDOCUPLD").hide();
+	   
 	   $('.select-dropdown').attr('disabled',true)
 	   $('.BTNDedupe').attr('disabled',true)
 	   
@@ -11689,6 +12166,7 @@ function DSVLBLALLWS()
 		
 	//   $(".FormSave").hide();
         $(".DelGridrow").hide();
+		 $(".DelGridrowDOCUPLD").hide();
 	    $('.select-dropdown').attr('disabled',true)
 	    $('.BTNDedupe').attr('disabled',true)
 	   
@@ -11725,6 +12203,7 @@ function ENABLEALL()
 		
 	    $('.ENAALL').find(".FormSave").show()
         $('.ENAALL').find(".DelGridrow").show()
+		$('.ENAALL').find(".DelGridrowDOCUPLD").show()
 	    $('.ENAALL').find('.select-dropdown').attr('disabled',false)
 	    $('.ENAALL').find('.BTNDedupe').attr('disabled',false)
 	   
@@ -12724,6 +13203,10 @@ function LoadMultiData_V2 (TblName,PrcsVal,UniqNo,DV,FieldClass,SP)
 	 if(TechPropDetls!="<Resultset><a><XMLLRGResult><asetLRGDAta>NoData</asetLRGDAta></XMLLRGResult></a></Resultset>")
       {
       var xmlDoc = $.parseXML(TechPropDetls);
+	  if(xmlDoc == null)
+	  {
+		  return;
+	  }
       var rowno = $(xmlDoc.documentElement).find('a asetLRGDAta').length;
       for(j=1;j<=rowno;j++)
             {
@@ -12829,8 +13312,16 @@ function LoadMultiData_V2 (TblName,PrcsVal,UniqNo,DV,FieldClass,SP)
 	
 	var HdnClms = datavalue.split("|")[5];
 	var Fnctype = datavalue.split("|")[6];
-		   
-	var BtnClick =  "FncallDocChkLst(this,'"+TableID+"',{spname:'"+SPNAME+"',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:"+Param1+",brid:"+Param2+",MnuId:"+Param3+"},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||"+HdnClms+"','"+Fnctype+"')"
+	var attr =$(html).find('[name='+name+']').attr("data-custom-html-handle");
+	var BtnClick = "";
+	if (typeof attr !== 'undefined' && attr !== false) {
+		$(html).find('[name='+name+']').attr("data-html",$(html).closest(".dynrow").attr("data-row"));
+		mainrowno=$(html).closest(".dynrow").attr("data-row");
+		BtnClick =  "FncallDocChkLst_Custom_BankDtl(this,'"+TableID+"',{spname:'"+SPNAME+"',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:"+Param1+",brid:"+Param2+",MnuId:"+Param3+",Html:"+mainrowno+"},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||"+HdnClms+"','"+Fnctype+"')"
+	}
+	else{
+		BtnClick =  "FncallDocChkLst(this,'"+TableID+"',{spname:'"+SPNAME+"',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:"+Param1+",brid:"+Param2+",MnuId:"+Param3+"},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||"+HdnClms+"','"+Fnctype+"')"
+	}
           			  
 	$(html).find('[name='+name+']').attr("onclick",BtnClick);
     
@@ -13109,6 +13600,10 @@ function LoadMultiData_Supporting (TblName,PrcsVal,UniqNo,DV,FieldClass,SP,mainh
 	 if(TechPropDetls!="<Resultset><a><XMLLRGResult><asetLRGDAta>NoData</asetLRGDAta></XMLLRGResult></a></Resultset>")
       {
       var xmlDoc = $.parseXML(TechPropDetls);
+	  if(xmlDoc == null)
+	  {
+		  return;
+	  }
       var rowno = $(xmlDoc.documentElement).find('a asetLRGDAta').length;
 	  var finalhtml = "";
       for(multiloadj=1;multiloadj<=rowno;multiloadj++)
@@ -13491,7 +13986,25 @@ $("#BTNRBIDEDUPE").click()
 }
 
 function GridESIGNValidate(Evnt){
-	
+	var op = UI_getdata($('#PrcsID').val(),"","","","","LSW_SCHKCRSCHRGS");
+		var Collection=$(op).find('RESULT').text()
+			if(Collection != 'SUCCESS')
+						{
+				var Alert2=''
+								var nameArr = Collection.split(',')
+						         k=nameArr.length
+								 for(i=0;i<k;i++)
+								 {
+									var Alert1= nameArr[i]
+									var Alert2 = Alert2 +'\r\n'+Alert1
+								 }
+						  
+						  alert(Alert2);
+						   return false;
+						   
+				}
+				else
+				{
 	var xml=UI_getdata($('#PrcsID').val(),'','','','','LSW_SCHECKESIGN');
 	var Checkverify= $(xml).find("RESULT").text();
 	
@@ -13544,6 +14057,7 @@ function GridESIGNValidate(Evnt){
 			return;
 	   }
 	});
+	}
 	}
 }
 
@@ -13634,6 +14148,7 @@ function DSVLBLALLOUTSAVE(Evnt)
 		
 	  // $(".FormSave").hide();
        $(".DelGridrow").hide();
+	    $(".DelGridrowDOCUPLD").hide();
 	   $('.select-dropdown').attr('disabled',true)
 	   $('.BTNDedupe').attr('disabled',true)
 	   
@@ -13678,4 +14193,238 @@ $(".DISENAB").removeAttr('disabled')
 $('.SENDBCK').attr('disabled',false)
 		  $(".SENDBCK").removeAttr('disabled') 
 	  
+}
+
+function ACHImageProcess(){
+	$.ajax({
+		url: "/TPLSW/imagePrcsACH",
+		data: {PrcsID:$("#PrcsID").val()},
+		async:true,
+		type: 'POST',
+		success: function(xml1)
+		{
+			if(xml1.split("~")[0] == "Success")
+			{
+				var obj = JSON.parse(xml1.split("~")[1]);
+				if(obj.code == "SR")
+				{
+					
+				}
+				else
+				{
+					alert(obj.message);
+				}
+			}
+			else if(xml1.split("~")[0] == "NoRecord")
+			{
+				
+			}
+			else
+			{
+				alert(xml1.split("~")[1]);
+			}
+		},
+		error: function (xml1)
+	   {
+			alert("Error Occurred, Contact ID");
+	   }
+	});
+}
+
+function LeadSQRStatusPush(StatusEvnt)
+{
+	if(StatusEvnt == "")
+	{
+		alert("Lead SQR - Status Not Received, Contact IT");
+		return;
+	}
+	$.ajax({
+		url: "/TPLSW/leadSQR-Status",
+		data: {PrcsID:$("#PrcsID").val(),StatusEvnt:StatusEvnt,Prvnt:$("#Prvnt").val()},
+		async:true,
+		type: 'POST',
+		success: function(xml1)
+		{
+			
+			if(xml1.split("~")[0] == "Success")
+			{
+
+			}
+			else if(isJsonString(xml1.split("~")[1]))
+			{
+				var obj = JSON.parse(xml1.split("~")[1]);
+				alert("Lead SQR - Status : "+obj.Status+", ExceptionType : "+obj.ExceptionType+", ExceptionMessage : "+obj.ExceptionMessage);
+			}
+			else
+			{
+				alert("Lead SQR - "+xml1.split("~")[1]);
+			}
+		},
+		error: function (xml1)
+	   {
+			alert("Lead SQR - Error Occurred, Contact ID");
+	   }
+	});
+}
+
+function isJsonString(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
+function GeoTagging(prcsid,cusid,hittype){
+	var OP="";
+	$.ajax({
+		url: "/TPLSW/GetTagging",
+		data: {prcsid:$("#PrcsID").val(),cusid:cusid,hitType:hittype,Prvnt:$("#Prvnt").val()},
+		async:false,
+		type: 'POST',
+		success: function(xml1)
+		{
+			if(xml1.split("~")[0] == "Success")
+			{
+				OP= xml1.split("~")[1]
+			}
+			else
+			{
+				alert("Geo Tagging - "+xml1.split("~")[1]);
+				return;
+			}
+		},
+		error: function (xml1)
+	   {
+			alert("Geo Tagging - Error Occurred, Contact ID");
+	   }
+	   });
+	   
+	   if(OP != "")
+		   return OP;
+	   else
+		   return false;
+}
+
+function GetCoordinateDistance(Lat,Long,DistanceFld,Typ){
+	var op = UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETBRPOSITION");
+	var BranchLat = "";
+	var BranchLong = "";
+	if(Typ == "BRANCH TO HTML")
+	{
+		if(($(op).find("LAT").text() =="") || ($(op).find("LONG").text() ==""))
+		{
+			alert("Branch Geo Location Not Configured, Contact IT")
+			return;
+		}
+		else 
+		{
+			BranchLat = $(op).find("Lat").text();
+			BranchLong = $(op).find("Long").text();
+		}
+	}
+	else
+	{
+		BranchLat = Lat.split("~")[1]
+		Lat = Lat.split("~")[0]
+		BranchLong = Long.split("~")[1]
+		Long = Long.split("~")[0]
+	}
+	$.ajax({
+		url: "/TPLSW/GetCoordinateDistance",
+		//data: {BranchLat:$(op).find("Lat").text(),BranchLong:$(op).find("Long").text(),Lat:$("#"+Lat).val(),Long:$("#"+Long).val(),Prvnt:$("#Prvnt").val()},
+		data: {BranchLat:BranchLat,BranchLong:BranchLong,Lat:$("#"+Lat).val(),Long:$("#"+Long).val(),Prvnt:$("#Prvnt").val()},
+		
+		async:false,
+		type: 'POST',
+		success: function(xml1)
+		{
+			if($.isNumeric( xml1 ))
+			{
+				$("#"+DistanceFld).val(parseFloat(xml1).toFixed(2));
+				$("#"+DistanceFld).next().next().addClass("active");
+			}
+			else
+			{
+				alert("Geo Coordinate Distance - "+xml1);
+				return;
+			}
+		},
+		error: function (xml1)
+	   {
+			alert("Geo Coordinate Distance - Error Occurred, Contact ID");
+	   }
+	   });
+}
+
+
+function perodickyc(){
+	$.ajax({
+		url: "/TPLSW/preodicKyc-Push",
+		data: {prcsid:$("#PrcsID").val(),Prvnt:$("#Prvnt").val()},
+		async:false,
+		type: 'POST',
+		success: function(xml1)
+		{
+			if(xml1.split("~")[0] == "Success")
+			{
+				
+			}
+			else
+			{
+				alert("Perodic KYC - "+xml1.split("~")[1]);
+				return;
+			}
+		},
+		error: function (xml1)
+	   {
+			alert("Perodic KYC - Error Occurred, Contact ID");
+	   }
+	   });
+}
+
+function CKYCImage(){
+	$.ajax({
+		url: "/TPLSW/CKYC-ImgPush",
+		data: {prcsid:$("#PrcsID").val(),Prvnt:$("#Prvnt").val()},
+		async:false,
+		type: 'POST',
+		success: function(xml1)
+		{
+			if(xml1.split("~")[0] == "Success")
+			{
+				
+			}
+			else
+			{
+				alert("CKYC IMAGE - "+xml1.split("~")[1]);
+				return;
+			}
+		},
+		error: function (xml1)
+	   {
+			alert("CKYC IMAGE - Error Occurred, Contact ID");
+	   }
+	   });
+}
+
+
+function convertKarzaURLtoDMS(CusId,URL){
+	var resp = "";
+	$.ajax({
+		url: "/TPLSW/getAadharDoc",
+		data: {DocName:"Aadhar",CusID:CusId,attachname:"AadharDoc.jpeg",attachdescrptn:"AadharDoc",prcsid:$("#PrcsID").val(),formName:"AadharDoc1",version:"",fileName:"AadharDoc.jpeg",filesize:"25",URL:URL,Prvnt:$("#Prvnt").val()},
+		async:false,
+		type: 'POST',
+		success: function(xml1)
+		{
+			resp = xml1
+		},
+		error: function (xml1)
+	   {
+			alert("Converting of Karza URL to DMS Failed, Contact IT.");
+	   }
+	   });
+	   return resp;
 }

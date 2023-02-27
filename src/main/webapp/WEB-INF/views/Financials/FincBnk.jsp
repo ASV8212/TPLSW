@@ -67,6 +67,9 @@
          <input type="text" id="FCBD_INFLOW" hidden="hidden" name="FCBD_INFLOW" class="form-control FCBDDBfields">
 		 
 		 <input type="text" id="FCBD_NETBNKDATA" hidden="hidden" name="FCBD_NETBNKDATA" class="form-control FCBDDBfields">
+		 <input type="text" id="FCBD_CHKBOUNCES" hidden="hidden" name="FCBD_CHKBOUNCES" class="form-control FCBDDBfields">
+		 <input type="text" id="FCBD_EMILOAN" hidden="hidden" name="FCBD_EMILOAN" class="form-control FCBDDBfields">
+		 
         <!-- <input type="text" id="FCBD_SUMAVG" hidden="hidden" name="FCBD_SUMAVG" class="form-control FCBDDBfields">-->
          <input type="text" id="Hiddenrow" hidden="hidden" name="Hiddenrow" value="">
      
@@ -277,6 +280,14 @@
                  <label class="mdb-main-label BTxt9">Consider for Banking Surrogate<span class="MndtryAstr"></span></label>      
             </div> 
 				  </div>-->
+				  	    <div class="form-row">
+			   <div class="FCBD_NETBNKDATA"> 
+			     <span class="name1 ">Banking Document</span>
+			     <input type="text" id="FCBD_NETBNKDATA" hidden="hidden" name="FCBD_NETBNKDATA" class="form-control  DetRpt FCBDDBfields">
+                 <img src="ThemeproLO/Common/Images/UploadImg.png" style="display:none" class="rounded  ReUpld" title="UPLOAD" onclick="ReuploadFile(FCBD_NETBNKDATA);" alt="Cinque Terre" width="20" height="20">  
+				 <img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW" onclick="GrdDocDwnld('FCBD_NETBNKDATA'+$(this).closest('.DYNROW').attr('data-row'))" class="rounded " alt="Cinque Terre" width="35" height="25"> 
+               </div>
+            </div>
 				  <div class="col-md-4 AutoOnly" style="display:none">
                   <div class="md-form">
                   	<input type="text" id="FCBD_SANLIMIT" maxlength="15" name="FCBD_SANLIMIT" class="form-control AutoOnlyMnd IsCURCommaFields IsNumberFields FCBDDBfields">
@@ -291,20 +302,20 @@
                     <label for="FCBD_TOTINWTRANC" class="">Total Cheques Issued<span class="MndtryAstr">*</span></label>
              </div>
                 </div>
+				<div class="col-md-4">
+                  <div class="md-form">
+                    <input type="text" id="FCBD_INSTRUCLRINDYS" maxlength="5" onchange="CalcperinChqBounc('FCBD_EMILOAN'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_INWCHQBOUNS'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_TOTINWTRANC'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_INSTRUCLRINDYS'+$(this).closest('.DYNROW').attr('data-row'),'FCBD_PERCINWTRANC'+$(this).closest('.DYNROW').attr('data-row'))" name="FCBD_INSTRUCLRINDYS" class="DetRpt PERCEN form-control  IsNumberFields  FCBDMndtry NoSpecialChar FCBDDBfields">
+                    <label for="FCBD_INSTRUCLRINDYS" class="">Instruments cleared within 7 days<span class="MndtryAstr">*</span></label>
+                  </div>
+                </div>				
+	
                 <div class="col-md-4">
                   <div class="md-form">
                     <input type="text" id="FCBD_PERCINWTRANC" maxlength="5" disabled name="FCBD_PERCINWTRANC" class="DetRpt PERCEN form-control  IsNumberFields  FCBDMndtry NoSpecialChar FCBDDBfields">
                     <label for="FCBD_PERCINWTRANC" class="">Percentage of inward cheque bounce<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
-		    <div class="form-row">
-			   <div class="FCBD_NETBNKDATA"> 
-			     <span class="name1 ">Banking Document</span>
-			     <input type="text" id="FCBD_NETBNKDATA" hidden="hidden" name="FCBD_NETBNKDATA" class="form-control  DetRpt FCBDDBfields">
-                 <img src="ThemeproLO/Common/Images/UploadImg.png" style="display:none" class="rounded  ReUpld" title="UPLOAD" onclick="ReuploadFile(FCBD_NETBNKDATA);" alt="Cinque Terre" width="20" height="20">  
-				 <img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW" onclick="GrdDocDwnld('FCBD_NETBNKDATA'+$(this).closest('.DYNROW').attr('data-row'))" class="rounded " alt="Cinque Terre" width="35" height="25"> 
-               </div>
-            </div>
+
          </div>
 		 <div class="form-row DetailRpt">
 		     <div class="col-md-4">
@@ -455,7 +466,7 @@
           </div> 
           <div class="form-row">
             <div class="col">
-                <input type="button" data-button="GridButton" data-value="FLOWTable|LSW_SGETUPDATEFLOWGRID|PrcsID|FCBD_ACCTNUM|FCBD_BNKNO|5,6|UPDATEFLOWGRID" style="display:none" class="DashTrg FCBDDBfields AddMultiGridTrg MultiGridTrg" id="BTNINCMGRD" name="BTNINCMGRD" />
+                <input type="button" data-button="GridButton" data-value="FLOWTable|LSW_SGETUPDATEFLOWGRID|PrcsID|FCBD_ACCTNUM|FCBD_BNKNO|7|UPDATEFLOWGRID" style="display:none" class="DashTrg FCBDDBfields AddMultiGridTrg MultiGridTrg" id="BTNINCMGRD" name="BTNINCMGRD" />
                 <table cellpadding="0"  cellspacing="0" border="0" style="width: 80%" class="display FCBDDBfields DataGrid" name="FLOWTable" id="FLOWTable">
                 </table>
             </div>
@@ -541,6 +552,8 @@
 <th>UPFD_OUTFLOW</th>
 <th>UPFD_TOTALINFLOW</th>
 <th>UPFD_TOTALOUTFLOW</th>
+<th>UPFD_CASHDEP</th>
+<th>UPFD_CASHWITDRA</th>
 <th>UPFD_UNIQID</th>
 <!--<th>UPFD_PRCSID</th>
 <th>UPFD_ACTIVITYID</th>

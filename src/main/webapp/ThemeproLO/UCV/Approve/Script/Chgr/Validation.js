@@ -44,11 +44,24 @@ function CROSSCELLI()
 	   	// $("#APCM_CROSSELL1YR").val('');
 		// $("#APCM_CROSSELL1YR").next().removeClass('active');
 		 $('.CRSELLI').hide();
+		 $('.CRSELLIMODE').hide();
+		 $('.CROSSONEOnlineMode').hide();
+		 $('.CROSSONECHK').hide();
+		 $('.CROSSOFFL').hide();
 		}
 	else
         { 
-		$('.CRSELLI').show();
+		 $('.CRSELLI').show();
         }
+		if($("#VERTICAL").val()=="UCV" || $("#VERTICAL").val()=="UCV Eco")
+		{
+			$('.CRS1CLCT').hide()
+			$('input:radio[name=APCM_CROSSSELL1]')[1].checked = true;
+		}
+		else
+		{
+			$('.CRS1CLCT').show()
+		}
 } 
 
 function CROSSCELLIIAPPLY()
@@ -60,11 +73,25 @@ function CROSSCELLIIAPPLY()
 	   	// $("#APCM_CROSSELL2YR").val('');
 		 //$("#APCM_CROSSELL2YR").next().removeClass('active');
 		 $('.CRSELLII').hide();
+		 $('.CRSELLIIMODE').hide();
+		 $('.CROSSTWOOnlineMode').hide();
+		 $('.CROSSTWOCHK').hide();
+		 $('.CROSSTWOOFFL').hide();
 		}
 	else
         { 
 		$('.CRSELLII').show();
         }
+		
+	    if($("#VERTICAL").val()=="UCV" || $("#VERTICAL").val()=="UCV Eco")
+		{
+			$('.CRSIICLCT').hide()
+			$('input:radio[name=APCM_CROSSSELL2]')[1].checked = true;
+		}
+		else
+		{
+			$('.CRSIICLCT').show()
+		}
 } 
 
 function CHECKLOANTYPE()
@@ -560,7 +587,7 @@ function CheckPENDINGFEE()
 		}
 	else if(Mode=="Cheque" || Mode=="DD")
 		{
-			$('.PFOFFL').hide();
+	    $('.PFOFFL').hide();
 		$('.PFCHK').show();
 	    //$(".CDD").next().removeClass('active');
 		$('.PFOnlineMode').hide();
@@ -922,9 +949,9 @@ if($('#'+XID).val()!="")
 
      Diff = Math.ceil((date1.getTime() - date2.getTime()) / (one_day));
      
-     if(Diff>30)
+     if(Diff>90)
     	 {
-    	 alert("Instrument Date Cannot beyond 30 days")
+    	 alert("Instrument Date Cannot beyond 90 days")
     	 $('#'+XID).val('')
     	  $('#'+XID).next().removeClass('active')
          }
@@ -1230,12 +1257,12 @@ function Chktds()
 		}
 		$("#APCM_AMNTCOLLCT").val(CURINRCommaSep(parseFloat(Collectamt).toFixed(2)));
 		$("#APCM_AMNTCOLLCT").next().addClass('active'); 
-		 $("#APCM_TDSAPPLICABLE").attr('disabled',true);
-		 $("#APCM_TDSAPPLICABLE").material_select();
+		 /* $("#APCM_TDSAPPLICABLE").attr('disabled',true); */
+		 //$("#APCM_TDSAPPLICABLE").material_select();
 	}
 	else
 	{
-		//$("#APCM_TDSAMT").val('')
+		$("#APCM_TDSAMT").val('')
 		$(".AMT").hide()
 	}
 }
@@ -1278,3 +1305,83 @@ function CollectPF(){
 			      }
 				})
 }
+
+function Chksap(){
+var SAP=$("input[name='APCM_CHKSAP']:checked"). val()
+
+if(SAP=="Yes")
+{
+$(".SAP").show();
+$("#APCM_DRPSAP").val('');
+$("#APCM_DRPSAP").material_select();
+$(".SAPDRP").hide();
+}
+else if(SAP=="No"){
+
+$(".SAPDRP").show();
+$("#APCM_SAPCODE").val('');
+$(".SAP").hide();
+}
+else
+{
+$(".SAPDRP").hide();
+$(".SAP").hide();
+}
+}
+
+function CHKSAPCODE()
+{
+var Sapcode=$("#APCM_SAPCODE").val()
+if(Sapcode.length<7)
+{
+alert("Kindly Enter Valid 7digits SAP Code")
+$("#APCM_SAPCODE").val('')
+return;
+}
+
+}
+
+function CheckCROSSFEECHK()
+{
+	 var CROSSFEE=$("input[name='APCM_CROSSSELL1']:checked"). val();
+        if(CROSSFEE=="Deductible")
+		   {
+		   $('.CRSELLIMODE').hide();
+			$('.CROSSOFFL').hide();
+			$('.CROSSONEOnlineMode').hide();
+            $('.CROSSONECHK').hide();
+            $('.CRONCHKCHAGE').removeClass("APCMMndtry");			
+		    $('input[name="APCM_MODE"]').prop('checked', false);
+		   
+	       }
+	   else if(CROSSFEE=="Collectible")
+	   {
+		   $('.CRSELLIMODE').show()
+		  
+		   
+	   }
+	
+} 
+
+function CheckCROSSIIFEECHK()
+{
+	 var CROSSIIFEE=$("input[name='APCM_CROSSSELL2']:checked"). val();
+        
+         if(CROSSIIFEE=="Deductible")
+           {
+			   
+			    $('.CRSELLIIMODE').hide();
+			    $('.CROSSTWOOFFL').hide();
+			    $('.CROSSTWOOnlineMode').hide();
+                $('.CROSSTWOCHK').hide();			
+		        $('input[name="APCM_MODE"]').prop('checked', false);                         
+           }
+           else if(CROSSIIFEE=="Collectible")
+           {
+                    $('.CRSELLIIMODE').show()
+					
+           }
+	
+} 
+
+

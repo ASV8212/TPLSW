@@ -309,7 +309,7 @@ Application Info
   <div class="row" >                                    <!--First column-->
 <div class="col-md-8  Formcol-mdLR">
 <div class="md-form">
-<input type="text" id="CBSI_PASSPORT" data-FetchValidateArea="passport" data-FetchValidate="CBSI_PASSPORT"  maxlength="24" data-link="CBSI_PASSPORT|CBSI_PASSPORTVERIFY|passport1|passportupload|passportview|CBSI_PASSPORTATTACHMENT" name="CBSI_PASSPORT" onblur="CHKSAMEKYC('CBSI_PASSPORT','PASSPORT');"  class="CBSIDBfields datalink form-control validate">
+<input type="text" id="CBSI_PASSPORT" data-FetchValidateArea="passport" data-FetchValidate="CBSI_PASSPORT"  maxlength="20" data-link="CBSI_PASSPORT|CBSI_PASSPORTVERIFY|passport1|passportupload|passportview|CBSI_PASSPORTATTACHMENT" name="CBSI_PASSPORT" onblur="CHKSAMEKYC('CBSI_PASSPORT','PASSPORT');"  class="CBSIDBfields datalink form-control validate">
 <label for="CBSI_PASSPORT" class="">File No. - Passport No. *</label>
 </div>    
 </div>  

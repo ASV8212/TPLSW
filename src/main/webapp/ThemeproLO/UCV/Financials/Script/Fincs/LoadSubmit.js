@@ -74,9 +74,18 @@ $(document).ready(function () {
 	var xmlSchemeID=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETSCHEMID")
 	$("#RCCM_SCHEMEID").val($(xmlSchemeID).find("LODE_SCHEME").text());
 	
-   LoadMultiData("",$("#PrcsID").val(),$("#RCCM_UNIQUID").val()+'|'+ViewRInavtivePGFlg+'|'+$("#RCCM_LOANUNIQID").val(),"ELIGHSCHEME","FCEBDBfields","LSW_SUCVGETELIGHSCHEME"); 
+   LoadMultiData("",$("#PrcsID").val(),$("#RCCM_UNIQUID").val()+'|'+ViewRInavtivePGFlg+'|'+$("#RCCM_SCHEMEID").val(),"ELIGHSCHEME","FCEBDBfields","LSW_SUCVGETELIGHSCHEME"); 
 
-   $("#BTNRCUGRD").click();
+   //$("#BTNRCUGRD").click();
+   
+   if($("#VERTICAL").val()=="UCV")
+   {
+   FncallDocChkLst(this,'Table2',{spname:'LOAN_SGETEMISCHEDULE_LOS',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#RCCM_UNIQUID').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||1','REPAYGRD');
+   }
+   else
+   {
+     FncallDocChkLst(this,'Table2',{spname:'LOAN_SGETEMISCHEDULE_LOS',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#RCCM_LOANUNIQID').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||1','REPAYGRD');
+   }
 
 	var xml=UI_getdata($("#PrcsID").val(),$("#RCCM_SCHEMEID").val(),"","","","LSW_SCHECKLNTY");
 	var CusName=$(xml).find('RESULT').html();
@@ -318,7 +327,29 @@ $(document).on("click", "#MarginSmt", function(){
 	$(document).on("click", ".FormSave1" , function() {
 	//$('.FormSave').on('click', function() {
 		
+			if($("#VERTICAL").val() == "UCV Eco" && $("#RCCM_SCHEMEID").val() == "S00052")
+			{
+			if($(this).text() == "Save" || $(this).text() == "Save & Next" )
+			{
+				var MaxFund = $("#ECOM_MAXFUNSCH").val().replace(/,/g,'');
+				var ProposedAmt = $("#ECOM_PROPOSEAMT").val().replace(/,/g,'');
+				var LoanAmt=$('.LoanAmt').val().replace(/,/g,'');	 
+			if(ProposedAmt > MaxFund)
+			{
+				alert("Proposed Amount should not be greater than MaxFundAmt")
+				var ProposedAmt = $("#ECOM_PROPOSEAMT").val('')
+				return false;
+			}
+			if(parseFloat(LoanAmt) > parseFloat(ProposedAmt))
+			{
+				alert("Loan Amount Sanction should not be greater than Proposed Amount")
+				return false;
+			}	
+			}
+			}
+			
 		
+		/*  $("#"+$(".FormSave").attr('id')).click(); */
 		 MndtryChk = CheckDocMndtry("Table3","ClosureMndtry","Existing Loan");
 		  
 		  if(MndtryChk != "")
@@ -388,7 +419,9 @@ $(document).on("click", "#MarginSmt", function(){
 		    }
 			}
 			
+			
 		$("#"+$(".FormSave").attr('id')).click();
+			
 		
 	if($(this).text() == "CAM Generate")
 		{
@@ -659,14 +692,13 @@ $(document).on("click", "#MarginSmt", function(){
 			   } 
 	 }
 	     }
-	// NXTTAB(this);
+	 //NXTTAB(this);
 	    }
 
 	if($(this).text() == "Save & Next")
 	 {
        NXTTAB(this);	
 	 } 
-			
 		});
 	
 $("#SchemeAdd").on('click', function() {

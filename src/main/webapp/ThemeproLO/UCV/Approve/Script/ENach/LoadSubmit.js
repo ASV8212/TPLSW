@@ -19,7 +19,15 @@ $(document).ready(function() {
     // $("#BTNEMPOWERMNT").click();
     /**Grid Trigger End **/
  RECOMMENDHIDE()
+LoadENACHStatus();
 
+var xmlop=UI_getdata($("#PrcsID").val(),$("#AEND_LOANID").val(),"","","","LSW_SCHECKLOANTY")
+var ExVal = $("#AEND_CHNLTYP").val();
+	$("#AEND_CHNLTYP").html("");
+	$("#AEND_CHNLTYP").material_select("destroy");
+	$("#AEND_CHNLTYP").append($(xmlop).find("DROWDOWN").html());
+	$("#AEND_CHNLTYP option[value='"+ExVal+"']").attr("selected","selected")
+	$("#AEND_CHNLTYP").material_select();
 if($("#AEND_ENACHVERIFY").val()=="Success")
 	 {
 		 $("[data-Validatedata=AEND_ENACHVERIFY]").text('Re-Initiate E-NACH');
@@ -35,7 +43,8 @@ if($("#AEND_ENACHVERIFY").val()=="Success")
 	     $("[data-Validatedata=AEND_ENACHVERIFY]").addClass("btn-RedInplain");  
 	 }
 	 
-	  var XML = UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETENCHBNKDETL");
+	
+	  var XML = UI_getdata($("#PrcsID").val(),$("#AEND_LOANID").val(),"","","","LSW_SGETENCHBNKDETL");
 	
 	var Acct1=$("#AEND_ACCNTNO").val()
 	var Acct2=$(XML).find('ACCTNO').text()
@@ -44,7 +53,8 @@ if($("#AEND_ENACHVERIFY").val()=="Success")
 	{
 	    $("#AEND_ACCNTHLDRNAME").val($(XML).find('ACTHOLDNAME').text())
 	    $("#AEND_BANKNAME").val($(XML).find('BNKNAME').text())
-	    $("#AEND_ACCNTNO").val($(XML).find('ACCTNO').text())
+	    $("#AEND_ACCNTNO").val($(XML).find('ACCTNO').text())		
+		$("#AEND_EMI").val(CURCommaSep($(XML).find('EMI').text()))
         $('#AEND_ACCNTNO').material_select();
 	
 	   $("[data-Validatedata=AEND_ENACHVERIFY]").text('Initiate E-NACH');
@@ -58,8 +68,10 @@ if($("#AEND_ENACHVERIFY").val()=="Success")
 	 //$("#AEND_ENDDATE").val($("#DMY7").val().split('|')[1].setMonth($("#DMY7").val().split('|')[1].getMonth() + $("#DMY3").val().split('|')[4]*12 ))
 	 
 	 var EMI=$("#DMY3").val().split('|')[6]
-	 
-	 $("#AEND_EMI").val(CURCommaSep(EMI))
+	 	var XML=UI_getdata($("#PrcsID").val(),$("#AEND_LOANID").val(),"","","","LSW_SGETENCHBNKDETL");
+	var LOANSANCTION=$(XML).find('LNAMT').text()
+	 $("#AEND_LOANSANC").val(CURCommaSep(LOANSANCTION))
+	// $("#AEND_EMI").val(CURCommaSep(EMI))
 	 $("#AEND_REPAYMONTH").val($("#DMY3").val().split('|')[4])
 addMonths()
 

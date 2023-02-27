@@ -12,15 +12,17 @@ $(document).ready(function() {
     $("#ECOA_PRCSID").attr("value", $("#PrcsID").val());
 	 
     FormDataFromDB("LSW_TECOAUTO", "ECOA_", "ECOADBfields", "");
+	$("#ECOA_MAXFUNSCHME").val("500000")
+	LIMITELIGIBLE();
     //LoadMultiData("",$("#PrcsID").val(),"","BankDetail1","APDGDBfields","LSW_SGETPDUPLDDATA");
     /**Grid Trigger Start **/
     //$("#BTNBUSNSDTL").click();
     // $("#BTNEMPOWERMNT").click();
     /**Grid Trigger End **/
-GetLoanamt();
+/* GetLoanamt();
 GetLimitEli();
 GetMin();
-ChkMaxLoad();
+ChkMaxLoad(); */
 $("#ECOA_UNIQID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
 	
     

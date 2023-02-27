@@ -119,8 +119,8 @@
            <div class="form-row">
                 <div class="col-md-4">
                    <div class="md-form">
-                     <input type="text" id="FELD_INSINAME"  maxlength="25" name="FELD_INSINAME" class="form-control IsAlphaFields  FELDDBfields FELDMndtry">
-                     <label for="FELD_INSINAME" class="">Name of Institution<span class="MndtryAstr">*</span></label>
+                     <input type="text" id="FELD_INSINAME"  maxlength="25" name="FELD_INSINAME" class="form-control IsAlphaFields  FELDDBfields">
+                     <label for="FELD_INSINAME" class="">Name of Institution<span class="MndtryAstr"></span></label>
                    </div>
                 </div>
                 <div class="col-md-4">
@@ -162,8 +162,8 @@
                 </div>
                 <div class="col-md-4">
                    <div class="md-form">
-                     <input type="text" id="FELD_EMIAMT" maxlength="30"  name="FELD_EMIAMT"   class="FELDMndtry form-control IsCURCommaFields  IsGreaterThoundsFld IsNumberFields NoSpecialChar  FELDDBfields">
-                     <label for="FELD_EMIAMT" class="">EMI Amount &#x20b9;<span class="MndtryAstr">*</span></label>
+                     <input type="text" id="FELD_EMIAMT" maxlength="30"  name="FELD_EMIAMT"   class=" form-control IsCURCommaFields  IsGreaterThoundsFld IsNumberFields NoSpecialChar  FELDDBfields">
+                     <label for="FELD_EMIAMT" class="">EMI Amount &#x20b9;<span class="MndtryAstr"></span></label>
                    </div>
                 </div>
                <!-- <div class="col-md-4">
@@ -174,9 +174,9 @@
                 </div>-->
 				<div class="col-md-4">
                  <div class="md-form">
-                   <select class="md-form colorful-select dropdown-primary  FELDDBfields FELDMndtry" id="FELD_EMIBNKACCT" name="FELD_EMIBNKACCT">
+                   <select class="md-form colorful-select dropdown-primary  FELDDBfields " id="FELD_EMIBNKACCT" name="FELD_EMIBNKACCT">
                    </select>
-                 <label class="mdb-main-label BTxt9">EMI Debit Bank Account<span class="MndtryAstr">*</span></label>
+                 <label class="mdb-main-label BTxt9">EMI Debit Bank Account<span class="MndtryAstr"></span></label>
                </div>
                </div>
            </div>
@@ -190,7 +190,7 @@
                 <div class="col-md-4">
                    <div class="md-form">
                      <input type="text" id="FELD_LONTENURE" maxlength="4" name="FELD_LONTENURE" class="form-control IsNumberFields NoSpecialChar IsGreaterzeroFld  FELDDBfields">
-                     <label for="FELD_LONTENURE" class="">Loan Tenure (In Months)<span class="MndtryAstr"></span></label>
+                     <label for="FELD_LONTENURE" class="">Loan Tenure (In Months)<span class=""></span></label>
                    </div>
                 </div>
                 <div class="col-md-4">
@@ -256,23 +256,23 @@
                 </div>
                 <div class="col-md-4">
                    <div class="md-form">
-                    <select class="md-form colorful-select dropdown-primary FELDDBfields FELDMndtry"  onchange="CHKLOANSTATUS();CALCULATEMOB('FELD_EMIBEGNDAT'+$(this).closest('.DYNROW').attr('data-row'),'FELD_MOB'+$(this).closest('.DYNROW').attr('data-row'),'FELD_LONSTATUS'+$(this).closest('.DYNROW').attr('data-row'),'FELD_CLOSEDATE'+$(this).closest('.DYNROW').attr('data-row'));"  id="FELD_LONSTATUS" name="FELD_LONSTATUS">
+                    <select class="md-form colorful-select dropdown-primary FELDDBfields "  onchange="CHKLOANSTATUS();CALCULATEMOB('FELD_EMIBEGNDAT'+$(this).closest('.DYNROW').attr('data-row'),'FELD_MOB'+$(this).closest('.DYNROW').attr('data-row'),'FELD_LONSTATUS'+$(this).closest('.DYNROW').attr('data-row'),'FELD_CLOSEDATE'+$(this).closest('.DYNROW').attr('data-row'));"  id="FELD_LONSTATUS" name="FELD_LONSTATUS">
                   	    <option value="">--Select--</option>
   					    <option value="Active">Active</option>
   					    <option value="Closed">Closed</option>
   					    <option value="Duplicate">Duplicate</option>
 				     </select>
-                     <label  class="mdb-main-label BTxt9" >Status of Loan<span class="MndtryAstr">*</span></label>
+                     <label  class="mdb-main-label BTxt9" >Status of Loan<span class="MndtryAstr"></span></label>
                    </div>
                 </div>
                 <div class="col-md-4">
                    <div class="md-form">
-                      <select class="md-form colorful-select dropdown-primary FELDDBfields FELDMndtry" id="FELD_LONTYP" name="FELD_LONTYP">
+                      <select class="md-form colorful-select dropdown-primary FELDDBfields " id="FELD_LONTYP" name="FELD_LONTYP">
                   	    <option value="">--Select--</option>
   					    <option value="Joint">Joint</option>
   					     <option value="Sole">Sole</option>
 				      </select>
-                      <label class="mdb-main-label BTxt9" >Loan Type<span class="MndtryAstr">*</span></label>
+                      <label class="mdb-main-label BTxt9" >Loan Type<span class="MndtryAstr"></span></label>
                    </div>
                 </div>
            </div>

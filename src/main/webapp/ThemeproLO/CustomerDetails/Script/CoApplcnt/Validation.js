@@ -569,13 +569,13 @@ var CountAttch=1;
 		var xml=UI_getdata(FileType,FileSize,Filename,ADDRTYPE,$("#COBI_CUSTYPE").val()+'|'+$("#PrcsID").val(),"LSW_SGETKYCDOCUMNTTYPE")
 		var FileAccept=$(xml).find('RESULT').text()
 		
-	/*	
+		
 	if(FileAccept == 'No')
 	{
 		alert($(xml).find("alert").text());
 		$(id).closest('td').find('input[type="file"]').val('')
 		return
-    } */
+    }
 names=names+'.'+FileType
 var y=  names;
 /*  var specialChars = "<>&#^|~`"
@@ -814,6 +814,11 @@ function checkPAN(Event)
 		$(".PANTYPE").removeClass('COBIMndtry');
 		$("#COBI_PAN").attr('disabled',true);
 		$(".PANVTyp").attr('disabled',true);
+		$("#COBI_KYCPROOFTYP").val('')
+		$("#COBI_KYCPROOFTYP").attr('disabled',true);
+		$("#COBI_KYCPROOFTYP").material_select();
+		$("#COBI_KYCPROOFTYP").removeClass('COBIMndtry')
+		$("#COBI_KYCPROOFTYP").next().find(".MndtryAstr").html("");
 		$("#COBI_PAN").next().find(".MndtryAstr").html("");
 		$("#COBI_PANVERIFY").val('');
 		$(".CHK").attr('disabled',true);
@@ -833,6 +838,8 @@ function checkPAN(Event)
 		$(".CHK").attr('disabled',false);
 		$(".PANVTyp").attr('disabled',false);
 		$("#COBI_PAN").next().find(".MndtryAstr").html("*");
+		$("#COBI_KYCPROOFTYP").attr('disabled',false);
+		$("#COBI_KYCPROOFTYP").material_select();
 		}
 }
 
@@ -1309,8 +1316,24 @@ function GridControlDetailKARZAGRD (popTableModPageGrid1,TableID,dtData,dtcolumn
   
 		 
 		 { targets: 6, "render": function ( data, type, row, meta ) {                            
-	 			
+	 		if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))	
+			{				
 			 var rowno = meta.row;		 
+		 		var HTML =	'<span><input type="radio" disabled class="custom-control-input CBSIDBfields" value="Yes" id="MULTIPLY'+rowno+'" name="ACTION"><label class="custom-control custom-control-label" for="MULTIPLY'+rowno+'"></label>';			 
+		 		HTML = HTML + '</span>';			  
+		 		
+		 		var htmldata = $(HTML);
+					
+					$(htmldata).find('[name=RXLD_MULTIPLIER'+rowno+'][value="'+data+'"]').attr('checked', 'checked');
+
+					//alert($(htmldata).find('[name=OKYD_DOCSTATUS'+rowno+'][value="'+data+'"]').length)
+					//alert(htmldata[0].outerHTML);
+					
+		        return htmldata[0].outerHTML; 
+			}				
+					else
+					{
+						var rowno = meta.row;		 
 		 		var HTML =	'<span><input type="radio" class="custom-control-input CBSIDBfields" value="Yes" id="MULTIPLY'+rowno+'" name="ACTION"><label class="custom-control custom-control-label" for="MULTIPLY'+rowno+'"></label>';			 
 		 		HTML = HTML + '</span>';			  
 		 		
@@ -1321,7 +1344,8 @@ function GridControlDetailKARZAGRD (popTableModPageGrid1,TableID,dtData,dtcolumn
 					//alert($(htmldata).find('[name=OKYD_DOCSTATUS'+rowno+'][value="'+data+'"]').length)
 					//alert(htmldata[0].outerHTML);
 					
-		        return htmldata[0].outerHTML;   		
+		        return htmldata[0].outerHTML;
+					}
 					
 		         } 
 				 }				 
@@ -1402,7 +1426,6 @@ function GridControlDetailPANKARZAGRD (popTableModPageGrid1,TableID,dtData,dtcol
 function CheckPanORNot()
 {
 	var PANV=$("#COBI_PANVERIFY").val()
-	
 	if(PANV=="Verified")
 		{
 		 $(".DPAN").hide()
@@ -2577,7 +2600,14 @@ function getSameAs(Event)
 	  {
 		$(".COAP").show();
 		$("#COBI_UAMNO").addClass('COBIMndtry');
-		
+		if($('#COBI_UDYAMVERI').val()=="Verified")
+			{
+			$(".VerifyUdyam").show();
+			}
+			else
+			{
+			$(".VerifyUdyam").hide();
+			}
         /*$(".COEUDHA").addClass('COEIMndtry'); 
          $(".COEUDHA").next().find(".MndtryAstr").html("*");
 		 
@@ -2758,13 +2788,23 @@ function Chkqualify(Input1,Input2,Type,Event)
 }
 
 function Chkudyam(){
+	
+	
+	var ApplCusType=$("#COBI_CUSTYPE").val()
+	
+	if(ApplCusType=="Non-Individual")
+		{
 	if ($("#COBI_UDYAMVERI").val()=='Verified')
 		{
 		$("#COBI_CUAMNO").attr("disabled",true)
+		$("#COBI_CUAMNO").removeClass("COBIMndtry");
+		$(".VerifyUdyam").show();
 		}
 		else
 		{
 		$("#COBI_CUAMNO").attr("disabled",false)
+		$("#COBI_CUAMNO").addClass("COBIMndtry");
+		$(".VerifyUdyam").hide();
 		}
 	var borrower=$("#COBI_BORROWER").val()
     if(borrower=="Yes")
@@ -2792,6 +2832,7 @@ function Chkudyam(){
 		$("#COBI_CUAMNO").attr("disabled",false)
 		} */
 	}
+		}
 	
 }
  function GetSec()
@@ -2865,11 +2906,12 @@ function Chkresi()
 function Chkdirect()
 {
 	var dir=$("input[name='COBI_PANTYPE']:checked"). val();
+	
 if($("#COBI_PANVERIFY").val()=="")
 	{	
 	if(dir=="Direct")
 	{
-		
+		$("#COBI_PANNAVAIL").attr('disabled',true)
 		$("#COBI_PAN").addClass("COBIMndtry");	
 		$("#COBI_PAN").next().find(".MndtryAstr").html("*");
 		$(".TYP").show();
@@ -2878,7 +2920,7 @@ if($("#COBI_PANVERIFY").val()=="")
 	}
 	else if(dir=="OCR")
 	{
-		
+		$("#COBI_PANNAVAIL").attr('disabled',true)
 		$("#COBI_PAN").removeClass("COBIMndtry");	
 		$("#COBI_PAN").next().find(".MndtryAstr").html("");
 		$(".TYP").hide();
@@ -2890,6 +2932,7 @@ if($("#COBI_PANVERIFY").val()=="")
 }
 	else
 	{
+		$("#COBI_PANNAVAIL").attr('disabled',false)
 		$(".TYP").show();
 		$(".UPLD").show();
 		$(".KYCPROOF").hide();
@@ -2922,6 +2965,11 @@ if($("#COBI_PANVERIFY").val()=="")
 	{
 	   $("#COBI_KYCPROOFTYP option[value='SIGN PROOF']").attr('disabled',true);
 	   $("#COBI_KYCPROOFTYP").material_select();
+	}
+	if($("#COBI_CUSTYPE").val() == "Non-Individual")
+	{
+		$("#COBI_KYCPROOFTYP option[value='SIGN PROOF']").attr('disabled',true);
+		$("#COBI_KYCPROOFTYP option[value='DOB PROOF']").attr('disabled',true);
 	}
 
 }
@@ -3193,7 +3241,6 @@ if(($("#COBI_UBVERIFYTYPE").val()!="") && ($("#COBI_UBVERIFYTYPE").val()!=undefi
 $(".Utility").show();
 }
 }
-
 
 function GETPROOFTYP()
 {

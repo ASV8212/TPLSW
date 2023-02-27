@@ -13,10 +13,13 @@
 		  
 		  var DataValue = $(this).attr("data-value");
 		  
+		
+		  
 		  if (DataValue != "")
 			  {
 			  DataValue = "&PrMs8=" + DataValue;
 			  }
+			  
 		  
 		  var RedirectURL ="";
 		  
@@ -238,7 +241,7 @@ $(document).on("click", ".FormPageMultiTab li", function() {
 			$("#NextPageID").val("");
 			
 			  var Subactive = $(".FormPageMultiTab").find("li.active").attr("id");
-				
+				var RCUID=$("#PrMs5").val()
 			  var Formactive = $(".FormPageTab").find("li.active").attr("id");
 			  
 			  var MainActive = $(".FormMainTabs").find("li.active").attr("id");
@@ -363,13 +366,19 @@ $(document).on("click", ".FormPageMultiTab li", function() {
 		 if (Subactive == $(this).attr("id"))
 			 {		  
 		 
-		 
+		 if($(".FormMainTabs").find('li.active').attr('id')=="FormMainTab9")
+			{			
+				RedirectURL = window.location.origin+"/TPLSW/"+$(this).attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs5="+RCUID+"&PrMs9="+Formactive+"&PrMs10="+MainActive+DataValue+"&PrMs6="+$(this).attr("id")+"&PrMs1="+$("#PrMs1").val()+"&PrMs3="+BusinessId;
+				$(location).attr('href',encodeURI(RedirectURL));
+			}
+			else
+			{
 		 // $(this).addClass('active')
 		  //RedirectURL = window.location.origin+"/TPLSW/"+$(".FormPageTab").find("li.active").attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9="+Formactive+"&PrMs10="+MainActive+DataValue+"&PrMs6="+$(this).attr("id")+"&PrMs1="+$("#PrMs1").val();
           RedirectURL = window.location.origin+"/TPLSW/"+$(this).attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9="+Formactive+"&PrMs10="+MainActive+DataValue+"&PrMs6="+$(this).attr("id")+"&PrMs1="+$("#PrMs1").val();
 		 		 
 		 $(location).attr('href',encodeURI(RedirectURL));
-		 
+		 }
 		
 			 }
 		 else
@@ -382,10 +391,17 @@ $(document).on("click", ".FormPageMultiTab li", function() {
 		 }
 			 // RedirectURL = window.location.origin+"/TPLSW/"+$(this).attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9="+Formactive+"&PrMs10="+MainActive+DataValue+"&PrMs6="+$(this).attr("id")+"&PrMs1="+$("#PrMs1").val()+"&PrMs3="+BusinessId;
 			  // $(location).attr('href',encodeURI(RedirectURL));
-			  
-			  RedirectURL = window.location.origin+"/TPLSW/"+$(this).attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9="+Formactive+"&PrMs10="+MainActive+DataValue+"&PrMs6="+$(this).attr("id")+"&PrMs1="+$("#PrMs1").val()+"&PrMs3="+BusinessId;
-			  $(location).attr('href',encodeURI(RedirectURL));
-			  
+			
+			if($(".FormMainTabs").find('li.active').attr('id')=="FormMainTab9")
+			{			
+				RedirectURL = window.location.origin+"/TPLSW/"+$(this).attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs5="+RCUID+"&PrMs9="+Formactive+"&PrMs10="+MainActive+DataValue+"&PrMs6="+$(this).attr("id")+"&PrMs1="+$("#PrMs1").val()+"&PrMs3="+BusinessId;
+				$(location).attr('href',encodeURI(RedirectURL));
+			}
+			else
+			{
+				RedirectURL = window.location.origin+"/TPLSW/"+$(this).attr("value")+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs9="+Formactive+"&PrMs10="+MainActive+DataValue+"&PrMs6="+$(this).attr("id")+"&PrMs1="+$("#PrMs1").val()+"&PrMs3="+BusinessId;
+				$(location).attr('href',encodeURI(RedirectURL));
+			}			  
 			  
 			 //Added at 20/06/2020 for Business purpose end
 			 }

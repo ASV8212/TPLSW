@@ -418,18 +418,10 @@ function CalcInOutCkhPerc(InwBonc,OutwBonc,TotInwBonc,TotOutwBonc,InwPerc,OutwPe
 	{
 		OutwPerc1 = 0
 	}
-	if(OutwPerc1=='Infinity')
-	{
-	OutwPerc1=0;
-    }  
 	if (isNaN(InwPerc1)) 
 	{
 		InwPerc1 = 0
 	}
-	if(InwPerc1=='Infinity')
-	{
-	InwPerc1=0;
-    } 
 	if($.isNumeric(InwPerc1)==false)
 	{
 		
@@ -732,7 +724,7 @@ function Finalabb()
 	
 /* 	ROI=$("#CITR_PROPOSEINR").val();
 	Tenur=$("#CITR_PROTENOR").val(); */
-	 var result=UI_getdata(ROI,Tenur,LnAmt,"","","LSW_SGETEMI_DATA");
+	 var result=UI_getdata(ROI,Tenur,LnAmt,$("#PrcsID").val()+'|'+$("#STML_SCHEMEID").val(),"","LSW_SGETEMI_DATA");
 	 var EMI=$(result).find("EMI").text();
 	 	if(EMI=='')
 	{

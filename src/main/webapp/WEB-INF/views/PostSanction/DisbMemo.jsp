@@ -207,7 +207,7 @@
            <div class="col-md-3">
              <div class="md-form">
                <input type="text" maxlength="30"  class="Btxt14 IsNumberFields NoSpecialChar DBMMDBfields  IsCURCommaFields form-control" onchange="ChkLoanAmt();GetRemainAmtChange();" id="DBMM_ACTUDISBAMT" name="DBMM_ACTUDISBAMT">
-                <label for="DBMM_ACTUDISBAMT" class="Btxt9 ">Actual Disbursal Amount &#x20b9; <span class="MndtryAstr">*</span></label>
+                <label for="DBMM_ACTUDISBAMT" class="Btxt9 ">Gross Disbursal Amount &#x20b9; <span class="MndtryAstr">*</span></label>
              </div>
            </div> 
 		   <form>
@@ -257,7 +257,7 @@
            <div class="col-md-2">
                <div class="md-form">
                   <input type="text" id="DBMM_DISBAMT" maxlength="30" name="DBMM_DISBAMT" disabled class="Btxt14 DSVLBL IsNumberFields NoSpecialChar  DBMMDBfields IsCURCommaFields form-control">
-                  <label for="DBMM_DISBAMT" class="Btxt9 ">Disbursement Amount &#x20b9;</label>
+                  <label for="DBMM_DISBAMT" class="Btxt9 ">Net Disbursal Amount &#x20b9;</label>
                </div>
           </div> 
         </div> 
@@ -324,7 +324,7 @@
            <div class="col-md-4">
              <div class="md-form">
                <input type="text" maxlength="30" disabled class="Btxt14 IsNumberFields NoSpecialChar DISBDBfields  IsCURCommaFields form-control DISBMndtry " onchange="ChkLoanAmt($(this).closest('.DYNROW'),$(this).closest('.DYNROW').attr('data-row'));" id="DISB_ACTUDISBAMT" name="DISB_ACTUDISBAMT">
-                <label for="DISB_ACTUDISBAMT" class="Btxt9 ">Actual Disbursal Amount &#x20b9; <span class="MndtryAstr">*</span></label>
+                <label for="DISB_ACTUDISBAMT" class="Btxt9 ">Gross Disbursal Amount &#x20b9; <span class="MndtryAstr">*</span></label>
              </div>
            </div> 
            <div class="col-md-4">
@@ -382,7 +382,7 @@
            <div class="col-md-4">
                <div class="md-form">
                   <input type="text" id="DISB_DISBAMT" disabled maxlength="30" name="DISB_DISBAMT"  class="Btxt14  IsNumberFields NoSpecialChar  DISBDBfields IsCURCommaFields form-control">
-                  <label for="DISB_DISBAMT" class="Btxt9 ">Disbursement Amount &#x20b9;</label>
+                  <label for="DISB_DISBAMT" class="Btxt9 ">Net Disbursal Amount &#x20b9;</label>
                </div>
           </div> 
            <div class="col-md-4">
@@ -394,7 +394,7 @@
 			
 			<div class="col-md-4">
                <div class="md-form">
-	                <input type="text" id="DISB_SAPCODE" name="DISB_SAPCODE" class="form-control DISBMndtry   DISBDBfields"> 
+	                <input type="text" id="DISB_SAPCODE" disabled name="DISB_SAPCODE" class="form-control DISBMndtry   DISBDBfields"> 
 					<label for="DISB_SAPCODE"  class="Btxt9">SAP Code<span class="MndtryAstr">*</span></label>
 	           </div>
 			</div>
@@ -501,8 +501,8 @@
              </div> 
              <div class="col-md-4  OTHERACCT"   style="display:none">
                <div class="md-form">
-                  <input type="text" id="DBFD_ACCTNUM" maxlength="25" name="DBFD_ACCTNUM" class="Btxt14 DBFDDBfields OTHACC IsNumberFields NoSpecialChar form-control">
-                  <label for="DBFD_ACCTNUM" class="Btxt9 ">Account Number<span class="MndtryAstr">*</span></label>
+                  <input type="text" id="DBFD_ACCTNUM" maxlength="25" name="DBFD_ACCTNUM" class="Btxt14 DBFDDBfields OTHACC  NoSpecialChar form-control">
+                  <label for="DBFD_ACCTNUM" class="Btxt9 ">VAN / Account Number<span class="MndtryAstr">*</span></label>
                </div>
              </div> 
 
@@ -526,8 +526,8 @@
           <input type="text" id="DBMM_FAVOUROAGE" hidden="hidden" name="DBMM_FAVOUROAGE" class="form-control DBMMDBfields">
           <div class="form-row">
             <div class="col-md-4">
-               <div class="md-form">
-                  <input type="text" id="DBFD_PAYAMT" maxlength="30" name="DBFD_PAYAMT"  onblur="DIBAMT('DISB_DISBAMT','DBFD_PAYAMT',$(this).closest('.DYNROW').attr('data-row'))" class="Btxt14  NoSpecialChar DBFDMndtry DBFDDBfields  IsNumberFieldsSpl IsCURCommaFields form-control">
+               <div class="md-form"><!--IsNumberFieldsSpl  IsCURCommaFields   IsCURCommaFields-->
+                  <input type="text" id="DBFD_PAYAMT" maxlength="30" name="DBFD_PAYAMT"  onblur="DIBAMT('DISB_DISBAMT','DBFD_PAYAMT',$(this).closest('.DYNROW').attr('data-row'))" class="Btxt14  NoSpecialChar DBFDMndtry DBFDDBfields IsNumberFields IsCURCommaFields  form-control">
                   <label for="DBFD_PAYAMT"  class="Btxt9 ">Payee Amount &#x20b9;<span class="MndtryAstr">*</span></label>
               </div>
             </div> 
@@ -635,15 +635,16 @@
       </div>		
      <div class="form-row">
          <div class="col d-flex justify-content-center">
-               <button type="button" id="Save" data-aria="LSW_TDISBURMEMO|DBMM|DBMM_TRANCHID"  class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
-               <button type="button" id="SaveNxt" data-aria="LSW_TDISBURMEMO|DBMM|DBMM_TRANCHID" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
-               <button type="button" id = "CompleteTranche" style="display:none;" data-aria="LSW_TDISBURMEMO|DBMM|DBMM_TRANCHID" data-card="0" class="btn btn-Syel waves-effect waves-light ">Complete Tranche</button> 
+               <button type="button" id="Save" data-aria="LSW_TDISBURMEMO|DBMM|DBMM_TRANCHID"  class="btn btn-Syeloutline waves-effect waves-light FormSave TRACFINC">Save</button>   
+               <button type="button" id="SaveNxt" data-aria="LSW_TDISBURMEMO|DBMM|DBMM_TRANCHID" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave TRACFINC">Save & Next</button> 
+               <button type="button" id = "CompleteTranche" style="display:none;" data-aria="LSW_TDISBURMEMO|DBMM|DBMM_TRANCHID" data-card="0" class="btn btn-Syel waves-effect waves-light TRACFINC">Complete Tranche</button> 
 			   <button type="button" id="SaveBR" style="display:none" data-aria="LSW_TDISBURMEMO|DBMM|DBMM_TRANCHID" data-form="CAM" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave"></button> 
                <!-- <button type="button"  data-aria="LSW_TDISBURMEMO|DBMM"   data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Push to LMS</button> -->
-               <button type="button" onclick="" data-aria="LSW_TDISBURMEMO|DBMM|DBMM_TRANCHID" class="btn btn-Syel waves-effect waves-light DMG FormSave">Generate DM</button> 
-			   <button type="button" id="SendBack" data-aria="LSW_TDISBURMEMO|DBMM|DBMM_TRANCHID" onclick="" style="display:none;" class="btn btn-Syel waves-effect waves-light BTNHIDE FormSave StageReversal">Send Back</button> 
+               <button type="button" onclick="" data-aria="LSW_TDISBURMEMO|DBMM|DBMM_TRANCHID" class="btn btn-Syel waves-effect waves-light DMG FormSave TRACFINC">Generate DM</button> 
+			   <button type="button" id="SendBack" data-aria="LSW_TDISBURMEMO|DBMM|DBMM_TRANCHID" onclick="" style="display:none;" class="btn btn-Syel waves-effect waves-light BTNHIDE FormSave StageReversal TRACFINC">Send Back</button> 
                <!-- <button type="button"  data-toggle="modal" name="REPAYPOPUP" data-target="#REPAYPOPUP" class="btn btn-Syel waves-effect waves-light">Re-Payment Schedule</button> --> 
-		      <button type="button" style="display:none" onclick="EnachReTrigger()" class="btn btn-Syel EnachReTrigger waves-effect waves-light"> UMRN LMS Re-Trigger</button>
+		      <button type="button" id="Reject" style="display:none" data-aria="LSW_TDISBURMEMO|DBMM|DBMM_TRANCHID" data-form="CAM" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Reject</button>
+			  <button type="button" style="display:none" onclick="EnachReTrigger()" class="btn btn-Syel EnachReTrigger waves-effect waves-light TRACFINC"> UMRN LMS Re-Trigger</button>
 		  </div>
      </div>
   </form>

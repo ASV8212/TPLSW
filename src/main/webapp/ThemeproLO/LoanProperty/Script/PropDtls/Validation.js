@@ -368,6 +368,9 @@ $(".ADDFIELDSMND").addClass('LPDTMndtry');
   $(".GoldMANT").removeClass('LPDTMndtry');
    $(".GURANTYMANT").removeClass('LPDTMndtry');
     $(".SECURITYMANT").removeClass('LPDTMndtry');
+	$(".IMPLEMENT").hide()
+	$(".IMPLEMND").removeClass('LPDTMndtry');
+	$(".IMPLEMND").parent().next().find(".MndtryAstr").html("");
  
  if(securitytype=="Vehicles")
  { 
@@ -385,6 +388,7 @@ $(".ADDFIELDSMND").addClass('LPDTMndtry');
 		 $(".GEMVAL").val('');
 		$(".deposit").hide();
 		 $(".DEMVAL").val(''); 
+		 $(".DEMVAL").find("select").material_select();
 		 $(".ADDACTDEP").removeClass('active');
 		$(".guarentee").hide();
 		$(".GUEMVAL").val('');
@@ -393,8 +397,10 @@ $(".ADDFIELDSMND").addClass('LPDTMndtry');
 		$(".securities").hide();
 		$(".Hypothecation").hide();
 		$(".SEMVAL").val('');
+		$(".SEMVAL").find("select").material_select();
 		$(".CASVAL").val('');
 		$(".HYPVAL").val('');
+		$(".HYPVAL").find("select").material_select();
 		 $(".ADDACTSEC").removeClass('active');
 		$('input[name="LPDT_STYPEOFSEC"]').prop('checked', false);
 		     $(".vehicle").parent().next().find(".MndtryAstr").html("*");
@@ -404,6 +410,9 @@ $(".ADDFIELDSMND").addClass('LPDTMndtry');
           $(".ADDFIELDSMND").removeClass('LPDTMndtry');
 		   $(".VECH").show();
 		   $(".VECHID").hide()
+	$(".IMPLEMENT").hide()
+	$(".IMPLEMND").removeClass('LPDTMndtry');
+	$(".IMPLEMND").parent().next().find(".MndtryAstr").html("");
 		   
 		  
 		  
@@ -440,6 +449,7 @@ $(".ADDFIELDSMND").addClass('LPDTMndtry');
 		 $(".GEMVAL").val('');
 		$(".deposit").hide();
 		 $(".DEMVAL").val('');
+		  $(".DEMVAL").find("select").material_select();
 		 $(".ADDACTDEP").removeClass('active');
 		$(".guarentee").hide();
 		$(".GUEMVAL").val('');
@@ -448,8 +458,10 @@ $(".ADDFIELDSMND").addClass('LPDTMndtry');
 		$(".securities").hide();
 		$(".Hypothecation").hide();
 		$(".SEMVAL").val('');
+		$(".SEMVAL").find("select").material_select();
 		$(".CASVAL").val('');
 		$(".HYPVAL").val('');
+		$(".HYPVAL").find("select").material_select();
 		 $(".ADDACTSEC").removeClass('active');
 		$('input[name="LPDT_STYPEOFSEC"]').prop('checked', false);
               $(".vehicle").parent().next().find(".MndtryAstr").html("");
@@ -458,7 +470,9 @@ $(".ADDFIELDSMND").addClass('LPDTMndtry');
 					  
 		 $(".ADDFIELDS").hide()
           $(".ADDFIELDSMND").removeClass('LPDTMndtry');
-		  
+		  $(".IMPLEMENT").hide()
+	$(".IMPLEMND").removeClass('LPDTMndtry');
+	$(".IMPLEMND").parent().next().find(".MndtryAstr").html("");
 		  
 /* 		   $(".EMVALADD").val('');
 		 $(".ACTVALADD").removeClass('active');
@@ -495,6 +509,7 @@ $(".ADDFIELDSMND").addClass('LPDTMndtry');
 		 $(".MEMVAL").val('');
 		$(".deposit").hide();
 		 $(".DEMVAL").val('');
+		 $(".DEMVAL").find("select").material_select();
 		 $(".ADDACTDEP").removeClass('active');
 		$(".guarentee").hide();
 		$(".GUEMVAL").val('');
@@ -505,13 +520,18 @@ $(".ADDFIELDSMND").addClass('LPDTMndtry');
 		$(".ADDFIELDS").hide();
 		$(".CASVAL").val('');
 		$(".HYPVAL").val('');
+		$(".HYPVAL").find("select").material_select();
 		 $(".ADDACTSEC").removeClass('active');
 		$(".ADDFIELDSMND").removeClass('LPDTMndtry');
 		$(".SEMVAL").val('');
+		$(".SEMVAL").find("select").material_select();
 		$('input[name="LPDT_STYPEOFSEC"]').prop('checked', false);
 				  $("#LPDT_TYPEOFGU").removeClass('LPDTMndtry');
 			     $(".vehicle").parent().next().find(".MndtryAstr").html("");   
 	  $("#LPDT_STYPESEC").removeClass('LPDTMndtry');
+	  $(".IMPLEMENT").hide()
+	$(".IMPLEMND").removeClass('LPDTMndtry');
+	$(".IMPLEMND").parent().next().find(".MndtryAstr").html("");
 	  
 	  
 	  
@@ -558,8 +578,10 @@ $(".ADDFIELDSMND").addClass('LPDTMndtry');
 		$(".Hypothecation").hide();
 		$(".Cashcollateral").hide();
 		$(".SEMVAL").val('');
+		$(".SEMVAL").find("select").material_select();
 		$(".CASVAL").val('');
 		$(".HYPVAL").val('');
+		$(".HYPVAL").find("select").material_select();
 		
 		
 		 $(".ADDACTSEC").removeClass('active');
@@ -568,8 +590,10 @@ $(".ADDFIELDSMND").addClass('LPDTMndtry');
 		$('input[name="LPDT_STYPEOFSEC"]').prop('checked', false);
 			    		  $("#LPDT_TYPEOFGU").removeClass('LPDTMndtry');
 		      $(".vehicle").parent().next().find(".MndtryAstr").html("");
-			  
-			  
+		$(".IMPLEMENT").hide()
+	$(".IMPLEMND").removeClass('LPDTMndtry');
+	$(".IMPLEMND").parent().next().find(".MndtryAstr").html("");	  
+		 Chkdepo();	  
 			  
 /* 			  $(".EMVALADD").val('');
 		 $(".ACTVALADD").removeClass('active');
@@ -609,11 +633,14 @@ $(".ADDFIELDSMND").addClass('LPDTMndtry');
 		$(".Hypothecation").hide();
 		$(".Cashcollateral").hide();
 		 $(".DEMVAL").val('');
+		 $(".DEMVAL").find("select").material_select();
 	   $(".ADDACTDEP").removeClass('active');
 		$(".securities").hide();
 		$(".SEMVAL").val('');
+		$(".SEMVAL").find("select").material_select();
 		$(".CASVAL").val('');
 		$(".HYPVAL").val('');
+		$(".HYPVAL").find("select").material_select();
 		 $(".ADDACTSEC").removeClass('active');
 		$('input[name="LPDT_STYPEOFSEC"]').prop('checked', false);
 		        $(".vehicle").parent().next().find(".MndtryAstr").html("");
@@ -622,7 +649,9 @@ $(".ADDFIELDSMND").addClass('LPDTMndtry');
 	   $(".ADDFIELDS").hide()
           $(".ADDFIELDSMND").removeClass('LPDTMndtry');
 		  
-		  
+		 $(".IMPLEMENT").hide()
+	$(".IMPLEMND").removeClass('LPDTMndtry');
+	$(".IMPLEMND").parent().next().find(".MndtryAstr").html(""); 
 		  
 		   // $(".EMVALADD").val('');
 		 // $(".ACTVALADD").removeClass('active');
@@ -661,20 +690,24 @@ $(".ADDFIELDSMND").addClass('LPDTMndtry');
 		    $(".GEMVAL").val('');
 		    $(".deposit").hide();
 		    $(".DEMVAL").val('');
+			$(".DEMVAL").find("select").material_select();
 		    $(".ADDACTDEP").removeClass('active');
 		    $(".guarentee").hide();
 		    $(".GUEMVAL").val('');
 			$(".CASVAL").val('');
 			$(".HYPVAL").val('');
+			$(".HYPVAL").find("select").material_select();
 		    $(".ADDACTGUA").removeClass('active');
 		    $('input[name="LPDT_TYPEOFGUAR"]').prop('checked', false);
 			 //  $("#LPDT_STYPESEC").addClass('LPDTMndtry'); 
 		 	$(".vehicle").parent().next().find(".MndtryAstr").html("");	  
 		    $(".ADDFIELDS").hide()
             $(".ADDFIELDSMND").removeClass('LPDTMndtry');
-	 
-	 
-	 
+			$(".IMPLEMENT").hide()
+	$(".IMPLEMND").removeClass('LPDTMndtry');
+	$(".IMPLEMND").parent().next().find(".MndtryAstr").html("");
+	 TYPOFSEC();
+	 CHKCHRGTYP();
 /* 	  $(".EMVALADD").val('');
 		 $(".ACTVALADD").removeClass('active');
 		 $(".EMVALADD").find("select").material_select();
@@ -711,17 +744,23 @@ $(".ADDFIELDSMND").addClass('LPDTMndtry');
 		    $(".GEMVAL").val('');
 		    $(".deposit").hide();
 		    $(".DEMVAL").val('');
+			$(".DEMVAL").find("select").material_select();
 		    $(".ADDACTDEP").removeClass('active');
 		    $(".guarentee").hide();
 		    $(".GUEMVAL").val('');
 			$(".SEMVAL").val('');
+			$(".SEMVAL").find("select").material_select();
 			$(".HYPVAL").val('');
+			$(".HYPVAL").find("select").material_select();
 		    $(".ADDACTGUA").removeClass('active');
 		    $('input[name="LPDT_TYPEOFGUAR"]').prop('checked', false);
 			 //  $("#LPDT_STYPESEC").addClass('LPDTMndtry'); 
 		 	$(".vehicle").parent().next().find(".MndtryAstr").html("");	  
 		    $(".ADDFIELDS").hide()
             $(".ADDFIELDSMND").removeClass('LPDTMndtry');
+			$(".IMPLEMENT").hide()
+	$(".IMPLEMND").removeClass('LPDTMndtry');
+	$(".IMPLEMND").parent().next().find(".MndtryAstr").html("");
 		}
 		else if(securitytype=="Hypothecation - Stocks/Current Assets")
 		{
@@ -749,16 +788,22 @@ $(".ADDFIELDSMND").addClass('LPDTMndtry');
 		    $(".GEMVAL").val('');
 		    $(".deposit").hide();
 		    $(".DEMVAL").val('');
+			$(".DEMVAL").find("select").material_select();
 		    $(".ADDACTDEP").removeClass('active');
 		    $(".guarentee").hide();
 		    $(".GUEMVAL").val('');
 			$(".SEMVAL").val('');
+			$(".SEMVAL").find("select").material_select();
 		    $(".ADDACTGUA").removeClass('active');
 		    $('input[name="LPDT_TYPEOFGUAR"]').prop('checked', false);
 			 //  $("#LPDT_STYPESEC").addClass('LPDTMndtry'); 
 		 	$(".vehicle").parent().next().find(".MndtryAstr").html("");	  
 		    $(".ADDFIELDS").hide()
             $(".ADDFIELDSMND").removeClass('LPDTMndtry');
+			$(".IMPLEMENT").hide()
+	$(".IMPLEMND").removeClass('LPDTMndtry');
+	$(".IMPLEMND").parent().next().find(".MndtryAstr").html("");
+	CHKCHRGTYP();
 		}
 		else if(securitytype=="Bills")
 		{ 
@@ -767,6 +812,54 @@ $(".ADDFIELDSMND").addClass('LPDTMndtry');
 		else if(securitytype=="Goods/Produce")
 		{ 
 			$(".CHKBX").hide();
+		}
+		else if(securitytype=="Implement")
+		{
+			$(".IMPLEMENT").show()
+			$(".IMPLEMND").addClass('LPDTMndtry');
+			$(".IMPLEMND").parent().next().find(".MndtryAstr").html("*");
+			$(".IMPLEMND").next().find(".MndtryAstr").html("*");
+			
+					
+  
+		$(".vehicle").hide();		
+		 $(".vehile").removeClass('LPDTMndtry');    
+		 $(".machinery").hide(); 
+		   $(".ADDACTMAC").removeClass('active');
+		DOCDELETE1("MachineryDoc","LPDT_MACHINERYDOC","Upload Machinery Document");
+	     $("#LPDT_MACHINERYDOC").removeClass("LPDTMndtry");
+		// $("#LPDT_MACHINERYDOC").val('');
+		 $(".MEMVAL").val('');
+		 $(".gold").hide();
+		 $(".ADDACTGOL").removeClass('active');
+		 
+		 $(".GEMVAL").val('');
+		$(".deposit").hide();
+		 $(".DEMVAL").val(''); 
+		 $(".DEMVAL").find("select").material_select();
+		 $(".ADDACTDEP").removeClass('active');
+		$(".guarentee").hide();
+		$(".GUEMVAL").val('');
+		 $(".ADDACTGUA").removeClass('active');
+		$('input[name="LPDT_TYPEOFGUAR"]').prop('checked', false);
+		$(".securities").hide();
+		$(".Hypothecation").hide();
+		$(".SEMVAL").val('');
+		$(".SEMVAL").find("select").material_select();
+		$(".CASVAL").val('');
+		$(".HYPVAL").val('');
+		$(".HYPVAL").find("select").material_select();
+		 $(".ADDACTSEC").removeClass('active');
+		$('input[name="LPDT_STYPEOFSEC"]').prop('checked', false);
+		     $(".vehicle").parent().next().find(".MndtryAstr").html("*");
+		  $("#LPDT_STYPESEC").removeClass('LPDTMndtry');
+		  $("#LPDT_TYPEOFGU").removeClass('LPDTMndtry');		  
+		  $(".ADDFIELDS").hide()
+          $(".ADDFIELDSMND").removeClass('LPDTMndtry');
+		   $(".VECH").hide();
+		   $(".VECHID").hide()
+		   //$(".IMPLEMND").next().addClass('active');
+			
 		}
 		
 		/* else if(securitytype=="Property")
@@ -816,6 +909,7 @@ $(".ADDFIELDSMND").addClass('LPDTMndtry');
 		 $(".GEMVAL").val('');
 		$(".deposit").hide();
 		 $(".DEMVAL").val('');
+		 $(".DEMVAL").find("select").material_select();
 		 $(".ADDACTDEP").removeClass('active');
 		$(".Cashcollateral").hide();
 		$(".Hypothecation").hide();
@@ -824,11 +918,13 @@ $(".ADDFIELDSMND").addClass('LPDTMndtry');
 		
 		$(".CASVAL").val('');
 		$(".HYPVAL").val('');
+		$(".HYPVAL").find("select").material_select();
 		
 		$(".GUEMVAL").val('');
 		$('input[name="LPDT_TYPEOFGUAR"]').prop('checked', false);
 		$(".securities").hide();
 		$(".SEMVAL").val('');
+		$(".SEMVAL").find("select").material_select();
 		 $(".ADDACTSEC").removeClass('active');
 		 
 		$('input[name="LPDT_STYPEOFSEC"]').prop('checked', false);
@@ -836,6 +932,8 @@ $(".ADDFIELDSMND").addClass('LPDTMndtry');
 		  $("#LPDT_TYPEOFGU").removeClass('LPDTMndtry');
 		$(".vehile").removeClass('LPDTMndtry');
          $(".vehicle").parent().next().find(".MndtryAstr").html("");
+		 MORTGETYP();
+		 CHKCHRGTYP();
          //$("#CBSI_UAMNO").parent().next().find(".MndtryAstr").html("");
 		 
 		 
@@ -1449,7 +1547,201 @@ return;
 }
 }
 
+function Chkdepo()
+{
+var Depo=$("#LPDT_DDEPOSIT").val();
+	//var Depo=$("input[name='LPDT_DDEPOSIT']:checked"). val();
+	if(Depo=="Fixed Deposit")
+	{
+		$(".FIXDEP").show()
+		if($("#LPDT_DIFSC").val()=="")
+		{
+		$("#LPDT_DBRANCH").next().removeClass('active');
+			
+		}
+		$(".SECUDEP").hide()
+	}
+	else if(Depo=="Security Deposit"){
+		$(".SECUDEP").show()
+		$(".FIXDEP").hide()
+	}
+	else
+	{
+		$(".FIXDEP").hide()
+		$(".SECUDEP").hide()
+	}
+}
 
+function GETIFSC()
+{
+var val=GetIfsc($("#LPDT_DIFSC").val());
+if($(val).find("BRANCH").text() != "")
+{
+$("#LPDT_DBRANCH").val($(val).find("BRANCH").text());	
+$("#LPDT_DBRANCH").next().addClass('active');
+$("#LPDT_DBRANCH").attr('disabled',true)
+}
+
+}
+function GETSECIFSC()
+{
+var val=GetIfsc($("#LPDT_DSECIFSC").val());
+if($(val).find("BRANCH").text() != "")
+{
+$("#LPDT_DSECBRANCH").val($(val).find("BRANCH").text());	
+$("#LPDT_DSECBRANCH").next().addClass('active');
+$("#LPDT_DSECBRANCH").attr('disabled',true)
+}
+
+}
+
+function CHKCHRGTYP()
+{
+var CHRTY=$("#LPDT_CHRGTYPE").val();
+var SCHRTY=$("#LPDT_SCHRGTYP").val();
+var HCHRTY=$("#LPDT_HCHRGTYP").val();
+
+
+
+	if(CHRTY=="others")
+	{
+		$(".OTHR").show()
+	}
+	else if(CHRTY!="others")
+	{
+		$(".OTHR").hide()
+	}
+	else
+	{
+		$(".OTHR").hide()
+	}
+	
+	if(SCHRTY=="others")
+	{
+		$(".SOTHR").show()
+	}
+	else if(SCHRTY!="others")
+	{
+		$(".SOTHR").hide()
+	}
+	else
+	{
+		$(".SOTHR").hide()
+	}	
+	
+	if(HCHRTY=="others")
+	{
+		$(".HOTHR").show()
+	}
+	else if(HCHRTY!="others")
+	{
+		$(".HOTHR").hide()
+	}
+	else
+	{
+		$(".HOTHR").hide()
+	}	
+}
+
+function TYPOFSEC()
+{
+
+var SECTYP=$("#LPDT_STYPEOFSEC").val();
+if(SECTYP=="Bank Guarantee" || SECTYP=="SBLC (Standby Letter of Credit)")
+{
+	$(".BNKGRA").show()
+	$(".LIC").hide()
+}
+else if(SECTYP=="LIC Policies" || SECTYP=="Bonds" || SECTYP=="NCD (Non convertible Debentures)" || SECTYP=="Shares" || SECTYP=="Mutual Funds")
+{
+$(".LIC").show()
+$(".BNKGRA").hide()
+}
+else
+{
+$(".BNKGRA").hide()
+$(".LIC").hide()
+}
+
+}
+function MORTGETYP()
+{
+var MORTYP=$("#LPDT_MORTTYPE").val();
+if(MORTYP=="Joint")
+{
+$(".BNKGRA").show()
+
+}
+else if(MORTYP=="Single")
+{
+$(".BNKGRA").hide()
+}
+else
+{
+$(".BNKGRA").hide()
+}
+}
+
+
+function GETMANUFAC()
+{
+		
+	 var Implmnt = UI_getdata("IMPLEMENT",$("#VERTICAL").val(),"","","","LSW_SGETPRODVAL");
+         $("#LPDT_IMPLEMENT").html("");
+		 $("#LPDT_IMPLEMENT").append($(Implmnt).find("RESULT").html());
+	
+	
+		var GETMANU = UI_getdata("TFManufacturer",$("#VERTICAL").val(),"","","","LSW_SGETPRODVAL");
+		$("#LPDT_IMPLMANUF").html("")
+		$("#LPDT_IMPLMANUF").append($(GETMANU).find("RESULT").html());	
+
+		
+	
+}
+function GETMODEL()
+{
+
+		var GETMOD = UI_getdata("TFModel",$("#VERTICAL").val(),$("#LPDT_IMPLMANUF").val(),"","","LSW_SGETPRODVAL");
+		$("#LPDT_IMPLMODEL").html("")
+		$("#LPDT_IMPLMODEL").append($(GETMOD).find("RESULT").html());
+		$("#LPDT_IMPLMODEL").material_select();
+		$("#LPDT_IMPLVARIANT").val("");
+		$("#LPDT_IMPLASTDESC").val("");
+		$("#LPDT_IMPLASTCOST").val("");
+		$("#LPDT_IMPLVARIANT").next().removeClass('active');
+		$("#LPDT_IMPLASTDESC").next().removeClass('active');
+		$("#LPDT_IMPLASTCOST").next().removeClass('active');
+		
+	
+}
+function GETVARIANT()
+{
+	var GETVAR = UI_getdata("TFVariant",$("#VERTICAL").val(),$("#LPDT_IMPLMANUF").val(),$("#LPDT_IMPLMODEL").val(),"","LSW_SGETPRODVAL");
+//AssAmt=CURINRCommaSep(parseFloat(AssAmt).toFixed(0)); 
+	var Fnlvar=$(GETVAR).find("RESULT").text()
+	$("#LPDT_IMPLVARIANT").val(Fnlvar);	
+	$("#LPDT_IMPLVARIANT").next().addClass('active');
+	$("#LPDT_IMPLVARIANT").attr("disabled",true);
+	
+	var GETASSDES = UI_getdata("TFAsstdesc",$("#VERTICAL").val(),$("#LPDT_IMPLMANUF").val(),$("#LPDT_IMPLMODEL").val(),"","LSW_SGETPRODVAL");
+	var Fnlass=$(GETASSDES).find("RESULT").text()
+	$("#LPDT_IMPLASTDESC").val(Fnlass);	
+	$("#LPDT_IMPLASTDESC").next().addClass('active');
+	$("#LPDT_IMPLASTDESC").attr("disabled",true);
+	
+	var GETASSCST = UI_getdata("TFAsstcost",$("#VERTICAL").val(),$("#LPDT_IMPLMANUF").val(),$("#LPDT_IMPLMODEL").val(),"","LSW_SGETPRODVAL");
+	if($(GETASSCST).find("RESULT").text()=="")
+	{
+		GETASSCST=0;
+	}
+	else
+	{
+		GETASSCST=$(GETASSCST).find("RESULT").text()
+	}
+	$("#LPDT_IMPLASTCOST").val(GETASSCST);	
+	$("#LPDT_IMPLASTCOST").next().addClass('active');
+	$("#LPDT_IMPLASTCOST").attr("disabled",true);
+}
 
 
 

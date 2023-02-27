@@ -66,6 +66,17 @@
         		<img src="ThemeproLO/Common/Images/FEP/success-trans.png" style="height:150px;width:150px;display:none" class="Success">
         		<img src="ThemeproLO/Common/Images/FEP/fail-trans.png" style="height:150px;width:150px;display:none" class="Fail">
         </div>
+		
+		<div class ="Fail">
+			<div class="form-row">
+				<div class="col-md-6">
+					<div class="md-form">
+						<input type="text" id="FailMSG" name="FailMSG" value="${TXNID}" disabled class="Btxt14 DSVLBL form-control">
+						<label for="FailMSG"  class="Btxt9 active">Failure Message</label>
+					</div>
+				</div>
+			</div>
+		</div>
 		<input type="text" id="Message" name="Message" hidden="hidden" value="${Type}" disabled class="Btxt14 DSVLBL IsAlphaFields form-control">
         <div class="form-row">
               <div class="col-md-4">
@@ -136,7 +147,7 @@
     <script>
 $(document).ready(function() {
     	
-    	if ($("#Status").val() == "Success")
+    	if ($("#Status").val() == "Success" || $("#Status").val() == "true")
     	{
     		$(".Success").show()
     	}
@@ -153,7 +164,7 @@ $(document).ready(function() {
 		 
 	window.onbeforeunload = function() {
     
-			if($("#Status").val() == "Success")
+			if($("#Status").val() == "Success" || $("#Status").val() == "true")
 			{
 				
 				if ($("#PayType", window.opener.document).length > 0)

@@ -157,7 +157,7 @@ $(document).ready(function() {
 
     	$('.TXNClose').on('click', function() {
     	
-    	window.close();
+    	window.location.href = "https://www.google.co.in/";
     		
     	 });
 		 

@@ -1,6 +1,9 @@
 $(document).ready(function () {
 	
-	
+	/* if($("#PrMs1").val()=="View")
+	{
+	$(".VIEWDEDUPEBTN").attr('disabled',false);
+	} */
 	//$($('.AFormaccordion')[0]).click();
 	$("#CEMI_PRCSID").attr("value",$("#PrcsID").val());
 	$("#CGST_PRCSID").attr("value",$("#PrcsID").val());
@@ -24,14 +27,13 @@ $(document).ready(function () {
 	var OrgCusID =$("#headingFour4 a").attr("data-aria").split("|")[2];
 	var OrgCusID1 =$("#headingFour4 a").attr("data-aria").split("|")[3];
 	
-
 	
 	if(DATA != "")
 	{
 		DATA = $("#"+DATA).val()+"|" + DATA;
 	}
 	
-		$("#headingOne1 a").attr("data-load","Yes");
+	$("#headingOne1 a").attr("data-load","Yes");
 	
 	
 	var xml=UI_getdata("","","","","","LSW_SGETNATUR")
@@ -43,10 +45,37 @@ $(document).ready(function () {
 	$("#CEMI_INDUSCATRGORY").append($(xml).find("Industry").html());
 	//$("#CEMI_INDUSCATRGORY").material_select();
 	
-	
 	FormDataFromDB(tbl, prfx + "_", prfx+"DBfields", DATA);
 	
+	if($("#DMY5").val().split('|')[2]=="SendToCredit")
+	{
+        $("#CDOG_KYCCATEGORY").attr('disabled',false);
+		$("#CDOG_KYCCATEGORY").addClass('CDOGMndtry');
+     
+    }
+    else
+    {
+        $("#CDOG_KYCCATEGORY").attr('disabled',true);
+        $("#CDOG_KYCCATEGORY").removeClass("CDOGMndtry");
+		
+    }
 	
+	if($("#CBSI_PANVERIFY").val()=='Verified')
+	{
+		$(".CBSI_PAN").addClass('VIEWDISABLE');
+	}
+	if($("#CBSI_VOTERIDVEIRFY").val()=='Verified')
+	{
+		$(".CBSI_VOTERID").addClass('VIEWDISABLE');
+	}
+	if($("#CBSI_DRIVLICNSVERIFY").val()=='Verified')
+	{
+		$(".CBSI_DRIVLICNS").addClass('VIEWDISABLE');
+	}
+	if($("#CBSI_PASSPORTVERIFY").val()=='Verified')
+	{
+		$(".CBSI_PASSPORT").addClass('VIEWDISABLE');
+	}
 	// Added Since Loading Issues Date - 28/05/2020 Start
 	
 	if($("#"+CICusID1).length>0)
@@ -123,10 +152,8 @@ if(($("#CBSI_CUSTYPE").val() == "Non-Individual") && (($("#CBSI_CONSTITUTION").v
 	CheckGstNumber();
 	Checkborrower();
 	Chkbox();
-	OtherKYC();
 	//Cochk();
-	Udyamcheckorg();
-	
+	//Udyamcheckorg();
 	if($("#CBSI_HIDPROFTYP").val()!='')
 	{	
 	var HIDPROFTYP=$("#CBSI_HIDPROFTYP").val()
@@ -140,7 +167,7 @@ if(($("#CBSI_CUSTYPE").val() == "Non-Individual") && (($("#CBSI_CONSTITUTION").v
 	}
 	}
 	}
-
+	
 	var xml=UI_getdata("Karza",$("#VERTICAL").val(),"","","","LSW_SCHKINTGSTATUS")
 	var data=$(xml).find('STATUS').text()
 	
@@ -219,7 +246,7 @@ if(($("#CBSI_CUSTYPE").val() == "Non-Individual") && (($("#CBSI_CONSTITUTION").v
     		$('#CADI_EMAILID').attr('disabled',true)
 			$('#CADI_MOBNOI').attr('disabled',true)
 			$('.CADI_EMAILID').attr('disabled',true)
-			$('.CADI_MOBNOI').attr('disabled',true)
+			//$('.CADI_MOBNOI').attr('disabled',true)
          }	
 
 	$("#CEMI_CUSID").attr("value",$("#"+CusID1).val());
@@ -444,6 +471,10 @@ if(($("#CBSI_CUSTYPE").val() == "Non-Individual") && (($("#CBSI_CONSTITUTION").v
 
 $(document).on("click", ".ORGDETL", function()
 {
+	if($("#"+$(this).attr("data-aria").split("|")[2]).val() == "")
+	   {
+		$("#"+$(this).attr("data-aria").split("|")[2]).val($("#"+$(this).attr("data-aria").split("|")[3]).val())
+	   }
 Chkbox();
 if($("#DMY5").val().split('|')[2]=="SendToCredit")
 {
@@ -540,6 +571,14 @@ $(document).on("click", ".EMPDLOAD", function()
 			if(personalinfocusid == "")
 			{
 				alert("Invalid Customer ID Has Been Picked For Processing, Pick a Valid Customer ID to Process Further");
+				return;
+			}
+			
+			var xmlsamecus=UI_getdata($("#PrcsID").val(),personalinfocusid,"","","","LSW_SCHKCUSTOMERIDEX");
+			
+			if($(xmlsamecus).find("RESULT").text() != "SUCCESS")
+			{
+				alert($(xmlsamecus).find("RESULT").text());
 				return;
 			}
 			
@@ -1357,6 +1396,11 @@ else
 		{
 		$("#Save1").click();
 		}
+	});
+		$(document).on("click", ".VKYC", function(){
+		var CusID=$("#CBSI_CUSID").val()
+		VkycPopuUp(CusID);
+		$("#BTNVKYCGRD").click();
 	});
 	
 	

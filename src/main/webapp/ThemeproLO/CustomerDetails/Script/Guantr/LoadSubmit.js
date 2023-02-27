@@ -40,16 +40,13 @@ $(document).ready(function () {
 	var OrgCusID =$("#headingFour4 a").attr("data-aria").split("|")[2];
 	var OrgCusID1 =$("#headingFour4 a").attr("data-aria").split("|")[3];
 	
-	
-			
-
-	
 	if  (DATA != "")
 	{
 		DATA = $("#"+DATA).val()+"|" + DATA;
 	}
 	
-			var xml=UI_getdata("","","","","","LSW_SGETNATUR")
+	
+		var xml=UI_getdata("","","","","","LSW_SGETNATUR")
 	
 	$("#GUOA_INDUSCATRGORY").html("")
 	$("#GUOA_INDUSCATRGORY").append($(xml).find("Industry").html());
@@ -57,8 +54,25 @@ $(document).ready(function () {
 	$("#GREI_INDUSCATRGORY").html("")
 	$("#GREI_INDUSCATRGORY").append($(xml).find("Industry").html());
 	
+	
 	Sector();
 	FormDataFromDB(tbl, prfx + "_", prfx+"DBfields", DATA);
+	if($("#GRBI_PANVERIFY").val()=='Verified')
+	{
+		$(".GRBI_PAN").addClass('VIEWDISABLE');
+	}
+	if($("#GRBI_VOTERIDVEIRFY").val()=='Verified')
+	{
+		$(".GRBI_VOTERID").addClass('VIEWDISABLE');
+	}
+	if($("#GRBI_DRIVLICNSVERIFY").val()=='Verified')
+	{
+		$(".GRBI_DRIVLICNS").addClass('VIEWDISABLE');
+	}
+	if($("#GRBI_PASSPORTVERIFY").val()=='Verified')
+	{
+		$(".GRBI_PASSPORT").addClass('VIEWDISABLE');
+	}
 	
 	// Added Since Loading Issues Date - 28/05/2020 Start
 	
@@ -82,7 +96,10 @@ $(document).ready(function () {
      {
       $(".AUPLDXMLII").hide();
       }
-	  
+	      if  (OrgDATA != "")
+	{
+		OrgDATA = $("#"+OrgDATA).val()+"|" + OrgDATA;
+	}
 	  FormDataFromDB(Orgtbl, Orgprfx + "_", Orgprfx+"DBfields", OrgDATA);
 	// End
 	if(($("#GRBI_CUSTYPE").val() == "Non-Individual") && (($("#GRBI_CONSTITUTION").val()=="Private Ltd ")||($("#GRBI_CONSTITUTION").val()=="Public Ltd ")))
@@ -117,25 +134,21 @@ $(document).ready(function () {
 	Chkdirect();
 	GCheckNumber();
 	GuCheckborrower();
-	Chkudha();
+	//Chkudha();
 	OtherKYC();
-	
-	
 	if($("#GRBI_HIDPROFTYP").val()!='')
 	{	
-	var HIDPROFTYP=$("#GRBI_HIDPROFTYP").val()
-	var PROOFTYPE=HIDPROFTYP.split(",");
-	var row = $(PROOFTYPE).length;
-	for (i=0;i<row;i++)
-	{
-	if(PROOFTYPE[i] !="")
-	{
-	$("#GRBI_KYCPROOFTYP option[value='"+PROOFTYPE[i]+"']").attr("selected","selected")
+		var HIDPROFTYP=$("#GRBI_HIDPROFTYP").val()
+		var PROOFTYPE=HIDPROFTYP.split(",");
+		var row = $(PROOFTYPE).length;
+		for (i=0;i<row;i++)
+		{
+		if(PROOFTYPE[i] !="")
+		{
+			$("#GRBI_KYCPROOFTYP option[value='"+PROOFTYPE[i]+"']").attr("selected","selected")
+		}
+		}
 	}
-	}
-	}
-	
-	
 	var xml=UI_getdata("Karza",$("#VERTICAL").val(),"","","","LSW_SCHKINTGSTATUS")
 	var data=$(xml).find('STATUS').text()
 	
@@ -182,7 +195,7 @@ $(document).ready(function () {
 		$("#GRBI_CONSTITUTION").val($("#PrMs7").val().split("|")[1]);
 		$("#GRBI_CIN").val($("#PrMs7").val().split("|")[2]);
 		}	
-
+		
 
 	FindConstDD();
 	CheckDudupe('GRBI_DEDUPEVERIFY');
@@ -201,20 +214,23 @@ $(document).ready(function () {
 	AddZoom();
 	CheckGSTorNot();
 	LoadVwImage('GRBI_')
-	
+		if($("#GRBI_PANUPLOADVERIFY").val()=="Upload Verified")
+	{
+		 $(".TYP").show()
+	}
   if($("#GRBI_MSKAADHARATTACHMENT").val()!="")
 	{
 	   $(".AadharMskImg").show();
 	   $(".AadharViewImg").hide();
 	   $("#GRBI_AADHAR").attr("disabled",true);
     }
-	if($("#GRBI_MSKAADHARATTACHMENTII").val()!="")
+	  
+	  if($("#GRBI_MSKAADHARATTACHMENTII").val()!="")
 	  {
 	   $(".AadharMskImgII").show();
 	   $(".AadharViewImgII").hide();
 	   $("#GRBI_AADHAR").attr("disabled",true);
       }
-	  
   if($("#GRBI_UBVERIFYTYPE").val()=="Mobile Authentication with OTP")
 	{
 		$(".UtilityLable").text("Service Number");
@@ -323,7 +339,11 @@ $(document).ready(function () {
   
   
    $(document).on("click", ".ORGDETAL", function(){
-	   Chkudha();
+	   //if($("#"+$(this).attr("data-aria").split("|")[2]).val() == "")
+	   //{
+		$("#"+$(this).attr("data-aria").split("|")[2]).val($("#"+$(this).attr("data-aria").split("|")[3]).val())
+	   //}
+	   //Chkudha();
    })
    
    $(document).on("click", ".DedupeSmt", function(){
@@ -343,6 +363,14 @@ $(document).ready(function () {
 			if(personalinfocusid == "")
 			{
 				alert("Invalid Customer ID Has Been Picked For Processing, Pick a Valid Customer ID to Process Further");
+				return;
+			}
+			
+			var xmlsamecus=UI_getdata($("#PrcsID").val(),personalinfocusid,"","","","LSW_SCHKCUSTOMERIDEX");
+			
+			if($(xmlsamecus).find("RESULT").text() != "SUCCESS")
+			{
+				alert($(xmlsamecus).find("RESULT").text());
 				return;
 			}
 			/*if((contactcusid == personalinfocusid) && (contactcusid  == addrinfocusid))

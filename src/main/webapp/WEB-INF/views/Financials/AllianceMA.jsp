@@ -117,7 +117,6 @@ editData.setHistVar(HistVar); %>
 				<input type="text" id="MAED_SCHEMEID" hidden="hidden"  name="MAED_SCHEMEID" class="form-control MAEDDBfields ">
 				<input type="text" id="MAED_SCHEMENAME" hidden="hidden"  name="MAED_SCHEMENAME" class="form-control MAEDDBfields ">
 				<input type="text" id="MAED_MANUALEDIT" hidden="hidden"  name="MAED_MANUALEDIT" class="form-control MAEDDBfields ">
-				<input type="text" id="MAED_LOANID" hidden="hidden"  name="MAED_LOANID" class="form-control MAEDDBfields ">
            
       
                         </br>
@@ -160,7 +159,7 @@ editData.setHistVar(HistVar); %>
                         
 						</form>
                         </br>
-                        <div class="form-row">
+                        <div class="form-row"style="display:none">
                            <div class="col d-flex justify-content-center">
                               <button type="button" id="Save2" data-aria="LSW_TMANUALEDITOR|MAED|MAED_SCHEMEID"  class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
                               <button type="button" data-aria="LSW_TMANUALEDITOR|MAED|MAED_SCHEMEID" data-card="1" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 

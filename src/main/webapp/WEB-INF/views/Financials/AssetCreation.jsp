@@ -18,7 +18,7 @@
          <input type="text" id="ASST_CUSID" hidden="hidden" name="ASST_CUSID" class="form-control ASSTDBfields">
 		 <input type="text" id="ASST_SCHEMEID" hidden="hidden"  name="ASST_SCHEMEID" class="form-control ASSTDBfields">
 		 <input type="text" id="ASST_SCHEMENAME" hidden="hidden" name="ASST_SCHEMENAME" class="form-control ASSTDBfields">
-		 <input type="text" id="ASST_LOANID" hidden="hidden"  name="ASST_LOANID" class="form-control ASSTDBfields">
+		 <input type="text" id="ASST_PRODUCT" hidden="hidden" name="ASST_PRODUCT" class="form-control ASSTDBfields">
 	
 		  <div class="form-row ">
                   
@@ -248,9 +248,33 @@
                   </div>
 				  
 				</div>  
+				<div class="form-row ASSTUBL">
+                  
+                  <div class="col-md-4">
+                     <div class="md-form">
+                        <input type="text" id="ASST_AVGCRDSUM" disabled  maxlength="200"  class="form-control  IsCURCommaFields IsNumberFields IsCURCommaFields IsNumberFields NoSpecialChar  ASSTDBfields " name="ASST_AVGCRDSUM">
+                        <label for ="ASST_AVGCRDSUM" class="">Average Credit Summation<span class="MndtryAstr"></span></label>
+                     </div>
+                  </div>
+				  
+				  
+				  <div class="col-md-4">
+                     <div class="md-form">
+                        <input type="text" id="ASST_EXLONOBLI" disabled maxlength="200"  class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar  ASSTDBfields" name="ASST_EXLONOBLI">
+                        <label for ="ASST_EXLONOBLI" class="">Existing Loan Obligation <span class="MndtryAstr"></span></label>
+                     </div>
+                  </div>
+				  
+				  <div class="col-md-4">
+                     <div class="md-form">
+                        <input type="text" id="ASST_MAXEMI" disabled maxlength="200"  class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar  ASSTDBfields " name="ASST_MAXEMI">
+                        <label for ="ASST_MAXEMI" class="">Maximum permissible EMI for proposed loan<span class="MndtryAstr"></span></label>
+                     </div>
+                  </div>
+				  
+				</div> 
 				
-				
-				 <div class="form-row ">
+				 <div class="form-row CHKLNTY">
                   
                   <div class="col-md-4">
                      <div class="md-form">
@@ -295,7 +319,7 @@
                   </div>
 				  
 				  
-				  <div class="col-md-4">
+				  <div class="col-md-4 CHKLNTY">
                      <div class="md-form">
                         <input type="text" id="ASST_PROPOSLOAN" disabled  maxlength="200"  class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar ASSTDBfields  " name="ASST_PROPOSLOAN">
                         <label for ="ASST_PROPOSLOAN" class="">Proposed Loan<span class="MndtryAstr"></span></label>
@@ -312,7 +336,7 @@
 				</div>  
 				
 				
-                <div class="form-row">
+                <div class="form-row"style="display:none">
                     <div class="col d-flex justify-content-center">
                         <button type="button" id="save3" data-form="LSW_TASSETCREATION"  data-aria="LSW_TASSETCREATION|ASST|ASST_SCHEMEID" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
                         <!--<button type="button" data-form="LSW_TASSETCREATION"  data-aria="LSW_TASSETCREATION|ASST|ASST_SCHEMEID"data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> -->

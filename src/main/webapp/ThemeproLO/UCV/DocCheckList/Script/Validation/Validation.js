@@ -239,19 +239,19 @@ alert("hi");
 						  {
 					  if($($($("#"+TableID).find(".tbodytr")[i]).find('.tbodytrtd')[j]).find('input[type=text]').val()=="")
 						  {
-						  if($(".FormPageTab li.active").text() == 'Co-Applicant' && ($($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() != "ADDRESS PROOF 2" && $($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() != "SIGN PROOF" && $($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() != "DOB PROOF"))
+						  if($(".FormPageTab li.active").text() == 'Co-Applicant' && ($($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() != "CORRESPONDENCE ADDRESS" && $($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() != "SIGN PROOF" && $($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() != "DOB PROOF"))
 							  {
 							  RTNVAL = "No Data Available in " + $($($("#"+TableID+" thead").find('tr')[0]).find('th')[j]).text()
 					    		+ " for " + $($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() + "-"+HDR;
 					    		return RTNVAL;
 							  }
-						  else if($(".FormPageTab li.active").text() == 'Guarantor' && ($($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() == "ID PROOF" || $($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text()=='ADDRESS PROOF 1'))
+						  else if($(".FormPageTab li.active").text() == 'Guarantor' && ($($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() == "ID PROOF" || $($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text()=='CURRENT ADDRESS'))
 							  {
 							  RTNVAL = "No Data Available in " + $($($("#"+TableID+" thead").find('tr')[0]).find('th')[j]).text()
 					    		+ " for " + $($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() + "-"+HDR;
 					    		return RTNVAL;
 							  }
-						  else if(($(".FormPageTab li.active").text() == 'Applicant') && (($("#HIDDENCUSTYP").val()=="Individual" && $($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() != "ADDRESS PROOF 2")||($("#HIDDENCUSTYP").val()!="Individual"))){
+						  else if(($(".FormPageTab li.active").text() == 'Applicant') && (($("#HIDDENCUSTYP").val()=="Individual" && $($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() != "CORRESPONDENCE ADDRESS")||($("#HIDDENCUSTYP").val()!="Individual"))){
 							  RTNVAL = "No Data Available in " + $($($("#"+TableID+" thead").find('tr')[0]).find('th')[j]).text()
 					    		+ " for " + $($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() + "-"+HDR;
 					    		return RTNVAL;
@@ -276,19 +276,19 @@ alert("hi");
 					  
 					  if(atLeastOneChecked == false)
 					  {
-						  if($(".FormPageTab li.active").text() == 'Co-Applicant' && ($($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() != "ADDRESS PROOF 2" && $($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() != "SIGN PROOF" && $($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() != "DOB PROOF"))
+						  if($(".FormPageTab li.active").text() == 'Co-Applicant' && ($($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() != "CORRESPONDENCE ADDRESS" && $($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() != "SIGN PROOF" && $($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() != "DOB PROOF"))
 						  {
 					  RTNVAL = "No Data Available in " + $($($("#"+TableID+" thead").find('tr')[0]).find('th')[j]).text()
 			    		+ " for " + $($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() + "-"+HDR;
 			    		return RTNVAL;
 						  }
-						  else if($(".FormPageTab li.active").text() == 'Guarantor' && ($($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() == "ID PROOF" || $($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text()=='ADDRESS PROOF 1'))
+						  else if($(".FormPageTab li.active").text() == 'Guarantor' && ($($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() == "ID PROOF" || $($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text()=='CURRENT ADDRESS'))
 						  {
 						  RTNVAL = "No Data Available in " + $($($("#"+TableID+" thead").find('tr')[0]).find('th')[j]).text()
 				    		+ " for " + $($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() + "-"+HDR;
 				    		return RTNVAL;
 						  }
-					  else if(($(".FormPageTab li.active").text() == 'Applicant') && (($("#HIDDENCUSTYP").val()=="Individual" && $($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() != "ADDRESS PROOF 2")||($("#HIDDENCUSTYP").val()!="Individual" && $($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() != "ADDRESS PROOF 2" ))){
+					  else if(($(".FormPageTab li.active").text() == 'Applicant') && (($("#HIDDENCUSTYP").val()=="Individual" && $($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() != "CORRESPONDENCE ADDRESS")||($("#HIDDENCUSTYP").val()!="Individual" && $($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() != "CORRESPONDENCE ADDRESS" ))){
 						  RTNVAL = "No Data Available in " + $($($("#"+TableID+" thead").find('tr')[0]).find('th')[j]).text()
 				    		+ " for " + $($($("#"+TableID).find('.tbodytr')[i]).find('td')[1]).text() + "-"+HDR;
 				    		return RTNVAL;
@@ -595,7 +595,7 @@ function GridControlDetailKYC (popTableModPageGrid1,TableID,dtData,dtcolumn,hide
            	  },
        		 { targets: 2, "render": function ( data, type, row, meta ) {                            
        			 
-       			 if(($("#HIDDENID").val()=="BSM"||$("#HIDDENACT").val()=="Y")&&($("#HIDDENCUSTYP").val()=="Individual")&&(row[1]=="ID PROOF" || row[1]=="SIGN PROOF" || row[1]== "DOB PROOF"|| row[1]=="ADDRESS PROOF 1" || row[1]== "ADDRESS PROOF 2"))
+       			 if(($("#HIDDENID").val()=="BSM"||$("#HIDDENACT").val()=="Y")&&($("#HIDDENCUSTYP").val()=="Individual")&&(row[1]=="ID PROOF" || row[1]=="SIGN PROOF" || row[1]== "DOB PROOF"|| row[1]=="CURRENT ADDRESS" || row[1]== "CORRESPONDENCE ADDRESS"))
        				 { 
 if(row[2]=="")
 {
@@ -610,45 +610,47 @@ if(row[2]=="")
        	       				{
        	       			HTML = HTML + '<option value="PAN">PAN</option>';
        	       				}
-       	       			/*if(($(".FormPageTab li.active").text()=="Co-Applicant"||$(".FormPageTab li.active").text()=="Guarantor") && row[1]== "ADDRESS PROOF 1")
+       	       			/*if(($(".FormPageTab li.active").text()=="Co-Applicant"||$(".FormPageTab li.active").text()=="Guarantor") && row[1]== "CURRENT ADDRESS")
        	       				{
        	       			       HTML = HTML + '<option value="Form 60">Form 60</option>';
        	       				}*/
-       	       			if(row[1]=="ID PROOF" || row[1]== "DOB PROOF" || row[1]== "ADDRESS PROOF 1")
+       	       			if(row[1]=="ID PROOF" || row[1]== "DOB PROOF" || row[1]== "CURRENT ADDRESS")
        	       				{
        	       			HTML = HTML + '<option value="Voter ID">Voter ID</option>';
        	       				}
-       	       			if(row[1]=="ID PROOF" ||row[1]=="SIGN PROOF" || row[1]== "ADDRESS PROOF 1" || row[1]== "DOB PROOF")
+       	       			if(row[1]=="ID PROOF" ||row[1]=="SIGN PROOF" || row[1]== "CURRENT ADDRESS" || row[1]== "DOB PROOF")
        	       				{
        	       			HTML = HTML + '<option value="Driving License">Driving License</option>';
        	       				}
        	       			
        	       			/*HTML = HTML + '<option value="Aadhar">Aadhar</option>';*/
-       	       		if(row[1]=="ID PROOF" ||row[1]=="SIGN PROOF" || row[1]== "DOB PROOF" || row[1]== "ADDRESS PROOF 1")
+       	       		if(row[1]=="ID PROOF" ||row[1]=="SIGN PROOF" || row[1]== "DOB PROOF" || row[1]== "CURRENT ADDRESS")
        	       			{
        	       		HTML = HTML + '<option value="Passport">Passport</option>';
        	       			}
-				if(row[1]=="ADDRESS PROOF 1" || row[1]=="ADDRESS PROOF 2")
+				if(row[1]=="CORRESPONDENCE ADDRESS")
        	       		{
-                       HTML = HTML + '<option value="NREGA Job Card">NREGA Job Card</option><option value="National Population Register Letter">National Population Register Letter</option><option disabled value="E-KYC Authentication">E-KYC Authentication</option><option value="Property Tax">Property Tax</option><option value="Pension Order">Pension Order</option><option value="Allotment Letter">Allotment Letter</option>';             
+                       //HTML = HTML + '<option value="NREGA Job Card">NREGA Job Card</option><option value="National Population Register Letter">National Population Register Letter</option><option disabled value="E-KYC Authentication">E-KYC Authentication</option><option value="Property Tax">Property Tax</option><option value="Pension Order">Pension Order</option><option value="Allotment Letter">Allotment Letter</option>';             
+					   HTML = HTML + '<option value="Electricity Bill">Electricity Bill</option><option value="Property Tax Bill">Property Tax Bill</option><option value="Tele Phone Bill">Tele Phone Bill</option><option value="Post-paid Mobile Bill">Post-paid Mobile Bill</option><option value="Piped/Computerised Gas Bill">Piped/Computerised Gas Bill</option><option value="Water Bill">Water Bill</option><option value="PPO">PPO</option>';             
+                     
 					}						
-       	       	if(row[1]=="ADDRESS PROOF 1")
+       	       /*	if(row[1]=="CURRENT ADDRESS")
        	       		{
-       	       	HTML = HTML + '<option value="Electricity Bill">Electricity Bill</option>';
+       	       	HTML = HTML + '<option value="NREGA">NREGA</option>';
        	       		}
-       	     if(row[1]=="ADDRESS PROOF 2")
+       	      if(row[1]=="CORRESPONDENCE ADDRESS")
        	    	 {
        	    	HTML = HTML + '<option value="Utility Bills">Utility Bills</option>';
-       	    	 }
-       	  if(row[1]=="ADDRESS PROOF 1")
+       	    	 } */
+       	  if(row[1]=="CURRENT ADDRESS")
 	       		{
 	       	HTML = HTML + '<option value="Aadhar">Aadhar</option>';
 	       		}
-	     if(row[1]=="ADDRESS PROOF 2")
+	    /*  if(row[1]=="CORRESPONDENCE ADDRESS")
 	    	 {
 	    	HTML = HTML + '<option value="Aadhar">Aadhar</option>';
-	    	 }
-	     if($('.FormPageTab li.active div').text()=="Co-Applicant" && (row[1]=="ID PROOF" || row[1]=="SIGN PROOF" || row[1]== "DOB PROOF"|| row[1]=="ADDRESS PROOF 1" || row[1]== "ADDRESS PROOF 2"))
+	    	 } */ 
+	     if($('.FormPageTab li.active div').text()=="Co-Applicant" && (row[1]=="ID PROOF" )) //|| row[1]=="SIGN PROOF" || row[1]== "DOB PROOF"
 	     {
 		    	HTML = HTML + '<option value="Affidavit">Affidavit</option>';
 		    	 }
@@ -673,45 +675,47 @@ var rowno = meta.row;
        	       				{
        	       			HTML = HTML + '<option value="PAN">PAN</option>';
        	       				}
-       	       			/*if(($(".FormPageTab li.active").text()=="Co-Applicant"||$(".FormPageTab li.active").text()=="Guarantor") && row[1]== "ADDRESS PROOF 1")
+       	       			/*if(($(".FormPageTab li.active").text()=="Co-Applicant"||$(".FormPageTab li.active").text()=="Guarantor") && row[1]== "CURRENT ADDRESS")
        	       				{
        	       			       HTML = HTML + '<option value="Form 60">Form 60</option>';
        	       				}*/
-       	       			if(row[1]=="ID PROOF" || row[1]== "DOB PROOF" || row[1]== "ADDRESS PROOF 1")
+       	       			if(row[1]=="ID PROOF" || row[1]== "DOB PROOF" || row[1]== "CURRENT ADDRESS")
        	       				{
        	       			HTML = HTML + '<option value="Voter ID">Voter ID</option>';
        	       				}
-       	       			if(row[1]=="ID PROOF" ||row[1]=="SIGN PROOF" || row[1]== "ADDRESS PROOF 1" || row[1]== "DOB PROOF")
+       	       			if(row[1]=="ID PROOF" ||row[1]=="SIGN PROOF" || row[1]== "CURRENT ADDRESS" || row[1]== "DOB PROOF")
        	       				{
        	       			HTML = HTML + '<option value="Driving License">Driving License</option>';
        	       				}
        	       			
        	       			/*HTML = HTML + '<option value="Aadhar">Aadhar</option>';*/
-       	       		if(row[1]=="ID PROOF" ||row[1]=="SIGN PROOF" || row[1]== "DOB PROOF" || row[1]== "ADDRESS PROOF 1")
+       	       		if(row[1]=="ID PROOF" ||row[1]=="SIGN PROOF" || row[1]== "DOB PROOF" || row[1]== "CURRENT ADDRESS")
        	       			{
        	       		HTML = HTML + '<option value="Passport">Passport</option>';
        	       			}
-				if(row[1]=="ADDRESS PROOF 1" || row[1]=="ADDRESS PROOF 2")
+				if(row[1]=="CURRENT ADDRESS" || row[1]=="CORRESPONDENCE ADDRESS")
        	       		{
-                       HTML = HTML + '<option value="NREGA Job Card">NREGA Job Card</option><option value="National Population Register Letter">National Population Register Letter</option><option disabled value="E-KYC Authentication">E-KYC Authentication</option><option value="Property Tax">Property Tax</option><option value="Pension Order">Pension Order</option><option value="Allotment Letter">Allotment Letter</option>';             
+                      // HTML = HTML + '<option value="NREGA Job Card">NREGA Job Card</option><option value="National Population Register Letter">National Population Register Letter</option><option disabled value="E-KYC Authentication">E-KYC Authentication</option><option value="Property Tax">Property Tax</option><option value="Pension Order">Pension Order</option><option value="Allotment Letter">Allotment Letter</option>';             
+					    HTML = HTML + '<option value="Electricity Bill">Electricity Bill</option><option value="Property Tax Bill">Property Tax Bill</option><option value="Tele Phone Bill">Tele Phone Bill</option><option value="Post-paid Mobile Bill">Post-paid Mobile Bill</option><option value="Piped/Computerised Gas Bill">Piped/Computerised Gas Bill</option><option value="Water Bill">Water Bill</option><option value="PPO">PPO</option>';             
+                      
 					}						
-       	       	if(row[1]=="ADDRESS PROOF 1")
+       	       /*	if(row[1]=="CURRENT ADDRESS")
        	       		{
-       	       	HTML = HTML + '<option value="Electricity Bill">Electricity Bill</option>';
+       	       	HTML = HTML + '<option value="NREGA">NREGA</option>';
        	       		}
-       	     if(row[1]=="ADDRESS PROOF 2")
+        	     if(row[1]=="CORRESPONDENCE ADDRESS")
        	    	 {
        	    	HTML = HTML + '<option value="Utility Bills">Utility Bills</option>';
-       	    	 }
-       	  if(row[1]=="ADDRESS PROOF 1")
+       	    	 } */
+       	  if(row[1]=="CURRENT ADDRESS")
 	       		{
 	       	HTML = HTML + '<option value="Aadhar">Aadhar</option>';
 	       		}
-	     if(row[1]=="ADDRESS PROOF 2")
+/* 	     if(row[1]=="CORRESPONDENCE ADDRESS")
 	    	 {
 	    	HTML = HTML + '<option value="Aadhar">Aadhar</option>';
-	    	 }
-	     if($('.FormPageTab li.active div').text()=="Co-Applicant" && (row[1]=="ID PROOF" || row[1]=="SIGN PROOF" || row[1]== "DOB PROOF"|| row[1]=="ADDRESS PROOF 1" || row[1]== "ADDRESS PROOF 2"))
+	    	 } */
+	     if($('.FormPageTab li.active div').text()=="Co-Applicant" && (row[1]=="ID PROOF" )) //|| row[1]=="SIGN PROOF" || row[1]== "DOB PROOF"
 	     {
 		    	HTML = HTML + '<option value="Affidavit">Affidavit</option>';
 		    	 }
@@ -728,7 +732,7 @@ var rowno = meta.row;
 
 }
 }
-       			 else if(($("#HIDDENID").val()=="BSM"||$("#HIDDENACT").val()=="Y")&&($("#HIDDENCUSTYP").val()=="Non-Individual")&&(row[1]=="ID PROOF" || row[1]=="SIGN PROOF" || row[1]== "DOB PROOF"|| row[1]=="ADDRESS PROOF 1" || row[1]== "ADDRESS PROOF 2"))
+       			 else if(($("#HIDDENID").val()=="BSM"||$("#HIDDENACT").val()=="Y")&&($("#HIDDENCUSTYP").val()=="Non-Individual")&&(row[1]=="ID PROOF" || row[1]=="SIGN PROOF" || row[1]== "DOB PROOF"|| row[1]=="CURRENT ADDRESS" || row[1]== "CORRESPONDENCE ADDRESS"))
        				 {
        				var rowno = meta.row;
        				var HTML =    '<span><select class="Gridmdb-select md-form colorful-select dropdown-primary "  onchange = "NAMEOFDOCONCHNG(this);"id="KYCD_DOCNAME'+rowno+'" name="KYCD_DOCNAME">';
@@ -737,7 +741,7 @@ var rowno = meta.row;
    	       				{
    	       				HTML = HTML + '<option value="TRUST DEED">TRUST DEED</option>';
    	       				}
-   	       			if((row[1]=="ADDRESS PROOF 2")&&($("#HIDDENCONST").val()=="Partnership firms" || $("#HIDDENCONST").val()=="LLP"|| $("#HIDDENCONST").val()=="HUF"|| $("#HIDDENCONST").val()=="Private Ltd"|| $("#HIDDENCONST").val()=="Public Ltd"|| $("#HIDDENCONST").val()=="Proprietorship" || $("#HIDDENCONST").val()=="Society" || $("#HIDDENCONST").val()=="Trustee"))
+   	       			if((row[1]=="CORRESPONDENCE ADDRESS")&&($("#HIDDENCONST").val()=="Partnership firms" || $("#HIDDENCONST").val()=="LLP"|| $("#HIDDENCONST").val()=="HUF"|| $("#HIDDENCONST").val()=="Private Ltd"|| $("#HIDDENCONST").val()=="Public Ltd"|| $("#HIDDENCONST").val()=="Proprietorship" || $("#HIDDENCONST").val()=="Society" || $("#HIDDENCONST").val()=="Trustee"))
    	       				{
    	       				HTML = HTML + '<option value="UTILITY BILL">UTILITY BILL</option>';
    	       				}
@@ -745,7 +749,7 @@ var rowno = meta.row;
    	       				{
    	       				HTML = HTML + '<option value="PAN">PAN</option>';
    	       				}*/
-   	       			if((row[1]=="ID PROOF" || row[1]=="ADDRESS PROOF 1")&&($("#HIDDENCONST").val()=="Partnership firms" || $("#HIDDENCONST").val()=="LLP"|| $("#HIDDENCONST").val()=="HUF"|| $("#HIDDENCONST").val()=="Private Ltd"|| $("#HIDDENCONST").val()=="Public Ltd"|| $("#HIDDENCONST").val()=="Proprietorship" ||$("#HIDDENCONST").val()=="Trust" || $("#HIDDENCONST").val()=="Society" || $("#HIDDENCONST").val()=="Trustee"))
+   	       			if((row[1]=="ID PROOF" || row[1]=="CURRENT ADDRESS")&&($("#HIDDENCONST").val()=="Partnership firms" || $("#HIDDENCONST").val()=="LLP"|| $("#HIDDENCONST").val()=="HUF"|| $("#HIDDENCONST").val()=="Private Ltd"|| $("#HIDDENCONST").val()=="Public Ltd"|| $("#HIDDENCONST").val()=="Proprietorship" ||$("#HIDDENCONST").val()=="Trust" || $("#HIDDENCONST").val()=="Society" || $("#HIDDENCONST").val()=="Trustee"))
    	       				{
    	       				HTML = HTML + '<option value="SHOPS and ESTB ACT CERTIFICATE">SHOPS and ESTB ACT CERTIFICATE</option>';
    	       				}
@@ -753,7 +757,7 @@ var rowno = meta.row;
    	       				{
    	       				HTML = HTML + '<option value="AOA WITH RC">AOA WITH RC</option>';
    	       				}
-   	       			if((row[1]=="ID PROOF" || row[1]=="ADDRESS PROOF 1")&&($("#HIDDENCONST").val()=="Partnership firms" || $("#HIDDENCONST").val()=="LLP"|| $("#HIDDENCONST").val()=="HUF"|| $("#HIDDENCONST").val()=="Private Ltd"|| $("#HIDDENCONST").val()=="Public Ltd"|| $("#HIDDENCONST").val()=="Proprietorship" || $("#HIDDENCONST").val()=="Society" || $("#HIDDENCONST").val()=="Trustee"))
+   	       			if((row[1]=="ID PROOF" || row[1]=="CURRENT ADDRESS")&&($("#HIDDENCONST").val()=="Partnership firms" || $("#HIDDENCONST").val()=="LLP"|| $("#HIDDENCONST").val()=="HUF"|| $("#HIDDENCONST").val()=="Private Ltd"|| $("#HIDDENCONST").val()=="Public Ltd"|| $("#HIDDENCONST").val()=="Proprietorship" || $("#HIDDENCONST").val()=="Society" || $("#HIDDENCONST").val()=="Trustee"))
    	       				{
    	       				HTML = HTML + '<option value="SALES TAX RC">SALES TAX RC</option>';
    	       				}
@@ -761,7 +765,7 @@ var rowno = meta.row;
 		   	       		{
 		   	       		HTML = HTML + '<option value="MOA WITH RC">MOA WITH RC</option>';
 		   	       		}
-   	       			if((row[1]=="ID PROOF" || row[1]=="ADDRESS PROOF 1")&&($("#HIDDENCONST").val()=="Partnership firms" || $("#HIDDENCONST").val()=="Private Ltd"|| $("#HIDDENCONST").val()=="Public Ltd"|| $("#HIDDENCONST").val()=="Proprietorship" || $("#HIDDENCONST").val()=="Society" || $("#HIDDENCONST").val()=="Trustee"))
+   	       			if((row[1]=="ID PROOF" || row[1]=="CURRENT ADDRESS")&&($("#HIDDENCONST").val()=="Partnership firms" || $("#HIDDENCONST").val()=="Private Ltd"|| $("#HIDDENCONST").val()=="Public Ltd"|| $("#HIDDENCONST").val()=="Proprietorship" || $("#HIDDENCONST").val()=="Society" || $("#HIDDENCONST").val()=="Trustee"))
    	       				{
    	       				HTML = HTML + '<option value="PRIMARY CORPORATE GSTIN">PRIMARY CORPORATE GSTIN</option>';
    	       				}
@@ -777,15 +781,15 @@ var rowno = meta.row;
    	       				{
    	       			HTML = HTML + '<option value="FORM 60">FORM 60</option>';
    	       				}
-	   	       		if(row[1]=="ADDRESS PROOF 1")
+	   	       		if(row[1]=="CURRENT ADDRESS")
 		       		{
 	   	       			HTML = HTML + '<option value="Aadhar">Aadhar</option>';
 		       		}
-			     if(row[1]=="ADDRESS PROOF 2")
+			     if(row[1]=="CORRESPONDENCE ADDRESS")
 			    	 {
 			    	HTML = HTML + '<option value="Aadhar">Aadhar</option></select></span>';
 			    	 }
-			     if($('.FormPageTab li.active div').text()=="Co-Applicant" && (row[1]=="ID PROOF" || row[1]=="SIGN PROOF" || row[1]== "DOB PROOF"|| row[1]=="ADDRESS PROOF 1" || row[1]== "ADDRESS PROOF 2"))
+			     if($('.FormPageTab li.active div').text()=="Co-Applicant" && (row[1]=="ID PROOF" || row[1]=="SIGN PROOF" || row[1]== "DOB PROOF"|| row[1]=="CURRENT ADDRESS" || row[1]== "CORRESPONDENCE ADDRESS"))
 			     {
 				    	HTML = HTML + '<option value="Affidavit">Affidavit</option>';
 				    	 }
@@ -796,7 +800,7 @@ var rowno = meta.row;
 						HTML = HTML + '<option value="SALES TAX CERTIFICATE">SALES TAX CERTIFICATE</option>';
 						HTML = HTML + '<option value="PAN">PAN</option>';
 				    	 }
-						 if(($('.FormPageTab li.active div').text()=="Co-Applicant"||$('.FormPageTab li.active div').text()=="Applicant") && (row[1]=="ADDRESS PROOF 1"))
+						 if(($('.FormPageTab li.active div').text()=="Co-Applicant"||$('.FormPageTab li.active div').text()=="Applicant") && (row[1]=="CURRENT ADDRESS"))
 							{
 				    	HTML = HTML + '<option value="SSI NO">SSI NO</option>';
 						HTML = HTML + '<option value="GST CERTIFICATE">GST CERTIFICATE</option>';
@@ -1998,11 +2002,11 @@ var rowno = meta.row;
 	  
 	  
 			var Proof=$($(id).closest('.tbodytr').find('.tbodytrtd')[1]).text()
-		if(Proof=='ADDRESS PROOF 1')
+		if(Proof=='CURRENT ADDRESS')
 		{
 		Proof="ADDRESSPROOF"
 		}
-		else if(Proof=='ADDRESS PROOF 2')
+		else if(Proof=='CORRESPONDENCE ADDRESS')
 		{
 			Proof="ADDRESSPROOF"	
 		}
@@ -2180,7 +2184,7 @@ var rowno = meta.row;
 		$($(Evnt).closest('.tbodytr').find('.tbodytrtd')[10]).find('input[type=checkbox]').prop("checked", false);
 		$($(Evnt).closest('.tbodytr').find('.tbodytrtd')[10]).find('input[type=checkbox]').attr("disabled","disabled");
 		$($(Evnt).closest('.tbodytr').find('.tbodytrtd')[11]).find('button').hide();
-		var op = UI_getdata($('select[id="'+$(Evnt).attr("id")+'"]').val().replace(/ /g,""),$("#PrcsID").val(),$('.admin-panel .col-lg-12 .active').attr('id'),'','',"LSW_GETKYCSPEFYURL")
+		var op = UI_getdata($('select[id="'+$(Evnt).attr("id")+'"]').val().replace(/ /g,""),$("#PrcsID").val(),$('.admin-panel .col-lg-12 .active').attr('id'),$($(Evnt).closest(".tbodytr").find(".tbodytrtd")[1]).text(),'',"LSW_GETKYCSPEFYURL")
 		
 		$(Evnt).closest('td').next().find('input[type=text]').val($(op).find($('select[id="'+$(Evnt).attr("id")+'"]').val().replace(/ /g,"")).text());
 		
@@ -2249,14 +2253,20 @@ var rowno = meta.row;
  
 function GentrateApplicform()
 {
-		var IOP=window.location.origin;
+	var IOP=window.location.origin;
 	var PrcsId=$("#DMY7").val().split("|")[7]
 	var UniqId=$(".FormPageMultiTab li.active").attr('id');
 	var Year=$("#RACD_FINYEAR").val()
 	var Consolid=$("input:radio[name=RACD_TYP]:checked").val()
-
+	var op = UI_getdata($("#PrcsID").val(),"","","","","LSW_SAPPLICATIONFORM");
+    var RPTURL=  $(op).find("RPTURL").text()
     ajaxindicatorstart("Downloading.. Please wait");
 	
+		if($(op).find("FLAG").text()=="Y")
+	  {
+	    var flname = IOP+RPTURL+"&__format=pdf&Param1="+PrcsId+"&__filename=Applicform_"+$(".FormPageMultiTab li.active").text()+".pdf";
+	  }
+ else {
 	  if($("#VERTICAL").val()=="UCV")
 	  {
 		var flname = IOP+LoadFrmXML("RT0113")+"&__format=pdf&Param1="+PrcsId+"&Param2="+UniqId+"&Param3="+Year+"&Param4="+Consolid+"&__filename=Applicform_"+$(".FormPageMultiTab li.active").text()+".pdf";
@@ -2264,6 +2274,7 @@ function GentrateApplicform()
  else if ($("#VERTICAL").val()=="UCV Eco")
 	  {
 		var flname = IOP+LoadFrmXML("RT0112")+"&__format=pdf&Param1="+PrcsId+"&Param2="+UniqId+"&Param3="+Year+"&Param4="+Consolid+"&__filename=Applicform_"+$(".FormPageMultiTab li.active").text()+".pdf";
+	  }
 	  }
 
 	  ajaxindicatorstop();
@@ -2338,14 +2349,14 @@ function UpdtDefrFlg(evnt,toid){
 
 function CheckDocTypeOnAddr(ADDRPROOFID){
 	if($("#HIDDENSAMEADDR").val()=="false"){
-		if($(ADDRPROOFID).closest('td').prev().text() == "ADDRESS PROOF 1" || $(ADDRPROOFID).closest('td').prev().text() == "ADDRESS PROOF 2"){
-			if($(ADDRPROOFID).closest('td').prev().text() == "ADDRESS PROOF 1"){
+		if($(ADDRPROOFID).closest('td').prev().text() == "CURRENT ADDRESS" || $(ADDRPROOFID).closest('td').prev().text() == "CORRESPONDENCE ADDRESS"){
+			if($(ADDRPROOFID).closest('td').prev().text() == "CURRENT ADDRESS"){
 				if($(ADDRPROOFID).closest('tr').prev().find('.ADDRPROOFID').is('input') == true){
 					if((ADDRPROOFID.value == $(ADDRPROOFID).closest('tr').next().find('.ADDRPROOFID').val()))
 					{
 						ADDRPROOFID.value = "";
 						$("#"+ADDRPROOFID.id).material_select();
-						alert("Communication and Permanent Address are different, So Doument Name in Address Proof 1 and Address Proof 2 can't be same");
+						alert("Communication and Permanent Address are different, So Doument Name in CURRENT ADDRESS and CORRESPONDENCE ADDRESS can't be same");
 						return false;
 					}
 				}
@@ -2354,18 +2365,18 @@ function CheckDocTypeOnAddr(ADDRPROOFID){
 					{
 						ADDRPROOFID.value = "";
 						$("#"+ADDRPROOFID.id).material_select();
-						alert("Communication and Permanent Address are different, So Doument Name in Address Proof 1 and Address Proof 2 can't be same");
+						alert("Communication and Permanent Address are different, So Doument Name in CURRENT ADDRESS and CORRESPONDENCE ADDRESS can't be same");
 						return false;
 					}
 				}
 			}
-			else if($(ADDRPROOFID).closest('td').prev().text() == "ADDRESS PROOF 2"){
+			else if($(ADDRPROOFID).closest('td').prev().text() == "CORRESPONDENCE ADDRESS"){
 					if($(ADDRPROOFID).closest('tr').prev().find('.ADDRPROOFID').is('input') == true){
 						if((ADDRPROOFID.value == $(ADDRPROOFID).closest('tr').prev().find('.ADDRPROOFID').val()))
 						{
 							ADDRPROOFID.value = "";
 							$("#"+ADDRPROOFID.id).material_select();
-							alert("Communication and Permanent Address are different, So Doument Name in Address Proof 1 and Address Proof 2 can't be same");
+							alert("Communication and Permanent Address are different, So Doument Name in CURRENT ADDRESS and CORRESPONDENCE ADDRESS can't be same");
 							return false;
 						}
 					}
@@ -2374,7 +2385,7 @@ function CheckDocTypeOnAddr(ADDRPROOFID){
 						{
 							ADDRPROOFID.value = "";
 							$("#"+ADDRPROOFID.id).material_select();
-							alert("Communication and Permanent Address are different, So Doument Name in Address Proof 1 and Address Proof 2 can't be same");
+							alert("Communication and Permanent Address are different, So Doument Name in CURRENT ADDRESS and CORRESPONDENCE ADDRESS can't be same");
 							return false;
 						}
 					}
@@ -2399,8 +2410,8 @@ function CheckDocTypeOnAddr(ADDRPROOFID){
 			return false;
 			}
 		   
-		
-		var op = UI_getdata($("#PrcsID").val(),'PLVer',$("#ActvID").val(),$("#REMARKF").val(),$("#LogUsr").val(),"LSW_SPushDatatoTCRTBL");
+		var Remrk=$("#REMARKF").val().replace('\n','!@#')
+		var op = UI_getdata($("#PrcsID").val(),'PLVer',$("#ActvID").val(),Remrk,$("#LogUsr").val(),"LSW_SPushDatatoTCRTBL");
 		if($(op).find("RESULT").text() == "Success")
 		{
 			

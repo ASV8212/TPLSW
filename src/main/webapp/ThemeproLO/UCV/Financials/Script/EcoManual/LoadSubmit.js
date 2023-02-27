@@ -8,6 +8,8 @@ $(document).ready(function() {
 	/*   GetBorowClass();
       GetSector(); */
     FormDataFromDB("LSW_TECOMANUAL", "ECOM_", "ECOMDBfields", "");
+	$("#ECOM_MAXFUNSCH").val("500000")
+	LIMITELIGIBLE();
     //LoadMultiData("",$("#PrcsID").val(),"","BankDetail1","APDGDBfields","LSW_SGETPDUPLDDATA");
     /**Grid Trigger Start **/
     //$("#BTNBUSNSDTL").click();

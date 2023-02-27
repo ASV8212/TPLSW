@@ -158,7 +158,7 @@
            </div>
 		   <div class="form-row  MSMEDETAILS">
            
-            <div class="col-md-6">
+            <div class="col-md-6 AUTOTRAC">
                  
                   <div class="md-form">
                   	<input type="text" id="LRDT_REFFROM"  name="LRDT_REFFROM" maxlength="30"  class="form-control NoSpecialChar LRDTDBfields">
@@ -166,7 +166,7 @@
              </div>
                 </div>
 				
-				 <div class="col-md-6">
+				 <div class="col-md-6 AUTOTRAC">
                  
                   <div class="md-form">
                   	<input type="text" id="LRDT_YEARSREL"  name="LRDT_YEARSREL"  maxlength="2"   class="form-control  IsNumberFields  LRDTDBfields">
@@ -177,9 +177,9 @@
 		   
 		     <div class="form-row MSMEDETAILS">
            
-            <div class="col-md-6">
+            <div class="col-md-6 AUTOTRAC">
                  
-                  <div class="md-form">
+                  <div class="md-form ">
                   	<input type="text" id="LRDT_TURNOVERPER" maxlength="5" name="LRDT_TURNOVERPER"    class="form-control IsPercentageSPL IsNumberFields LRDTDBfields">
                     <label for="LRDT_TURNOVERPER" class=""> % Turnover in last one year <span class="MndtryAstr"></span></label>
              </div>

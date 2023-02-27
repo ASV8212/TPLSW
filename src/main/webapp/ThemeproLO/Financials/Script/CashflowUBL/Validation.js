@@ -239,7 +239,7 @@ $("#OUBL_EMILAKH").next().addClass('active');
 	$(document).on("blur", ".Cashflow", function() {
 		var amt=0,val1=0,val2=0,val3=0,val4=0,val5=0,val6=0,val7=0,val8=0,val9=0,val10=0,val11=0,val12=0;
 	  
-	 val1=$($($(this).closest(".tbody").find(".tbodytr")[0]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".Cashflow").val().replace(/,/g,'');
+	val1=$($($(this).closest(".tbody").find(".tbodytr")[0]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".Cashflow").val().replace(/,/g,'');
 	val2=$($($(this).closest(".tbody").find(".tbodytr")[1]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".Cashflow").val().replace(/,/g,'');
 	val3=$($($(this).closest(".tbody").find(".tbodytr")[2]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".Cashflow").val().replace(/,/g,'');
 	val4=$($($(this).closest(".tbody").find(".tbodytr")[3]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".Cashflow").val().replace(/,/g,'');
@@ -394,8 +394,9 @@ $("#OUBL_EMILAKH").next().addClass('active');
 		var Gross=UI_getdata("TYPEBUSINESS1",TyPro,"","","","LSW_SGETFINANCIALVAL");
 		var Total=$(Gross).find("MARGIN").text();
 		Total=Total.replace(/%/g,'');
-		var AmtTotal=0;
-		if(Total==15)
+		var AmtTotal=Chkamt*(Total/100);
+		
+		/* if(Total==15)
 		{
 			AmtTotal=Chkamt*15/100
 		}
@@ -427,20 +428,27 @@ $("#OUBL_EMILAKH").next().addClass('active');
 		else
 		{
 			AmtTotal=Total
-		}
+		} */
 		
-		var chk=UI_getdata($("#PrcsID").val(),$("#FLOW_SCHEMEID").val(),"","","","LSW_SGETLOANDETAILS");
-		var fnchk=($(chk).find('PRODUCT').text());
+		//var chk=UI_getdata($("#PrcsID").val(),$("#FLOW_SCHEMEID").val(),"","","","LSW_SGETLOANDETAILS");
+		var fnchk=$("#FLOW_PRODUCT").val()
 		if(fnchk=='T201')
 		{
-		AmtTotal=CURINRCommaSep(parseFloat(AmtTotal).toFixed(2));
-		$("#FLOW_GROSSPRO").val(AmtTotal);
+		//AmtTotal=CURINRCommaSep(parseFloat(AmtTotal).toFixed(2));
+		if(isNaN(AmtTotal))
+		{
+			AmtTotal=0;
+		}
+		$("#FLOW_GROSSPRO").val(CURINRCommaSep(parseFloat(AmtTotal).toFixed(2)));
 		$("#FLOW_GROSSPRO").next().addClass('active'); 
 		
 		var I7=$("#FLOW_GROSSPRO").val().replace(/,/g,'');
 		var ResultI7=parseFloat(I7)/12;
-		ResultI7=CURINRCommaSep(parseFloat(ResultI7).toFixed(2));
-		$("#FLOW_GROSSPROMON").val(ResultI7);
+		if(isNaN(ResultI7))
+		{
+			ResultI7=0;
+		}
+		$("#FLOW_GROSSPROMON").val(CURINRCommaSep(parseFloat(ResultI7).toFixed(2)));
 		$("#FLOW_GROSSPROMON").next().addClass('active'); 
 		Chkprofit();
 		}
@@ -558,7 +566,7 @@ function EMIOBILIFLOW()
 		{
 		Tenur=0;
 		}
-		var result=UI_getdata(ROI,Tenur,LnAmt,"","","LSW_SGETEMI_DATA");
+		var result=UI_getdata(ROI,Tenur,LnAmt,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 		var EMI=$(result).find("EMI").text();
 	
 		if(isNaN(EMI))
@@ -599,11 +607,6 @@ function EMIOBILIFLOW()
 		if(isNaN(finalmin))
 		{
 		finalmin=0;
-		}
-		if(finalmin==Infinity)
-		{
-			finalmin=0;
-			
 		}
 		//finladjust=CURINRCommaSep(parseFloat(finladjust).toFixed(2));
 		$("#FLOW_LOANEGBLAKH").val(CURINRCommaSep(parseFloat(finalmin).toFixed(2)));
@@ -660,8 +663,9 @@ function Chkprofit()
 	{
 	OTHERFXCST=0;
 	}
-	var Plus=parseFloat(INine)+parseFloat(ITen)+parseFloat(OTHERFXCST)
-	var Result=parseFloat(IEight)-parseFloat(Plus);
+	//var Plus=parseFloat(INine)-parseFloat(ITen)+parseFloat(OTHERFXCST)
+	//var Result=parseFloat(IEight)-parseFloat(Plus);
+	var Result=parseFloat(IEight)-parseFloat(INine)-parseFloat(ITen)-parseFloat(OTHERFXCST)
 	
 	if(isNaN(Result))
 	{
@@ -672,13 +676,20 @@ function Chkprofit()
 	$("#FLOW_NETPROFIT").next().addClass('active');
 	
 	//DSR 60% UBL
-	
+	var OWNHOUSE=$("input[name='FLOW_OWNHOUSE']:checked"). val()
 	var IEleven=$("#FLOW_NETPROFIT").val().replace(/,/g,'');
 	if(IEleven=='')
 	{
 	IEleven=0;
 	}
+	if(OWNHOUSE=="Yes")
+	{
+	var Eleresult=parseFloat(IEleven)*70/100;
+	}
+	else
+	{
 	var Eleresult=parseFloat(IEleven)*60/100;
+	}
 	if(isNaN(Eleresult))
 	{
 	  Eleresult=0;
@@ -686,6 +697,17 @@ function Chkprofit()
 	//Eleresult=CURINRCommaSep(parseFloat(Eleresult).toFixed(2));	
 	$("#FLOW_DSR").val(Eleresult);
 	$("#FLOW_DSR").next().addClass('active');
+//Existing EMI Obligation
+	var EXISTEMIXML=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETABBDETAILS");
+	var EXISTOBLI=($(EXISTEMIXML).find ('TOTEXISTOBLI').text());
+	var EMICLOSIXMONTH=($(EXISTEMIXML).find ('EMICLOSIXMONTH').text());
+	var EXISTEMI=parseFloat(EXISTOBLI)-parseFloat(EMICLOSIXMONTH)
+	if(isNaN(EXISTEMI))
+	{
+	  EXISTEMI=0;
+	}
+	$("#FLOW_EXISTEMIOBLI").val(EXISTEMI.toFixed(2));
+	$("#FLOW_EXISTEMIOBLI").next().addClass('active');
 	Existemi();
 }
 
@@ -708,14 +730,36 @@ function Existemi()
 	Res=0;
 	}	
 	
-	Res=CURINRCommaSep(parseFloat(Res).toFixed(2));	
-	$("#FLOW_AVALFUND").val(Res);
+	//Res=CURINRCommaSep(parseFloat(Res).toFixed(2));	
+	$("#FLOW_AVALFUND").val(CURINRCommaSep(parseFloat(Res).toFixed(2)));
 	$("#FLOW_AVALFUND").next().addClass('active');
+	
+//Average Credit Summation
+	var AVGCREDSUMXML=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETABBDETAILS");
+	var REVCREDSUM=($(AVGCREDSUMXML).find ('REVISEDCREDITSUM').text());
+	var AVGCREDSUM=parseFloat(REVCREDSUM)/6
+	if(isNaN(AVGCREDSUM))
+	{
+	AVGCREDSUM=0;
+	}
+	$("#FLOW_AVGCREDSUM").val(parseFloat(AVGCREDSUM).toFixed(2));
+	$("#FLOW_AVGCREDSUM").next().addClass('active');
+	
+//Max EMI for Proposed Loan
+	var AVGCREDSUM=$("#FLOW_AVGCREDSUM").val()
+	var TOTEXISTOBLI=($(AVGCREDSUMXML).find ('TOTEXISTOBLI').text());
+	var EMIPROLON=(parseFloat(AVGCREDSUM)-(parseFloat(TOTEXISTOBLI)*2))/2
+	if(isNaN(EMIPROLON))
+	{
+	EMIPROLON=0;
+	}
+	$("#FLOW_EMIPROPLON").val(parseFloat(EMIPROLON).toFixed(2));
+	$("#FLOW_EMIPROPLON").next().addClass('active');
 	
 	//90% ABB
 	
-	var check1=UI_getdata($("#PrcsID").val(),$("#FLOW_SCHEMEID").val(),"","","","LSW_SGETLOANDETAILS");
-	var pro3=($(check1).find('PRODUCT').text());	
+	//var check1=UI_getdata($("#PrcsID").val(),$("#FLOW_SCHEMEID").val(),"","","","LSW_SGETLOANDETAILS");
+	var pro3=$("#FLOW_PRODUCT").val()	
 	var check=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETABBDETAILS");
 	var pro=($(check).find ('FINALABB').text());
 	var LnAt=0;
@@ -806,7 +850,7 @@ function Existemi()
 	{
 	Tenur=0;
 	}
-	var result=UI_getdata(ROI,Tenur,LnAmt,"","","LSW_SGETEMI_DATA");
+	var result=UI_getdata(ROI,Tenur,LnAmt,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 	var EMI=$(result).find("EMI").text();
 
 	if(isNaN(EMI))
@@ -821,6 +865,10 @@ function Existemi()
 	var ad=$("#FLOW_EMITRACK").val().replace(/,/g,'');
 	var ad1=$("#FLOW_FUNDEMI").val().replace(/,/g,'');
 	var ad2=$("#FLOW_EMIPERLAKH").val().replace(/,/g,'');
+	var EMIPROPLON=$("#FLOW_EMIPROPLON").val().replace(/,/g,'');
+	var EXISTEMI=$("#FLOW_EXISTEMIOBLI").val().replace(/,/g,'');
+	var EMIPerLakh=$("#FLOW_EMIPERLAKH").val().replace(/,/g,'');
+	var AVALFUND=$("#FLOW_AVALFUND").val().replace(/,/g,'');
 	if(ad=='')
 	{
 	ad=0;
@@ -833,7 +881,32 @@ function Existemi()
 	{
 	ad2=0;
 	}	
+	if($("#FLOW_PRODUCT").val()=="T201")
+	{
+		var CALA1=(Math.min(parseFloat(EMIPROPLON),parseFloat(AVALFUND))/parseFloat(EMIPerLakh))*100000
+		var CALA2=(parseFloat(AVALFUND)/parseFloat(EMIPerLakh))*100000
+		var CALA3=Math.min(CALA1, 500000)
+		var CALA4= Math.min(CALA2,300000)
+		if(isNaN(CALA1))
+		{
+		CALA1=0;
+		}
+		if(isNaN(CALA2))
+		{
+		CALA2=0;
+		}
+		if(CALA1 > 300000) 
+		{
+		var finladjust=CALA3
+		} 
+		else 
+		{
+		var finladjust=CALA4
+		}
+	}
 	
+	else
+	{
 	var firstmin=parseFloat(ad1)/parseFloat(ad2)*100000;
 	if(ad<8400)
 	{	
@@ -843,14 +916,15 @@ function Existemi()
 	{
 		var finladjust=Math.min((firstmin),500000);
 	}
-	
+	}
 		
 	if(isNaN(finladjust))
 	{
 	finladjust=0;
 	}
-	finladjust=CURINRCommaSep(parseFloat(finladjust).toFixed(2));
-	$("#FLOW_LOANEGBLAKH").val(finladjust);
+	//finladjust=CURINRCommaSep(parseFloat(finladjust).toFixed(2));
+	finladjust=Math.round(finladjust/1000) * 1000
+	$("#FLOW_LOANEGBLAKH").val(CURINRCommaSep(parseFloat(finladjust).toFixed(2)));
 	$("#FLOW_LOANEGBLAKH").next().addClass('active'); 
 
 

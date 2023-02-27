@@ -44,7 +44,8 @@ function GridControlDetailSANCCONFR (popTableModPageGrid1,TableID,dtData,dtcolum
 			   },
 			 { targets: 2, "width":"25%", "render": function ( data, type, row, meta ) {
 				var rowno = meta.row;
-				var HTML =    '<span><select class="Gridmdb-select md-form colorful-select dropdown-primary"  onchange = "OnChngDrpDwn(this)" id="IPRG_TYPCHNG'+rowno+'" name="IPRG_TYPCHNG">';
+				
+				var HTML =    '<span><select class="Gridmdb-select md-form colorful-select dropdown-primary" disabled onchange = "OnChngDrpDwn(this)" id="IPRG_TYPCHNG'+rowno+'" name="IPRG_TYPCHNG">';
 				HTML = HTML + '<option value="">Select</option>';
 				if(row[0]=="IMP001")
 				{
@@ -70,7 +71,14 @@ function GridControlDetailSANCCONFR (popTableModPageGrid1,TableID,dtData,dtcolum
        	       			var htmldata = $(HTML);
        	       			
        	       			$(htmldata).find("option[value='"+data+ "']").attr("selected","selected");
-
+				if(baserole == "Sales" && (row[0]=="IMP001" || row[0]=="IMP002" || row[0]=="IMP003"|| row[0]=="IMP006"))
+				{
+					$(htmldata).find("select").removeAttr("disabled");
+				}
+				else if(baserole == "Credit" && (row[0]=="IMP004"))
+				{
+					$(htmldata).find("select").removeAttr("disabled");
+				}
        	  	 return htmldata[0].outerHTML;
 			 }
 			 },
@@ -80,7 +88,7 @@ function GridControlDetailSANCCONFR (popTableModPageGrid1,TableID,dtData,dtcolum
 				   {
 					   HTML = HTML+'<span ><div class = "IBtxt2_G">'+data+'</div></span>';
 				   }
-				   else if(data == "TO DEVIATION")
+				   else if(data == "CLICK HERE TO RAISE DEVIATION")
 				   {
 					   HTML = HTML+'<span ><div class = "IBtxt2_O InitDeviation">'+data+'</div></span>';
 				   }
@@ -117,7 +125,7 @@ function GridControlDetailSANCCONFR (popTableModPageGrid1,TableID,dtData,dtcolum
 					HTML = HTML+'<input type="text" id="IPRG_DOWNSTRM' + rowno + '" style="display:none;" name="IPRG_DOWNSTRM" maxlength="500" class="form-control form-control   ">';
 				}
 				else{
-				HTML = HTML+'<input type="text" id="IPRG_DOWNSTRM' + rowno + '"  name="IPRG_DOWNSTRM" maxlength="500" class="form-control form-control   ">';
+				HTML = HTML+'<input type="text" id="IPRG_DOWNSTRM' + rowno + '"  name="IPRG_DOWNSTRM" maxlength="500" class="form-control form-control IsCURCommaFields NoSpecialChar   ">';
 				}
                     HTML = HTML + '</span>';
 
@@ -225,7 +233,7 @@ function OnChngDrpDwn(Evnt)
   
 }
 
-function InitRCU()
+/* function InitRCU()
 {
 	var op = UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETRCUSTATUS");
 	if($(op).find("RESULT_FLG").text() == "SUCCESS")
@@ -253,4 +261,4 @@ function InitRCU()
 		alert($(op).find("RESULT_MSG").text());
 		return false;
 	}
-}
+} */

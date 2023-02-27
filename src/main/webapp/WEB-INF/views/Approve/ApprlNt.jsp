@@ -820,7 +820,7 @@ editData.setHistVar(HistVar); %>
                              </div>
                         </div>
                         <div class="form-row">
-                            <div class="col">
+                            <div class="col" style="overflow-x: auto;">
                                  <input type="button" data-button="GridButton" data-value="LoansTable|LSW_SAPPRLONSGRDDATA|PrcsID|ALCD_CUSID||8,9|APPRLOANGRID" style="display:none" class="DashTrg ALCDDBfields LoansTable MultiGridTrg" id="BTNLOANGRD" name="BTNLOANGRD" />
                                  <table cellpadding="0"  cellspacing="0" border="0" style="width: 80%" class="display ALCDDBfields DataGrid" name="LoansTable" id="LoansTable">
                                  </table>
@@ -1088,6 +1088,9 @@ editData.setHistVar(HistVar); %>
 			</div>
             </div>
 	    </div>
+		
+		
+		
                      </br>
                      <div class="form-row">
                         <div class="col d-flex justify-content-center">
@@ -1487,6 +1490,73 @@ editData.setHistVar(HistVar); %>
             </div>
          </div>
          <!-- Sanction Condition End -->
+		 
+		 
+		  <!-- Justification Start -->
+         <div class="card">
+            <!-- Card header -->
+            <div class="card-header Btxt7" role="tab" id="heading1">
+               <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse" data-load="" data-multidata="" data-aria="LSW_TAPJLJUSTIFY|APJL" data-parent="#accordionEx" href="#collapseThirteen13"
+                  aria-expanded="false" aria-controls="collapse1">
+               Justification of the Limits Proposed<i class="fa fa-plus-circle rotate-icon"></i>
+               </a>
+            </div>
+            <div id="collapseThirteen13" class="collapse" role="tabpanel" aria-labelledby="headingThirteen13"
+               data-parent="#accordionEx">
+               <div class="card-body px-lg-5 pt-0 " >
+                  </br>
+                  <form>
+                     <input type="text" id="APJL_PRCSID" hidden="hidden" name="APJL_PRCSID" class="form-control APJLDBfields">
+                     <input type="text" id="APJL_ACTIVITYID" hidden="hidden" name="APJL_ACTIVITYID" class="form-control APJLDBfields">
+                     <input type="text" id="APJL_DTCREATED" hidden="hidden" name="APJL_DTCREATED" class="form-control APJLDBfields">
+                     <input type="text" id="APJL_CREATEDBY" hidden="hidden" name="APJL_CREATEDBY" class="form-control APJLDBfields">
+                     <input type="text" id="APJL_DTMODIFIED" hidden="hidden" name="APJL_DTMODIFIED" class="form-control APJLDBfields">
+                     <input type="text" id="APJL_MODIFIEDBY" hidden="hidden"  name="APJL_MODIFIEDBY" class="form-control APJLDBfields">
+                     <div class="form-row" style="display:none">
+                        <div class="col">
+                           <div class="md-form">
+                              <textarea id="APJL_COLLCMNT" name="APJL_COLLCMNT" class="form-control APJLDBfields btxt24" maxlength="4000"  style="height: 130px;width:1150px;"></textarea>
+                           </div>
+                        </div>
+                     </div>
+					 
+					  <div class="adjoined-bottom" style="display:none">
+		     <div class="grid-container">
+			<div class="grid-width-100">
+		
+				<textarea style="" id="AAPR_CIBILJUSTI"	placeholder="Type the content here!"  class="Edtr Text TEXTEDITDSBL" name="AAPR_CIBILJUSTI" data-maxlen="10000" maxlength="10000">
+				 <%= editData.getTxt9() %>  
+                </textarea>
+
+				<div class="invalid-tooltip"></div>
+			</div>
+            </div>
+	    </div>
+		
+				 <div class="adjoined-bottom">
+		     <div class="grid-container">
+			<div class="grid-width-100">
+		
+				<textarea style="" id="AAPR_JUSTIFY"	placeholder="Type the content here!"  class="Edtr Text TEXTEDITDSBL" name="AAPR_JUSTIFY" data-maxlen="10000" maxlength="10000">
+				 <%= editData.getTxt10() %>  
+                </textarea>
+
+				<div class="invalid-tooltip"></div>
+			</div>
+            </div>
+	    </div>
+                     </br>
+                     <div class="form-row">
+                        <div class="col d-flex justify-content-center">
+                           <button type="button" id="Save13" data-aria="LSW_TAPJLJUSTIFY|APJL" data-form="Justification" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
+                           <button type="button" data-aria="LSW_TAPJLJUSTIFY|APJL" data-form="Justification" data-card="12" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+         <!-- Justification End -->
          
               <!-- APPROV NOTEBUTTON Start -->
          <div class="card">
@@ -1718,7 +1788,8 @@ initSample("AAPR_COLLATERAL");
 initSample("AAPR_ENDUSESUMMARY");
 initSample("AAPR_STRANGTHSUMMA");
 initSample("AAPR_REFCHECKSUMM");
-
+initSample("AAPR_CIBILJUSTI");
+initSample("AAPR_JUSTIFY");
 </script>	
 <% editData.ClearMtd(); %>   
 </form>

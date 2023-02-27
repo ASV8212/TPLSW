@@ -44,10 +44,15 @@ function CROSSCELLI()
 	   	// $("#APCM_CROSSELL1YR").val('');
 		// $("#APCM_CROSSELL1YR").next().removeClass('active');
 		 $('.CRSELLI').hide();
+		 $('.CRSELLIMODE').hide();
+		 $('.CROSSONEOnlineMode').hide();
+		 $('.CROSSONECHK').hide();
+		 $('.CROSSOFFL').hide();
 		}
 	else
         { 
 		$('.CRSELLI').show();
+		$('.CRSELLIMODE').hide();
         }
 } 
 
@@ -60,12 +65,18 @@ function CROSSCELLIIAPPLY()
 	   	// $("#APCM_CROSSELL2YR").val('');
 		 //$("#APCM_CROSSELL2YR").next().removeClass('active');
 		 $('.CRSELLII').hide();
+		 $('.CRSELLIIMODE').hide();
+		 $('.CROSSTWOOnlineMode').hide();
+		 $('.CROSSTWOCHK').hide();
+		 $('.CROSSTWOOFFL').hide();
 		}
 	else
         { 
 		$('.CRSELLII').show();
+		$('.CRSELLIIMODE').hide();
         }
 } 
+
 function CHECKLOANTYPE()
 {
 	var PrcsID=$("#PrcsID").val()	
@@ -80,7 +91,6 @@ function CHECKLOANTYPE()
 		$('.DECT').show();
 	}
 }
-
 /*function PROPERTYINS()
 {
 	var html = $(event.target).closest('.DYNROW')
@@ -232,7 +242,7 @@ function GetBTAmt()
 function getPendAmt()
 {
   var PrcsId=$("#PrcsID").val()  
-  var xml=UI_getdata(PrcsId,$("#APCM_LOANID").val(),"","","","LSW_SGETPANDAMT")
+  var xml=UI_getdata(PrcsId,"","","","","LSW_SGETPANDAMT")
   if($(xml).find('PENDINGAMT').text()==0)
 	  {
 	//  $('input[name=APCM_PFCOLLECTED]').attr('disabled',true);
@@ -469,8 +479,6 @@ function CheckADMINFEECHK()
 
 
 
-
-
 function CheckADMINFEE()
 {
    var ADMINFEE=$("input[name='APCM_ARECVAMTBY']:checked"). val();
@@ -520,19 +528,18 @@ function CheckPENDINGCHK()
 	var ADMINFEE=$("input[name='APCM_PFCOLLECTED']:checked"). val();
 	   if(ADMINFEE=="Deductible")
 		   {
-			$('.PEFEE').hide()
-			
+		   $('.PEFEE').hide()
 			$('.PFCHK').hide();
-			$('.PFOFFL').hide();			
+			$('.PFOFFL').hide();
 			$('.PFOnlineMode').hide();	
 			$('.PFCHKCHAGE').removeClass("APCMMndtry");
 		    $('.PFOnlineModeFld').removeClass("APCMMndtry");
 		    $('.PFRedioMNDRY').removeClass("APCMMndtry");
 		    $('input[name="APCM_PFMODE"]').prop('checked', false);
 			$('.OnlineModeFld').val('')
-			$('.OnlineModeFld').next().removeClass('active')
-			$('.OnlineModeFld').material_select("destroy");
-			$('.OnlineModeFld').material_select();
+                        $('.OnlineModeFld').next().removeClass('active')
+                        $('.OnlineModeFld').material_select("destroy");
+                        $('.OnlineModeFld').material_select();
 		   
 	       }
 	   else if(ADMINFEE=="Collectible")
@@ -545,15 +552,62 @@ function CheckPENDINGCHK()
 
 function CheckCROSSFEECHK()
 {
-	
-	var CROSSFEE=$("input[name='APCM_CROSSSELL1']:checked"). val();
-	
-	if(CROSSFEE=="Collectible")
-	   {
-		   $('.CROSSELL1').show()
+         var CROSSFEE=$("input[name='APCM_CROSSSELL1']:checked"). val();
+        if(CROSSFEE=="Deductible")
+		   {
+		   $('.CRSELLIMODE').hide();
+			$('.CROSSOFFL').hide();
+			$('.CROSSONEOnlineMode').hide();
+            $('.CROSSONECHK').hide();
+           	$('.CRONCHKCHAGE').removeClass("APCMMndtry");			
+		    $('input[name="APCM_CROSSELMODE"]').prop('checked', false);
 		   
-		  //$('.ADRedioMNDRY').addClass("APCMMndtry");		   
+	       }
+	   else if(CROSSFEE=="Collectible")
+	   {
+		   $('.CRSELLIMODE').show()
+		  
+		   
 	   }
+}
+function CheckCROSSIIFEECHK()
+{
+        var CROSSIIFEE=$("input[name='APCM_CROSSSELL2']:checked"). val();
+        
+         if(CROSSIIFEE=="Deductible")
+           {
+			   
+			    $('.CRSELLIIMODE').hide();
+			    $('.CROSSTWOOFFL').hide();
+			    $('.CROSSTWOOnlineMode').hide();
+                $('.CROSSTWOCHK').hide();			
+		        $('input[name="APCM_CROSSELTWMODE"]').prop('checked', false);                         
+           }
+           else if(CROSSIIFEE=="Collectible")
+           {
+                    $('.CRSELLIIMODE').show()
+					
+           }
+}
+
+function CheckPROPINSFEECHK()
+{
+	var PROPINSFEE=$("input[name='APRC_PROPERTYINS']:checked"). val();
+        
+         if(PROPINSFEE=="Deductible")
+           {
+			   
+			    $('.PROPINSMODE').hide();
+			    $('.PROPOFFL').hide();
+			    $('.PROTYMODE').hide();
+                $('.PROPCHK').hide();			
+		        $('input[name="APRC_PROPERTYINSMODE"]').prop('checked', false);                         
+           }
+           else if(PROPINSFEE=="Collectible")
+           {
+                    $('.PROPINSMODE').show()
+					
+           }
 }
 
 
@@ -592,6 +646,7 @@ function CheckPENDINGFEE()
 	{
 		
 		$('.PFOFFL').show();
+		$('.PFOFBNK').show();
 		$('.PFCHK').hide();
 		$('.PFOnlineMode').hide();	
 		$('.PFCHKOFF').addClass("APCMMndtry");
@@ -614,167 +669,6 @@ function CheckPENDINGFEE()
 	   }
 
 
-}
-
-function CheckCROSSONE()
-{
-	var ADMINFEE=$("input[name='APCM_CROSSSELL1']:checked"). val();
-   if(ADMINFEE=="Collectible")
-	   {
-	    var Mode=$("input[name='APCM_CROSSELMODE']:checked"). val()
-	      
-	   if(Mode=="Online")
-		{
-		$('.PFOFFL').hide();
-		$('.PFCHK').hide();
-		
-		$('.CROSSONECHK').hide();
-		
-		$('.CROSSOFFL').hide();
-		$('.CROSSONEOnlineMode').show();
-		$('.CRONCHKCHAGE').removeClass("APCMMndtry");			
-		$('.CSONCHKOFF').removeClass("APCMMndtry");
-/* 		$('.PFCHKCHAGE').removeClass("APCMMndtry");
-        $('.PFOnlineModeFld').addClass("APCMMndtry");
-		$('.PFCHKOFF').removeClass("APCMMndtry"); */
-		}
-		else if(Mode=="Cheque" || Mode=="DD")
-		{
-			$('.CROSSONEOnlineMode').hide();
-			
-		$('.CROSSOFFL').hide();
-			$('.PFOFFL').hide();
-		$('.CROSSONECHK').show();
-	    //$(".CDD").next().removeClass('active');
-		$('.PFOnlineMode').hide();
-		$('.CRONCHKCHAGE').addClass("APCMMndtry");
-		$('.CSONCHKOFF').removeClass("APCMMndtry");
-	/* 	$('.PFCHKCHAGE').addClass("APCMMndtry");
-		$('.PFOnlineModeFld').removeClass("APCMMndtry");
-		$('.PFCHKOFF').removeClass("APCMMndtry");  */
-        }
-		else if(Mode=="Offline")
-	{
-		
-		$('.CROSSOFFL').show();
-		$('.CROSSONEOnlineMode').hide();
-		$('.CROSSONECHK').hide();
-		$('.PFCHK').hide();
-		$('.PFOnlineMode').hide();	
-		$('.CRONCHKCHAGE').removeClass("APCMMndtry");
-		$('.CSONCHKOFF').addClass("APCMMndtry");
-	/*  $('.PFCHKOFF').addClass("APCMMndtry");
-		$('.PFCHKCHAGE').removeClass("APCMMndtry");
-		$('.PFOnlineModeFld').removeClass("APCMMndtry");  */
-	}
-}
-}
-function CheckCROSSTWO()
-{
-	var ADMINFEE=$("input[name='APCM_CROSSSELL2']:checked"). val();
-   if(ADMINFEE=="Collectible")
-	   {
-	    var Mode=$("input[name='APCM_CROSSELTWMODE']:checked"). val()
-	      
-	   if(Mode=="Online")
-		{
-		$('.PFOFFL').hide();
-		$('.PFCHK').hide();		
-		$('.CROSSTWOCHK').hide();		
-		$('.CROSSTWOOFFL').hide();
-		$('.CROSSTWOOnlineMode').show();	
-		$('.CRTWCHKCHAGE').removeClass("APCMMndtry");			
-		$('.CRTWCHKOFF').removeClass("APCMMndtry");		
-/* 		$('.CRONCHKCHAGE').removeClass("APCMMndtry");		
-        $('.PFOnlineModeFld').addClass("APCMMndtry");
-		$('.PFCHKOFF').removeClass("APCMMndtry"); */
-		//$('.PFCHKCHAGE').removeClass("APCMMndtry");
-		}
-		else if(Mode=="Cheque" || Mode=="DD")
-		{
-		$('.CROSSTWOOnlineMode').hide();			
-		$('.CROSSTWOOFFL').hide();
-		$('.PFOFFL').hide();
-		$('.CROSSTWOCHK').show();
-	    //$(".CDD").next().removeClass('active');
-		$('.PFOnlineMode').hide();	
-		$('.CRTWCHKCHAGE').addClass("APCMMndtry");
-		$('.CRTWCHKOFF').removeClass("APCMMndtry");		
-/* 		$('.CRONCHKCHAGE').addClass("APCMMndtry");		
-		$('.PFOnlineModeFld').removeClass("APCMMndtry");
-		$('.PFCHKOFF').removeClass("APCMMndtry"); */
-		//$('.PFCHKCHAGE').addClass("APCMMndtry");
-        }
-		else if(Mode=="Offline")
-	{
-		
-		$('.CROSSTWOOFFL').show();
-		$('.CROSSTWOOnlineMode').hide();
-		$('.CROSSTWOCHK').hide();
-		$('.PFCHK').hide();
-		$('.PFOnlineMode').hide();	
-		$('.CRTWCHKCHAGE').removeClass("APCMMndtry");
-		$('.CRTWCHKOFF').addClass("APCMMndtry");
-/* 		$('.PFCHKOFF').addClass("APCMMndtry");
-		$('.CRONCHKCHAGE').removeClass("APCMMndtry");
-		$('.PFOnlineModeFld').removeClass("APCMMndtry"); */
-		//$('.PFCHKCHAGE').removeClass("APCMMndtry");
-	}
-}
-}
-
-function CHECKPROP()
-{
-	var ADMINFEE=$("input[name='APRC_PROPERTYINS']:checked"). val();
-   if(ADMINFEE=="Collectible")
-	   {
-	    var Mode=$("input[name='APRC_PROPERTYINSMODE']:checked"). val()
-	      
-	   if(Mode=="Online")
-		{
-		$('.PFOFFL').hide();
-		$('.PFCHK').hide();		
-		$('.PROPCHK').hide();		
-		$('.PROPOFFL').hide();
-		$('.PROTYMODE').show();	
-		$('.CRTWCHKCHAGE').removeClass("APCMMndtry");			
-		$('.CRTWCHKOFF').removeClass("APCMMndtry");		
-/* 		$('.CRONCHKCHAGE').removeClass("APCMMndtry");		
-        $('.PFOnlineModeFld').addClass("APCMMndtry");
-		$('.PFCHKOFF').removeClass("APCMMndtry"); */
-		//$('.PFCHKCHAGE').removeClass("APCMMndtry");
-		}
-		else if(Mode=="Cheque" || Mode=="DD")
-		{
-		$('.PROTYMODE').hide();			
-		$('.PROPOFFL').hide();
-		$('.PFOFFL').hide();
-		$('.PROPCHK').show();
-	    //$(".CDD").next().removeClass('active');
-		$('.PFOnlineMode').hide();	
-		$('.CRTWCHKCHAGE').addClass("APCMMndtry");
-		$('.CRTWCHKOFF').removeClass("APCMMndtry");		
-/* 		$('.CRONCHKCHAGE').addClass("APCMMndtry");		
-		$('.PFOnlineModeFld').removeClass("APCMMndtry");
-		$('.PFCHKOFF').removeClass("APCMMndtry"); */
-		//$('.PFCHKCHAGE').addClass("APCMMndtry");
-        }
-		else if(Mode=="Offline")
-	{
-		
-		$('.PROPOFFL').show();
-		$('.PROTYMODE').hide();
-		$('.PROPCHK').hide();
-		$('.PFCHK').hide();
-		$('.PFOnlineMode').hide();	
-		$('.CRTWCHKCHAGE').removeClass("APCMMndtry");
-		$('.CRTWCHKOFF').addClass("APCMMndtry");
-/* 		$('.PFCHKOFF').addClass("APCMMndtry");
-		$('.CRONCHKCHAGE').removeClass("APCMMndtry");
-		$('.PFOnlineModeFld').removeClass("APCMMndtry"); */
-		//$('.PFCHKCHAGE').removeClass("APCMMndtry");
-	}
-}
 }
 
 
@@ -935,9 +829,6 @@ function CHKAPPLICABLE()
 	if($(op).find("INSURENCE").text()=="Yes")
 	{
 		$('input:radio[name=APCM_ISCROSSELL1APPLY]')[0].checked = true;
-		$('input:radio[name=APCM_CROSSSELL1]')[0].checked = true;	
-		$('input:radio[name=APCM_CROSSSELL1]').attr('disabled',true);	
-		
 		$('.CRSELLI').show();
     }
 	else
@@ -945,17 +836,24 @@ function CHKAPPLICABLE()
 		$('input:radio[name=APCM_ISCROSSELL1APPLY]')[1].checked = true;
 		$('.CRSELLI').hide();
      }
+	   if($("input[name='APCM_CROSSSELL1']:checked"). val()=="Deductible")
+         {
+                 $('.CRSELLIMODE').hide();
+         }
+          if($("input[name='APCM_CROSSSELL2']:checked"). val()=="Deductible")
+         {
+                 $('.CRSELLIIMODE').hide();
+         }
 	if($(op).find("HEALTH").text()=="Yes")
 		{
 		$('input:radio[name=APCM_ISCROSSELL2APPLY]')[0].checked = true;
-			$('input:radio[name=APCM_CROSSSELL2]')[0].checked = true;	
-		$('input:radio[name=APCM_CROSSSELL2]').attr('disabled',true);
 		$('.CRSELLII').show();
         }
 	else
 		{
 		$('input:radio[name=APCM_ISCROSSELL2APPLY]')[1].checked = true;
 		$('.CRSELLII').hide();
+		$('.CRSELLIIMODE').hide();
         }
 }
 /*
@@ -1211,6 +1109,187 @@ var ROI=$("#APCM_ROI").val()
 	}
 }
 
+
+function CHECKPROP()
+{
+	var ADMINFEE=$("input[name='APRC_PROPERTYINS']:checked"). val();
+   if(ADMINFEE=="Collectible")
+	   {
+	    var Mode=$("input[name='APRC_PROPERTYINSMODE']:checked"). val()
+	      
+	   if(Mode=="Online")
+		{
+		$('.PFOFFL').hide();
+		$('.PFCHK').hide();		
+		$('.PROPCHK').hide();		
+		$('.PROPOFFL').hide();
+		$('.PROTYMODE').show();	
+		$('.CRTWCHKCHAGE').removeClass("APCMMndtry");			
+		$('.CRTWCHKOFF').removeClass("APCMMndtry");		
+/* 		$('.CRONCHKCHAGE').removeClass("APCMMndtry");		
+        $('.PFOnlineModeFld').addClass("APCMMndtry");
+		$('.PFCHKOFF').removeClass("APCMMndtry"); */
+		//$('.PFCHKCHAGE').removeClass("APCMMndtry");
+		}
+		else if(Mode=="Cheque" || Mode=="DD")
+		{
+		$('.PROTYMODE').hide();			
+		$('.PROPOFFL').hide();
+		$('.PFOFFL').hide();
+		$('.PROPCHK').show();
+	    //$(".CDD").next().removeClass('active');
+		$('.PFOnlineMode').hide();	
+		$('.CRTWCHKCHAGE').addClass("APCMMndtry");
+		$('.CRTWCHKOFF').removeClass("APCMMndtry");		
+/* 		$('.CRONCHKCHAGE').addClass("APCMMndtry");		
+		$('.PFOnlineModeFld').removeClass("APCMMndtry");
+		$('.PFCHKOFF').removeClass("APCMMndtry"); */
+		//$('.PFCHKCHAGE').addClass("APCMMndtry");
+        }
+		else if(Mode=="Offline")
+	{
+		
+		$('.PROPOFFL').show();
+		$('.PROTYMODE').hide();
+		$('.PROPCHK').hide();
+		$('.PFCHK').hide();
+		$('.PFOnlineMode').hide();	
+		$('.CRTWCHKCHAGE').removeClass("APCMMndtry");
+		$('.CRTWCHKOFF').addClass("APCMMndtry");
+/* 		$('.PFCHKOFF').addClass("APCMMndtry");
+		$('.CRONCHKCHAGE').removeClass("APCMMndtry");
+		$('.PFOnlineModeFld').removeClass("APCMMndtry"); */
+		//$('.PFCHKCHAGE').removeClass("APCMMndtry");
+	}
+}
+}
+
+function CheckCROSSTWO()
+{
+	var ADMINFEE=$("input[name='APCM_CROSSSELL2']:checked"). val();
+   if(ADMINFEE=="Collectible")
+	   {
+	    var Mode=$("input[name='APCM_CROSSELTWMODE']:checked"). val()
+	      
+	   if(Mode=="Online")
+		{
+		$('.PFOFFL').hide();
+		$('.PFCHK').hide();		
+		$('.CROSSTWOCHK').hide();		
+		$('.CROSSTWOOFFL').hide();
+		$('.CROSSTWOOnlineMode').show();	
+		$('.CRTWCHKCHAGE').removeClass("APCMMndtry");			
+		$('.CRTWCHKOFF').removeClass("APCMMndtry");		
+/* 		$('.CRONCHKCHAGE').removeClass("APCMMndtry");		
+        $('.PFOnlineModeFld').addClass("APCMMndtry");
+		$('.PFCHKOFF').removeClass("APCMMndtry"); */
+		//$('.PFCHKCHAGE').removeClass("APCMMndtry");
+		}
+		else if(Mode=="Cheque" || Mode=="DD")
+		{
+		$('.CROSSTWOOnlineMode').hide();			
+		$('.CROSSTWOOFFL').hide();
+		$('.PFOFFL').hide();
+		$('.CROSSTWOCHK').show();
+	    //$(".CDD").next().removeClass('active');
+		$('.PFOnlineMode').hide();	
+		$('.CRTWCHKCHAGE').addClass("APCMMndtry");
+		$('.CRTWCHKOFF').removeClass("APCMMndtry");		
+/* 		$('.CRONCHKCHAGE').addClass("APCMMndtry");		
+		$('.PFOnlineModeFld').removeClass("APCMMndtry");
+		$('.PFCHKOFF').removeClass("APCMMndtry"); */
+		//$('.PFCHKCHAGE').addClass("APCMMndtry");
+        }
+		else if(Mode=="Offline")
+	{
+		
+		$('.CROSSTWOOFFL').show();
+		$('.CROSSTWOOnlineMode').hide();
+		$('.CROSSTWOCHK').hide();
+		$('.PFCHK').hide();
+		$('.PFOnlineMode').hide();	
+		$('.CRTWCHKCHAGE').removeClass("APCMMndtry");
+		$('.CRTWCHKOFF').addClass("APCMMndtry");
+/* 		$('.PFCHKOFF').addClass("APCMMndtry");
+		$('.CRONCHKCHAGE').removeClass("APCMMndtry");
+		$('.PFOnlineModeFld').removeClass("APCMMndtry"); */
+		//$('.PFCHKCHAGE').removeClass("APCMMndtry");
+	}
+}
+}
+
+function CheckCROSSONE()
+{
+	var ADMINFEE=$("input[name='APCM_CROSSSELL1']:checked"). val();
+   if(ADMINFEE=="Collectible")
+	   {
+	    var Mode=$("input[name='APCM_CROSSELMODE']:checked"). val()
+	      
+	   if(Mode=="Online")
+		{
+		$('.PFOFFL').hide();
+		$('.PFCHK').hide();
+		
+		$('.CROSSONECHK').hide();
+		
+		$('.CROSSOFFL').hide();
+		$('.CROSSONEOnlineMode').show();
+		$('.CRONCHKCHAGE').removeClass("APCMMndtry");			
+		$('.CSONCHKOFF').removeClass("APCMMndtry");
+/* 		$('.PFCHKCHAGE').removeClass("APCMMndtry");
+        $('.PFOnlineModeFld').addClass("APCMMndtry");
+		$('.PFCHKOFF').removeClass("APCMMndtry"); */
+		}
+		else if(Mode=="Cheque" || Mode=="DD")
+		{
+			$('.CROSSONEOnlineMode').hide();
+			
+		$('.CROSSOFFL').hide();
+			$('.PFOFFL').hide();
+		$('.CROSSONECHK').show();
+	    //$(".CDD").next().removeClass('active');
+		$('.PFOnlineMode').hide();
+		$('.CRONCHKCHAGE').addClass("APCMMndtry");
+		$('.CSONCHKOFF').removeClass("APCMMndtry");
+	/* 	$('.PFCHKCHAGE').addClass("APCMMndtry");
+		$('.PFOnlineModeFld').removeClass("APCMMndtry");
+		$('.PFCHKOFF').removeClass("APCMMndtry");  */
+        }
+		else if(Mode=="Offline")
+	{
+		
+		$('.CROSSOFFL').show();
+		$('.CROSSONEOnlineMode').hide();
+		$('.CROSSONECHK').hide();
+		$('.PFCHK').hide();
+		$('.PFOnlineMode').hide();	
+		$('.CRONCHKCHAGE').removeClass("APCMMndtry");
+		$('.CSONCHKOFF').addClass("APCMMndtry");
+	/*  $('.PFCHKOFF').addClass("APCMMndtry");
+		$('.PFCHKCHAGE').removeClass("APCMMndtry");
+		$('.PFOnlineModeFld').removeClass("APCMMndtry");  */
+	}
+}
+}
+
+
+function GETPF()
+{
+	var PFAmount=UI_getdata($("#PrcsID").val(),$("#APCM_LOANID").val(),"","","","LSW_SGETDEMANTAMT")
+	var PFAmount=$(PFAmount).find('PFAMT').text();
+	if(PFAmount=="")
+		{
+		PFAmount=0	
+		}
+	
+	if(isNaN(PFAmount))
+		{
+			PFAmount = 0;
+		}
+		$("#APCM_PFAMT").val(CURINRCommaSep(parseFloat(PFAmount).toFixed(2)));
+		$("#APCM_PFAMT").next().addClass('active');
+}
+
 function Chktds()
 {
 	if($("#APCM_TDSAPPLICABLE").val()=="Yes")
@@ -1235,31 +1314,15 @@ function Chktds()
 		}
 		$("#APCM_AMNTCOLLCT").val(CURINRCommaSep(parseFloat(Collectamt).toFixed(2)));
 		$("#APCM_AMNTCOLLCT").next().addClass('active'); 
-		 $("#APCM_TDSAPPLICABLE").attr('disabled',true);
-		 $("#APCM_TDSAPPLICABLE").material_select();
+		 //$("#APCM_TDSAPPLICABLE").attr('disabled',true);
+		 //$("#APCM_TDSAPPLICABLE").material_select();
 	}
 	else
 	{
-		//$("#APCM_TDSAMT").val('')
+		$("#APCM_TDSAMT").val('')
 		$(".AMT").hide()
+		
 	}
-}
-
-function GETPF()
-{
-	var PFAmount=UI_getdata($("#PrcsID").val(),$("#APCM_LOANID").val(),"","","","LSW_SGETDEMANTAMT")
-	var PFAmount=$(PFAmount).find('PFAMT').text();
-	if(PFAmount=="")
-		{
-		PFAmount=0	
-		}
-	
-	if(isNaN(PFAmount))
-		{
-			PFAmount = 0;
-		}
-		$("#APCM_PFAMT").val(CURINRCommaSep(parseFloat(PFAmount).toFixed(2)));
-		$("#APCM_PFAMT").next().addClass('active');
 }
 
 function CollectPF(){
@@ -1300,3 +1363,39 @@ function CollectPF(){
 			      }
 				})
 }
+
+function Chksap(){
+var SAP=$("input[name='APCM_CHKSAP']:checked"). val()
+
+if(SAP=="Yes")
+{
+$(".SAP").show();
+$("#APCM_DRPSAP").val('');
+$("#APCM_DRPSAP").material_select();
+$(".SAPDRP").hide();
+}
+else if(SAP=="No"){
+
+$(".SAPDRP").show();
+$("#APCM_SAPCODE").val('');
+$(".SAP").hide();
+}
+else
+{
+$(".SAPDRP").hide();
+$(".SAP").hide();
+}
+}
+
+function CHKSAPCODE()
+{
+var Sapcode=$("#APCM_SAPCODE").val()
+if(Sapcode.length<7)
+{
+alert("Kindly Enter Valid 7digits SAP Code")
+$("#APCM_SAPCODE").val('')
+return;
+}
+
+}
+

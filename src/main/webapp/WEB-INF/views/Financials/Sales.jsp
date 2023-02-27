@@ -67,6 +67,11 @@
 			<div class="Sales">
 			<div class="form-row">
 			    <div class="Btxt10">Sales</div></br></br>
+					<div class="col-md-4">
+					</div>
+					<div class="col-md-4">
+						<label style="color:red" class="Btxt4 CallbackStatus"></label>
+					</div>
 			</div>
 		<!-- -->	
 			 
@@ -93,7 +98,7 @@
 				<div class="form-row"  >
 				<div class="col-md-4">
                   <div class="md-form">
-                  	  <input type="text" id="SALE_FROMDATE"  maxlength="30"  name="SALE_FROMDATE" class="form-control ISDatefield NoSpecialChar SALEMndtry SALEDBfields">
+                  	  <input type="text" id="SALE_FROMDATE"  maxlength="30"  name="SALE_FROMDATE"  class="form-control ISDatefield NoSpecialChar SALEMndtry SALEDBfields">
                       <label for="SALE_FROMDATE" class="">From Date<span class="MndtryAstr"></span></label>
                   <img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"/>
 				  
@@ -102,7 +107,7 @@
 			
 			<div class="col-md-4">
                   <div class="md-form">
-                  	  <input type="text" id="SALE_TODATE"   maxlength="30" onblur="DateValidate('SALE_FROMDATE','SALE_TODATE');" name="SALE_TODATE" class="form-control  ISDatefield NoSpecialChar    SALEMndtry  SALEDBfields">
+                  	  <input type="text" id="SALE_TODATE"   maxlength="30" onblur="DateValidate('SALE_FROMDATE','SALE_TODATE');"   name="SALE_TODATE" class="form-control  ISDatefield NoSpecialChar    SALEMndtry  SALEDBfields">
                       <label for="SALE_TODATE" class="">To Date<span class="MndtryAstr"></span></label>
 					  <img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"/>
                   </div>
@@ -133,7 +138,7 @@
 			<!-- -->
 		  <div class="form-row">
            <div class="col-md-12">
-             <input type="button" class="DashTrg" style="display:none" onclick="FncallDocChkLst(this,'Table1',{spname:'LSW_SGETSALESGRID',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#SALE_CUSID').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||3','SALESGRD');" id="BTNSALESGRD" name="BTNSALESGRD" />
+             <input type="button" class="DashTrg" style="display:none" onclick="FncallDocChkLst(this,'Table1',{spname:'LSW_SGETSALESGRID',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#SALE_CUSID').val(),MnuId:$('#SALE_FROMDATE').val()+'|'+$('#SALE_TODATE').val()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||3','SALESGRD');" id="BTNSALESGRD" name="BTNSALESGRD" />
               <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display DataGrid" id="Table1">
              </table>
            </div>

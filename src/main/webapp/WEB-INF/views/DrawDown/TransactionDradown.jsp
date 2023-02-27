@@ -75,6 +75,12 @@
                            <label for="DRAW_BRANCHNAME"  >Branch Name<span class="MndtryAstr">*</span></label>
                         </div>
 					</div>
+					<div class="col-md-4" style="display:none">
+						<div class="md-form">
+                           <input type="text" id="DRAW_UTRNUMBER" maxlength="50" class="form-control  DRAWDBfields  NoSpecialChar" name="DRAW_UTRNUMBER" title="">
+                           <label for="DRAW_UTRNUMBER"  >UTR Number<span class="MndtryAstr">*</span></label>
+                        </div>
+					</div>
 				</div>
 				<div class="form-row">
 					<div class="col d-flex justify-content-center">

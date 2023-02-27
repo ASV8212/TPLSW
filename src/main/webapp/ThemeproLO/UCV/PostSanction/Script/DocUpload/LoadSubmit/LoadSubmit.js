@@ -80,7 +80,7 @@ $(document).ready(function () {
 				var table = $("#"+TableID).DataTable();
 				 
 				var rowNode = table
-				.row.add( [ '', '', '','','', '', '','','', '', '','',''] )
+				.row.add( [ '', '', '','','', '', '','','', '', '','','',''] )
 				    .draw()
 				    .node();
 				
@@ -163,7 +163,7 @@ $(document).ready(function () {
 	
 	$('.FormSave').on('click', function() {
 
-	var DCUL_DOCUMNTS = TxtGridsubmitdata_V1("Table3","DULD_","DCUL_");
+	var DCUL_DOCUMNTS = TxtGridsubmitdata_SV1("Table3","DULD_","DCUL_");
     AssignGridXmltoField("DCUL_DOCUMNTS", DCUL_DOCUMNTS);
 	
 	var tbl = $(this).attr("data-aria").split("|")[0];
@@ -177,6 +177,8 @@ $(document).ready(function () {
 	  alert("Submission Failed");
 	   return false;			
 	}
+				    FncallDocChkLst(this,'Table3',{spname:'LSW_SGETDOCUUPLOAD',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'',MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$("#HIDDENCOL").val(),'DOCUPLOAD');
+
 	
 		});
 	

@@ -204,7 +204,7 @@
            <div class="col-md-3">
              <div class="md-form">
                <input type="text" maxlength="30"  class="Btxt14 IsNumberFields NoSpecialChar DBMMDBfields  IsCURCommaFields form-control" onchange="ChkLoanAmt();GetRemainAmtChange();" id="DBMM_ACTUDISBAMT" name="DBMM_ACTUDISBAMT">
-                <label for="DBMM_ACTUDISBAMT" class="Btxt9 ">Actual Disbursal Amount &#x20b9; <span class="MndtryAstr">*</span></label>
+                <label for="DBMM_ACTUDISBAMT" class="Btxt9 ">Gross Disbursal Amount &#x20b9; <span class="MndtryAstr">*</span></label>
              </div>
            </div> 
 		   <form>
@@ -232,7 +232,7 @@
            </div> 
       </div> 
       <div class="form-row"  style="display:none">
-           <div class="col-md-2">
+           <div class="col-md-3">
                 <div class="md-form">
                  <input type="text" id="DBMM_OTHRDUC" maxlength="15" name="DBMM_OTHRDUC" value="0" disabled class=" Btxt14 DSVLBL IsNumberFields NoSpecialChar DBMMDBfields IsCURCommaFields form-control">
                   <label for="DBMM_OTHRDUC"  class="Btxt9 ">Other Deduction &#x20b9;</label>
@@ -240,9 +240,9 @@
            </div> 
 		   <div class="col-md-2">
                 <div class="md-form">
-				    <div class="HyperControls form-row" > 
-	                    <a class="Btxt4 FltRight DeductView" data-toggle="modal" onclick="OpenDeduc()" href="#">View</a>
-		             </div>
+				 <div class="TxtCenter">
+					<a type="button" class="Btxt4 " data-toggle="modal"  data-target="#VIEW" href="#">View</a>
+				</div> 
 				</div>
 		   </div>
            <div class="col-md-3">
@@ -254,7 +254,7 @@
            <div class="col-md-2">
                <div class="md-form">
                   <input type="text" id="DBMM_DISBAMT" maxlength="30" name="DBMM_DISBAMT" disabled class="Btxt14 DSVLBL IsNumberFields NoSpecialChar  DBMMDBfields IsCURCommaFields form-control">
-                  <label for="DBMM_DISBAMT" class="Btxt9 ">Disbursement Amount &#x20b9;</label>
+                  <label for="DBMM_DISBAMT" class="Btxt9 ">Net Disbursal Amount &#x20b9;</label>
                </div>
           </div> 
         </div> 
@@ -290,6 +290,8 @@
         <input type="text" id="DISB_TRANCHID" hidden="hidden" name="DISB_TRANCHID" class="form-control DISBDBfields">
         <input type="text" id="DISB_TRANCHNAME" hidden="hidden" name="DISB_TRANCHNAME" class="form-control DISBDBfields">
         <input type="text" id="DISB_LOANID" hidden="hidden" name="DISB_LOANID" class="form-control DISBDBfields">
+
+		
 			<input type="text" id="DISB_LONDETAIL" hidden="hidden" name="DISB_LONDETAIL" class="form-control DISBDBfields">
 			
 			
@@ -319,8 +321,8 @@
             </div> 
            <div class="col-md-4">
              <div class="md-form">
-               <input type="text" maxlength="30" disabled class="Btxt14 IsNumberFields NoSpecialChar DISBDBfields  IsCURCommaFields form-control" onchange="ChkLoanAmt($(this).closest('.DYNROW'),$(this).closest('.DYNROW').attr('data-row'));" id="DISB_ACTUDISBAMT" name="DISB_ACTUDISBAMT">
-                <label for="DISB_ACTUDISBAMT" class="Btxt9 ">Actual Disbursal Amount &#x20b9; <span class="MndtryAstr">*</span></label>
+               <input type="text" maxlength="30" disabled class="Btxt14 IsNumberFields NoSpecialChar DISBDBfields  IsCURCommaFields form-control" onchange="ChkLoanAmt($(this).closest('.DYNROW'),$(this).closest('.DYNROW').attr('data-row'));  Chksanamt('DISB_ACTUDISBAMT'+$(this).closest('.DYNROW').attr('data-row'));" id="DISB_ACTUDISBAMT" name="DISB_ACTUDISBAMT">
+                <label for="DISB_ACTUDISBAMT" class="Btxt9 ">Gross Disbursal Amount &#x20b9; <span class="MndtryAstr">*</span></label>
              </div>
            </div> 
            <div class="col-md-4">
@@ -360,18 +362,23 @@
 		             </div>
 				</div>
 		   </div> -->
-           <div class="col-md-4">
+           <div class="col-md-2">
                <div class="md-form">
                   <input type="text" id="DISB_TOTDEDUC" name="DISB_TOTDEDUC" maxlength="30" disabled class="PEMIDED  Btxt14 IsNumberFields NoSpecialChar DISBDBfields IsCURCommaFields form-control">
                   <label for="DISB_TOTDEDUC"  class="Btxt9 ">Total Deduction &#x20b9;</label>
               </div>
            </div>
+			<div class="col-md-2">
+		   <div class="TxtCenter">
+				<a type="button" class="Btxt4 Deduction" style="color:blue" data-toggle="modal"  data-target="#DeductAmtView" href="#">Deduction Split</a>
+			</div>  
+			</div>
         </div>	
         <div class="form-row">	   
            <div class="col-md-4">
                <div class="md-form">
                   <input type="text" id="DISB_DISBAMT" maxlength="30" name="DISB_DISBAMT" disabled class="Btxt14  IsNumberFields NoSpecialChar  DISBDBfields IsCURCommaFields form-control">
-                  <label for="DISB_DISBAMT" class="Btxt9 ">Disbursement Amount &#x20b9;</label>
+                  <label for="DISB_DISBAMT" class="Btxt9 ">Net Disbursal Amount &#x20b9;</label>
                </div>
           </div> 
            <div class="col-md-4">
@@ -382,7 +389,7 @@
 			</div>
 			<div class="col-md-4">
                <div class="md-form">
-	                <input type="text" id="DISB_SAPCODE" name="DISB_SAPCODE" class="form-control DISBMndtry   DISBDBfields"> 
+	                <input type="text" id="DISB_SAPCODE" disabled name="DISB_SAPCODE" class="form-control DISBMndtry   DISBDBfields"> 
 					<label for="DISB_SAPCODE"  class="Btxt9">SAP Code<span class="MndtryAstr">*</span></label>
 	           </div>
 			</div>
@@ -433,6 +440,68 @@
     </div>
   </div>
   </div>
+  
+    <div class="modal fade" id="DeductAmtView" tabindex="-1" role="dialog" aria-labelledby="DeductAmtViewLabel" aria-hidden="true">
+<div class="modal-dialog" style="max-width:500px" role="document">
+ <div class="modal-content">
+   <div class="modal-header">
+     <div class="Btxt10">DEDUCTION SPLIT</div>
+        <a href="#"><img id="DEDUCTAMTCLOSE" class="close" data-dismiss="modal" aria-label="Close" src="ThemeproLO/Common/FEP/images/Close1.png" alt="DashSearch"></img></a>     
+     </div>  
+ <div class="modal-body">    
+   <div class="">
+    <!-- Card body -->
+     <div class="">  
+         <form>  
+</br>
+</br>
+
+		 
+            <div class="form-row">
+            
+          <!-- <div class="col-md-6">
+               <div class="md-form">
+                  <input type="text" id="DISB_TOTDEDUC" name="DISB_TOTDEDUC" maxlength="30" disabled class="  Btxt14 IsNumberFields NoSpecialChar DISBDBfields IsCURCommaFields form-control">
+                  <label for="DISB_TOTDEDUC"  class="Btxt9 ">Total Deduction &#x20b9;</label> 
+              </div>
+           </div>-->
+
+		   
+				<div class="col ">
+				    <div class="Pfamt ">
+					   PF Amount : 
+					</div>
+                </div>		   
+             </div>
+			<div class="form-row">
+			  	<div class="col ">
+				    <div class="Crosselamt">
+					   Cross sell Amount: 
+					</div>
+                </div>	
+			</div>
+			<div class="form-row">
+			  	<div class="col ">
+				    <div class="Crosselhospi">
+					   Cross sell Amount : 
+					</div>
+                </div>	
+			</div>
+			<div class="form-row">
+			  	<div class="col Btxt4 ">
+				    <div class="TotalDeduct ">
+					 Total Deduction : 
+					</div>
+                </div>	
+			</div>
+  </form>  
+   </div>
+   </div>
+     </div>
+	   </div>
+	     </div>
+		   </div>
+		   
         </form>
         </div>
         </div> 
@@ -484,8 +553,8 @@
              </div> 
              <div class="col-md-4  OTHERACCT"   style="display:none">
                <div class="md-form">
-                  <input type="text" id="DBFD_ACCTNUM" maxlength="25" name="DBFD_ACCTNUM" class="Btxt14 DBFDDBfields OTHACC IsNumberFields NoSpecialChar form-control">
-                  <label for="DBFD_ACCTNUM" class="Btxt9 ">Account Number<span class="MndtryAstr">*</span></label>
+                  <input type="text" id="DBFD_ACCTNUM" maxlength="25" name="DBFD_ACCTNUM" class="Btxt14 DBFDDBfields OTHACC  NoSpecialChar form-control">
+                  <label for="DBFD_ACCTNUM" class="Btxt9 ">VAN / Account Number<span class="MndtryAstr">*</span></label>
                </div>
              </div> 
 
@@ -644,6 +713,7 @@
 <script type="text/javascript" src="ThemeproLO/UCV/PostSanction/Script/DisbMemo/Validation.js${DMY13}"></script>
 
 
+
  <a type="button" id="REPAY" class="btn btn-floating btn-large red" style="display:none" data-toggle="modal" data-target="#REPAYPOPUP">
  <i class="fa fa-plus"></i></a>
                              
@@ -684,6 +754,9 @@
     </div>
   </div>
   </div>
+   
+ 
+	 
   
   <a type="button" id="ODEDUC" class="btn btn-floating btn-large red" style="display:none" data-toggle="modal" data-target="#ODEDUCPOPUP">
  <i class="fa fa-plus"></i></a>

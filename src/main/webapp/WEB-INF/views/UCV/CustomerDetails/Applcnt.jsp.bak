@@ -1078,7 +1078,7 @@
                                              <option value="Medium">Medium</option>
                                              <option value="High">High</option>
                                           </select>
-                                          <label class="mdb-main-label BTxt9">KYC Category<span class="MndtryAstr">*</span></label>
+                                          <label class="mdb-main-label BTxt9">KYC Risk Category<span class="MndtryAstr">*</span></label>
                                        </div>
                                     </div>
 									<div class="col-md-6 SEP OEMPONE">

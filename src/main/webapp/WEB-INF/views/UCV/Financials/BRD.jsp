@@ -15,6 +15,9 @@
 		
 			<input type="text" id="CRSM_SCOREDET" hidden="hidden" name="CRSM_SCOREDET" class="form-control CRSMDBfields">       
 		</br>
+		<div class="form-row">
+		<div class="col Btxt3">Applicant</div>
+			</div>
 		 <div class="form-row">
            <div class="col">
              <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table2',{spname:'LSW_SGETBREDETAILS',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'',MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||2','BRE');" id="BTNBREGRD" name="BTNBREGRD" />
@@ -22,7 +25,17 @@
              </table>
           </div>
         </div>  
-		
+		</br>
+		<div class="form-row">
+		<div class="col Btxt3">Co-Applicant</div>
+			</div>
+		 <div class="form-row T316" style="display:none;">
+           <div class="col">
+             <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table3',{spname:'LSW_SGETBREDETAILS_COAPPLN',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'',MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||2','BRE');" id="BTNBREGRD1" name="BTNBREGRD1" />
+             <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" id="Table3">
+             </table>
+          </div>
+        </div> 
 		
 	 </br>
        

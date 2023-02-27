@@ -42,7 +42,9 @@
                <input type="text" id="APCM_PROPGRD" hidden="hidden"  name="APCM_PROPGRD" class="form-control APCMDBfields">
                <input type="text" id="APCM_ROI" hidden="hidden"  name="APCM_ROI" class="form-control APCMDBfields">
 			   <input type="text" id="APCM_REPNDPFAMT" hidden="hidden"  name="APCM_REPNDPFAMT" class="form-control IsCURCommaFields APCMDBfields">
-			   <input type="text" id="APCM_PFCOLLECTFLG" hidden="hidden"  name="APCM_PFCOLLECTFLG" class="form-control IsCURCommaFields APCMDBfields">
+			   <input type="text" id="APCM_PFCOLLECTFLG" hidden="hidden"  name="APCM_PFCOLLECTFLG" class="form-control  APCMDBfields">
+			   <input type="text" id="APCM_PROPLOANNO" hidden="hidden"  name="APCM_PROPLOANNO" class="form-control  APCMDBfields">
+			   
                </br>
                <div class = "ROOT">
                <div class="form-row">
@@ -53,12 +55,39 @@
                      </div>
                   </div>
                   <div class="col-md-4">
-				  <div class="md-form">
-                        <input type="text" id="APCM_SAPCODE" name="APCM_SAPCODE" class="form-control  form-control APCMDBfields   ">
+           	<div class="col">
+                 <div class="md-form">
+                    <div id="" class="select-radio PFONL"> 
+                       <div class="custom-control custom-radio custom-control-inline">
+                          <input type="radio" class="custom-control-input APCMDBfields" onclick="Chksap()" value="Yes" id="SAPYES" name="APCM_CHKSAP">
+                          <label class="custom-control-label" for="SAPYES">Yes</label>
+                       </div>
+                       <div class="custom-control custom-radio custom-control-inline">
+                           <input type="radio" class="custom-control-input APCMDBfields" onclick="Chksap()" value="No" id="SAPNO" name="APCM_CHKSAP">
+                           <label class="custom-control-label" for="SAPNO">No</label>
+                       </div>
+
+                   </div>
+                   <label class="mdb-main-label BTxt9">SAP Code<span class="MndtryAstr">*</span></label>      
+               </div>
+           </div>
+                  </div>
+				     <div class="col-md-4 SAPDRP" style="display:none">
+				  <div class="md-form ">
+                    <select class="mdb-select md-form colorful-select dropdown-primary APCMDBfields"   id="APCM_DRPSAP" name="APCM_DRPSAP">
+                  	<option value="">Select</option>
+  					<option value="OTC-MSME">OTC-MSME</option>
+  					<option value="OTC-UCVBB">OTC-UCVBB</option>
+				</select>
+				<label class="mdb-main-label BTxt9">SAP Code<span class="MndtryAstr"></span></label>
+                  </div>
+                </div>
+				  
+                  <div class="col-md-4 SAP" style="display:none">
+				     <div class="md-form">
+                        <input type="text" id="APCM_SAPCODE" maxlength= "7"name="APCM_SAPCODE" onchange="CHKSAPCODE();" class="form-control NoSpecialChar  form-control IsNumberFields APCMDBfields">
                         <label for="APCM_SAPCODE" class="">SAP Code<span class="MndtryAstr"></span></label>
                      </div>
-                  </div>
-                  <div class="col-md-4">
                   </div>
                </div>
 			   <div class = "ROOT  PFMNDCHK">
@@ -104,6 +133,14 @@
                         </div>
                      </div>
                   </div>
+<!--			  <div class="col-md-4 SECU" style>
+					<div class="md-form">
+						<select class="md-form colorful-select dropdown-primary  APCMDBfields"  id="APCM_PROPLOANNO" name="APCM_PROPLOANNO">
+						<option value="">Select</option>
+						</select>
+						<label class="mdb-main-label BTxt9">Loan Type<span class="MndtryAstr"></span></label>
+					</div>
+				</div>	 -->		  
                </div>
 			   
 			     <div class="form-row">
@@ -115,7 +152,7 @@
         </div>	
 	    <div class="col-md-4 PEFEE">
             <div class="md-form">
-                  <select class="md-form colorful-select dropdown-primary PFRedioMNDRY  APCMDBfields " onchange="Chktds();"  id="APCM_TDSAPPLICABLE" name="APCM_TDSAPPLICABLE">
+                  <select class="md-form colorful-select dropdown-primary PFRedioMNDRY  APCMDBfields PFONL" onchange="Chktds();"  id="APCM_TDSAPPLICABLE" name="APCM_TDSAPPLICABLE">
                   <option value="">--Select--</option>
                   <option value="Yes">Yes</option>
                   <option value="No">No</option>
@@ -173,7 +210,7 @@
            		</div>
            		 <div class="col">
                      <div class="md-form">
-                         <button type="button" id="CTPPF" onclick="ChkPayAmt();CollectionINTRCHRG('APCM_PFONLINEMOD','APCM_AMNTCOLLCT','APCM_PFCOLLECTED','PF')" class="btn btn-yel Btxt2 ">Click To Pay</button>
+                         <button type="button" id="CTPPF" onclick="ChkPayAmt();CollectionINTRCHRG('APCM_PFONLINEMOD','APCM_AMNTCOLLCT','APCM_PFCOLLECTED','PF')" class="btn btn-yel Btxt2 btn-sm ">Click To Pay</button>
                      </div>
            		</div>
            		<div class="col" style="display:none">
@@ -188,19 +225,19 @@
 		 <div class="PFOFFL" style="display:none">
             <div class="form-row  PFOFBNK">
               <div class="col">
-                 <div class="md-form">
-                  	<input type="text" id="APCM_PFOFFLADDDT" name="APCM_PFOFFLADDDT" onblur="INSTRUMENTDATE('APCM_PFOFFLADDDT')" maxlength="10" class="  form-control PFCHKOFF  ISFutureDateFields IsNumberFields ISDatefield  Mndtry APCMDBfields ">
+                 <div class="md-form"><!--onblur="INSTRUMENTDATE('APCM_PFOFFLADDDT')"-->
+                  	<input type="text" id="APCM_PFOFFLADDDT" name="APCM_PFOFFLADDDT"  maxlength="10" onblur="INSTRUMENTDATE('APCM_PFOFFLADDDT')" class="  form-control PFCHKOFF  ISFutureDateFields IsNumberFields ISDatefield  Mndtry APCMDBfields ">
                     <label for="APCM_PFOFFLADDDT" class="">Instrument Date <span class="MndtryAstr">*</span></label>
                     <img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"/>
                  </div>
              </div>
               <div class="col">
             	    <div class="md-form">
-                  	<input type="text" id="APCM_PFUTRNO" maxlength="6" name="APCM_PFUTRNO" class="  form-control IsChequeFields IsNumberFields PFCHKOFF  NoSpecialChar  Mndtry APCMDBfields ">
+                  	<input type="text" id="APCM_PFUTRNO" maxlength="30" name="APCM_PFUTRNO" class="  form-control   PFCHKOFF    Mndtry APCMDBfields ">
                         <label for="APCM_PFUTRNO" class="">UTR Number <span class="MndtryAstr">*</span></label>
                    </div>
              </div>
-			 <div class="col-md-4 btnPF">
+			 <div class="col-md-4 btnPF" style="display:none">
                  <button type="button" style=" font-weight: bold; font-size: 15px" class="btn Collected4  waves-effect btn-yelInplain btn-sm BTNVerify">Save</button>
            </div>
 
@@ -256,7 +293,7 @@
                    <label for="APCM_RecptNum2" class="">Receipt Number<span class="MndtryAstr"></span></label>
              </div>
             </div> 
-           <div class="col-md-4 btnPF">
+           <div class="col-md-4 btnPF" style="display:none">
                  <button type="button" class="btn Collected2  waves-effect btn-yelInplain btn-sm BTNVerify">Save</button>
            </div>
           </div>
@@ -444,7 +481,7 @@
                      </div>
                   </div>
 
-                      <div class="col-md-9 BluShd">
+                      <div class="col-md-5 BluShd">
                      <div class="md-form">
                         <div id="" class="select-radio ">
                            <div class="custom-control custom-radio custom-control-inline">
@@ -462,12 +499,12 @@
 				  <div class="col-md-4 CRSELLI BluShd">
                      <div class="md-form ">
                         <div id="" class="select-radio APCMMndtry">
-                           <div class="custom-control custom-radio custom-control-inline CLCT">
-                              <input type="radio" class="custom-control-input APCMDBfields PFONL" onclick="CheckCROSSFEECHK()"	value="Collectible" id="CROSSSELL1YES" name="APCM_CROSSSELL1">
+                           <div class="custom-control custom-radio custom-control-inline CRS1CLCT">
+                              <input type="radio" class="custom-control-input APCMDBfields "  onclick="CheckCROSSFEECHK()"	value="Collectible" id="CROSSSELL1YES" name="APCM_CROSSSELL1">
                               <label class="custom-control-label" for="CROSSSELL1YES">Collectible</label>
                            </div>
-                           <div class="custom-control custom-radio custom-control-inline DECT">
-                              <input type="radio" class="custom-control-input APCMDBfields PFONL" onclick="CheckCROSSFEECHK()" value="Deductible" id="CROSSSELL1NO" name="APCM_CROSSSELL1">
+                           <div class="custom-control custom-radio custom-control-inline CRS1DECT">
+                              <input type="radio" class="custom-control-input APCMDBfields CRONEONL" onclick="CheckCROSSFEECHK()" value="Deductible" id="CROSSSELL1NO" name="APCM_CROSSSELL1">
                               <label class="custom-control-label" for="CROSSSELL1NO">Deductible</label>
                            </div>
                         </div>
@@ -497,23 +534,23 @@
                </div>
 			   
 			   <div class="form-row CRSELLI">
-            <div class="col-md-4 ">
+            <div class="col-md-4 CRSELLIMODE">
                   <div class="md-form  ">
                <div class="select-radio  "> 
                     <div class="custom-control custom-radio custom-control-inline">
-                       <input type="radio" class="custom-control-input APCMDBfields PEFEMODE PFONL" onclick="CheckCROSSONE()" onchange="ChKModeDataClear($(this).closest('.ROOT'));"  value="Cheque" id="CROSSONEChq" name="APCM_CROSSELMODE">
+                       <input type="radio" class="custom-control-input APCMDBfields PEFEMODE CRONEONL" onclick="CheckCROSSONE()" onchange="ChKModeDataClear($(this).closest('.ROOT'));"  value="Cheque" id="CROSSONEChq" name="APCM_CROSSELMODE">
                        <label class="custom-control-label" for="CROSSONEChq">Cheque</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input APCMDBfields PEFEMODE PFONL" onclick="CheckCROSSONE()"   onchange="ChKModeDataClear($(this).closest('.ROOT'));" value="Online" id="CROSSONEONL" name="APCM_CROSSELMODE">
+                        <input type="radio" class="custom-control-input APCMDBfields PEFEMODE CRONEONL" onclick="CheckCROSSONE()"   onchange="ChKModeDataClear($(this).closest('.ROOT'));" value="Online" id="CROSSONEONL" name="APCM_CROSSELMODE">
                         <label class="custom-control-label" for="CROSSONEONL">Online</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input APCMDBfields PEFEMODE PFONL" onclick="CheckCROSSONE()" onchange="ChKModeDataClear($(this).closest('.ROOT'));" value="DD" id="CROSSONEDD" name="APCM_CROSSELMODE">
+                        <input type="radio" class="custom-control-input APCMDBfields PEFEMODE CRONEONL" onclick="CheckCROSSONE()" onchange="ChKModeDataClear($(this).closest('.ROOT'));" value="DD" id="CROSSONEDD" name="APCM_CROSSELMODE">
                         <label class="custom-control-label" for="CROSSONEDD">DD</label>
                    </div>
 				    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input APCMDBfields PEFEMODE PFONL" onclick="CheckCROSSONE()" onchange="ChKModeDataClear($(this).closest('.ROOT'));" value="Offline" id="CROSSONEOFF" name="APCM_CROSSELMODE">
+                        <input type="radio" class="custom-control-input APCMDBfields PEFEMODE CRONEONL" onclick="CheckCROSSONE()" onchange="ChKModeDataClear($(this).closest('.ROOT'));" value="Offline" id="CROSSONEOFF" name="APCM_CROSSELMODE">
                         <label class="custom-control-label" for="CROSSONEOFF">Offline</label>
                    </div>
               </div>
@@ -527,6 +564,22 @@
            		</div>
         </div>
 		
+		<div class="form-row CROSSONEPAYONLINE" style="display:none">
+			<div class="col-md-6">
+                <div class="md-form">
+                    <input type="text" id="APCM_CROSSEL1ONREFNUMBER" maxlength="60" disabled class="form-control APCMDBfields NoSpecialChar DataNormal" name="APCM_CROSSEL1ONREFNUMBER" title="">
+                    <label for="APCM_CROSSEL1ONREFNUMBER" class="CHANGEFLDL" >Reference Number<span class="MndtryAstr"></span></label>
+                </div>
+            </div>
+			    <div class="col-md-6">
+					<div class="md-form">
+                    <input type="text" id="APCM_CROSSEL1ONTRANSDATE" name="APCM_CROSSEL1ONTRANSDATE" disabled maxlength="10" class="form-control APCMDBfields IsNumberFields NoSpecialChar ISDatefield">
+                    <label for="APCM_CROSSEL1ONTRANSDATE" class="CHANGEFLDL">Transaction Date<span class="MndtryAstr">*</span></label>
+                    <img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker" style="display:none" />
+                </div>
+            </div>
+        </div>
+		
 		<div class="CROSSOFFL" style="display:none">
             <div class="form-row  PFOFBNK">
               <div class="col">
@@ -538,11 +591,11 @@
              </div>
               <div class="col">
             	    <div class="md-form">
-                  	<input type="text" id="APCM_CROSSONEUTRNO" maxlength="6" name="APCM_CROSSONEUTRNO" class="  form-control IsChequeFields IsNumberFields CSONCHKOFF  NoSpecialChar  Mndtry APCMDBfields ">
+                  	<input type="text" id="APCM_CROSSONEUTRNO" maxlength="30" name="APCM_CROSSONEUTRNO" class="  form-control  CSONCHKOFF  Mndtry APCMDBfields ">
                         <label for="APCM_CROSSONEUTRNO" class="">UTR Number <span class="MndtryAstr">*</span></label>
                    </div>
              </div>
-			 <div class="col-md-4 btnPF">
+			 <div class="col-md-4 btnPF" style="display:none">
                  <button type="button" style=" font-weight: bold; font-size: 15px" class="btn Collected4  waves-effect btn-yelInplain btn-sm BTNVerify">Save</button>
            </div>
 
@@ -553,7 +606,7 @@
             <div class="form-row  PFONBNK">
               <div class="col">
             	<div class="md-form">
-                  	<input type="text" id="APCM_CRSONEIFSC" onblur="Ifscdetls(this,'APCM_CRSONEBNKNAME','APCM_CRSONEBNKBRCH')" maxlength="11" name="APCM_CRSONEIFSC" class="PFSTA form-control CRONCHKCHAGE CHKCHAGE Mndtry IsIFSCFields OCRDSBL NoSpecialChar APCMDBfields PFONL">
+                  	<input type="text" id="APCM_CRSONEIFSC" onblur="Ifscdetls(this,'APCM_CRSONEBNKNAME','APCM_CRSONEBNKBRCH')" maxlength="11" name="APCM_CRSONEIFSC" class="PFSTA form-control CRONCHKCHAGE CHKCHAGE Mndtry IsIFSCFields OCRDSBL NoSpecialChar APCMDBfields">
                     <label for="APCM_CRSONEIFSC" class="">IFSC <span class="MndtryAstr">*</span></label>
              </div>
             </div> 
@@ -573,14 +626,14 @@
            <div class="form-row">	
               <div class="col">
                  <div class="md-form">
-                  	<input type="text" id="APCM_CRSONEADDDT" name="APCM_CRSONEADDDT" onblur="INSTRUMENTDATE('APCM_CRSONEADDDT')" maxlength="10" class="PFONL PFSTA form-control CRONCHKCHAGE CHKCHAGE ISFutureDateFields IsNumberFields ISDatefield  Mndtry APCMDBfields PFONL">
+                  	<input type="text" id="APCM_CRSONEADDDT" name="APCM_CRSONEADDDT" onblur="INSTRUMENTDATE('APCM_CRSONEADDDT')" maxlength="10" class="CRONEONL PFSTA form-control CRONCHKCHAGE CHKCHAGE ISFutureDateFields IsNumberFields ISDatefield  Mndtry APCMDBfields CRONEONL">
                     <label for="APCM_CRSONEADDDT" class="">Instrument Date <span class="MndtryAstr">*</span></label>
                     <img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"/>
                  </div>
              </div>
              <div class="col">
             	    <div class="md-form">
-                  	<input type="text" id="APCM_CRSONEADDNO" maxlength="6" name="APCM_CRSONEADDNO" class="PFONL PFSTA form-control IsChequeFields IsNumberFields CRONCHKCHAGE CHKCHAGE NoSpecialChar OCRDSBL Mndtry APCMDBfields PFONL">
+                  	<input type="text" id="APCM_CRSONEADDNO" maxlength="6" name="APCM_CRSONEADDNO" class="CRONEONL PFSTA form-control IsChequeFields IsNumberFields CRONCHKCHAGE CHKCHAGE NoSpecialChar OCRDSBL Mndtry APCMDBfields CRONEONL">
                         <label for="APCM_CRSONEADDNO" class="">Instrument Number <span class="MndtryAstr">*</span></label>
                    </div>
              </div>
@@ -598,7 +651,7 @@
                    <label for="APCM_RecptNum3" class="">Receipt Number<span class="MndtryAstr"></span></label>
              </div>
             </div> 
-           <div class="col-md-4 btnPF">
+           <div class="col-md-4 btnPF" style="display:none">
                  <button type="button" class="btn Collected3  waves-effect btn-yelInplain btn-sm BTNVerify">Save</button>
            </div>
           </div>
@@ -608,7 +661,7 @@
                <div class="form-row">
                   <div class="col-md-3 BluShd">
                      <div class="md-form">
-                        <input type="text"  maxlength="10" value="CROSS SELL 2 - COMBO" disabled class="Btxt17 DSVLBL form-control form-control    ">
+                        <input type="text"  maxlength="10" value="CROSS SELL 2 - HOSPICASH" disabled class="Btxt17 DSVLBL form-control form-control    ">
                      </div>
                   </div>
                       <div class="col-md-5 BluShd">
@@ -628,12 +681,12 @@
 				  				 <div class="col-md-4 CRSELLII BluShd">
                      <div class="md-form ">
                         <div id="" class="select-radio APCMMndtry">
-                           <div class="custom-control custom-radio custom-control-inline CLCT">
-                              <input type="radio" class="custom-control-input APCMDBfields PFONL" onclick="CheckCROSSFEECHK()"	value="Collectible" id="CROSSSELL2YES" name="APCM_CROSSSELL2">
+                           <div class="custom-control custom-radio custom-control-inline CRSIICLCT">
+                              <input type="radio" class="custom-control-input APCMDBfields "  onclick="CheckCROSSIIFEECHK()"	value="Collectible" id="CROSSSELL2YES" name="APCM_CROSSSELL2">
                               <label class="custom-control-label" for="CROSSSELL2YES">Collectible</label>
                            </div>
-                           <div class="custom-control custom-radio custom-control-inline DECT">
-                              <input type="radio" class="custom-control-input APCMDBfields PFONL" onclick="CheckCROSSFEECHK()" value="Deductible" id="CROSSSELL2NO" name="APCM_CROSSSELL2">
+                           <div class="custom-control custom-radio custom-control-inline CRSIIDECT">
+                              <input type="radio" class="custom-control-input APCMDBfields CROTWOONL" onclick="CheckCROSSIIFEECHK()" value="Deductible" id="CROSSSELL2NO" name="APCM_CROSSSELL2">
                               <label class="custom-control-label" for="CROSSSELL2NO">Deductible</label>
                            </div>
                         </div>
@@ -663,23 +716,23 @@
                </div>
 			   
 			   <div class="form-row CRSELLII">
-            <div class="col-md-4 ">
+            <div class="col-md-4 CRSELLIIMODE">
                   <div class="md-form  ">
                <div class="select-radio  "> 
                     <div class="custom-control custom-radio custom-control-inline">
-                       <input type="radio" class="custom-control-input APCMDBfields PEFEMODE PFONL" onclick="CheckCROSSTWO()" onchange="ChKModeDataClear($(this).closest('.ROOT'));"  value="Cheque" id="CROSSTWOChq" name="APCM_CROSSELTWMODE">
+                       <input type="radio" class="custom-control-input APCMDBfields PEFEMODE CROTWOONL" onclick="CheckCROSSTWO()" onchange="ChKModeDataClear($(this).closest('.ROOT'));"  value="Cheque" id="CROSSTWOChq" name="APCM_CROSSELTWMODE">
                        <label class="custom-control-label" for="CROSSTWOChq">Cheque</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input APCMDBfields PEFEMODE PFONL" onclick="CheckCROSSTWO()"   onchange="ChKModeDataClear($(this).closest('.ROOT'));" value="Online" id="CROSSTWOONL" name="APCM_CROSSELTWMODE">
+                        <input type="radio" class="custom-control-input APCMDBfields PEFEMODE CROTWOONL" onclick="CheckCROSSTWO()"   onchange="ChKModeDataClear($(this).closest('.ROOT'));" value="Online" id="CROSSTWOONL" name="APCM_CROSSELTWMODE">
                         <label class="custom-control-label" for="CROSSTWOONL">Online</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input APCMDBfields PEFEMODE PFONL" onclick="CheckCROSSTWO()" onchange="ChKModeDataClear($(this).closest('.ROOT'));" value="DD" id="CROSSTWODD" name="APCM_CROSSELTWMODE">
+                        <input type="radio" class="custom-control-input APCMDBfields PEFEMODE CROTWOONL" onclick="CheckCROSSTWO()" onchange="ChKModeDataClear($(this).closest('.ROOT'));" value="DD" id="CROSSTWODD" name="APCM_CROSSELTWMODE">
                         <label class="custom-control-label" for="CROSSTWODD">DD</label>
                    </div>
 				    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input APCMDBfields PEFEMODE PFONL" onclick="CheckCROSSTWO()" onchange="ChKModeDataClear($(this).closest('.ROOT'));" value="Offline" id="CROSSTWOOFF" name="APCM_CROSSELTWMODE">
+                        <input type="radio" class="custom-control-input APCMDBfields PEFEMODE CROTWOONL" onclick="CheckCROSSTWO()" onchange="ChKModeDataClear($(this).closest('.ROOT'));" value="Offline" id="CROSSTWOOFF" name="APCM_CROSSELTWMODE">
                         <label class="custom-control-label" for="CROSSTWOOFF">Offline</label>
                    </div>
               </div>
@@ -693,22 +746,38 @@
            		</div>
         </div>
 		
+		<div class="form-row CROSSTWOPAYONLINE" style="display:none">
+					  <div class="col-md-6">
+                        <div class="md-form">
+                           <input type="text" id="APCM_CROSSEL2ONREFNUMBER" maxlength="60" disabled class="form-control APCMDBfields NoSpecialChar DataNormal" name="APCM_CROSSEL2ONREFNUMBER" title="">
+                           <label for="APCM_CROSSEL2ONREFNUMBER" class="CHANGEFLDL" >Reference Number<span class="MndtryAstr"></span></label>
+                        </div>
+                      </div>
+					  <div class="col-md-6">
+						<div class="md-form">
+                            <input type="text" id="APCM_CROSSEL2ONTRANSDATE" name="APCM_CROSSEL2ONTRANSDATE" disabled maxlength="10" class="form-control APCMDBfields IsNumberFields NoSpecialChar ISDatefield">
+                            <label for="APCM_CROSSEL2ONTRANSDATE" class="CHANGEFLDL">Transaction Date<span class="MndtryAstr">*</span></label>
+                            <img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker" style="display:none" />
+                        </div>
+             </div>
+        </div>
+		
 		<div class="CROSSTWOOFFL" style="display:none">
             <div class="form-row  PFOFBNK">
               <div class="col">
                  <div class="md-form">
-                  	<input type="text" id="APCM_CRSTWOOFFLADDDT" name="APCM_CRSTWOOFFLADDDT" onblur="INSTRUMENTDATE('APCM_CRSTWOOFFLADDDT')" maxlength="10" class="  form-control CRTWCHKOFF  ISFutureDateFields IsNumberFields ISDatefield  Mndtry APCMDBfields ">
+                  	<input type="text" id="APCM_CRSTWOOFFLADDDT" name="APCM_CRSTWOOFFLADDDT" onblur="INSTRUMENTDATE('APCM_CRSTWOOFFLADDDT')" maxlength="10" class="  form-control CRTWCHKOFF  ISFutureDateFields IsNumberFields ISDatefield  Mndtry APCMDBfields CROTWOONL ">
                     <label for="APCM_CRSTWOOFFLADDDT" class="">Instrument Date <span class="MndtryAstr">*</span></label>
                     <img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"/>
                  </div>
              </div>
               <div class="col">
             	    <div class="md-form">
-                  	<input type="text" id="APCM_CROSSTWOUTRNO" maxlength="6" name="APCM_CROSSTWOUTRNO" class="  form-control IsChequeFields IsNumberFields CRTWCHKOFF  NoSpecialChar  Mndtry APCMDBfields ">
+                  	<input type="text" id="APCM_CROSSTWOUTRNO" maxlength="30" name="APCM_CROSSTWOUTRNO" class="  form-control   CRTWCHKOFF  Mndtry APCMDBfields CROTWOONL">
                         <label for="APCM_CROSSTWOUTRNO" class="">UTR Number <span class="MndtryAstr">*</span></label>
                    </div>
              </div>
-			 <div class="col-md-4 btnPF">
+			 <div class="col-md-4 btnPF" style="display:none">
                  <button type="button" style=" font-weight: bold; font-size: 15px" class="btn Collected4  waves-effect btn-yelInplain btn-sm BTNVerify">Save</button>
            </div>
 
@@ -719,7 +788,7 @@
             <div class="form-row  PFONBNK">
               <div class="col">
             	<div class="md-form">
-                  	<input type="text" id="APCM_CRSTWOIFSC" onblur="Ifscdetls(this,'APCM_CRSTWOBNKNAME','APCM_CRSTWOBNKBRCH')" maxlength="11" name="APCM_CRSTWOIFSC" class="PFSTA form-control CRTWCHKCHAGE CHKCHAGE Mndtry IsIFSCFields OCRDSBL NoSpecialChar APCMDBfields PFONL">
+                  	<input type="text" id="APCM_CRSTWOIFSC" onblur="Ifscdetls(this,'APCM_CRSTWOBNKNAME','APCM_CRSTWOBNKBRCH')" maxlength="11" name="APCM_CRSTWOIFSC" class="PFSTA form-control CRTWCHKCHAGE CHKCHAGE Mndtry IsIFSCFields OCRDSBL NoSpecialChar APCMDBfields CROTWOONL">
                     <label for="APCM_CRSTWOIFSC" class="">IFSC <span class="MndtryAstr">*</span></label>
              </div>
             </div> 
@@ -739,14 +808,14 @@
            <div class="form-row">	
               <div class="col">
                  <div class="md-form">
-                  	<input type="text" id="APCM_CRSTWOADDDT" name="APCM_CRSTWOADDDT" onblur="INSTRUMENTDATE('APCM_CRSTWOADDDT')" maxlength="10" class="PFONL PFSTA form-control CRTWCHKCHAGE CHKCHAGE ISFutureDateFields IsNumberFields ISDatefield  Mndtry APCMDBfields PFONL">
+                  	<input type="text" id="APCM_CRSTWOADDDT" name="APCM_CRSTWOADDDT" onblur="INSTRUMENTDATE('APCM_CRSTWOADDDT')" maxlength="10" class="CROTWOONL PFSTA form-control CRTWCHKCHAGE CHKCHAGE ISFutureDateFields IsNumberFields ISDatefield  Mndtry APCMDBfields CROTWOONL">
                     <label for="APCM_CRSTWOADDDT" class="">Instrument Date <span class="MndtryAstr">*</span></label>
                     <img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"/>
                  </div>
              </div>
              <div class="col">
             	    <div class="md-form">
-                  	<input type="text" id="APCM_CRSTWOADDNO" maxlength="6" name="APCM_CRSTWOADDNO" class="PFONL PFSTA form-control IsChequeFields IsNumberFields CRTWCHKCHAGE CHKCHAGE NoSpecialChar OCRDSBL Mndtry APCMDBfields PFONL">
+                  	<input type="text" id="APCM_CRSTWOADDNO" maxlength="6" name="APCM_CRSTWOADDNO" class="CROTWOONL PFSTA form-control IsChequeFields IsNumberFields CRTWCHKCHAGE CHKCHAGE NoSpecialChar OCRDSBL Mndtry APCMDBfields CROTWOONL">
                         <label for="APCM_CRSTWOADDNO" class="">Instrument Number <span class="MndtryAstr">*</span></label>
                    </div>
              </div>
@@ -764,7 +833,7 @@
                    <label for="APCM_RecptNum4" class="">Receipt Number<span class="MndtryAstr"></span></label>
              </div>
             </div> 
-           <div class="col-md-4 btnPF">
+           <div class="col-md-4 btnPF" style="display:none">
                  <button type="button" class="btn Collected4  waves-effect btn-yelInplain btn-sm BTNVerify">Save</button>
            </div>
           </div>
@@ -811,7 +880,7 @@
                      <div class="md-form ">
                         <div id="" class="select-radio ">
                            <div class="custom-control custom-radio custom-control-inline CLCT">
-                              <input type="radio" class="custom-control-input APRCDBfields PFONL" onclick="CheckCROSSFEECHK()"	value="Collectible" id="PROPERTYYES" name="APRC_PROPERTYINS">
+                              <input type="radio" class="custom-control-input APRCDBfields " disabled onclick="CheckCROSSFEECHK()"	value="Collectible" id="PROPERTYYES" name="APRC_PROPERTYINS">
                               <label class="custom-control-label" for="PROPERTYYES">Collectible</label>
                            </div>
                            <div class="custom-control custom-radio custom-control-inline DECT">
@@ -888,7 +957,7 @@
                         <label for="APRC_PROPUTRNO" class="">UTR Number <span class="MndtryAstr">*</span></label>
                    </div>
              </div>
-			 <div class="col-md-4 btnPF">
+			 <div class="col-md-4 btnPF" style="display:none">
                  <button type="button" style=" font-weight: bold; font-size: 15px" class="btn Collected4  waves-effect btn-yelInplain btn-sm BTNVerify">Save</button>
            </div>
 
@@ -944,7 +1013,7 @@
                    <label for="APRC_RecptNum5" class="">Receipt Number<span class="MndtryAstr"></span></label>
              </div>
             </div> 
-           <div class="col-md-4 btnPF">
+           <div class="col-md-4 btnPF" style="display:none">
                  <button type="button" class="btn Collected5  waves-effect btn-yelInplain btn-sm BTNVerify">Save</button>
            </div>
           </div>

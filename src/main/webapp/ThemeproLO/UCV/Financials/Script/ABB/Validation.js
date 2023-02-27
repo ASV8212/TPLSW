@@ -197,7 +197,7 @@ function GetEmiperlakh()
 	 
 	ROI=$(xmlSTATUS).find('INTERESTRATE').text();
 	Tenur=$(xmlSTATUS).find('TENTURE').text();
-	 var result=UI_getdata(ROI,Tenur,LnAmt,"","","LSW_SGETEMI_DATA");
+	 var result=UI_getdata(ROI,Tenur,LnAmt,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 	 var EMI=$(result).find("EMI").text();
 	 	if(EMI=='')
 	{

@@ -930,7 +930,7 @@ function GridControlDetailAPPRLOANGRID(popTableModPageGrid1, TableID, dtData, dt
                     return htmldata[0].outerHTML;
                 }
             },
-            {
+            /* {
                 targets: 1,
                 "render": function(data, type, row, meta) {
                     var rowno = meta.row;
@@ -943,7 +943,7 @@ function GridControlDetailAPPRLOANGRID(popTableModPageGrid1, TableID, dtData, dt
                     $(htmldata).find('[name=LCDT_LONTYPE' + rowno + ']').attr("value", data);
                     return htmldata[0].outerHTML;
                 }
-            },
+            }, */
             {
                 targets: 2,
                 "render": function(data, type, row, meta) {
@@ -1786,13 +1786,24 @@ function RechkApprlNote()
 
 function SUBMITABIFILE()
 {
-	
-		var xml=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHKAPIREFNO")
+	var xml=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHKAPIREFNO")
+	var reqmapping = "";
+	if($("#VERTICAL").val() == "UCV")
+	{
+		xml=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHKAPIREFNO_UCV");
+		reqmapping = "processBBAutoFlow";
+	}
+	else if($("#VERTICAL").val() == "UCV Eco")
+	{
+		xml=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHKAPIREFNO");
+		reqmapping = "processAutoFlow";
+	}
+		
 	    var REFNO=$(xml).find('REFNO').text()
 	ajaxindicatorstart("Uploading.. Please wait");
 	
 	$.ajax({
-					   url: "/TPLSW/processAutoFlow",
+					   url: "/TPLSW/"+reqmapping,
 					   type: 'POST',
 					   data: {prcsid:$("#PrcsID").val(),refno:REFNO,reqfrm:"WEB",Prvnt:$(window.parent.parent.document).find("#Prvnt").val()},
 					   async:false,
@@ -1825,7 +1836,17 @@ function SUBMITABIFILE()
                      {
                       MSG=obj
 					 }						 
+			    	var pattern = /BRE Rule Failed/;
+				var exists = pattern.test(MSG);	
+				if(exists) {
+					alert(MSG);					
+					 var   PAGENAME="MyApplication"
+					  RedirectURL = window.location.origin+"/TPLSW/"+PAGENAME;
+					   $(location).attr('href',encodeURI(RedirectURL));
+				}
+				else{
 			    	alert(MSG);
+				}
 				    return false;   	
 			    }  
 			 },

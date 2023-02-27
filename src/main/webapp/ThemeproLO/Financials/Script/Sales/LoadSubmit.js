@@ -106,6 +106,7 @@ $(document).ready(function () {
 	 
 	 CheckGstCus();
 	 decideinterface();
+	LoadGSTStatus();
 	
 	$("#BTNSALESGRD").click();
  

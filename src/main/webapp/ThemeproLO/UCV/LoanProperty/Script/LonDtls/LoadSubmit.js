@@ -79,7 +79,7 @@ $(document).ready(function () {
 	var DATA=$("#LODE_LOANID").val()+'|LODE_LOANID'
 	
 	FormDataFromDB("LSW_TLOANDETAILS","LODE_","LODEDBfields", DATA);
-
+	getanchor();
 	CheckLoanTypeRM('LODE');
     CheckIncome();
 	CheckSourceOnload();
@@ -97,6 +97,7 @@ $(document).ready(function () {
 	AmountGstLoad();
 	CHKPRODUCTTYPE();
 	Chkmortum();
+	CheckREDUCE();
 	
 	if($("#DMY5").val().split('|')[2]!="PreLogin" && $("#DMY5").val().split('|')[2]!="PreLoginSB")
 	{
@@ -251,7 +252,15 @@ $(document).ready(function () {
 		$("#LODE_Exist").removeClass("LODEMndtry");	
 		$("#LODE_Exist").next().find(".MndtryAstr").html("");
 		
-		$("#LODE_DEMANDamt").attr('disabled',true);
+		
+		if($("#LODE_PRODUCT").val()=="T315" || $("#LODE_PRODUCT").val()=="T310" || $("#LODE_PRODUCT").val()=="T307" || $("#LODE_PRODUCT").val()=="T316")
+	{
+	$("#LODE_DEMANDamt").attr('disabled',false);
+	}
+	else
+	{
+	$("#LODE_DEMANDamt").attr('disabled',true);
+	}
 	}
 	
 	$(document).on("click", ".DELETELONDETL" , function() {

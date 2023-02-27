@@ -1,5 +1,5 @@
 <button type="button" data-Validatearia="Dedupe" data-Validatedata="GRBI_DEDUPEVERIFY" onclick="PosdxChk('GRBI_CUSID','GRBI_CUSTYPE','GRBI_DEDUPEVERIFY','Guarantor','','GRBI_CUSFISNAM');"  data-validate="CGBI|DEDUPE" class="btn GRBI_DEDUPEVERIFY waves-effect btn-yelInplain btn-sm BTNDedupe liSubpageTabIcons"><i class="fa fa-check"></i>Dedupe Check</button>
-<button type="button" class="btn  waves-effect  btn-yelInplain btn-sm liSubpageTabIcons" onclick="viewposidex('GRBI_CUSID','GRBI_CUSTYPE','GRBI_DEDUPEVERIFY','Guarantor','','GRBI_CUSFISNAM')"><i class="fa fa-eye"></i>View Dedupe</button>
+<button type="button" class="btn  waves-effect  btn-yelInplain btn-sm liSubpageTabIcons APPVIEWDEDUPE VIEWDISABLE" onclick="viewposidex('GRBI_CUSID','GRBI_CUSTYPE','GRBI_DEDUPEVERIFY','Guarantor','','GRBI_CUSFISNAM')"><i class="fa fa-eye"></i>View Dedupe</button>
        
    
          <!--Main row-->
@@ -552,7 +552,7 @@
         </div>
        <div class="INDU">  
         <div class="form-row">
-        	<div class="col Btxt10">RESIDENCE ADDRESS</div>
+        	<div class="col Btxt10">CURRENT ADDRESS</div>
         </div>
         </br>
         
@@ -568,8 +568,8 @@
                 <div class="col">
                   
                   <div class="md-form">
-                    <input type="text" id="GRAI_ADDRLINII" maxlength="60" name="GRAI_ADDRLINII" class="form-control AddrNoSpecialChar RSADDR GRAIDBfields">
-                    <label for="GRAI_ADDRLINII" class="">Address Line 2</label>
+                    <input type="text" id="GRAI_ADDRLINII" maxlength="60" name="GRAI_ADDRLINII" class="form-control AddrNoSpecialChar RSADDR GRAIMndtry GRAIDBfields">
+                    <label for="GRAI_ADDRLINII" class="">Address Line 2<span class="MndtryAstr">*</span></label>
                   </div>
                </div>
         </div>
@@ -658,6 +658,14 @@
              </div>
                </div>
         </div>
+		<div class="form-row">
+		<div class="col-md-5">
+                  <div class="md-form">
+				<input type="text" id="GRAI_RESISTABI" maxlength="5"  name="GRAI_RESISTABI" class="form-control GRAIDBfields NoSpecialChar IsNumberFields">
+                    <label for="GRAI_RESISTABI" class="">Residence Stability in Current City(In Months)<span class="MndtryAstr"></span></label>
+                  </div>
+                </div>
+		</div>
         <div class="form-row">
           <!--  <div class="col-md-5">
             	<div class="md-form">
@@ -678,7 +686,7 @@
             </div>
         </div>
         <div class="form-row">
-        	<div class="col Btxt10">PERMANENT ADDRESS</div>
+        	<div class="col Btxt10">CORRESPONDENCE ADDRESS</div>
         </div>
         </br>
         <div class="form-row">
@@ -686,7 +694,7 @@
             	<div class="md-form">
             	<div class="custom-control custom-radio custom-control-inline">
  					<input type="checkbox" class="custom-control-input GRAIDBfields" onclick="CheckAddrMndtry()" id="GRAI_SAMRESIDADDR" name="GRAI_SAMRESIDADDR">
-  					<label class="custom-control-label" for="GRAI_SAMRESIDADDR">Same as Residence Address</label>
+  					<label class="custom-control-label" for="GRAI_SAMRESIDADDR">Same as Current Address</label>
 				</div>
 				</div>
             </div>
@@ -710,8 +718,8 @@
                 <div class="col">
                   
                   <div class="md-form">
-                    <input type="text" id="GRAI_PERMADDRLINII" maxlength="60" name="GRAI_PERMADDRLINII" class="form-control AddrNoSpecialChar PRADDR GRAIDBfields">
-                    <label for="GRAI_PERMADDRLINII" class="ADDR">Address Line 2</label>
+                    <input type="text" id="GRAI_PERMADDRLINII" maxlength="60" name="GRAI_PERMADDRLINII" class="form-control AddrNoSpecialChar PRADDR GRAIMndtry GRAIDBfields">
+                    <label for="GRAI_PERMADDRLINII" class="ADDR">Address Line 2<span class="MndtryAstr">*</span></label>
                   </div>
                </div>
         </div>
@@ -816,6 +824,117 @@
                </div>
            
         </div>
+		
+				<!--NEWLY CURRENT ADDRESS ADDED FOR OVD CHANGES START-->
+		 <div class="form-row" Style="display:none">
+        	<div class="col Btxt10">CURRENT ADDRESS</div>
+        </div>
+        </br>
+        
+        <div class="form-row" Style="display:none">
+           
+            <div class="col">
+                  
+                  <div class="md-form">
+                    <input type="text" id="GRAI_CURADDRLINI" maxlength="60" name="GRAI_CURADDRLINI" class="form-control AddrNoSpecialChar RSADDR GRAIDBfields GRAIMndtry">
+                    <label for="GRAI_CURADDRLINI" class="">Address Line 1<span class="MndtryAstr">*</span></label>
+                  </div>
+                </div>
+                <div class="col">
+                  
+                  <div class="md-form">
+                    <input type="text" id="GRAI_CURADDRLINII" maxlength="60" name="GRAI_CURADDRLINII" class="form-control AddrNoSpecialChar RSADDR GRAIMndtry GRAIDBfields">
+                    <label for="GRAI_CURADDRLINII" class="">Address Line 2<span class="MndtryAstr">*</span></label>
+                  </div>
+               </div>
+        </div>
+        <div class="form-row" Style="display:none">
+            <div class="col">
+                  <div class="md-form">
+                    <input type="text" id="GRAI_CURPINCODE" maxlength="6" name="GRAI_CURPINCODE" onchange="fnOnFocusOut(this);Pindetls(this,'GRAI_CURSTATE','GRAI_CURCITY','GRAI_STDC')" class="form-control RSADDR GRAIDBfields NoSpecialChar IsNumberFields IsPinFielde GRAIMndtry">
+                    <label for="GRAI_CURPINCODE" class="">Pin Code<span class="MndtryAstr">*</span></label>
+                  </div>
+                </div>
+                <div class="col">
+                  
+                  <div class="md-form">
+                    <input type="text" id="GRAI_CURCITY" disabled name="GRAI_CURCITY" class="form-control ALLDIS RSADDR IsAlphaFields GRAIDBfields GRAIMndtry">
+                    <label for="GRAI_CURCITY" class="">City<span class="MndtryAstr">*</span></label>
+                  </div>
+               </div>
+        </div>
+        <div class="form-row" Style="display:none">
+            <div class="col">
+                  <div class="md-form">
+                    <input type="text" id="GRAI_CURSTATE" disabled name="GRAI_CURSTATE" class="form-control ALLDIS IsAlphaFields RSADDR GRAIDBfields GRAIMndtry">
+                    <label for="GRAI_CURSTATE" class="ADDR">State<span class="MndtryAstr">*</span></label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="md-form">
+                    <input type="text" id="GRAI_CURLNDMARK" maxlength="40" name="GRAI_CURLNDMARK" onchange="ChkLanMark(this,'GRAI_CURLNDMARK');" class="form-control  RSADDR GRAIDBfields GRAIMndtry">
+                    <label for="GRAI_CURLNDMARK" class="">Landmark<span class="MndtryAstr">*</span></label>
+                  </div>
+               </div>
+              </div>
+              <div class="form-row" Style="display:none">
+                <div class="col-md-6">
+                  <div class="md-form">
+                  <select class="mdb-select md-form colorful-select dropdown-primary RSADDR GRAIDBfields GRAIMndtry" id="GRAI_CURRESIDTYPE" name="GRAI_CURRESIDTYPE" >
+                  	<option value="" selected>--Select--</option>
+  					<option value="Self Owned">Self Owned</option>
+ 					 <option value="Rented">Rented</option>
+ 					 <option value="Owned by Relative">Owned by Relative</option>
+ 					 <option value="Company Provided">Company Provided</option>
+ 					 <option value="Family Owned">Family Owned</option>
+ 					 <option value="Leased">Leased</option>
+			     	</select>
+				  <label class="mdb-main-label BTxt9">Ownership status<span class="MndtryAstr">*</span></label>
+                 </div>
+                </div>
+                <div class="col-md-1">
+                   <div class="md-form">
+                        <input type="text" id="GRAI_CURSTDC" maxlength="11" style="width:75px"  name="GRAI_CURSTDC" class="form-control RSADDR GRAIDBfields IsNumberFields IsLandlneFields"> 
+                        <label for="GRAI_CURSTDC" class="">STD</label>
+                   </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="md-form">
+                    <input type="text" id="GRAI_CURLNDLINENO" maxlength="11"  name="GRAI_CURLNDLINENO" class="form-control RSADDR GRAIDBfields IsNumberFields IsLandlneFields">
+                    <label for="GRAI_CURLNDLINENO" class="">Landline No</label>
+                  </div>
+               </div>
+        </div>
+        <div class="form-row" Style="display:none">
+            <div class="col">
+                  <div class="md-form">
+				<input type="text" id="GRAI_CURYEAROFRESID" maxlength="2"  name="GRAI_CURYEAROFRESID" class="form-control RSADDR GRAIDBfields NoSpecialChar IsNumberFields GRAIMndtry">
+                    <label for="GRAI_CURYEAROFRESID" class="">Years of Residence<span class="MndtryAstr">*</span></label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="md-form">
+                  <select class="mdb-select md-form colorful-select dropdown-primary RSADDR GRAIDBfields" onchange="Chkresi()" id="GRAI_CURMONTHS" name="GRAI_CURMONTHS">
+                  	<option value="">--Select--</option>
+                  	<option value="0">0</option>
+  					<option value="1">1</option>
+  					<option value="2">2</option>
+  					<option value="3">3</option>
+  					<option value="4">4</option>
+  					<option value="5">5</option>
+  					<option value="6">6</option>
+  					<option value="7">7</option>
+  					<option value="8">8</option>
+  					<option value="9">9</option>
+  					<option value="10">10</option>
+  					<option value="11">11</option>
+				</select>
+				<label class="mdb-main-label BTxt9">Months</label>
+             </div>
+               </div>
+		<!--NEWLY CURRENT ADDRESS ADDED FOR OVD CHANGES END-->
+        </div>
+		
         </div>
         
         <div class="NINDU">  
@@ -844,8 +963,8 @@
                 <div class="col">
                   
                   <div class="md-form">
-                    <input type="text" id="GRAI_ORGADDRLINII" maxlength="60"  name="GRAI_ORGADDRLINII" class="form-control AddrNoSpecialChar ORGADD GRAIDBfields">
-                    <label for="GRAI_ORGADDRLINII" class="">Address Line 2</label>
+                    <input type="text" id="GRAI_ORGADDRLINII" maxlength="60"  name="GRAI_ORGADDRLINII" class="form-control AddrNoSpecialChar ORGADD GRAIDBfields GRAIMndtry">
+                    <label for="GRAI_ORGADDRLINII" class="">Address Line 2<span class="MndtryAstr">*</span></label>
                   </div>
                </div>
            
@@ -1036,7 +1155,7 @@
                               <div class="form-row">
                                  <div class="col">
                                     <div class="md-form">
-                                       <input type="text" id="GREI_ORGANINAME" maxlength="25"  name="GREI_ORGANINAME" class="form-control GREIDBfields IsAlphaFields GREIMndtry NoSpecialChar PROCHGS">
+                                       <input type="text" id="GREI_ORGANINAME" maxlength="75"  name="GREI_ORGANINAME" class="form-control GREIDBfields IsAlphaFields GREIMndtry NoSpecialChar PROCHGS">
                                        <label for="GREI_ORGANINAME" class="PROCHGAC">Organisation Name<span class="MndtryAstr">*</span></label>
                                     </div>
                                  </div>
@@ -1046,14 +1165,15 @@
                               <div class="form-row">
                                  <div class="col">
                                     <div class="md-form">
+                                    <div class="md-form">
                                        <input type="text" id="GREI_ADDRLINEI" maxlength="60"  name="GREI_ADDRLINEI" class="form-control AddrNoSpecialChar OFFADDR GREIDBfields GREIMndtry PROCHGS">
                                        <label for="GREI_ADDRLINEI" class="OADDR PROCHGAC">Address Line 1<span class="MndtryAstr">*</span></label>
                                     </div>
                                  </div>
                                  <div class="col">
                                     <div class="md-form">
-                                       <input type="text" id="GREI_ADDRLINEII" maxlength="60"  name="GREI_ADDRLINEII" class="form-control AddrNoSpecialChar OFFADDR GREIDBfields PROCHGS">
-                                       <label for="GREI_ADDRLINEII" class="OADDR PROCHGAC">Address Line 2</label>
+                                       <input type="text" id="GREI_ADDRLINEII" maxlength="60"  name="GREI_ADDRLINEII" class="form-control AddrNoSpecialChar OFFADDR GREIDBfields GREIMndtry PROCHGS">
+                                       <label for="GREI_ADDRLINEII" class="OADDR PROCHGAC">Address Line 2<span class="MndtryAstr">*</span></label>
                                     </div>
                                  </div>
                               </div>
@@ -1274,15 +1394,15 @@
                                        <div id="ORGSEP" class="select-radio GREIMndtry">
                                           <div class="custom-control custom-radio custom-control-inline">
                                              <input type="radio" class="custom-control-input GREIDBfields" value="Permanent Residence" id="PrePerRes" name="GREI_PREFCOMMUADDR">
-                                             <label class="custom-control-label" for="PrePerRes">Permanent Residence</label>
+                                             <label class="custom-control-label" for="PrePerRes">Permanent Address</label>
                                           </div>
                                           <div class="custom-control custom-radio custom-control-inline">
                                              <input type="radio" class="custom-control-input GREIDBfields" value="Current Residence" id="PreCurRes" name="GREI_PREFCOMMUADDR">
-                                             <label class="custom-control-label" for="PreCurRes">Current Residence</label>
+                                             <label class="custom-control-label" for="PreCurRes">Current Address</label>
                                           </div>
                                           <div class="custom-control custom-radio custom-control-inline">
                                              <input type="radio" class="custom-control-input GREIDBfields" value="Office" id="PreOff" name="GREI_PREFCOMMUADDR">
-                                             <label class="custom-control-label" for="PreOff">Office</label>
+                                             <label class="custom-control-label" for="PreOff">Office Address</label>
                                           </div>
                                        </div>
                                        <label class="mdb-main-label BTxt9">Preferred Communication Address *</label>      
@@ -1311,6 +1431,7 @@
                </div>
             </div>
          </div>
+		 </div>
   <div class="card NINDU ORG">
     <!-- Card header -->
     <div class="card-header Btxt7" role="tab" id="headingFour4">
@@ -1498,7 +1619,19 @@
                 </div>
 			</div>
 		   
-				
+			<div class="form-row">
+				<div class="col-md-6">
+					<div class="md-form">
+					<select class="md-form colorful-select dropdown-primary  GUOADBfields" id="GUOA_KYCCATEGORY" name="GUOA_KYCCATEGORY">
+                                             <option value="">Select</option>
+                                             <option value="Low">Low</option>
+                                             <option value="Medium">Medium</option>
+                                             <option value="High">High</option>
+                                          </select>
+                    <label for="GUOA_KYCCATEGORY" class="">KYC Category<span class="MndtryAstr"></span></label>
+					</div>
+					</div>
+				</div>				
 	
 		<!--<div class="form-row">
 		  <div class="col-md-6 ">
@@ -1525,6 +1658,7 @@
 <!-- Accordion wrapper -->
 <!-- END -->
 </div>
+
                              </div>
 <script type="text/javascript" src="ThemeproLO/CustomerDetails/Script/Guantr/LoadSubmit.js${DMY13}"></script>
 <script type="text/javascript" src="ThemeproLO/CustomerDetails/Script/Guantr/Validation.js${DMY13}"></script> 

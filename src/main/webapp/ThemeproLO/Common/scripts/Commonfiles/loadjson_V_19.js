@@ -9248,6 +9248,10 @@ function handlejsonDocChkLst_SCROLL(result,TableID, curcontl, hdncolumn, enablec
            {
         	   GridControlDetailBRE (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
            }
+		   else if (enablecontrol == "STPBRE")
+           {
+        	   GridControlDetailSTPBRE (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
 		   
 		    else if (enablecontrol == "VENDDOCUPLOAD")
            {
@@ -9263,7 +9267,10 @@ function handlejsonDocChkLst_SCROLL(result,TableID, curcontl, hdncolumn, enablec
            {
         	   GridControlDetailVENDADDTECHGROUP (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
            }
-		   
+		    else if (enablecontrol == "BANKGRID")
+           {
+        	   GridControlDetailBANKGRID (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
 		   
 		   
 		    else if (enablecontrol == "DOCUPLOAD")
@@ -9511,6 +9518,14 @@ function handlejsonDocChkLst_SCROLL(result,TableID, curcontl, hdncolumn, enablec
             	   GridControlDetailFINCSUMMARY(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
                }
                //Ratio End
+			   else if (enablecontrol == "CREDITSUMMATION")
+             {
+          	   GridControlDetailCREDITSUMMATION(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+             }
+			  else if (enablecontrol == "CREDITPD")
+             {
+          	   GridControlDetailCREDITPD(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+             }
          	 else if (enablecontrol == "REPAYCHQ")
              {
           	   GridControlDetailREPAYCHQ(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
@@ -10192,6 +10207,10 @@ function handlejsonDocChkLst(result,TableID, curcontl, hdncolumn, enablecontrol,
            {
         	   GridControlDetailBRE (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
            }
+		   else if (enablecontrol == "STPBRE")
+           {
+        	   GridControlDetailSTPBRE (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
 		   
 		    else if (enablecontrol == "VENDDOCUPLOAD")
            {
@@ -10208,7 +10227,10 @@ function handlejsonDocChkLst(result,TableID, curcontl, hdncolumn, enablecontrol,
         	   GridControlDetailVENDADDTECHGROUP (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
            }
 		   
-		   
+		      else if (enablecontrol == "BANKGRID")
+           {
+        	   GridControlDetailBANKGRID (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
 		   
 		    else if (enablecontrol == "DOCUPLOAD")
            {
@@ -10455,6 +10477,14 @@ function handlejsonDocChkLst(result,TableID, curcontl, hdncolumn, enablecontrol,
             	   GridControlDetailFINCSUMMARY(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
                }
                //Ratio End
+			    else if (enablecontrol == "CREDITSUMMATION")
+             {
+          	   GridControlDetailCREDITSUMMATION(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+             }
+			  else if (enablecontrol == "CREDITPD")
+             {
+          	   GridControlDetailCREDITPD(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+             }
          	 else if (enablecontrol == "REPAYCHQ")
              {
           	   GridControlDetailREPAYCHQ(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
@@ -10765,6 +10795,17 @@ function handlejsonDocChkLst(result,TableID, curcontl, hdncolumn, enablecontrol,
 			{
 			   GridControlDetailDEVATNTABLE1 (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
 			}
+			else if (enablecontrol == "ASSESTDEDUPE")
+			{
+			   GridControlDetailASSESTDEDUPE (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+			}
+			else if (enablecontrol == "ASSESTDEDUPE")
+			{
+			   GridControlDetailASSESTDEDUPE (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+			}
+			else if(enablecontrol == "MANGPDDFLOW"){
+    	popTableModPageGrid1=  GridControlMANGPDDFLOW (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+      }
 			//Control Grid End
          // Grid Table Properties Set Start
          $('#'+TableID).find("tbody").addClass("tbody");
@@ -11460,6 +11501,12 @@ function handlejsonMyAppl(result,TableID, curcontl, hdncolumn, enablecontrol,par
       }
       else if(enablecontrol == "MANAGEDEFR"){
     	popTableModPageGrid1=  GridControlMANAGEDEFR (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+      }
+	  else if(enablecontrol == "MANAGEDEFRFLOW"){
+    	popTableModPageGrid1=  GridControlMANAGEDEFRFLOW (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+      }
+	  else if(enablecontrol == "MANGPDDFLOW"){
+    	popTableModPageGrid1=  GridControlMANGPDDFLOW (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
       }
 	  else if (enablecontrol == "VENDOR")
 	{

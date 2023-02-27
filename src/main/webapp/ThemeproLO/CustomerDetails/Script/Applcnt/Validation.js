@@ -158,7 +158,21 @@ $('#'+city).next().removeClass('active');
 $(idval).val('');
 }
 }
+/* function KycRiskCategory()
+{
+ if($("#DMY5").val().split('|')[2]=="PreLogin")
+    {
 
+        $("#CDOG_KYCCATEGORY").attr('disabled',true);
+		$("#CDOG_KYCCATEGORY").removeClass('CDOGMndtry');
+
+    }
+    else
+    {
+        $("#CDOG_KYCCATEGORY").attr('disabled',false);
+        $("#CDOG_KYCCATEGORY").addClass('CDOGMndtry');
+    }
+} */
 function CheckAppltype()
 {
 	
@@ -422,7 +436,27 @@ function OrgNaturBusness()
 		}
 		$("#CDOG_NATRBUSINESS").material_select("destroy");	
 		$("#CDOG_NATRBUSINESS").material_select();
-} 					
+} 			
+function kycriskcategory()
+{
+	var kycriskcategory=$("#CDOG_KYCCATEGORY").val()
+	if(kycriskcategory=="pre-login")
+		{
+		//  $("#CBSI_SPOUSNAME").addClass('CBSIMndtry');
+		  //$("#CBSI_SPOUSNAME").next().find(".MndtryAstr").html("*");
+		  $("#CDOG_KYCCATEGORY").attr("disabled",true)
+//		  $("#CDOG_KYCCATEGORY").val('')
+		}
+	else
+		{
+		$("#CDOG_KYCCATEGORY").next().find(".MndtryAstr").html("");
+		$("#CDOG_KYCCATEGORY").removeClass('CDOG_KYCCATEGORYMndtry');
+		$("#CDOG_KYCCATEGORY").attr("Enabled",false)
+		$("#CDOG_KYCCATEGORY").val('')
+		}
+}
+
+   	
 					
 					
 					
@@ -864,7 +898,23 @@ function GridControlDetailKARZAGRD (popTableModPageGrid1,TableID,dtData,dtcolumn
   
 		 
 		 { targets: 6, "render": function ( data, type, row, meta ) {                            
-	 			
+	 			if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))	
+				{
+					var rowno = meta.row;		 
+		 		var HTML =	'<span><input type="radio" disabled class="custom-control-input CBSIDBfields" value="Yes" id="MULTIPLY'+rowno+'" name="KARZAACTION"><label class="custom-control custom-control-label" for="MULTIPLY'+rowno+'"></label>';			 
+		 		HTML = HTML + '</span>';			  
+		 		
+		 		var htmldata = $(HTML);
+					
+					$(htmldata).find('[name=RXLD_MULTIPLIER'+rowno+'][value="'+data+'"]').attr('checked', 'checked');
+
+					//alert($(htmldata).find('[name=OKYD_DOCSTATUS'+rowno+'][value="'+data+'"]').length)
+					//alert(htmldata[0].outerHTML);
+					
+		        return htmldata[0].outerHTML;
+				}
+				else
+				{
 			 var rowno = meta.row;		 
 		 		var HTML =	'<span><input type="radio" class="custom-control-input CBSIDBfields" value="Yes" id="MULTIPLY'+rowno+'" name="KARZAACTION"><label class="custom-control custom-control-label" for="MULTIPLY'+rowno+'"></label>';			 
 		 		HTML = HTML + '</span>';			  
@@ -876,7 +926,8 @@ function GridControlDetailKARZAGRD (popTableModPageGrid1,TableID,dtData,dtcolumn
 					//alert($(htmldata).find('[name=OKYD_DOCSTATUS'+rowno+'][value="'+data+'"]').length)
 					//alert(htmldata[0].outerHTML);
 					
-		        return htmldata[0].outerHTML;   		
+		        return htmldata[0].outerHTML;
+				}				
 					
 		         } 
 				 },
@@ -2021,12 +2072,20 @@ function disbRmk()
 		if(borrower=="Yes")
 		{
 			$(".APPSHOW").show();
-			$("#CBSI_ECUAMNO").addClass('CBSIMndtry');
+			$("#CBSI_EUAMNO").addClass('CBSIMndtry');
+			if($('#CBSI_UDYAMVERI').val()=="Verified")
+			{
+			$(".VerifyUdyam").show();
+			}
+			else
+			{
+			$(".VerifyUdyam").hide();
+			}
 		} 
 		else 
 		{
-			$("#CBSI_ECUAMNO").val('');
-			$("#CBSI_ECUAMNO").removeClass('CBSIMndtry');
+			$("#CBSI_EUAMNO").val('');
+			$("#CBSI_EUAMNO").removeClass('CBSIMndtry');
 			$(".APPSHOW").hide();
 		}
 		 // }
@@ -2440,6 +2499,11 @@ function Chkdirect()
 	   $("#CBSI_KYCPROOFTYP option[value='SIGN PROOF']").attr('disabled',true);
 	   $("#CBSI_KYCPROOFTYP").material_select();
 	}
+	if($("#CBSI_CUSTYPE").val() == "Non-Individual")
+	{
+		$("#CBSI_KYCPROOFTYP option[value='SIGN PROOF']").attr('disabled',true);
+		$("#CBSI_KYCPROOFTYP option[value='DOB PROOF']").attr('disabled',true);
+	}
 }
 function ChkApProf()
 {
@@ -2597,7 +2661,7 @@ else
 	$("#"+PGst).prop('checked', true);
 }
 	
-}
+} 
 
 function OtherKYC() 
 {
@@ -2665,13 +2729,13 @@ if(($("#CBSI_AADHARTYPE").val()!="") && ($("#CBSI_AADHARTYPE").val()!=undefined)
 	{
 		if($("#CBSI_AADHARUPLOADVERIFY").val()=="Upload Verified")
 		{
-		//$(".AUPLDXML").show();
+		$(".AUPLDXML").show();
 		$(".AUPLDXMLII").hide();
 		$(".AVER").show();
 		}
 		else
 		{
-		//$(".AUPLDXML").hide();
+		$(".AUPLDXML").hide();
 		$(".AUPLDXMLII").hide();
 		$(".AVER").hide();
 		}
@@ -2746,7 +2810,7 @@ var k=	$("#CBSI_KYCPROOFTYP").val().length
 var PROOFTYPE=""
  for(i=0;i<k;i++)
 	 {
-	 var PROOFTYPE1=$("#CBSI_KYCPROOFTYP").val()[i]
+	 var PROOFTYPE1=$("#CBSI_PROOFTYP").val()[i]
 		
 	 if(PROOFTYPE1!=undefined)
 		 {

@@ -45,6 +45,10 @@ $(document).ready(function () {
 			$(HTML).find(".Rpt").hide()
 			$(HTML).find("#InitiateBSA").show();
 	}
+	if($(HTML).find("input[name=BKDT_TRANSACTIONSTATUS]").val()!="")
+	{
+		$(HTML).find(".Auto").hide();
+	}
 	 }
 	}
 	 

@@ -55,6 +55,18 @@ if(propertyname=="Reference 1")
 			$(".MSMEDETAILS").show();
 					 
 		}
+		
+		
+	if($("#VERTICAL").val()=="Tractor Finance")
+		{
+			$(".AUTOTRAC").hide();
+					 
+		}
+		else
+		{
+			$(".AUTOTRAC").show();
+					 
+		}
 	
 	$('.FormSave').on('click', function() {
 		

@@ -10,6 +10,7 @@ $(document).ready(function() {
 	
 	GetBusiness();
 	Profit();
+	
     FormDataFromDB("LSW_TTAKEOVERUBL", "OUBL_", "OUBLDBfields", "OUBL_SCHEMEID");
     $("#OUBL_PRCSID").val($("#PrcsID").val())
 
@@ -17,7 +18,7 @@ $(document).ready(function() {
 	$("#OUBL_SCHEMENAME").attr("value",$(".FormPageMultiTab li.active").text());
 	
 	Checkinst();
-    
+    FOIR();
  
     
     

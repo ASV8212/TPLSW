@@ -13,7 +13,7 @@ $(document).ready(function() {
 	
 	if($("#VERTICAL").val()!="UCV")
 	{
-	   var StrCAMData=UI_getdata($("#PrcsID").val(),"","",$("#VERTICAL").val(),"","LSW_SSTRCAMMAINTABLE");
+	   var StrCAMData=UI_getdata($("#PrcsID").val(),"","",$("#VERTICAL").val(),"First","LSW_SSTRCAMMAINTABLE");
 	}
 	
     $("#BOCL_PRCSID").attr("value", $("#PrcsID").val());

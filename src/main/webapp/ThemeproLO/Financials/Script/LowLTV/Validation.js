@@ -217,19 +217,11 @@ $(document).on("blur",".TRAD",function(){
 	{
 		val1=0;
 	}
-	if(val1=='Infinity')
-	{
-		val1=0;
-	}
 	if(val2=='')
 	{
 		val2=0;
 	}
 	if(isNaN(val2))
-	{
-		val2=0;
-	}
-	if(val2=='Infinity')
 	{
 		val2=0;
 	}
@@ -241,10 +233,7 @@ $(document).on("blur",".TRAD",function(){
 	{
 		val3=0;
 	}
-	if(val3=='Infinity')
-	{
-		val3=0;
-	}
+	
 	amt=parseFloat(val1)*parseFloat(val2)*parseFloat(val3);
 	if(amt=='')
 	{
@@ -254,11 +243,6 @@ $(document).on("blur",".TRAD",function(){
 		{
 			amt=0;
 		}
-	if(amt=='Infinity')
-		{
-			amt=0;
-		}
-		
 	 $("#CLTV_MONNETINCOME").val(CURINRCommaSep(parseFloat(amt).toFixed(2)));
 	 $("#CLTV_MONNETINCOME").next().addClass('active');
 	 //Surplus Available for EMI Servicing
@@ -269,10 +253,6 @@ $(document).on("blur",".TRAD",function(){
 		amt=0;
 	}
 	if(isNaN(amt))
-		{
-			amt=0;
-		}
-	if(amt=='Infinity')
 		{
 			amt=0;
 		}
@@ -296,10 +276,6 @@ $(document).on("blur",".MANU",function(){
 	{
 		val1=0;
 	}
-	if(val1=='Infinity')
-	{
-		val1=0;
-	}
 	if(val2=='')
 	{
 		val2=0;
@@ -308,10 +284,6 @@ $(document).on("blur",".MANU",function(){
 	{
 		val2=0;
 	} 
-	if(val2=='Infinity')
-	{
-		val2=0;
-	}
 	amt=parseFloat(val1-val2) ;
 	if(amt=='')
 	{
@@ -320,10 +292,6 @@ $(document).on("blur",".MANU",function(){
 	if(isNaN(amt))
 		{
 			amt=0;
-		}
-		if(amt=='Infinity')
-		{
-		  amt=0;	
 		}
 	 $("#CLTV_GROSSPROFIT").val(CURINRCommaSep(parseFloat(amt).toFixed(2))); 
 	  $("#CLTV_GROSSPROFIT").next().addClass('active');
@@ -344,20 +312,11 @@ $(document).on("blur",".FXCOST",function(){
 	{
 		val1=0;
 	}
-	if(val1=='Infinity')
-	{
-		val1=0;
-	}
 	if(val2=='')
 	{
 		val2=0;
 	}
-	
 	if(isNaN(val2))
-	{
-		val2=0;
-	}
-	if(val2=='Infinity')
 	{
 		val2=0;
 	}
@@ -366,10 +325,6 @@ $(document).on("blur",".FXCOST",function(){
 		val3=0;
 	}
 	if(isNaN(val3))
-	{
-		val3=0;
-	}
-	if(val3=='Infinity')
 	{
 		val3=0;
 	}
@@ -418,10 +373,6 @@ function GetNetProfit1(){
 		{
 			amt=0;
 		}
-		if(amt=='Infinity')
-		{
-			amt=0;
-		}
 	 $("#CLTV_NETPROFIT").val(CURINRCommaSep(parseFloat(amt).toFixed(2))); 
 	 $("#CLTV_NETPROFIT").next().addClass('active');
 	$("#CLTV_DSR").val(60);
@@ -435,18 +386,14 @@ function GetNetProfit1(){
 		{
 			amt=0;
 		}
-		if(amt=='Infinity')
-		{
-			amt=0;
-		}
 	$("#CLTV_MSURAVLEMISER").val(CURINRCommaSep(parseFloat(amt).toFixed(2)));
 	$("#CLTV_MSURAVLEMISER").next().addClass('active');	
 	 
-		if($("#CLTV_ASURAVLFREMISER").val()=="")
-	{
+		//if($("#CLTV_ASURAVLFREMISER").val()=='0')
+	//{
 		$("#CLTV_ASURAVLFREMISER").val(CURINRCommaSep(parseFloat(amt).toFixed(2)));	   
 	    $("#CLTV_ASURAVLFREMISER").next().addClass('active');	
-	}
+	//}
 	$(".AVLFUND").focusout();
 	
 }
@@ -487,10 +434,6 @@ $(document).on("blur",".AVLFUND",function(){
 		{
 			amt=0;
 		}
-		if(amt=='Infinity')
-		{
-			amt=0;
-		}
 	 $("#CLTV_AVLFUNDFREMISER").val(CURINRCommaSep(parseFloat(amt).toFixed(2))); 
 	 $("#CLTV_AVLFUNDFREMISER").next().addClass('active');	 
 	//Final Abb
@@ -512,10 +455,6 @@ $(document).on("blur",".AVLFUND",function(){
 		amt=0;
 	}
 	if(isNaN(amt))
-		{
-			amt=0;
-		}
-		if(amt=='Infinity')
 		{
 			amt=0;
 		}
@@ -565,27 +504,17 @@ function  GetAdjustedAvlFund(){
 	{
 		val1=0;
 	}
-	
 	if(isNaN(val1))
 	{
 		val1=0;
 	}
-	if(val1=='Infinity')
-		{
-			val1=0;
-		}
 	if(val2=='')
 	{
 		val2=0;
 	}
-	
 	if(isNaN(val2))
 	{
 		val2=0;
-	}
-	if(val2=='Infinity')
-	{
-	 val2=0;
 	}
 	if(val3=='')
 	{
@@ -595,10 +524,7 @@ function  GetAdjustedAvlFund(){
 	{
 		val3=0;
 	} 
-	if(val3=='Infinity')
-	{
-	 val3=0;
-	}
+	
 	amt=parseFloat(Math.min(val1,val2,val3));
 	if(amt=='')
 	{
@@ -608,10 +534,6 @@ function  GetAdjustedAvlFund(){
 		{
 			amt=0;
 		}
-	if(amt=='Infinity')
-	{
-	 amt=0;
-	}
 	 $("#CLTV_ADJUSTAVLFNDEMI").val(CURINRCommaSep(parseFloat(amt).toFixed(2)));
      $("#CLTV_ADJUSTAVLFNDEMI").next().addClass('active');	 	 
 }
@@ -624,7 +546,7 @@ function  GetEmiPerLakh(){
 	 
 	ROI=$("#CLTV_PROPOSEINR").val();
 	Tenur=$("#CLTV_PROTENOR").val();
-	 var result=UI_getdata(ROI,Tenur,LnAmt,"","","LSW_SGETEMI_DATA");
+	 var result=UI_getdata(ROI,Tenur,LnAmt,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 	 var EMI=$(result).find("EMI").text();
 	 	if(EMI=='')
 	{
@@ -634,10 +556,6 @@ function  GetEmiPerLakh(){
 		{
 			EMI=0;
 		}
-	if(EMI=='Infinity')
-	{
-	 EMI=0;
-	}	
 	$("#CLTV_EMIPERLAKH").val(CURINRCommaSep(parseFloat(EMI).toFixed(2)));
 	$("#CLTV_EMIPERLAKH").next().addClass('active');	 	 
 	 
@@ -658,34 +576,21 @@ function  GetLoanEligibility(){
 		{
 			AvlFundEMI=0;
 		}
-		if(AvlFundEMI=='Infinity')
-		{
-			AvlFundEMI=0;
-		}
-	
 		if(EMIPerLakh=='')
-	   {
+	{
 		EMIPerLakh=0;
-	   }
-	   if(isNaN(EMIPerLakh))
-		{
-			EMIPerLakh=0;
-		}
-		if(EMIPerLakh=='Infinity')
+	}
+	if(isNaN(EMIPerLakh))
 		{
 			EMIPerLakh=0;
 		}
 	 
-	  if(Proval=='')
+	if(Proval=='')
 	{
-	 	
+		
 		Proval=0;
 	}
 	if(isNaN(Proval))
-		{
-			Proval=0;
-		}
-		if(Proval=='Infinity')
 		{
 			Proval=0;
 		}
@@ -698,10 +603,6 @@ function  GetLoanEligibility(){
 		amt=0;
 	}
 	if(isNaN(amt))
-		{
-			amt=0;
-		}
-		if(amt=='Infinity')
 		{
 			amt=0;
 		}

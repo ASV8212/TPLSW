@@ -485,6 +485,10 @@
 <th>UPFD_MOUNTH</th>
 <th>UPFD_INFLOW</th>
 <th>UPFD_OUTFLOW</th>
+<th>UPFD_TOTALINFLOW</th>
+<th>UPFD_TOTALOUTFLOW</th>
+<th>UPFD_CASHDEP</th>
+<th>UPFD_CASHWITDRA</th>
 <th>UPFD_UNIQID</th>
 <!--<th>UPFD_PRCSID</th>
 <th>UPFD_ACTIVITYID</th>

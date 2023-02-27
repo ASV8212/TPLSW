@@ -22,7 +22,6 @@
 				  <input type="text" id="TOMF_SCHEMENAME" hidden="hidden" name="TOMF_SCHEMENAME" class="form-control TOMFDBfields">
 				  <input type="text" id="TOMF_SCHEMEID" hidden="hidden" name="TOMF_SCHEMEID" class="form-control TOMFDBfields">
 				  <input type="text" id="TOMF_TURNOVERFIN" hidden="hidden" name="TOMF_TURNOVERFIN" class="form-control TOMFDBfields">
-				  <input type="text" id="TOMF_LOANID" hidden="hidden" name="TOMF_LOANID" class="form-control TOMFDBfields">
 				  
                    
 				 </br>
@@ -44,7 +43,7 @@
 			</br>
 				   
 				  </br>
-                  <div class="form-row">
+                  <div class="form-row"style="display:none">
                      <div class="col d-flex justify-content-center">
                         <button type="button" id="Save" data-aria="LSW_TTURNOVERFIN|TOMF|TOMF_SCHEMEID" class="btn btn-Syeloutline waves-effect waves-light Save FormSave">Save</button>   
                       <!--  <button type="button" data-aria="LSW_TTAKEOVERUBL|TOMF" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> -->

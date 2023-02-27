@@ -20,7 +20,9 @@ $(document).ready(function () {
 	 $("#BRCR_ZONE").append($(Branch).find("ZONE").html());	
     $("#BRCR_REGION").append($(Branch).find("REGION").html());	
     $("#BRCR_AREA").append($(Branch).find("RESULT").html());	
-	$("#BRCR_PROFITCEN").append($(Branch).find("PROFIT").html());	
+	$("#BRCR_PROFITCEN").append($(Branch).find("PROFIT").html());
+	$("#BRCR_SUBREGION").append($(Branch).find("NEWREGION").html());
+	
 	
 	    if($("#PrMs3").val()=="NEW")
 	  {

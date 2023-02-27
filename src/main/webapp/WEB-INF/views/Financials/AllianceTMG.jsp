@@ -22,7 +22,6 @@
 				  <input type="text" id="TGST_SCHEMENAME" hidden="hidden" name="TGST_SCHEMENAME" class="form-control TGSTDBfields">
 				  <input type="text" id="TGST_SCHEMEID" hidden="hidden" name="TGST_SCHEMEID" class="form-control TGSTDBfields">
 				  <input type="text" id="TGST_TURNGST" hidden="hidden" name="TGST_TURNGST" class="form-control TGSTDBfields">
-				  <input type="text" id="TGST_LOANID" hidden="hidden" name="TGST_LOANID" class="form-control TGSTDBfields">
 				  
                    
 				 </br>
@@ -45,7 +44,7 @@
 			</br>
 				   
 				  </br>
-                  <div class="form-row">
+                  <div class="form-row"style="display:none">
                      <div class="col d-flex justify-content-center">
                         <button type="button" id="Save" data-aria="LSW_TTURNOVERGST|TGST|TGST_SCHEMEID" class="btn btn-Syeloutline waves-effect waves-light Save FormSave">Save</button>   
                       <!--  <button type="button" data-aria="LSW_TTAKEOVERUBL|TGST" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> -->

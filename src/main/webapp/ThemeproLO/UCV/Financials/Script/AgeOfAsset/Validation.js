@@ -201,7 +201,7 @@ function CheckLoan(){
 
 
 function CheckDate(){
-	var chck=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETSECURITYDETAILS");
+	var chck=UI_getdata($("#PrcsID").val(),$("#AGEA_LOANID").val(),"","","","LSW_SGETSECURITYDETAILS");
 	$("#AGEA_MAFCMONTH").val($(chck).find ('MANFDATE').text());
 	$("#AGEA_CURNTDATE").val($(chck).find ('ADDDATE').text());
 	$("#AGEA_PROPOSETENU").val($(chck).find ('TENTURE').text());

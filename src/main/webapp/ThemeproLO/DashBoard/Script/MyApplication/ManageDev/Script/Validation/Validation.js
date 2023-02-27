@@ -36,7 +36,7 @@ function GridControlDetailMNGDEV (popTableModPageGrid1,TableID,dtData,dtcolumn,h
          
 "aoColumnDefs": [ 
        		   { "sClass": "dpass", "aTargets": jQuery.parseJSON(hideClm)},
-       		{ targets: 3, "render": function ( data, type, row, meta ) {                            
+       		{ targets: 6, "render": function ( data, type, row, meta ) {                            
     	 		 
        			var rowno = meta.row;	
        			
@@ -54,9 +54,9 @@ function GridControlDetailMNGDEV (popTableModPageGrid1,TableID,dtData,dtcolumn,h
                 } 
        		 },
        		{
-                 targets: 4,
+                 targets: 7,
                  "render": function(data, type, row, meta) {
-                 	if(row[4] == "Pending" ){
+                 	if(row[7] == "Pending" ){
                  		var rowno = meta.row;
                          var HTML = '<span><div class="HyperControls "><i class="fa fa-check"></i><a  class="Btxt4 OTCSTATUS" id="Approve'+ rowno +'" name="Approve'+ rowno +'" data-value="Approve" data-table="TableRR" href="#">Approve</a></div>';
                          HTML = HTML + '<div class="HyperControls"><i class="fa fa fa-times"></i><a  class="Btxt4 OTCSTATUS" id="Reject'+ rowno +'" name="Reject'+ rowno +'"  data-table="TableRR" href="#">Reject</a></div>';

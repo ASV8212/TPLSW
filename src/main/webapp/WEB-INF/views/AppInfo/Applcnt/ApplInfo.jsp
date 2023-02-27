@@ -66,6 +66,7 @@ Application Info
 </div>
 </div>
 <input type="text" id="KARZASTATUS" name="KARZASTATUS" hidden="hidden" class="form-control DataNormal" value="">
+<input type="text" id="AADHARHITFROM" name="AADHARHITFROM" hidden="hidden" class="form-control DataNormal" value="">
 
 <div class="">
 
@@ -75,7 +76,6 @@ Application Info
 <input type="text" id="CBSI_PASSPORTDOCCHK" name="CBSI_PASSPORTDOCCHK" hidden="hidden" class="form-control DataNormal CBSIDBfields" value="">
 <input type="text" id="CBSI_PANDOCCHK" name="CBSI_PANDOCCHK" hidden="hidden" class="form-control DataNormal CBSIDBfields" value="">
 <input type="text" id="CBSI_HIDPROFTYP" name="CBSI_HIDPROFTYP" hidden="hidden" class="form-control DataNormal CBSIDBfields" value="">
-
  <div class="row FormRows m-b-0 KYCInfo">
 
                                     <!--First column-->
@@ -105,7 +105,7 @@ Application Info
                </div>
            </div>
 
-     <div class="col-md-8 KYCPROOF"style="display:none">
+     <div class="col-md-8 ">
 		<div class="md-form">
                      <div class="" id="">
                         <select class="mdb-select md-form colorful-select dropdown-primary CBSIDBfields" multiple id="CBSI_KYCPROOFTYP" onchange="GETPROOFTYP();" name="CBSI_KYCPROOFTYP">
@@ -307,7 +307,7 @@ Application Info
 </div>
 </div>
 </br>
-<img src="ThemeproLO/Common/Images/delete.png"  title="Delete" onclick="KYCDELETE('CBSI_VOTERIDVEIRFY','CBSI_VOTERID','voter','CBSI_VOTERATTACHMENTII','CBSI_CUSID',' Upload Voters ID','CBSI_VOTERUPLOADVERIFY','Voter ID')"  class="rounded KYCDEL" alt="Cinque Terre" width="20" height="20">   
+<img src="ThemeproLO/Common/Images/delete.png"  title="Delete" onclick="KYCDELETEFRTADBCK('CBSI_VOTERIDVEIRFY','CBSI_VOTERID','voter','CBSI_VOTERATTACHMENT','CBSI_VOTERATTACHMENTII','CBSI_CUSID',' Upload Voters ID','CBSI_VOTERUPLOADVERIFY','CBSI_VOTERUPLOADIIVERIFY','Voter ID','CBSI_VOTERIDPROOF','CBSI_VOTERIDTYPE')"  class="rounded KYCDEL" alt="Cinque Terre" width="20" height="20">   
 </div>  
 </br>  
 <div class="row FormRows FormRowsNS m-b-0 AADHAR" style="display:none">
@@ -348,7 +348,7 @@ Application Info
 <label for="CBSI_AADHAR" class="">Aadhar *</label>
 </div>    
 </div>  
-<div class="col-md-4 Formcol-mdLR TxtCenter">
+<div class="col-md-4 Formcol-mdLR TxtCenter" style="display:none">
 <div class="md-form">
 <input type="text" id="CBSI_AADHARVERIFY" hidden="hidden" name="CBSI_AADHARVERIFY" class="form-control CBSIDBfields">
 <button type="button" data-Validatearia="CBSI_AADHARVERIFY" onclick="CheckKYCDetl(this,'CBSI_AADHARATTACHMENT','CBSI_AADHARVERIFY','AADHAAR XML VERIFY');" data-field="CBSI_DOB||CBSI_CUSTYPE|CBSI_CUSID|" data-validate="AADHAR" class="btn  waves-effect btn-yelInplain btn-sm BTNVerify">Verify</button>
@@ -381,9 +381,9 @@ Application Info
 <img src="ThemeproLO/Common/Images/UploadImg.png"  title="UPLOAD"  onclick="ReuploadFile(CBSI_AADHARATTACHMENT);" class="rounded ReUpld" alt="Cinque Terre" width="20" height="20"> 
 <img src="ThemeproLO/Common/Images/Eyeview.png"  title="VIEW"  class="rounded AadharViewImg" onclick="GrdDocDwnld('CBSI_AADHARATTACHMENT')" alt="Cinque Terre" width="35" height="25"> 
 
-<img src="ThemeproLO/Common/Images/Eyeview.png" style="display:none"  title="Marking Aadhar Image" class="rounded AadharMskImg" onclick="DirImgDown('CBSI_MSKAADHARATTACHMENT')" alt="Cinque Terre" width="35" height="25"> 
+<img src="ThemeproLO/Common/Images/Eyeview.png" style="display:none"  title="Marking Aadhar Image" class="rounded AadharMskImg" onclick="GrdDocDwnld('CBSI_MSKAADHARATTACHMENT')" alt="Cinque Terre" width="35" height="25"> 
 <input type="text" id="CBSI_AADHARUPLOADVERIFY" hidden="hidden" name="CBSI_AADHARUPLOADVERIFY" class="form-control CBSIDBfields">
-<button type="button" onclick="CheckKYCUPLOADDOC(this,'CBSI_AADHARATTACHMENT','CBSI_AADHARUPLOADVERIFY','KYC OCR');" data-field="CBSI_SHARECODE|CBSI_AADHARMOB|CBSI_CUSTYPE|CBSI_CUSID|Aadhar|CBSI_AADHAR|CBSI_AADHARTYPE|CBSI_MSKAADHARATTACHMENT" data-Validatearia="CBSI_AADHARUPLOADVERIFY" data-validate="aadhar" class="btn CBSI_AADHARATTACHMENT waves-effect btn-yelInplain btn-sm BTNVerify INTDSBV">Upload Verify</button>
+<button type="button" onclick="CheckKYCUPLOADDOC(this,'CBSI_AADHARATTACHMENT','CBSI_AADHARUPLOADVERIFY','KYC OCR');" data-field="CBSI_SHARECODE|CBSI_AADHARMOB|CBSI_CUSTYPE|CBSI_CUSID|Aadhar|CBSI_AADHAR|CBSI_AADHARTYPE|CBSI_MSKAADHARATTACHMENT|Front" data-Validatearia="CBSI_AADHARUPLOADVERIFY" data-validate="aadhar" class="btn CBSI_AADHARATTACHMENT waves-effect btn-yelInplain btn-sm BTNVerify INTDSBV">Upload Verify</button>
 </div>
 </div>
 </div>  
@@ -413,9 +413,9 @@ Application Info
 <img src="ThemeproLO/Common/Images/UploadImg.png"  title="UPLOAD"  onclick="ReuploadFile(CBSI_AADHARATTACHMENTII);" class="rounded ReUpld" alt="Cinque Terre" width="20" height="20"> 
 <img src="ThemeproLO/Common/Images/Eyeview.png"  title="VIEW"  class="rounded AadharViewImgII" onclick="GrdDocDwnld('CBSI_AADHARATTACHMENTII')" alt="Cinque Terre" width="35" height="25"> 
 
-<img src="ThemeproLO/Common/Images/Eyeview.png" style="display:none"  title="Marking Aadhar Image" class="rounded AadharMskImgII" onclick="DirImgDown('CBSI_MSKAADHARATTACHMENTII')" alt="Cinque Terre" width="35" height="25"> 
+<img src="ThemeproLO/Common/Images/Eyeview.png" style="display:none"  title="Marking Aadhar Image" class="rounded AadharMskImgII" onclick="GrdDocDwnld('CBSI_MSKAADHARATTACHMENTII')" alt="Cinque Terre" width="35" height="25"> 
 <input type="text" id="CBSI_AADHARUPLOADVERIFYII" hidden="hidden" name="CBSI_AADHARUPLOADVERIFYII" class="form-control CBSIDBfields">
-<button type="button" onclick="CheckKYCUPLOADDOC(this,'CBSI_AADHARATTACHMENTII','CBSI_AADHARUPLOADVERIFYII','KYC OCR');" data-field="CBSI_SHARECODE|CBSI_AADHARMOB|CBSI_CUSTYPE|CBSI_CUSID|Aadhar|CBSI_AADHAR|CBSI_AADHARTYPE|CBSI_MSKAADHARATTACHMENTII" data-Validatearia="CBSI_AADHARUPLOADVERIFYII" data-validate="aadhar" class="btn CBSI_AADHARATTACHMENTII waves-effect btn-yelInplain btn-sm BTNVerify INTDSBV">Upload Verify</button>
+<button type="button" onclick="CheckKYCUPLOADDOC(this,'CBSI_AADHARATTACHMENTII','CBSI_AADHARUPLOADVERIFYII','KYC OCR');" data-field="CBSI_SHARECODE|CBSI_AADHARMOB|CBSI_CUSTYPE|CBSI_CUSID|Aadhar|CBSI_AADHAR|CBSI_AADHARTYPE|CBSI_MSKAADHARATTACHMENTII|Back" data-Validatearia="CBSI_AADHARUPLOADVERIFYII" data-validate="aadhar" class="btn CBSI_AADHARATTACHMENTII waves-effect btn-yelInplain btn-sm BTNVerify INTDSBV">Upload Verify</button>
 </div>
 </div>
 </div>
@@ -425,7 +425,7 @@ Application Info
 <input type="text" id="CBSI_MSKAADHARATTACHMENT" hidden="hidden" data-Validate="CBSI_MSKAADHARATTACHMENT" name="CBSI_MSKAADHARATTACHMENT"  data-field=""  class="form-control File AADHARMndtry CBSIDBfields"> 
 </div>
 </br>
-<img src="ThemeproLO/Common/Images/delete.png"  title="Delete" onclick="KYCDELETE('CBSI_AADHARVERIFY','CBSI_AADHAR','AADHAR','CBSI_AADHARATTACHMENT','CBSI_CUSID','Upload Aadhar ID','CBSI_AADHARUPLOADVERIFY','Aadhar')"  class="rounded KYCDEL" alt="Cinque Terre" width="20" height="20">   
+<img src="ThemeproLO/Common/Images/delete.png"  title="Delete" onclick="KYCDELETEFRTADBCK('CBSI_AADHARVERIFY','CBSI_AADHAR','AADHAR','CBSI_AADHARATTACHMENT','CBSI_AADHARATTACHMENTII','CBSI_CUSID','Upload Aadhar ID','CBSI_AADHARUPLOADVERIFY','CBSI_AADHARUPLOADVERIFYII','Aadhar','CBSI_AADHARPROOF','CBSI_AADHARTYPE','CBSI_MSKAADHARATTACHMENT','CBSI_MSKAADHARATTACHMENTII')"  class="rounded KYCDEL" alt="Cinque Terre" width="20" height="20">   
 </div> 
 </div> 
 
@@ -530,7 +530,7 @@ Application Info
 </div> 
 </br>
 
-<img src="ThemeproLO/Common/Images/delete.png"  title="Delete" onclick="KYCDELETE('CBSI_DRIVLICNSVERIFY','CBSI_DRIVLICNS','dl','CBSI_DRIVINGLICATTACHMENT','CBSI_CUSID','Upload Driving License ID','CBSI_DLUPLOADVERIFY','Driving License')"  class="rounded KYCDEL" alt="Cinque Terre" width="20" height="20"> 
+<img src="ThemeproLO/Common/Images/delete.png"  title="Delete" onclick="KYCDELETEFRTADBCK('CBSI_DRIVLICNSVERIFY','CBSI_DRIVLICNS','dl','CBSI_DRIVINGLICATTACHMENT','CBSI_DRIVINGLICATTACHMENTII','CBSI_CUSID','Upload Driving License ID','CBSI_DLUPLOADVERIFY','CBSI_DLUPLOADIIVERIFY','Driving License','CBSI_DLPROOF','CBSI_DRIVNGTYPE')"  class="rounded KYCDEL" alt="Cinque Terre" width="20" height="20"> 
 </div>        
 </div>  
 </br>    
@@ -556,7 +556,7 @@ Application Info
   <div class="row PVER" >                                    <!--First column-->
 <div class="col-md-8  Formcol-mdLR">
 <div class="md-form">
-<input type="text" id="CBSI_PASSPORT" data-FetchValidateArea="passport" data-FetchValidate="CBSI_PASSPORT"  maxlength="24" data-link="CBSI_PASSPORT|CBSI_PASSPORTVERIFY|passport1|passportupload|passportview|CBSI_PASSPORTATTACHMENT" name="CBSI_PASSPORT" onblur="CHKSAMEKYC('CBSI_PASSPORT','PASSPORT');"  class="CBSIDBfields datalink form-control validate">
+<input type="text" id="CBSI_PASSPORT" data-FetchValidateArea="passport" data-FetchValidate="CBSI_PASSPORT"  maxlength="20" data-link="CBSI_PASSPORT|CBSI_PASSPORTVERIFY|passport1|passportupload|passportview|CBSI_PASSPORTATTACHMENT" name="CBSI_PASSPORT" onblur="CHKSAMEKYC('CBSI_PASSPORT','PASSPORT');"  class="CBSIDBfields datalink form-control validate">
 <label for="CBSI_PASSPORT" class="">File No. - Passport No. *</label>
 </div>    
 </div>  
@@ -626,7 +626,7 @@ Application Info
   <!-- Second Upload End-->
 </div> 
 </br>
-<img src="ThemeproLO/Common/Images/delete.png"  title="Delete" onclick="KYCDELETE('CBSI_PASSPORTVERIFY','CBSI_PASSPORT','passport','CBSI_PASSPORTATTACHMENT','CBSI_CUSID','Upload Passport','CBSI_PASSUPLOADVERIFY','Passport')"  class="rounded KYCDEL" alt="Cinque Terre" width="20" height="20"> 
+<img src="ThemeproLO/Common/Images/delete.png"  title="Delete" onclick="KYCDELETEFRTADBCK('CBSI_PASSPORTVERIFY','CBSI_PASSPORT','passport','CBSI_PASSPORTATTACHMENT','CBSI_PASSPORTATTACHMENTII','CBSI_CUSID','Upload Passport','CBSI_PASSUPLOADVERIFY','CBSI_PASSUPLOADIIVERIFY','Passport','CBSI_PASSPORTPROOF','CBSI_PASPRTTYPE')"  class="rounded KYCDEL" alt="Cinque Terre" width="20" height="20"> 
 </div>        
 </div>  
 <br>

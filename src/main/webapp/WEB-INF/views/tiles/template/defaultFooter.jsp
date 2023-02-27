@@ -85,8 +85,8 @@
                               <!--<option value="ID PROOF">ID PROOF</option>
                               <option value="SIGN PROOF">SIGN PROOF</option> 
 			                  <option value="DOB PROOF">DOB PROOF</option>
-			                  <option value="ADDRESS PROOF 1">ADDRESS PROOF 1</option>
-			                  <option value="ADDRESS PROOF 2">ADDRESS PROOF 2</option>-->
+			                  <option value="CURRENT ADDRESS">CURRENT ADDRESS</option>
+			                  <option value="CORRESPONDENCE ADDRESS">CORRESPONDENCE ADDRESS</option>-->
                          </select>
                         <label class="mdb-main-label BTxt9">Proof Type *</label>
                     </div>
@@ -312,6 +312,49 @@
   </div>
   </div> 
   
+  <!-- Lead Audit Trail Strt-->
+  <a type="button" id="LeadAUDITPopup" class="btn btn-floating btn-large red" style="display:none" data-toggle="modal" data-target="#LeadAUDITModal">
+ <i class="fa fa-plus"></i></a>
+    
+  
+<div class="modal fade" id="LeadAUDITModal" tabindex="-1" role="dialog" aria-labelledby="LeadAUDITModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" style="max-width:1200px" role="document">
+    <div class="modal-content">
+       <div class="modal-header">
+          <div class="Btxt10"></div> 
+          <a href="#"><img id="LeadAUDITPOPCLOSE" class="close" data-dismiss="modal" aria-label="Close" src="ThemeproLO/Common/FEP/images/Close1.png" alt="DashSearch"></img></a>      
+      </div> 
+      <div class="modal-body">
+         <div class="">
+    <!-- Card body -->
+     <div class=""> 
+         <form >
+        	</br>
+        	</br>
+             <div class="form-row">
+           		 <div class="col">
+           			<div class="md-form">
+                    <button type="button" style="display:none" id="LeadAuditGRD" onclick="FncallDocChkLst(this,'LeadAuditTable',{spname:'LSW_SGETLEADAUDIT',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'',MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||5','AUDITTRAIL');"  ></button>
+					<table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" id="LeadAuditTable">
+                     </table>
+					
+           			</div>
+           		 </div>
+           </div>
+      <!-- grid  show -->
+    <!--Main layout-->
+        </form>
+      </div>
+    </div> 
+      </div>
+      <div class="modal-footer align-middle">
+      <!--  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- Lead Audit Trail End-->
   <!-- Deviation Popup Strt-->
   <a type="button" id="DEVPopup" class="btn btn-floating btn-large red" style="display:none" data-toggle="modal" data-target="#DEVModal">
  <i class="fa fa-plus"></i></a>
@@ -1051,9 +1094,10 @@ $(document).on('click', '#SENDBACKRemarksCONFIRM', function () {
 		alert("Kindly fill the Remarks");
 		return;
 	}
+	var Remrk=$("#POPUPSENDBACKRemarks").val().replace(/\n/g,"!@#")
 	var Token=$(window.parent.parent.document).find("#Prvnt").val();
 	$("#SENDBCKACTNM").val($("#SENDBCKACT").find('option:selected').text());
-	var xml = "<UsrID>"+$("#LogUsr").val()+"</UsrID><PrcsID>"+$("#PrcsID").val()+"</PrcsID><ActvID>"+$("#ActvID").val()+"</ActvID><NXTACTDEFID>"+$("#SENDBCKACT").val()+"</NXTACTDEFID><NXTACTDEFNAME>"+$("#SENDBCKACTNM").val()+"</NXTACTDEFNAME><REMARK>"+$("#POPUPSENDBACKRemarks").val()+"</REMARK><APPLNNO>"+$("#DMY7").val().split('|')[7]+"</APPLNNO>"
+	var xml = "<UsrID>"+$("#LogUsr").val()+"</UsrID><PrcsID>"+$("#PrcsID").val()+"</PrcsID><ActvID>"+$("#ActvID").val()+"</ActvID><NXTACTDEFID>"+$("#SENDBCKACT").val()+"</NXTACTDEFID><NXTACTDEFNAME>"+$("#SENDBCKACTNM").val()+"</NXTACTDEFNAME><REMARK>"+Remrk+"</REMARK><APPLNNO>"+$("#DMY7").val().split('|')[7]+"</APPLNNO>"
 	
 	$.ajax({
 		url: "/TPLSW/UI_GetData",
@@ -1103,6 +1147,10 @@ $(document).on('click', '#SENDBACKRemarksCONFIRM', function () {
 	 						  return
 	 						   }
 	 					   else{
+							   if($("#SENDBCKACTNM").val() == "Pre-Login")
+								   {
+								   UI_getdata($("#PrcsID").val(),"","","","","LSW_SREDUCEPRELOGINUSR");
+								   }
 	 						   alert("File Assigned");
 	 						  $(location).attr('href',window.location.origin + "/TPLSW/MyApplication");
 	 					   }
@@ -1130,6 +1178,10 @@ $(document).on('click', '#SENDBACKRemarksCONFIRM', function () {
 							   return
 							   }
 						   else{
+							   if($("#SENDBCKACTNM").val() == "Pre-Login")
+								   {
+								   UI_getdata($("#PrcsID").val(),"","","","","LSW_SREDUCEPRELOGINUSR");
+								   }
 							   alert("File Assigned");
 							   $(location).attr('href',window.location.origin + "/TPLSW/MyApplication");
 						   }	
@@ -1140,7 +1192,16 @@ $(document).on('click', '#SENDBACKRemarksCONFIRM', function () {
 	    	   		}
 	    	   	}
 				else if($("#DMY5").val().split('|')[2] == "SendToCredit"){
-					if($(OP).find("WFVAR").text()=="File Assigned"){
+					if(exists) {
+						WFComplete ($("#ActvID").val(),$(OP).find("WFVAR").text(),"");
+						UI_getdata($("#PrcsID").val(), "", "", "", "", "LSW_SUPDTPRCSDATA");
+					}
+					else{
+						alert($(OP).find("WFVAR").text());
+	    	   			return
+					}
+					
+					/**if($(OP).find("WFVAR").text()=="File Assigned"){
 						var CurntACTVTY=$(OP).find("INITWFVAR").text();
 						   WFACTVINIT = WFActvInit($("#ActvID").val(),$("#PrcsID").val()+"|"+CurntACTVTY+"|Vendor||ADMIN","LSW_SWFACTVINITCALL");
 						   if(WFACTVINIT != "Success")
@@ -1149,6 +1210,10 @@ $(document).on('click', '#SENDBACKRemarksCONFIRM', function () {
 							   return
 							   }
 							   else{
+								   if($("#SENDBCKACTNM").val() == "Pre-Login")
+								   {
+								   UI_getdata($("#PrcsID").val(),"","","","","LSW_SREDUCEPRELOGINUSR");
+								   }
 							   alert("File Assigned");
 							   $(location).attr('href',window.location.origin + "/TPLSW/MyApplication");
 						   }	
@@ -1156,7 +1221,7 @@ $(document).on('click', '#SENDBACKRemarksCONFIRM', function () {
 					else{
 	    	   			alert("File Assignment Failed");
 	    	   			return
-	    	   		}
+	    	   		***/
 				}
 	       },
 	       error: function (xml1)
@@ -1169,6 +1234,7 @@ $(document).on('click', '#SENDBACKRemarksCONFIRM', function () {
 
 //Re-Open Remark Start
 $(document).on('click', '#ReopenRemarksCONFIRM', function () {
+	var opact;
 	if(($("#DMY10").val().split('|')[0].split('~')[0]=="Y")&&($("#ReopenPOPUPStage").val()=="" || $("#ReopenPOPUPStage").val()==null))
 	{
 		alert("Kindly choose the Stage")
@@ -1180,9 +1246,11 @@ $(document).on('click', '#ReopenRemarksCONFIRM', function () {
 	}
 	var CnfrmMSG = "File will be Re-Open at "
 	if($("#DMY10").val().split('|')[0].split('~')[0]=="Y"){
+		opact = $("#ReopenPOPUPStage option:selected").text();
 		CnfrmMSG = CnfrmMSG+$("#ReopenPOPUPStage option:selected").text();
 	}
 	else{
+		opact = $("#DMY10").val().split('|')[0].split('~')[1];
 		CnfrmMSG = CnfrmMSG+$("#DMY10").val().split('|')[0].split('~')[1];
 	}
 	var x = confirm(CnfrmMSG);
@@ -1233,6 +1301,9 @@ $(document).on('click', '#ReopenRemarksCONFIRM', function () {
 			WFACTVINIT = WFActvInit($("#ActvID").val(),$("#PrcsID").val()+"|"+CurntACTVTY+"|Vendor||ADMIN","LSW_SWFACTVINITCALL");
 			if(WFACTVINIT=="Success"){
 			alert("File Assigned");
+			if(opact == "Pre-Login"){
+				UI_getdata($("#PrcsID").val(),"","","","","LSW_SREDUCEPRELOGINUSR");
+			}
 			if(ApprlFlg=="Y"){
 				var _actid = UI_getdata($("#PrcsID").val(),$("#LogUsr").val(), "", "", "", "LSW_SGETACTIDFRPN");
 				var _pattern = /_/;
@@ -1373,11 +1444,12 @@ $(document).on('click', '#ReopenRemarksCONFIRM', function () {
 					 
 					 
 				 });
+				 
 	$(document).on('change', '.ADDRPROOF', function ()	
 	{
-	if((($("#DOCU_KYCPROOFTYP").val()).includes ("ADDRESS PROOF 1")) && (($("#DOCU_KYCPROOFTYP").val()).includes ("ADDRESS PROOF 2")))
+	if((($("#DOCU_KYCPROOFTYP").val()).includes ("CURRENT ADDRESS")) && (($("#DOCU_KYCPROOFTYP").val()).includes ("CORRESPONDENCE ADDRESS")))
 	{
-	alert("Address Proof 1 and Address Proof 2 should not be same");
+	alert("CURRENT ADDRESS and CORRESPONDENCE ADDRESS should not be same");
 	$("#DOCU_KYCPROOFTYP").val('')
 	$("#DOCU_KYCPROOFTYP").material_select();
 	return false;
@@ -1403,14 +1475,14 @@ $('#DOCU_KYC').on('change', function()
 							   $("#DOCU_KYCPROOFTYP option[value='DOB PROOF']").attr('disabled',true);
 							   $("#DOCU_KYCPROOFTYP").material_select();
 							}
-							if((($("#CBSI_VOTERIDPROOF").val()).includes ("ADDRESS PROOF 2"))||(($("#CBSI_AADHARPROOF").val()).includes ("ADDRESS PROOF 2"))||(($("#CBSI_DLPROOF").val()).includes ("ADDRESS PROOF 2"))||(($("#CBSI_PASSPORTPROOF").val()).includes ("ADDRESS PROOF 2"))||(($("#CBSI_UTILITYPROOF").val()).includes ("ADDRESS PROOF 2")))
+							if((($("#CBSI_VOTERIDPROOF").val()).includes ("CORRESPONDENCE ADDRESS"))||(($("#CBSI_AADHARPROOF").val()).includes ("CORRESPONDENCE ADDRESS"))||(($("#CBSI_DLPROOF").val()).includes ("CORRESPONDENCE ADDRESS"))||(($("#CBSI_PASSPORTPROOF").val()).includes ("CORRESPONDENCE ADDRESS"))||(($("#CBSI_UTILITYPROOF").val()).includes ("CORRESPONDENCE ADDRESS")))
 							{
-							   $("#DOCU_KYCPROOFTYP option[value='ADDRESS PROOF 2']").attr('disabled',true);
+							   $("#DOCU_KYCPROOFTYP option[value='CORRESPONDENCE ADDRESS']").attr('disabled',true);
 							   $("#DOCU_KYCPROOFTYP").material_select();
 							}
-							if((($("#CBSI_VOTERIDPROOF").val()).includes ("ADDRESS PROOF 1"))||(($("#CBSI_AADHARPROOF").val()).includes ("ADDRESS PROOF 1"))||(($("#CBSI_DLPROOF").val()).includes ("ADDRESS PROOF 1"))||(($("#CBSI_PASSPORTPROOF").val()).includes ("ADDRESS PROOF 1"))||(($("#CBSI_UTILITYPROOF").val()).includes ("ADDRESS PROOF 1")))
+							if((($("#CBSI_VOTERIDPROOF").val()).includes ("CURRENT ADDRESS"))||(($("#CBSI_AADHARPROOF").val()).includes ("CURRENT ADDRESS"))||(($("#CBSI_DLPROOF").val()).includes ("CURRENT ADDRESS"))||(($("#CBSI_PASSPORTPROOF").val()).includes ("CURRENT ADDRESS"))||(($("#CBSI_UTILITYPROOF").val()).includes ("CURRENT ADDRESS")))
 							{
-							   $("#DOCU_KYCPROOFTYP option[value='ADDRESS PROOF 1']").attr('disabled',true);
+							   $("#DOCU_KYCPROOFTYP option[value='CURRENT ADDRESS']").attr('disabled',true);
 							   $("#DOCU_KYCPROOFTYP").material_select();
 							}
 							if((($("#CBSI_VOTERIDPROOF").val()).includes ("SIGN PROOF"))||(($("#CBSI_AADHARPROOF").val()).includes ("SIGN PROOF"))||(($("#CBSI_DLPROOF").val()).includes ("SIGN PROOF"))||(($("#CBSI_PASSPORTPROOF").val()).includes ("SIGN PROOF"))||(($("#CBSI_UTILITYPROOF").val()).includes ("SIGN PROOF")))
@@ -1418,6 +1490,8 @@ $('#DOCU_KYC').on('change', function()
 							   $("#DOCU_KYCPROOFTYP option[value='SIGN PROOF']").attr('disabled',true);
 							   $("#DOCU_KYCPROOFTYP").material_select();
 							}
+							$("#DOCU_KYCPROOFTYP option[value='CORRESPONDENCE ADDRESS']").attr('disabled',true);
+							 $("#DOCU_KYCPROOFTYP").material_select();
 						 }
 					 else if($(".FormPageTab ").find('li.active').text()=="Co-Applicant")
 						 {
@@ -1432,14 +1506,14 @@ $('#DOCU_KYC').on('change', function()
 							   $("#DOCU_KYCPROOFTYP option[value='DOB PROOF']").attr('disabled',true);
 							   $("#DOCU_KYCPROOFTYP").material_select();
 							}
-							if((($("#COBI_VOTERIDPROOF").val()).includes ("ADDRESS PROOF 2"))||(($("#COBI_AADHARPROOF").val()).includes ("ADDRESS PROOF 2"))||(($("#COBI_DLPROOF").val()).includes ("ADDRESS PROOF 2"))||(($("#COBI_PASSPORTPROOF").val()).includes ("ADDRESS PROOF 2"))||(($("#COBI_UTILITYPROOF").val()).includes ("ADDRESS PROOF 2")))
+							if((($("#COBI_VOTERIDPROOF").val()).includes ("CORRESPONDENCE ADDRESS"))||(($("#COBI_AADHARPROOF").val()).includes ("CORRESPONDENCE ADDRESS"))||(($("#COBI_DLPROOF").val()).includes ("CORRESPONDENCE ADDRESS"))||(($("#COBI_PASSPORTPROOF").val()).includes ("CORRESPONDENCE ADDRESS"))||(($("#COBI_UTILITYPROOF").val()).includes ("CORRESPONDENCE ADDRESS")))
 							{
-							   $("#DOCU_KYCPROOFTYP option[value='ADDRESS PROOF 2']").attr('disabled',true);
+							   $("#DOCU_KYCPROOFTYP option[value='CORRESPONDENCE ADDRESS']").attr('disabled',true);
 							   $("#DOCU_KYCPROOFTYP").material_select();
 							}
-							if((($("#COBI_VOTERIDPROOF").val()).includes ("ADDRESS PROOF 1"))||(($("#COBI_AADHARPROOF").val()).includes ("ADDRESS PROOF 1"))||(($("#COBI_DLPROOF").val()).includes ("ADDRESS PROOF 1"))||(($("#COBI_PASSPORTPROOF").val()).includes ("ADDRESS PROOF 1"))||(($("#COBI_UTILITYPROOF").val()).includes ("ADDRESS PROOF 1")))
+							if((($("#COBI_VOTERIDPROOF").val()).includes ("CURRENT ADDRESS"))||(($("#COBI_AADHARPROOF").val()).includes ("CURRENT ADDRESS"))||(($("#COBI_DLPROOF").val()).includes ("CURRENT ADDRESS"))||(($("#COBI_PASSPORTPROOF").val()).includes ("CURRENT ADDRESS"))||(($("#COBI_UTILITYPROOF").val()).includes ("CURRENT ADDRESS")))
 							{
-							   $("#DOCU_KYCPROOFTYP option[value='ADDRESS PROOF 1']").attr('disabled',true);
+							   $("#DOCU_KYCPROOFTYP option[value='CURRENT ADDRESS']").attr('disabled',true);
 							   $("#DOCU_KYCPROOFTYP").material_select();
 							}
 							if((($("#COBI_VOTERIDPROOF").val()).includes ("SIGN PROOF"))||(($("#COBI_AADHARPROOF").val()).includes ("SIGN PROOF"))||(($("#COBI_DLPROOF").val()).includes ("SIGN PROOF"))||(($("#COBI_PASSPORTPROOF").val()).includes ("SIGN PROOF"))||(($("#COBI_UTILITYPROOF").val()).includes ("SIGN PROOF")))
@@ -1447,7 +1521,8 @@ $('#DOCU_KYC').on('change', function()
 							   $("#DOCU_KYCPROOFTYP option[value='SIGN PROOF']").attr('disabled',true);
 							   $("#DOCU_KYCPROOFTYP").material_select();
 							}
-							 
+							$("#DOCU_KYCPROOFTYP option[value='CORRESPONDENCE ADDRESS']").attr('disabled',true);
+							 $("#DOCU_KYCPROOFTYP").material_select();
 						 }
 					 else if($(".FormPageTab ").find('li.active').text()=="Guarantor")
 						 {
@@ -1461,14 +1536,14 @@ $('#DOCU_KYC').on('change', function()
 							   $("#DOCU_KYCPROOFTYP option[value='DOB PROOF']").attr('disabled',true);
 							   $("#DOCU_KYCPROOFTYP").material_select();
 							}
-							if((($("#GRBI_VOTERIDPROOF").val()).includes ("ADDRESS PROOF 2"))||(($("#GRBI_AADHARPROOF").val()).includes ("ADDRESS PROOF 2"))||(($("#GRBI_DLPROOF").val()).includes ("ADDRESS PROOF 2"))||(($("#GRBI_PASSPORTPROOF").val()).includes ("ADDRESS PROOF 2"))||(($("#GRBI_UTILITYPROOF").val()).includes ("ADDRESS PROOF 2")))
+							if((($("#GRBI_VOTERIDPROOF").val()).includes ("CORRESPONDENCE ADDRESS"))||(($("#GRBI_AADHARPROOF").val()).includes ("CORRESPONDENCE ADDRESS"))||(($("#GRBI_DLPROOF").val()).includes ("CORRESPONDENCE ADDRESS"))||(($("#GRBI_PASSPORTPROOF").val()).includes ("CORRESPONDENCE ADDRESS"))||(($("#GRBI_UTILITYPROOF").val()).includes ("CORRESPONDENCE ADDRESS")))
 							{
-							   $("#DOCU_KYCPROOFTYP option[value='ADDRESS PROOF 2']").attr('disabled',true);
+							   $("#DOCU_KYCPROOFTYP option[value='CORRESPONDENCE ADDRESS']").attr('disabled',true);
 							   $("#DOCU_KYCPROOFTYP").material_select();
 							}
-							if((($("#GRBI_VOTERIDPROOF").val()).includes ("ADDRESS PROOF 1"))||(($("#GRBI_AADHARPROOF").val()).includes ("ADDRESS PROOF 1"))||(($("#GRBI_DLPROOF").val()).includes ("ADDRESS PROOF 1"))||(($("#GRBI_PASSPORTPROOF").val()).includes ("ADDRESS PROOF 1"))||(($("#GRBI_UTILITYPROOF").val()).includes ("ADDRESS PROOF 1")))
+							if((($("#GRBI_VOTERIDPROOF").val()).includes ("CURRENT ADDRESS"))||(($("#GRBI_AADHARPROOF").val()).includes ("CURRENT ADDRESS"))||(($("#GRBI_DLPROOF").val()).includes ("CURRENT ADDRESS"))||(($("#GRBI_PASSPORTPROOF").val()).includes ("CURRENT ADDRESS"))||(($("#GRBI_UTILITYPROOF").val()).includes ("CURRENT ADDRESS")))
 							{
-							   $("#DOCU_KYCPROOFTYP option[value='ADDRESS PROOF 1']").attr('disabled',true);
+							   $("#DOCU_KYCPROOFTYP option[value='CURRENT ADDRESS']").attr('disabled',true);
 							   $("#DOCU_KYCPROOFTYP").material_select();
 							}
 							if((($("#GRBI_VOTERIDPROOF").val()).includes ("SIGN PROOF"))||(($("#GRBI_AADHARPROOF").val()).includes ("SIGN PROOF"))||(($("#GRBI_DLPROOF").val()).includes ("SIGN PROOF"))||(($("#GRBI_PASSPORTPROOF").val()).includes ("SIGN PROOF"))||(($("#GRBI_UTILITYPROOF").val()).includes ("SIGN PROOF")))
@@ -1476,6 +1551,8 @@ $('#DOCU_KYC').on('change', function()
 							   $("#DOCU_KYCPROOFTYP option[value='SIGN PROOF']").attr('disabled',true);
 							   $("#DOCU_KYCPROOFTYP").material_select();
 							} 
+							$("#DOCU_KYCPROOFTYP option[value='CORRESPONDENCE ADDRESS']").attr('disabled',true);
+							$("#DOCU_KYCPROOFTYP").material_select();
 						 }
 });
 				 
@@ -1491,6 +1568,10 @@ $('#DOCU_KYC').on('change', function()
 					$("#DevGRD").trigger('click')	
 					$("#DevGRD1").trigger('click')	
 					
+				})	
+				$('#LeadAudTrl').on('click', function() {
+					$("#LeadAUDITPopup").click();
+				    $("#LeadAuditGRD").trigger('click')		
 				})	
 				$('#KYCDoc').on('click', function() {
 				  		if($("#DOCU_KYC").val()!=""){
@@ -1905,6 +1986,8 @@ $(document).on('click', '#REJECTRemarksCONFIRM', function() {
 		alert("Kindly fill the Remark");
 		return;
 	}
+	UI_getdata(PrcsID,"","","","","LSW_SREMOVERCUINIT")
+	
    $.ajax({
 
        url: "/TPLSW/UI_GetData",
@@ -1916,10 +1999,25 @@ $(document).on('click', '#REJECTRemarksCONFIRM', function() {
        complete: function OnSuccess_submit(xml1) {
     	   	OP=xml1.responseText;
 			//ajaxindicatorstop();
-			if($("#DMY5").val().split('|')[2]=="PreLogin" || $("#DMY5").val().split('|')[2]=="Login" || $("#DMY5").val().split('|')[2]=="SendToCredit")
+			if($("#DMY5").val().split('|')[2]=="PreLogin"  || $("#DMY5").val().split('|')[2]=="Login" || $("#DMY5").val().split('|')[2]=="SendToCredit")
 			{
+				if($("#DMY7").val().split('|')[20] == "Y")
+				{
+				LeadSQRStatusPush("Rejected");
+				}
 				WFComplete ($("#ActvID").val(),"var_status=Cancel","");
 				
+			}
+			else if($("#DMY5").val().split('|')[2]=="PreLoginSB")
+			{
+				//UI_getdata($("#ActvID").val(),"","","","","LSW_STERMINATEPRELOGINSB")
+				//var CurntACTVTY = "Cancel";
+				WFComplete ($("#ActvID").val(),"var_status=Cancel","");
+			}
+			else if(($("#DMY5").val().split('|')[2]=="DisbAppr") &&($("#VERTICAL").val()=='Tractor Finance'))
+			{
+				UI_getdata($("#PrcsID").val(),"","","","","LSW_STERMINATEEXACT")
+				WFComplete ($("#ActvID").val(),"var_rstatus=Reject","");
 			}
     },
 	
@@ -2142,6 +2240,7 @@ if($("#DMY7").val().split("|")[0]=="Registered Mortgage")
 				 else
 				 {
 					  DSVLBLALL('')
+					  $(".APPVIEWDEDUPE").attr('disabled',false);
 				 }
 			 }
 		 }	
@@ -2168,6 +2267,7 @@ if(($("#DMY5").val().split("|")[1]=="Yes")||$("#PrMs1").val()=="View")
 				 if($("#PrMs1").val()=="View")
 				 {
 					 DSVLBLALL('')
+					 $(".APPVIEWDEDUPE").attr('disabled',false);
 				 }
 				 else if($("#DMY5").val().split('|')[2]=="BranchOPS")
 				 {
@@ -2176,12 +2276,14 @@ if(($("#DMY5").val().split("|")[1]=="Yes")||$("#PrMs1").val()=="View")
 				 else
 				 {
 					 DSVLBLALL('')
+					 $(".APPVIEWDEDUPE").attr('disabled',false);
 				 }
 			 }
 			 
 			 else
 			 {
 				 DSVLBLALL('')
+				 $(".APPVIEWDEDUPE").attr('disabled',false);
 			 }
 		 }
 		/*else if($(".FormMainTabs li.active").attr("id") =="FormMainTab7" && $(".FormMainTab1 li.active").attr("id")=="FormPageTab9" && $("#DMY5").val().split('|')[2]=="BranchOPS")
@@ -2191,6 +2293,7 @@ if(($("#DMY5").val().split("|")[1]=="Yes")||$("#PrMs1").val()=="View")
       else
 	     {
           DSVLBLALL('')
+		  $(".APPVIEWDEDUPE").attr('disabled',false);
          }
 		}
 		//Re-Open Remark Start
@@ -2212,9 +2315,11 @@ if(($(".FormMainTab1 li.active").attr("id")=="FormPageTab1")&&($(".FormMainTabs 
 		   if($("#DMY7").val().split("|")[3]=="STP") 
 			 {
 			  DSVLBLALL('')
+			  $(".APPVIEWDEDUPE").attr('disabled',false);
 			 } 
 			 
 			  DSVLBLALL('')
+			  $(".APPVIEWDEDUPE").attr('disabled',false);
 		  }	
 //HNDL RPT SCREEN END		
 ////HNDL OPS VALIDATION
@@ -2232,6 +2337,12 @@ if($("#DMY5").val().split('|')[2]!="")
 				if($(".FormPageTab li.active").text()=="Disbursement")
 				{
 					DSVLBLALLOUTSAVE('');
+					if($("#VERTICAL").val()=='Tractor Finance')
+					{
+						$("#Reject").show();
+						$(".TRACFINC").hide();
+						$("#POPUPREJECTRemarks").attr('disabled',false);
+					}
 					
 				}
 			}
@@ -2279,6 +2390,16 @@ if((activityname == "BranchOPS" || activityname == "CreditOPS" || activityname =
 		}
 	}
 	
+}
+
+if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU"))&&($(".FormMainTabs li.active").attr("id")!="FormMainTab9")&&(window.location.pathname!="/TPLSW/Enquiry")&&(window.location.pathname!="/TPLSW/MnagQuerySrch")&&($("#PrMs10").val()!="MANGQRY"))
+{
+	DSVLBLALL();
+	$(".VIEWDISABLE").attr('disabled',false)
+}
+if($("#PrMs1").val()=="View")
+{
+	$(".VIEWDISABLE").attr('disabled',false)
 }
 
 function DIBDMBTN()
@@ -2786,6 +2907,26 @@ function GetServicePro1()
   $("#ServicePro").append($(ServicePro).find("RESULT").html());
   $("#ServicePro").material_select();
 }
+
+    $(document).on("keyup", ".PDSEARCH", function(){
+var FilterValue =$(this).find('ul').find('.search-wrap').find('input[type=text]').val().toUpperCase();
+   List = $(this).closest('ul').find('li');
+if(List.length==0)
+{
+	List=$(this).find('ul').find('li')
+}
+   for (i = 0; i < List.length; i++) {
+    txtValue = List[i].textContent || List[i].innerText;
+    if (txtValue.toUpperCase().indexOf(FilterValue) > -1) {
+    if(txtValue.toUpperCase()!="SELECT" ||txtValue.toUpperCase()!="--SELECT--"){
+      $(List[i]).find('span').show();  $(List[i]).show();
+      }
+    } 
+    else {
+       $(List[i]).find('span').hide();  $(List[i]).hide();
+    }
+  }
+});
 
 //ServicePro
 

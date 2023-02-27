@@ -1,5 +1,9 @@
+var xml_Finc="";
+
 $(document).ready(function () {
 	
+	xml_Finc = UI_getdata("","","","","","LSW_SGETFIANCIYEARS")
+	xml_Ins=UI_getdata("","","","","","LSW_SINSITUTIONNAME")
 	$("#FELD_PRCSID").attr("value",$("#PrcsID").val());
 	$("#FELD_CUSID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
 	$("#FELD_CUSNAME").attr("value",$(".FormPageMultiTab li.active").text());
@@ -31,10 +35,10 @@ $(document).ready(function () {
 	var xml=UI_getdata("","","","","","LSW_SGETFIANCIYEARS")
 	$("#FELD_LSTMONYRBOUNCED").append($(xml).find("Years").html());
 	
-	if($("#VERTICAL").val()!="UCV")
+	/* if($("#VERTICAL").val()!="UCV")
 	{
-	   var StrCAMData=UI_getdata($("#PrcsID").val(),"","",$("#VERTICAL").val(),"","LSW_SSTRCAMMAINTABLE");
-	}
+	   var StrCAMData=UI_getdata($("#PrcsID").val(),"","",$("#VERTICAL").val(),"First","LSW_SSTRCAMMAINTABLE");
+	} */
 
 	
 	LoadMultiData("",$("#PrcsID").val(),$("#FELD_CUSID").val(),"ExistingLoan1","FELDDBfields","LSW_sUCVGETEXLONDLT");

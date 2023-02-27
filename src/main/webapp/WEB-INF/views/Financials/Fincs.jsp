@@ -45,7 +45,7 @@
  <div class="card CAM" >
     <!-- Card header -->
     <div class="card-header Btxt7" role="tab" id="headingOne1">
-      <a data-toggle="collapse" data-aria="LSW_TRTRCAMCHECKLISTMAIN|RCCM|RCCM_LOANUNIQID" data-multidata="" data-load="" class="Btxt8 AFormaccordion" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
+      <a data-toggle="collapse" data-aria="LSW_TRTRCAMCHECKLISTMAIN|RCCM|RCCM_UNIQUID" data-multidata="" data-load="" class="Btxt8 AFormaccordion" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
         aria-controls="collapseOne1">       
          <i class="fa fa-minus-circle rotate-icon"></i>
       </a>
@@ -376,15 +376,15 @@
 		         <a onclick="Gentraterepay();" class="Btxt4 FltRight" href="#">Re-Payment Schedule</a>
 		      </span>
           </div>
-		<div class="form-row">
+	<!--	<div class="form-row">
             <div class="col d-flex justify-content-center">
-      	      <button type="button"  data-aria="LSW_TRTRCAMCHECKLISTMAIN|RCCM|RCCM_LOANUNIQID" data-form="CAM"  class="btn btn-Syel waves-effect waves-light FormSave1">CAM Generate</button>
+      	      <button type="button"  data-aria="LSW_TRTRCAMCHECKLISTMAIN|RCCM|RCCM_UNIQUID" data-form="CAM"  class="btn btn-Syel waves-effect waves-light FormSave1">CAM Generate</button>
             </div>
-        </div>
+        </div> -->
         <div class="form-row" >
              <div class="col d-flex justify-content-center">
-                <button type="button" id="Save1" data-aria="LSW_TRTRCAMCHECKLISTMAIN|RCCM|RCCM_LOANUNIQID" data-form="CAM" class="btn btn-Syeloutline waves-effect waves-light FormSave1">Save</button>   
-                <button type="button" data-aria="LSW_TRTRCAMCHECKLISTMAIN|RCCM|RCCM_LOANUNIQID" data-form="CAM" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave1">Save & Next</button> 
+                <button type="button" id="Save1" data-aria="LSW_TRTRCAMCHECKLISTMAIN|RCCM|RCCM_UNIQUID" data-form="CAM" class="btn btn-Syeloutline waves-effect waves-light FormSave1">Save</button>   
+                <button type="button" data-aria="LSW_TRTRCAMCHECKLISTMAIN|RCCM|RCCM_UNIQUID" data-form="CAM" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave1">Save & Next</button> 
            </div>
        </div>
      </form>

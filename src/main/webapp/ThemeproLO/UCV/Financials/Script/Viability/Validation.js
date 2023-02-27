@@ -5206,17 +5206,17 @@ function GridControlDetailVIABINCOMEGRD  (popTableModPageGrid1,TableID,dtData,dt
 			 			
 					 var rowno = meta.row;	
 					 var HTML = "";
-						if(row[0] == "ROUTE" || row[0] == "Nature of Goods")
+						if(row[0] == "ROUTE" || row[0] == "Nature of Goods" || row[0] == "Proposed asset")
 						{
-							HTML =	'<span><input type="text"  id="VIIN_DESCRIPTION'+rowno+'" style="width:160px"  name="VIIN_DESCRIPTION'+rowno+'" data-item="Amount" data-itemr="Amount" data-totalr="ITRVAL"  maxlength="30" class="form-control NoSpecialChar IsAlphaFields form-control VIAAMNDTRY  ">';	
+							HTML =	'<span><input type="text"  id="VIIN_DESCRIPTION'+rowno+'" style="width:160px"  name="VIIN_DESCRIPTION'+rowno+'" data-item="Amount" data-itemr="Amount" data-totalr="ITRVAL"  maxlength="30" class="form-control NoSpecialChar  form-control VIAAMNDTRY  ">';	
 						}
 		
-						else if(row[0]=="(c) Monthly running in km" || row[0]=="(f) Monthly revenue in Rs.Lacs.")	
+						else if(row[0]=="(c) Monthly running in Km" || row[0]=="(h) Monthly revenue (A)")	
 						{
 									HTML =	'<span><input type="text" disabled id="VIIN_DESCRIPTION'+rowno+'" style="width:160px"  name="VIIN_DESCRIPTION'+rowno+'"  maxlength="30" class="form-control NoSpecialChar DSVLBL IsCURCommaFields form-control   INCOMEDTL PUSHDATATOANOTHERGRID VIAAMNDTRY">';	
 							
 						}
-						else if(row[0]=="(To be validated with a bill/contract Copy)")
+						else if(row[0]=="(To be validated with a bill/ contract Copy)")
 						{
 							HTML =	'<span><input type="text" disabled id="VIIN_DESCRIPTION'+rowno+'" style="width:160px"  name="VIIN_DESCRIPTION'+rowno+'"  maxlength="30" class="form-control NoSpecialChar DSVLBL IsCURCommaFields form-control   INCOMEDTL PUSHDATATOANOTHERGRID ">';	
 						}
@@ -5338,11 +5338,11 @@ function GridControlDetailVIABEXPENSEGRD  (popTableModPageGrid1,TableID,dtData,d
 						else	
 						{ }*///|| row[0]=="Net Cash Flow (NCF)/EMI"
 					var HTML = "";
-						if(row[0]=="Fuel Cost" || row[0]=="Tyre Cost"|| row[0]=="Total Expenses" || row[0]=="Net Cash Flow(NCF)")	
+						if(row[0]=="Fuel Cost" || row[0]=="Tyre Cost"|| row[0]=="Total Expenses" || row[0]=="Free Cash Flow (FCF)")	
 						{
 									HTML =	'<span><input type="text" disabled id="VIEX_DESCRIPTION'+rowno+'" style="width:160px"  name="VIEX_DESCRIPTION'+rowno+'"  maxlength="30" class="form-control NoSpecialChar DSVLBL IsCURCommaFields form-control  EXPENSEDTL GETSAMEDATAGRID COMPVAL VIAAMNDTRY">';		
 						}
-						else if(row[0]=="Net Cash Flow (NCF)/EMI")
+						else if(row[0]=="Free Cash Flow (FCF)/EMI")
 						{
 							HTML =	'<span><input type="text" disabled id="VIEX_DESCRIPTION'+rowno+'" style="width:160px"  name="VIEX_DESCRIPTION'+rowno+'"  maxlength="30" class="form-control NoSpecialChar DSVLBL IsCURCommaFields form-control  EXPENSEDTL CHKVAL GETSAMEDATAGRID COMPVAL VIAAMNDTRY">';		
 						}
@@ -5380,8 +5380,8 @@ function GridControlDetailVIABEXPENSEGRD  (popTableModPageGrid1,TableID,dtData,d
 	var amnt=0;
 	var val1=0;
 	var val2=0;
-	val1=$($($(this).closest(".tbody").find(".tbodytr")[2]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".INCOMEDTL").val().replace(/,/g,'');
-	val2=$($($(this).closest(".tbody").find(".tbodytr")[3]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".INCOMEDTL").val().replace(/,/g,'');
+	val1=$($($(this).closest(".tbody").find(".tbodytr")[3]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".INCOMEDTL").val().replace(/,/g,'');
+	val2=$($($(this).closest(".tbody").find(".tbodytr")[4]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".INCOMEDTL").val().replace(/,/g,'');
 	if(val1 == "")
 		{
 			val1=0;
@@ -5398,7 +5398,7 @@ function GridControlDetailVIABEXPENSEGRD  (popTableModPageGrid1,TableID,dtData,d
 		{
 			val2=0;
 		}
-		amnt=parseFloat(val1)*parseFloat(val2);
+		amnt=parseFloat(val1)*parseFloat(val2)*2;
 		 if(amnt == "")
 		{
 			amnt=0;
@@ -5408,16 +5408,16 @@ function GridControlDetailVIABEXPENSEGRD  (popTableModPageGrid1,TableID,dtData,d
 			amnt=0;
 		}
 		amnt=CURINRCommaSep(parseFloat(amnt).toFixed(0));
-		$($($(this).closest(".tbody").find(".tbodytr")[4]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".INCOMEDTL").val(amnt);
+		$($($(this).closest(".tbody").find(".tbodytr")[5]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".INCOMEDTL").val(amnt);
 		
 		
 		var amnt1=0;
 		var val3=0;
 		var val4=0;
 		var val5=0;
-		val3=$($($(this).closest(".tbody").find(".tbodytr")[3]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".INCOMEDTL").val().replace(/,/g,'');
-		val4=$($($(this).closest(".tbody").find(".tbodytr")[5]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".INCOMEDTL").val().replace(/,/g,'');
-		val5=$($($(this).closest(".tbody").find(".tbodytr")[6]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".INCOMEDTL").val().replace(/,/g,'');
+		val3=$($($(this).closest(".tbody").find(".tbodytr")[7]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".INCOMEDTL").val().replace(/,/g,'');
+		val4=$($($(this).closest(".tbody").find(".tbodytr")[8]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".INCOMEDTL").val().replace(/,/g,'');
+		//val5=$($($(this).closest(".tbody").find(".tbodytr")[6]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".INCOMEDTL").val().replace(/,/g,'');
 		if(val3 == "")
 		{
 			val3=0;
@@ -5434,15 +5434,15 @@ function GridControlDetailVIABEXPENSEGRD  (popTableModPageGrid1,TableID,dtData,d
 		{
 			val4=0;
 		}
-		 if(val5 == "")
+		/*  if(val5 == "")
 		{
 			val5=0;
 		}
 		if(isNaN(val5))
 		{
 			val5=0;
-		}
-		amnt1=parseFloat(val3)*parseFloat(val4)*parseFloat(val5);
+		} */
+		amnt1=parseFloat(val3)+parseFloat(val4);
 		 if(amnt1 == "")
 		{
 			amnt1=0;
@@ -5452,7 +5452,43 @@ function GridControlDetailVIABEXPENSEGRD  (popTableModPageGrid1,TableID,dtData,d
 			amnt1=0;
 		}
 		amnt1=CURINRCommaSep(parseFloat(amnt1).toFixed(2));
-		$($($(this).closest(".tbody").find(".tbodytr")[7]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".INCOMEDTL").val(amnt1);
+		$($($(this).closest(".tbody").find(".tbodytr")[9]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".INCOMEDTL").val(amnt1);
+		
+		
+		var mon=0;
+		var val5=0;
+		var val6=0;
+		val5=$($($(this).closest(".tbody").find(".tbodytr")[9]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".INCOMEDTL").val().replace(/,/g,'');
+		val6=$($($(this).closest(".tbody").find(".tbodytr")[4]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".INCOMEDTL").val().replace(/,/g,'');
+		if(val5 == "")
+		{
+			val5=0;
+		}
+		if(isNaN(val5))
+		{
+			val5=0;
+		}
+		if(val6 == "")
+		{
+			val6=0;
+		}
+		if(isNaN(val6))
+		{
+			val6=0;
+		}
+		mon=parseFloat(val5)*parseFloat(val6);
+		 if(mon == "")
+		{
+			mon=0;
+		}
+		if(isNaN(mon))
+		{
+			mon=0;
+		}
+		
+		mon=CURINRCommaSep(parseFloat(mon).toFixed(2));
+		$($($(this).closest(".tbody").find(".tbodytr")[10]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".INCOMEDTL").val(mon);
+		
 		
 });
 
@@ -5476,7 +5512,7 @@ $(document).on("blur", ".PUSHDATATOANOTHERGRID", function() {
 	
 		for(var i = 0;i<$(".PUSHDATATOANOTHERGRID").length;i++)
 		{
-			if($($($(".PUSHDATATOANOTHERGRID")[i].closest(".tbodytr")).find(".tbodytrtd")[0]).text()=="(c) Monthly running in km")
+			if($($($(".PUSHDATATOANOTHERGRID")[i].closest(".tbodytr")).find(".tbodytrtd")[0]).text()=="(c) Monthly running in Km")
 			{
 				Monthlyrunninginkm = $($($(".PUSHDATATOANOTHERGRID")[i].closest(".tbodytr")).find(".tbodytrtd")[1]).find('input').val().replace(/,/g,'')
 				if(Monthlyrunninginkm == "")
@@ -5488,7 +5524,7 @@ $(document).on("blur", ".PUSHDATATOANOTHERGRID", function() {
 					Monthlyrunninginkm=0;
 				}
 			}
-			if($($($(".PUSHDATATOANOTHERGRID")[i].closest(".tbodytr")).find(".tbodytrtd")[0]).text()=="(h) Cost per litre of fuel")
+			if($($($(".PUSHDATATOANOTHERGRID")[i].closest(".tbodytr")).find(".tbodytrtd")[0]).text()=="(j) Cost per litre of fuel")
 			{
 				Costperlitreoffuel = $($($(".PUSHDATATOANOTHERGRID")[i].closest(".tbodytr")).find(".tbodytrtd")[1]).find('input').val().replace(/,/g,'')
 				if(Costperlitreoffuel == "")
@@ -5500,7 +5536,7 @@ $(document).on("blur", ".PUSHDATATOANOTHERGRID", function() {
 					Costperlitreoffuel=0;
 				}
 			}
-			if($($($(".PUSHDATATOANOTHERGRID")[i].closest(".tbodytr")).find(".tbodytrtd")[0]).text()=="(g) Fuel average in KM per litre")
+			if($($($(".PUSHDATATOANOTHERGRID")[i].closest(".tbodytr")).find(".tbodytrtd")[0]).text()=="(i) Fuel average in KM per litre")
 			{
 				FuelaverageinKMperlitre = $($($(".PUSHDATATOANOTHERGRID")[i].closest(".tbodytr")).find(".tbodytrtd")[1]).find('input').val().replace(/,/g,'')
 				if(FuelaverageinKMperlitre == "")
@@ -5512,7 +5548,7 @@ $(document).on("blur", ".PUSHDATATOANOTHERGRID", function() {
 					FuelaverageinKMperlitre=0;
 				}
 			}
-			if($($($(".PUSHDATATOANOTHERGRID")[i].closest(".tbodytr")).find(".tbodytrtd")[0]).text()=="(i) No. of tyres")
+			if($($($(".PUSHDATATOANOTHERGRID")[i].closest(".tbodytr")).find(".tbodytrtd")[0]).text()=="(k) No. of tyres")
 			{
 				Nooftyres = $($($(".PUSHDATATOANOTHERGRID")[i].closest(".tbodytr")).find(".tbodytrtd")[1]).find('input').val().replace(/,/g,'')
 				if(Nooftyres == "")
@@ -5524,7 +5560,7 @@ $(document).on("blur", ".PUSHDATATOANOTHERGRID", function() {
 					Nooftyres=0;
 				}
 			}			
-			if($($($(".PUSHDATATOANOTHERGRID")[i].closest(".tbodytr")).find(".tbodytrtd")[0]).text()=="(j) Cost of 1 tyre")
+			if($($($(".PUSHDATATOANOTHERGRID")[i].closest(".tbodytr")).find(".tbodytrtd")[0]).text()=="(l) Cost of 1 tyre")
 			{
 				Costf1tyre = $($($(".PUSHDATATOANOTHERGRID")[i].closest(".tbodytr")).find(".tbodytrtd")[1]).find('input').val().replace(/,/g,'')
 				if(Costf1tyre == "")
@@ -5536,7 +5572,7 @@ $(document).on("blur", ".PUSHDATATOANOTHERGRID", function() {
 					Costf1tyre=0;
 				}
 			}	
-			if($($($(".PUSHDATATOANOTHERGRID")[i].closest(".tbodytr")).find(".tbodytrtd")[0]).text()=="(k) Life of new tyres in km")
+			if($($($(".PUSHDATATOANOTHERGRID")[i].closest(".tbodytr")).find(".tbodytrtd")[0]).text()=="(m) Life of new tyres in Km")
 			{
 				Lifeofnewtyresinkm = $($($(".PUSHDATATOANOTHERGRID")[i].closest(".tbodytr")).find(".tbodytrtd")[1]).find('input').val().replace(/,/g,'')
 				if(Lifeofnewtyresinkm == "")
@@ -5548,7 +5584,7 @@ $(document).on("blur", ".PUSHDATATOANOTHERGRID", function() {
 					Lifeofnewtyresinkm=0;
 				}
 			}	
-			if($($($(".PUSHDATATOANOTHERGRID")[i].closest(".tbodytr")).find(".tbodytrtd")[0]).text()=="(f) Monthly revenue in Rs.Lacs.")
+			if($($($(".PUSHDATATOANOTHERGRID")[i].closest(".tbodytr")).find(".tbodytrtd")[0]).text()=="(h) Monthly revenue (A)")
 			{
 				MonthlyrevenueinRsLacs = $($($(".PUSHDATATOANOTHERGRID")[i].closest(".tbodytr")).find(".tbodytrtd")[1]).find('input').val().replace(/,/g,'')
 				if(MonthlyrevenueinRsLacs == "")
@@ -5862,7 +5898,7 @@ $(document).on("blur", ".PUSHDATATOANOTHERGRID", function() {
 		var NetCashFlowFnl=0;
 		for(var i = 0;i<$(".PUSHDATATOANOTHERGRID").length;i++)
 		{
-			if($($($(".PUSHDATATOANOTHERGRID")[i].closest(".tbodytr")).find(".tbodytrtd")[0]).text()=="(f) Monthly revenue in Rs.Lacs.")
+			if($($($(".PUSHDATATOANOTHERGRID")[i].closest(".tbodytr")).find(".tbodytrtd")[0]).text()=="(h) Monthly revenue  (A)")
 			{
 				MonthlyrevenueinRsLacs = $($($(".PUSHDATATOANOTHERGRID")[i].closest(".tbodytr")).find(".tbodytrtd")[1]).find('input').val().replace(/,/g,'')
 				if(MonthlyrevenueinRsLacs == "")
@@ -5877,22 +5913,23 @@ $(document).on("blur", ".PUSHDATATOANOTHERGRID", function() {
 		}
 		
 		NetCashFlow = parseFloat(MonthlyrevenueinRsLacs) - parseFloat(res.replace(/,/g,''));
-
+ 
 		for(var j = 0;j<$(".GETSAMEDATAGRID").length;j++)
 		{
-			if($($($(".GETSAMEDATAGRID")[j].closest(".tbodytr")).find(".tbodytrtd")[0]).text()=="Equated Monthly Installments (EMI)")
+			 if($($($(".GETSAMEDATAGRID")[j].closest(".tbodytr")).find(".tbodytrtd")[0]).text()=="Equated Monthly Installments (EMI)")
 			{
 				EquatedMonthlyInstallmentsEMI = $($($(".GETSAMEDATAGRID")[j].closest(".tbodytr")).find(".tbodytrtd")[1]).find('input').val().replace(/,/g,'')
 				if(EquatedMonthlyInstallmentsEMI == "")
 				{
 					EquatedMonthlyInstallmentsEMI=0;
 				}
-				if(isNaN(EquatedMonthlyInstallmentsEMI))
+			 	if(isNaN(EquatedMonthlyInstallmentsEMI))
 				{
 					EquatedMonthlyInstallmentsEMI=0;
-				}
-			}
-		}
+				} 
+			} 
+		
+		}  
 	
 				NetCashFlowFnl = parseFloat(NetCashFlow)/parseFloat(EquatedMonthlyInstallmentsEMI);
 				if(NetCashFlowFnl == "")
@@ -5938,12 +5975,12 @@ $(document).on("blur", ".CHKNETCASH", function() {
 	var NetCashFlow=0;
 	for(var j = 0;j<$(".EXPENSEDTL").length;j++)
 		{
-			if($($($(".EXPENSEDTL")[j].closest(".tbodytr")).find(".tbodytrtd")[0]).text()=="Net Cash Flow (NCF)/EMI")
+			if($($($(".EXPENSEDTL")[j].closest(".tbodytr")).find(".tbodytrtd")[0]).text()=="Free Cash Flow (FCF)/EMI")
 			{
 				NetCashFlow = $($($(".EXPENSEDTL")[j].closest(".tbodytr")).find(".tbodytrtd")[1]).find('input').val().replace(/,/g,'')
 				if(NetCashFlow<0)
 				{
-					alert('Your value should be negative kindly enter the correct value')
+					alert('Negative Value not allowed')
 					$($($(this).closest(".tbody").find(".tbodytr")[14]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".EXPENSEDTL").val('0');
 
 				}
@@ -5951,7 +5988,6 @@ $(document).on("blur", ".CHKNETCASH", function() {
 		}				
 
 });	
-
 
 function Chkemi()
 {

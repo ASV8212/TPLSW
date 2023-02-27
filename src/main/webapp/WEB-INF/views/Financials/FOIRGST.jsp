@@ -19,7 +19,6 @@
          <input type="text" id="FOGS_SCHEMEID"   hidden="hidden" name="FOGS_SCHEMEID" class="form-control FOGSDBfields">
          <input type="text" id="FOGS_SCHEMENAME" hidden="hidden" name="FOGS_SCHEMENAME" class="form-control FOGSDBfields">
           <input type="text" id="FOGS_PRODUCT" hidden="hidden" name="FOGS_PRODUCT" class="form-control FOGSDBfields">
-		  <input type="text" id="FOGS_LOANID"   hidden="hidden" name="FOGS_LOANID" class="form-control FOGSDBfields">
 
 			 <div class="form-row">
 			 <div class="col-md-4">
@@ -253,7 +252,7 @@
 	  
 	  
       
-                <div class="form-row">
+                <div class="form-row"style="display:none">
                     <div class="col d-flex justify-content-center">
                         <button type="button" id="save3" data-form="PROPERTYAPPRASIAL"  data-aria="LSW_TFOIRGST|FOGS|FOGS_SCHEMEID" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
                         <button type="button" data-form="PROPERTYAPPRASIAL"  data-aria="LSW_TFOIRGST|FOGS|FOGS_SCHEMEID"data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 

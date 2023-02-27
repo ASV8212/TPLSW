@@ -81,7 +81,7 @@
 			 </div>
             <div class="form-row">
                <div class="col">
-                    <button type="button" style="display:none" id="CBLViewRpt" onclick="FncallDocChkLst(this,'CBRTable',{spname:'LSW_SCIBILRPTDATA',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'',MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||','CIBILReportDUDUPE');"  class="btn waves-effect btn-yelInplain btn-sm"></button>
+                    <button type="button" style="display:none" id="CBLViewRpt" onclick="FncallDocChkLst(this,'CBRTable',{spname:'LSW_SCIBILRPTDATA',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'',MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||6','CIBILReportDUDUPE');"  class="btn waves-effect btn-yelInplain btn-sm"></button>
 	                <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" id="CBRTable">
                     </table>
 	           </div>
@@ -163,7 +163,7 @@
            		</div>
            		<div class="col-md-6">
            		   <div class="md-form">
-                      <input type="text" id="FIEG_CIBILSCOREI" name="FIEG_CIBILSCOREI" maxlength="3" class="form-control NoSpecialChar CCLR FIEGDBfields">
+                      <input type="text" id="FIEG_CIBILSCOREI" name="FIEG_CIBILSCOREI" maxlength="3" class="form-control NoSpecialCharNOTHYPHEN IsNumberFields CCLR FIEGDBfields">
                       <label for="FIEG_CIBILSCOREI" class="">Transunion Score<span class="MndtryAstr"></span></label>
                    </div>
            		</div>

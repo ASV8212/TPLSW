@@ -36,7 +36,7 @@ $(document).ready(function () {
 		{	
 		var prfx = $(this).attr("data-aria").split("|")[1];
 		var MndtryChk = ChkMandatoryFlds(prfx+"Mndtry");
-		var NetLTV=$("#CTLN_NETLTV").val();
+		var NetLTV=$("#CTLN_GROSSLTV").val();
 		if(parseFloat(NetLTV)<=0)
 		{
 		alert ("Value of NetLTV should not be zero");

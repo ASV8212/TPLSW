@@ -11,7 +11,6 @@
                   <input type="text" id="NBNK_DTMODIFIED" hidden="hidden" name="NBNK_DTMODIFIED" class="form-control NBNKDBfields">
 				  <input type="text" id="NBNK_SCHEMENAME" hidden="hidden" name="NBNK_SCHEMENAME" class="form-control NBNKDBfields">
 				  <input type="text" id="NBNK_SCHEMEID" hidden="hidden" name="NBNK_SCHEMEID" class="form-control NBNKDBfields">
-				  <input type="text" id="NBNK_LOANID" hidden="hidden" name="NBNK_LOANID" class="form-control NBNKDBfields">
 				  <!--<input type="text" id="NBNK_CASHNBNK" hidden="hidden" name="NBNK_CASHNBNK" class="form-control NBNKDBfields">-->
 				  <input type="text" id="NBNK_CASHFLOW" hidden="hidden" name="NBNK_CASHFLOW" class="form-control NBNKDBfields">
                    
@@ -190,7 +189,7 @@
 		
 			 
 				  </br>
-                  <div class="form-row">
+                  <div class="form-row"style="display:none">
                      <div class="col d-flex justify-content-center">
                         <button type="button" id="Save" data-aria="LSW_TNONBANK|NBNK" class="btn btn-Syeloutline waves-effect waves-light Save FormSave">Save</button>   
                         <button type="button" data-aria="LSW_TNONBANK|NBNK" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 

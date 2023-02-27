@@ -8,22 +8,19 @@ function AccntOnChng(){
 
 function GentrateENACH()
 {
-	
-	
-	
 	if($("#AEND_ACCNTNO").val()=="")
 		{
          alert('select the customer name')
 		return false;
 		}
 		
-		
 	var IOP=window.location.origin;
 	var PrcsId=$("#PrcsID").val()
 	var AcctNo=$("#AEND_ACCNTNO").val()
+    var LonID=$("#AEND_LOANID").val();
     ajaxindicatorstart("Downloading.. Please wait");
 	
-	var flname = IOP+LoadFrmXML("RT086")+"&__format=pdf&Param1="+PrcsId+"&Param2="+AcctNo;
+	var flname = IOP+LoadFrmXML("RT086")+"&__format=pdf&Param1="+PrcsId+"&Param2="+AcctNo+"&Param3="+LonID;
 	
 	var link=document.createElement('a');
 		document.body.appendChild(link);
@@ -33,12 +30,69 @@ function GentrateENACH()
 			ajaxindicatorstop();
 }
 
+function LoadENACHStatus(){
+	var op=UI_getdata($("#PrcsID").val(),$("#AEND_LOANID").val(),'','','','LSW_SCHKENACHHITTIME');
+	var RES= $(op).find("RESULT").text()
+	var MSG= $(op).find("MSG").text()
+	if(RES=="S" || RES=="N")
+	{
+	$(".CallbackStatus").text('ENACH STATUS : '+$(op).find("MSG").text());
+	/* $(".CallbackStatus").$(op).find("FLAG").text()+'<span style="font-weight:700">'+$(op).find("MSG").text()+'</span>'; */
+	}
+	else 
+	{
+	
+	$(".CallbackStatus").text('ENACH STATUS : '+RES);
+	/* $(".CallbackStatus").$(op).find("FLAG").text()+'<span style="font-weight:700">'+$(op).find('INPROGRESS').text()+'</span>'; */
+	
+	}
+	//$($(html).find(".CallbackStatusHolder")).find("span").text($(op).find("FLG").text());
+}
+function ENACHStatus(){
+	var op=UI_getdata($("#PrcsID").val(),$("#AEND_LOANID").val(),'','','','LSW_SCHKENACHHITTIME');
+	var RES= $(op).find("RESULT").text()
+	var MSG= $(op).find("MSG").text()
+	if(RES=="S" || RES=="N")
+	{
+	var RES= $(op).find("MSG").text()
+	$(".CallbackStatus").text('ENACH STATUS : '+$(op).find("MSG").text());
+	/* $(".CallbackStatus").$(op).find("FLAG").text()+'<span style="font-weight:700">'+$(op).find("MSG").text()+'</span>'; */
+	}
+	else 
+	{
+	var RES=$(RESULT).find("MSG").text()
+	$(".CallbackStatus").text('ENACH STATUS : '+RES);
+	/* $(".CallbackStatus").$(op).find("FLAG").text()+'<span style="font-weight:700">'+$(op).find('INPROGRESS').text()+'</span>'; */
+	
+	}
+	alert(RES);
+	return;
+	//$($(html).find(".CallbackStatusHolder")).find("span").text($(op).find("FLG").text());
+}
+
 function ChkENACH(Verify,uniqid,urmno,Status)
 {
+	if($("#AEND_CHNLTYP").val()=="")
+    {
+		alert("Channel Type is Mandatory to Initiate E-NACH");
+		return;
+	}
 	if($("#AEND_ENACHURMNO").val()=="")
     {
-    if(confirm("Do you want to initiate the enach process?") == true) 
-	{	
+   	
+	 var output=UI_getdata($("#PrcsID").val(),$("#AEND_LOANID").val(),'','','','LSW_SCHKENACHHITTIME');
+	var RES= $(output).find("RESULT").text()
+	var MSG= $(output).find("MSG").text()
+	
+	if(RES=="N")
+	{
+	 alert(MSG)
+	 return;
+	} 
+	else
+	{
+	 if(confirm("Do you want to initiate the enach process?") == true) 
+	{
 	var PRCSID = $("#PrcsID").val();
 	 $("#Save1").click();
 	$.ajax({
@@ -85,6 +139,8 @@ function ChkENACH(Verify,uniqid,urmno,Status)
 	    		  $("[data-Validatedata="+Verify+"]").addClass("btn-RedInplain"); 
 	    		  $("#"+Verify).val('Failed')
 				   $("#Save1").click();
+				     var output=UI_getdata($("#PrcsID").val(),$("#AEND_LOANID").val(),"Y",'','','LSW_SCHKENACHHITTIME');
+					var RES= $(output).find("Result").text()
 				 // $("#"+uniqid).val(OP.split('*')[2])
 				 // $("#"+Status).val(OP.split('*')[1])
 				  //$("#"+Verify).val(OP.split('*')[0])
@@ -97,15 +153,75 @@ function ChkENACH(Verify,uniqid,urmno,Status)
 		   }
 	});
 	 }
+	 }
 	}			  
 	else
 	{
 		alert('Bank Account for Repayment is Mandatory')
 		return false;
 	}
-	
+	window.location.reload();
 }
 
+function ChkENACHStatus()
+{
+
+var xmlop=UI_getdata($("#PrcsID").val(),$("#AEND_LOANID").val(),"","","","LSW_SCHECKLOANTY")
+ var output=UI_getdata($("#PrcsID").val(),$("#AEND_LOANID").val(),'','','','LSW_SCHKENACHHITTIME');
+	var MSG= $(output).find("STAUSMSG").text()
+	if(MSG=="R")
+	{
+	if($(xmlop).find('ENACHUID').text()!="")
+	  {
+	         if($("#AEND_ENACHURMNO").val() == "")
+				{
+	                  var PRCSID = $("#PrcsID").val();
+	            $.ajax({
+	    url: "/TPLSW/EmandateAPI",
+	    type: 'POST',
+	    data: {SPNAME:"LSW_SEMANDATEAPICREATE",Param1:$(xmlop).find('ENACHUID').text(),Param2:"Get",Param3:$("#AEND_LOANID").val(),Param4:"",PRCSID:PRCSID,Prvnt:$(window.parent.parent.document).find("#Prvnt").val()},
+	    async:true,
+	   // dataType: 'json',
+	   // contentType:'application/json',
+	    
+	    success: function(stm){  
+			  if(stm == "")
+	    		{
+					//alert('E-NACH Failed')
+					//return false;
+				}
+             else if(stm.split("~")[0]=="Failed")
+	    		{
+                 // alert(stm.split("~")[1])
+				  //return false;
+				}
+				else if (stm.split("~")[0]=="Success")
+	    		{
+					if(stm.split("~")[1]!="")
+					{
+				      $("#AEND_ENACHURMNO").val(stm.split("~")[1])
+					  $("#AEND_ENACHURMNO").next().addClass('active');
+					  
+                    //alert(stm.split("|")[3]+'. UMR No -'+stm.split("|")[2])
+					}
+					else
+					{
+					  //alert(stm.split("|")[3])	
+					}
+				}				   
+			   },
+	             error: function(stm) {
+		              //window.alert(LoadFrmXML("V0125"))
+		                // alert("E-NACH Failed.");
+						 //	return false;
+		                   }
+	               });
+			   }
+	  }
+	  }
+	ENACHStatus();
+	window.location.reload();
+}
 
 
 
@@ -115,7 +231,7 @@ function addMonths() {
          var Date2=Date1.replace(/[/]/g,'-')
 
 		 var date3 = new Date(Date2.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"))
-var newDate = new Date(date3.setMonth(date3.getMonth()+$("#DMY3").val().split('|')[4]));
+var newDate = new Date(date3.setMonth(date3.getMonth()+parseInt($("#DMY3").val().split('|')[4])));
 var year = newDate.getFullYear();
   var month = (1 + newDate.getMonth()).toString();
   month = month.length > 1 ? month : '0' + month;

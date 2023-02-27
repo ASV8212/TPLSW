@@ -58,11 +58,14 @@ $(document).ready(function() {
 		}
 		if($(this).text() == "Approve")
 		{
-			
-			
 		var xml = "<AccountId>"+$("#DRAW_ACCNTID").val()+"</AccountId><DrawDownAmt>"+$("#DRAW_DRAWDOWNAMT").val()+"</DrawDownAmt><DrawDownDate>"+$("#DRAW_DRAWDOWNDT").val()
 		+"</DrawDownDate><PayeeName>"+$("#DRAW_PAYEENAME").val()+"</PayeeName><PayeeAcctNo>"+$("#DRAW_PAYEEACCTNO").val()
-		+"</PayeeAcctNo><IFSCCode>"+$("#DRAW_IFSCCODE").val()+"</IFSCCode><BankName>"+$("#DRAW_BANKNAME").val()+"</BankName><BranchName>"+$("#DRAW_BRANCHNAME").val()+"</BranchName>"
+		+"</PayeeAcctNo><IFSCCode>"+$("#DRAW_IFSCCODE").val()+"</IFSCCode><BankName>"+$("#DRAW_BANKNAME").val()+"</BankName><BranchName>"+$("#DRAW_BRANCHNAME").val()
+		+"</BranchName><UTRNo>"+$("#DRAW_UTRNUMBER").val()+"</UTRNo>"			
+			/* 
+		var xml = "<AccountId>"+$("#DRAW_ACCNTID").val()+"</AccountId><DrawDownAmt>"+$("#DRAW_DRAWDOWNAMT").val()+"</DrawDownAmt><DrawDownDate>"+$("#DRAW_DRAWDOWNDT").val()
+		+"</DrawDownDate><PayeeName>"+$("#DRAW_PAYEENAME").val()+"</PayeeName><PayeeAcctNo>"+$("#DRAW_PAYEEACCTNO").val()
+		+"</PayeeAcctNo><IFSCCode>"+$("#DRAW_IFSCCODE").val()+"</IFSCCode><BankName>"+$("#DRAW_BANKNAME").val()+"</BankName><BranchName>"+$("#DRAW_BRANCHNAME").val()+"</BranchName>" */
 		$(".loader2").show();
 		$.ajax({
 	    url:"/TPLSW/DrawDownHandlr",

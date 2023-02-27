@@ -12,7 +12,7 @@
 				  <input type="text" id="FLOW_SCHEMENAME" hidden="hidden" name="FLOW_SCHEMENAME" class="form-control FLOWDBfields">
 				  <input type="text" id="FLOW_SCHEMEID" hidden="hidden" name="FLOW_SCHEMEID" class="form-control FLOWDBfields">
 				  <input type="text" id="FLOW_CASHFLOW" hidden="hidden" name="FLOW_CASHFLOW" class="form-control FLOWDBfields">
-				  <input type="text" id="FLOW_LOANID" hidden="hidden" name="FLOW_LOANID" class="form-control FLOWDBfields">
+				  <input type="text" id="FLOW_PRODUCT" hidden="hidden" name="FLOW_PRODUCT" class="form-control FLOWDBfields">
                    
 				 </br>
 				 <div class="form-row">
@@ -124,9 +124,24 @@
                       <label for="FLOW_NETPROFIT" class="">Net Profit<span class="MndtryAstr">*</span></label>
                   </div>
             </div>
-  
-				</div>
-		<div class="form-row">	
+			
+			</div>
+		<div class="form-row">
+			<div class="col-md-4">
+                        <div class="md-form">
+                           <div id="Customer House" class="select-radio FLOWMndtry">
+                              <div class="custom-control custom-radio custom-control-inline">
+                                 <input type="radio" class="custom-control-input FLOWDBfields" onclick="Chkprofit();" value="Yes" id="OWNYES" name="FLOW_OWNHOUSE">
+                                 <label class="custom-control-label" for="OWNYES">Yes</label>
+                              </div>
+                              <div class="custom-control custom-radio custom-control-inline FLOWDBfields">
+                                 <input type="radio" class="custom-control-input FLOWDBfields" onclick="Chkprofit();" value="No" id="OWNNO" name="FLOW_OWNHOUSE">
+                                 <label class="custom-control-label" for="OWNNO">No</label>
+                              </div>
+                           </div>
+                           <label class="mdb-main-label BTxt9">Customer Staying in Own House<span class="MndtryAstr">*</span></label>      
+                        </div>
+                     </div>
 			<div class="col-md-4">
                   <div class="md-form">
                   	  <input type="text" id="FLOW_DSR" disabled maxlength="30"  name="FLOW_DSR" class="form-control FLOWMndtry  IsCURCommaFields FLOWDBfields">
@@ -135,34 +150,49 @@
             </div>		
             <div class="col-md-4">
                   <div class="md-form">
-                  	  <input type="text" id="FLOW_EXISTEMIOBLI"  maxlength="30" onblur="Existemi();"  name="FLOW_EXISTEMIOBLI" class="form-control FLOWMndtry IsCURCommaFields FLOWDBfields">
+                  	  <input type="text" id="FLOW_EXISTEMIOBLI" disabled maxlength="30" onblur="Existemi();"  name="FLOW_EXISTEMIOBLI" class="form-control FLOWMndtry IsCURCommaFields FLOWDBfields">
                       <label for="FLOW_EXISTEMIOBLI" class="">Existing EMI Obligation <span class="MndtryAstr">*</span></label>
                   </div>
             </div>
-				
-            <div class="col-md-4">
+			
+		</div>
+		<div class="form-row">
+			<div class="col-md-4">
                   <div class="md-form">
                   	  <input type="text" id="FLOW_AVALFUND" disabled maxlength="30"  name="FLOW_AVALFUND" class="form-control FLOWMndtry IsCURCommaFields FLOWDBfields">
                       <label for="FLOW_AVALFUND" class="">Available Fund<span class="MndtryAstr">*</span></label>
                   </div>
             </div>
- 
-		</div>
-		<div class="form-row">	
+			
 			<div class="col-md-4">
                   <div class="md-form">
+                  	  <input type="text" id="FLOW_AVGCREDSUM" disabled maxlength="30"  name="FLOW_AVGCREDSUM" class="form-control FLOWMndtry IsCURCommaFields FLOWDBfields FLOWUBL">
+                      <label for="FLOW_AVGCREDSUM" class="">Average Credit Summation <span class="MndtryAstr">*</span></label>
+                  </div>
+            </div>		
+            <div class="col-md-4">
+                  <div class="md-form">
+                  	  <input type="text" id="FLOW_EMIPROPLON" disabled  maxlength="30"  name="FLOW_EMIPROPLON" class="form-control FLOWMndtry IsCURCommaFields FLOWDBfields FLOWUBL">
+                      <label for="FLOW_EMIPROPLON" class="">Max EMI for Proposed Loan<span class="MndtryAstr">*</span></label>
+                  </div>
+            </div>
+			<div class="col-md-4">
+                  <div class="md-form FLOWMETHOD">
                   	  <input type="text" id="FLOW_ABB" disabled maxlength="30"  name="FLOW_ABB" class="form-control FLOWMndtry IsCURCommaFields FLOWDBfields">
                       <label for="FLOW_ABB" class="">90% of ABB <span class="MndtryAstr">*</span></label>
                   </div>
             </div>		
             <div class="col-md-4">
-                  <div class="md-form">
+                  <div class="md-form FLOWMETHOD">
                   	  <input type="text" id="FLOW_EMITRACK" disabled  maxlength="30"  name="FLOW_EMITRACK" class="form-control FLOWMndtry IsCURCommaFields FLOWDBfields">
                       <label for="FLOW_EMITRACK" class="">Twice of 12  months EMI track<span class="MndtryAstr">*</span></label>
                   </div>
             </div>
+		</div>
+		<div class="form-row">	
+			
 			<div class="col-md-4">
-                  <div class="md-form">
+                  <div class="md-form FLOWMETHOD">
                   	  <input type="text" id="FLOW_FUNDEMI" disabled maxlength="30"  name="FLOW_FUNDEMI" class="form-control FLOWMndtry IsCURCommaFields FLOWDBfields" Onchange ="EMIPERLAK">
                       <label for="FLOW_FUNDEMI" class="">Fund for EMI<span class="MndtryAstr">*</span></label>
                   </div>
@@ -186,7 +216,7 @@
 		
 			 
 				  </br>
-                  <div class="form-row">
+                  <div class="form-row"style="display:none">
                      <div class="col d-flex justify-content-center">
                         <button type="button" id="Save" data-aria="LSW_TCASHFLOWUBL|FLOW" class="btn btn-Syeloutline waves-effect waves-light Save FormSave">Save</button>   
                         <button type="button" data-aria="LSW_TCASHFLOWUBL|FLOW" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 

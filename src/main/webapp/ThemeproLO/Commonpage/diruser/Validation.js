@@ -118,15 +118,35 @@ function GridControlDIRUSERROLEMAP (popTableModPageGrid1,TableID,dtData,dtcolumn
 	   { "sClass": "dpass", "aTargets": jQuery.parseJSON(hideClm)},
            
 	   { targets: 2, "render": function ( data, type, row, meta ) {                            
-		   var rowno = meta.row;	 
-			var HTML =	'<span><input type="checkbox" class="custom-control-input DSVLBL" title="'+row[0]+'"  value="'+data+'" name="KYCD_ACTION'+rowno+'" id="KYCD_ACTION'+rowno+'">';			 
-  		HTML = HTML + '<label class="custom-control-label GridLabel" for="KYCD_ACTION'+rowno+'"></label></span>';	
+		   var rowno = meta.row;
+
+ //var HTML =	'<span><input type="checkbox" class="custom-control-input DSVLBL" title="'+row[0]+'"  value="'+data+'" name="KYCD_ACTION'+rowno+'" id="KYCD_ACTION'+rowno+'">';			 
+//HTML = HTML + '<label class="custom-control-label GridLabel" for="KYCD_ACTION'+rowno+'"></label></span>';				
+  
+			/* if(row[0]="Admin")
+			{
+				var HTML =	'<span><input type="checkbox" disabled class="custom-control-input DSVLBL" title="'+row[0]+'"  value="'+data+'" name="KYCD_ACTION'+rowno+'" id="KYCD_ACTION'+rowno+'">';			 
+			}
+			else
+			{ */
+			    var HTML =	'<span><input type="checkbox" class="custom-control-input disabled DSVLBL" title="'+row[0]+'"  value="'+data+'" name="KYCD_ACTION'+rowno+'" id="KYCD_ACTION'+rowno+'">';			 
+				HTML = HTML + '<label class="custom-control-label GridLabel" for="KYCD_ACTION'+rowno+'"></label></span>';	
+			
     		//var HTML =	'<span><input type="text" id="KYCD_OSV'+rowno+'"  name="KYCD_OSV'+rowno+'" disabled maxlength="100" class="form-control DSVLBL form-control IsNumberFields  "></span>';			 
     			 
     		var htmldata = $(HTML);
- 			
- 			$(htmldata).find('[name=KYCD_ACTION'+rowno+'][value="true"]').attr('checked', 'checked');       			       			
- 			
+ 			if(row[0]=="Admin")
+			{
+ 			$(htmldata).find('[name=KYCD_ACTION'+rowno+'][value="false"]').attr('checked', 'checked'); 
+			$(htmldata).find('[name=KYCD_ACTION'+rowno+']').attr('disabled',true);
+			
+ 			}
+			else
+			{
+			
+ 			$(htmldata).find('[name=KYCD_ACTION'+rowno+'][value="true"]').attr('checked', 'checked'); 
+			$(htmldata).find('[name=KYCD_ACTION'+rowno+']').attr('disabled',false);
+			}
 	 return htmldata[0].outerHTML;
   		
   		
@@ -255,13 +275,13 @@ function GridControlDIRMODULEMAP (popTableModPageGrid1,TableID,dtData,dtcolumn,h
 	   { "sClass": "dpass", "aTargets": jQuery.parseJSON(hideClm)},
 	   { targets: 1, "render": function ( data, type, row, meta ) {                            
 		   var rowno = meta.row;	 
-			var HTML =	'<span><input type="checkbox" class="custom-control-input DSVLBL" title="'+row[0]+'" value="'+data+'" name="KYCD_OSV'+rowno+'" id="KYCD_OSV'+rowno+'">';			 
-  		HTML = HTML + '<label class="custom-control-label GridLabel" for="KYCD_OSV'+rowno+'"></label></span>';	
+			var HTML =	'<span><input type="checkbox" class="custom-control-input DSVLBL" title="'+row[0]+'" value="'+data+'" name="KYCD_VACT'+rowno+'" id="KYCD_VACT'+rowno+'">';			 
+  		HTML = HTML + '<label class="custom-control-label GridLabel" for="KYCD_VACT'+rowno+'"></label></span>';	
     		//var HTML =	'<span><input type="text" id="KYCD_OSV'+rowno+'"  name="KYCD_OSV'+rowno+'" disabled maxlength="100" class="form-control DSVLBL form-control IsNumberFields  "></span>';			 
     			 
     		var htmldata = $(HTML);
  			
- 			$(htmldata).find('[name=KYCD_OSV'+rowno+'][value="true"]').attr('checked', 'checked');       			       			
+ 			$(htmldata).find('[name=KYCD_VACT'+rowno+'][value="true"]').attr('checked', 'checked');       			       			
  			
 	 return htmldata[0].outerHTML;
   		
@@ -781,8 +801,8 @@ function GetModuleMap()
   $("#UserMODULEModalPop").click();
 	//  }
   //$("#UserModalClose").click();
-  oTable = $('#Table2').DataTable();
-		$('#SearchTable2').keyup(function(){
+  oTable = $('#TableMODPOP').DataTable();
+		$('#SearchTableMODPOP').keyup(function(){
 		      oTable.search($(this).val()).draw() ;
 		})	
 }

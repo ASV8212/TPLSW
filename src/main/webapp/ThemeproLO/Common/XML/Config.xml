@@ -187,6 +187,7 @@
 <V0178>Kindly save the Editor!</V0178>
 
 <V0179>CIBIL Yes</V0179>
+<V0180>Commercial CIBIL Yes</V0180>
 
 
 <PG001>/ThemePro_SCF/Login</PG001>
@@ -354,6 +355,7 @@
 <RT0122>/Birt/frameset?__report=report/CHFL/MSME_WCDLSTLSANLETTR.rptdesign</RT0122>
 <RT0123>/Birt/frameset?__report=report/CHFL/MSME_LAMPRODSANLETTER.rptdesign</RT0123>
 <RT0124>/Birt/frameset?__report=report/CHFL/MSME_LAPSANLETTER.rptdesign</RT0124>
+<RT0125>/Birt/frameset?__report=report/CHFL/CommercialCibil.rptdesign</RT0125>
 
 
 </xml>

@@ -740,9 +740,30 @@ function HndlPEMI(HTML,i){
 	var DATA1=["Memo|"];
 	var MemoData1=DATA1[0].split("|")[0];
 	var FavHTML=$("." + MemoData1).find(".DYNROW")[i]
+	
+
+	  
+	  
+	/*  var xml=UI_getdata($("#PrcsID").val(),$(HTML).find("input[name=DISB_LOANID]").val(),'','','',"LSW_SGETDEDUCTAMT");
+	         $(".Pfamt").text('PF Amount\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0: '+$(xml).find("PFAMT").text());
+	    $(".Crosselamt").text('Cross Sell Life\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0: '+$(xml).find("CROSSELLAMT").text());
+	  $(".Crosselhospi").text('Cross Sell Hospicash \xa0: '+$(xml).find("CROSSELLHOSPI").text());
+	   $(".TotalDeduct").text('Total Deduction\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0: '+$(xml).find("TOTALDEDUCT").text());
+	   */
    // $(FavHTML).find("input[name=DBFD_PAYAMT]").val($(HTML).find("input[name=DISB_DISBAMT]").val())
 	
 }
+
+   $(document).on("click", ".Deduction", function() {
+var HTML =$(this).closest('.DYNROW')
+	 var xml=UI_getdata($("#PrcsID").val(),$(HTML).find("input[name=DISB_LOANID]").val(),'','','',"LSW_SGETDEDUCTAMT");
+	         $(".Pfamt").text('PF Amount\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0: '+$(xml).find("PFAMT").text());
+	    $(".Crosselamt").text('Cross Sell Life\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0: '+$(xml).find("CROSSELLAMT").text());
+	  $(".Crosselhospi").text('Cross Sell Hospicash \xa0: '+$(xml).find("CROSSELLHOSPI").text());
+	   $(".TotalDeduct").text('Total Deduction\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0: '+$(xml).find("TOTALDEDUCT").text());
+	  
+   })
+
 
 /*function GetCustomerName(HTML,Evnt)
 {
@@ -1013,7 +1034,7 @@ function GridControlDetailREPAYGRD(popTableModPageGrid1, TableID, dtData, dtcolu
     });
 
 }
-/*
+
 function ChkLoanAmt(){
 	var SanAmt = $("#DMY3").val().split("|")[3];
 	var ActlDisbAmt=$("#DBMM_ACTUDISBAMT").val().replace(/,/g, "");
@@ -1025,13 +1046,24 @@ function ChkLoanAmt(){
 	else{
 		HndlPEMI($('input[name=DBMM_PEMID]:checked').val());
 	}
-}*/
+}
+function Chksanamt(HTML){
+	var SanAmt = $("#DMY3").val().split("|")[3];
+	var ActlDisbAmt= $('#'+HTML).val().replace(/,/g, "");
+	if(parseFloat(SanAmt)<parseFloat(ActlDisbAmt))
+		{
+	   // $("#DISB_ACTUDISBAMT1").val('');
+	
+		alert("Actual Disbursal Amount should not be greater than Sanctioned Amount - " + SanAmt);
+			$('#'+HTML).val('')
+		}
+}
 
 function ChkLoanAmt(HTML,i){
 	
 	// Changed Function Content for p2 Delivery 45 Start
 	//var SanAmt = $("#DMY3").val().split("|")[3];
-	/*var SanAmt = $("#DBMM_DREMAINGAMT").text().replace(/,/g, "");
+	/* var SanAmt = $("#DBMM_DREMAINGAMT").text().replace(/,/g, "");
 	var ActlDisbAmt=$("#DBMM_ACTUDISBAMT").val().replace(/,/g, "");
 	if(parseFloat(ActlDisbAmt)> parseFloat( SanAmt ))
 		{
@@ -1041,7 +1073,7 @@ function ChkLoanAmt(HTML,i){
 	else{
 		  HndlPEMI($('input[name=DBMM_PEMID]:checked').val());
 	    }
-	*/
+	 */
 	
 	HndlPEMI(HTML,[i-1]);
 	
@@ -1469,3 +1501,32 @@ function GridControlDetailKARZAGRDIFSC (popTableModPageGrid1,TableID,dtData,dtco
 }
 
 
+function InitRCU()
+{
+	var op = UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETRCUSTATUS");
+	if($(op).find("RESULT_FLG").text() == "SUCCESS")
+	{
+	var GRP = $(op).find("RESULT_MSG").text().split("|")[0];
+	var UNIQid = $(op).find("RESULT_MSG").text().split("|")[1];
+	var UNIQid1 = $(op).find("RESULT_MSG").text().split("|")[2];
+	var OPXML = UI_getdata(GRP,"","","","","LSW_CHKIRCUGROUP");
+    var GRP= $(OPXML).find("RCU").text()
+	
+	var WFVndACTVINIT1 = WFVndActvInit($("#ActvID").val(),$("#PrcsID").val()+"|VendorInitiate|Vendor|var_status=SVF&var_statusHES="+GRP+"&var_INFO1="+GRP+"~"+GRP+"~"+UNIQid+"~"+UNIQid1+"|ADMIN","LSW_SWFACTVINITCALL");	
+	if (WFVndACTVINIT1 == "Success")
+			{
+			var OPXML = UI_getdata(GRP,UNIQid,UNIQid1,"","","LSW_SUPDATEIRCUGROUP");
+			alert("RCU - File Assigned");
+			return true;
+			}
+		else
+			{
+			alert("RCU - Initiation Failed");
+			return false;
+			}
+	}
+	else{
+		alert($(op).find("RESULT_MSG").text());
+		return false;
+	}
+}

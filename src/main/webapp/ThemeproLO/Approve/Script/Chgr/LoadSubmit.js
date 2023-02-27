@@ -112,7 +112,9 @@ $("#APCM_LOANID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
 
     CheckADMINFEE();
     CheckPENDINGFEE();
-    
+	CheckCROSSONE();
+	CheckCROSSTWO();
+    CHECKPROP();
     
     CheckCERSAI();
    
@@ -120,6 +122,7 @@ $("#APCM_LOANID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
     
    CHKAPPLICABLE();
    CheckBTCHARGE()
+     Chksap();
    
    if ($("#APCM_RecptNum").val() != "")
 	{
@@ -148,6 +151,57 @@ if($("input[name='APCM_PFCOLLECTED']:checked"). val() == "Collectible"
 	  }		  
 	}
 	
+if($("input[name='APCM_CROSSSELL1']:checked"). val() == "Collectible" 
+	&& $("input[name='APCM_CROSSELMODE']:checked"). val() == "Online")
+	{	
+      if($("#APCM_CROSSEL1ONREFNUMBER").val()!="")
+	  {
+         $(".CROSSONEPAYONLINE").show();
+		 $(".CROSSONEOnlineMode").hide();
+		 $(".CRONEONL").attr("disabled",true);
+	  }
+      else
+	  {
+        $(".CROSSONEPAYONLINE").hide();
+		$(".CROSSONEOnlineMode").show();
+		$(".CRONEONL").attr("disabled",false);
+	  }		  
+	}
+
+if($("input[name='APCM_CROSSSELL2']:checked"). val() == "Collectible" 
+	&& $("input[name='APCM_CROSSELTWMODE']:checked"). val() == "Online")
+	{	
+      if($("#APCM_CROSSEL2ONREFNUMBER").val()!="")
+	  {
+         $(".CROSSTWOPAYONLINE").show();
+		 $(".CROSSTWOOnlineMode").hide();
+		 $(".CROTWOONL").attr("disabled",true);
+	  }
+      else
+	  {
+        $(".CROSSTWOPAYONLINE").hide();
+		$(".CROSSTWOOnlineMode").show();
+		$(".CROTWOONL").attr("disabled",false);
+	  }		  
+    }
+
+/* if($("input[name='APRC_PROPERTYINS']:checked"). val() == "Collectible" 
+	&& $("input[name='APRC_PROPERTYINSMODE']:checked"). val() == "Online")
+	{	
+      if($("#APCM_PROPINSONREFNUMBER").val()!="")
+	  {
+         $(".PROPINSUPAYONLINE").show();
+		 $(".PROTYMODE").hide();
+		 $(".PROPINSONL").attr("disabled",true);
+	  }
+      else
+	  {
+        $(".PROPINSUPAYONLINE").hide();
+		$(".PROTYMODE").show();
+		$(".PROPINSONL").attr("disabled",false);
+	  }		  
+    }
+	 */
     //GetBTAmt();
 RECOMMENDHIDE()
 	/*  if($('input[name=APCM_ARECVAMTBY]:checked').val()==undefined){
@@ -198,12 +252,44 @@ RECOMMENDHIDE()
     $('.BTSTA').attr('disabled',true);
     $('.Collected3').hide();
 	}  
-if ($("#APCM_PFUTRNO").val() != "")
+	
+	if($("[name=APCM_CROSSSELL1]:checked").val() == "Collectible")
 	{
-    $('.PFONL').attr('disabled',true);
-   // $('.Collected4').hide();
-	} 	
-    
+		$('.CRSELLIMODE').show();
+	}
+	
+	if($("[name=APCM_CROSSSELL2]:checked").val() == "Collectible")
+	{
+		$('.CRSELLIIMODE').show();
+	}
+	if(($("[name=APCM_PFCOLLECTED]:checked").val() == "Collectible")&& ($("input[name='APCM_PFMODE']:checked"). val() == "Offline"))
+	{
+		$('.PFOFBNK').show();
+		
+	}
+  /* if ($("#APCM_PFUTRNO").val() != "")
+	{
+	 //$('.PFOFBNK').show();
+	 $('.PFCHKOFF').attr('disabled',true)
+     $('.Collected4').attr('disabled',true)
+     $("#APCM_TDSAPPLICABLE").attr('disabled',true);
+     $("#APCM_TDSAPPLICABLE").material_select();	 
+     $('.PFONL').attr('disabled',true);	 
+     // $('.Collected4').hide();
+	}  
+	 */
+	/* if ($("#APCM_CROSSONEUTRNO").val() != "")
+	{
+	$('.CSONCHKOFF').attr('disabled',true)
+    $('.Collected5').attr('disabled',true)
+    $('.CRONEONL').attr('disabled',true);
+	} */ 
+	/* if ($("#APCM_CROSSTWOUTRNO").val() != "")
+	{
+	$('.CRTWCHKOFF').attr('disabled',true)
+    $('.Collected6').attr('disabled',true)
+    $('.CROTWOONL').attr('disabled',true);
+	} */ 
     if ($("#APCM_RecptNum2").val() != "")
 	{
     $('.PFONL').attr('disabled',true);
@@ -220,12 +306,12 @@ if ($("#APCM_PFUTRNO").val() != "")
 	//$('.PFONL').next().addClass('active')
 	
 	if($("#APCM_PFSTATUS").val() == "Payment Success")
-			{					
+			{			
 			$('.PFONL').attr('disabled',true);
+			$("#APCM_TDSAPPLICABLE").attr('disabled',true);
+            $("#APCM_TDSAPPLICABLE").material_select();
 			$("#APCM_PFADDDT").next().next().hide();
 			}
-	
-	
 	}
     
     
@@ -251,22 +337,40 @@ if ($("#APCM_PFUTRNO").val() != "")
 	
 	if ($("#APCM_RecptNum3").val() != "")
 	{
-    $('.PFONL').attr('disabled',true);
+    $('.CRONEONL').attr('disabled',true);
     $('.Collected3').hide();
     $("#CTPLIFE").hide();
     
 	if ($("[name=APCM_CROSSELMODE]:checked").val() == "Online")
 	{
 	
-    $('.PFCHK').show()
-	$('.PFONBNK').hide()
-	$('.PFONBNKONL').show()
+    $('.CROSSONECHK').show()
+	$('.CRONONBNK').hide()
+	$('.CROONBNKONL').show()
 	//$('.PFONL').attr('disabled',true)
 	//$('.PFONL').next().addClass('active')
 	
 	if($("#APCM_CRSONESTATUS").val() == "Payment Success")
 			{					
-			$('.PFONL').attr('disabled',true);
+			$('.CRONEONL').attr('disabled',true);
+			$("#APCM_CRSONEADDDT").next().next().hide();
+			}
+	
+	
+	}
+	else if ($("[name=APCM_CROSSELMODE]:checked").val() == "Online")
+	{
+	
+  
+	
+	if($("#APCM_CRSONESTATUS").val() == "Payment Success")
+			{	
+		     $('.CROSSONECHK').show()
+			 $('.CRONONBNK').hide()
+			 $("#CTPLIFE").hide();
+			//$('.PFONL').attr('disabled',true)
+			//$('.PFONL').next().addClass('active')
+			$('.CRONEONL').attr('disabled',true);
 			$("#APCM_CRSONEADDDT").next().next().hide();
 			}
 	
@@ -278,30 +382,48 @@ if ($("#APCM_PFUTRNO").val() != "")
 	
 	if ($("#APCM_RecptNum4").val() != "")
 	{
-    $('.PFONL').attr('disabled',true);
+    $('.CROTWOONL').attr('disabled',true);
     $('.Collected4').hide();
     $("#CTPCOMBO").hide();
     
 	if ($("[name=APCM_CROSSELTWMODE]:checked").val() == "Online")
 	{
 	
-    $('.PFCHK').show()
-	$('.PFONBNK').hide()
-	$('.PFONBNKONL').show()
+    $('.CROSSTWOCHK').show()
+	$('.CRTWONBNK').hide()
+	$('.CRTWONBNKONL').show()
 	//$('.PFONL').attr('disabled',true)
 	//$('.PFONL').next().addClass('active')
 	
-	if($("#APCM_CRSONESTATUS").val() == "Payment Success")
+	if($("#APCM_CRSTWOSTATUS").val() == "Payment Success")
 			{					
-			$('.PFONL').attr('disabled',true);
+			$('.CROTWOONL').attr('disabled',true);
 			$("#APCM_CRSTWOADDDT").next().next().hide();
+			}
+	}
+    
+    
+	}
+	else if ($("[name=APCM_CROSSELTWMODE]:checked").val() == "Online")
+	{
+	
+  
+	
+	if($("#APCM_CRSTWOSTATUS").val() == "Payment Success")
+			{	
+		     $('.CROSSTWOCHK').show()
+			 $('.CRTWONBNK').hide()
+			 $("#CTPCOMBO").hide();
+			//$('.PFONL').attr('disabled',true)
+			//$('.PFONL').next().addClass('active')
+			 $('.CROTWOONL').attr('disabled',true);
+			 $("#APCM_CRSTWOADDDT").next().next().hide();
 			}
 	
 	
 	}
-    
-    
-	}
+	
+	
     
     
     if ($("#APCM_RecptNum1").val() != "")
@@ -358,8 +480,7 @@ if ($("#APCM_PFUTRNO").val() != "")
     $('.ADONLINE').attr('disabled',true);
     $('.Collected').hide();
     $("#CTPAF").hide();
-    
-    
+
 	if ($("[name=APCM_MODE]:checked").val() == "Online")
 	{
 	$('.ADCHK').show()
@@ -406,19 +527,126 @@ if($('input:radio[name=APCM_PFCOLLECTED]')[0].checked == false && $('input:radio
   $('input:radio[name=APCM_PFCOLLECTED]')[1].checked = true;
   $('input:radio[name=APCM_PFCOLLECTED][value=Deductible]').click();
 }
+if($('input:radio[name=APCM_CROSSSELL1]')[0].checked == false && $('input:radio[name=APCM_CROSSSELL1]')[1].checked == false)
+{
+  $('input:radio[name=APCM_CROSSSELL1]')[1].checked = true;
+  $('input:radio[name=APCM_CROSSSELL1][value=Deductible]').click();
+}
+if($('input:radio[name=APCM_CROSSSELL2]')[0].checked == false && $('input:radio[name=APCM_CROSSSELL2]')[1].checked == false)
+{
+  $('input:radio[name=APCM_CROSSSELL2]')[1].checked = true;
+  $('input:radio[name=APCM_CROSSSELL2][value=Deductible]').click();
+}
 if($('input:radio[name=APCM_ARECVAMTBY]')[0].checked == false && $('input:radio[name=APCM_ARECVAMTBY]')[1].checked == false)
 {
   $('input:radio[name=APCM_ARECVAMTBY]')[1].checked = true;
   $('input:radio[name=APCM_ARECVAMTBY][value=Deductible]').click();
 }
-
+               /*  if($("#APCM_TDSAPPLICABLE").val()=="Yes")					
+		        {
+			       
+                     $("#APCM_TDSAPPLICABLE").attr('disabled',true);
+		             $("#APCM_TDSAPPLICABLE").material_select();	
+        
+		        }  	
+               else 
+		        {
+			         $("#APCM_TDSAPPLICABLE").val('')
+                    
+		        } */
+	/* var xml=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETTDSAPP")
+	var TDS=$(xml).find('RESULT').text();
+	if(TDS=='Yes')
+	{
+		$("#APCM_TDSAPPLICABLE").attr('disabled',true);
+		$("#APCM_TDSAPPLICABLE").material_select();
+	} */
     
     // ONLOAD FIELD DISABLE END
     
   GETPFCOLLAMT('Load')  
-  
-  
+  /*******FREEZE THE SCREEN IF COLLECTION HAPPEND STRT*******/
+  if($("#APCM_PFCOLLECTFLG").val().split("|")[0] == "Success")
+  {
+	  DSVLBLALL();
+  }
+     /*******FREEZE THE SCREEN IF COLLECTION HAPPEND END*******/
     $(document).on("click", ".FormSave", function() {
+		
+		/* if($(this).text() == "Save")
+		{
+			    if($("#APCM_TDSAPPLICABLE").val()=="Yes")					
+		        {
+			       if(confirm('TDS Applicable will be freeze') == true)
+		           {
+                     $("#APCM_TDSAPPLICABLE").attr('disabled',true);
+		             $("#APCM_TDSAPPLICABLE").material_select();	
+                     					 
+		           }
+		        }  	
+                else if($("#APCM_TDSAPPLICABLE").val()=="No")
+		        {
+			        $("#APCM_TDSAPPLICABLE").val('');
+					
+		        }
+				else if($("input[name='APCM_PFCOLLECTED']:checked"). val()=="Collectible")
+				{
+					alert("Kindly fill the TDS");
+					return;
+				}
+		} */
+		
+		if($(this).text() == "Save & Next" || $(this).text() == "Save")
+		{
+			if($("input[name='APCM_CHKSAP']:checked").val() == undefined)
+			{
+				alert("Kindly choose the SAP Code")
+				return;
+			}
+		    if($("input[name='APCM_CHKSAP']:checked").val()=="Yes")
+			{
+				if($("#APCM_SAPCODE").val()=="")
+				{
+				alert("Kindly fill the SAP Code")
+				return;
+				}
+			}
+			else if($("input[name='APCM_CHKSAP']:checked").val()=="No")
+			{
+				if($("#APCM_DRPSAP").val()=="")
+				{
+				alert("Kindly Choose the SAP Code")
+				return;
+				}
+			}
+			
+		}
+		
+        if($(this).text() == "Save & Next")
+        {
+			
+		   if(($("input[name='APCM_PFMODE']:checked"). val() == "Online") &&  $("#APCM_ONREFNUMBER").val() == "")
+		   {
+		    alert("Reference Number Required for Online Payment")
+			return false;
+		   } 
+		
+		
+           if(($("input[name='APCM_CROSSELMODE']:checked"). val() == "Online") &&  $("#APCM_CROSSEL1ONREFNUMBER").val() == "")
+		   {
+		    alert("Reference Number Required for Online Payment")
+			return false;
+		   } 
+		
+		
+           if(($("input[name='APCM_CROSSELTWMODE']:checked"). val() == "Online") &&  $("#APCM_CROSSEL1ONTRANSDATE").val() == "")
+		   {
+		    alert("Reference Number Required for Online Payment")
+			return false;
+		   }
+		   
+		}
+		 
 
         var html = $(this).closest('.DYNROW')
         var tbl = $(this).attr("data-aria").split("|")[0];
@@ -464,7 +692,8 @@ if($('input:radio[name=APCM_ARECVAMTBY]')[0].checked == false && $('input:radio[
 						   return false;
 			}
         }
-		if($("#APCM_PFCOLLECTFLG").val().split("|")[0] != "Success" && $("input[name='APCM_PFCOLLECTED']:checked"). val() == "Collectible" && ($(this).text() == "Save"|| $(this).text()=="Save & Next"))
+		/*******ALL COLLECTION MOVED TO DISB MEMO STRT******/
+		/*if($("#APCM_PFCOLLECTFLG").val().split("|")[0] != "Success" && $("input[name='APCM_PFCOLLECTED']:checked"). val() == "Collectible" && ($(this).text() == "Save"|| $(this).text()=="Save & Next"))
 		{
 			if(($("input[name='APCM_PFMODE']:checked"). val() == "Cheque" && $("#APCM_PFADDNO").val() != "" && $("#APCM_PFIFSC").val() != "" && $("#APCM_PFADDDT").val() != "") ||
 			($("input[name='APCM_PFMODE']:checked"). val() == "DD" && $("#APCM_PFADDNO").val() != "" && $("#APCM_PFIFSC").val() != "" && $("#APCM_PFADDDT").val() != "") ||
@@ -474,11 +703,12 @@ if($('input:radio[name=APCM_ARECVAMTBY]')[0].checked == false && $('input:radio[
 				CollectPF();
 				//$("#Save").click();
 			}
-			/*else
+			else
 			{
 				alert("Fill the Mandatory Fields, to process Collection");
-			}*/
-		}
+			}
+		}*/
+		/*******ALL COLLECTION MOVED TO DISB MEMO END******/
         if ($(this).text() == "Submit") {
         	if($("#DMY7").val().split("|")[0] != "Registered Mortgage"){
         		var PFNO1 = "3";
@@ -697,6 +927,8 @@ if($('input:radio[name=APCM_ARECVAMTBY]')[0].checked == false && $('input:radio[
 			 
 
 	}
+	
+		
         // Tab Header Change End
 
 
@@ -704,6 +936,9 @@ if($('input:radio[name=APCM_ARECVAMTBY]')[0].checked == false && $('input:radio[
             NXTTAB(this);
         }
     });
+	
+	
+
 	
 	$('.Collected').on('click', function() {
 		
@@ -1001,7 +1236,7 @@ var html=$('.PFMNDCHK')
 		 alert("Fill the Mandatory Fields");
 		 return false;
 		}
-		if(confirm('PF Collection mode will be freeze') == true)
+		if(confirm('Do you want to save the details - once the data got saved you will not suppose to change PF/TDS/DATE/UTR') == true)
 		{
 			$("#Save").click();
 			
@@ -1013,7 +1248,13 @@ var html=$('.PFMNDCHK')
 			
 			$('.PFONBNK').hide()
 			$("#CTPPF").hide(); */
+			
 			$('.PFONL').attr('disabled',true)
+            $('.PFCHKOFF').attr('disabled',true)
+            $('.Collected4').attr('disabled',true)	
+            $("#APCM_TDSAPPLICABLE").attr('disabled',true);
+		    $("#APCM_TDSAPPLICABLE").material_select();			
+			$('.PFOFFL').show()
 			}
 			else
 			{
@@ -1022,8 +1263,88 @@ var html=$('.PFMNDCHK')
 		}
 		else
 		{
+			$("#APCM_TDSAPPLICABLE").val('');
 			$("#APCM_PFUTRNO").val('');
 			$("#APCM_PFOFFLADDDT").val('');
+			
+			return;
+		}
+});
+
+$('.Collected5').on('click', function() {
+		var htmlCro=$('.CROMNDCHK')
+	    MndtryChkCro = ChkMandatoryFlds_V1("APCMMndtry",htmlCro);
+	 
+	    if(MndtryChkCro == "Mandatory")
+		{
+		 alert("Fill the Mandatory Fields");
+		 return false;
+		}
+		if(confirm('Do you want to save the details - once the data got saved you will not suppose to change Cross sell 1/DATE/UTR') == true)
+		{
+			$("#Save").click();
+			
+			if ($("[name=APCM_CROSSELMODE]:checked").val() == "Offline")
+			{
+			
+			/* $('.PFOFFL').show()
+			$('.PFCHK').hide()
+			
+			$('.PFONBNK').hide()
+			$("#CTPPF").hide(); */
+			$('.CRONEONL').attr('disabled',true)
+			$('.CSONCHKOFF').attr('disabled',true)
+            $('.Collected5').attr('disabled',true)			
+			$('.CROSSOFFL').show()
+			}
+			else
+			{
+				$('.PEFEMODE').attr('disabled',false)
+			}
+		}
+		else
+		{
+			$("#APCM_CROSSONEUTRNO").val('');
+			$("#APCM_CRSONEOFFLADDDT").val('');
+			
+			return;
+		}
+});
+$('.Collected6').on('click', function() {
+		var htmlCrt=$('.CRTMNDCHK')
+	    MndtryChkCrt = ChkMandatoryFlds_V1("APCMMndtry",htmlCrt);
+	 
+	    if(MndtryChkCrt == "Mandatory")
+		{
+		 alert("Fill the Mandatory Fields");
+		 return false;
+		}
+		if(confirm('Do you want to save the details - once the data got saved you will not suppose to change Cross sell 2/DATE/UTR') == true)
+		{
+			$("#Save").click();
+			
+			if ($("[name=APCM_CROSSELTWMODE]:checked").val() == "Offline")
+			{
+			
+			/* $('.PFOFFL').show()
+			$('.PFCHK').hide()
+			
+			$('.PFONBNK').hide()
+			$("#CTPPF").hide(); */
+			$('.CROTWOONL').attr('disabled',true)
+            $('.CRTWCHKOFF').attr('disabled',true)
+            $('.Collected6').attr('disabled',true)			
+			$('.CROSSTWOOFFL').show()
+			}
+			else
+			{
+				$('.PEFEMODE').attr('disabled',false)
+			}
+		}
+		else
+		{
+			$("#APCM_CROSSTWOUTRNO").val('');
+			$("#APCM_CRSTWOOFFLADDDT").val('');
 			
 			return;
 		}
@@ -1042,7 +1363,7 @@ $('.Collected2').on('click', function() {
 	
 	
 
-	if ($("[name=APCM_PFMODE]:checked").val() == "Online")
+	if ($("[name=APCM_PFMODE]:checked").val() == "Cheque")
 		{
 		
         $('.PFCHK').show()

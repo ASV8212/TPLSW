@@ -1,4 +1,21 @@
-
+<div class="">
+   <!--Admin panel-->
+   <div class="admin-panel">
+   <div class="row">
+         <div class="col-lg-12">
+            <ul title="Bank" data-aria="LSW_TAGEOFASSETDTLS|AGEA|" data-popup="No"  class="nav FormPageMultiTab">
+               ${SUBPAGETABDATA}
+               <!-- <li id="Co-Applicant1" value="" title = "Co-Applicant1" class="nav-item  active">
+                  <a> <div class="nav-link" href="#">Co-Applicant 1</div></a>
+                  </li>      
+                     
+                  <li id=""  value="Add" title = "" class="nav-item FormPageMultiTabAdd">
+                  <a> <div class="nav-link" href="#">+ Add</div>  </a>
+                  </li>
+                  --> 
+            </ul>
+         </div>
+      </div>
  
   <!-- Accordion card -->
   <div class="card">
@@ -86,7 +103,8 @@
     <!-- Card body -->
    
   </div>
-							 
+  </div>
+  </div>							 
 							 
 <!-- <table style="display:none" id="GridTable2">
 <thead>

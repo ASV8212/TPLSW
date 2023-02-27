@@ -356,7 +356,12 @@
                     <label for="VECR_RCUREMARKS" class="">RCU Remarks<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
-              
+              <div class="col-md-4">
+              <div class="md-form">
+                     <input type="text" id="VECR_SAPCODE" name="VECR_SAPCODE" onchange="chksapcodeex()" class="form-control VECRMndtry VECRDBfields">
+                    <label for="VECR_SAPCODE" class="">SAP Code<span class="MndtryAstr">*</span></label>
+                  </div>
+                </div>
                 
            </div>
 		   
@@ -522,7 +527,7 @@
                   <div class=" col-md-4">
                  <div class="md-form">
                     <input type="text" id="VEBN_BNKNAME" maxlength="25" disabled name="VEBN_BNKNAME" class="BANKMndtry  form-control NoSpecialChar VEBNDBfields">
-                    <label for="VEBN_BNKNAME" class="">Bank Holder Name<span class="MndtryAstr">*</span></label>
+                    <label for="VEBN_BNKNAME" class="">Bank Name<span class="MndtryAstr">*</span></label>
                   </div>
                  </div>
                  

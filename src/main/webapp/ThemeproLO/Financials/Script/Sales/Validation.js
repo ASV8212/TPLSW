@@ -174,13 +174,45 @@ $(document).on("blur", ".SALES", function() {
  
  function DateValidate(XID,YID)
 {
+
+
+
 if(YID.value!='')	
 {
 if(XID.value!='')	
 {	
 	var STDATE=$("#"+XID).val()
 	var ENDDATE=$("#"+YID).val()
-
+	
+	
+	const stdate = $("#"+XID).val();
+	const [day, month, year] = stdate.split("/");
+	const stnewDate = `${month}/${day}/${year}`
+	
+	const endate = $("#"+YID).val();
+	const [eday, emonth, eyear] = endate.split("/");
+	const ennewDate = `${emonth}/${eday}/${eyear}`
+	
+	var enresult = new Date(ennewDate);
+    var enfinresult=enresult.setMinutes(enresult.getMinutes() - enresult.getTimezoneOffset());
+	
+	var stresult = new Date(stnewDate);
+    var stfinresult=stresult.setMinutes(stresult.getMinutes() - stresult.getTimezoneOffset());
+	
+	var millisecondsPerDay = 24 * 60 * 60 * 1000;
+    var dat=(enfinresult - stfinresult) / millisecondsPerDay;
+	d1 = new Date(stnewDate);
+	d2 = new Date(ennewDate);
+	var months;
+    months = (d2.getFullYear() - d1.getFullYear()) * 12;
+    months -= d1.getMonth();
+    months += d2.getMonth();
+	if(months>12 || dat>365)
+	{
+		alert("Start date and End date should not greater than 12 months")
+		$("#"+YID).val('')
+		return false;
+	}
 	      date = new Date();
 	    var y = date.getFullYear();
 	    var STDATE1 = STDATE.split("/");
@@ -201,10 +233,67 @@ if(XID.value!='')
 	    	 window.alert('To Date should not be less than From Date');
 	    	 $("#"+YID).val('')
 	    	}
+			else
+			{
+			
+				UI_getdata($("#PrcsID").val(),"",STDATE+'|'+ENDDATE,"","","LSW_SGETSALESGRID")
+				$("#BTNSALESGRD").click();
+			}
+			
 }
 }
 }
 
+
+
+/* function GETMONTH(FROM,TO)
+{
+if(YID.value!='')	
+{
+if(XID.value!='')	
+{	
+var STDATE=$("#"+FROM).val()
+var ENDDATE=$("#"+TO).val()
+
+
+
+ date = new Date();
+	    var y = date.getFullYear();
+	    var STDATE1 = STDATE.split("/");
+	    var dd = STDATE1[0];
+	    var mm = STDATE1[1];
+	    var yy = STDATE1[2];
+
+	var STDATE2=yy+mm+dd
+
+	    var ENDDATE1 = ENDDATE.split("/");
+	     var dd1 = ENDDATE1[0];
+	     var mm1 = ENDDATE1[1];
+	     var yy1 = ENDDATE1[2];
+     var ENDDATE2=yy1+mm1+dd1
+     
+	    if(STDATE2>ENDDATE2)
+	    	{
+	    	 window.alert('End Date should not be less than Start Date');
+	    	 $("#"+YID).val('')
+	    	}
+			else
+			{
+			
+				UI_getdata($("#PrcsID").val(),"",STDATE+'|'+ENDDATE,"","","LSW_SGETSALESGRID")
+				$("#BTNSALESGRD").click();
+			}
+}
+}
+
+} */
+
+function LoadGSTStatus()
+{
+var op=UI_getdata($("#PrcsID").val(),$("#AEND_LOANID").val(),'','','','LSW_SCHKGSTSTATUS');
+	var RES= $(op).find("ERRORMSG").text()
+	$(".CallbackStatus").text('GST STATUS : '+RES);
+}
 function decideinterface()
 {
 	if($("#SALE_MODE").val() == "Manual")

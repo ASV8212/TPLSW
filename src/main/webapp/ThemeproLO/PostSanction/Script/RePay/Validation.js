@@ -54,7 +54,7 @@ function GridControlDetailREPAYCHQ (popTableModPageGrid1,TableID,dtData,dtcolumn
 				 { targets: 1, "render": function ( data, type, row, meta ) {                            
 						
 					 var rowno = meta.row;	 
-						var HTML =	'<span><input type="text" id="RPCD_ENDCHQNUM'+rowno+'"  name="RPCD_ENDCHQNUM'+rowno+'" maxlength="6" data-item="Cheque2" class="form-control IsChequeFields checkCheque IsNumberFields NoSpecialChar form-control">';			 
+						var HTML =	'<span><input type="text" id="RPCD_ENDCHQNUM'+rowno+'"  name="RPCD_ENDCHQNUM'+rowno+'" maxlength="6" data-item="Cheque2" class="form-control IsChequeFields checkCheque ChkNoCheque IsNumberFields NoSpecialChar form-control">';			 
 						HTML = HTML + '</span>'; 
 							 
 						var htmldata = $(HTML);
@@ -70,7 +70,7 @@ function GridControlDetailREPAYCHQ (popTableModPageGrid1,TableID,dtData,dtcolumn
 						 { targets: 2, "render": function ( data, type, row, meta ) {                            
 								
 							 var rowno = meta.row;	 
-								var HTML =	'<span><input type="text" id="RPCD_NOFCHQ'+rowno+'"  name="RPCD_NOFCHQ'+rowno+'" maxlength="3" data-item="NoOfChq" class="form-control IsNumberFields NOFCHQ NoSpecialChar form-control">';			 
+								var HTML =	'<span><input type="text" id="RPCD_NOFCHQ'+rowno+'"  name="RPCD_NOFCHQ'+rowno+'" maxlength="3" data-item="NoOfChq"  class="form-control IsNumberFields NOFCHQ NoSpecialChar ChkNoCheque form-control">';			 
 								HTML = HTML + '</span>'; 
 									 
 								var htmldata = $(HTML);
@@ -87,7 +87,7 @@ function GridControlDetailREPAYCHQ (popTableModPageGrid1,TableID,dtData,dtcolumn
 
 							 			var rowno = meta.row;       			 
 							 		
-							 		var HTML =    '<span><select class="Gridmdb-select md-form colorful-select dropdown-primary" id="RPCD_PDCTYPE'+rowno+'" name="RPCD_PDCTYPE'+rowno+'">';
+							 		var HTML =    '<span><select class="Gridmdb-select md-form colorful-select dropdown-primary" id="RPCD_PDCTYPE'+rowno+'" name="RPCD_PDCTYPE'+rowno+'" >';
 							 			HTML = HTML + '<option value="">Select</option>';
 										if($("#VERTICAL").val()!="UCV Eco")
 										{
@@ -99,11 +99,12 @@ function GridControlDetailREPAYCHQ (popTableModPageGrid1,TableID,dtData,dtcolumn
 										}
 										
 										
-										if($("#PRPM_LOANTY").val()=="Term Loan")
+										if($("#PRPM_LOANTY").val()=="Term Loan" )
 										   {
 											HTML = HTML + '<option value="PDC">PDC</option></span>';
 											}
-
+											
+										
 											
 							 			var htmldata = $(HTML);
 							 			
@@ -616,7 +617,42 @@ function ChkEnachReson()
 	}
 }
 
+ 
+ /*    $(document).on("blur", ".Chkcheque", function() {
+	
+	var NoOfChq = $($(this).closest('.tbodytr').find('[data-item=NoOfChq]')[0]).val()
+	var PrcsID=$("#PrcsID").val();
+	var op= UI_getdata(PrcsID,"","","","","LSW_SGETLONTYP")
+		var Tenure=$(op).find('TENTURE').text()
+ /*  var Tenure=$(op).find("#LODE_REQTENUR").val();	
+	var NoOfCheque= $('#'+HTML).val().replace(/,/g, "");  */
+	/*  if(parseFloat(Tenure)<parseFloat(NoOfChq))
+		{
+	   
+		alert("No Of Cheque should not be greater than Tenure - " + Tenure);
+			$($(this).closest('.tbodytr').find('[data-item=NoOfChq]')[0]).val('')
+		}
+	});
+	   */
+	
+	$(document).on("blur", ".ChkNoCheque", function() {
+    var ChequeNoI = $($(this).closest('.tbodytr').find('[data-item=Cheque1]')[0]).val()
+	var ChequeNoII = $($(this).closest('.tbodytr').find('[data-item=Cheque2]')[0]).val()
+	var NoOfChq = ChequeNoII - ChequeNoI
+	$($(this).closest('.tbodytr').find('[data-item=NoOfChq]')[0]).val(NoOfChq)
+	var PrcsID=$("#PrcsID").val();
+	var op= UI_getdata(PrcsID,"","","","","LSW_SGETLONTYP")
+    var Tenure=$(op).find('TENTURE').text()
+	 if(parseFloat(Tenure)<parseFloat(NoOfChq))
+		{
+	   
+		alert("No Of Cheque should not be greater than Tenure - " + Tenure);
+			$($(this).closest('.tbodytr').find('[data-item=NoOfChq]')[0]).val('')
+		}
+	
+    });
+	
 
-
-
+ 
+ 
 

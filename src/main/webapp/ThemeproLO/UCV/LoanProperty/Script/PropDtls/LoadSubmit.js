@@ -43,6 +43,7 @@ Getsectype();
  //GetBodyTy();
 
 	FormDataFromDB("LSW_TLONPROPDTLS","LPDT_","LPDTDBfields", $("#LPDT_PROPERTYNO").val()+"|LPDT_PROPERTYNO");
+	ConsiderFrCAMLoad();
 	//ChkPerson();
 	CheckChkbocVal();
 	Chktaxload();
@@ -51,6 +52,17 @@ Getsectype();
 	CheckSecurityType();
 	DocView();
 	Checkmndry();
+	var SingleLoan=UI_getdata($("#PrcsID").val(),$("#PrMs1").val(),$("#LPDT_PROPERTYNO").val(),$(".FormPageMultiTab").find(".active").text(),"","LSW_SHANDLEUCVSINGLELN");
+	$("#CONSIDERFRN").val($(SingleLoan).find("CONSIDERFRN").text());
+	$("#PROPERTYNO").val($(SingleLoan).find("PROPERTYNO").text());
+	if($("#PrMs1").val() == "")
+	{
+		$("#LPDT_CONSFRCAM").val($("#CONSIDERFRN").val());
+		if($("#CONSIDERFRN").val() == "No")
+		{
+			$("#LPDT_SECURITYTAGGING").val($("#PROPERTYNO").val());
+		}
+	}
 	var Report=UI_getdata($("#PrcsID").val(),$("#LPDT_PROPERTYNO").val(),"","","","LSW_SCHKSECVAL");
 	if($(Report).find('RESULT').text()=='Y')
 	{
@@ -79,7 +91,7 @@ Getsectype();
          }
 
 var propertyname=$(".FormPageMultiTab li.active a div").text()	
-if(propertyname=="Property 1")
+if(propertyname=="Security 1")
 {
 	$('.DELBTNTXT').hide()
 	$('.ADDPROPERT').hide()
@@ -98,7 +110,7 @@ if($('input:radio[name=LPDT_ADDITIOPROP]')[0].checked == false && $('input:radio
 }
 
 // added cersai existingLoans
-if($("#DMY7").val().split('|')[0]=="Existing Loans" && propertyname=="Property 1")
+if($("#DMY7").val().split('|')[0]=="Existing Loans" && propertyname=="Security 1")
 	{
 		$('input:radio[name=LPDT_ADDITIOPROP]')[0].checked = false;
 		$('input:radio[name=LPDT_ADDITIOPROP]')[1].checked = false;
@@ -134,9 +146,16 @@ if($("#DMY7").val().split('|')[0]=="Existing Loans" && propertyname=="Property 1
 			
 	});*/
 	$('.FormSave').on('click', function() {
-		
-	
-		
+		if($("#VERTICAL").val()=='UCV')
+		{
+			if($('input[name="LPDT_CONSFRCAM"]').val() != "Yes" && $('input[name="LPDT_CONSFRCAM"]').val() != "No")
+			{
+				alert("Choose the Consider For CAM Option To Process Further");
+				return false;
+			}
+		}
+		if($("#VERTICAL").val()!='UCV Eco')
+		{
 		if($(this).text() == "Save & Next")
 		{
 		var MndtryChk = ChkMandatoryFlds("LPDTMndtry");
@@ -157,7 +176,7 @@ if($("#DMY7").val().split('|')[0]=="Existing Loans" && propertyname=="Property 1
          // alert('Property Amount (PF) Rs. '+amount)
 	  } */
 			
-			
+		}	
 		}
 	
 		if($(this).text() == "Save & Next")

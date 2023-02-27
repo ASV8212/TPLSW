@@ -116,10 +116,6 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 		{
 			INDUS=0;
 		}
-	if(INDUS==Infinity)
-	{
-		INDUS=0;
-	}		
 	$("#FOGS_INDMARGIN").val(parseFloat(INDUS).toFixed(2));  
     $("#FOGS_INDMARGIN").attr('disabled',true); 
 
@@ -163,10 +159,6 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 		{
 			GROSSPROF=0;
 		}
-		if(GROSSPROF==Infinity)
-		{
-			GROSSPROF=0;
-		}
 		$("#FOGS_GROSSPROFIT").val(CURINRCommaSep(parseFloat(GROSSPROF).toFixed(2)));
 			 $("#FOGS_GROSSPROFIT").next().addClass('active');
 		//Gross Margin	
@@ -189,7 +181,7 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 			 GROSSMARGIN=0;
 		 }
 		 
-		 if(GROSSMARGIN==Infinity)
+		 if(GROSSMARGIN=="Infinity")
 		{
 			GROSSMARGIN=0;
 		}
@@ -208,10 +200,6 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 		 {
 			 APPLMARGIN=0;
 		 } 
-		 if(APPLMARGIN==Infinity)
-		 {
-			 APPLMARGIN=0;
-		 }
 		 $("#FOGS_APPLMARGIN").val(CURINRCommaSep(parseFloat(APPLMARGIN).toFixed(2)));
 		 $("#FOGS_APPLMARGIN").next().addClass('active');
 		  
@@ -227,11 +215,7 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 		 if(isNaN(APPLPROFIT))
 		 {
 			 APPLPROFIT=0;
-		 }  
-         if(APPLPROFIT==Infinity)
-		 {
-			 Infinity=0;
-		 }			 
+		 }   
 		 
 		  $("#FOGS_APPLPROFIT").val(CURINRCommaSep(parseFloat(APPLPROFIT).toFixed(2)));
 		 $("#FOGS_APPLPROFIT").next().addClass('active');
@@ -252,10 +236,6 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 		 {
 			 FOIRMONTH=0;
 		 }  
-		 if(FOIRMONTH==Infinity)
-		 {
-			 FOIRMONTH=0;
-		 }
 		 $("#FOGS_FOIRMONTH").val(CURINRCommaSep(parseFloat(FOIRMONTH).toFixed(2)));
 		  $("#FOGS_FOIRMONTH").next().addClass('active');
 		  
@@ -271,10 +251,6 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 		 {
 			 EXISEMI=0;
 		 } 
-		 if(EXISEMI==Infinity)
-		 {
-			 EXISEMI=0;
-		 }
 		$("#FOGS_EXISTEMI").val(CURINRCommaSep(parseFloat(EXISEMI).toFixed(2)));
 		   $("#FOGS_EXISTEMI").next().addClass('active');
 		
@@ -284,10 +260,6 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 		 {
 			 PREFUNDFCF=0;
 		 }  
-		 if(PREFUNDFCF==Infinity)
-		 {
-			 PREFUNDFCF=0;
-		 }
 		 
 		  $("#FOGS_PREFUNDFCF").val(CURINRCommaSep(parseFloat(PREFUNDFCF).toFixed(2)));
 		  $("#FOGS_PREFUNDFCF").next().addClass('active');
@@ -301,17 +273,13 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 	 
 	ROI=$("#FOGS_APPROI").val();
 	Tenur=$("#FOGS_TENURE").val();
-	 var result=UI_getdata(ROI,Tenur,LnAmt,"","","LSW_SGETEMI_DATA");
+	 var result=UI_getdata(ROI,Tenur,LnAmt,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 	 var EMI=$(result).find("EMI").text();
 	 	if(EMI=='')
 	{
 		EMI=0;
 	} 
 	if(isNaN(EMI))
-		{
-			EMI=0;
-		}
-		if(EMI==Infinity)
 		{
 			EMI=0;
 		}
@@ -322,10 +290,6 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 		  //Loan Eligibility
       var LOANELIGI = parseFloat(parseFloat(parseFloat(PREFUNDFCF)/parseFloat(EMI))*100000);
 	  if(isNaN(LOANELIGI))
-		{
-			LOANELIGI=0;
-		}
-		if(LOANELIGI==Infinity)
 		{
 			LOANELIGI=0;
 		}
@@ -345,10 +309,6 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 		{
 			LOANPROPOSED=0;
 		}
-		if(LOANPROPOSED==Infinity)
-		{
-			LOANPROPOSED=0;
-		}
 	  
 	 $("#FOGS_LOANPROPOSED").val(CURINRCommaSep(parseFloat(LOANPROPOSED).toFixed(2)));
 	$("#FOGS_LOANPROPOSED").next().addClass('active');
@@ -360,7 +320,7 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 		{
 			PREFUNDSCR=0;
 		}
-	  if(PREFUNDSCR==Infinity)
+	  if(PREFUNDSCR=="Infinity")
 		{
 			PREFUNDSCR=0;
 		}
@@ -375,7 +335,7 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 	 
 	ROI=$("#FOGS_APPROI").val();
 	Tenur=$("#FOGS_TENURE").val();
-	 var result=UI_getdata(ROI,Tenur,LOANPROPOSED,"","","LSW_SGETEMI_DATA");
+	 var result=UI_getdata(ROI,Tenur,LOANPROPOSED,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 	 var EMI1=$(result).find("EMI").text();
 	 	if(EMI1=='')
 	{
@@ -389,10 +349,6 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 	var POSTFUNDSCR=parseFloat(parseFloat(APPLIPROFIT/12)/parseFloat(parseFloat(EXISEMI)+parseFloat(EMI1)));
 	
 	if(isNaN(POSTFUNDSCR))
-		{
-			POSTFUNDSCR=0;
-		}
-		if(POSTFUNDSCR==Infinity)
 		{
 			POSTFUNDSCR=0;
 		}

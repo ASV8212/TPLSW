@@ -820,8 +820,8 @@ editData.setHistVar(HistVar); %>
                              </div>
                         </div>
                         <div class="form-row">
-                            <div class="col">
-                                 <input type="button" data-button="GridButton" data-value="LoansTable|LSW_SAPPRLONSGRDDATA|PrcsID|ALCD_CUSID||7,8|APPRLOANGRID" style="display:none" class="DashTrg ALCDDBfields LoansTable MultiGridTrg" id="BTNLOANGRD" name="BTNLOANGRD" />
+                            <div class="col" style="overflow-x: auto;">
+                                 <input type="button" data-button="GridButton" data-value="LoansTable|LSW_SAPPRLONSGRDDATA|PrcsID|ALCD_CUSID||7,8,9|APPRLOANGRID" style="display:none" class="DashTrg ALCDDBfields LoansTable MultiGridTrg" id="BTNLOANGRD" name="BTNLOANGRD" />
                                  <table cellpadding="0"  cellspacing="0" border="0" style="width: 80%" class="display ALCDDBfields DataGrid" name="LoansTable" id="LoansTable">
                                  </table>
                             </div>

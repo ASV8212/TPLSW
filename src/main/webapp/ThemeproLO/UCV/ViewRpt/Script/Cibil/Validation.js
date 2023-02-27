@@ -67,7 +67,8 @@ function GridControlCIBILReportDUDUPE (popTableModPageGrid1,TableID,dtData,dtcol
 				 },
 		{ "width": "15%", "targets": 4 },				 
  		 { targets: 5,"width": "25%", "render": function ( data, type, row, meta ) {                            
-
+			if(row[12] =="Individual")
+			{
  			var rowno = meta.row;       			 
 
 	var viewrpt = '<span class="HyperControls">'
@@ -93,14 +94,32 @@ var BTN = "";
 			 {
 				BTN = '<span><button type="button" onclick="GridCIBILValidate(this);" style="margin:1rem" id="GridCIBIL'+rowno+'" class=" waves-effect BTNHIDE btn-RedInplain btn-sm">Re-Initiate CIBIL</button></span>' 
 			 } 
-			 else  if (data == "NOTAPPLICABLE")
+			 
+			  else  if (data == "NOTAPPLICABLE")
 			 {
 				BTN = '<span><button type="button" onclick="GridCIBILValidate(this);" style="display:none" id="GridCIBIL'+rowno+'" class=" waves-effect BTNHIDE btn-RedInplain btn-sm">Re-Initiate CIBIL</button></span>' 
 			 } 
 			 else{
 				 BTN = '<span><button type="button" onclick="GridCIBILValidate(this);" id="GridCIBIL'+rowno+'" style="margin:1rem" class=" waves-effect BTNHIDE btn-yelInplain btn-sm">Initiate CIBIL</button></span>' 
 			 }
-			 
+			}
+			else if(row[12] =="Non-Individual")
+			{
+			    var rowno = meta.row;  
+				var BTN = "";
+				var viewrpt = '<span class="HyperControls">'
+    viewrpt = viewrpt + '<a type="button" onclick="GridCibilScrRptNI(this)" style="padding-left: 0rem;" class="Btxt4" href="#">View Report</a>'        
+    viewrpt = viewrpt + '</span>'
+	if (data == "GENERATED")
+			 {
+				 BTN = '<span><button type="button" onclick="GridCIBILValidateNI(this);" style="margin:1rem" id="GridCIBIL'+rowno+'" class=" waves-effect BTNHIDE btn-GrnInplain btn-sm">Re-Initiate CIBIL</button></span>' 
+				//BTN = '<span><button type="button"  id="GridCIBIL'+rowno+'" style="margin:1rem" class=" waves-effect btn-GrnInplain btn-sm">CIBIL Initiated</button></span>' 
+			 }
+			 else{
+				BTN = '<span><button type="button" onclick="GridCIBILValidateNI(this);" id="GridCIBIL'+rowno+'" style="margin:1rem" class=" waves-effect BTNHIDE btn-yelInplain btn-sm">Initiate Commercial CIBIL</button></span>' 
+				}
+			}
+			
  		var HTML =  '<div>' +  viewrpt + BTN + '</div>';
 
 		var htmldata = $(HTML);
@@ -124,7 +143,7 @@ function GridCibilScrRpt(evnt)
 	IOP=Path+IOP
 	var URL = $($(evnt).closest('.tbodytr').find('.tbodytrtd')[7]).text();
 	
-	var URLVal=URL.split('/')[1]
+	var URLVal=URL.split("\\")[0]
 	var Curl= $("#DMY1").val()
 		if (URL =="")
 		{
@@ -135,7 +154,7 @@ function GridCibilScrRpt(evnt)
 		{
 			//RedirectURL = Curl.replace("XXDMSIDXX",(URL).split("/")[0]);
 			
-	RedirectURL =window.location.origin+"/TPLSW/DMSVIEW?PrcsID=" + $("#PrcsID").val() + "&DMSID=" + (URL).split("/")[0];
+	RedirectURL =window.location.origin+"/TPLSW/DMSVIEW?PrcsID=" + $("#PrcsID").val() + "&DMSID=" + (URL).split("\\")[0];
 	
 	$("#DocView").attr("src", RedirectURL);
 	
@@ -153,13 +172,14 @@ function GridCibilScrRpt(evnt)
    */
 
    
-    function GridCibilScrRpt(evnt)
+function GridCibilScrRpt(evnt)
 {
 	
 	var IOP=window.location.origin;
 	var PrcsId=$("#PrcsID").val()
 	
      var Cusid=$($(evnt).closest('.tbodytr').find('.tbodytrtd')[9]).text() 
+
 	 if($($(evnt).closest('.tbodytr').find('.tbodytrtd')[4]).text()=="OFFLINE")
 	 {
 		 var IOP=LoadFrmXML("RS006");
@@ -201,23 +221,28 @@ function GridCibilScrRpt(evnt)
 	    	}
 	 }
 
-   else
-   {
-
-     ajaxindicatorstart("Downloading.. Please wait");
-	 var flname = IOP+LoadFrmXML("RT0119")+"&__format=pdf&Param1="+PrcsId+"&Param2="+Cusid+"&__filename=CibilReport_"+$(".FormPageMultiTab li.active").text()+".pdf";
+	 else
+	 {
+		 
+		  ajaxindicatorstart("Downloading.. Please wait");
+	
+	   var flname = IOP+LoadFrmXML("RT0119")+"&__format=pdf&Param1="+PrcsId+"&Param2="+Cusid+"&__filename=CibilReport_"+$(".FormPageMultiTab li.active").text()+".pdf";
+	     
 	   ajaxindicatorstop();
-	   
-	 var link=document.createElement('a');
+	  
+	
+	var link=document.createElement('a');
 		document.body.appendChild(link);
 		link.download=flname;
 			link.href=flname;
 			link.click();
 			ajaxindicatorstop();
-
-   }
-
+	 }
 }
+
+	
+
+ 
    
    
 function ViewCblRPT(CIBIL)
@@ -234,7 +259,7 @@ function ViewCblRPT(CIBIL)
 }
 
 
-/* 
+/*
 function GridCIBILValidate(evnt)
 {
 	
@@ -314,7 +339,7 @@ function GridCIBILValidate(evnt)
 		   alert('CIBIL Integration not available')
 		  return;
 	  }	
-} */
+}*/
 
 
 function GridCIBILValidate(evnt)
@@ -355,7 +380,8 @@ function GridCIBILValidate(evnt)
 			//$("#CBLViewRpt").click();
 			
 	         alert("CIBIL Initiated");
-	         $("#CBLViewRpt").trigger('click');
+	         //$("#CBLViewRpt").trigger('click');
+			 window.location.reload();
              $("#"+ID).text('CIBIL Initiated');
              $("#"+ID).addClass("btn-GrnInplain");	
              $("#"+ID).removeClass("btn-yelInplain");
@@ -364,7 +390,8 @@ function GridCIBILValidate(evnt)
 	 else
       {
 	    alert("CIBIL Initiation Failed - "+result);
-	    $("#CBLViewRpt").trigger('click')
+	   // $("#CBLViewRpt").trigger('click')
+		window.location.reload();
         $("#"+ID).text('CIBIL Initiation Failed');
         $("#"+ID).removeClass("btn-GrnInplain");	
 	    $("#"+ID).removeClass("btn-yelInplain");
@@ -525,7 +552,7 @@ if(check(y) == false){
 function InsCIBILData()
 {
  var CUSID=$("#FIEG_CUSID").val();
- var INIDate='';
+ var INIDate=$("#FIEG_DATEOFINIT").val();
  var ScoreI=$("#FIEG_CIBILSCOREI").val();
  var ScoreII=$("#FIEG_CIBILSCOREII").val();
  var Upload=$("#FIEG_UPLOAD").val();
@@ -565,4 +592,135 @@ function CheckCusType()
 		$("#FIEG_CIBILSCOREI").addClass('CIBILMndtry');
 		$("#FIEG_CIBILSCOREI").next().find(".MndtryAstr").html("*");
 	}
+}
+
+
+function GridCIBILValidateNI(evnt){
+	var CIBIL=LoadFrmXML("V0180");
+	var ID=$(evnt).attr('id');
+	var cusid=$($(evnt).closest('.tbodytr').find('.tbodytrtd')[9]).text();
+	if(CIBIL=="Commercial CIBIL Yes"){
+		$("#Save").click();
+		$.ajax({
+        url: "/TPLSW/commercialCibil",
+        type: 'POST',
+        data: {PrcsID:$('#PrcsID').val(),CusID:cusid,Prvnt:$(window.parent.parent.document).find("#Prvnt").val()},
+        async:true,
+        success: function(stm){        
+       // var obj = JSON.parse(JSON.stringify(stm))
+            if(stm != "")
+                 {
+					 var result=stm;
+               stm=stm.replaceAll(" ","");
+			   
+      if(stm=="Success")
+        {	 
+        	//alert('CIBIL Report Generated'); 
+			//fnlresult="Success";
+			//$("#CBLViewRpt").click();
+			
+	         alert("Commercial CIBIL Initiated");
+	         //$("#CBLViewRpt").trigger('click');
+			 window.location.reload();
+             $("#"+ID).text('CIBIL Initiated');
+             $("#"+ID).addClass("btn-GrnInplain");	
+             $("#"+ID).removeClass("btn-yelInplain");
+             $("#"+ID).removeClass("btn-RedInplain"); 
+	    }
+	 else
+      {
+	    alert("Commercial CIBIL Initiation Failed - "+result);
+	    //$("#CBLViewRpt").trigger('click')
+		window.location.reload();
+        $("#"+ID).text('CIBIL Initiation Failed');
+        $("#"+ID).removeClass("btn-GrnInplain");	
+	    $("#"+ID).removeClass("btn-yelInplain");
+        $("#"+ID).addClass("btn-RedInplain");
+      }
+				 }
+				 else
+         {
+           alert('Commercial CIBIL Failed');
+         }
+        },
+       error: function(stm) {
+    	 //window.alert(LoadFrmXML("V0125"))
+    	  alert("Fail");
+    	}
+});
+	}
+	else
+ {
+  alert('Commercial CIBIL Integration not available')
+  return;
+ }
+		
+}
+
+
+function GridCibilScrRptNI(evnt)
+{
+	
+var IOP=window.location.origin;
+	var PrcsId=$("#PrcsID").val()
+	
+     var Cusid=$($(evnt).closest('.tbodytr').find('.tbodytrtd')[9]).text() 
+
+	 if($($(evnt).closest('.tbodytr').find('.tbodytrtd')[4]).text()=="OFFLINE")
+	 {
+		 var IOP=LoadFrmXML("RS006");
+	//var processId= $(this).closest('tr').children('td:eq(4)').text();
+	var RedirectURL="";
+	//var AppNo=AppNo
+    var url= $("#DMY1").val()
+    
+    
+		    if (url != "")
+		    	{
+		    	
+	//if(AcctNo!=""){
+	//RedirectURL = url.replace("XXDMSIDXX",$("#"+id).val().split("\\")[0]);
+	
+	if ($($(evnt).closest('.tbodytr').find('.tbodytrtd')[7]).text().split("\\")[0] == "")
+		{
+			alert("No Attachments Available to View");
+			return;
+		}
+	
+	RedirectURL =window.location.origin+"/TPLSW/DMSVIEW?PrcsID=" + $("#PrcsID").val() + "&DMSID=" +$($(evnt).closest('.tbodytr').find('.tbodytrtd')[7]).text().split("\\")[0];
+	
+	$("#DocView").attr("src", RedirectURL);
+	
+	/*var link = document.createElement("a");
+    link.download = 'Report';
+    link.href = RedirectURL;
+    link.click();*/
+	//ScrnFileDownload(RedirectURL);
+	//window.open(RedirectURL);
+	//WintabsCtrl(RedirectURL,'Term Sheet',AppNo,'yes');
+	//ajaxindicatorstop();
+		    	}
+		    else
+	    	{
+	    	alert("No Attachments Available to View");
+	    //	ajaxindicatorstop();
+	    	}
+	 }
+	 else
+	 {
+		 
+		  ajaxindicatorstart("Downloading.. Please wait");
+	
+	   var flname = IOP+LoadFrmXML("RT0125")+"&__format=pdf&Param1="+PrcsId+"&Param2="+Cusid+"&__filename=CibilReport_"+$(".FormPageMultiTab li.active").text()+".pdf";
+	     
+	   ajaxindicatorstop();
+	  
+	
+	var link=document.createElement('a');
+		document.body.appendChild(link);
+		link.download=flname;
+			link.href=flname;
+			link.click();
+			ajaxindicatorstop();
+	 }
 }

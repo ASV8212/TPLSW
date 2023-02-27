@@ -46,13 +46,10 @@ function BANKSUMAVG()
 	{
 		SUMAVGINFLOW=0;
 	}
-	if(SUMAVGINFLOW=='Infinity')
-	{
-		SUMAVGINFLOW=0;
-	}
 	
     	$("#SABB_TOTCREBANKACC").val(CURINRCommaSep(parseFloat(SUMAVGINFLOW).toFixed(2))); 
 		$('#SABB_TOTCREBANKACC').next().addClass('active');
+		
 		
 		
 		
@@ -70,10 +67,6 @@ function BANKSUMAVG()
 		SUMAVGEXCLUSION=0;
 	}
 	if(isNaN(SUMAVGEXCLUSION))
-	{
-		SUMAVGEXCLUSION=0;
-	}
-	if(SUMAVGEXCLUSION=='Infinity')
 	{
 		SUMAVGEXCLUSION=0;
 	}
@@ -160,10 +153,7 @@ function AJUSTABB()
 	}
 	var TOTAL=parseFloat(parseFloat(MONTHABB)*parseFloat(1-parseFloat(PRCNONSUM)/100));
 	
-	if(TOTAL==Infinity)
-	{
-		TOTAL=0;
-	}
+	
 	 
 	if(isNaN(TOTAL))
 	{
@@ -199,10 +189,6 @@ function FINALABB()
 	{
 		TOTAL=0;
 	}
-	if(TOTAL==Infinity)
-	{
-		TOTAL=0;
-	}
 	 
 	$('#SABB_FINALABB').val(CURINRCommaSep(parseFloat(TOTAL).toFixed(2)));
 	  $('#SABB_FINALABB').next().addClass('active'); 
@@ -218,7 +204,7 @@ function GetEmiperlakh()
 	 
 	ROI=$(xmlSTATUS).find('INTERESTRATE').text();
 	Tenur=$(xmlSTATUS).find('TENTURE').text();
-	 var result=UI_getdata(ROI,Tenur,LnAmt,"","","LSW_SGETEMI_DATA");
+	 var result=UI_getdata(ROI,Tenur,LnAmt,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 	 var EMI=$(result).find("EMI").text();
 	 	if(EMI=='')
 	{
@@ -321,10 +307,6 @@ function GetPropoLoan()
 	{
 		PROPLOAN=0;
 	} 
-	if(PROPLOAN==Infinity)
-	{
-		PROPLOAN=0;
-	}
 	$("#SABB_PROPLOAN").val(CURINRCommaSep(parseFloat(PROPLOAN).toFixed(2)));
 	$("#SABB_PROPLOAN").next().addClass('active'); 
 	GetOutStand();
@@ -394,10 +376,6 @@ function GetLoanexpos()
 	{
 		TOTLOANEXP=0;
 	} 
-	if(TOTLOANEXP==Infinity)
-	{
-		TOTLOANEXP=0;
-	}
 	$("#SABB_TOTLOANEXP").val(CURINRCommaSep(parseFloat(TOTLOANEXP).toFixed(2)));
 	$("#SABB_TOTLOANEXP").next().addClass('active'); 
 	
@@ -454,6 +432,14 @@ function GetLoanexpos()
 		}
 		 $("#SABB_TURNOVERVALI").next().addClass('active'); 
 		 
+	 
+	 
+	 
+	 
+	
+	
+	
+	
 	
 }
 

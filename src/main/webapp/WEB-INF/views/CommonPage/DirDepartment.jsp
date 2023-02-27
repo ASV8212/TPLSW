@@ -85,8 +85,8 @@
 			
 			<div class="col-md-4">
                    <div class="md-form">
-                     <input type="text" id="BRCR_DESCRIPTION" name="BRCR_DESCRIPTION" maxlength="3" class="form-control  NoSpecialCharNOTDOT BRCRMndtry BRCRDBfields">
-                    <label for="BRCR_DESCRIPTION" class="">Description<span class="MndtryAstr">*</span></label>
+                     <input type="text" id="BRCR_DESCRIPTION" name="BRCR_DESCRIPTION" maxlength="2" class="form-control  NoSpecialCharNOTDOT BRCRMndtry BRCRDBfields">
+                    <label for="BRCR_DESCRIPTION" class="">Description (State short code)<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
                     
@@ -237,6 +237,15 @@
                 
            </div>
           <div class="form-row">
+		  <div class="col-md-4">
+			<div class="md-form">
+                  <select class="mdb-select md-form colorful-select dropdown-primary  BRCRMndtry BRCRDBfields" id="BRCR_STPFLAGING" name="BRCR_STPFLAGING">
+				  <option value="Yes">Yes</option>
+				  <option value="No">No</option>
+				</select>
+				<label class="mdb-main-label BTxt9">STP Available?<span class="MndtryAstr">*</span></label>
+             </div>
+		  </div>
 		   <div class="col-md-4">
                      <div class="md-form">
 						<label for="BRCR_REMARK" class="active">Remarks<span class="MndtryAstr"></span></label>
@@ -244,6 +253,14 @@
                           <textarea class="form-control BRCRDBfields" id="BRCR_REMARK" name="BRCR_REMARK" style="height: 100px;width:380px;"></textarea>					
                      </div>
                   </div>
+		  <div class="col-md-4">
+			<div class="md-form">
+                  <select class="mdb-select md-form colorful-select dropdown-primary  BRCRMndtry BRCRDBfields" id="BRCR_SUBREGION" name="BRCR_SUBREGION">
+			
+				</select>
+				<label class="mdb-main-label BTxt9">Sub Region<span class="MndtryAstr">*</span></label>
+             </div>
+		  </div>				  
 			 </div>
          <div class="form-row" style="display:none">
         	<div class="col Btxt8">User Mapping</div>

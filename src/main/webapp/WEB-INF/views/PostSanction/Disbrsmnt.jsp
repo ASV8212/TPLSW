@@ -195,14 +195,14 @@
                      </div>
                   </div>
                   <div class="form-row">
-                     <div class="col">
+                     <div class="col ">
                         <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst_v1(this,'DisbChkTable7',{XML:CtgryXML,DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text()+'|Branch',MnuId:'Fi reports'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$('#hiddenid').val(),'FIRprt');" id="BTNFIRprt" name="BTNFIRprt" />
                         <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" name="DisbChkTable" id="DisbChkTable7">
                         </table>
                      </div>
                   </div>
                   <div class="form-row" >
-                     <div class="col  ">
+                     <div class="col  BluShd">
                         <label class="Btxt10 SANHEAD">RCU Report</label>
                      </div>
                   </div>
@@ -214,7 +214,7 @@
                      </div>
                   </div>
                   <div class="form-row">
-                     <div class="col  ">
+                     <div class="col  BluShd">
                         <label class="Btxt10 SANHEAD">Property visit report</label>
                      </div>
                   </div>

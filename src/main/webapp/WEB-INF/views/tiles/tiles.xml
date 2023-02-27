@@ -85,6 +85,16 @@
     <!--   <put-attribute name="title" value="Welcome" /> -->  
        <put-attribute name="body" value="/WEB-INF/views/MyApplication/ManagePDD.jsp" />  
    </definition> 
+      <!-- Manage PDD Flow Page -->
+   <definition name="ManagePDDFlow" extends="Salesbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->  
+       <put-attribute name="body" value="/WEB-INF/views/MyApplication/ManagePDDFlow.jsp" />  
+   </definition> 
+         <!-- Manage PDD Flow Athr Page -->
+   <definition name="ManagePDDFlowAthr" extends="Salesbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->  
+       <put-attribute name="body" value="/WEB-INF/views/MyApplication/ManagePDDFlowAthr.jsp" />  
+   </definition> 
     <!-- Manage Dev Page -->
    <definition name="ManageDev" extends="Formsbase-definition">  
     <!--   <put-attribute name="title" value="Welcome" /> -->
@@ -161,6 +171,15 @@
      <put-attribute name="body" value="/WEB-INF/views/LoanProperty/PropDtls.jsp" />  
    </definition> 
    
+   <definition name="LandHolding" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+     <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/LoanProperty/LandHolding.jsp" />  
+   </definition>
+   
      <definition name="RefDtls" extends="Formsbase-definition">  
     <!--   <put-attribute name="title" value="Welcome" /> -->
      <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
@@ -168,6 +187,15 @@
      <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
      <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
      <put-attribute name="body" value="/WEB-INF/views/LoanProperty/RefDtls.jsp" />  
+   </definition> 
+   
+   <definition name="OtherDtls" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+     <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/LoanProperty/OtherDtls.jsp" />  
    </definition> 
 
      <definition name="PFDtls" extends="Formsbase-definition">  
@@ -525,6 +553,10 @@
      <put-attribute name="body" value="/WEB-INF/views/Financials/CasFlowUBL.jsp" />  
    </definition>
    
+   <definition name="CreditPD" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/Financials/CreditPD.jsp" />  
+   </definition>
+   
    <definition name="STML" extends="Multipage-definition">  
      <put-attribute name="body" value="/WEB-INF/views/Financials/STML.jsp" />  
    </definition>
@@ -583,6 +615,15 @@
       <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
      <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
      <put-attribute name="body" value="/WEB-INF/views/Financials/PropVal.jsp" />  
+   </definition>
+   
+   <definition name="StpBRE" extends="Formsbase-definition">  
+    <!--   <put-attribute name="title" value="Welcome" /> -->
+     <put-attribute name="ApplHdr" value="/WEB-INF/views/Forms/ApplHdr.jsp" /> 
+     <put-attribute name="ApplTitle" value="/WEB-INF/views/Forms/ApplTitle.jsp" />  
+      <!-- <put-attribute name="ApplInfo" value="/WEB-INF/views/AppInfo/Loan/ApplInfo.jsp" />-->
+     <put-attribute name="ApplTabs" value="/WEB-INF/views/Forms/ApplTabs.jsp" />
+     <put-attribute name="body" value="/WEB-INF/views/Financials/StpBRE.jsp" />  
    </definition>
    
    <definition name="Fincs" extends="Formsbase-definition">  
@@ -1365,6 +1406,10 @@
    
     <definition name="UCVTERMLOAN" extends="Multipage-definition">  
      <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVTERMLOAN.jsp" />  
+   </definition>
+   
+       <definition name="UCVBBSEC" extends="Multipage-definition">  
+     <put-attribute name="body" value="/WEB-INF/views/UCV/Financials/UCVBBSEC.jsp" />  
    </definition>
    
    <definition name="UCVOD" extends="Multipage-definition">  

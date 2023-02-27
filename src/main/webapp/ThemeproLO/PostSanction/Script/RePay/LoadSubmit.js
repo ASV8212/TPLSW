@@ -47,14 +47,18 @@ $(document).ready(function () {
 	       var row = $("." + MemoData).find(".DYNROW").length;
 	 for (j=0;j<row;j++)
 		 {
+			 
+			 var acctname= $("#RPBD_BNKDETL"+[j+1]).val()
 		 $("#RPBD_BNKDETL"+[j+1]).empty();
 		 var PrcsID=$("#PrcsID").val();
 		 var val=$("#RPBD_PDCPROVIDE"+[j+1]).val()
 	var xml=UI_getdata(PrcsID,val,"","","","LSW_SGETBANKDTLCUSWS")
 	var CusName=$(xml).find('RESULT').html();	
 	     $("#RPBD_BNKDETL"+[j+1]).append(CusName)
+		 $("#RPBD_BNKDETL"+[j+1]).val(acctname);
+	     $("#RPBD_BNKDETL"+[j+1]).material_select();
 		 var Data=$("#RPBD_BNKDETLVAL"+[j+1]).val()
-		 $("#RPBD_BNKDETL option:contains("+Data+")").attr("selected","selected")
+		 //$("#RPBD_BNKDETL option:contains("+Data+")").attr("selected","selected")
 	     }
 	
 	
@@ -193,8 +197,20 @@ $(document).ready(function () {
 		
 		 var html=$(this).closest('.DYNROW')
 		
-		if($(this).text() == "Save & Next")
+		if($(this).text() == "Save" || $(this).text() == "Save & Next")
 		{
+			var PdcType = $("#RPCD_PDCTYPE0").val()
+			var RePaMode = $("input[name='PRPM_MODE']:checked").val()	
+		if(PdcType =="PDC" )
+		{
+			if(RePaMode == "ACH" || RePaMode=="E-NACH" )
+			{
+				alert("Kindly Choose SPDC for E-NACH and ACH ");
+				$("#RPCD_PDCTYPE0").val('')
+			    $("#RPCD_PDCTYPE0").material_select();
+				return;
+			}
+		}
 		var MndtryChk = ChkMandatoryFlds("PRPMMndtry");
 		
 		if(MndtryChk == "Mandatory")

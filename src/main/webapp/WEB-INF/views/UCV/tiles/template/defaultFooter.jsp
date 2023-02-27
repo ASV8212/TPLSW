@@ -1655,6 +1655,11 @@ if((activityname == "BranchOPS" || activityname == "CreditOPS" || activityname =
 	}
 }
 
+if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))
+{
+	DSVLBLALL();
+}
+
 function DIBDMBTN()
 {
 	if($("#DBMM_ACTUDISBAMT").is(":disabled")==true)

@@ -1,7 +1,7 @@
 var imp1 = '<option value="Increase">Increase</option><option value="Decrease">Decrease</option><option value="Same">Same</option>';
 var imp4 = '<option value="Unavailable with customer">Unavailable with customer</option><option value="Customer doc rejected by Credit">Customer doc rejected by Credit</option><option value="No subject-to documents mentioned in Credit Approval">No subject-to documents mentioned in Credit Approval</option>';
 var imp6 = '<option value="Waiver">Waiver</option><option value="Decrease">Decrease</option><option value="Same">Same</option>';
-
+var baserole = "";
 
 $(document).ready(function() {
 
@@ -12,7 +12,8 @@ $(document).ready(function() {
 
 	RECOMMENDHIDE();
     FormDataFromDB("LSW_TINPRINCSANC", "IPRS_", "IPRSDBfields", "");
-    
+    var op = UI_getdata($("#LogUsr").val(),"","","","","LSW_SGETBASEROLE");
+	baserole = $(op).find("RESULT").text();
     /**Grid Trigger Start **/
 	$("#BTNSANCCONFR").click()
     //$("#BTNBUSNSDTL").click();
@@ -77,6 +78,15 @@ OnChngDrpDwn("");
     });
 	
 	$(document).on("click", ".UCVWFRECMFLOW", function() {
+		if($(this).text() == "Send to credit")
+		{
+			var op1 =  UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHKDEVRAISED");
+			if($(op1).find("RESULT_FLG").text() == "FAIL")
+			{
+				alert($(op1).find("RESULT_MSG").text());
+				return
+			}
+		}
 		  var op =  UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHECKINPRINCSANC");
 		  $("#ACTIONTAKEN").val($(this).text());
 		  if($(op).find("RESULT_FLG").text() == "FAIL" && $(this).text() != "Send to credit")
@@ -126,14 +136,18 @@ OnChngDrpDwn("");
 				 }
 				 else if($("#ACTIONTAKEN").val() == "Proceed Post-Sanction")
 				 {
-					 if($("#VERTICAL").val() != "UCV" && $("#VERTICAL").val() != "UCV Eco")
+					 /* if($("#VERTICAL").val() != "UCV" && $("#VERTICAL").val() != "UCV Eco")
 					 {
-						 if(!InitRCU())
-						 {
-							 return;
-						 }
-						 UI_getdata($("#PrcsID").val(),"","","","","LSW_SUPDTINITSTATUS");
-					 }
+						var Chkinit=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHECKINITINSTAUS");
+						if($(Chkinit).find("RESULT").text() == "Y")
+						{
+							if(!InitRCU())
+							{
+								return;
+							}
+							UI_getdata($("#PrcsID").val(),"","","","","LSW_SUPDTINITSTATUS");
+						}
+					 } */
 					 ACTVTY=["OTC","PDD"];
 					 for(var j=0;j<ACTVTY.length;j++)
 						{
@@ -156,7 +170,9 @@ OnChngDrpDwn("");
 						alert("File Assignment Failed");
 						}
 						UI_getdata($("#PrcsID").val(),"","","","","LSW_SPUSHDATATOSTAGEDISB_HIST");
-					WFComplete ($("#ActvID").val(),"var_Wstatus=DISBINIT","");
+					var opxml = UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETDISBAPPRONSUBMT");
+						
+					WFComplete ($("#ActvID").val(),$(opxml).find("RESULT").text(),"");
 				 }
 			}
 			else{

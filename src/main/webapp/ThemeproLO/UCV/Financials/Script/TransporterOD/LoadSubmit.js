@@ -21,7 +21,7 @@ $(document).ready(function () {
 	$("#CTOD_PROPOSEASST").next().addClass('active');
 	
 	var PropAsstValue=$("#CTOD_PROPOSEASST").val().replace(/,/g,''); 
-	PropAsstValue=parseFloat(PropAsstValue)*60/100
+	PropAsstValue=parseFloat(PropAsstValue)*95/100
 	
 	PropAsstValue=CURINRCommaSep(parseFloat(PropAsstValue).toFixed(0));
 	

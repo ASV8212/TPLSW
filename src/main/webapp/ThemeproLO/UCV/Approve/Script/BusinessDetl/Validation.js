@@ -47,8 +47,8 @@ function GridControlDetailLPDSGRID(popTableModPageGrid1, TableID, dtData, dtcolu
             {
                 targets: 2,
                 "render": function(data, type, row, meta) {
-                    var rowno = meta.row;
-                    var HTML = '<span><input type="text" style = "width:100px" id="LPDS_SHAREHOLD' + rowno + '" data-field="LPDS_SHAREHOLD'+rowno+'|Percentage" data-item="SH"  name="LPDS_SHAREHOLD' + rowno + '" maxlength="5" class="form-control IsNumberFields GCLR IsPercentageFld NoSpecialChar">';
+                    var rowno = meta.row;//SHCalc
+                    var HTML = '<span><input type="text" style = "width:100px" id="LPDS_SHAREHOLD' + rowno + '" data-field="LPDS_SHAREHOLD'+rowno+'|Percentage" data-item="SH"  name="LPDS_SHAREHOLD' + rowno + '" maxlength="5" class="form-control IsNumberFields GCLR IsPercentageFld NoSpecialChar ">';
                     HTML = HTML + '</span>';
                     var htmldata = $(HTML);
                     if ($(htmldata).find('[name=LPDS_SHAREHOLD' + rowno + ']').hasClass("IsCURCommaFields")) {

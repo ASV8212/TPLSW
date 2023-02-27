@@ -61,6 +61,7 @@
                            <option value="">Select</option>
                            <option  value="Yes" >Yes</option>
                            <option  value="No">No</option>
+						   <option  value="NA">NA</option>
                         </select>
                         <label class="mdb-main-label BTxt9">ITR Available<span class="MndtryAstr">*</span></label>
                      </div>
@@ -264,7 +265,7 @@
                                         <!--  <img src="ThemeproLO/Common/Images/UploadImg.png" class="rounded" title="UPLOAD" onclick="ReuploadFile($('#APDG_PDATTACHMNT'+$(event.target).closest('.DYNROW').attr('data-row')));" 
                                                 alt="Cinque Terre" width="20" height="20">   -->
                                                 <img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW" 
-                                                onclick="GrdDocDwnld('APDG_PDATTACHMNT'+$(this).closest('.DYNROW').attr('data-row'))" class=" DELBTN rounded" 
+                                                onclick="GrdDocDwnld('APDG_PDATTACHMNT'+$(this).closest('.DYNROW').attr('data-row'))" class="  rounded" 
                                                 alt="Cinque Terre" width="35" height="25"> </div>
                                              </div>
                                           </div>

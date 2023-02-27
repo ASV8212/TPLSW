@@ -155,9 +155,9 @@ function CheckAppltype()
 		$("#GRBI_CUSFISNAM").next().text('Organisation Name *');
 		$("#GRBI_CUSFISNAM").removeClass('IsAlphaFields');
 		
-		$(".NINDM").addClass('GRBIMndtry');
-		$(".INDU").hide();
+		$(".NINDM").addClass('GRBIMndtry');		
 		$(".NINDU").show();
+		$(".INDU").hide();
 		$(".AddKYC").hide();
 		$(".OKYCD").hide();
 		//$(".GSTF").show();
@@ -874,8 +874,24 @@ function GridControlDetailKARZAGRD (popTableModPageGrid1,TableID,dtData,dtcolumn
   
 		 
 		 { targets: 6, "render": function ( data, type, row, meta ) {                            
-	 			
+	 		if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))	
+			{	
 			 var rowno = meta.row;		 
+		 		var HTML =	'<span><input type="radio" disabled class="custom-control-input CBSIDBfields" value="Yes" id="MULTIPLY'+rowno+'" name="ACTION"><label class="custom-control custom-control-label" for="MULTIPLY'+rowno+'">Yes</label>';			 
+		 		HTML = HTML + '</span>';			  
+		 		
+		 		var htmldata = $(HTML);
+					
+					$(htmldata).find('[name=RXLD_MULTIPLIER'+rowno+'][value="'+data+'"]').attr('checked', 'checked');
+
+					//alert($(htmldata).find('[name=OKYD_DOCSTATUS'+rowno+'][value="'+data+'"]').length)
+					//alert(htmldata[0].outerHTML);
+					
+		        return htmldata[0].outerHTML; 
+			}
+				else
+				{
+					var rowno = meta.row;		 
 		 		var HTML =	'<span><input type="radio" class="custom-control-input CBSIDBfields" value="Yes" id="MULTIPLY'+rowno+'" name="ACTION"><label class="custom-control custom-control-label" for="MULTIPLY'+rowno+'">Yes</label>';			 
 		 		HTML = HTML + '</span>';			  
 		 		
@@ -886,7 +902,8 @@ function GridControlDetailKARZAGRD (popTableModPageGrid1,TableID,dtData,dtcolumn
 					//alert($(htmldata).find('[name=OKYD_DOCSTATUS'+rowno+'][value="'+data+'"]').length)
 					//alert(htmldata[0].outerHTML);
 					
-		        return htmldata[0].outerHTML;   		
+		        return htmldata[0].outerHTML;
+				}
 					
 		         } 
 				 }				 
@@ -1698,6 +1715,14 @@ function CheckPani()
       if(borrower=="Yes")
 	  {
 		 $(".GUNON").show();
+		 if($('#GRBI_UDYAMVERI').val()=="Verified")
+			{
+			$(".VerifyUdyam").show();
+			}
+			else
+			{
+			$(".VerifyUdyam").hide();
+			}
 /* 		 $(".GUEUDHA").addClass('GREIMndtry');
          //$("#CEMI_EUAMNO").addClass('GREIMndtry');
          $(".GUEUDHA").next().find(".MndtryAstr").html("*");
@@ -2005,16 +2030,28 @@ function Chkqualify(Input1,Input2,Type,Event)
 }
 function Chkudha(){
 	var borrower=$("#GRBI_GBORROWER").val()
+	var ApplCusType=$("#GRBI_CUSTYPE").val()
+	
+	if(ApplCusType=="Non-Individual")
+		{
+	
 	if ($("#GRBI_UDYAMVERI").val()=='Verified')
 		{
 		$("#GRBI_GCUAMNO").attr("disabled",true)
+		$("#GRBI_GUAMNO").removeClass("GRBIMndtry");
+		$(".VerifyUdyam").show();
 		}
 		else
 		{
 		$("#GRBI_GCUAMNO").attr("disabled",false)
+		$("#GRBI_GUAMNO").addClass("GRBIMndtry");
+		$(".VerifyUdyam").hide();
 		}
+		
     /* if(borrower=="Yes")
 	{ */
+ if(borrower=="Yes")
+	{
 	if($("#GRBI_GCUAMNO").prop('checked') == true){
 		$("#GRBI_GUAMNO").val('');
 		$("#GRBI_GUAMNO").removeClass("GRBIMndtry");
@@ -2028,6 +2065,7 @@ function Chkudha(){
 		$("#GRBI_GUAMNO").next().find(".MndtryAstr").html("*");
 		$("#GRBI_GUAMNO").attr("disabled",false);
 		$(".veri").show();
+	}
 	}
 	/* if ($("#GRBI_UDYAMVERI").val()=='Verified')
 		{
@@ -2045,6 +2083,7 @@ function Chkudha(){
 		$("#GRBI_GUAMNO").attr("disabled",true);
 		$(".veri").hide();
 	} */
+		}
 	}
 	
  function Sector()
@@ -2086,7 +2125,7 @@ function Chkdirect()
 	{
 	if(dir=="Direct")
 	{
-		
+		$("#GRBI_PANNAVAIL").attr('disabled',true)
 		$("#GRBI_PAN").addClass("GRBIMndtry");	
 		$("#GRBI_PAN").next().find(".MndtryAstr").html("*");
 		$(".TYP").show();
@@ -2095,7 +2134,7 @@ function Chkdirect()
 	}
 	else if(dir=="OCR")
 	{
-		
+		$("#GRBI_PANNAVAIL").attr('disabled',true)
 		$("#GRBI_PAN").removeClass("GRBIMndtry");	
 		$("#GRBI_PAN").next().find(".MndtryAstr").html("");
 		$(".TYP").hide();
@@ -2107,6 +2146,7 @@ function Chkdirect()
 	}
 	else
 	{
+		$("#GRBI_PANNAVAIL").attr('disabled',false)
 		$(".TYP").show();
 		$(".UPLD").show();
 		$(".KYCPROOF").hide();
@@ -2140,6 +2180,11 @@ function Chkdirect()
 	   $("#GRBI_KYCPROOFTYP option[value='SIGN PROOF']").attr('disabled',true);
 	   $("#GRBI_KYCPROOFTYP").material_select();
 	} 
+	if($("#GRBI_CUSTYPE").val() == "Non-Individual")
+	{
+		$("#GRBI_KYCPROOFTYP option[value='SIGN PROOF']").attr('disabled',true);
+		$("#GRBI_KYCPROOFTYP option[value='DOB PROOF']").attr('disabled',true);
+	}
 
 }
 
@@ -2232,6 +2277,11 @@ function checkPAN(Event)
 		$("#GRBI_PAN").removeClass('GRBIMndtry');
 		$("#GRBI_PAN").attr('disabled',true);
 		$(".PANVTyp").attr('disabled',true);
+		$("#GRBI_KYCPROOFTYP").val('')
+		$("#GRBI_KYCPROOFTYP").attr('disabled',true);
+		$("#GRBI_KYCPROOFTYP").material_select();
+		$("#GRBI_KYCPROOFTYP").removeClass('COBIMndtry')
+		$("#GRBI_KYCPROOFTYP").next().find(".MndtryAstr").html("");
 		$("#GRBI_PAN").next().find(".MndtryAstr").html("");
 		$("#GRBI_PANVERIFY").val('');		
 		$(".CHEK").attr('disabled',true);
@@ -2251,6 +2301,8 @@ function checkPAN(Event)
 		$(".PANVTyp").attr('disabled',false);		
 		$(".CHEK").attr('disabled',false);
 		$("#GRBI_PAN").next().find(".MndtryAstr").html("*");
+		$("#GRBI_KYCPROOFTYP").attr('disabled',false);
+		$("#GRBI_KYCPROOFTYP").material_select();
 		}
 }
 function Chkresi()
@@ -2412,6 +2464,7 @@ else{
 }
 }
 
+
 function OtherKYC() 
 {
 if(($("#GRBI_VOTERIDTYPE").val()!="") && ($("#GRBI_VOTERIDTYPE").val()!=undefined))
@@ -2446,7 +2499,7 @@ if(($("#GRBI_AADHARTYPE").val()!="") && ($("#GRBI_AADHARTYPE").val()!=undefined)
 	$(".AADHAR").show();
 	if($("#GRBI_AADHARTYPE").val()=="OCR")
 	{
-		if($("#GRBI_AADHARUPLOADVERIFY").val()=="Upload Verified"))
+		if($("#GRBI_AADHARUPLOADVERIFY").val()=="Upload Verified")
 		{
 		//$(".AUPLDXML").show();
 		//$(".AUPLDXMLII").show();
@@ -2550,8 +2603,6 @@ if(($("#GRBI_UBVERIFYTYPE").val()!="") && ($("#GRBI_PASPRTTYPE").val()!=undefine
 $(".Utility").show();
 }
 }
-
-
 function GETPROOFTYP()
 {
 

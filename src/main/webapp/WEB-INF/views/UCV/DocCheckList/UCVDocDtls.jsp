@@ -55,9 +55,22 @@
             <form >
                </br>
                <div class="form-row">
+			   <div class="col-md-6">
+			   <div class="md-form">
                   <div class="col Btxt3">KYC</div>
                   <!--<div class="col Btxt14 TxtRight">Note: All the OSV needs to be done by employee only</div> -->
                </div>
+               </div>
+			   <div class="col-md-6">
+			   </div>
+			   <div class="col-md-6">
+			   </div>
+			   <div class="col-md-6">
+			   <div class="md-form">
+                  <button type="button" id="MULTIDOWNLOADER" class="btn  waves-effect  btn-yelInplain btn-sm liSubpageTabIcons VIEWDISABLE" onclick="MULTIDOWNLOADER1('UPDC_CUSID')"><i class="fa fa-eye"></i>View All Documents</button>
+               </div>
+			   </div>
+			   </div>
                </br>
                <div class="form-row">
                   <div class="col">
@@ -484,10 +497,10 @@
          <div class="col d-flex justify-content-center">
             <button type="button" id="Save4" data-aria="LSW_TUPLOADDOCUMENT|UPDC|UPDC_CUSID"  class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
             <button type="button" id="MoveToLogin" data-aria="LSW_TUPLOADDOCUMENT|UPDC|UPDC_CUSID" data-card="0" class="btn btn-Syel waves-effect BTNDOCMVL waves-light FormSave">Move to Login</button>
-            <button type="button" style="display:none;" id="SendBack" data-aria="LSW_TUPLOADDOCUMENT|UPDC|UPDC_CUSID" data-card="0" class="btn btn-Syel waves-effect BTNDOCMVL waves-light SendPOPUP">Send Back</button>
-             <button type="button" style="display:none;" id="Reject" data-aria="LSW_TUPLOADDOCUMENT|UPDC|UPDC_CUSID" data-card="0" class="btn btn-Syel waves-effect BTNDOCMVL waves-light">Reject</button> 
+            <button type="button" style="display:none;" id="SendBack" data-aria="LSW_TUPLOADDOCUMENT|UPDC|UPDC_CUSID" data-card="0" class="btn btn-Syel waves-effect BTNDOCMVL waves-light BTNHIDE SendPOPUP">Send Back</button>
+             <button type="button" style="display:none;" id="Reject" data-aria="LSW_TUPLOADDOCUMENT|UPDC|UPDC_CUSID" data-card="0" class="btn btn-Syel waves-effect BTNDOCMVL waves-light ">Reject</button> 
              <button type="button" style="display:none;" id="ApplForm" onclick="GentrateApplicform()" data-form="CAM" data-card="0" class="btn btn-Syel waves-effect waves-light ApplForm FormSave">Application form</button> 		 
-		    <!-- <button type="button" style="display:none;" id="EndUse" onclick="GentrateEndUse()" data-form="CAM" data-card="0" class="btn btn-Syel waves-effect waves-light ApplForm FormSave">End Use</button> -->
+		     <!--<button type="button" style="display:none;" id="EndUse" onclick="GentrateEndUse()" data-form="CAM" data-card="0" class="btn btn-Syel waves-effect waves-light ApplForm FormSave">End Use</button> -->
 		
 		</div>
       </div>

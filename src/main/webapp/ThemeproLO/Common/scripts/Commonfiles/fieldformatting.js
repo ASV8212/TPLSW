@@ -70,6 +70,15 @@ $(function () {
     event.returnValue = true;
 	 
     });
+	$(document).on("keypress", ".NoSpecialCharNOTHYPHEN", function(e) {
+	  if(!((event.keyCode > 64 && event.keyCode < 91) || (event.keyCode > 96 && event.keyCode < 123) || event.keyCode == 8 || event.keyCode == 32 || (event.keyCode >= 48 && event.keyCode <= 57) || event.keyCode == 190 || event.keyCode == 188 || event.keyCode == 46 || event.keyCode == 45))
+	  {
+        event.returnValue = false;
+        return;
+    }
+    event.returnValue = true;
+	 
+    });
 	
 	$(document).on("keypress", ".NoSpecialCharNOTDOT", function(e) {
 	  if(!((event.keyCode > 64 && event.keyCode < 91) || (event.keyCode > 96 && event.keyCode < 123) || event.keyCode == 8 || event.keyCode == 32 || (event.keyCode >= 48 && event.keyCode <= 57) || event.keyCode == 190 || event.keyCode == 188))
@@ -3356,11 +3365,14 @@ $(document).on("change", ".IsPercentageSPL", function() {
 	 {
      if($.isNumeric(Percentage)==true)
 	{
+	if($("#DMY7").val().split('|')[0]!="Bill Discounting")
+	{
 	  if(Percentage<=Number(0) || Percentage>Number(100))
 		  {
 		  alert ('Percentage Should be Greater than 0 and Less than or equal to 100');
 		  $(this).val('')
 		  }
+	 }
 	}
 	else
 	{

@@ -13,8 +13,7 @@
 			<input type="text" id="CRTR_MODIFIEDBY" hidden="hidden" name="CRTR_MODIFIEDBY" class="form-control CRTRDBfields">
 			<input type="text" id="CRTR_DTMODIFIED" hidden="hidden" name="CRTR_DTMODIFIED" class="form-control CRTRDBfields">
 			<input type="text" id="CRTR_SCHEMEID" hidden="hidden" name="CRTR_SCHEMEID" class="form-control  CRTRDBfields">
-			<input type="text" id="CRTR_SCHEMENAME" hidden="hidden" name="CRTR_SCHEMENAME" class="form-control CRTRDBfields">  
-			<input type="text" id="CRTR_LOANID" hidden="hidden" name="CRTR_LOANID" class="form-control  CRTRDBfields">
+			<input type="text" id="CRTR_SCHEMENAME" hidden="hidden" name="CRTR_SCHEMENAME" class="form-control CRTRDBfields">       
 		</br>
 		<div class="form-row">
 			<div class="col Btxt3">RTR</div>
@@ -102,7 +101,7 @@
 			
         </div>
 				  </br>
-        <div class="form-row">
+        <div class="form-row"style="display:none">
             <div class="col d-flex justify-content-center">
                 <button type="button" id="Save" data-aria="LSW_TRTRDETAILS|CRTR|CRTR_SCHEMEID" class="btn btn-Syeloutline waves-effect waves-light Save FormSave">Save</button>   
                <!-- <button type="button" data-aria="LSW_TRTRDETAILS|CRTR|CRTR_SCHEMEID" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> -->

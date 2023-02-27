@@ -359,7 +359,7 @@ function GridControlDetailHEALTHCOMBOGRD  (popTableModPageGrid1,TableID,dtData,d
              /*  var HTML = '<span><input type="text"  id="AMPI_PLCYTNR' + rowno + '"  name="AMPI_PLCYTNR' + rowno + '" maxlength="2" class="form-control form-control Appcble Tenure IsNumberFields IsCURCommaFields">';
                HTML = HTML + '</span>';*/
                
-           	var HTML =    '<span><select class="Gridmdb-select md-form colorful-select Mndtry APPDROPDOWN dropdown-primary" disabled id="AMPI_PLCYTNR'+rowno+'" name="AMPI_PLCYTNR'+rowno+'">';
+           	var HTML =    '<span><select class="Gridmdb-select md-form colorful-select Mndtry APPDROPDOWN dropdown-primary"  id="AMPI_PLCYTNR'+rowno+'" name="AMPI_PLCYTNR'+rowno+'">';
  			HTML = HTML + '<option value="">Select</option>';
  			HTML = HTML + '<option value="1">1</option>';
  			HTML = HTML + '<option value="2">2</option>';
@@ -380,7 +380,7 @@ function GridControlDetailHEALTHCOMBOGRD  (popTableModPageGrid1,TableID,dtData,d
                    /*  var HTML = '<span><input type="text"  id="AMPI_PLCYTNR' + rowno + '"  name="AMPI_PLCYTNR' + rowno + '" maxlength="2" class="form-control form-control Appcble Tenure IsNumberFields IsCURCommaFields">';
                      HTML = HTML + '</span>';*/
                      
-                 	var HTML =    '<span><select class="Gridmdb-select md-form colorful-select Mndtry APPDROPDOWN dropdown-primary" disabled id="AMPI_PLCYTNR'+rowno+'" name="AMPI_PLCYTNR'+rowno+'">';
+                 	var HTML =    '<span><select class="Gridmdb-select md-form colorful-select Mndtry APPDROPDOWN dropdown-primary"  id="AMPI_PLCYTNR'+rowno+'" name="AMPI_PLCYTNR'+rowno+'">';
        		    	HTML = HTML + '<option value="">Select</option>';
 					HTML = HTML + '<option value="1">1</option>';
        			    HTML = HTML + '<option value="5">5</option></span>';

@@ -49,7 +49,7 @@ font-size: 30px;
               <input type="button" onclick="getModule(this)" value="MSME" class="BtnY01">
            </div>
         </div>-->
-		 <div class="row m-0 mb-4">
+		 <!--<div class="row m-0 mb-4">
              <div class="col-md-6 ModuleInfoRow1Col2">
                      <button type="button" id="MSME" onclick="getModule(this)" class="btn btn-Syeloutline2 waves-effect waves-light">MSME</button>  
 			</div>
@@ -64,7 +64,25 @@ font-size: 30px;
 				<div class="col-md-6 ModuleInfoRow1Col2">
 					 <button type="button"  id="UCV Eco" onclick="getModule(this)" class="btn btn-Syeloutline2 waves-effect waves-light">UCV Eco</button> 
 				</div>
+			</div>-->
+			<div class="row m-0 mb-2">
+             <div class="col-md-6 ModuleInfoRow1Col2">
+                     <button type="button" id="MSME" onclick="getModule(this)" class="btn btn-Syeloutline2 waves-effect waves-light">MSME</button>  
 			</div>
+			<div class="col-md-6 ModuleInfoRow1Col2">
+                     <button type="button" id="MSME Alliance" onclick="getModule(this)" class="btn btn-Syeloutline2 waves-effect waves-light">MSME Alliance</button> 
+			</div>
+			
+			<div class="col-md-6 ModuleInfoRow1Col2">
+				<button type="button" id="UCV"  onclick="getModule(this)" class="btn btn-Syeloutline2 waves-effect waves-light">UCV</button> 
+			</div>
+			<div class="col-md-6 ModuleInfoRow1Col2">
+				<button type="button"  id="UCV Eco" onclick="getModule(this)" class="btn btn-Syeloutline2 waves-effect waves-light">UCV Eco</button> 
+			</div>
+			<div class="col-md-6 ModuleInfoRow1Col2">
+					 <button type="button"  id="Tractor Finance" onclick="getModule(this)" class="btn btn-Syeloutline2 waves-effect waves-light">Tractor Finance</button> 
+				</div>
+		  </div>
       </div>
 	  </section>
 		</div>

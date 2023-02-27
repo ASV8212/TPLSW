@@ -42,7 +42,7 @@ $(document).ready(function() {
 
     			$(HTML).find("[name='ALIH_SUMASRD']").val(CURCommaSep($("#DMY3").val().split("|")[3]))
     			$(HTML).find("[name='ALIH_LONTNR']").val($("#DMY3").val().split("|")[4])
-    			$(HTML).find("[name='ALIH_SUMASRD']").attr('disabled',true);
+    			//$(HTML).find("[name='ALIH_SUMASRD']").attr('disabled',true);
     			
 				
     		}

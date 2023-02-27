@@ -43,7 +43,7 @@
         
         
         <form>
-         <input type="text" id="LPDT_PRCSID" hidden="hidden" name="LPDT_PRCSID" class="form-control LPDTDBfields">
+         <input type="text" id="LPDT_PRCSID" hidden="hidden" name="LPDT_PRCSID" class="form-control LPDTDBfields ASSETDEDUPE">
          <input type="text" id="LPDT_ACTIVITYID" hidden="hidden" name="LPDT_ACTIVITYID" class="form-control LPDTDBfields">
          <input type="text" id="LPDT_CREATEDBY" hidden="hidden" name="LPDT_CREATEDBY" class="form-control LPDTDBfields">
          <input type="text" id="LPDT_DTCREATED" hidden="hidden" name="LPDT_DTCREATED" class="form-control LPDTDBfields">
@@ -51,14 +51,15 @@
          <input type="text" id="LPDT_DTMODIFIED" hidden="hidden" name="LPDT_DTMODIFIED" class="form-control LPDTDBfields">
         
         <input type="text" id="LPDT_PROPERTYNO" hidden="hidden" name="LPDT_PROPERTYNO" class="form-control LPDTDBfields">
-        <input type="text" id="LPDT_PROPERTYNAME" hidden="hidden" name="LPDT_PROPERTYNAME" class="form-control LPDTDBfields">
+        <input type="text" id="LPDT_PROPERTYNAME" hidden="hidden" name="LPDT_PROPERTYNAME" class="form-control LPDTDBfields ASSETDEDUPE">
 		
 		<input type="text" id="LPDT_FILESTATUS" hidden="hidden" name="LPDT_FILESTATUS" class="form-control LPDTDBfields">
 		  
 		<input type="text" id="LPDT_OWNERCUSID" hidden="hidden" name="LPDT_OWNERCUSID" class="form-control LPDTDBfields">
 		<input type="text" id="LPDT_PROPLONNO" hidden="hidden" name="LPDT_PROPLONNO" class="form-control LPDTDBfields">
 		<input type="text" id="LPDT_LONPDRNAME" hidden="hidden" name="LPDT_LONPDRNAME" class="form-control LPDTDBfields">
-		 
+		 <input type="text" id="CONSIDERFRN" hidden="hidden" name="CONSIDERFRN" >
+         <input type="text" id="PROPERTYNO" hidden="hidden" name="PROPERTYNO" >
 		 <!--<input type="text" id="LPDT_DEMANTAMT" hidden="hidden" name="LPDT_DEMANTAMT" class="form-control LPDTDBfields"> 
          <input type="text" id="LPDT_DEMANTAMTGST" hidden="hidden" name="LPDT_DEMANTAMTGST" class="form-control LPDTDBfields"> 
           -->
@@ -77,6 +78,33 @@
         	</div>
         	</br>
         </br>
+		<div class="form-row" style="display:none">
+                     <div class="col-md-6 ">
+                        <div class="md-form">
+						<input type="text" class="custom-control-input   LPDTDBfields" onchange=""  id="LPDT_CONSFRCAM" name="LPDT_CONSFRCAM">
+                           <!--<div class="select-radio">
+                              <div class="custom-control custom-radio custom-control-inline">
+                                 <input type="radio" class="custom-control-input   LPDTDBfields" onchange="ConsiderFrCAM(this,'Change')" value="Yes" id="CONSFRCAMYES" name="LPDT_CONSFRCAM">
+                                 <label class="custom-control-label" for="CONSFRCAMYES">Yes</label>
+                              </div>
+                              <div class="custom-control custom-radio custom-control-inline">
+                                 <input type="radio" class="custom-control-input   LPDTDBfields" onchange="ConsiderFrCAM(this,'Change')" value="No" id="CONSFRCAMNO" name="LPDT_CONSFRCAM">
+                                 <label class="custom-control-label" for="CONSFRCAMNO">No</label>
+                              </div>
+                           </div>-->
+                           <label class="mdb-main-label BTxt9">Consider For CAM<span class="MndtryAstr"></span></label>      
+                        </div>
+                     </div>
+					 <div class="col-md-6 " style="display:none">
+						<div class="md-form">
+							<input type="text" class="custom-control-input   LPDTDBfields" onchange=""  id="LPDT_SECURITYTAGGING" name="LPDT_SECURITYTAGGING">
+                           <!--<select class="mdb-select md-form colorful-select dropdown-primary  LPDTDBfields " onchange=""  id="LPDT_SECURITYTAGGING" name="LPDT_SECURITYTAGGING">
+                              <option value="">Select</option>
+                           </select>-->
+                           <label class="mdb-main-label BTxt9">Tagged Under<span class="MndtryAstr"></span></label>
+                        </div>
+					 </div>
+                  </div>
 	 <div class="form-row">
             <div class="col-md-6 ADDPROPERT">
                   <div class="md-form">
@@ -142,6 +170,9 @@
 		    <div class="form-row">
         		<div class="col Btxt3">Asset Details - Vehicle</div>
         	</div>
+			<div class="form-row">
+			<button type="button" class="btn  waves-effect  btn-yelInplain btn-sm liSubpageTabIcons APPVIEWDEDUPE" onclick="AssestDedupe();"><i class="fa fa-external-link-square"></i> Fetch Asset Dedupe</button>
+			</div>
 		 	<div class="form-row">
 
 							<div class="col-md-6">
@@ -259,14 +290,14 @@
 	
 	<div class="col-md-6">
 				<div class="md-form">
-                  	<input type="text" id="LPDT_VENGNO" name="LPDT_VENGNO" maxlength="30" class="form-control ADDPro LPDTDBfields  VEMVAL NoSpecialChar   vehile ">
+                  	<input type="text" id="LPDT_VENGNO" name="LPDT_VENGNO" maxlength="30" class="form-control ADDPro LPDTDBfields ASSETDEDUPE VEMVAL NoSpecialChar    ">
                     <label for="LPDT_VENGNO" class="ADDACTVEC">Enigine No<span class="MndtryAstr">*</span> </label>
              </div>
               
 				</div>	
 				<div class="col-md-6">
 				<div class="md-form">
-                  	<input type="text" id="LPDT_VCHASISNO" name="LPDT_VCHASISNO" maxlength="30"  class="form-control ADDPro LPDTDBfields VEMVAL NoSpecialChar   vehile">
+                  	<input type="text" id="LPDT_VCHASISNO" name="LPDT_VCHASISNO" maxlength="30"  class="form-control ADDPro LPDTDBfields ASSETDEDUPE VEMVAL NoSpecialChar   ">
                     <label for="LPDT_VCHASISNO" class="ADDACTVEC">Chasis No <span class="MndtryAstr">*</span> </label>
              </div>
               
@@ -279,17 +310,66 @@
 			  <div class="md-form">
 				    <input type="text" id="LPDT_REGNOVERI" hidden="hidden" maxlength="30" name="LPDT_REGNOVERI" class="form-control LPDTDBfields">
                     <button type="button" data-Validatearia="LPDT_REGNOVERI" onclick="CheckKYCDetl(this,'LPDT_VREGNO','LPDT_REGNOVERI','VEHICLE');" data-field="LPDT_REGNOVERI|LPDT_VREGNO||LPDT_PROPERTYNO|" data-validate="gstin"  class="btn btn-Verify LPDT_REGNOVERI waves-effect btn-yelInplain btn-sm BTNVerify INTDSBV">Verify</button>
-                  	<input type="text" id="LPDT_VREGNO" name="LPDT_VREGNO" data-link="LPDT_VREGNO|LPDT_REGNOVERI|VEHICLE|||||" class="form-control ADDPro LPDTDBfields VEMVAL NoSpecialChar vehile">
+                  	<input type="text" id="LPDT_VREGNO" name="LPDT_VREGNO" data-link="LPDT_VREGNO|LPDT_REGNOVERI|VEHICLE|||||" class="ASSETDEDUPE form-control datalink ADDPro LPDTDBfields VEMVAL NoSpecialChar vehile">
                     <label for="LPDT_VREGNO" class="ADDACTVEC">Reg No <span class="MndtryAstr">*</span> </label>
                </div>
+			   
+	
+			   
 			</div>
+			
+            <div class="col-md-6">
+               <div class="md-form">
+                  <input type="text" id="LPDT_VNAMEOFOWN" name="LPDT_VNAMEOFOWN"   maxlength="30"  class="form-control ADDPro LPDTDBfields VEMVAL NoSpecialChar   vehile">
+                  <label for="LPDT_VNAMEOFOWN" class="ADDACTVEC">Name Of Owner</label>
+               </div>
+            </div>
+						
+
+		</div>	
+		
+ <div class="form-row">
+                        <div class="col-md-6">
+                           <div class="md-form">
+                              <input type="text" id="LPDT_VMAKERMODEL" name="LPDT_VMAKERMODEL"   maxlength="30"  class="form-control ADDPro LPDTDBfields VEMVAL NoSpecialChar   ">
+                              <label for="LPDT_VMAKERMODEL" class="ADDACTVEC">Maker Model</label>
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <div class="md-form">
+                              <input type="text" id="LPDT_VREGDATE" name="LPDT_VREGDATE"   maxlength="30"  class="form-control ADDPro LPDTDBfields VEMVAL NoSpecialChar   ">
+                              <label for="LPDT_VREGDATE" class="ADDACTVEC">Registration Date</label>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="form-row">
+                        <div class="col-md-6">
+                           <div class="md-form">
+                              <input type="text" id="LPDT_VFINANCIER" name="LPDT_VFINANCIER"   maxlength="30"  class="form-control ADDPro LPDTDBfields VEMVAL NoSpecialChar   ">
+                              <label for="LPDT_VFINANCIER" class="ADDACTVEC">Financier</label>
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <div class="md-form">
+                              <input type="text" id="LPDT_VVEHICLECLASS" name="LPDT_VVEHICLECLASS"   maxlength="30"  class="form-control ADDPro LPDTDBfields VEMVAL NoSpecialChar   ">
+                              <label for="LPDT_VVEHICLECLASS" class="ADDACTVEC">Vehicle Class Description</label>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="form-row">
+                        <div class="col-md-6">
+                           <div class="md-form">
+                              <input type="text" id="LPDT_VOWNERSERNO" name="LPDT_VOWNERSERNO"   maxlength="30"  class="form-control ADDPro LPDTDBfields VEMVAL NoSpecialChar   ">
+                              <label for="LPDT_VOWNERSERNO" class="ADDACTVEC">Owner Serial Number</label>
+                           </div>
+                        </div>
 				<div class="col-md-6">
 				  <div class="md-form">
                   	<input type="text" id="LPDT_VQUOTEVAL" name="LPDT_VQUOTEVAL"  maxlength="15"  class="form-control ADDPro LPDTDBfields VEMVAL  IsCURCommaFields IsNumberFields">
                     <label for="LPDT_VQUOTEVAL" class="ADDACTVEC">Dealer/ Valuer Quoted Value </label>
                    </div>
 				</div>
-		</div>	
+                     </div>		
 				
 		<div class="form-row">
 		
@@ -1425,4 +1505,47 @@
     <script type="text/javascript" src="ThemeproLO/UCV/LoanProperty/Script/PropDtls/Validation.js${DMY13}"></script> 
        
                                   <!--   </div>
-                                </div>   -->       
+                                </div>   -->  
+
+<!--Asset Dedupe Strt-->
+  <a type="button" id="ASSETDEDUPEPopup" class="btn btn-floating btn-large red" style="display:none" data-toggle="modal" data-target="#ASSETDEDUPEModal">
+ <i class="fa fa-plus"></i></a>
+    
+  
+
+<div class="modal fade" id="ASSETDEDUPEModal" tabindex="-1" role="dialog" aria-labelledby="ASSESTDEDUPEModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" style="max-width:1200px" role="document">
+    <div class="modal-content">
+       <div class="modal-header">
+          <div class="Btxt10">Asset Dedupe</div> 
+          <a href="#"><img id="ASSESTDEDUPEPOPCLOSE" class="close" data-dismiss="modal" aria-label="Close" src="ThemeproLO/Common/FEP/images/Close1.png" alt="DashSearch"></img></a>      
+      </div> 
+      <div class="modal-body">
+         <div class="">
+    <!-- Card body -->
+     <div class=""> 
+         <form >
+             <div class="form-row">
+           		 <div class="col">
+           			<div class="md-form">
+                    <button type="button" style="display:none" id="ASSESTDEDUPEGRD" onclick=""  ></button>
+					<table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" id="ASSESTDEDUPETable">
+                     </table>
+					
+           			</div>
+           		 </div>
+           </div>
+      <!-- grid  show -->
+    <!--Main layout-->
+        </form>
+      </div>
+    </div> 
+      </div>
+      <div class="modal-footer align-middle">
+      <!--  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- Asset Dedupe End-->								

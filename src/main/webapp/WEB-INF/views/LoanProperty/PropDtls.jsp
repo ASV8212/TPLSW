@@ -258,7 +258,7 @@
 				</div>	
 	<div class="col-md-6">
 				<div class="md-form">
-                  	<input type="text" id="LPDT_VENGNO" name="LPDT_VENGNO"  maxlength="30"  class="form-control ADDPro LPDTDBfields  VEMVAL NoSpecialChar   vehile ">
+                  	<input type="text" id="LPDT_VENGNO" name="LPDT_VENGNO"  maxlength="30"  class="form-control ADDPro LPDTDBfields  VEMVAL NoSpecialChar    ">
                     <label for="LPDT_VENGNO" class="ADDACTVEC">Engine No<span class="MndtryAstr">*</span> </label>
              </div>
 				</div>	
@@ -266,17 +266,71 @@
   <div class="form-row">
 	<div class="col-md-6">
 		<div class="md-form">
-                  	<input type="text" id="LPDT_VCHASISNO" name="LPDT_VCHASISNO"  maxlength="30"  class="form-control ADDPro LPDTDBfields VEMVAL NoSpecialChar   vehile">
+                  	<input type="text" id="LPDT_VCHASISNO" name="LPDT_VCHASISNO"  maxlength="30"  class="form-control ADDPro LPDTDBfields VEMVAL NoSpecialChar   ">
                     <label for="LPDT_VCHASISNO" class="ADDACTVEC">Chassis No <span class="MndtryAstr">*</span> </label>
         </div>
-   </div>	
+   </div>
+      	<div class="col-md-6">
+		<div class="md-form">
+           <input type="text" id="LPDT_VNAMEOFOWN" name="LPDT_VNAMEOFOWN"   maxlength="30"  class="form-control ADDPro LPDTDBfields VEMVAL NoSpecialChar   ">
+           <label for="LPDT_VNAMEOFOWN" class="ADDACTVEC">Name Of Owner</label>
+        </div>
+    </div>
+
+  </div>	
+
+  
+  	    <div class="form-row">
+			<div class="col-md-6">
+				<div class="md-form">
+					<input type="text" id="LPDT_VMAKERMODEL" name="LPDT_VMAKERMODEL"   maxlength="30"  class="form-control ADDPro LPDTDBfields VEMVAL NoSpecialChar   ">
+					<label for="LPDT_VMAKERMODEL" class="ADDACTVEC">Maker Model</label>
+				</div>
+			</div>
+			
+			<div class="col-md-6">
+				<div class="md-form">
+					<input type="text" id="LPDT_VREGDATE" name="LPDT_VREGDATE"   maxlength="30"  class="form-control ADDPro LPDTDBfields VEMVAL NoSpecialChar   ">
+					<label for="LPDT_VREGDATE" class="ADDACTVEC">Registration Date</label>
+				</div>
+			</div>
+
+		</div>	
+	    <div class="form-row">
+			<div class="col-md-6">
+				<div class="md-form">
+					<input type="text" id="LPDT_VFINANCIER" name="LPDT_VFINANCIER"   maxlength="30"  class="form-control ADDPro LPDTDBfields VEMVAL NoSpecialChar   ">
+					<label for="LPDT_VFINANCIER" class="ADDACTVEC">Financier</label>
+				</div>
+			</div>
+			
+			<div class="col-md-6">
+				<div class="md-form">
+					<input type="text" id="LPDT_VVEHICLECLASS" name="LPDT_VVEHICLECLASS"   maxlength="30"  class="form-control ADDPro LPDTDBfields VEMVAL NoSpecialChar   ">
+					<label for="LPDT_VVEHICLECLASS" class="ADDACTVEC">Vehicle Class Description</label>
+				</div>
+			</div>
+
+		</div>	
+
+  
+		<div class="form-row">
+			<div class="col-md-6">
+				<div class="md-form">
+					<input type="text" id="LPDT_VOWNERSERNO" name="LPDT_VOWNERSERNO"   maxlength="30"  class="form-control ADDPro LPDTDBfields VEMVAL NoSpecialChar   ">
+					<label for="LPDT_VOWNERSERNO" class="ADDACTVEC">Owner Serial Number</label>
+				</div>
+			</div>		
 	<div class="col-md-6">
 		<div class="md-form">
            <input type="text" id="LPDT_VQUOTEVAL" name="LPDT_VQUOTEVAL"  maxlength="15"  class="form-control ADDPro LPDTDBfields VEMVAL  IsCURCommaFields IsNumberFields">
            <label for="LPDT_VQUOTEVAL" class="ADDACTVEC">Dealer/ Valuer Quoted Value </label>
         </div>
     </div>
-  </div>		
+	</div>
+
+
+	
 		<div class="form-row">
 				<div class="col-md-6">
 				<div class="md-form">
@@ -756,7 +810,7 @@
 			
 			<div class="col-md-6">
 					<div class="md-form">
-						<input type="text" id="LPDT_DLOANAMT" name="LPDT_DLOANAMT" onchange="Chkmnd();" maxlength="3" class="form-control ADDPro DEPOSITM DEMVAL LPDTDBfields IsPercentageFld IsNumberFields  ">
+						<input type="text" id="LPDT_DLOANAMT" name="LPDT_DLOANAMT"  data-field="LPDT_DLOANAMT|LOANAMT|Yes" onchange="Chkmnd();" maxlength="4" class="form-control ADDPro DEPOSITM DEMVAL LPDTDBfields IsPercentageFld IsNumberFields  ">
 						<label for="LPDT_DLOANAMT" class="ADDACTSEC">% of Loan Amount<span class="MndtryAstr"></span></label>
 					</div>
 			</div>
@@ -771,6 +825,126 @@
 		
 		
 			</div>
+			
+			<div class="form-row">
+			<div class="col-md-6">                  
+					<div class="md-form">
+						<select class="mdb-select md-form colorful-select dropdown-primary ADDPro DEPOSITM DEMVAL  LPDTDBfields " onchange="Chkdepo();" id="LPDT_DDEPOSIT" name="LPDT_DDEPOSIT">
+						<option value="">Select</option>
+						<option value="Fixed Deposit">Fixed Deposit</option>
+						<option value="Security Deposit">Security Deposit</option>		
+					</select>
+					<label class="mdb-main-label BTxt9">Deposits<span class="MndtryAstr"></span></label>
+					</div>
+				</div>					
+			</div>
+			
+			<div class="form-row FIXDEP">
+				<div class="col-md-6 ">
+					<div class="md-form">
+						<input type="text" id="LPDT_DDEPAMT" name="LPDT_DDEPAMT" maxlength="15" class="form-control  ADDPro DEPOSITM DEMVAL IsNumberFields IsGreaterzeroFld IsCURCommaFields LPDTDBfields ">
+						<label for="LPDT_DDEPAMT" class="ADDACTSEC">Deposit Amount<span class="MndtryAstr"></span></label>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<!-- First name -->
+					<div class="md-form">                  
+						<input type="text" id="LPDT_DDEPOOPNDATE" name="LPDT_DDEPOOPNDATE"   maxlength="10" class="form-control LPDTDBfields DEMVAL ADDPro IsNumberFields NoSpecialChar  ISDatefield  ISFutureDateFields  ">
+						<label for="LPDT_DDEPOOPNDATE" class="ADDACTVEC">Deposit Open Date<span class="MndtryAstr"></span></label>
+						<img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"/>
+					</div>
+                </div>
+			</div>
+			<div class="form-row FIXDEP">
+				<div class="col-md-6">
+					<!-- First name -->
+					<div class="md-form">                  
+						<input type="text" id="LPDT_DMATURIYDATE" name="LPDT_DMATURIYDATE"   maxlength="10" class="form-control LPDTDBfields DEMVAL ADDPro IsNumberFields NoSpecialChar  ISDatefield  ISFutureDateFields  ">
+						<label for="LPDT_DMATURIYDATE" class="ADDACTVEC">Maturity Date<span class="MndtryAstr"></span></label>
+						<img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"/>
+					</div>
+                </div>	
+                <div class="col-md-6">
+                   <div class="md-form">
+                      <input type="text" id="LPDT_DBNKNAME"  name="LPDT_DBNKNAME" class="form-control ADDPro DEPOSITM DEMVAL  IsAlphaFields LPDTDBfields">
+                      <label for="LPDT_DBNKNAME" class="ADDACTSEC">Bank Name<span class="MndtryAstr"></span></label>
+                   </div>
+                </div>				
+			</div>
+			<div class="form-row FIXDEP">
+				<div class="col-md-6">
+						<div class="md-form">
+							<input type="text" id="LPDT_DIFSC"  name="LPDT_DIFSC" onchange="GETIFSC();" class="form-control ADDPro DEPOSITM DEMVAL IsIFSCFields  LPDTDBfields">
+							<label for="LPDT_DIFSC" class="ADDACTSEC">IFSC <span class="MndtryAstr"></span></label>
+						</div>
+				</div>
+			
+				<div class="col-md-6">
+					<div class="md-form">
+						<input type="text" id="LPDT_DBRANCH" disabled name="LPDT_DBRANCH" class="form-control ADDPro BRANVAL DEPOSITM DEMVAL   LPDTDBfields">
+						<label for="LPDT_DBRANCH" class="ADDACTSEC">Bank Branch <span class="MndtryAstr"></span></label>
+					</div>
+				</div>	
+			</div>	
+			<div class="form-row FIXDEP">
+				<div class="col-md-6 ">
+					<div class="md-form">
+						<input type="text" id="LPDT_DMATURTYAMT" name="LPDT_DMATURTYAMT" maxlength="15" class="form-control  ADDPro DEPOSITM DEMVAL IsNumberFields IsGreaterzeroFld IsCURCommaFields LPDTDBfields ">
+						<label for="LPDT_DMATURTYAMT" class="ADDACTSEC">Maturity Amount<span class="MndtryAstr"></span></label>
+					</div>
+				</div>
+				<div class="col-md-6 ">
+					<div class="md-form">
+						<input type="text" id="LPDT_DROI" name="LPDT_DROI" maxlength="3" class="form-control  ADDPro DEPOSITM DEMVAL IsNumberFields IsGreaterzeroFld IsCURCommaFields LPDTDBfields ">
+						<label for="LPDT_DROI" class="ADDACTSEC">ROI<span class="MndtryAstr"></span></label>
+					</div>
+				</div>				
+			</div>
+			
+			<div class="form-row SECUDEP">
+				<div class="col-md-6 ">
+					<div class="md-form">
+						<input type="text" id="LPDT_DSECDEPAMT" name="LPDT_DSECDEPAMT" maxlength="15" class="form-control  ADDPro DEPOSITM DEMVAL IsNumberFields IsGreaterzeroFld IsCURCommaFields LPDTDBfields ">
+						<label for="LPDT_DSECDEPAMT" class="ADDACTSEC">Security Deposit Amount<span class="MndtryAstr"></span></label>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<!-- First name -->
+					<div class="md-form">                  
+						<input type="text" id="LPDT_DDEPDATE" name="LPDT_DDEPDATE"   maxlength="10" class="form-control LPDTDBfields DEMVAL ADDPro IsNumberFields NoSpecialChar  ISDatefield  ISFutureDateFields  ">
+						<label for="LPDT_DDEPDATE" class="ADDACTVEC">Deposit Date<span class="MndtryAstr"></span></label>
+						<img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"/>
+					</div>
+                </div>
+			</div>	
+			<div class="form-row SECUDEP">
+                <div class="col-md-6">
+                   <div class="md-form">
+                      <input type="text" id="LPDT_DSECBNKNAME"  name="LPDT_DSECBNKNAME" class="form-control ADDPro DEPOSITM DEMVAL  IsAlphaFields LPDTDBfields">
+                      <label for="LPDT_DSECBNKNAME" class="ADDACTSEC">Bank Name<span class="MndtryAstr"></span></label>
+                   </div>
+                </div>				
+				<div class="col-md-6">
+						<div class="md-form">
+							<input type="text" id="LPDT_DSECIFSC"  name="LPDT_DSECIFSC" onchange="GETSECIFSC();" class="form-control ADDPro DEPOSITM DEMVAL IsIFSCFields  LPDTDBfields">
+							<label for="LPDT_DSECIFSC" class="ADDACTSEC">IFSC <span class="MndtryAstr"></span></label>
+						</div>
+				</div>
+			</div>
+			<div class="form-row SECUDEP">
+				<div class="col-md-6">
+					<div class="md-form">
+						<input type="text" id="LPDT_DSECBRANCH" disabled name="LPDT_DSECBRANCH" class="form-control ADDPro BRANVAL DEPOSITM DEMVAL   LPDTDBfields">
+						<label for="LPDT_DSECBRANCH" class="ADDACTSEC">Bank Branch <span class="MndtryAstr"></span></label>
+					</div>
+				</div>	
+				<div class="col-md-6 ">
+					<div class="md-form">
+						<input type="text" id="LPDT_DUTRNO" name="LPDT_DUTRNO" maxlength="20" class="form-control  ADDPro DEPOSITM DEMVAL IsNumberFields IsGreaterzeroFld IsCURCommaFields LPDTDBfields ">
+						<label for="LPDT_DUTRNO" class="ADDACTSEC">UTR Number<span class="MndtryAstr"></span></label>
+					</div>
+				</div>					
+			</div>			
 		<!--<div class="form-row">
 			<div class="col-md-6">
 				<div class="md-form">
@@ -902,7 +1076,7 @@
         		
         	</div>
 			<div class="form-row">
-			<div class="col-md-6">
+			<!--<div class="col-md-6">
                   <div class="md-form">
           
                <div class="select-radio   SECURITYMANT " id="LPDT_STYPESEC"> 
@@ -919,7 +1093,23 @@
 </div>
         <label class="mdb-main-label BTxt9">Type of Security <span class="MndtryAstr">*</span></label>      
      </div>
- </div>
+ </div>-->
+ 
+ 				<div class="col-md-6">                  
+					<div class="md-form">
+						<select class="mdb-select md-form colorful-select dropdown-primary ADDPro SECURITYMANT SEMVAL LPDTDBfields " onchange="TYPOFSEC();" id="LPDT_STYPEOFSEC" name="LPDT_STYPEOFSEC">
+						<option value="">Select</option>
+						<option value="Shares">Shares</option>		
+						<option value="Mutual Funds">Mutual Funds</option>							
+						<option value="Bank Guarantee">Bank Guarantee</option>		
+						<option value="SBLC (Standby Letter of Credit)">SBLC (Standby Letter of Credit)</option>
+						<option value="LIC Policies">LIC Policies</option>
+						<option value="Bonds">Bonds</option>
+						<option value="NCD (Non convertible Debentures)">NCD (Non convertible Debentures)</option>					
+					</select>
+					<label class="mdb-main-label BTxt9">Type of Security<span class="MndtryAstr"></span></label>
+					</div>
+				</div>	
 			
 			<div class="col-md-6">
 				<div class="md-form">
@@ -966,10 +1156,116 @@
                     <label for="LPDT_SDEMATNO" class="ADDACTSEC">Demat Number<span class="MndtryAstr">*</span></label>
              </div>
 				</div>
-			
-		
-		
 		</div>
+		
+		<div class="form-row">
+				<!--<div class="col-md-6">                  
+					<div class="md-form">
+						<select class="mdb-select md-form colorful-select dropdown-primary ADDPro SECURITYMANT SEMVAL LPDTDBfields " onchange="TYPOFSEC();" id="LPDT_STYPOFSEC" name="LPDT_STYPOFSEC">
+						<option value="">Select</option>
+						<option value="Bank Guarantee">Bank Guarantee</option>		
+						<option value="SBLC (Standby Letter of Credit)">SBLC (Standby Letter of Credit)</option>
+						<option value="LIC Policies">LIC Policies</option>
+						<option value="Bonds">Bonds</option>
+						<option value="NCD (Non convertible Debentures)">NCD (Non convertible Debentures)</option>					
+					</select>
+					<label class="mdb-main-label BTxt9">Type of Security<span class="MndtryAstr"></span></label>
+					</div>
+				</div>	-->
+				<div class="col-md-6">                  
+					<div class="md-form">
+						<select class="mdb-select md-form colorful-select dropdown-primary ADDPro SECURITYMANT SEMVAL LPDTDBfields " onchange="CHKCHRGTYP();" id="LPDT_SCHRGTYP" name="LPDT_SCHRGTYP">
+						<option value="">Select</option>
+						<option value="Pari-passo - 1st charge">Pari-passo - 1st charge</option>
+						<option value="Pari-passo - 2nd charge">Pari-passo - 2nd charge</option>
+						<option value="Exclusive">Exclusive</option>
+						<option value="Subservient">Subservient</option>
+						<option value="Consortium">Consortium</option>
+						<option value="others">others</option>					
+					</select>
+					<label class="mdb-main-label BTxt9">Charge Type<span class="MndtryAstr"></span></label>
+					</div>
+				</div>
+			<div class="col-md-6 SOTHR">
+                <div class="md-form">
+                  	<input type="text" id="LPDT_SOTHER" name="LPDT_SOTHER"  class="form-control ADDPro SEMVAL    LPDTDBfields">
+                    <label for="LPDT_SOTHER" class="ADDAL ACTVALADD">Others<span class="MndtryAstr"></span></label>
+                </div>
+            </div>
+		</div>	
+		<div class="form-row BNKGRA">
+			<div class="col-md-6">
+					<!-- First name -->
+					<div class="md-form">                  
+						<input type="text" id="LPDT_SDTOFDOCU" name="LPDT_SDTOFDOCU"   maxlength="10" class="form-control LPDTDBfields SEMVAL SECURITYMANT ADDPro IsNumberFields NoSpecialChar  ISDatefield  ISFutureDateFields  ">
+						<label for="LPDT_SDTOFDOCU" class="ADDACTSEC">Date of Document<span class="MndtryAstr"></span></label>
+						<img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"/>
+					</div>
+            </div>
+            <div class="col-md-6">
+                   <div class="md-form">
+                      <input type="text" id="LPDT_SNAMEOFBNK"  name="LPDT_SNAMEOFBNK" class="form-control ADDPro  SEMVAL  IsAlphaFields LPDTDBfields">
+                      <label for="LPDT_SNAMEOFBNK" class="ADDACTSEC">Name of Issuing Bank<span class="MndtryAstr"></span></label>
+                   </div>
+            </div>				
+		
+		</div>	
+	<div class="form-row BNKGRA">
+	       <div class="col-md-6">
+                   <div class="md-form">
+                      <input type="text" id="LPDT_SBENEFINAME"  name="LPDT_SBENEFINAME" class="form-control ADDPro  SEMVAL  IsAlphaFields LPDTDBfields">
+                      <label for="LPDT_SBENEFINAME" class="ADDACTSEC">Beneficiary Name<span class="MndtryAstr"></span></label>
+                   </div>
+            </div>
+			<div class="col-md-6">
+					<!-- First name -->
+					<div class="md-form">                  
+						<input type="text" id="LPDT_SDATEEXPRY" name="LPDT_SDATEEXPRY"   maxlength="10" class="form-control LPDTDBfields SEMVAL SECURITYMANT ADDPro IsNumberFields NoSpecialChar  ISDatefield  ISFutureDateFields  ">
+						<label for="LPDT_SDATEEXPRY" class="ADDACTSEC">Expiry date<span class="MndtryAstr"></span></label>
+						<img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"/>
+					</div>
+            </div>			
+	
+	</div>	
+	<div class="form-row BNKGRA">
+	       <div class="col-md-6">
+                   <div class="md-form">
+                      <input type="text" id="LPDT_SVALUEINRS"  name="LPDT_SVALUEINRS" class="form-control ADDPro  SEMVAL  IsAlphaFields LPDTDBfields">
+                      <label for="LPDT_SVALUEINRS" class="ADDACTSEC">Value in Rs.<span class="MndtryAstr"></span></label>
+                   </div>
+            </div>
+	       <div class="col-md-6">
+                   <div class="md-form">
+                      <input type="text" id="LPDT_SCLAIMPEROD"  name="LPDT_SCLAIMPEROD" class="form-control ADDPro  SEMVAL  IsAlphaFields LPDTDBfields">
+                      <label for="LPDT_SCLAIMPEROD" class="ADDACTSEC">Claim Period-in days/months<span class="MndtryAstr"></span></label>
+                   </div>
+            </div>		
+	</div>
+	<div class="form-row LIC">
+	       <div class="col-md-6">
+                   <div class="md-form">
+                      <input type="text" id="LPDT_SSHARESFUND"  name="LPDT_SSHARESFUND" class="form-control ADDPro  SEMVAL  IsAlphaFields LPDTDBfields">
+                      <label for="LPDT_SSHARESFUND" class="ADDACTSEC">Same as Shares & Mutual Funds<span class="MndtryAstr"></span></label>
+                   </div>
+            </div>
+	       <div class="col-md-6">
+                   <div class="md-form">
+                      <input type="text" id="LPDT_SPOLICYNO"  name="LPDT_SPOLICYNO" class="form-control ADDPro  SEMVAL  IsAlphaFields LPDTDBfields">
+                      <label for="LPDT_SPOLICYNO" class="ADDACTSEC">Policy Number - LIC Policy<span class="MndtryAstr"></span></label>
+                   </div>
+            </div>		
+	</div>	
+	<div class="form-row LIC">
+			<div class="col-md-6">
+					<!-- First name -->
+					<div class="md-form">                  
+						<input type="text" id="LPDT_SINCLDEXPDT" name="LPDT_SINCLDEXPDT"   maxlength="10" class="form-control LPDTDBfields SEMVAL SECURITYMANT ADDPro IsNumberFields NoSpecialChar  ISDatefield  ISFutureDateFields  ">
+						<label for="LPDT_SINCLDEXPDT" class="ADDACTSEC">Expiry date<span class="MndtryAstr"></span></label>
+						<img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"/>
+					</div>
+            </div>		
+	</div>
+
 </div>	
 
 		<div class="Cashcollateral PARENTCLASS" style="display:none">
@@ -983,7 +1279,7 @@
 			
 			<div class="col-md-6">
 					<div class="md-form">
-						<input type="text" id="LPDT_CLOANAMT" name="LPDT_CLOANAMT" onchange="Chkmnd();" maxlength="3" class="form-control ADDPro  SECURITYMANT CASVAL LPDTDBfields IsNumberFields IsPercentageFld    ">
+						<input type="text" id="LPDT_CLOANAMT" name="LPDT_CLOANAMT" data-field="LPDT_CLOANAMT|LOANAMT|Yes" onchange="Chkmnd();" maxlength="4" class="form-control ADDPro  SECURITYMANT CASVAL LPDTDBfields IsNumberFields IsPercentageFld    ">
 						<label for="LPDT_CLOANAMT" class="ADDACTSEC">% of Loan Amount<span class="MndtryAstr"></span></label>
 					</div>
 			</div>
@@ -1011,7 +1307,7 @@
 			
 			<div class="col-md-6">
 					<div class="md-form">
-						<input type="text" id="LPDT_HLOANAMT" name="LPDT_HLOANAMT" onchange="Chkmnd()" maxlength="3" class="form-control ADDPro SECURITYMANT HYPVAL LPDTDBfields IsNumberFields IsPercentageFld   ">
+						<input type="text" id="LPDT_HLOANAMT" name="LPDT_HLOANAMT" data-field="LPDT_HLOANAMT|LOANAMT|Yes" onchange="Chkmnd()" maxlength="4" class="form-control ADDPro SECURITYMANT HYPVAL LPDTDBfields IsNumberFields IsPercentageFld   ">
 						<label for="LPDT_HLOANAMT" class="ADDACTSEC">% of Loan Amount<span class="MndtryAstr"></span></label>
 					</div>
 			</div>
@@ -1026,6 +1322,41 @@
 		
 		
 			</div>
+			<div class="form-row">		
+				<div class="col-md-6">                  
+					<div class="md-form">
+						<select class="mdb-select md-form colorful-select dropdown-primary ADDPro SECURITYMANT HYPVAL LPDTDBfields "  id="LPDT_HHYPOTYPE" name="LPDT_HHYPOTYPE">
+						<option value="">Select</option>
+						<option value="Current Assets">Current Assets</option>
+						<option value="Movable Fixed Assets">Movable Fixed Assets</option>
+					</select>
+					<label class="mdb-main-label BTxt9 ADDACTSEC">Hypothecation Type<span class="MndtryAstr"></span></label>
+					</div>
+				</div>	
+				<div class="col-md-6 " >                  
+					<div class="md-form">
+						<select class="mdb-select md-form colorful-select dropdown-primary ADDPro SECURITYMANT HYPVAL LPDTDBfields " onchange="CHKCHRGTYP();" id="LPDT_HCHRGTYP" name="LPDT_HCHRGTYP">
+						<option value="">Select</option>
+						<option value="Pari-passo - 1st charge">Pari-passo - 1st charge</option>
+						<option value="Pari-passo - 2nd charge">Pari-passo - 2nd charge</option>
+						<option value="Exclusive">Exclusive</option>
+						<option value="Subservient">Subservient</option>
+						<option value="Consortium">Consortium</option>
+						<option value="others">others</option>
+					</select>
+					<label class="mdb-main-label BTxt9 ADDACTSEC">Charge Type<span class="MndtryAstr"></span></label>
+					</div>
+				</div>	
+				
+			</div>	
+			<div class="form-row HOTHR">
+			<div class="col-md-6">
+                <div class="md-form">
+                  	<input type="text" id="LPDT_HOTHER" name="LPDT_HOTHER"  class="form-control ADDPro HYPVAL    LPDTDBfields">
+                    <label for="LPDT_HOTHER" class="ADDACTSEC">Others<span class="MndtryAstr"></span></label>
+                </div>
+            </div>
+			</div>			
 		</div>
 
 
@@ -1154,34 +1485,31 @@
         
        	 
 			<div class="form-row  ADDFIELDS">
-			 <div class="col-md-6">
-                  <div class="md-form">
-          
-               <div class="select-radio  ADDFIELDSMND"> 
-                    <div class="custom-control custom-radio custom-control-inline">
-  <input type="radio" class="custom-control-input ADDPro LPDTDBfields" onclick="CheckPropOwner();" value="Sole" id="Sole" name="LPDT_PROPOWNSHIP">
-  <label class="custom-control-label" for="Sole">Sole</label>
-</div>
+				<div class="col-md-6">
+					<div class="md-form">          
+						<div class="select-radio  ADDFIELDSMND"> 
+							<div class="custom-control custom-radio custom-control-inline">
+								<input type="radio" class="custom-control-input ADDPro LPDTDBfields" onclick="CheckPropOwner();" value="Sole" id="Sole" name="LPDT_PROPOWNSHIP">
+								<label class="custom-control-label" for="Sole">Sole</label>
+							</div>
 
 
-<div class="custom-control custom-radio custom-control-inline">
-  <input type="radio" class="custom-control-input ADDPro LPDTDBfields" onclick="CheckPropOwner();"  value="Joint" id="Joint" name="LPDT_PROPOWNSHIP">
-  <label class="custom-control-label" for="Joint">Joint</label>
-</div>
-</div>
-        <label class="mdb-main-label BTxt9">Property Ownership <span class="MndtryAstr">*</span></label>      
-     </div>
- </div>
-		
-		 <div class="col-md-6">
-				<div class="md-form">
-                  	<input type="text" id="LPDT_PROJECTNAME" name="LPDT_PROJECTNAME"  class="form-control NoSpecialChar  LPDTDBfields">
-                    <label for="LPDT_PROJECTNAME" class="ADDPro ACTVALADD">Project Name</label>
-             </div>
+							<div class="custom-control custom-radio custom-control-inline">
+								<input type="radio" class="custom-control-input ADDPro LPDTDBfields" onclick="CheckPropOwner();"  value="Joint" id="Joint" name="LPDT_PROPOWNSHIP">
+								<label class="custom-control-label" for="Joint">Joint</label>
+							</div>
+						</div>
+							<label class="mdb-main-label BTxt9">Property Ownership <span class="MndtryAstr">*</span></label>      
+					</div>
 				</div>
-				
-              
-		</div>
+		
+				<div class="col-md-6">
+					<div class="md-form">
+						<input type="text" id="LPDT_PROJECTNAME" name="LPDT_PROJECTNAME"  class="form-control NoSpecialChar  LPDTDBfields">
+						<label for="LPDT_PROJECTNAME" class="ADDPro ACTVALADD">Project Name</label>
+					</div>
+				</div>
+			</div>
 	
 		
         <div class="form-row  ADDFIELDS">
@@ -1326,6 +1654,70 @@
                   </div>
                 </div>
            </div>
+		   
+		           <div class="form-row ADDFIELDS">
+            <div class="col">
+                  <div class="md-form">
+                  	<input type="text" id="LPDT_LANDINSQFT" name="LPDT_LANDINSQFT" disabled class="form-control ADDAC COLAD EMVALADD IsNumberFields ADDFIELDSMND LPDTDBfields PERCHG">
+                    <label for="LPDT_LANDINSQFT" class="ADDAL ACTVALADD">Land Area in sqft<span class="MndtryAstr"></span></label>
+					</div>
+            </div>
+            <div class="col">
+                  <div class="md-form">
+                  	<input type="text" id="LPDT_BULDINSQFT" name="LPDT_BULDINSQFT" disabled class="form-control ADDAC COLAD EMVALADD IsNumberFields ADDFIELDSMND LPDTDBfields PERCHG">
+                    <label for="LPDT_BULDINSQFT" class="ADDAL ACTVALADD">Buildup area in sqft<span class="MndtryAstr"></span></label>
+					</div>
+            </div>			
+		</div>	
+		<div class="form-row ADDFIELDS">
+			<div class="col-md-6">                  
+                  <div class="md-form">
+                    <select class="mdb-select md-form colorful-select dropdown-primary ADDPro LPDTDBfields EMVALADD ADDFIELDSMND " onchange="MORTGETYP();" id="LPDT_MORTTYPE" name="LPDT_MORTTYPE">
+						<option value="">Select</option>  			
+						<option value="Single">Single</option>
+						<option value="Joint">Joint</option>
+					</select>
+						<label class="mdb-main-label BTxt9">Mortgage Type<span class="MndtryAstr"></span></label>
+                  </div>
+            </div>		
+			<div class="col-md-6">                  
+                  <div class="md-form">
+                    <select class="mdb-select md-form colorful-select dropdown-primary ADDPro LPDTDBfields EMVALADD ADDFIELDSMND " onchange="CHKCHRGTYP();" id="LPDT_CHRGTYPE" name="LPDT_CHRGTYPE">
+                  	<option value="">Select</option>
+  					<option value="Pari-passo - 1st charge">Pari-passo - 1st charge</option>
+ 					<option value="Pari-passo - 2nd charge">Pari-passo - 2nd charge</option>
+					<option value="Exclusive">Exclusive</option>
+					<option value="Subservient">Subservient</option>
+					<option value="Consortium">Consortium</option>
+					<option value="others">others</option>
+					
+
+				</select>
+				<label class="mdb-main-label BTxt9">Charge Type<span class="MndtryAstr"></span></label>
+                  </div>
+               </div>
+		</div>
+		
+		<div class="form-row ADDFIELDS BNKGRA">
+					<div class="col-md-6">                  
+                  <div class="md-form">
+                    <select class="mdb-select md-form colorful-select dropdown-primary ADDPro LPDTDBfields EMVALADD ADDFIELDSMND "  id="LPDT_PBNKNAME" name="LPDT_PBNKNAME">
+						<option value="">Select</option>  			
+						<option value="Multiple Banking Arrangement">Multiple Banking Arrangement</option>
+						<option value="Consortium">Consortium</option>
+					</select>
+						<label class="mdb-main-label BTxt9">Bank name<span class="MndtryAstr"></span></label>
+                  </div>
+            </div>	
+		</div>
+		<div class="form-row ADDFIELDS OTHR">		
+            <div class="col-md-6">
+                <div class="md-form">
+                  	<input type="text" id="LPDT_OTHER" name="LPDT_OTHER" disabled class="form-control COLAD ADDAC EMVALADD   LPDTDBfields">
+                    <label for="LPDT_OTHER" class="ADDAL ACTVALADD">Others<span class="MndtryAstr"></span></label>
+                </div>
+            </div>
+		</div>
            <div class="form-row ADDFIELDS VECH CHKBX">
             <div class="col-md-6">
             	<div class="md-form">
@@ -1426,7 +1818,167 @@
 		</br>
 		</br>
 			</div>
-	 
+	 <div class="form-row IMPLEMENT">
+		<div class="col-md-6">
+            <div class="md-form">
+                <select class="mdb-select md-form colorful-select dropdown-primary LPDTDBfields IMPLEMND"  id="LPDT_IMPCATEGORY" name="LPDT_IMPCATEGORY">
+                <option value="">Select</option>
+				<option value="Small">Small</option>
+				<option value="Medium">Medium</option>
+				<option value="Big">Big</option>
+				</select>
+				<label class="mdb-main-label BTxt9">Category<span class="MndtryAstr"></span></label>
+            </div>
+		</div>
+		<div class="col-md-6">
+            <div class="md-form">
+                <select class="mdb-select md-form colorful-select dropdown-primary LPDTDBfields IMPLEMND"  id="LPDT_IMPLEMENT" name="LPDT_IMPLEMENT">
+                <option value="">Select</option>
+				<option value="Rotavator">Rotavator</option>
+				<option value="Power Harrow">Power Harrow</option>
+				<option value="Compost Shredder">Compost Shredder</option>
+				</select>
+				<label class="mdb-main-label BTxt9">Implement<span class="MndtryAstr"></span></label>
+            </div>
+		</div>
+		 	  
+	</div>
+	<div class="form-row IMPLEMENT">
+		<!--<div class="col-md-6">
+            <div class="md-form">
+                <input type="text" id="LPDT_IMPLMANUF" name="LPDT_IMPLMANUF" class="form-control LPDTDBfields IMPLEMND">
+                <label for="LPDT_IMPLMANUF" class="ADDAL ACTVALADD">Manufacturer <span class="MndtryAstr"></span></label>
+            </div>
+		</div>
+		<div class="col-md-6">
+            <div class="md-form">
+                <input type="text" id="LPDT_IMPLMODEL" name="LPDT_IMPLMODEL" class="form-control LPDTDBfields IMPLEMND">
+                <label for="LPDT_IMPLMODEL" class="ADDAL ACTVALADD">Model <span class="MndtryAstr"></span></label>
+            </div>
+		</div>		-->
+		<div class="col-md-6">
+            <div class="md-form">
+                <select class="mdb-select md-form colorful-select dropdown-primary LPDTDBfields IMPLEMND" onchange="GETMODEL()" id="LPDT_IMPLMANUF" name="LPDT_IMPLMANUF">
+                <option value="">Select</option>
+
+				</select>
+				<label class="mdb-main-label BTxt9">Manufacturer<span class="MndtryAstr"></span></label>
+            </div>
+		</div>
+				<div class="col-md-6">
+            <div class="md-form">
+                <select class="mdb-select md-form colorful-select dropdown-primary LPDTDBfields IMPLEMND" onchange="GETVARIANT()" id="LPDT_IMPLMODEL" name="LPDT_IMPLMODEL">
+                <option value="">Select</option>
+
+				</select>
+				<label class="mdb-main-label BTxt9">Model<span class="MndtryAstr"></span></label>
+            </div>
+		</div>
+
+		 	  
+	</div>
+	<div class="form-row IMPLEMENT">
+		<div class="col-md-6">
+            <div class="md-form">
+                <input type="text" id="LPDT_IMPLVARIANT" name="LPDT_IMPLVARIANT" class="form-control LPDTDBfields IMPLEMND">
+                <label for="LPDT_IMPLVARIANT" class="ADDAL ACTVALADD">Variant <span class="MndtryAstr"></span></label>
+            </div>
+		</div>
+		<div class="col-md-6">
+            <div class="md-form">
+                <input type="text" id="LPDT_IMPLASTDESC" name="LPDT_IMPLASTDESC" class="form-control LPDTDBfields IMPLEMND">
+                <label for="LPDT_IMPLASTDESC" class="ADDAL ACTVALADD">Asset description <span class="MndtryAstr"></span></label>
+            </div>
+		</div>
+		 	  
+	</div>
+	<div class="form-row IMPLEMENT">
+		<div class="col-md-6">
+            <div class="md-form">
+                <input type="text" id="LPDT_IMPLASTCOST" name="LPDT_IMPLASTCOST" class="form-control LPDTDBfields IMPLEMND IsNumberFields">
+                <label for="LPDT_IMPLASTCOST" class="ADDAL ACTVALADD">Asset Cost <span class="MndtryAstr"></span></label>
+            </div>
+		</div>
+		<div class="col-md-6">
+            <div class="md-form">
+                <input type="text" id="LPDT_IMPLMARGMONY" name="LPDT_IMPLMARGMONY" class="form-control LPDTDBfields IMPLEMND IsNumberFields">
+                <label for="LPDT_IMPLMARGMONY" class="ADDAL ACTVALADD">Margin Money <span class="MndtryAstr"></span></label>
+            </div>
+		</div>
+		 	  
+	</div>
+	<div class="form-row IMPLEMENT">
+		<div class="col-md-6">
+            <div class="md-form">
+                <input type="text" id="LPDT_IMPLDEALNAME" name="LPDT_IMPLDEALNAME" class="form-control LPDTDBfields IMPLEMND">
+                <label for="LPDT_IMPLDEALNAME" class="ADDAL ACTVALADD">Dealer Name <span class="MndtryAstr"></span></label>
+            </div>
+		</div>
+		 	  
+	</div>
+	<div class="form-row IMPLEMENT">
+		<div class="col Btxt3">RC Details</div>				
+	</div>
+	<div class="form-row IMPLEMENT">
+		<div class="col-md-6">
+            <div class="md-form">
+                <input type="text" id="LPDT_IMPLREGNO" name="LPDT_IMPLREGNO" class="form-control LPDTDBfields">
+                <label for="LPDT_IMPLREGNO" class="ADDAL ACTVALADD">Reg No <span class="MndtryAstr"></span></label>
+            </div>
+		</div>
+		<div class="col-md-6">
+            <div class="md-form">
+                <input type="text" id="LPDT_IMPLNAMEOWN" name="LPDT_IMPLNAMEOWN" class="form-control LPDTDBfields">
+                <label for="LPDT_IMPLNAMEOWN" class="ADDAL ACTVALADD">Name of Owner <span class="MndtryAstr"></span></label>
+            </div>
+		</div>
+		 	  
+	</div>
+	<div class="form-row IMPLEMENT">
+		<div class="col-md-6">
+            <div class="md-form">
+                <input type="text" id="LPDT_IMPLMAKE" name="LPDT_IMPLMAKE" class="form-control LPDTDBfields">
+                <label for="LPDT_IMPLMAKE" class="ADDAL ACTVALADD">Make <span class="MndtryAstr"></span></label>
+            </div>
+		</div>
+		<div class="col-md-6">
+            <div class="md-form">
+                <input type="text" id="LPDT_IMPLRCMODEL" name="LPDT_IMPLRCMODEL" class="form-control LPDTDBfields">
+                <label for="LPDT_IMPLRCMODEL" class="ADDAL ACTVALADD">Model <span class="MndtryAstr"></span></label>
+            </div>
+		</div>
+		 	  
+	</div>
+	<div class="form-row IMPLEMENT">
+		<div class="col-md-6">
+            <div class="md-form">
+                <input type="text" id="LPDT_IMPLENGNO" name="LPDT_IMPLENGNO" class="form-control LPDTDBfields">
+                <label for="LPDT_IMPLENGNO" class="ADDAL ACTVALADD">Eng No <span class="MndtryAstr"></span></label>
+            </div>
+		</div>
+		<div class="col-md-6">
+            <div class="md-form">
+                <input type="text" id="LPDT_IMPLCHASNO" name="LPDT_IMPLCHASNO" class="form-control LPDTDBfields">
+                <label for="LPDT_IMPLCHASNO" class="ADDAL ACTVALADD">Chasis No <span class="MndtryAstr"></span></label>
+            </div>
+		</div>
+		 	  
+	</div>
+	<div class="form-row IMPLEMENT">
+		<div class="col-md-6">
+            <div class="md-form">
+                <input type="text" id="LPDT_IMPLMANUMONYR" name="LPDT_IMPLMANUMONYR" class="form-control LPDTDBfields">
+                <label for="LPDT_IMPLMANUMONYR" class="ADDAL ACTVALADD">Manufactured Month & Year <span class="MndtryAstr"></span></label>
+            </div>
+		</div>
+		<div class="col-md-6">
+            <div class="md-form">
+                <input type="text" id="LPDT_IMPLVEHIAGE" name="LPDT_IMPLVEHIAGE" class="form-control LPDTDBfields IsNumberFields">
+                <label for="LPDT_IMPLVEHIAGE" class="ADDAL ACTVALADD">Vehicle Age <span class="MndtryAstr"></span></label>
+            </div>
+		</div>
+		 	  
+	</div>
 		 
         </br>
        	    <div class="form-row">

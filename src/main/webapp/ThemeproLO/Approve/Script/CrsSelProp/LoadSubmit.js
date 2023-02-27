@@ -204,12 +204,12 @@ $(document).ready(function() {
 		if($(html).find("[name='ACHP_APPCONSIDER']").val() == "Yes")
 		{
 			var RCnt=$(this).closest('.DYNROW').attr('data-row')
-			var MndtryChk =CheckDocMndtryCombo('Table7'+RCnt,'Mndtry','')
+			/* var MndtryChk =CheckDocMndtryCombo('Table7'+RCnt,'Mndtry','')
 			 if(MndtryChk != "")
 			{
 			   alert(MndtryChk);
 			   return;
-			}
+			} */
 		}
 		}
     	}
@@ -709,6 +709,7 @@ $(document).ready(function() {
 
 
          if ($(this).text() == "Save & Next") {
+		 $("#Save").click();
             NXTTAB(this);
         }
     });

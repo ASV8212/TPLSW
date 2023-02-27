@@ -505,7 +505,7 @@ $(document).ready(function() {
 					$($("#Branch").find(".SANHEAD")[10]).text("")
 				}
 				
-				if($("#DMY7").val().split("|")[8]=="T301"||$("#DMY7").val().split("|")[8]=="T302"||$("#DMY7").val().split("|")[8]=="T303"||$("#DMY7").val().split("|")[8]=="T311")
+				if($("#DMY7").val().split("|")[8]=="T301"||$("#DMY7").val().split("|")[8]=="T302"||$("#DMY7").val().split("|")[8]=="T303"||$("#DMY7").val().split("|")[8]=="T311"||$("#DMY7").val().split("|")[8]=="T312"||$("#DMY7").val().split("|")[8]=="T313")
 				{
 					$($("#Branch").find(".SANHEAD")[0]).text("Additional Documents")
 					$($("#Branch").find(".SANHEAD")[1]).text("Pre Sanction Documents")

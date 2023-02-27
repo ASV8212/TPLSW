@@ -18,9 +18,9 @@
         </div>
 		</br>
 		<div class="form-row">
-				   <div class="col-md-4">
+				   <div class="col-md-4"style="display: none;">
                         <div class="md-form">
-                           <select class="md-form colorful-select dropdown-primary  ECOMDBfields ECOMMndtry"  onchange="LIMITELIGIBLE();"   id="ECOM_TYOFVEHICLE" name="ECOM_TYOFVEHICLE">
+                           <select class="md-form colorful-select dropdown-primary  ECOMDBfields "  onchange="LIMITELIGIBLE();"   id="ECOM_TYOFVEHICLE" name="ECOM_TYOFVEHICLE">
                            <option value="">--Select--</option>
 						   <option value="LCV">LCV</option>
 						   <option value="ICV">ICV</option>
@@ -42,14 +42,15 @@
                    <label for="ECOM_MAXFUNSCH" class="">Max funding under Scheme<span class="MndtryAstr">*</span></label>
                 </div>
             </div>
-		</div>
-		<div class="form-row">
 			<div class="col-md-4">
                 <div class="md-form">
                    <input type="text" id="ECOM_LIMITELIGI" name="ECOM_LIMITELIGI" maxlength="15"    class="form-control IsCURCommaFields NoSpecialChar  ECOMDBfields ">
                    <label for="ECOM_LIMITELIGI" class="">Limit eligible<span class="MndtryAstr">*</span></label>
                 </div>
-            </div>	
+            </div>
+		</div>
+		<div class="form-row">
+				
 			<div class="col-md-4">
                 <div class="md-form">
                    <input type="text" id="ECOM_MAXFUNDALLOW" name="ECOM_MAXFUNDALLOW" maxlength="15"    class="form-control IsCURCommaFields NoSpecialChar  ECOMDBfields ">
@@ -61,11 +62,17 @@
                    <input type="text" id="ECOM_PROPOSEAMT" name="ECOM_PROPOSEAMT" maxlength="15"    class="form-control IsCURCommaFields NoSpecialChar  ECOMDBfields ">
                    <label for="ECOM_PROPOSEAMT" class="">Proposed Amount<span class="MndtryAstr">*</span></label>
                 </div>
-            </div>						
+            </div>				
+			<div class="col-md-4">
+                <div class="md-form">
+                   <input type="text" id="ECOM_LNAMTREQ" disabled name="ECOM_LNAMTREQ" maxlength="15"    class="form-control IsCURCommaFields NoSpecialChar  ECOMDBfields ">
+                   <label for="ECOM_LNAMTREQ" class="">Loan Amount Requested<span class="MndtryAstr">*</span></label>
+                </div>
+            </div>				
 		</div>
                   </br>
 				  </br>
-                  <div class="form-row">
+                  <div class="form-row"style="display:none">
                      <div class="col d-flex justify-content-center">
                         <button type="button" id="Save" data-aria="LSW_TECOMANUAL|ECOM|ECOM_UNIQID" class="btn btn-Syeloutline waves-effect waves-light Save FormSave">Save</button>   
                         <button type="button" data-aria="LSW_TECOMANUAL|ECOM|ECOM_UNIQID" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 

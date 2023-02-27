@@ -416,7 +416,7 @@ $(document).on("blur",".INCM",function()
 	 
 	ROI=$("#CGST_PROPOSEINR").val();
 	Tenur=$("#CGST_PROTENOR").val();
-	 var result=UI_getdata(ROI,Tenur,LnAmt,"","","LSW_SGETEMI_DATA");
+	 var result=UI_getdata(ROI,Tenur,LnAmt,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 	 var EMI=$(result).find("EMI").text();
 	 	if(EMI=='')
 	{

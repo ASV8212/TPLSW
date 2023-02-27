@@ -123,7 +123,7 @@
             </div>	
             <div class="col-md-4">
                 <div class="md-form">
-                    <input type="text" id="CTLN_PREFUNDFFR"  maxlength="5" name="CTLN_PREFUNDFFR" class="form-control IsNumberFields CTLNMndtry IsPercentageSPL CTLNDBfields">
+                    <input type="text" id="CTLN_PREFUNDFFR"  maxlength="5" disabled name="CTLN_PREFUNDFFR" class="form-control IsNumberFields CTLNMndtry IsPercentageSPL CTLNDBfields">
                     <label for="CTLN_PREFUNDFFR" class="">Pre Funding FFR %<span class="MndtryAstr">*</span></label>
                 </div>
             </div>
@@ -148,50 +148,77 @@
                     <label for="CTLN_VALUTNAMT" class="">Valuation Amount<span class="MndtryAstr">*</span></label>
                 </div>
             </div>
+			<div class="col-md-4">
+                <div class="md-form">
+                    <input type="text" id="CTLN_BLUBOOKVAL"  maxlength="30"  name="CTLN_BLUBOOKVAL" class="form-control CTLNMndtry IsCURCommaFields IsNumberFields CTLNDBfields">
+                    <label for="CTLN_BLUBOOKVAL" class="">Blue Book Value<span class="MndtryAstr">*</span></label>
+                </div>
+            </div>
+			</div>
+			<div class="form-row">
+			
             <div class="col-md-4">
                 <div class="md-form">
                     <input type="text" id="CTLN_LNAMTREQ"  maxlength="30" disabled name="CTLN_LNAMTREQ" class="form-control IsCURCommaFields IsNumberFields CTLNDBfields">
                     <label for="CTLN_LNAMTREQ" class="">Loan amount Requested<span class="MndtryAstr">*</span></label>
                 </div>
-            </div>	
-            		
-		</div>
-		<div class="form-row">
+            </div>
+			
 		    <div class="col-md-4">
                 <div class="md-form">
-                    <input type="text" id="CTLN_MAXPERAMT" disabled maxlength="25" name="CTLN_MAXPERAMT" class="form-control IsCURCommaFields IsNumberFields CTLNDBfields">
+                    <input type="text" id="CTLN_MAXPERAMT"  maxlength="25" disabled name="CTLN_MAXPERAMT" onblur="Getpropsdamt(); PropAmnt() ;" class="form-control IsCURCommaFields IsNumberFields CTLNDBfields">
                     <label for="CTLN_MAXPERAMT" class="">Max Permisible amount<span class="MndtryAstr">*</span></label>
                 </div>
-            </div>
-            <div class="col-md-4">
+            </div>	   
+			
+			<div class="col-md-4">
                 <div class="md-form">
-                    <input type="text" id="CTLN_KLIAMT"  maxlength="30" name="CTLN_KLIAMT" class="form-control IsCURCommaFields IsNumberFields CTLNMndtry CTLNDBfields">
+                    <input type="text" id="CTLN_KLIAMT"  maxlength="30" name="CTLN_KLIAMT" onblur="Getpropsdamt(); PropAmnt() ;" class="form-control IsCURCommaFields IsNumberFields CTLNMndtry CTLNDBfields">
                     <label for="CTLN_KLIAMT" class="">KLI Amount<span class="MndtryAstr">*</span></label>
                 </div>
-           </div>
-           <div class="col-md-4">
+				</div>	
+				</div>
+			<div class="form-row">	
+				<div class="col-md-4">
+					<div class="md-form">
+						<input type="text" id="CTLN_HOSICASH"  maxlength="30" name="CTLN_HOSICASH" onblur="Getpropsdamt(); PropAmnt() ;" class="form-control IsCURCommaFields IsNumberFields CTLNMndtry CTLNDBfields">
+						<label for="CTLN_HOSICASH" class="">Hospital Cash<span class="MndtryAstr">*</span></label>
+					</div>
+				</div>
+			 <div class="col-md-4">
                 <div class="md-form">
-                    <input type="text" id="CTLN_PROPOSEAMT"  maxlength="30" name="CTLN_PROPOSEAMT" class="form-control IsCURCommaFields PropAmt IsNumberFields CTLNDBfields CTLNMndtry">
+                    <input type="text" id="CTLN_PROPOSEAMT" disabled maxlength="30"  name="CTLN_PROPOSEAMT" onblur="PropAmnt();" class="form-control IsCURCommaFields  IsNumberFields CTLNDBfields CTLNMndtry">
                     <label for="CTLN_PROPOSEAMT" class="">Proposed amount<span class="MndtryAstr">*</span></label>
                 </div>
-           </div>		
-	    </div>
-       <div class="form-row">		
-         <div class="col-md-4">
+           </div>
+		   		<div class="col-md-4">
            <div class="md-form">
               <input type="text" id="CTLN_NETLTV"  maxlength="5" disabled name="CTLN_NETLTV" class="form-control IsNumberFields IsPercentageSPL  CTLNDBfields CTLNMndtry">
               <label for="CTLN_NETLTV" class="">Net LTV%<span class="MndtryAstr">*</span></label>
            </div>
          </div>	
-		 <div class="col-md-4">
-                <div class="md-form">
-                    <input type="text" id="CTLN_HOSICASH"  maxlength="30" name="CTLN_HOSICASH" class="form-control IsCURCommaFields IsNumberFields CTLNMndtry CTLNDBfields">
-                    <label for="CTLN_HOSICASH" class="">Hospital Cash<span class="MndtryAstr">*</span></label>
-                </div>
+
+           
+			</div>
+	 
+            		
+		
+
+       <div class="form-row">	
+          
+         <div class="col-md-4">
+           <div class="md-form">
+              <input type="text" id="CTLN_GROSSLTV"  maxlength="5" disabled name="CTLN_GROSSLTV" class="form-control IsNumberFields IsPercentageSPL  CTLNDBfields CTLNMndtry">
+              <label for="CTLN_GROSSLTV" class="">Gross LTV%<span class="MndtryAstr">*</span></label>
            </div>
-       </div>		
+         </div>			 
+	    </div>
+
+</div>
+    		
      </br>
-        <div class="form-row">
+        <div class="form-row"style="display:none">
+		
             <div class="col d-flex justify-content-center">
                 <button type="button" id="Save" data-aria="LSW_TTERMLNDETAILS|CTLN|CTLN_SCHEMEID" data-form="TermLoan" class="btn btn-Syeloutline waves-effect waves-light Save FormSave">Save</button>   
                 <button type="button" data-aria="LSW_TTERMLNDETAILS|CTLN|CTLN_SCHEMEID" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button>

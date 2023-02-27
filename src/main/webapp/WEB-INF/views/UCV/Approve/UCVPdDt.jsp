@@ -46,7 +46,7 @@
                   </div>
 				  <div class="col-md-4">
                      <div class="md-form">
-                    <select class="mdb-select md-form colorful-select dropdown-primary APDDMndtry APDDDBfields" onchange="getPDNames();" multiple id="APDD_PDDONEBY" name="APDD_PDDONEBY">
+                    <select class="mdb-select md-form colorful-select dropdown-primary APDDMndtry APDDDBfields PDSEARCH" searchable="Search here.." onchange="getPDNames();" multiple id="APDD_PDDONEBY" name="APDD_PDDONEBY">
 				   <option value="" disabled>Select</option>
                    <option value="ASM">ASM</option>
 					<option value="RSM">RSM</option>

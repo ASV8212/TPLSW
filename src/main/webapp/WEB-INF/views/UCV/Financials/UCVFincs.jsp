@@ -2137,7 +2137,7 @@
             
           <div class="form-row">
            <div class="col">
-             <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table2',{spname:'LOAN_SGETEMISCHEDULE_LOS',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#RCCM_UNIQUID').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||1','REPAYGRD');" id="BTNRCUGRD" name="BTNRCUGRD" />
+             <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table2',{spname:'LOAN_SGETEMISCHEDULE_LOS',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#RCCM_LOANUNIQID').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||1','REPAYGRD');" id="BTNRCUGRD" name="BTNRCUGRD" />
              <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" id="Table2">
              </table>
           </div>

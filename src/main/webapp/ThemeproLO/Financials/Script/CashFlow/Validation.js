@@ -410,7 +410,7 @@ $(document).on("blur",".SUBEMI",function(){
 	 
 	ROI=$("#CAFL_INTERATE").val();
 	Tenur=$("#CAFL_PROPOSEDTENU").val();
-	 var result=UI_getdata(ROI,Tenur,LnAmt,"","","LSW_SGETEMI_DATA");
+	 var result=UI_getdata(ROI,Tenur,LnAmt,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 	 var EMI=$(result).find("EMI").text();
 	 	if(EMI=='')
 	{
@@ -439,19 +439,11 @@ $(document).on("blur",".SUBEMI",function(){
 	{
 		ProposedEMI=0;
 	}
-	if(ProposedEMI==Infinity)
-	{
-		ProposedEMI=0;
-	}
 	if(EMIPerLakh=='')
 	{
 		EMIPerLakh=0;
 	}
 	if(isNaN(EMIPerLakh))
-	{
-		EMIPerLakh=0;
-	}
-	if(EMIPerLakh==Infinity)
 	{
 		EMIPerLakh=0;
 	}
@@ -464,19 +456,11 @@ $(document).on("blur",".SUBEMI",function(){
 	{
 		MarginVal=0;
 	}
-	if(MarginVal==Infinity)
-	{
-		MarginVal=0;
-	}
 	if(Proval=='')
 	{
 		Proval=0;
 	}
 	if(isNaN(Proval))
-	{
-		Proval=0;
-	}
-	if(Proval==Infinity)
 	{
 		Proval=0;
 	}
@@ -710,11 +694,7 @@ function Chkproflow()
 	if(isNaN(Eleresult))
 	{
 	  Eleresult=0;
-	}
-     if(Eleresult==Infinity)
-	 {
-		 Eleresult=0;
-	 }		 
+	}	
 	//Eleresult=CURINRCommaSep(parseFloat(Eleresult).toFixed(2));	
 	$("#CAFL_DSR").val('60');
 	$("#CAFL_DSR").next().addClass('active');
@@ -830,7 +810,7 @@ function EMIOBILIFLOW()
 		{
 		Tenur=0;
 		}
-		var result=UI_getdata(ROI,Tenur,LnAmt,"","","LSW_SGETEMI_DATA");
+		var result=UI_getdata(ROI,Tenur,LnAmt,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 		var EMI=$(result).find("EMI").text();
 	
 		if(isNaN(EMI))
@@ -873,10 +853,6 @@ function EMIOBILIFLOW()
 		{
 		finalmin=0;
 		}
-		if(finalmin==Infinity)
-		{
-			finalmin=0;
-		}
 		//finladjust=CURINRCommaSep(parseFloat(finladjust).toFixed(2));
 		$("#CAFL_LOANELIGIBIL").val(CURINRCommaSep(parseFloat(finalmin).toFixed(2)));
 		$("#CAFL_LOANELIGIBIL").next().addClass('active'); 
@@ -905,10 +881,6 @@ function EMIOBILIFLOW()
 		{
 			FINALPRO=0;
 		}
-		if(FINALPRO==Infinity)
-		{
-			FINALPRO=0;
-		}
 		$("#CAFL_PROPOSLOAN").val(CURINRCommaSep(parseFloat(FINALPRO).toFixed(2)));
 		$("#CAFL_PROPOSLOAN").next().addClass('active'); 
 		
@@ -931,10 +903,6 @@ function EMIOBILIFLOW()
 		
 		var FINALLTV=parseFloat(PROPOSELN)/parseFloat(PROPERVAL)*100;
 		if(isNaN(FINALLTV))
-		{
-			FINALLTV=0;
-		}
-		IF(FINALLTV==Infinity)
 		{
 			FINALLTV=0;
 		}

@@ -285,10 +285,10 @@ function GetFinancialYears(row)
 {	
 	row=row+1
 	var years=$("#FELD_LSTMONYRBOUNCED"+row).val()
-	var xml=UI_getdata("","","","","","LSW_SGETFIANCIYEARS")
+	
 
     $("#FELD_LSTMONYRBOUNCED"+row).html("")
-	$("#FELD_LSTMONYRBOUNCED"+row).append($(xml).find("Years").html());
+	$("#FELD_LSTMONYRBOUNCED"+row).append($(xml_Finc).find("Years").html());
 	$("#FELD_LSTMONYRBOUNCED"+row).material_select();	
 	$("#FELD_LSTMONYRBOUNCED"+row).val(years);
 	$("#FELD_LSTMONYRBOUNCED"+row).material_select();
@@ -502,8 +502,8 @@ function CheckInsitute(OurIns,Name){
 	
 	if($('#'+OurIns).is(':checked')==true)
 	{
-       	var xml=UI_getdata("","","","","","LSW_SINSITUTIONNAME")
-		$("#"+Name).val($(xml).find("Result").text());
+       	
+		$("#"+Name).val($(xml_Ins).find("Result").text());
 		$("#"+Name).next().addClass('active');
 		$("#"+Name).attr("disabled",true);
 	}

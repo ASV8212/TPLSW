@@ -85,7 +85,7 @@
                               <label class="mdb-main-label BTxt9">Applicable<span class="MndtryAstr">*</span></label>
                            </div>
                         </div>
-						 <div class="col-md-4">
+						 <div class="col-md-4" style="display:none">
                           <div class="md-form">
                               <select class="md-form colorful-select dropdown-primary  ALIHDBfields"  id="ALIH_LOANID" name="ALIH_LOANID">
                                
@@ -112,7 +112,7 @@
                         <div class="col-md-4">
                            <div class="md-form">
                               <input type="text" id="ALIH_INSTNR" maxlength="2"  onblur="INSURTENURE('ALIH_INSTNR'+$(this).closest('.DYNROW').attr('data-row'),this)"   name="ALIH_INSTNR" class="APPSTA ALIHMndtry form-control ALIHDBfields  IsNumberFields">
-                              <label for="ALIH_INSTNR" class="">Premium Tenure<span class="MndtryAstr">*</span></label>
+                              <label for="ALIH_INSTNR" class="">Premium Tenure in Years<span class="MndtryAstr">*</span></label>
                            </div>
                         </div>
                      </div>
@@ -125,8 +125,8 @@
                         </div>
                         <div class="col-md-4">
                            <div class="md-form">
-                              <input type="text" id="ALIH_INSAMOUNT"  maxlength="11"  name="ALIH_INSAMOUNT" class=" form-control ALIHDBfields PMAMT IsNumberFields IsCURCommaFields">
-                              <label for="ALIH_INSAMOUNT" class="">Premium Amount<span class="MndtryAstr"></span></label>
+                              <input type="text" id="ALIH_INSAMOUNT"  maxlength="11"  name="ALIH_INSAMOUNT" class=" form-control ALIHMndtry ALIHDBfields PMAMT IsNumberFields IsCURCommaFields">
+                              <label for="ALIH_INSAMOUNT" class="">Premium Amount<span class="MndtryAstr">*</span></label>
                            </div>
                       </div>
 					  <div class="col-md-4 HDFC" style="display:none"> 

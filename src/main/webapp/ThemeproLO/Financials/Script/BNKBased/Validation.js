@@ -245,19 +245,11 @@ $(document).on("blur",".PERCEN",function(){
 	{
 		net=0;
 	}
-	if(net==Infinity)
-	{
-		net=0;
-	}
 	 if(net2=='')
 	{
 		net2=0;
 	}
 	if(isNaN(net2))
-	{
-		net2=0;
-	}
-	if(net2==Infinity)
 	{
 		net2=0;
 	}
@@ -547,7 +539,7 @@ $(document).on("blur",".CALCMINIMUM",function(){
 	 
 	ROI=$("#CBBA_BPROPOSEINR").val();
 	Tenur=$("#CBBA_BPROTENOR").val();
-	 var result=UI_getdata(ROI,Tenur,LnAmt,"","","LSW_SGETEMI_DATA");
+	 var result=UI_getdata(ROI,Tenur,LnAmt,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 	 var EMI=$(result).find("EMI").text();
 	 	if(EMI=='')
 	{

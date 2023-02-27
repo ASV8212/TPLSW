@@ -448,19 +448,10 @@ function CalcInOutCkhPerc(InwBonc,OutwBonc,TotInwBonc,TotOutwBonc,InwPerc,OutwPe
 	{
 		OutwPerc1 = 0
 	}
-	 if(OutwPerc1==Infinity)
-	 {
-		OutwPerc1=0; 
-	 }
-   
-    if (isNaN(InwPerc1)) 
+	if (isNaN(InwPerc1)) 
 	{
 		InwPerc1 = 0
 	}
-	 if(InwPerc1==Infinity)
-	 {
-		InwPerc1=0; 
-	 }
 	if($.isNumeric(InwPerc1)==false)
 	{
 		
@@ -505,10 +496,6 @@ function CalcInOutCkhPerc(InwBonc,OutwBonc,TotInwBonc,TotOutwBonc,InwPerc,OutwPe
 	{
 		OutwPerc1 = 0
 	}
-	if(OutwPerc1=='Infinity')
-	{
-		OutwPerc1=0;
-	}
 	OutwPerc1=OutwPerc1.toFixed(2)
 	
 	$("#"+OutwPerc).val(OutwPerc1);
@@ -540,8 +527,6 @@ function STMLPageCalc()
 	
 	//$("#STML_REVCRDSUM").val(CURINRCommaSep(RevCrdSum.toFixed(0)));
 	$("#STML_PERCNBCRDSUM").val(CURINRCommaSep(PercRevCrdSum.toFixed(0)));
-	
-	
 }
 
 
@@ -559,19 +544,10 @@ if(isNaN(SUMAVG))
 {
 SUMAVG=0;
 }
-if(SUMAVG==Infinity)
-{
-SUMAVG=0;	
-}
 if(isNaN(MONTHAVG))
 {
 MONTHAVG=0;
 }
-if(MONTHAVG==Infinity)
-{
-MONTHAVG=0;
-}
-
     $("#STML_SUMAVG").val(CURINRCommaSep(parseFloat(SUMAVG).toFixed(2)));
 $("#STML_MONTHABB").val(CURINRCommaSep(parseFloat(MONTHAVG).toFixed(2)));
 $('#STML_SUMAVG').next().addClass('active');
@@ -595,10 +571,6 @@ if(isNaN(SUMAVGINFLOW))
 {
 SUMAVGINFLOW=0;
 }
-if(SUMAVGINFLOW=='Infinity')
-{
-	SUMAVGINFLOW=0;
-}
 
     $("#STML_TOTCRDSUM").val(CURINRCommaSep(parseFloat(SUMAVGINFLOW).toFixed(0)));
 	$('#STML_TOTCRDSUM').next().addClass('active');
@@ -616,11 +588,6 @@ if(isNaN(SUMAVGEXCLUSION))
 {
 SUMAVGEXCLUSION=0;
 }
-if(SUMAVGEXCLUSION=='Infinity')
-{
-SUMAVGEXCLUSION=0;	
-}
-
 	$("#STML_TOTNONBCRDSUM").val(CURINRCommaSep(parseFloat(SUMAVGEXCLUSION).toFixed(0)))
 	$('#STML_TOTNONBCRDSUM').next().addClass('active');
   
@@ -672,17 +639,9 @@ function Creditsum()
 	{
 		e=0;
 	}
-	if(e=='Infinity')
-	{
-	e=0;	
-	}
 	if(isNaN(g))
 	{
 		g=0;
-	}
-	if(g=='Infinity')
-	{
-	g=0;	
 	}
 	$("#STML_PERCCRDSUM").val(CURINRCommaSep(parseFloat(divsum).toFixed(2)));
 	$('#STML_PERCCRDSUM').next().addClass('active');
@@ -704,18 +663,9 @@ function Creditsum()
 	{
 		b1=0;
 	}
-	if(b1=='Infinity')
-	{
-	b1=0;	
-	}
-	
 	if(isNaN(f))
 	{
 		f=0;
-	}
-	if(f=='Infinity')
-	{
-	f=0;	
 	}
 	$("#STML_ADJUABB").val(CURINRCommaSep(parseFloat(mulsum).toFixed(0)));
 	$('#STML_ADJUABB').next().addClass('active');
@@ -744,23 +694,11 @@ function Finalabb()
 	{
 		i=0;
 	}
-	if(i=='Infinity')
-	{
-		i=0;
-	}
 	if(isNaN(j))
 	{
 		j=0;
 	}
-	if(j=='Infinity')
-	{
-		j=0;
-	}
 	if(isNaN(k))
-	{
-		k=0;
-	}
-	if(k=='Infinity')
 	{
 		k=0;
 	}
@@ -817,7 +755,7 @@ function Finalabb()
 	
 /* 	ROI=$("#CITR_PROPOSEINR").val();
 	Tenur=$("#CITR_PROTENOR").val(); */
-	 var result=UI_getdata(ROI,Tenur,LnAmt,"","","LSW_SGETEMI_DATA");
+	 var result=UI_getdata(ROI,Tenur,LnAmt,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 	 var EMI=$(result).find("EMI").text();
 	 	if(EMI=='')
 	{
@@ -857,15 +795,7 @@ function Finalabb()
 	{
 		i1=0;
 	}
-	if(i1=='Infinity')
-	{
-		i1=0;
-	}
 	if(isNaN(l1))
-	{
-		l1=0;
-	}
-	if(l1=='Infinity')
 	{
 		l1=0;
 	}
@@ -902,19 +832,11 @@ function Finalabb()
 	{
 		LOANN=0;
 	}
-	if(LOANN==Infinity)
-	{
-	LOANN=0;	
-	}
 	if(isNaN(LOANL))
 	{
 		LOANL=0;
 	}
 	if(isNaN(LOANM))
-	{
-		LOANM=0;
-	}
-	if(LOANM==Infinity)
 	{
 		LOANM=0;
 	}
@@ -961,25 +883,13 @@ function lapos()
 	{
 		LAPQ=0;
 	}
-	if(LAPQ==Infinity)
-	{
-	LAPQ=0;	
-	}
 	if(isNaN(LAPR))
 	{
 		LAPR=0;
 	}
-	if(LAPR==Infinity)
-	{
-	LAPR=0;	
-	}
 	if(isNaN(LAPS))
 	{
 		LAPS=0;
-	}
-	if(LAPS==Infinity)
-	{
-	LAPS=0;	
 	}
 	$("#STML_OUTSCONS").val(CURINRCommaSep(parseFloat(LAPTOTAL).toFixed(0)));
 	$("#STML_OUTSCONS").next().addClass('active'); 
@@ -1001,15 +911,7 @@ function lapos()
 	{
 		OUTP=0;
 	}
-	if(OUTP=='Infinity')
-	{
-		OUTP=0;
-	}
 	if(isNaN(OUTT))
-	{
-		OUTT=0;
-	}
-	if(OUTT=='Infinity')
 	{
 		OUTT=0;
 	}
@@ -1034,15 +936,7 @@ function lapos()
 	{
 		SALU=0;
 	}
-	if(SALU=='Infinity')
-	{
-		SALU=0;
-	}
 	if(isNaN(SALG))
-	{
-		SALG=0;
-	}
-		if(SALG=='Infinity')
 	{
 		SALG=0;
 	}
@@ -1086,23 +980,11 @@ function salsincl()
 	{
 		SALESI=0;
 	}
-	if(SALESI=='Infinity')
-	{
-		SALESI=0;
-	}
 	if(isNaN(SALESL))
 	{
 		SALESL=0;
 	}
-	if(SALESL=='Infinity')
-	{
-		SALESL=0;
-	}
 	if(isNaN(SALESTOTAL))
-	{
-		SALESTOTAL=0;
-	}
-	if(SALESTOTAL==Infinity)
 	{
 		SALESTOTAL=0;
 	}
@@ -1135,15 +1017,7 @@ function outstand(){
 	{
 		OUTSTAND3=0;
 	}
-	if(OUTSTAND3=='Infinity')
-	{
-		OUTSTAND3=0;
-	}
 	if(isNaN(OUTSTAND4))
-	{
-		OUTSTAND4=0;
-	}
-	if(OUTSTAND4=='Infinity')
 	{
 		OUTSTAND4=0;
 	}
@@ -1151,15 +1025,7 @@ function outstand(){
 	{
 		OUTSTAND5=0;
 	}
-	if(OUTSTAND5=='Infinity')
-	{
-		OUTSTAND5=0;
-	}
 	if(isNaN(TOTALOUT))
-	{
-		TOTALOUT=0;
-	}
-	if(TOTALOUT=='Infinity')
 	{
 		TOTALOUT=0;
 	}
@@ -1191,10 +1057,6 @@ function outstand(){
 	{
 		TOTALEXPO=0;
 	}
-		if(TOTALEXPO==Infinity)
-	{
-		TOTALEXPO=0;
-	}
 	$("#STML_PRIMTOTLONEXP").val(CURINRCommaSep(parseFloat(TOTALEXPO).toFixed(0)));
 	$("#STML_PRIMTOTLONEXP").next().addClass('active'); 
 	
@@ -1223,7 +1085,7 @@ function outstand(){
 	{
 		TOLEXPO=0;
 	}
-	if(TOLEXPO==Infinity)
+	if(TOLEXPO=="Infinity")
 		{
 			TOLEXPO=0;
 		}
@@ -1268,10 +1130,6 @@ function valueofwrk()
 	{
 		VALUEG=0;
 	}	
-	if(TOTALVAL==Infinity)
-		{
-			TOTALVAL=0;
-		}
 	$("#STML_WORKORDER").val(CURINRCommaSep(parseFloat(TOTALVAL).toFixed(2)));
 	$("#STML_WORKORDER").next().addClass('active'); 
 	
@@ -1287,10 +1145,6 @@ function valueofwrk()
 		$("#STML_WORKORDERVALID").val("true");
 	}
 	$("#STML_WORKORDERVALID").next().addClass('active'); 
-	if(WORKORD==Infinity)
-	{
-		WORKORD=0;
-	}
 	
 }
 //iii-(iv*50%)-(v*50%)

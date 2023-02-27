@@ -1,6 +1,14 @@
 
 function BANKSUMAVG()
 {
+	if($("#SABB_NOBANKACC").val()=='')
+	{
+		alert ('Please select Number of Bank accounts considered for eigibiity');
+		$("#SABB_BANKMONTHS").val('');
+		$("#SABB_BANKMONTHS").material_select();
+		return false;
+	}
+//Sum of Averages and Monthly ABB
 	var xmlSTATUS=UI_getdata($("#PrcsID").val(),"SUMAVG",$("#SABB_NOBANKACC").val(),$("#SABB_BANKMONTHS").val(),"","LSW_SABBCALCULATION")
 	
 	if($(xmlSTATUS).find('RESULT').text()!="SUCCESS")
@@ -27,7 +35,7 @@ function BANKSUMAVG()
 	 
 		
 		
-		
+//Total credit summation in Bank Account		
  
 	var xmlSTAT1=UI_getdata($("#PrcsID").val(),"SUMAVGINFLOW",$("#SABB_NOBANKACC").val(),$("#SABB_BANKMONTHS").val(),"","LSW_SABBCALCULATION")
 	
@@ -46,17 +54,107 @@ function BANKSUMAVG()
 	{
 		SUMAVGINFLOW=0;
 	}
-	if(SUMAVGINFLOW=='Infinity')
-	{
-		SUMAVGINFLOW=0;
-	}
 	
     	$("#SABB_TOTCREBANKACC").val(CURINRCommaSep(parseFloat(SUMAVGINFLOW).toFixed(2))); 
 		$('#SABB_TOTCREBANKACC').next().addClass('active');
 		
+//Total Adjusted Credit Summation (Business)		
+	var xmlCREDSUM=UI_getdata($("#PrcsID").val(),"SUMDEPINFLOW",$("#SABB_NOBANKACC").val(),$("#SABB_BANKMONTHS").val(),"","LSW_SABBCALCULATION")
+	if($(xmlCREDSUM).find('RESULT').text()!="SUCCESS")
+	{
+		alert($(xmlCREDSUM).find('RESULT').text())
+		return
+	}
+	var CREDSUM=$(xmlCREDSUM).find('CREDSUM').text()
+	//var MONTHAVG=$(xmlSTAT).find('MONTHAVG').text()
+	if(isNaN(CREDSUM))
+	{
+		CREDSUM=0;
+	}
+	if(isNaN(CREDSUM))
+	{
+		CREDSUM=0;
+	}
+	
+    	$("#SABB_ADJUSTCRESUM").val(CURINRCommaSep(parseFloat(CREDSUM).toFixed(2))); 
+		$('#SABB_ADJUSTCRESUM').next().addClass('active');
+//C1 C2
+	var XmlC1C2=UI_getdata($("#PrcsID").val(),"SUMDEPINFLOW",$("#SABB_NOBANKACC").val(),$("#SABB_BANKMONTHS").val(),"","LSW_SABBCALCULATION")
+	
+	if($(XmlC1C2).find('RESULT').text()!="SUCCESS")
+	{
+		alert($(XmlC1C2).find('RESULT').text())
+		return
+	}
+	var C1=$(XmlC1C2).find('SUMC1').text()
+	//var MONTHAVG=$(xmlSTAT).find('MONTHAVG').text()
+	if(isNaN(C1))
+	{
+		C1=0;
+	}
+	if(isNaN(C1))
+	{
+		C1=0;
+	}
+	
+    	$("#SABB_CRDSUMFIRST3").val(CURINRCommaSep(parseFloat(C1).toFixed(2))); 
+		$('#SABB_CRDSUMFIRST3').next().addClass('active');
+	var C1=$(XmlC1C2).find('SUMC2').text()
+	//var MONTHAVG=$(xmlSTAT).find('MONTHAVG').text()
+	if(isNaN(C1))
+	{
+		C1=0;
+	}
+	if(isNaN(C1))
+	{
+		C1=0;
+	}
+	
+    	$("#SABB_CRDSUMLAST3").val(CURINRCommaSep(parseFloat(C1).toFixed(2))); 
+		$('#SABB_CRDSUMLAST3').next().addClass('active');
 		
-		
-		
+//Variance	
+	var C1= $('#SABB_CRDSUMFIRST3').val().replace(/,/g,'');
+	var C2= $('#SABB_CRDSUMLAST3').val().replace(/,/g,'');
+	var C1= parseFloat(C1);
+	var C2= parseFloat(C2);
+	if(C1=="")
+	{
+	C1=0	
+	}
+	if(C2=="")
+	{
+	C2=0	
+	}
+	if (C1>C2)
+	{
+	var TOTAL=parseFloat(((parseFloat(C1)/parseFloat(C2))-1)*100);
+	}
+	if (C1<C2)
+	{
+	var TOTAL=parseFloat(((parseFloat(C2)/parseFloat(C1))-1)*100);
+	}
+	 
+	if((isNaN(TOTAL))||TOTAL=='Infinity')
+	{
+		TOTAL=0;
+	}
+	$('#SABB_VARIANCE').val(CURINRCommaSep(parseFloat(TOTAL).toFixed(2)));
+	$('#SABB_VARIANCE').next().addClass('active');	
+
+//Select multiplier	
+	var variance=$("#SABB_VARIANCE").val().replace(/,/g,'');
+	var C1=$("#SABB_CRDSUMFIRST3").val().replace(/,/g,'');
+	var C2=$("#SABB_CRDSUMLAST3").val().replace(/,/g,'');
+	if(variance>50.00)
+	{
+	$('.MULTIDIS').find('.select-dropdown').attr('disabled',false)
+	}
+	else
+	{
+	$('.MULTIDIS').find('.select-dropdown').attr('disabled',true)
+	}	
+//Total non-business credit summation		
 		var xmlSTA=UI_getdata($("#PrcsID").val(),"SUMAVGEXCLUSION",$("#SABB_NOBANKACC").val(),$("#SABB_BANKMONTHS").val(),"","LSW_SABBCALCULATION")
 	
 	if($(xmlSTA).find('RESULT').text()!="SUCCESS")
@@ -74,21 +172,20 @@ function BANKSUMAVG()
 	{
 		SUMAVGEXCLUSION=0;
 	}
-	if(SUMAVGEXCLUSION=='Infinity')
-	{
-		SUMAVGEXCLUSION=0;
-	}
 	
     	$("#SABB_BUSINCRESUM").val(CURINRCommaSep(parseFloat(SUMAVGEXCLUSION).toFixed(2))); 
 		$('#SABB_BUSINCRESUM').next().addClass('active');
-	    SUBTRACTIONAMOUNT();
+	    //SUBTRACTIONAMOUNT();
+		Revisedcreditsum()
+		PERNONBUSINESS();
 
 }
 
 
 
-function SUBTRACTIONAMOUNT()
+/* function SUBTRACTIONAMOUNT()
 {
+//Revised Credit Summation
 	var MAINAMT=$("#SABB_TOTCREBANKACC").val().replace(/,/g,'');
 	 
 	var SUBAMT= $("#SABB_BUSINCRESUM").val().replace(/,/g,'');
@@ -106,44 +203,84 @@ function SUBTRACTIONAMOUNT()
 	{
 		TOTAL=0;
 	}
-	if(TOTAL==Infinity)
-	{
-		TOTAL=0;
-	}
 	$("#SABB_REVBUSICRESUM").val(CURINRCommaSep(parseFloat(TOTAL).toFixed(2)));
 	  $("#SABB_REVBUSICRESUM").next().addClass('active');
 	  PERNONBUSINESS();
 	
+} */
+
+function Revisedcreditsum()
+{	
+//Revised Credit Summation
+	//var C1=CURINRCommaSep(parseFloat($("#CRSU_CRDSUMFIRST3").val()).toFixed(2));
+	//var C2=CURINRCommaSep(parseFloat($("#CRSU_CRDSUMLAST3").val()).toFixed(2));
+	var C1=$("#SABB_CRDSUMFIRST3").val().replace(/,/g,'');
+	var C2=$("#SABB_CRDSUMLAST3").val().replace(/,/g,'');
+	var variation=$("#SABB_VARMULTI").val().replace(/,/g,'');
+	var creditsum=$("#SABB_ADJUSTCRESUM").val().replace(/,/g,'');
+	var variance=$("#SABB_VARIANCE").val().replace(/,/g,'');
+	if(C1=='')
+	{
+	C1=0;
+	}
+	if(C2=='')
+	{
+	C2=0;
+	}
+	if(variation=='')
+	{
+	variation=0;
+	}
+	if(creditsum=='')
+	{
+	creditsum=0;
+	}
+	if(variance>50)
+	{
+	var revised=Math.min((parseFloat(Math.min(C1,C2))*2)*(variation/100),creditsum);
+	}
+	else
+	{
+	var revised=creditsum;
+	}
+	if(isNaN(revised))
+	{
+	revised=0;
+	}
+	revised=CURINRCommaSep(parseFloat(revised).toFixed(2));
+	$("#SABB_REVBUSICRESUM").val(revised);
+	$("#SABB_REVBUSICRESUM").next().addClass('active');
+	//Monthavg();
 }
 
 
 function PERNONBUSINESS()
 {
-	var SABB_BUSINCRESUM= $('#SABB_BUSINCRESUM').val().replace(/,/g,'');
+//% of non-business credit summation
+	var SABB_ADJUSTCRESUM= $('#SABB_ADJUSTCRESUM').val().replace(/,/g,'');
 	var SABB_TOTCREBANKACC= $('#SABB_TOTCREBANKACC').val().replace(/,/g,'');
 	
-	if(SABB_BUSINCRESUM=="")
+	if(SABB_ADJUSTCRESUM=="")
 	{
-	SABB_BUSINCRESUM=0	
+	SABB_ADJUSTCRESUM=0	
 	}
 	if(SABB_TOTCREBANKACC=="")
 	{
 	SABB_TOTCREBANKACC=0	
 	}
-	var TOTAL=parseFloat(SABB_BUSINCRESUM)/parseFloat(SABB_TOTCREBANKACC)
-	if(isNaN(TOTAL))
-	{
-		TOTAL=0;
-	}
-	
+	var TOTAL=(SABB_TOTCREBANKACC)-(SABB_ADJUSTCRESUM)
+	TOTAL=parseFloat(TOTAL)/parseFloat(SABB_TOTCREBANKACC)
+	TOTAL=parseFloat(TOTAL*100)
 	if(TOTAL == Infinity) 
 	{
 	TOTAL=0;	
 	}
 	
+	if(isNaN(TOTAL))
+	{
+		TOTAL=0;
+	}
 	
-	
-	TOTAL=parseFloat(TOTAL)*100
 	$('#SABB_PRCNONSUM').val(CURINRCommaSep(parseFloat(TOTAL).toFixed(2)));
 	  $('#SABB_PRCNONSUM').next().addClass('active');
 	   AJUSTABB();
@@ -153,6 +290,7 @@ function PERNONBUSINESS()
 
 function AJUSTABB()
 {
+//Adjusted ABB
 	var MONTHABB= $('#SABB_MONTHABB').val().replace(/,/g,'');
 	var PRCNONSUM= $('#SABB_PRCNONSUM').val().replace(/,/g,'');
 	
@@ -164,15 +302,10 @@ function AJUSTABB()
 	{
 	PRCNONSUM=0	
 	}
+	var TOTAL=MONTHABB*(1-(PRCNONSUM/100));
 	
-	var TOTAL=parseFloat(parseFloat(MONTHABB)*parseFloat(1-parseFloat(PRCNONSUM)/100));
 	
 	 
-	 if(TOTAL == Infinity) 
-	{
-	TOTAL=0;	
-	}
-	
 	if(isNaN(TOTAL))
 	{
 		TOTAL=0;
@@ -185,6 +318,7 @@ function AJUSTABB()
 
 function FINALABB()
 {
+//Final ABB for eligibility
 	var SABB_ADJUCTABB= $('#SABB_ADJUCTABB').val().replace(/,/g,'');
 	var SABB_EMILASTSIXMONTH= $('#SABB_EMILASTSIXMONTH').val().replace(/,/g,'');
 	var SABB_EMICLOSIXMONTH= $('#SABB_EMICLOSIXMONTH').val().replace(/,/g,'');
@@ -207,10 +341,6 @@ function FINALABB()
 	{
 		TOTAL=0;
 	}
-	if(TOTAL==Infinity)
-	{
-		TOTAL=0;
-	}
 	 
 	$('#SABB_FINALABB').val(CURINRCommaSep(parseFloat(TOTAL).toFixed(2)));
 	  $('#SABB_FINALABB').next().addClass('active'); 
@@ -226,7 +356,7 @@ function GetEmiperlakh()
 	 
 	ROI=$(xmlSTATUS).find('INTERESTRATE').text();
 	Tenur=$(xmlSTATUS).find('TENTURE').text();
-	 var result=UI_getdata(ROI,Tenur,LnAmt,"","","LSW_SGETEMI_DATA");
+	 var result=UI_getdata(ROI,Tenur,LnAmt,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 	 var EMI=$(result).find("EMI").text();
 	 	if(EMI=='')
 	{
@@ -260,10 +390,7 @@ function GetMaxEmi(){
 	{
 		MAXEMI=0;
 	}
-	if(MAXEMI==Infinity)
-	{
-		MAXEMI=0;
-	}
+	
 	$("#SABB_MAXEMI").val(CURINRCommaSep(parseFloat(MAXEMI).toFixed(2)));
 	$("#SABB_MAXEMI").next().addClass('active');
 	
@@ -302,6 +429,8 @@ function GetLoanEligibil()
 	LOANELIGH=0;	
 	}
 	
+	
+	
 	if(isNaN(LOANELIGH))
 	{
 		LOANELIGH=0;
@@ -330,10 +459,6 @@ function GetPropoLoan()
 	{
 		PROPLOAN=0;
 	} 
-	if(PORLOAN==Infinity)
-	{
-		PROLOAN=0;
-	}
 	$("#SABB_PROPLOAN").val(CURINRCommaSep(parseFloat(PROPLOAN).toFixed(2)));
 	$("#SABB_PROPLOAN").next().addClass('active'); 
 	GetOutStand();
@@ -401,10 +526,6 @@ function GetLoanexpos()
 	{
 		TOTLOANEXP=0;
 	} 
-	if(TOTLOANEXP==Infinity)
-	{
-		TOTLOANEXP=0;
-	}
 	$("#SABB_TOTLOANEXP").val(CURINRCommaSep(parseFloat(TOTLOANEXP).toFixed(2)));
 	$("#SABB_TOTLOANEXP").next().addClass('active'); 
 	

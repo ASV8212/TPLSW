@@ -499,7 +499,7 @@ function Chkbutton(html,id)
 	
 }
 
-function NetBankingInteg(Type,BnkID,StDate,EndDate)
+function NetBankingInteg(Type,BnkID,StDate,EndDate,html)
 {
 	var OP=""
 	if($("#"+StDate).val()=="" || $("#"+EndDate).val()=="")
@@ -507,7 +507,16 @@ function NetBankingInteg(Type,BnkID,StDate,EndDate)
 		alert('Start Date and End Date is Mandatory');
 		return false;
 	}
-	$("#Save").click();
+	//$("#Save").click();
+	$(html).find("#BKDT_TRANSACTIONSTATUS").val(Type);
+	$(html).find(".Auto").hide();
+	$(html).find("#Save").click();
+	 var RES= UI_getdata($("#PrcsID").val(),$("#BKDT_CUSID").val(),"","","","LSW_SCHKSTDATENDATINBNK")
+	if ($(RES).find("Result").text()=="N")
+	{
+		alert('Kindly save');
+		return false();
+	}
     var w = "600";
     var h = "500";
 	var left = (screen.width/2)-(w/2);
@@ -518,9 +527,19 @@ if(Type=="NetBanking")
 	var URL=window.location.origin+"/TPLSW/BankingPage?Type="+Type+"&PRCSID="+$("#PrcsID").val()+"&CUSID="+$("#BKDT_CUSID").val()+"&BNKID="+$("#"+BnkID).val()+"&Prvnt="+$(window.parent.parent.document).find("#Prvnt").val();
 	//OP=URL.responseText;					
 				//	OP=JSON.parse(OP);
+				
+	var opsendnotification = UI_getdata($("#PrcsID").val(),URL,"","","","LSW_SSENDNOTIFICATION");
+	if($(opsendnotification).find("Result").text()=="Success")
+	{
+		alert("Link send successfully");	
+	}
+	else{
+		alert($(opsendnotification).find("Result").text());
+	}
+	
 					
 						
-	var OPxml=UI_getdata($("#PrcsID").val(),URL,"","EMAIL","","LSW_SSENDNETBANKLNK");
+	/***var OPxml=UI_getdata($("#PrcsID").val(),URL,"","EMAIL","","LSW_SSENDNETBANKLNK");
 		if($(OPxml).find("Result").text()=="Success")
 				{
 				   alert("Link send successfully");	
@@ -528,7 +547,7 @@ if(Type=="NetBanking")
 				else
 				{
 					
-				}	
+				}	***/
 									
 }
 else
@@ -548,7 +567,38 @@ if(XID.value!='')
 {	
 	var STDATE=$("#"+XID).val()
 	var ENDDATE=$("#"+YID).val()
+	var STDATE=$("#"+XID).val()
+	var ENDDATE=$("#"+YID).val()
 
+
+	const stdate = $("#"+XID).val();
+	const [day, month, year] = stdate.split("/");
+	const stnewDate = `${month}/${day}/${year}`
+	
+	const endate = $("#"+YID).val();
+	const [eday, emonth, eyear] = endate.split("/");
+	const ennewDate = `${emonth}/${eday}/${eyear}`
+	
+	var enresult = new Date(ennewDate);
+    var enfinresult=enresult.setMinutes(enresult.getMinutes() - enresult.getTimezoneOffset());
+	
+	var stresult = new Date(stnewDate);
+    var stfinresult=stresult.setMinutes(stresult.getMinutes() - stresult.getTimezoneOffset());
+	
+	var millisecondsPerDay = 24 * 60 * 60 * 1000;
+    var dat=(enfinresult - stfinresult) / millisecondsPerDay;
+	d1 = new Date(stnewDate);
+	d2 = new Date(ennewDate);
+	var months;
+    months = (d2.getFullYear() - d1.getFullYear()) * 12;
+    months -= d1.getMonth();
+    months += d2.getMonth();
+	if(months>12 || dat>365)
+	{
+		alert("Start date and End date should not greater than 12 months")
+		$("#"+YID).val('')
+		return false;
+	}
 	      date = new Date();
 	    var y = date.getFullYear();
 	    var STDATE1 = STDATE.split("/");

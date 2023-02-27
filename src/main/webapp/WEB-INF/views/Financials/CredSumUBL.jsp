@@ -15,7 +15,8 @@
 		 <input type="text" id="CRSU_SCHEMEID" hidden="hidden" name="CRSU_SCHEMEID" class="form-control CRSUDBfields">
 		 <input type="text" id="CRSU_SCHEMENAME" hidden="hidden" name="CRSU_SCHEMENAME" class="form-control CRSUDBfields">
 		 <input type="text" id="CRSU_MULTIPLIER" hidden="hidden" name="CRSU_MULTIPLIER" class="form-control CRSUDBfields">
-		 <input type="text" id="CRSU_LOANID" hidden="hidden" name="CRSU_LOANID" class="form-control CRSUDBfields">
+		 <input type="text" id="CRSU_CREDSUMGRID" hidden="hidden" name="CRSU_CREDSUMGRID" class="form-control CRSUDBfields">
+		 <input type="text" id="CRSU_LOANUNIQID" hidden="hidden" name="CRSU_LOANUNIQID" class="form-control CRSUDBfields">
 	 
 	 
 	 
@@ -26,34 +27,63 @@
                         <label for ="CRSU_NAMECUS" class="">Name of the customer<span class="MndtryAstr"></span></label>
                      </div>
                   </div>
+				  
+				  <div class="col-md-4">
+				<div class="md-form">
+                  <select class="mdb-select md-form colorful-select dropdown-primary CRSUDBfields" onchange="LOANCS();" id="CRSU_BRANCHLOC" name="CRSU_BRANCHLOC">
+                  	<option value="">Select</option>
+				</select>
+				<label class="mdb-main-label BTxt9">Branch/Location<span class="MndtryAstr">*</span></label>
+             </div>
+            </div>
+				  
+				  
 				<div class="col-md-4">
 				<div class="md-form">
-                  <select class="mdb-select md-form colorful-select dropdown-primary CRSUDBfields"  onchange="Monthavg();" id="CRSU_TYPEINDUS" name="CRSU_TYPEINDUS">
+                  <select class="mdb-select md-form colorful-select dropdown-primary CRSUDBfields GRIDCAL"  onchange="" id="CRSU_TYPEINDUS" name="CRSU_TYPEINDUS">
                   	<option value="">Select</option>
   					 	<option value="">Industry</option>
   					
 				</select>
 				<label class="mdb-main-label BTxt9">Type of Industry<span class="MndtryAstr">*</span></label>
              </div>
-            </div>
-				  <div class="col-md-4">
+            </div>  
+               </div>
+			   
+			   <div class="form-row ">
+			   
+			   <div class="col-md-4">
+                        <div class="md-form">
+                           <div id="Customer House" class="select-radio CRSUMndtry GRIDCAL">
+                              <div class="custom-control custom-radio custom-control-inline">
+                                 <input type="radio" class="custom-control-input CRSUDBfields" onclick="LOANCS();" value="Yes" id="OWNYES" name="CRSU_OWNHOUSE">
+                                 <label class="custom-control-label" for="OWNYES">Yes</label>
+                              </div>
+                              <div class="custom-control custom-radio custom-control-inline CRSUDBfields">
+                                 <input type="radio" class="custom-control-input CRSUDBfields" onclick="LOANCS();" value="No" id="OWNNO" name="CRSU_OWNHOUSE">
+                                 <label class="custom-control-label" for="OWNNO">No</label>
+                              </div>
+                           </div>
+                           <label class="mdb-main-label BTxt9">Customer Staying in Own House<span class="MndtryAstr">*</span></label>      
+                        </div>
+                     </div>
+			   
+			   <div class="col-md-4">
                      <div class="md-form">
                         <input type="text" id="CRSU_LOANAMTREQ" disabled  maxlength="200" class="form-control   IsCURCommaFields IsNumberFields NoSpecialChar  CRSUDBfields " name="CRSU_LOANAMTREQ">
                         <label for ="CRSU_LOANAMTREQ" class="">Loan amount Requested<span class="MndtryAstr"></span></label>
                      </div>
                   </div>
-				  
-               </div>
-			   
-			   
-			   <div class="form-row ">
 		           <div class="col-md-4">
                   <div class="md-form">
                   	  <input type="text" id="CRSU_PROTENTURE" disabled maxlength="30"  name="CRSU_PROTENTURE" class="form-control CRSUMndtry IsCURCommaFields CRSUDBfields" >
                       <label for="CRSU_PROTENTURE" class="">Proposed tenure<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
-				  <div class="col-md-4">
+				 
+               </div>
+		        <div class="form-row ">
+				<div class="col-md-4">
                   <div class="md-form">
                   	  <input type="text" id="CRSU_PROINTRATE" disabled maxlength="30"  name="CRSU_PROINTRATE" class="form-control CRSUMndtry IsCURCommaFields CRSUDBfields" >
                       <label for="CRSU_PROINTRATE" class="">Proposed interest rate<span class="MndtryAstr">*</span></label>
@@ -61,7 +91,7 @@
                 </div>
 				<div class="col-md-4">
                    <div class="md-form">
-                        <select class="mdb-select md-form colorful-select dropdown-primary  CRSUDBfields"  onchange="BANKSUMAVG();" id="CRSU_NOBANKACC" name="CRSU_NOBANKACC">
+                        <select class="mdb-select md-form colorful-select dropdown-primary  CRSUDBfields GRIDCAL"  onchange="BANKSUMAVG();loan();" id="CRSU_NOBANKACC" name="CRSU_NOBANKACC">
                            <option value="" selected>--Select--</option>
 						   <option value="Single">Single</option>
                            <option value="Multiple">Multiple</option>
@@ -69,11 +99,9 @@
                        <label class="mdb-main-label BTxt9">Number of Bank accounts considered for eigibiity<span class="MndtryAstr"></span></label>
                    </div>
                   </div>
-               </div>
-		        <div class="form-row ">
 				<div class="col-md-4">
                      <div class="md-form">
-                        <select class="mdb-select md-form colorful-select dropdown-primary  CRSUDBfields"  onchange="BANKSUMAVG();" id="CRSU_BANKMONTHS" name="CRSU_BANKMONTHS">
+                        <select class="mdb-select md-form colorful-select dropdown-primary  CRSUDBfields GRIDCAL"  onchange="BANKSUMAVG();loan();" id="CRSU_BANKMONTHS" name="CRSU_BANKMONTHS">
                            <option value="" selected>--Select--</option>
 						   <option value="6 Month">6 Month</option>
                            <option value="12 Month">12 Month</option>
@@ -81,7 +109,10 @@
                         <label class="mdb-main-label BTxt9">Banking Months<span class="MndtryAstr"></span></label>
                      </div>
                   </div>
-				  <div class="col-md-4">
+				  
+               </div>
+			   <div class="form-row ">
+			   <div class="col-md-4">
                      <div class="md-form">
                         <input type="text" id="CRSU_SUMAVG" disabled  maxlength="200"  class="form-control   IsCURCommaFields IsNumberFields NoSpecialChar  CRSUDBfields " name="CRSU_SUMAVG">
                         <label for ="CRSU_SUMAVG" class="">Sum of Averages <span class="MndtryAstr"></span></label>
@@ -93,19 +124,19 @@
                         <label for ="CRSU_MONTHABB" class="">Monthly ABB<span class="MndtryAstr"></span></label>
                      </div>
                   </div> 
-               </div>
-			   <div class="form-row ">
-			   
                   <div class="col-md-4">
                      <div class="md-form">
-                        <input type="text" id="CRSU_TOTCREBANKACC" disabled onblur="SUBTRACTIONAMOUNT(); PERNONBUSINESS();ADJUSTEDCREDITSUM();"  maxlength="200"  class="form-control   IsCURCommaFields IsNumberFields NoSpecialChar  CRSUDBfields " name="CRSU_TOTCREBANKACC">
+                        <input type="text" id="CRSU_TOTCREBANKACC" disabled onblur="PERNONBUSINESS();"  maxlength="200"  class="form-control   IsCURCommaFields IsNumberFields NoSpecialChar  CRSUDBfields GRIDCAL " name="CRSU_TOTCREBANKACC">
                         <label for ="CRSU_TOTCREBANKACC" class="">Total credit summation in Bank Account<span class="MndtryAstr"></span></label>
                      </div>
                   </div>
 				  
-				  <div class="col-md-4">
+				  
+			    </div>
+                <div class="form-row ">
+				<div class="col-md-4">
                      <div class="md-form">
-                        <input type="text" id="CRSU_BUSINCRESUM" disabled onblur="SUBTRACTIONAMOUNT();ADJUSTEDCREDITSUM();PERNONBUSINESS(); AJUSTABB();" maxlength="200"  class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar CRSUDBfields  " name="CRSU_BUSINCRESUM">
+                        <input type="text" id="CRSU_BUSINCRESUM" disabled onblur="AJUSTABB();" maxlength="200"  class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar CRSUDBfields GRIDCAL " name="CRSU_BUSINCRESUM">
                         <label for ="CRSU_BUSINCRESUM" class="">Total non-business credit summation<span class="MndtryAstr"></span></label>
                      </div>
                   </div>
@@ -115,15 +146,16 @@
                         <label for ="CRSU_ADJBUSICRESUM" class="">Adjusted Credit Summation (Business)<span class="MndtryAstr"></span></label>
                      </div>
                   </div>
-			    </div>
-                <div class="form-row ">
 				  <div class="col-md-4">
                      <div class="md-form">
                         <input type="text" id="CRSU_PRCNONSUM"  disabled maxlength="200"  class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar  CRSUDBfields "  name="CRSU_PRCNONSUM">
                         <label for ="CRSU_PRCNONSUM" class="">% of non-business credit summation<span class="MndtryAstr"></span></label>
                      </div>
                   </div>
-				  <div class="col-md-4">
+				  
+				</div> 
+				<div class="form-row ">
+				<div class="col-md-4">
                      <div class="md-form">
                         <input type="text" id="CRSU_ADJUCTABB"  disabled onblur="FINALABB();  " maxlength="200"  class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar CRSUDBfields  " name="CRSU_ADJUCTABB">
                         <label for ="CRSU_ADJUCTABB" class="">Adjusted ABB <span class="MndtryAstr"></span></label>
@@ -135,15 +167,16 @@
                         <label for ="CRSU_CRDSUMFIRST3" class="">Credit Summation in first three months (C1)<span class="MndtryAstr"></span></label>
                      </div>
                   </div>
-				</div> 
-				<div class="form-row ">
 				  <div class="col-md-4">
                      <div class="md-form">
                         <input type="text" id="CRSU_CRDSUMLAST3" disabled onblur="FINALABB();" maxlength="200"  class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar  CRSUDBfields "  name="CRSU_CRDSUMLAST3">
                         <label for ="CRSU_CRDSUMLAST3" class="">Credit Summation in last three months (C2)<span class="MndtryAstr"></span></label>
                      </div>
                   </div>
-				  <div class="col-md-4">
+				  
+				</div> 
+				<div class="form-row ">
+				<div class="col-md-4">
                      <div class="md-form">
                         <input type="text" id="CRSU_VARIANCE" disabled maxlength="200" onblur="FINALABB(); Revisedcreditsum();"class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar CRSUDBfields" name="CRSU_VARIANCE">
                         <label for ="CRSU_VARIANCE" class="">Variance<span class="MndtryAstr"></span></label>
@@ -151,7 +184,7 @@
                   </div>
                   <div class="col-md-4">
                      <div class="md-form">
-                     <select class="mdb-select md-form colorful-select dropdown-primary MULTIDIS CRSUDBfields"onchange="Revisedcreditsum();Monthavg();" id="CRSU_VARMULTI" name="CRSU_VARMULTI">
+                     <select class="mdb-select md-form colorful-select dropdown-primary MULTIDIS CRSUDBfields GRIDCAL"onchange="Revisedcreditsum();" id="CRSU_VARMULTI" name="CRSU_VARMULTI">
                            <option value="" selected>--Select--</option>
 						   <option value="125">125</option>
                            <option value="135">135</option>
@@ -160,37 +193,39 @@
 					 <label for ="CRSU_VARMULTI" class="">Select multiplier<span class="MndtryAstr"></span></label>
 					 </div>
                   </div>
-				</div> 
-				<div class="form-row ">
 				  <div class="col-md-4">
                      <div class="md-form">
-                        <input type="text" id="CRSU_REVBUSICRESUM"  disabled  maxlength="200" onblur="Monthavg();" class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar CRSUDBfields" name="CRSU_REVBUSICRESUM">
+                        <input type="text" id="CRSU_REVBUSICRESUM"  disabled  maxlength="200" onblur="" class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar CRSUDBfields GRIDCAL" name="CRSU_REVBUSICRESUM">
                         <label for ="CRSU_REVBUSICRESUM" class="">Revised Credit Summation<span class="MndtryAstr"></span></label>
                      </div>
                   </div>
-				  <div class="col-md-4">
+				  
+				</div> 
+                <div class="form-row ">
+				<div class="col-md-4">
                      <div class="md-form">
-                        <input type="text" id="CRSU_EMITRACKLAST12" onchange="Monthavg();" maxlength="200" class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar CRSUDBfields" name="CRSU_EMITRACKLAST12">
+                        <input type="text" id="CRSU_EMITRACKLAST12" onchange="loan();" maxlength="200" class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar CRSUDBfields GRIDCAL" name="CRSU_EMITRACKLAST12">
                         <label for ="CRSU_EMITRACKLAST12" class="">EMI Track record of minimum last 12 months<span class="MndtryAstr"></span></label>
                      </div>
                   </div>
                   <div class="col-md-4">
                   <div class="md-form">
-                  	  <input type="text" id="CRSU_EXISTEMIOBLI"  maxlength="30" onchange="Monthavg();" name="CRSU_EXISTEMIOBLI" class="form-control CRSUMndtry IsCURCommaFields CRSUDBfields">
+                  	  <input type="text" id="CRSU_EXISTEMIOBLI"  maxlength="30" onchange="" name="CRSU_EXISTEMIOBLI" class="form-control CRSUMndtry IsCURCommaFields CRSUDBfields GRIDCAL">
                       <label for="CRSU_EXISTEMIOBLI" class="">Total Existing Obligation<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
-				</div> 
-                <div class="form-row ">
 				<div class="col-md-4">
                      <div class="md-form">
-                        <input type="text" id="CRSU_OBLICLOSENEXT6" maxlength="200" class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar CRSUDBfields" name="CRSU_OBLICLOSENEXT6">
+                        <input type="text" id="CRSU_OBLICLOSENEXT6" maxlength="200" onblur="loan();" class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar CRSUDBfields GRIDCAL" name="CRSU_OBLICLOSENEXT6">
                         <label for ="CRSU_OBLICLOSENEXT6" class="">Obligation related to loans getting closed in next 6 months<span class="MndtryAstr"></span></label>
                      </div>
                   </div>
+				
+				</div> 
+				<div class="form-row ">
 				<div class="col-md-4">
                      <div class="md-form">
-                        <input type="text" id="CRSU_EMILASTSIXMONTH"   onblur="FINALABB();BANKSUMAVG();" maxlength="200"  class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar  CRSUDBfields "  name="CRSU_EMILASTSIXMONTH">
+                        <input type="text" id="CRSU_EMILASTSIXMONTH"   onblur="FINALABB();BANKSUMAVG();loan();" maxlength="200"  class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar  CRSUDBfields "  name="CRSU_EMILASTSIXMONTH">
                         <label for ="CRSU_EMILASTSIXMONTH" class="">EMI of Loan taken in last  6 months<span class="MndtryAstr"></span></label>
                      </div>
                   </div>
@@ -200,37 +235,51 @@
                         <label for ="CRSU_FINALABB" class="">Final ABB for eligibility <span class="MndtryAstr"></span></label>
                      </div>
                   </div>
-				</div> 
-				<div class="form-row ">
 				  <div class="col-md-4">
                      <div class="md-form">
-                        <input type="text" id="CRSU_BUSIPREMRENT" maxlength="200" onchange="Totalcost();" class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar CRSUDBfields" name="CRSU_BUSIPREMRENT">
+                        <input type="text" id="CRSU_BUSIPREMRENT" maxlength="200" onchange="Totalcost();LOANCS();" class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar CRSUDBfields GRIDCAL" name="CRSU_BUSIPREMRENT">
                         <label for ="CRSU_BUSIPREMRENT" class="">Business Premises Rental<span class="MndtryAstr"></span></label>
                      </div>
                   </div>
-				  <div class="col-md-4">
+				  
+				</div>
+				<div class="form-row ">
+				<div class="col-md-4">
                      <div class="md-form">
-                        <input type="text" id="CRSU_EMPSALARY" maxlength="200"onchange="Totalcost();" class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar CRSUDBfields" name="CRSU_EMPSALARY">
+                        <input type="text" id="CRSU_EMPSALARY" maxlength="200"onchange="Totalcost();" class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar CRSUDBfields GRIDCAL" name="CRSU_EMPSALARY">
                         <label for ="CRSU_EMPSALARY" class="">Employee Salary<span class="MndtryAstr"></span></label>
                      </div>
                   </div>
                   <div class="col-md-4">
                   <div class="md-form">
-                  	  <input type="text" id="CRSU_OTHFIXCOST" maxlength="30" name="CRSU_OTHFIXCOST" onchange="Totalcost();Monthavg();" class="form-control CRSUMndtry IsCURCommaFields CRSUDBfields">
+                  	  <input type="text" id="CRSU_OTHFIXCOST" maxlength="30" name="CRSU_OTHFIXCOST" onchange="Totalcost();" class="form-control CRSUMndtry IsCURCommaFields CRSUDBfields GRIDCAL">
                       <label for="CRSU_OTHFIXCOST" class="">Any Other Fixed Cost<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
-				</div>
-				<div class="form-row ">
 				  <div class="col-md-4">
                      <div class="md-form">
-                        <input type="text" id="CRSU_TOTFIXCOST" disabled maxlength="200" onchange="Monthavg();" class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar CRSUDBfields" name="CRSU_TOTFIXCOST">
+                        <input type="text" id="CRSU_TOTFIXCOST" disabled maxlength="200" onchange="" class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar CRSUDBfields GRIDCAL" name="CRSU_TOTFIXCOST">
                         <label for ="CRSU_TOTFIXCOST" class="">Total Fixed Cost<span class="MndtryAstr"></span></label>
                      </div>
                   </div>
 				  </div>
-				  
-				<div class="form-row ">
+				  <div class="modal-body"> 
+   <div class="">
+    <!-- Card body -->
+     <div class="">  
+         <form>
+				  <div class="form-row">
+           <div class="col">
+             <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'TableCS',{spname:'LSW_SCREDITSUMMATION',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'Credit Summation',MnuId:$('.FormPageMultiTab li.active').attr('id')+'|'+$('#CRSU_LOANUNIQID').val()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||5,6','CREDITSUMMATION');" id="CREDITSUMMATION" name="CREDITSUMMATION" />
+             <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display DataGrid " id="TableCS">
+             </table>
+           </div>
+        </div> 
+		</form>
+        </div>
+     </div>
+      </div> 
+				<!--<div class="form-row ">
 					<div class="col-md-4">
 						<div class="Btxt10 ">Multiplier of 2</div>
 					</div>
@@ -324,11 +373,11 @@
                         <label for ="CRSU_PROLOANAPPLFVE" class="">Profit Available for servicing of loan applied with us<span class="MndtryAstr"></span></label>
                      </div>
                   </div>
-				</div> 
+				</div> -->
 				<div class="form-row ">
 								  <div class="col-md-4">
                      <div class="md-form">
-                        <input type="text" id="CRSU_EMI" disabled maxlength="200"  class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar CRSUDBfields  " name="CRSU_EMI">
+                        <input type="text" id="CRSU_EMI" disabled maxlength="200" onchange="LOANCS();" class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar CRSUDBfields  " name="CRSU_EMI">
                         <label for ="CRSU_EMI" class="">EMI Per Lakh <span class="MndtryAstr"></span></label>
                      </div>
                   </div>
@@ -340,7 +389,7 @@
 				<div class="Btxt10 ">Credit Summation</div>
 				</div>
 				</div>
-				<div class="form-row ">
+				<div class="form-row" style="display:none">
 				  <div class="col-md-4">
                      <div class="md-form">
                         <input type="text" id="CRSU_MINMONTHABB" disabled maxlength="200" class="form-control NoSpecialChar CRSUDBfields" name="CRSU_MINMONTHABB">
@@ -415,15 +464,40 @@
                      </div>
                   </div>
 				</div>
-                <div class="form-row">
+                <div class="form-row"style="display:none">
                     <div class="col d-flex justify-content-center">
-                        <button type="button" id="save3" data-form="LSW_TCREDITSUMUBL"  data-aria="LSW_TCREDITSUMUBL|CRSU|CRSU_SCHEMEID" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
+                        <button type="button" id="save3" data-form="LSW_TCREDITSUMUBL"  data-aria="LSW_TCREDITSUMUBL|CRSU|CRSU_LOANUNIQID" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
                         <!--<button type="button" data-form="LSW_TSCHEMEABB"  data-aria="LSW_TSCHEMEABB|CRSU|CRSU_SCHEMEID"data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> -->
                      </div>
                 </div>
         <!-- Short Term Liquidity end -->  
         </form>
      </div>
+ 
+<table style="display:none" id="GridTableCS">
+   <thead>
+<th>CRSG_CATEGORY</th>
+<th>CRSG_NOMULTIPLIER</th>
+<th>CRSG_MULTIPLIERONE</th>
+<th>CRSG_MULTIPLIERTWO</th>
+<th>CRSG_MULTIPLIERFIVE</th>
+<th>CRSG_LOANUNIQID</th>
+<th>CRSG_SCHEMEID</th>
+
+
+<!-- <th>CRSG_PRCSID</th>
+<th>CRSG_ACTIVITYID</th>
+<th>CRSG_DTCREATED</th>
+<th>CRSG_CREATEDBY</th>
+<th>CRSG_DTMODIFIED</th>
+<th>CRSG_MODIFIEDBY</th>
+ -->
+   </thead> 
+    </table>	 
+	 
+	 
+	 
+	 
   <!-- Accordion card -->
   <!-- Accordion card -->
   <!-- Accordion card -->

@@ -9,6 +9,9 @@ if($("#PrMs3").val()=="FIRM1")
        $("#ABFD_FIRMCONT").val($("#PrMs3").val());
 	   
 	   FindConstDropDown();
+	   
+	
+	   
     /* if ($(".FormPageMultiTab li.active").attr("id").indexOf($(".FormPageMultiTab").attr("title")) < 0)
 		{
 	//$("#ABFD_FIRMCONT").val($(".FormPageMultiTab li.active").attr("id"))
@@ -24,7 +27,7 @@ if($("#PrMs3").val()=="FIRM1")
 	 var DATA = $("#ABFD_FIRMCONT").val()+"|ABFD_FIRMCONT";
 
 	FormDataFromDB("LSW_TAPRBUSNFIRMDETL","ABFD_","ABFDDBfields", DATA);
-	
+
 	CheckConsti("","","Load","")
 	GetInduestry("","","PARTNERFARM","Load","","")
 
@@ -37,8 +40,19 @@ if($("#PrMs3").val()=="FIRM1")
 		{
             DSVLBLEXTEDITER()
         }
-		 
-   
+    var xml=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETPRODUCTNAME")
+    var CROSS=$(xml).find('PRODUCT').text() 
+	if($("#VERTICAL")=="UCV")
+	{
+	if(CROSS=='T316')
+	{
+	$("#FormPageTab6").show()
+	}
+	else
+	{
+	$("#FormPageTab6").hide()
+	}
+   }
 $(document).on("click", ".AddLPDS", function() {
     	
 	

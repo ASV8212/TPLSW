@@ -35,8 +35,8 @@ $(document).ready(function () {
 			$("#"+$(GetGROUP).find("CUSID").text()).addClass('active')
 			$("#"+$(GetGROUP).find("CUSID").text()).show()
 			//$("#"+$(GetGROUP).find("PAGEURL").text()).addClass('active')
-			$('.nav-item').addClass('DSVLBL')
-		  $('.nav-item').attr('disabled',true)
+			//$('.nav-item').addClass('DSVLBL')
+		  //$('.nav-item').attr('disabled',true)
 		  $("#IRCM_CUSID").val($(GetGROUP).find("CUSID").text());
 		  $("#"+$(GetGROUP).find("APPCUSID").text()).text($(GetGROUP).find("CUSNAME").text())
 		  
@@ -330,11 +330,11 @@ if($("#RPRD_PROPERTYDOC").val()=='')
 	
 	
 	/* --9,10,11,12,14,15 */
-	     $("#HIDDENCOL").val('5,7,8,9,10,11,12,13,14,15')
+	     $("#HIDDENCOL").val('5,7,8,9,10,11,12,13,14,15,22')
 		 FncallDocChkLst(this,'Table2',{spname:'LSW_TRCUKYCDOCUMENTLIST',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:'KYCDOC',brid:$('#PrcsID').val(),MnuId:$('#IRCM_CUSID').val()+'|'+$("#RCUGROUP").val()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$("#HIDDENCOL").val(),'DocumentCheckList');
 		 FncallDocChkLst(this,'Table3',{spname:'LSW_TRCUKYCDOCUMENTLIST',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:'Others',brid:$('#PrcsID').val(),MnuId:$('#IRCM_CUSID').val()+'|'+$("#RCUGROUP").val()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+$("#HIDDENCOL").val(),'DocumentCheckListOthers');
 		 FncallDocChkLst(this,'Table4',{spname:'LSW_SRCUGETDEFRPFDTL',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:'',brid:$('#PrcsID').val(),MnuId:$('#IRCM_CUSID').val()+'|'+$("#RCUGROUP").val()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||','PFDEFR');
-		 
+		 FncallDocChkLst(this,'Table5',{spname:'LSW_SRCUGETDOCUUPLOAD',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$("#RCUGROUP").val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||'+'5,7,14,15,16,17,18,19','DOCUPLOAD');
 		 $("#FormPageTab4").remove()
 		 //$('.OtherQueries').hide()
 		 $('.CREDIT').hide()
@@ -346,22 +346,44 @@ if($("#RPRD_PROPERTYDOC").val()=='')
 		  
 	  }
 	  
-	  else if ($(".FormPageMultiTab li.active").attr("id").indexOf($(".FormPageMultiTab").attr("title")) < 0)
+	  /* else if ($(".FormPageMultiTab li.active").attr("id").indexOf($(".FormPageMultiTab").attr("title")) < 0)
 	   {
-	    var FRZ = UI_getdata($("#PrcsID").val(),$("#PrMs6").val(),$('#IRCM_CUSID').val(),$("#PrMs5").val(),"","LSW_SCHKRCUONLOAD");
+	    /* var FRZ = UI_getdata($("#PrcsID").val(),$("#PrMs6").val(),$('#IRCM_CUSID').val(),$("#PrMs5").val(),"","LSW_SCHKRCUONLOAD");
 	          if($(FRZ).find("FREZZE").text()=="Y")
 	          {
 		         DSVLBLALL('') 
 				 $(".banner").show();
-	          }
+	          } */
+			  /*for(i=0;i<$('.ERCUSAMPLE').find('[name=RCKY_RCUSTATUS]').length;i++)
+			  {
+				  if(($('.ERCUSAMPLE').find('[id=RCKY_RCUSTATUS'+i+']').val()=='Sample Initiated') && ($("#RCUGROUP").val() != "ERCU"))
+				  {
+					  
+					  $('.ERCUSAMPLE').find('[id=RCKY_RCUSTATUS'+i+']').attr("disabled","disabled");
+					  $('.ERCUSAMPLE').find('[id=RCKY_RCUSTATUS'+i+']').material_select();
+					  
+					  $('.ERCUSAMPLE').find('[id=RCKY_RESULT'+i+']').attr("disabled","disabled");
+					  $('.ERCUSAMPLE').find('[id=RCKY_RESULT'+i+']').material_select();
+					  
+					  $('.ERCUSAMPLE').find('[id=RCKY_REMARK'+i+']').attr("disabled",true);
+					  
+					  //$('.ERCUSAMPLE').find('[id=RCKY_REMARK'+i+']').hide();
+					  //$("#POPUPRemarks").attr('disabled',true);
+					  $('.ERCUSAMPLE').find('[id=QureySave'+i+']').attr("disabled","disabled");
+					  $('.ERCUSAMPLE').find('[id=RCKY_INITIATE'+i+']').attr("disabled","disabled");
+					  
+					  
+					  
+				  }
+			  }
 			  
-	   }    
+	   } */    
 	
              CheckRCUINTI();
-	         if($(FRZ).find("INTISHOW").text()=="N")
+	        /*  if($(FRZ).find("INTISHOW").text()=="N")
 	          {
 		      $(".BTNINTERNAl").hide();
-	          }
+	          } */
 	 
 	 
 	 
@@ -733,6 +755,9 @@ if($("#RPRD_PROPERTYDOC").val()=='')
 			var IRCM_QURYDTL = TxtGridsubmitdata_V2("ApproveDetail12","RCDQ_","IRCM_","RCDQDBfields");
 			AssignGridXmltoField("IRCM_QURYDTL", IRCM_QURYDTL);
 			
+			var IRCM_DOCUMNTS = TxtGridsubmitdata_SV1("Table5","RCUD_","IRCM_");
+			AssignGridXmltoField("IRCM_DOCUMNTS", IRCM_DOCUMNTS);
+			
 			
 			if($("#RCUGROUP").val()=="ERCU")
 			{
@@ -760,16 +785,18 @@ if($("#RPRD_PROPERTYDOC").val()=='')
 					 return
 				}
 			}
-		      var GetGROUP = UI_getdata($("#PrcsID").val(),$("#PrMs6").val(),$("#LogUsr").val(),$("#PrMs5").val(),"","LSW_SCHKRCUSUBMIT");
+			var ALTERPROPNO=UI_getdata($("#IRCM_ACTIVITYID").val(),$("#DMY10").val().split('|')[1].split('(')[1].replace(")",""),"","","","LSW_SALTERPROPNUM");
+			ALTERPROPNO=$(ALTERPROPNO).find("ALTERNATEPROPNO").text()
+		      var GetGROUP = UI_getdata($("#PrcsID").val(),$("#PrMs6").val(),$("#LogUsr").val(),ALTERPROPNO,"","LSW_SCHKRCUSUBMIT");
 	          if($(GetGROUP).find("RESULT").text()=="N")
 	          {
 		         alert($(GetGROUP).find("MSG").text())
 		         return
 	          }
-				var GetGROUP = UI_getdata($("#PrcsID").val(),"","",$("#PrMs5").val(),"","LSW_SCHKEXTERNALRCU");
+				var GetGROUP = UI_getdata($("#PrcsID").val(),"","",ALTERPROPNO,"","LSW_SCHKEXTERNALRCU");
 				if($(GetGROUP).find("GROUPN").text()!="ERCU")
 				{
-					UI_getdata($("#PrcsID").val(),"","","","","LSW_SUPDTRCUCOMPLT")
+					UI_getdata($("#PrcsID").val(),$("#IRCM_CUSID").val(),"","","","LSW_SUPDTRCUCOMPLT")
 				
 				var Push = UI_getdata($("#PrcsID").val(),"","","","","LSW_SPUSHCUSTWSDATA");
 				if($(Push).find("STATUS").text()!="Y")
@@ -779,9 +806,22 @@ if($("#RPRD_PROPERTYDOC").val()=='')
 				}
 				else
 				{
+					if($(Push).find("DESCR").text() != "")
+					{
 					alert($(Push).find("DESCR").text())
+					}
 				}
 				}
+				var vendr = "";
+				if($("#RCUGROUP").val() == "")
+				{
+					vendr = "IRCU";
+				}
+				else
+				{
+					vendr = "ERCU";
+				}
+				var xml=UI_getdata($("#PrcsID").val(),ALTERPROPNO,vendr,$("#LogUsr").val(),"","LSW_SSTATUSUPDATE")
 			       WFComplete ($("#ActvID").val(),"",""); 
 			}
 			
@@ -1259,14 +1299,43 @@ else{
 				}
 	   
 	   
-        
-    var GRP ='ERCU';
+   
 	var UNIQid = $("#PrMs6").val();
 	var UNIQid1 = $("#PrMs5").val()+$("#IRCM_CUSID").val();
-	var WFVndACTVINIT1 = WFVndActvInit($("#ActvID").val(),$("#PrcsID").val()+"|VendorInitiate|Vendor|var_status=SVF&var_statusHES="+GRP+"&var_INFO1="+GRP+"~"+GRP+"~"+UNIQid+"~"+UNIQid1+"|ADMIN","LSW_SWFACTVINITCALL");	
+	
+	var userid=$("#RECMTO").val()
+	var actvid=$("#ActvID").val()
+	var cusid=$("#IRCM_CUSID").val()
+	var docname=$("#DOCTYPE").val()+'|'+$("#DOCNAME").val()
+	$.ajax({
+		url: "/TPLSW/RcuInitiation",
+		data: {prcsid:$("#PrcsID").val(),userid:userid,actvid:actvid,cusid:cusid,docname:docname,Prvnt:$("#Prvnt").val()},
+		async:false,
+		type: 'POST',
+		success: function(xml1)
+		{
+			if(xml1.split("~")[0]=="Success")
+			{
+				alert("File Assigned");
+				$("#MOBIPOPCLOSE").click()
+				window.location.reload();
+			}
+			else
+			{
+				alert("Initiation Failed");
+				return;
+			}
+		},
+		error: function (xml1)
+	   {
+			alert("RCU Initiation - Error Occurred, Contact ID");
+	   }
+	   });
+	
+	/* var WFVndACTVINIT1 = WFVndActvInit($("#ActvID").val(),$("#PrcsID").val()+"|VendorInitiate|Vendor|var_status=EXF&var_statusHES="+USERID+"&var_INFO1="+USERID+"~"+USERID+"~"+UNIQid+"~"+UNIQid1+"|ADMIN","LSW_SWFACTVINITCALL");	
 	if (WFVndACTVINIT1 == "Success")
 			{
-			var xml=UI_getdata($("#PrcsID").val()+'|'+$("#ActvID").val(),$("#IRCM_CUSID").val(),$("#PrMs6").val(),$("#PrMs5").val()+$("#IRCM_CUSID").val(),$("#RECMTO").val(),"LSW_SINSERTRCUINT")
+			var xml=UI_getdata($("#PrcsID").val()+'|'+$("#ActvID").val()+'|'+$("#DOCTYPE").val()+'|'+$("#DOCNAME").val(),$("#IRCM_CUSID").val(),$("#PrMs6").val(),$("#PrMs5").val()+$("#IRCM_CUSID").val(),$("#RECMTO").val(),"LSW_SINSERTRCUINT")
 			alert("File Assigned");
 			$("#MOBIPOPCLOSE").click()
 			window.location.reload();
@@ -1274,7 +1343,7 @@ else{
 		else
 			{
 			alert("Initiation Failed");
-			}
+			} */
 		
 	      });	
 	$(document).on("click", ".SampledInit", function() {
@@ -1285,13 +1354,15 @@ else{
 		{
 			$("#Forward").hide();
 		}
-		
+	if(RLE == "ERCU")
+	{
 	var x = $("#APPINFOTXT").val()
 	var op = UI_getdata($("#PrcsID").val(),$(".FormPageMultiTab li.active").attr("id"),"RCU",$('#DMY7').val().split('|')[7],$(x).find('APFI_APPLSTATUS').text(),"LSW_SGETVENDRHDR")
 	$("#FormPage1").next().empty();
 	op = op.replace('<Resultset><a><RESULT>','');
 	op = op.replace('</RESULT></a></Resultset>','');
 	$("#FormPage1").next().append(op);
+	}
 });
 
 

@@ -73,7 +73,7 @@
                      </div>
 					 <div class="col-md-6 SOUDIR">
                   <div class="md-form">
-                  <select class="mdb-select md-form colorful-select dropdown-primary LODEDBfields DataToFld" data-change="LODE_CONECTID" searchable="Search here.." id="LODE_CONECTNAME" name="LODE_CONECTNAME">
+                  <select class="mdb-select md-form colorful-select dropdown-primary LODEDBfields DataToFld" disabled data-change="LODE_CONECTID" searchable="Search here.." id="LODE_CONECTNAME" name="LODE_CONECTNAME">
 				</select>
                     <label class="mdb-main-label BTxt9" >Source Name <span class="MndtryAstr">*</span> </label>
                   </div>
@@ -82,14 +82,14 @@
 				<div class="form-row">
                      <div class="col-md-6">
                         <div class="md-form">
-                           <select class="md-form colorful-select dropdown-primary  LODEDBfields LODEMndtry"  onchange="GetNaturProduct(this,'LODE_PRODUCT');CheckLIMITDTLS(); getSchemeDetails1('Page')"  id="LODE_LONTYPE" name="LODE_LONTYPE">
+                           <select class="md-form colorful-select dropdown-primary  LODEDBfields LODEMndtry"  onchange="GetNaturProduct(this,'LODE_PRODUCT');CheckLIMITDTLS(); getSchemeDetails1('Page'); getanchor();"  id="LODE_LONTYPE" name="LODE_LONTYPE">
                            </select>
                            <label class="mdb-main-label BTxt9"> Loan Type<span class="MndtryAstr">*</span></label>
                         </div>
                      </div>
 					  <div class="col-md-6">
                         <div class="md-form"><!--getSchemeDetails1('Page')-->
-                           <select class="md-form colorful-select dropdown-primary LODEDBfields LODEMndtry DataToFld"  data-change="LODE_PRODUCTNAME" onchange="Chkproduct(); GetSecUnsec(); CheckAmt(); CheckTenor(); CheckRoi();"  id="LODE_PRODUCT" name="LODE_PRODUCT">
+                           <select class="md-form colorful-select dropdown-primary LODEDBfields LODEMndtry DataToFld"  data-change="LODE_PRODUCTNAME" onchange="Chkproduct(); GetSecUnsec(); CheckAmt(); CheckTenor(); CheckRoi();getSchemeDetails1('Change');"  id="LODE_PRODUCT" name="LODE_PRODUCT">
                            </select>
                            <label class="mdb-main-label BTxt9">Product<span class="MndtryAstr">*</span></label>
                         </div>
@@ -151,7 +151,7 @@
 				  <div class="form-row LMTREDUCE"> 
 					  <div class="col-md-6  ">
                         <div class="md-form">
-                           <div id="PRO"  class="select-radio ">
+                           <div id="PRO"  class="select-radio LODEMndtry">
                               <div 
 							  class="custom-control custom-radio custom-control-inline">
                                  <input type="radio" class="custom-control-input LODEDBfields " onclick="CheckREDUCE(this.id);" value="Percentage" id="DLODTYPEPER" name="LODE_DLODTYPE">
@@ -167,7 +167,7 @@
                      </div>
 					 <div class="col-md-6 LMTREDUCEPER LMTPER">
                         <div class="md-form">
-                           <input type="text" id="LODE_LIMITREDUCE" maxlength="5" class="form-control IsPercentageSPL  LODEDBfields NoSpecialChar"  name="LODE_LIMITREDUCE" title="">
+                           <input type="text" id="LODE_LIMITREDUCE" maxlength="5" class="form-control IsPercentageSPL LMTRED LODEDBfields NoSpecialChar"  name="LODE_LIMITREDUCE" title="">
                            <label for="LODE_LIMITREDUCE" class="">% of Limit to reduce<span class="MndtryAstr">*</span></label>
                         </div>
                      </div>
@@ -175,7 +175,7 @@
                   <div class="form-row">
 				     <div class="col-md-6 LMTREDUCEAMT  LMTAMT" >
                         <div class="md-form">
-                           <input type="text" id="LODE_DLODAMOUNT" maxlength="" class="form-control IsCURCommaFields IsNumberFields NoSpecialChar CHKH LODEDBfields NoSpecialChar"  onchange="CheckLONAMT(this.id);" name="LODE_DLODAMOUNT" title="">
+                           <input type="text" id="LODE_DLODAMOUNT" maxlength="" class="form-control IsCURCommaFields IsNumberFields NoSpecialChar AMTRED CHKH LODEDBfields NoSpecialChar"  onchange="CheckLONAMT(this.id);" name="LODE_DLODAMOUNT" title="">
                            <label for="LODE_DLODAMOUNT" class="">Amount to reduce<span class="MndtryAstr">*</span></label>
                         </div>
                      </div>
@@ -209,7 +209,7 @@
                      </div>
 				  <div class="col-md-6 MOR">
                         <div class="md-form">
-                           <input type="text" id="LODE_Moratoritm" maxlength="5" onchange="ChkROI();" class="form-control IsNumberFields LODEDBfields NoSpecialChar LODEMndtry DataNormal" name="LODE_Moratoritm" title="">
+                           <input type="text" id="LODE_Moratoritm" maxlength="5" onchange="ChkROI();" class="form-control IsNumberFields LODEDBfields NoSpecialChar MORT LODEMndtry DataNormal" name="LODE_Moratoritm" title="">
                            <label for="LODE_Moratoritm" class="" >Moratorium (In Months)<span class="MndtryAstr">*</span></label>
                         </div>
                      </div>
@@ -225,7 +225,7 @@
                      </div>
 				    <div class="col-md-6 FREQ">
                         <div class="md-form">
-                           <select class="md-form colorful-select dropdown-primary LODEDBfields  DataToFld"   id="LODE_FREQUENCY" name="LODE_FREQUENCY">
+                           <select class="md-form colorful-select dropdown-primary LODEDBfields LODEMndtry DataToFld"   id="LODE_FREQUENCY" name="LODE_FREQUENCY">
                            </select>
                            <label class="mdb-main-label BTxt9"> Frequency <span class="MndtryAstr">*</span> </label> 
                         </div>
@@ -296,6 +296,16 @@
                         </div>
                      </div>					 
 				</div>
+				
+				 <div class="form-row ALIANCE" style="display:none">
+				    <div class="col-md-6 ">
+                        <div class="md-form">
+                           <select class="md-form colorful-select dropdown-primary  LODEDBfields "   id="LODE_ANCHORNAME" name="LODE_ANCHORNAME">
+                           </select>
+                           <label class="mdb-main-label BTxt9">Anchor Name<span class="MndtryAstr">*</span></label>
+                        </div>
+                     </div>
+					 </div>
 				
 				
                   <!--<div class="form-row">
@@ -497,9 +507,16 @@
 					 <div class="col-md-6 CRDT" >
                         <div class="md-form">
                            <input type="text" id="LODE_CRDTAMT" maxlength="60" class="form-control IsCURCommaFields LODEDBfields NoSpecialChar  DataNormal" name="LODE_CRDTAMT" title="">
-                           <label for="LODE_CRDTAMT" class="">Amount<span class="MndtryAstr">*</span></label>
+                           <label for="LODE_CRDTAMT" class="">KLI Amount<span class="MndtryAstr">*</span></label>
                         </div>
                      </div>
+					 <div class="col-md-6 CRDT" >
+                        <div class="md-form">
+                           <input type="text" id="LODE_HOSPICRDTAMT" maxlength="60" class="form-control IsCURCommaFields LODEDBfields NoSpecialChar  DataNormal" name="LODE_HOSPICRDTAMT" title="">
+                           <label for="LODE_HOSPICRDTAMT" class="">Hospicash Amount<span class="MndtryAstr">*</span></label>
+                        </div>
+                     </div>						 
+					 
 				</div>
 				<div class="form-row UCVECOHIDE">
 					<div class="col-md-4">

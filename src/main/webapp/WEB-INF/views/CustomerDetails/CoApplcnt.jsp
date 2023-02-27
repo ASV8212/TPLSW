@@ -1,5 +1,5 @@
 <button type="button" data-Validatearia="Dedupe" data-validatedata="COBI_DEDUPEVERIFY" onclick="PosdxChk('COBI_CUSID','COBI_CUSTYPE','COBI_DEDUPEVERIFY','Co-Applicant','','COBI_CUSFISNAM');"   data-validate="COBI|DEDUPE" class="btn  COBI_DEDUPEVERIFY waves-effect btn-yelInplain btn-sm BTNDedupe liSubpageTabIcons"><i class="fa fa-check"></i>Dedupe Check</button>
-<button type="button" class="btn  waves-effect  btn-yelInplain btn-sm liSubpageTabIcons" onclick="viewposidex('COBI_CUSID','COBI_CUSTYPE','COBI_DEDUPEVERIFY','Co-Applicant','','COBI_CUSFISNAM')"><i class="fa fa-eye"></i>View Dedupe</button>
+<button type="button" class="btn  waves-effect  btn-yelInplain btn-sm liSubpageTabIcons APPVIEWDEDUPE VIEWDISABLE" onclick="viewposidex('COBI_CUSID','COBI_CUSTYPE','COBI_DEDUPEVERIFY','Co-Applicant','','COBI_CUSFISNAM')"><i class="fa fa-eye"></i>View Dedupe</button>
          <!--Main row-->
                <!--  <div class="row FormRows"> 
 
@@ -235,7 +235,7 @@
 			</div>
             
               <div class="form-row COAP" >
-					<div class="col-md-6">
+					<div class="col-md-6" style = "display:none">
 						<div class="md-form">
 						  <div class="custom-control custom-radio custom-control-inline ">
 							<input type="checkbox" class="custom-control-input  COBIDBfields" onchange="Chkudyam();" id="COBI_CUAMNO" name="COBI_CUAMNO">
@@ -263,8 +263,8 @@
             </div> 
 			</div>
 			<div class="form-row " >
-			<div class="col-md-6 COAP">
-    				<div class="UdyamView1" style="display:none">Udyam Registration Certificate Document</div>
+			<div class="col-md-6 COAP VerifyUdyam">
+    				<div class="UdyamView1">Udyam Registration Certificate Document</div>
 						<div class="row UAMN" >
 							<div class="col-md-8  Formcol-mdLR UAMNupload1" style="display:none">
 								<div class="md-form">
@@ -383,7 +383,7 @@
                  
                   <div class="md-form">
                  
-                    <input type="text" id="COBI_FATHRNAM"  maxlength="25"  name="COBI_FATHRNAM" class="form-control IsUpprCse COBIDBfields COBIMndtry IsAlphaFields">
+                    <input type="text" id="COBI_FATHRNAM"  maxlength="30"  name="COBI_FATHRNAM" class="form-control IsUpprCse COBIDBfields COBIMndtry IsAlphaFields">
                     <label for="COBI_FATHRNAM" class="">Father's Name<span class="MndtryAstr">*</span></label>
                   </div>
            	</div>
@@ -583,6 +583,7 @@
          <input type="text" id="COAI_DTMODIFIED" hidden="hidden" name="COAI_DTMODIFIED" class="form-control COAIDBfields">
         
         <input type="text" id="COAI_CUSID" hidden="hidden" name="COAI_CUSID" class="form-control COAIDBfields">
+		<input type="text" id="COAI_GEOFLDGHTMLTOAPI" hidden="hidden" name="COAI_GEOFLDGHTMLTOAPI" class="form-control COAIDBfields">
         
         <div class="form-row">
            
@@ -613,6 +614,21 @@
                  </div>
                </div>
           </div>
+		  <div class="form-row">
+			<div class="col-md-6">
+				<div class="md-form">
+                    <input type="text" id="COAI_LAT" maxlength="20" name="COAI_LAT" disabled class="form-control  COAIDBfields  NoSpecialChar   ">
+					<button type="button" class=" btn   btn-Verify waves-effect btn-yelInplain btn-sm BTNVerify VERIFYBTNPOSITIONRIGHT " onclick="getLocation('COAI_CUSID','COAI_LAT','COAI_LONG','')" ><i class="fa fa-map-marker"></i> Initiate Geo Tagging</button>
+                    <label for="COAI_LAT" class="">Latitude<span class="MndtryAstr"></span></label>
+                  </div>
+			</div>
+			<div class="col-md-6">
+				<div class="md-form">
+                    <input type="text" id="COAI_LONG" maxlength="20" name="COAI_LONG" disabled class="form-control  COAIDBfields  NoSpecialChar   ">
+                    <label for="COAI_LONG" class="">Longitude<span class="MndtryAstr"></span></label>
+                  </div>
+			</div>
+		</div>
          <div class="form-row">
                  <div class="col-md-6 VERIFYBTNPOSITION">  
                   <div class="md-form">
@@ -633,7 +649,7 @@
         </div>
         <div class="INDU">
         <div class="form-row">
-        	<div class="col Btxt10">RESIDENCE ADDRESS</div>
+        	<div class="col Btxt10">CURRENT ADDRESS</div>
         </div>
         <div class="form-row">
             <div class="col">
@@ -654,8 +670,8 @@
                 </div>
                 <div class="col">
                   <div class="md-form">
-                    <input type="text" id="COAI_ADDRLINII"  maxlength="60" name="COAI_ADDRLINII" class="form-control AddrNoSpecialChar APADDR RESSTAT COAIDBfields">
-                    <label for="COAI_ADDRLINII" class="APDR">Address Line 2</label>
+                    <input type="text" id="COAI_ADDRLINII"  maxlength="60" name="COAI_ADDRLINII" class="form-control AddrNoSpecialChar APADDR RESSTAT CAOIMndtry COAIDBfields">
+                    <label for="COAI_ADDRLINII" class="APDR">Address Line 2<span class="MndtryAstr">*</span></label>
                   </div>
                </div>
         </div>
@@ -770,7 +786,7 @@
             </div>
         </div>
         <div class="form-row">
-        	<div class="col Btxt10">PERMANENT ADDRESS</div>
+        	<div class="col Btxt10">CORRESPONDENCE ADDRESS</div>
         </div>
 		<div class="form-row">
             <div class="col-md-4">
@@ -797,7 +813,7 @@
             	   <div class="select-radio"> 
                        <div class="custom-control custom-radio custom-control-inline">
                           <input type="radio" class="custom-control-input PremAddr COAIDBfields" onclick="residentaddr();" value="Applicant Permanent Address" id="PermAddr" name="COAI_SAMRESIDADDR">
-                          <label class="custom-control-label" for="PermAddr">Applicant Permanent Address</label>
+                          <label class="custom-control-label" for="PermAddr">Applicant Correspondence Address</label>
                        </div>
                    </div>
             	<!-- <div class="custom-control custom-radio custom-control-inline">
@@ -811,7 +827,7 @@
             	<div class="select-radio"> 
                        <div class="custom-control custom-radio custom-control-inline">
                           <input type="radio" class="custom-control-input COAIDBfields" onclick="CHKSameCoAppresiaddr();" value="Co-Applicant Residence Address" id="ResiYes" name="COAI_SAMRESIDADDR">
-                          <label class="custom-control-label" for="ResiYes">Co-Applicant Residence Address</label>
+                          <label class="custom-control-label" for="ResiYes">Co-Applicant Current Address</label>
                        </div>
                    </div>
             	
@@ -831,8 +847,8 @@
                 </div>
                 <div class="col">
                   <div class="md-form">
-                    <input type="text" id="COAI_PERMADDRLINII"  maxlength="60" name="COAI_PERMADDRLINII" class="form-control AddrNoSpecialChar PRADDR COAIDBfields">
-                    <label for="COAI_PERMADDRLINII" class="ADDR">Address Line 2</label>
+                    <input type="text" id="COAI_PERMADDRLINII"  maxlength="60" name="COAI_PERMADDRLINII" class="form-control AddrNoSpecialChar PRADDR COAIMndtry COAIDBfields">
+                    <label for="COAI_PERMADDRLINII" class="ADDR">Address Line 2<span class="MndtryAstr">*</span></label>
                   </div>
                </div>
         </div>
@@ -919,6 +935,125 @@
 				<label class="mdb-main-label BTxt9">Months</label>
              </div>
                </div>
+			   </div>
+			  
+			   <!--NEWLY CURRENT ADDRESS ADDED FOR OVD CHANGES START-->
+			   <div class="form-row" Style="display:none">
+        	<div class="col Btxt10">CURRENT ADDRESS</div>
+        </div>
+        <div class="form-row" Style="display:none">
+            <div class="col">
+            	<div class="md-form">
+            	<div class="custom-control custom-radio custom-control-inline">
+ 					<input type="checkbox" class="custom-control-input COAIDBfields RESSTAT" onclick="getSameaApplAddr()"  id="COAI_CURSAMAPPLADDR" name="COAI_CURSAMAPPLADDR">
+  					<label class="custom-control-label" for="COAI_CURSAMAPPLADDR">Same as Applicant Address</label>
+				</div>
+				</div>
+            </div>
+        </div>
+        <div class="form-row" Style="display:none">
+            <div class="col">
+                  <div class="md-form">
+                    <input type="text" id="COAI_CURADDRLINI" name="COAI_CURADDRLINI"  maxlength="60" class="form-control APADDR RESSTAT  AddrNoSpecialChar COAIDBfields CAOIMndtry">
+                    <label for="COAI_CURADDRLINI" class="APDR">Address Line 1<span class="MndtryAstr">*</span></label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="md-form">
+                    <input type="text" id="COAI_CURADDRLINII"  maxlength="60" name="COAI_CURADDRLINII" class="form-control AddrNoSpecialChar APADDR RESSTAT CAOIMndtry COAIDBfields">
+                    <label for="COAI_CURADDRLINII" class="APDR">Address Line 2<span class="MndtryAstr">*</span></label>
+                  </div>
+               </div>
+        </div>
+        <div class="form-row" Style="display:none">
+            <div class="col">
+                  <div class="md-form">
+                    <input type="text" id="COAI_CURPINCODE" maxlength="6" name="COAI_CURPINCODE" onchange="fnOnFocusOut(this);Pindetls(this,'COAI_CURSTATE','COAI_CURCITY','COAI_CURSTDC')" class="form-control NoSpecialChar RESSTAT APADDR COAIDBfields COAIMndtry IsNumberFields IsPinFielde">
+                    <label for="COAI_CURPINCODE" class="APDR">Pin Code<span class="MndtryAstr">*</span></label>
+                  </div>
+                </div>
+                <div class="col">
+                  
+                  <div class="md-form">
+                    <input type="text" id="COAI_CURCITY" disabled name="COAI_CURCITY" class="form-control APADDR RESSTAT ALLDIS COAIDBfields COAIMndtry">
+                    <label for="COAI_CURCITY" class="APDR">City<span class="MndtryAstr">*</span></label>
+                  </div>
+               </div>
+        </div>
+        <div class="form-row" Style="display:none">
+            <div class="col">
+                  <div class="md-form">
+                    <input type="text" id="COAI_CURSTATE" disabled name="COAI_CURSTATE" class="form-control APADDR RESSTAT ALLDIS COAIDBfields COAIMndtry">
+                    <label for="COAI_CURSTATE" class="APDR">State<span class="MndtryAstr">*</span></label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="md-form">
+                    <input type="text" id="COAI_CURLNDMARK"  maxlength="40" name="COAI_CURLNDMARK" onchange="ChkLanMark(this,'COAI_CURLNDMARK');" class="form-control APADDR  RESSTAT COAIDBfields COAIMndtry">
+                    <label for="COAI_CURLNDMARK" class="APDR">Landmark<span class="MndtryAstr">*</span></label>
+                  </div>
+               </div>
+        </div>
+        <div class="form-row" Style="display:none">
+            <div class="col-md-6">
+                  <div class="md-form">
+                  <select class="mdb-select md-form colorful-select dropdown-primary APADDR COAIDBfields COAIMndtry" id="COAI_CURRESIDTYPE" name="COAI_CURRESIDTYPE">
+                  	<option value="" selected >--Select--</option>
+  					<option value="Self Owned">Self Owned</option>
+ 					 <option value="Rented">Rented</option>
+ 					 <option value="Owned by Relative">Owned by Relative</option>
+ 					 <option value="Company Provided">Company Provided</option>
+ 					 <option value="Family Owned">Family Owned</option>
+ 					 <option value="Leased">Leased</option>
+				</select>
+				<label class="mdb-main-label BTxt9">Ownership status<span class="MndtryAstr">*</span></label>
+             </div>
+                </div>
+                <div class="col-md-1">
+                   <div class="md-form">
+                        <input type="text" id="COAI_CURSTDC" maxlength="11" style="width:75px"  name="COAI_CURSTDC" class="form-control APADDR COAIDBfields IsNumberFields IsLandlneFields"> 
+                        <label for="COAI_CURSTDC" class="APDR">STD</label>
+                   </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="md-form">
+                    <input type="text" id="COAI_CURLNDLINENO" maxlength="11"  name="COAI_CURLNDLINENO" class="form-control APADDR COAIDBfields IsNumberFields IsLandlneFields">
+                    <label for="COAI_CURLNDLINENO" class="APDR">Landline No</label>
+                  </div>
+               </div>
+        </div>
+        <div class="form-row " Style="display:none">
+            <div class="col">
+                  <div class="md-form">
+               <input type="text" id="COAI_CURYEAROFRESID" maxlength="2" name="COAI_CURYEAROFRESID" class="form-control APADDR COAIDBfields  NoSpecialChar IsNumberFields COAIMndtry">
+                    <label for="COAI_CURYEAROFRESID" class="APDR">Years of Residence<span class="MndtryAstr">*</span></label>
+                  </div>
+                  
+                </div>
+                <div class="col">
+                  
+                  <div class="md-form">
+                  <select class="mdb-select md-form colorful-select dropdown-primary APADDR COAIDBfields" onchange="Chkresi()" id="COAI_CURMONTHS" name="COAI_CURMONTHS">
+                  	<option value="">--Select--</option>
+                  	<option value="0">0</option>
+  					<option value="1">1</option>
+  					<option value="2">2</option>
+  					<option value="3">3</option>
+  					<option value="4">4</option>
+  					<option value="5">5</option>
+  					<option value="6">6</option>
+  					<option value="7">7</option>
+  					<option value="8">8</option>
+  					<option value="9">9</option>
+  					<option value="10">10</option>
+  					<option value="11">11</option>
+ 					
+				</select>
+				<label class="mdb-main-label BTxt9">Months</label>
+             </div>
+               </div>
+			   
+			   <!--NEWLY CURRENT ADDRESS ADDED FOR OVD CHANGES END-->
            
         </div>
         </div>
@@ -948,8 +1083,8 @@
                 <div class="col">
                   
                   <div class="md-form">
-                    <input type="text" id="COAI_ORGADDRLINII"  maxlength="60" name="COAI_ORGADDRLINII" class="form-control ORGADD AddrNoSpecialChar COAIDBfields">
-                    <label for="COAI_ORGADDRLINII" class="">Address Line 2</label>
+                    <input type="text" id="COAI_ORGADDRLINII"  maxlength="60" name="COAI_ORGADDRLINII" class="form-control ORGADD AddrNoSpecialChar COAIMndtry COAIDBfields">
+                    <label for="COAI_ORGADDRLINII" class="">Address Line 2<span class="MndtryAstr">*</span></label>
                   </div>
                </div>
         </div>
@@ -1154,8 +1289,8 @@
                                     </div>
                                     <div class="col">
                                        <div class="md-form">
-                                          <input type="text" id="COEI_ADDRLINEII" maxlength="60" name="COEI_ADDRLINEII" class="form-control OFFADDR AddrNoSpecialChar COEIDBfields PROCHGS">
-                                          <label for="COEI_ADDRLINEII" class="OADDR PROCHGAC">Address Line 2</label>
+                                          <input type="text" id="COEI_ADDRLINEII" maxlength="60" name="COEI_ADDRLINEII" class="form-control OFFADDR AddrNoSpecialChar COEIDBfields COEIMndtry PROCHGS">
+                                          <label for="COEI_ADDRLINEII" class="OADDR PROCHGAC">Address Line 2<span class="MndtryAstr">*</span></label>
                                        </div>
                                     </div>
                                  </div>
@@ -1379,20 +1514,30 @@
                                           <div  id="ORGSEP" class="select-radio EMPI">
                                              <div class="custom-control custom-radio custom-control-inline">
                                                 <input type="radio" class="custom-control-input COEIDBfields" value="Permanent Residence" id="PrePerRes" name="COEI_PREFCOMMUADDR">
-                                                <label class="custom-control-label" for="PrePerRes">Permanent Residence</label>
+                                                <label class="custom-control-label" for="PrePerRes">Correspondence Address</label>
                                              </div>
                                              <div class="custom-control custom-radio custom-control-inline">
                                                 <input type="radio" class="custom-control-input COEIDBfields" value="Current Residence" id="PreCurRes" name="COEI_PREFCOMMUADDR">
-                                                <label class="custom-control-label" for="PreCurRes">Current Residence</label>
+                                                <label class="custom-control-label" for="PreCurRes">Current Address</label>
                                              </div>
                                              <div class="custom-control custom-radio custom-control-inline">
                                                 <input type="radio" class="custom-control-input COEIDBfields" value="Office" id="PreOff" name="COEI_PREFCOMMUADDR">
-                                                <label class="custom-control-label" for="PreOff">Office</label>
+                                                <label class="custom-control-label" for="PreOff">Office Address</label>
                                              </div>
                                           </div>
                                           <label class="mdb-main-label BTxt9">Preferred Communication Address<span class="MndtryAstr">*</span></label>      
                                        </div>
-                                    </div>	
+                                    </div>
+                             <div class="col-md-6">
+						        <div class="md-form" >
+							        <select class="mdb-select md-form colorful-select dropdown-primary COEIDBfields COEIMndtry" id="COEI_BENEFIOWN" name="COEI_BENEFIOWN">
+								        <option value="">Select</option>
+								        <option value="Yes">Yes</option>
+								        <option value="No">No</option>
+							        </select>
+							<label class="mdb-main-label BTxt9">Beneficial Owner<span class="MndtryAstr">*</span></label>
+						    </div>
+				            </div>									
                                  </div>									 
                                 <!-- <div class="form-row " style="display:none" >
                                     <div class="col">
@@ -1608,7 +1753,19 @@
                   </div>
                 </div>
 				</div>
-		   
+		   	<div class="form-row">
+				<div class="col-md-6">
+					<div class="md-form">
+					<select class="md-form colorful-select dropdown-primary  COOADBfields" id="COOA_KYCCATEGORY" name="COOA_KYCCATEGORY">
+                                             <option value="">Select</option>
+                                             <option value="Low">Low</option>
+                                             <option value="Medium">Medium</option>
+                                             <option value="High">High</option>
+                                          </select>
+                    <label for="COOA_KYCCATEGORY" class="">KYC Category<span class="MndtryAstr"></span></label>
+					</div>
+					</div>
+				</div>
     <!--    <div class="form-row">
                  <div class="col">
                      <div class="md-form">
@@ -1833,6 +1990,64 @@
   <script>
  
  </script>
-</div>                             
+</div>  
+<script>
+
+function getLocation(cusid,Lat,Long,DistanceFld) {
+	$("#"+Lat).val("");
+	$("#"+Long).val("");
+	$("#collapseTwo2").find("#Save2").click()
+	var op1 = UI_getdata($("#PrcsID").val(),$("#"+cusid).val(),"","","","LSW_SGEOTAGGINGVALIDATOR");
+	if($(op1).find("RESULT").text() == "N")
+	{
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
+	setTimeout (function() {
+		if((($("#"+Lat).val()) !=  "") && (($("#"+Long).val()) != ""))
+	{
+		$("#collapseTwo2").find("#Save2").click()
+		var APIData=GeoTagging($("#PrcsID").val(),$("#"+cusid).val(),"getLatLngByAddress");
+		var obj= JSON.parse(APIData)
+		GetCoordinateDistance(Lat+"~"+obj.data.lat,Long+"~"+obj.data.lang,"COAI_GEOFLDGHTMLTOAPI","HTML TO API");
+		
+		$("#collapseTwo2").find("#Save2").click()
+	} 
+		
+	}, 2000)
+	
+  } else { 
+    alert("Geolocation is not supported by this browser.");
+  }
+	}
+	else{
+		alert("Fill the Address Fields to Initiate Geo Tagging");
+		return;
+	}
+}
+
+function showPosition(position) {
+  $("#COAI_LAT").val(position.coords.latitude);
+  $("#COAI_LAT").next().next().addClass("active");
+  $("#COAI_LONG").val(position.coords.longitude);
+  $("#COAI_LONG").next().addClass("active");
+}
+
+function showError(error) {
+  switch(error.code) {
+    case error.PERMISSION_DENIED:
+      alert("User denied the request for Geolocation.")
+      break;
+    case error.POSITION_UNAVAILABLE:
+      alert("Location information is unavailable.")
+      break;
+    case error.TIMEOUT:
+      alert("The request to get user location timed out.")
+      break;
+    case error.UNKNOWN_ERROR:
+      alert("An unknown error occurred.")
+      break;
+  }
+}
+</script>                             
                                   <!--   </div>
                                 </div>   -->                           

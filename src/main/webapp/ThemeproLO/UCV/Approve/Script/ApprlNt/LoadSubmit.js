@@ -622,14 +622,14 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
              		 {
              		   var ValuationID=DATA[x].split("|")[0];
              	       var row = $("." + ValuationID).find(".DYNROW").length;
-             	    for (var z=0;z<row;z++)
+             	   /*  for (var z=0;z<row;z++)
           	           {
           	          //var HTML =	 $("." + ValuationID).find(".DYNROW")[i];
              	    	if(MndtryChk=="")
              	    		{
              	    		   MndtryChk = CheckDocMndtryEndUse("LoansTable"+[z+1],"EndUse","End Use");	
              	    		}
-          	            }
+          	            } */
                       }
              	if(MndtryChk != "")
         			{
@@ -810,7 +810,7 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
 	var RECEIPTNO=""
 
 
-   $.ajax({
+   /*******$.ajax({
 		    url: "/TPLSW/LMSPF",
 		    type: 'POST',
 		    data: {PRCSID:PRCSID1,PFNO:PFNO1,RECEIPTNO:RECEIPTNO,Prvnt:$(window.parent.parent.document).find("#Prvnt").val()},
@@ -841,7 +841,7 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
 			alert("Customer Creation/Updation failed. Contant IT!!!");
 			return;
 			   }
-		});	
+		});	*******/
 				
 				
 				

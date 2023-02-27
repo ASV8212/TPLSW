@@ -156,6 +156,7 @@ function CheckAppltype()
 		$("#GRBI_CUSFISNAM").removeClass('IsAlphaFields');
 		
 		$(".NINDM").addClass('GRBIMndtry');
+		
 		$(".INDU").hide();
 		$(".NINDU").show();
 		$(".AddKYC").hide();
@@ -874,9 +875,10 @@ function GridControlDetailKARZAGRD (popTableModPageGrid1,TableID,dtData,dtcolumn
   
 		 
 		 { targets: 6, "render": function ( data, type, row, meta ) {                            
-	 			
+	 		if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))	
+			{				
 			 var rowno = meta.row;		 
-		 		var HTML =	'<span><input type="radio" class="custom-control-input CBSIDBfields" value="Yes" id="MULTIPLY'+rowno+'" name="ACTION"><label class="custom-control custom-control-label" for="MULTIPLY'+rowno+'">Yes</label>';			 
+		 		var HTML =	'<span><input type="radio" disabled class="custom-control-input CBSIDBfields" value="Yes" id="MULTIPLY'+rowno+'" name="ACTION"><label class="custom-control custom-control-label" for="MULTIPLY'+rowno+'">Yes</label>';			 
 		 		HTML = HTML + '</span>';			  
 		 		
 		 		var htmldata = $(HTML);
@@ -887,7 +889,22 @@ function GridControlDetailKARZAGRD (popTableModPageGrid1,TableID,dtData,dtcolumn
 					//alert(htmldata[0].outerHTML);
 					
 		        return htmldata[0].outerHTML;   		
+			}
+				else
+				{
+					var rowno = meta.row;		 
+		 		var HTML =	'<span><input type="radio" class="custom-control-input CBSIDBfields" value="Yes" id="MULTIPLY'+rowno+'" name="ACTION"><label class="custom-control custom-control-label" for="MULTIPLY'+rowno+'">Yes</label>';			 
+		 		HTML = HTML + '</span>';			  
+		 		
+		 		var htmldata = $(HTML);
 					
+					$(htmldata).find('[name=RXLD_MULTIPLIER'+rowno+'][value="'+data+'"]').attr('checked', 'checked');
+
+					//alert($(htmldata).find('[name=OKYD_DOCSTATUS'+rowno+'][value="'+data+'"]').length)
+					//alert(htmldata[0].outerHTML);
+					
+		        return htmldata[0].outerHTML; 
+				}
 		         } 
 				 }				 
     	   ],
@@ -2121,6 +2138,12 @@ function Chkdirect()
 	   $("#GRBI_KYCPROOFTYP option[value='SIGN PROOF']").attr('disabled',true);
 	   $("#GRBI_KYCPROOFTYP").material_select();
 	}
+	if($("#GRBI_CUSTYPE").val() == "Non-Individual")
+	{
+		$("#GRBI_KYCPROOFTYP option[value='SIGN PROOF']").attr('disabled',true);
+		$("#GRBI_KYCPROOFTYP option[value='DOB PROOF']").attr('disabled',true);
+	}
+	
 
 }
 
@@ -2525,4 +2548,22 @@ if(($("#GRBI_UBVERIFYTYPE").val()!="") && ($("#GRBI_PASPRTTYPE").val()!=undefine
 {
 $(".Utility").show();
 }
+}
+
+function GETPROOFTYP()
+{
+
+var k=	$("#GRBI_KYCPROOFTYP").val().length	
+var PROOFTYPE=""
+ for(i=0;i<k;i++)
+	 {
+	 var PROOFTYPE1=$("#GRBI_KYCPROOFTYP").val()[i]
+		
+	 if(PROOFTYPE1!=undefined)
+		 {
+	      var PROOFTYPE= PROOFTYPE+','+PROOFTYPE1
+		}
+	 }
+       var PROOFTYPE =PROOFTYPE.replace(',','')
+       $("#GRBI_HIDPROFTYP").val(PROOFTYPE)	
 }

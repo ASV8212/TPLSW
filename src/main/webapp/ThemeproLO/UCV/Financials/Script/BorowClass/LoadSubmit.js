@@ -16,7 +16,10 @@ $(document).ready(function() {
 
 
 	
-    
+      if($("#VERTICAL").val()!="UCV Eco")
+	{
+	   var StrCAMData=UI_getdata($("#PrcsID").val(),"","",$("#VERTICAL").val(),"First","LSW_SSTRCAMMAINTABLE");
+	}
  
     
     

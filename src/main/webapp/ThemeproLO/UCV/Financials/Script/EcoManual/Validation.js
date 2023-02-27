@@ -7,7 +7,7 @@ function LIMITELIGIBLE()
 	var TYPEVECHILE=$("#ECOM_TYOFVEHICLE").val()
 	var NOOFVECHILE=$("#ECOM_NOOFVEHICLE").val()
 	var VECHILAMT=0;
-	if(TYPEVECHILE=="LCV")
+	/* if(TYPEVECHILE=="LCV")
 	{
 	VECHILAMT=25000	
 	}
@@ -16,6 +16,16 @@ function LIMITELIGIBLE()
 	VECHILAMT=40000	
 	}
 	else if(TYPEVECHILE=="HCV")
+	{
+	VECHILAMT=50000
+	} */
+	var XMLPRODUCTID=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETSCHEMID")
+	var PRODUCT=$(XMLPRODUCTID).find('PRODUCT').text();
+	if(PRODUCT=='T307' || PRODUCT=='T308')
+	{
+	VECHILAMT=60000
+	}
+	else
 	{
 	VECHILAMT=50000
 	}

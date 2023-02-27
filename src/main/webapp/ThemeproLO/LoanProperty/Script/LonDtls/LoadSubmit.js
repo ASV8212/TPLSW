@@ -31,7 +31,7 @@ $(document).ready(function () {
 	var LoadSchemeOptn = UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETSCHEMEPRDWS");
 	$("#LODE_SCHEME").append($(LoadSchemeOptn).find("RESULT").html());
 	
-	if($("#VERTICAL").val()=="MSME Alliance")
+	/* if($("#VERTICAL").val()=="MSME" || $("#VERTICAL").val()=="MSME Alliance")
 	{		
 		$(".ALIANCE").show();
 		$("#LODE_ANCHORNAME").addClass('LODEMndtry');
@@ -44,7 +44,7 @@ $(document).ready(function () {
 		$("#LODE_ANCHORNAME").material_select();
 		
 		$(".ALIANCE").hide();
-	}
+	} */
 	
 	
 	
@@ -82,10 +82,16 @@ $(document).ready(function () {
 	
 	//LoadMultiData("",$("#PrcsID").val(),$("#LODE_LOANID").val(),"LoanDetail","LODEDBfields","LSW_SGETLONDETAILS");
 	
+	var SUBLONPURP = UI_getdata("LoanPurpose","",$("#VERTICAL").val(),"","","LSW_SGETPRODVAL");
+	$("#LODE_SUBLONPURP").html("")
+	$("#LODE_SUBLONPURP").append($(SUBLONPURP).find("RESULT").html());
+	$("#LODE_SUBLONPURP").material_select();
+
+	
 	var DATA=$("#LODE_LOANID").val()+'|LODE_LOANID'
 	
 	FormDataFromDB("LSW_TLOANDETAILS","LODE_","LODEDBfields", DATA);
-
+getanchor();
 	CheckLoanTypeRM('LODE');
    //CheckSEC();
 	CheckSourceOnload();
@@ -101,6 +107,7 @@ $(document).ready(function () {
 	//ChkSchemeLoad()
 	CheckDemandLoad();
 	CHKPRODUCTTYPE();
+	CheckREDUCE();
 	//CheckCredit();
 	if($("#DMY5").val().split('|')[2]!="PreLogin" && $("#DMY5").val().split('|')[2]!="PreLoginSB")
 	{
@@ -110,7 +117,7 @@ $(document).ready(function () {
 	   $(".FormPageMultiTabAdd").hide();
 	}
 	
-	         GetSecUnsec('Load');
+	        // GetSecUnsec('Load');
 			 GetNaturProduct1();
 			 getSchemeDetails1('Load');
 			 //CheckLIMITDTLS();

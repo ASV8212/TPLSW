@@ -1,13 +1,22 @@
 $(document).ready(function() {
 
-
+if($("#VERTICAL").val()=="UCV Eco")
+	{
+	   var StrCAMData=UI_getdata($("#PrcsID").val(),"","",$("#VERTICAL").val(),"First","LSW_SSTRCAMMAINTABLE");
+	}
     //$($('.AFormaccordion')[0]).click();
     //$("#BKDT_CUSID").val($(".FormPageMultiTab li.active").attr("id"));
 
     $("#PrcsID").attr("value", $("#PrcsID").val());
 	
    // FormDataFromDB("LSW_TSCORECARD", "CRSM_", "CRSMDBfields", "");
-     $("#BTNBREGRD").click();	 
+     $("#BTNBREGRD").click();	
+			if($("#DMY7").val().split("|")[8] == "T316")
+			{	 
+				$("#BTNBREGRD1").closest(".form-row").show();
+				$("#BTNBREGRD1").click();
+				$(".T316").show();
+			}
  
     if($("#VERTICAL").val() == "UCV Eco")
 	{
@@ -20,6 +29,14 @@ $(document).ready(function() {
 			UI_getdata($("#PrcsID").val(),"","","","","LSW_SAUTOFLOW_BREHANDLER");
 			UI_getdata($("#PrcsID").val(),"","","","","LSW_SGENSCORECARD");
 			$("#BTNBREGRD").click();	 
+			
+			if($("#DMY7").val().split("|")[8] == "T316")
+			{
+				UI_getdata($("#PrcsID").val(),"","","","","LSW_SAUTOFLOW_BREHANDLER_COAPPLN");
+				$("#BTNBREGRD1").closest(".form-row").show();
+				$("#BTNBREGRD1").click();
+				$(".T316").show();
+			}
 		}
 	}
     

@@ -19,8 +19,7 @@ $(document).ready(function () {
 	}
 
 
-	//$("#RCCM_UNIQUID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
-	$("#RCCM_LOANUNIQID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
+	$("#RCCM_UNIQUID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
 	$("#RCCM_SCHEME").attr("value",$(".FormPageMultiTab li.active").text());
 	$("#EGCD_UNIQUID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
 	
@@ -90,9 +89,11 @@ $(document).ready(function () {
 
 	FormDataFromDB(tbl, prfx + "_", prfx+"DBfields", DATA);
     
-    LoadMultiData("",$("#PrcsID").val(),$("#RCCM_UNIQUID").val()+'|'+ViewRInavtivePGFlg+'|'+$("#RCCM_LOANUNIQID").val(),"ELIGHSCHEME","FCEBDBfields","LSW_SGETELIGHSCHEME"); 
+    LoadMultiData("",$("#PrcsID").val(),$(".FormPageMultiTab li.active").attr("id")+'|'+ViewRInavtivePGFlg+'|'+$("#RCCM_LOANUNIQID").val(),"ELIGHSCHEME","FCEBDBfields","LSW_SGETELIGHSCHEME"); 
 	
 	$("#BTNRCUGRD").click();
+	
+
 	
 	var xml=UI_getdata($("#PrcsID").val(),$("#RCCM_UNIQUID").val(),"","","","LSW_SCHECKLNTY")
 	var CusName=$(xml).find('RESULT').html();
@@ -410,7 +411,7 @@ $(document).on("click", "#MarginSmt", function(){
 	$(document).on("click", ".FormSave1" , function() {
 	//$('.FormSave').on('click', function() {
 		
-		
+		 $("#"+$(".FormSave").attr('id')).click();
 		 MndtryChk = CheckDocMndtry("Table3","ClosureMndtry","Existing Loan");
 		  
 		  if(MndtryChk != "")
@@ -793,8 +794,8 @@ $(document).on("click", "#MarginSmt", function(){
 			var prfx = $(this).attr("data-aria").split("|")[1];
 			var DATA = $(this).attr("data-aria").split("|")[2];
 
-            var ELIGBLESCHEME = TxtGridsubmitdata_V2("ELIGHSCHEME","FCEB_","ICEG_","FCEBDBfields"); 
-			   AssignGridXmltoField("ICEG_FINCSCHEM", ELIGBLESCHEME)			
+           // var ELIGBLESCHEME = TxtGridsubmitdata_V2("ELIGHSCHEME","FCEB_","ICEG_","FCEBDBfields"); 
+			//   AssignGridXmltoField("ICEG_FINCSCHEM", ELIGBLESCHEME)			
 				
 			var CHKresult=FormDataToDB(tbl,prfx,$("#RCCM_PRCSID").val()+"|"+$("#"+DATA).val()+"|" + DATA);
 			if(CHKresult == "Fail")
@@ -970,11 +971,23 @@ $(document).on("click", "#MarginSmt", function(){
 				$("#BTNELIGBLEDATA").click();
 			}
 			}
+			if($("#VERTICAL").val()=="MSME")
+			 {
+			  var RES=UI_getdata($("#PrcsID").val(),"","","","","LSW_SPPFCOMPUT")
+			  var ROI =$(RES).find('UPDROI').text()			 
+			  var Tenu=$(RES).find('TENURE').text()
+			  var Sanamt=$(RES).find('SANLNAMT').text()
+			  
+			  var RESEMI=UI_getdata(ROI,Tenu,Sanamt,"","","LSW_SGETEMI_DATA") 
+			  var EMI=$(RES).find('UPDEMI').text()
+			  var UPDEMI=UI_getdata($("#PrcsID").val(),EMI,"","","","LSW_SPPFCOMPUT")
+			  }
 	if($(this).text() == "Save & Next")
 	 {
        NXTTAB(this);	
 	 } 
-			
+		
+
 		});
 	
 $("#SchemeAdd").on('click', function() {
@@ -1734,6 +1747,8 @@ $("#BTNELIGBLEDATA").on('click', function() {
 		LoadMultiData("",$("#PrcsID").val(),$("#RCCM_UNIQUID").val()+'|'+ViewRInavtivePGFlg,"ELIGHSCHEME","FCEBDBfields","LSW_SGETELIGHSCHEME"); 
 		 
 		$("#BTNFINCELIGBGRD").click();
+
+		
 		 
 		 $(".RTR").hide()
 		 $(".GSL").show()
@@ -1909,4 +1924,6 @@ if($("#DMY7").val().split("|")[8] == "HE02")
 
 	
 });
+
+	
 

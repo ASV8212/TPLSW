@@ -25,25 +25,66 @@ $(document).ready(function () {
 	var OrgCusID =$("#headingFour4 a").attr("data-aria").split("|")[2];
 	var OrgCusID1 =$("#headingFour4 a").attr("data-aria").split("|")[3];
     //End
-	
-	
-
-	
 	if(DATA != "")
 	{
 		DATA = $("#"+DATA).val()+"|" + DATA;
 	}
 	
-			var xml=UI_getdata("","","","","","LSW_SGETNATUR")
+	
+	var xml=UI_getdata("","","","","","LSW_SGETNATUR")
 	
 	$("#CDOG_INDUSCATRGORY").html("")
 	$("#CDOG_INDUSCATRGORY").append($(xml).find("Industry").html());
 	$("#CDOG_INDUSCATRGORY").material_select();
 	$("#CEMI_INDUSCATRGORY").html("")
 	$("#CEMI_INDUSCATRGORY").append($(xml).find("Industry").html());
+	//$("#CEMI_INDUSCATRGORY").material_select();
 	
 	FormDataFromDB(tbl, prfx + "_", prfx+"DBfields", DATA);
 	
+	
+   if($("#DMY5").val().split('|')[2]=="SendToCredit" && ($("#VERTICAL").val()=="UCV" || $("#VERTICAL").val()=="UCV Eco")) 
+	
+	{
+        $("#CDOG_KYCCATEGORY").attr('disabled',false); 
+		$("#CEMI_KYCCATEGORY").attr('disabled',false); 
+		if($("#CBSI_CUSTYPE").val() == "Non-Individual")
+		{
+			$("#CDOG_KYCCATEGORY").addClass('CDOGMndtry');
+		}
+		else
+		{
+			$("#CEMI_KYCCATEGORY").addClass('CEMIMndtry');
+		}
+		
+     
+    }
+    else
+    {
+        $("#CDOG_KYCCATEGORY").attr('disabled',true);
+		$("#CEMI_KYCCATEGORY").attr('disabled',true);
+        $("#CDOG_KYCCATEGORY").removeClass("CDOGMndtry");
+		$("#CEMI_KYCCATEGORY").removeClass("CEMIMndtry");
+		
+    }
+	
+		
+	if($("#CBSI_PANVERIFY").val()=='Verified')
+	{
+		$(".CBSI_PAN").addClass('VIEWDISABLE');
+	}
+	if($("#CBSI_VOTERIDVEIRFY").val()=='Verified')
+	{
+		$(".CBSI_VOTERID").addClass('VIEWDISABLE');
+	}
+	if($("#CBSI_DRIVLICNSVERIFY").val()=='Verified')
+	{
+		$(".CBSI_DRIVLICNS").addClass('VIEWDISABLE');
+	}
+	if($("#CBSI_PASSPORTVERIFY").val()=='Verified')
+	{
+		$(".CBSI_PASSPORT").addClass('VIEWDISABLE');
+	}
 	
 	// Added Since Loading Issues Date - 28/05/2020 Start
 	
@@ -111,7 +152,19 @@ $(document).ready(function () {
 	Chkbox();
 	Udyamcheckorg();
 	OtherKYC();
-
+	if($("#CBSI_HIDPROFTYP").val()!='')
+{	
+var HIDPROFTYP=$("#CBSI_HIDPROFTYP").val()
+var PROOFTYPE=HIDPROFTYP.split(",");
+var row = $(PROOFTYPE).length;
+for (i=0;i<row;i++)
+{
+if(PROOFTYPE[i] !="")
+{
+$("#CBSI_KYCPROOFTYP option[value='"+PROOFTYPE[i]+"']").attr("selected","selected")
+}
+}
+}
 	
 	//CheckIncomeInd();
   
@@ -156,6 +209,9 @@ $(document).ready(function () {
 	}
 	
 	var xmlSTATUS=UI_getdata($("#PrcsID").val(),$("#CBSI_CUSID").val(),"","","","LSW_SGETFISTATUS")
+	
+	var ADDRS=UI_getdata($("#PrcsID").val(),$("#CBSI_CUSID").val(),"","","","LSW_SGETPERMNTADDRS")
+	$("#CADI_PERMANTADDRS").val($(ADDRS).find('RESULT').text())
 	
 	/*if($(xmlSTATUS).find('RESULT').text()=="N")
 		{
@@ -214,11 +270,12 @@ $(document).ready(function () {
 	}
 	
 	
+	 
+	
+	
 	$("#headingOne1 a").attr("data-load","Yes");
 	
 	
-
-	//$("#CEMI_INDUSCATRGORY").material_select();
 	CheckDudupe('CBSI_DEDUPEVERIFY');
 	//LoadVwImg();
 	//CheckExsCust();
@@ -236,7 +293,11 @@ $(document).ready(function () {
         //CheckLoanType('CBSI','CADI','CEMI','CDOG');
 		AddZoom();
 		//CheckGSTorNot();
-		showRejRmk();
+		var op = UI_getdata($("#LogUsr").val(),"","","","","LSW_SGETBASEROLE")
+		if($(op).find("RESULT").text() == "Credit")
+		{
+			showRejRmk();
+		}
 		CheckProfile('Load');
 		FindConstDD();
 	LoadVwImage('CBSI_');
@@ -245,16 +306,15 @@ $(document).ready(function () {
 	  if($("#CBSI_MSKAADHARATTACHMENT").val()!="")
 	  {
 	   $(".AadharMskImg").show();
-	   $(".AadharViewImg").hide();
+	    $(".AadharViewImg").hide();
 	   $("#CBSI_AADHAR").attr("disabled",true);
       }
-	  if($("#CBSI_MSKAADHARATTACHMENTII").val()!="")
+	 if($("#CBSI_MSKAADHARATTACHMENTII").val()!="")
 	  {
 	   $(".AadharMskImgII").show();
 	   $(".AadharViewImgII").hide();
 	   $("#CBSI_AADHAR").attr("disabled",true);
       }
-	
 	if($("#CBSI_UBVERIFYTYPE").val()=="Mobile Authentication with OTP")
 	{
 		$(".UtilityLable").text("Service Number");
@@ -286,11 +346,17 @@ $(document).ready(function () {
 	   {		   
    if($("#VERTICAL").val()!="UCV Eco") 
 		{
-		if($("#CBSI_CUSID").val() == "" || $("#CBSI_PANVERIFY").val() == "" )
+		
+		if(($("#VERTICAL").val()=="UCV")&&($("#DMY7").val().split("|")[8]='T317'))
+		{
+			$('.ACCRDISB').removeClass('TABDSVLBL');
+		}
+		else if($("#CBSI_CUSID").val() == "" || $("#CBSI_PANVERIFY").val() == "" )
     	  {
     	   $('.ACCRDISB').addClass('TABDSVLBL');
-    	  } 
-		}		  
+    	  }		
+		}
+		
 	   }
      else
 	  {
@@ -409,6 +475,10 @@ $(document).ready(function () {
 
 $(document).on("click", ".ORGDETL", function()
 {
+	//if($("#"+$(this).attr("data-aria").split("|")[2]).val() == "")
+	  // {
+		$("#"+$(this).attr("data-aria").split("|")[2]).val($("#"+$(this).attr("data-aria").split("|")[3]).val())
+	   //}
 Chkbox();
 if($("#DMY5").val().split('|')[2]=="SendToCredit")
 {
@@ -503,6 +573,14 @@ $(document).on("click", ".EMPDLOAD", function()
 			if( personalinfocusid == "")
 			{
 				alert("Invalid Customer ID Has Been Picked For Processing, Pick a Valid Customer ID to Process Further");
+				return;
+			}
+			
+			var xmlsamecus=UI_getdata($("#PrcsID").val(),personalinfocusid,"","","","LSW_SCHKCUSTOMERIDEX");
+			
+			if($(xmlsamecus).find("RESULT").text() != "SUCCESS")
+			{
+				alert($(xmlsamecus).find("RESULT").text());
 				return;
 			}
 		/*	if((contactcusid == personalinfocusid) && (contactcusid  == addrinfocusid))
@@ -1455,8 +1533,6 @@ else
 						}
 					}
 				}
-				
-				
 				
 				}
 				else if(FormName=="EmployementDetails")

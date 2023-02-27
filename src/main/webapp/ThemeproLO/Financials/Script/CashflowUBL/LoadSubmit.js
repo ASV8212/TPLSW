@@ -7,18 +7,21 @@ $("#FLOW_SCHEMEID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
 	  //GetBorowClass();
       //GetSector();
 	
-		var check1=UI_getdata($("#PrcsID").val(),$("#FLOW_SCHEMEID").val(),"","","","LSW_SGETLOANDETAILS");
-		var pro3=($(check1).find('PRODUCT').text());
+		var PRODUCTXML=UI_getdata($("#PrcsID").val(),$("#FLOW_SCHEMEID").val(),"","","","LSW_SGETLOANDETAILS");
+		$("#FLOW_PRODUCT").val(($(PRODUCTXML).find('PRODUCT').text()));
 	
 	
   
-	if(pro3=='T201')
+	if($("#FLOW_PRODUCT").val()=='T201')
 	{
 		GetbussinessUBL();
-		
+		$(".FLOWMETHOD").hide()
+		$(".FLOWUBL").show()
 	}
 	else
-	{
+	{	
+		$(".FLOWMETHOD").show()
+		$(".FLOWUBL").hide()
 		 Getbussiness();
 		 GetMarginVal() ;
 	}

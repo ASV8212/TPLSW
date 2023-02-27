@@ -22,7 +22,6 @@
 				  <input type="text" id="PRST_SCHEMENAME" hidden="hidden" name="PRST_SCHEMENAME" class="form-control PRSTDBfields">
 				  <input type="text" id="PRST_SCHEMEID" hidden="hidden" name="PRST_SCHEMEID" class="form-control PRSTDBfields">
 				  <input type="text" id="PRST_PROJECT" hidden="hidden" name="PRST_PROJECT" class="form-control PRSTDBfields">
-				  <input type="text" id="PRST_LOANID" hidden="hidden" name="PRST_LOANID" class="form-control PRSTDBfields">
 				  
                    
 				 </br>
@@ -44,7 +43,7 @@
 			</br>
 				   
 				  </br>
-                  <div class="form-row">
+                  <div class="form-row"style="display:none">
                      <div class="col d-flex justify-content-center">
                         <button type="button" id="Save" data-aria="LSW_TPROJECTEDGST|PRST|PRST_SCHEMEID" class="btn btn-Syeloutline waves-effect waves-light Save FormSave">Save</button>   
                       <!--  <button type="button" data-aria="LSW_TTAKEOVERUBL|PRST" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> -->

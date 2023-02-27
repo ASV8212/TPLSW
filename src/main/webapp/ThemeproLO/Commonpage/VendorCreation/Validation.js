@@ -1647,6 +1647,11 @@ function CHKBLOCKLIST()
 	 
  }
  
- 
-
-
+ function chksapcodeex(){
+	 var op = UI_getdata($("#VEBN_UNIQID").val(),$("#VECR_SAPCODE").val(),"","","","LSW_SSAPCODECHCKER")
+	 if($(op).find("Result").text() != "SUCCESS")
+	 {
+		 alert($(op).find("Result").text());
+		 $("#VECR_SAPCODE").val("");
+	 }
+ }

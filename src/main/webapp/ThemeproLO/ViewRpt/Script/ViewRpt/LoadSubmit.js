@@ -125,7 +125,7 @@ var ADVAACTIVEPAGE=UI_getdata("","","","","","LSW_SGETADVASMARTSTAUS");
 	var Addrs=$(HTML).find("[name=" + FIOAddr + "]").val();
 	var Wav=$(HTML).find("[name=" + Wavre + "]:checked").val();
 	
-	var Finl=Addrs.replaceAll(' ', '');
+	var Finl=Addrs.replace(/ /g, '');
 	if(Finl=="")
 	{
 		$(HTML).find(".CHKADRS").hide();
@@ -175,7 +175,15 @@ $("#BTNADVSMART").on('click', function() {
    if($("#DMY7").val().split("|")[3]=="STP") 
      {
       DSVLBLALL('')
-      } 
+      }
+	if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))
+	 {
+		 DSVLBLALL('')
+	 }
+		if(($("#DMY5").val().split("|")[2]=="BranchOPS")&&($("#VERTICAL").val()=="Tractor Finance"))
+		{
+			DSVLBLALL('')
+		}
  if($("#PrMs1").val()=="View") 
      {
       DSVLBLALL('')
@@ -215,7 +223,7 @@ $("#BTNADVSMART").on('click', function() {
    	var Status = $(HTML).find("[name=" + ValuationStatus + "]").val();	 
 	var Addrs=$(HTML).find("[name=" + FIOAddr + "]").val();
 	var Wav=$(HTML).find("[name=" + Wavier + "]:checked").val();
-	var Finl=Addrs.replaceAll(' ', '');
+	var Finl=Addrs.replace(/ /g, '');
 	
 	if(Finl=="")
 	{
@@ -256,7 +264,14 @@ $("#BTNADVSMART").on('click', function() {
       DSVLBLALL('')
 	  
      } 
-	 
+	 if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))
+	 {
+		 DSVLBLALL('')
+	 }
+	 if(($("#DMY5").val().split("|")[2]=="BranchOPS")&&($("#VERTICAL").val()=="Tractor Finance"))
+		{
+			DSVLBLALL('')
+		}
 	  if($("#PrMs1").val()=="View") 
      {
       DSVLBLALL('')
@@ -313,7 +328,7 @@ $("#BTNADVSMART").on('click', function() {
 		var Addrs=$(HTML).find("[name=" + FIOAddr + "]").val();
 		var Wav=$(HTML).find("[name=" + Wavier + "]:checked").val();
 		
-		var Finl=Addrs.replaceAll(' ', '');
+		var Finl=Addrs.replace(/ /g, '');
 		
 		
 		
@@ -358,7 +373,14 @@ $("#BTNADVSMART").on('click', function() {
       DSVLBLALL('')
 	  
      } 
-	 
+	 if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))
+	 {
+		 DSVLBLALL('')
+	 }
+	 if(($("#DMY5").val().split("|")[2]=="BranchOPS")&&($("#VERTICAL").val()=="Tractor Finance"))
+		{
+			DSVLBLALL('')
+		}
 	  if($("#PrMs1").val()=="View") 
      {
       DSVLBLALL('')
@@ -421,7 +443,15 @@ if($("#DMY7").val().split("|")[3]=="SFA")
      {
       DSVLBLALL('')
 	  
-     } 
+     }
+	if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))
+	 {
+		 DSVLBLALL('')
+	 }	
+if(($("#DMY5").val().split("|")[2]=="BranchOPS")&&($("#VERTICAL").val()=="Tractor Finance"))
+		{
+			DSVLBLALL('')
+		}	 
 
  if($("#PrMs1").val()=="View") 
      {
@@ -484,6 +514,14 @@ if($("#DMY7").val().split("|")[3]=="SFA")
       DSVLBLALL('')
 	  
      }
+	 if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))
+	 {
+		 DSVLBLALL('')
+	 }
+	 if(($("#DMY5").val().split("|")[2]=="BranchOPS")&&($("#VERTICAL").val()=="Tractor Finance"))
+		{
+			DSVLBLALL('')
+		}
 
  if($("#PrMs1").val()=="View") 
      {
@@ -547,7 +585,15 @@ if($("#DMY7").val().split("|")[3]=="SFA")
       DSVLBLALL('')
 	  
      } 
-	 
+	 if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))
+	 {
+		 DSVLBLALL('')
+	 }
+	 if(($("#DMY5").val().split("|")[2]=="BranchOPS")&&($("#VERTICAL").val()=="Tractor Finance"))
+		{
+			DSVLBLALL('')
+		}
+
 	  if($("#PrMs1").val()=="View") 
      {
       DSVLBLALL('')
@@ -596,7 +642,14 @@ if($("#DMY7").val().split("|")[3]=="SFA")
       DSVLBLALL('')
 	  
      } 
-	 
+	 if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))
+	 {
+		 DSVLBLALL('')
+	 }
+	 if(($("#DMY5").val().split("|")[2]=="BranchOPS")&&($("#VERTICAL").val()=="Tractor Finance"))
+		{
+			DSVLBLALL('')
+		}
 	  if($("#PrMs1").val()=="View") 
      {
       DSVLBLALL('')
@@ -652,7 +705,14 @@ if($("#DMY7").val().split("|")[3]=="SFA")
       DSVLBLALL('')
 	  
      } 	
-
+	if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))
+	 {
+		 DSVLBLALL('')
+	 }
+	 if(($("#DMY5").val().split("|")[2]=="BranchOPS")&&($("#VERTICAL").val()=="Tractor Finance"))
+		{
+			DSVLBLALL('')
+		}
  if($("#PrMs1").val()=="View") 
      {
       DSVLBLALL('')
@@ -685,7 +745,14 @@ if($("#DMY7").val().split("|")[3]=="SFA")
       DSVLBLALL('')
 	  
      } 	
-
+	if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))
+	 {
+		 DSVLBLALL('')
+	 }
+	 if(($("#DMY5").val().split("|")[2]=="BranchOPS")&&($("#VERTICAL").val()=="Tractor Finance"))
+		{
+			DSVLBLALL('')
+		}
  if($("#PrMs1").val()=="View") 
      {
       DSVLBLALL('')
@@ -724,7 +791,14 @@ if($("#DMY7").val().split("|")[3]=="SFA")
       DSVLBLALL('')
 	  
      }
-
+	if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))
+	 {
+		 DSVLBLALL('')
+	 }
+	 if(($("#DMY5").val().split("|")[2]=="BranchOPS")&&($("#VERTICAL").val()=="Tractor Finance"))
+		{
+			DSVLBLALL('')
+		}
  if($("#PrMs1").val()=="View") 
      {
       DSVLBLALL('')
@@ -1538,12 +1612,12 @@ $(document).on("click", ".ValuationInit" , function() {
 			$("#RCUI_FILESTATSU").val('Completed')
 			
 			
-			if($("#RCUI_DATEOFCOMP").val() == "")
+/* 			if($("#RCUI_DATEOFCOMP").val() == "")
 		    		{
                     var today=$("#DMY7").val().split("|")[1]
 		    		$("#RCUI_DATEOFCOMP").val(today)
 		    		$(RCUI_DATEOFCOMP).next().addClass('active')
-		    		}
+		    		} */
 					$('.RCUSUB').text('Re-submit')
 			
 		}
@@ -1562,12 +1636,12 @@ $(document).on("click", ".ValuationInit" , function() {
 			$("#RCUI_FILESTATSU").val('Completed')
 			
 			
-			if($("#RCUI_DATEOFCOMP").val() == "")
+/* 			if($("#RCUI_DATEOFCOMP").val() == "")
 		    		{
                     var today=$("#DMY7").val().split("|")[1]
 		    		$("#RCUI_DATEOFCOMP").val(today)
 		    		$(RCUI_DATEOFCOMP).next().addClass('active')
-		    		}
+		    		} */
 					$('.RCUSUB').text('Re-submit')
 			
 		}
@@ -2372,6 +2446,18 @@ $(".ReAssignDone").click(function () {
 	  //  GrdDocDwnld('CBSI_PANATTACHMENT')"	
 		GrdDocDwnld(Attachview)
 		})
+		
+		$(".ViewRCUReport").click(function () {
+		var a = window.location.href;
+	a=btoa(a);
+		var PrMst8 = 'AdditionalURL|Appl|No Add';
+	$(location).attr('href',encodeURI(window.location.origin + "/TPLSW/IRCU?PrcsID="
+			+$("#PrcsID").val()
+			+"&ActvID="+$("#ActvID").val()+"&PrMs3="+a
+						+"&PrMs6="+$("#RCUI_UNIQID").val()
+						+"&PrMs5="+"IRCU"+$("#RCUI_UNIQID").val()
+						+"&PrMs8="+PrMst8+"&PrMs9=FormPageTab1&PrMs10=FormMainTab9&PrMs1=View")); 
+	});
 
 });
 

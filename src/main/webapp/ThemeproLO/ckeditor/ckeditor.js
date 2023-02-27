@@ -2287,6 +2287,8 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
             }(),
             getHtml: function() {
                 var a = this.$.innerHTML;
+				a = a.trim().replace("a\t\t\t\t ����  \n\t\t\t\t\n\t\t\t\t ","");
+				a = a.replace("a\t\t\t\t ����","");
                 return CKEDITOR.env.ie ? a.replace(/<\?[^>]*>/g, "") : a
             },
             getOuterHtml: function() {

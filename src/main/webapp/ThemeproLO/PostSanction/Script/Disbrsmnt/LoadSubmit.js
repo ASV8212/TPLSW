@@ -465,10 +465,10 @@ $(document).ready(function() {
 					$($("#Branch").find(".SANHEAD")[1]).text("Additional Documents")
 					$($("#Branch").find(".SANHEAD")[2]).text("Other Collateral")
 					$($("#Branch").find(".SANHEAD")[3]).text("Pre Sanction Documents")
-					$($("#Branch").find(".SANHEAD")[4]).text("Reports")
-					$($("#Branch").find(".SANHEAD")[5]).text("Sanction Conditions")	
-					$($("#Branch").find(".SANHEAD")[6]).text("")	
-					$($("#Branch").find(".SANHEAD")[7]).text("")	
+					$($("#Branch").find(".SANHEAD")[4]).text("Post sanction Documents")
+					$($("#Branch").find(".SANHEAD")[5]).text("Repayment Instruments")	
+					$($("#Branch").find(".SANHEAD")[6]).text("Reports")	
+					$($("#Branch").find(".SANHEAD")[7]).text("Sanction Conditions")	
 					$($("#Branch").find(".SANHEAD")[8]).text("")	
 					$($("#Branch").find(".SANHEAD")[9]).text("")	
 					$($("#Branch").find(".SANHEAD")[10]).text("")
@@ -503,7 +503,10 @@ $(document).ready(function() {
 					$($("#Branch").find(".SANHEAD")[9]).text("")	
 					$($("#Branch").find(".SANHEAD")[10]).text("")
 				}
-				 
+				 if($("#DMY7").val().split("|")[8]=="T404")
+				 {
+					 $($("#Branch").find(".SANHEAD")[0]).text("Disbursement Checklist")
+				 }
 				
 				
         }

@@ -17,7 +17,7 @@
 			<input type="text" id="CTOD_SCHEMENAME" hidden="hidden" name="CTOD_SCHEMENAME" class="form-control CTODDBfields">       
 		</br>
 		<div class="form-row">
-			<div class="col Btxt3">Transporter OD</div>
+			<div class="col Btxt3">Transporter WC</div>
         </div>
 		</br>
 		<div class="form-row">
@@ -81,7 +81,7 @@
             </div>		
 		</div>		
 		</br>
-        <div class="form-row">
+        <div class="form-row"style="display:none">
             <div class="col d-flex justify-content-center">
                 <button type="button" id="Save" data-aria="LSW_TTRANSODDETAILS|CTOD|CTOD_SCHEMEID" data-form="OD" class="btn btn-Syeloutline waves-effect waves-light Save FormSave">Save</button>   
                <!-- <button type="button" data-aria="LSW_TRTRDETAILS|CRTR|CRTR_SCHEMEID" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> -->

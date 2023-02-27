@@ -22,6 +22,8 @@ var RPTURL=  $(op).find("RPTURL").text()
 
    // ajaxindicatorstart("Downloading.. Please wait");
 	
+	if($(op).find("FLAG").text()=="Y")
+	{
 	var flname = IOP+RPTURL+"&__format=pdf&param1="+PrcsId+"&__filename=Sanctionletter_"+$("#DMY7").val().split("|")[7]+".pdf";
 	
 /* 	if($("#DMY7").val().split('|')[8]=="HE02")
@@ -46,6 +48,12 @@ var RPTURL=  $(op).find("RPTURL").text()
 			link.href=flname;
 			link.click();
 			ajaxindicatorstop();
+	}
+	else
+	{
+	  alert("Report is not configur");
+	  return false;
+	}
 }
 
 
@@ -283,18 +291,20 @@ function PushDatatoApprTbl1(){
 			else if($(OP).find("RESULT").text()=="SUCCESS")
 			{
 				if($("#ACTIONTAKEN").val()=="Approve"){
-					if($("#DMY7").val().split("|")[8]!="HE02"){
+					var op_xml = UI_getdata($("#PrcsID").val(),"","","","","LSW_SSTRAIGHTTHROUGHDISB");
+					if($(op_xml).find("RESULT").text() == "N"){
 					WFComplete ($("#ActvID").val(),"var_rstatus=Sanction","");
 					
 					UI_getdata($("#PrcsID").val(),"","","","Final Approval","LSW_SSMSEMAILLINKSND");
 					}
-					else if($("#DMY7").val().split("|")[8]=="HE02"){
-					WFComplete ($("#ActvID").val(),"var_rstatus=DSanction","");
+					else if($(op_xml).find("RESULT").text() == "Y"){
+					var WfStrthr = "var_rstatus=DSanction&"+$(op_xml).find("STRTHRFLG").text()
+					WFComplete ($("#ActvID").val(),WfStrthr,"");
 					
 					var ACTVTY="";
 					var OverAllStatus="";
 					var WFACTVINIT = "";
-					var ACTVTY=["PDD","OTC","OPSQD"]
+					ACTVTY=["OTC","PDD"];
 					
 					for(var j=0;j<ACTVTY.length;j++)
 					{
@@ -370,7 +380,7 @@ function PushDatatoApprTbl2(){
 			}
 			else if($(OP).find("RESULT").text()=="SUCCESS")
 			{
-				if($("#RECMTO").val()=="")
+				if($("#RECMTO").val()=="" || $("#RECMTO").val()===null)
 				{
 				  WFComplete ($("#ActvID").val(),"var_rstatus=SB","");
 				}
@@ -437,7 +447,7 @@ function GrdDocDwnld(evnt,row,UniqId,IdRow)
 		}
 	else if(PDFval=="CIBIL Score 1" || PDFval=="CIBIL Score 2")
 	   {
-		  var URL=$("#"+PDFID+row).val()
+		 /*  var URL=$("#"+PDFID+row).val()
 		  var URLVal=URL.split("/g\/g")[0]
 	      var Curl= $("#DMY1").val()
 		  if (URL =="")
@@ -454,7 +464,8 @@ function GrdDocDwnld(evnt,row,UniqId,IdRow)
 			{
 			  RedirectURL =window.location.origin+"/TPLSW/DMSVIEW?PrcsID=" + $("#PrcsID").val() + "&DMSID=" + (URL).split("/")[0];
             	$("#DocView").attr("src", RedirectURL);
-			}
+			} */
+			GentrateCIBIL(UniqId);
 	  }
 	else
 	  {
@@ -517,7 +528,7 @@ function GrdDocDwnld(evnt,row,UniqId,IdRow)
 
 function GentrateApprNote()
 {
-	var IOP=window.location.origin;
+	/* var IOP=window.location.origin;
 	var PrcsId=$("#PrcsID").val()
 	
 	var xml=UI_getdata(PrcsId,"","","","","LSW_SGETCUSSCHEME")
@@ -531,20 +542,65 @@ function GentrateApprNote()
 		link.download=flname;
 			link.href=flname;
 			link.click();
+			ajaxindicatorstop(); */
+			
+			var IOP=window.location.origin;
+	//var PrcsId=$("#PrcsID").val()
+	var PrcsId=$("#DMY7").val().split("|")[7]
+	var UniqId=$(".FormPageMultiTab li.active").attr('id');
+	var xml=UI_getdata(PrcsId,"","","","","LSW_SGETCUSSCHEME")
+       var Scheme=$(xml).find('LODE_SCHEME').text()
+    ajaxindicatorstart("Downloading.. Please wait");
+	
+	var LonType=$("#DMY7").val().split("|")[0]
+	LonType=LonType.replace('%','')
+	
+	//var flname = IOP+LoadFrmXML("RT0106")+"&__format=pdf&Param1="+PrcsId+"&Param2="+Scheme+"&Param3="+LonType+"&Param4="+$("#DMY7").val().split("|")[8]+"&__filename=ApproveNote-"+$("#DMY7").val().split("|")[7]+".pdf";
+	  if($("#VERTICAL").val()=="MSME")
+	  {
+		var flname = IOP+LoadFrmXML("RT0106")+"&__format=pdf&param1="+PrcsId+"&__filename=CAM_"+$(".FormPageMultiTab li.active").text()+".pdf";
+	  }
+	  else if($("#VERTICAL").val()=="MSME Alliance")
+	  {
+	      var flname = IOP+LoadFrmXML("RT0115")+"&__format=pdf&param1="+PrcsId+"&__format=pdf&param2="+UniqId+"&__filename=CAM_"+$(".FormPageMultiTab li.active").text()+".pdf";
+	 }
+	var link=document.createElement('a');
+		document.body.appendChild(link);
+		link.download=flname;
+			link.href=flname;
+			link.click();
 			ajaxindicatorstop();
 }
 
 function GentrateCAM()
 {
 	var IOP=window.location.origin;
-	var PrcsId=$("#PrcsID").val()
+	/* var PrcsId=$("#PrcsID").val()
 	var xml=UI_getdata(PrcsId,"","","","","LSW_SGETCUSSCHEME")
        var Scheme=$(xml).find('LODE_SCHEME').text()
+	 */
 	
+		var PrcsId=$("#DMY7").val().split("|")[7]
+	var UniqId=$(".FormPageMultiTab li.active").attr('id');
+	var Year=$("#RACD_FINYEAR").val()
+	var Consolid=$("input:radio[name=RACD_TYP]:checked").val()
 
     ajaxindicatorstart("Downloading.. Please wait");
 	
-	var flname = IOP+LoadFrmXML("RT039")+"&__format=pdf&@PARAM1="+PrcsId+"&@PARAM2="+Scheme+"&@PARAM3="+$("#DMY7").val().split("|")[0]+"&@PARAM4="+$("#DMY7").val().split("|")[8]+"&__filename=CAM_"+$("#DMY7").val().split("|")[7]+".pdf";
+	  if($("#VERTICAL").val()=="MSME")
+	  {
+          var flname = IOP+LoadFrmXML("RT0106")+"&__format=pdf&param1="+PrcsId+"&__format=pdf&param2="+UniqId+"&__filename=CAM_"+$(".FormPageMultiTab li.active").text()+".pdf";
+	  }
+	  else if($("#VERTICAL").val()=="MSME Alliance")
+	  {
+	      var flname = IOP+LoadFrmXML("RT0115")+"&__format=pdf&param1="+PrcsId+"&__format=pdf&param2="+UniqId+"&__filename=CAM_"+$(".FormPageMultiTab li.active").text()+".pdf";
+	 }
+	 
+	 ajaxindicatorstop();
+/* 
+    ajaxindicatorstart("Downloading.. Please wait"); */
+	
+	//var flname = IOP+LoadFrmXML("RT039")+"&__format=pdf&@PARAM1="+PrcsId+"&@PARAM2="+Scheme+"&@PARAM3="+$("#DMY7").val().split("|")[0]+"&@PARAM4="+$("#DMY7").val().split("|")[8]+"&__filename=CAM_"+$("#DMY7").val().split("|")[7]+".pdf";
 	
 	var link=document.createElement('a');
 		document.body.appendChild(link);
@@ -646,12 +702,12 @@ function InitRCU()
 	if (WFVndACTVINIT1 == "Success")
 			{
 			var OPXML = UI_getdata(GRP,UNIQid,UNIQid1,"","","LSW_SUPDATEIRCUGROUP");
-			alert("File Assigned");
+			alert("RCU - File Assigned");
 			return true;
 			}
 		else
 			{
-			alert("Initiation Failed");
+			alert("RCU - Initiation Failed");
 			return false;
 			}
 	}
@@ -660,3 +716,25 @@ function InitRCU()
 		return false;
 	}
 }
+
+function GentrateCIBIL(UniqId)
+{
+	
+	var IOP=window.location.origin;
+	var PrcsId=$("#PrcsID").val()
+	var Cusid=$("#"+UniqId).val();	 
+	// var Cus = UI_getdata(PrcsId,"","","","","LSW_SGETCIBILCUSID")
+	//var Cusid = $(Cus).find('CUSID').html()
+	 
+  ajaxindicatorstart("Downloading.. Please wait");
+	 var flname = IOP+LoadFrmXML("RT0119")+"&__format=pdf&Param1="+PrcsId+"&Param2="+Cusid+"&__filename=CibilReport_"+$(".FormPageMultiTab li.active").text()+".pdf";
+	   ajaxindicatorstop();
+	   
+	 var link=document.createElement('a');
+		document.body.appendChild(link);
+		link.download=flname;
+			link.href=flname;
+			link.click();
+			ajaxindicatorstop();
+			
+			}

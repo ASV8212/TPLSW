@@ -345,7 +345,7 @@ function Getsectype()
 	$("#LPDT_SECURITYTYPE").find('option').remove()
 	$("#LPDT_SECURITYTYPE").material_select("destroy");
 	$("#LPDT_SECURITYTYPE").material_select(); 
-   var sectype=UI_getdata("SECTYPE", "","","","","LSW_SGETPRODVAL")
+   var sectype=UI_getdata("SECURITYTYPE",$("#VERTICAL").val(),"","","","LSW_SGETPRODVAL")
 	 $("#LPDT_SECURITYTYPE").append($(sectype).find("RESULT").html());
 	 $("#LPDT_SECURITYTYPE").material_select();
  
@@ -1560,3 +1560,124 @@ return;
 }
 
 
+function ConsiderFrCAM(Evnt,Data){
+	if(Data == "Change")
+	{
+		var val = $(Evnt).val();
+		if(val == "No")
+		{
+			$(Evnt).closest(".col-md-6 ").next().show();
+			var op = UI_getdata($("#PrcsID").val(),$(".FormPageMultiTab").find(".active").attr("id"),"","","","LSW_SCHECKNYCAMEX");
+			var pattern = /option/;
+			var exists = pattern.test(op);
+			if(exists) {
+				$(Evnt).closest(".col-md-6 ").next().find("select").material_select("destroy")
+				$(Evnt).closest(".col-md-6 ").next().find("select").val("");
+			   $(Evnt).closest(".col-md-6 ").next().find("select option").remove()
+			   $(Evnt).closest(".col-md-6 ").next().find("select").append($(op).find("RESULT").html());
+				$(Evnt).closest(".col-md-6 ").next().find("select").material_select();
+					}
+					else{
+						$(Evnt).closest(".col-md-6 ").next().find("select").material_select("destroy")
+				$(Evnt).closest(".col-md-6 ").next().find("select").val("");
+				$(Evnt).closest(".col-md-6 ").next().find("select").material_select();
+				$(Evnt).closest(".col-md-6 ").next().hide();
+				pattern = /Tagged/;
+				pattern.test(op);
+				if(exists) {
+					$(Evnt).prop('checked', false);
+				}
+				else{
+					$("#CONSFRCAMYES").prop('checked', true);
+				}
+						alert($(op).find("RESULT").text());
+					}
+		}
+		else{
+			$(Evnt).closest(".col-md-6 ").next().hide();
+			$(Evnt).closest(".col-md-6 ").next().find("select").material_select("destroy")
+				$(Evnt).closest(".col-md-6 ").next().find("select").val("");
+				$(Evnt).closest(".col-md-6 ").next().find("select").material_select();
+		}
+	}
+}
+
+function ConsiderFrCAMLoad(){
+	if($('[name=LPDT_CONSFRCAM]:checked').val() == "No"){
+		var exval = $('[name=LPDT_CONSFRCAM]').closest(".col-md-6 ").next().find("select").val();
+		$('[name=LPDT_CONSFRCAM]').closest(".col-md-6").next().show();
+		var op = UI_getdata($("#PrcsID").val(),$(".FormPageMultiTab").find(".active").attr("id"),"","","","LSW_SCHECKNYCAMEX");
+		var pattern = /option/;
+			var exists = pattern.test(op);
+			if(exists) {
+				$('[name=LPDT_CONSFRCAM]').closest(".col-md-6 ").next().find("select").material_select("destroy")
+				
+			   $('[name=LPDT_CONSFRCAM]').closest(".col-md-6 ").next().find("select option").remove()
+			   $('[name=LPDT_CONSFRCAM]').closest(".col-md-6 ").next().find("select").append($(op).find("RESULT").html());
+			   $('[name=LPDT_CONSFRCAM]').closest(".col-md-6 ").next().find("select").val(exval);
+				$('[name=LPDT_CONSFRCAM]').closest(".col-md-6 ").next().find("select").material_select();
+			}
+	}
+}
+
+function AssestDedupe(){
+	var json = {};
+	for(var i=0;i<$(".ASSETDEDUPE").length;i++){
+		var key = $($(".ASSETDEDUPE")[i]).attr("id");
+		var val = $($(".ASSETDEDUPE")[i]).val();
+		json [key]=val;
+	}
+	$("#ASSETDEDUPEPopup").click();
+	FncallDocChkLst(this,'ASSESTDEDUPETable',{spname:'LSW_SGETASSETDEDUPE',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:JSON.stringify(json),brid:'',MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||7,8','ASSESTDEDUPE');
+}
+
+function GridControlDetailASSESTDEDUPE (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm)
+{
+	 
+	 popTableModPageGrid1 = $('#'+TableID).DataTable({ 
+
+        'aaData': dtData,
+        "aoColumns": dtcolumn,  
+        
+        "bAutoWidth": false,
+
+        "autoWidth": false,
+
+        'bPaginate': false,
+
+       "aaSorting": [],
+
+       // "pageLength": 5,
+	   "bSort" : false,
+
+        "bDeferRender": true,
+
+        'bInfo': true,
+
+        'bFilter': true,
+
+        "bDestroy": true,
+
+        "bJQueryUI": true,
+
+       //"scrollY": true,
+
+       // "scrollX": "200px",
+
+        "sPaginationType": "full_numbers",
+
+        
+        
+"aoColumnDefs": [ 
+	   { "sClass": "dpass", "aTargets": jQuery.parseJSON(hideClm)}
+		
+
+    	
+    	   ],
+
+         "fnDrawCallback": function (oSettings) {
+
+        }
+
+        }); 
+}

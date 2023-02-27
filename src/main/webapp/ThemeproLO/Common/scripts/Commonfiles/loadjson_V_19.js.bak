@@ -8717,6 +8717,8 @@ function handlejsonModDashGridFP(result,TableID, curcontl, hdncolumn, enablecont
     }
 }
 
+
+
 function FncallDocChkLst(cntrl, fnname, par, control1, hdncolumn, enablecontrol) {
     var popTable;
     sessionStorage.setItem('SessionMICRCODE', '0');
@@ -8783,6 +8785,8 @@ var result = op.replace('<Resultset><a>','').replace('</a></Resultset>','').repl
        // 
 }
 
+
+
 function FncallDocChkLst_v1(cntrl, fnname, par, control1, hdncolumn, enablecontrol) {
     var popTable;
     sessionStorage.setItem('SessionMICRCODE', '0');
@@ -8832,6 +8836,1030 @@ var result = op.replace('<Resultset><a>','').replace('</a></Resultset>','').repl
                   }
        // 
 }
+
+
+
+function FncallDocChkLst_SCROLL(cntrl, fnname, par, control1, hdncolumn, enablecontrol) {
+    var popTable;
+    sessionStorage.setItem('SessionMICRCODE', '0');
+    //    $("#popup").dialog("open");
+  //ajaxindicatorstart("Loading.. Please wait");
+   var spname = par.spname
+var Param = par.Param
+var brid = par.brid
+var MnuId=par.MnuId
+var DBSrc = par.DBSrc; 
+            $.ajax({
+               url: "/TPLSW/UI_GetData",
+               data: { param1: Param, param2: brid, param3: MnuId, param4: "", param5: "",spname: spname,DBSrc:DBSrc,Prvnt:$(window.parent.parent.document).find("#Prvnt").val() },
+               async: false,
+               //dataType: "json",
+                      dataType: "text",
+               type: 'POST',
+               complete: function OnSuccess_submit(xml1) {
+                     var      op=xml1.responseText;
+                  if (op != "")
+                  {                      
+var result = op.replace('<Resultset><a>','').replace('</a></Resultset>','').replace('<XMLLRGResult>','<Resultset>').replace('</XMLLRGResult>','</Resultset>').replace(/asetLRGDAta/g,'a')
+              result = result.replace(/>null</g,"><");
+            var json = $.xml2json(result.replace(/&/g,"and"));
+            //alertify.alert(json);
+                              if(json == "")
+                  {
+                              alert(LoadFrmXML("V0072"));
+                                $('#'+fnname).empty();
+                                    $("#"+fnname+"_info").text('Showing 0 to 0 of 0 entries');
+                                    $("#"+fnname+"_paginate").remove();
+                                    $("#"+fnname+"_wrapper").find(".dataTables_scroll").find(".dataTables_scrollHead").remove();
+                              return
+                  }
+            //return;
+            if (JSON.stringify(json.a) === '{}') {
+                  alert(LoadFrmXML("V0072"));
+            }
+            else {
+               // $("#popupSPL").dialog();
+               // $("#popupSPL").dialog("option", "width", 805);
+              //  $("#popupSPL").dialog("option", "closeOnEscape", true);
+               // $("#popupSPL").dialog("option", "position", { my: "right bottom", at: "left top", of: $(cntrl) });
+               //handlejsonSPLPopup(JSON.parse(((JSON.stringify(json.a).replace(/~`/g, "/>")).replace(/`/g, "<")).replace(/__/g, " ")),control1, hdncolumn, enablecontrol);
+                 // handlejsonDocChkLst(JSON.parse(((((((JSON.stringify(json.a).replace(/~`/g, "/>")).replace(/``~/g, "</")).replace(/`~/g, ">")).replace(/`/g, "<")).replace(/___/g, "-")).replace(/__/g, " ")).replace(/AAXX/g, "").replace(/XXPXX/g, "%")),fnname,control1, hdncolumn, enablecontrol,par);
+				 handlejsonDocChkLst_SCROLL(JSON.parse(((((((((JSON.stringify(json.a).replace(/~`/g, "/>")).replace(/``~/g, "</")).replace(/`~/g, ">")).replace(/`/g, "<")).replace(/___/g, "-")).replace(/__/g, " ")).replace(/AAXX/g, "")).replace(/XXPXX/g, "%")).replace('xxdiv_',' / ')),fnname,control1, hdncolumn, enablecontrol,par);
+                  }
+      ajaxindicatorstop();
+                  }           //ajaxindicatorstop();
+                  else
+                  {
+                  //alert(LoadFrmXML("V0072"));
+                  ajaxindicatorstop();
+                  }
+                  },
+            error: function (xml1)
+            {
+                        //alertify.alert(LoadFrmXML("V0126"));
+                              alert(LoadFrmXML("V0126"));
+                        OP="Fail";
+                        //ajaxindicatorstop();
+            }
+         });
+       // 
+}
+
+
+
+
+
+function handlejsonDocChkLst_SCROLL(result,TableID, curcontl, hdncolumn, enablecontrol,par) {
+    var dtData = [];
+        var count = 0;
+        //to re-init datatable
+       // myData = JSON.parse(result.d);
+        myData1 = $(result);
+        var entry;
+        var name;
+        entry = myData1[0];
+        for (name in entry) {
+            if (entry.hasOwnProperty(name)) {
+                dtData2[count] = name;
+                count++;
+                //dtData1.push(name);
+            }
+        }
+      $.each(myData1, function (event) {
+          switch (count) {
+            case 1:
+                dtData.push([this[dtData2[0]]]);
+                break;
+            case 2:
+                dtData.push([this[dtData2[0]], this[dtData2[1]]]);
+                break;
+            case 3:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]]]);
+                break;
+            case 4:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]]]);
+                break;
+            case 5:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]]]);
+                break;
+            case 6:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]]]);
+                break;
+            case 7:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]]]);
+                break;
+            case 8:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]]]);
+                break;
+            case 9:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]]]);
+                break;
+            case 10:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]]]);
+                break;
+            case 11:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]]]);
+                break;
+            case 12:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]]]);
+                break;
+            case 13:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]]]);
+                break;
+            case 14:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]]]);
+                break;
+            case 15:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]]]);
+                break;
+            case 16:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]]]);
+                break;
+            case 17:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]]]);
+                break;
+            case 18:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]]]);
+                break;
+            case 19:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]]]);
+                break;
+            case 20:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]]]);
+                break;
+            case 21:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]]]);
+                break;
+            case 22:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]]]);
+                break;
+            case 23:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]]]);
+                break;
+            case 24:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]]]);
+                break;
+            case 25:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]]]);
+                break;
+            case 26:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]]]);
+                break;
+            case 27:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]]]);
+                break;
+            case 28:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]]]);
+                break;
+            case 29:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]]]);
+                break;
+            case 30:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]]]);
+                break;
+            case 31:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]]]);
+                break;
+            case 32:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]]]);
+                break;
+            case 33:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]]]);
+                break;
+            case 34:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]]]);
+                break;
+            case 35:
+                dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]]]);
+                break;
+                case 36:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]]]);
+                break;
+                case 37:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]]]);
+                break;
+                case 38:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]]]);
+                break;
+                case 39:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]]]);
+                break;
+                case 40:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]]]);
+                break;
+                case 41:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]]]);
+                break;
+                case 42:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]]]);
+                break;
+                case 43:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]]]);
+                break;
+                case 44:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]]]);
+                break;
+                case 45:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]], this[dtData2[44]]]);
+                break;
+                case 46:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]], this[dtData2[44]], this[dtData2[45]]]);
+                break;
+                case 47:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]], this[dtData2[44]], this[dtData2[45]],this[dtData2[46]]]);
+               break;
+                case 48:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]], this[dtData2[44]], this[dtData2[45]],this[dtData2[46]],this[dtData2[47]]]);
+                break;
+                case 49:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]], this[dtData2[44]], this[dtData2[45]],this[dtData2[46]],this[dtData2[47]],this[dtData2[48]]]);
+                break;
+                case 50:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]], this[dtData2[44]], this[dtData2[45]], this[dtData2[46]],this[dtData2[47]],this[dtData2[48]],this[dtData2[49]]]);
+                break;
+                case 51:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]], this[dtData2[44]], this[dtData2[45]], this[dtData2[46]], this[dtData2[47]],this[dtData2[48]],this[dtData2[49]],this[dtData2[50]]]);
+                break;
+                case 52:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]], this[dtData2[44]], this[dtData2[45]],this[dtData2[46]], this[dtData2[47]],this[dtData2[48]],this[dtData2[49]],this[dtData2[50]],this[dtData2[51]]]);
+                break;
+                case 53:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]], this[dtData2[44]], this[dtData2[45]],this[dtData2[46]], this[dtData2[47]],this[dtData2[48]],this[dtData2[49]],this[dtData2[50]],this[dtData2[51]],this[dtData2[52]]]);
+                break;
+                case 54:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]], this[dtData2[44]], this[dtData2[45]],this[dtData2[46]], this[dtData2[47]],this[dtData2[48]],this[dtData2[49]],this[dtData2[50]],this[dtData2[51]],this[dtData2[52]],this[dtData2[53]]]);
+                break;
+                case 55:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]], this[dtData2[44]], this[dtData2[45]],this[dtData2[46]], this[dtData2[47]],this[dtData2[48]],this[dtData2[49]],this[dtData2[50]],this[dtData2[51]],this[dtData2[52]],this[dtData2[53]],this[dtData2[54]]]);
+                break;
+                case 56:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]], this[dtData2[44]], this[dtData2[45]],this[dtData2[46]], this[dtData2[47]],this[dtData2[48]],this[dtData2[49]],this[dtData2[50]],this[dtData2[51]],this[dtData2[52]],this[dtData2[53]],this[dtData2[54]],this[dtData2[55]]]);
+                break;
+                case 57:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]], this[dtData2[44]], this[dtData2[45]],this[dtData2[46]], this[dtData2[47]],this[dtData2[48]],this[dtData2[49]],this[dtData2[50]],this[dtData2[51]],this[dtData2[52]],this[dtData2[53]],this[dtData2[54]],this[dtData2[55]],this[dtData2[56]]]);
+                break;
+                case 58:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]], this[dtData2[44]], this[dtData2[45]],this[dtData2[46]], this[dtData2[47]],this[dtData2[48]],this[dtData2[49]],this[dtData2[50]],this[dtData2[51]],this[dtData2[52]],this[dtData2[53]],this[dtData2[54]],this[dtData2[55]],this[dtData2[56]],this[dtData2[57]]]);
+                break;
+                case 59:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]], this[dtData2[44]], this[dtData2[45]],this[dtData2[46]], this[dtData2[47]],this[dtData2[48]],this[dtData2[49]],this[dtData2[50]],this[dtData2[51]],this[dtData2[52]],this[dtData2[53]],this[dtData2[54]],this[dtData2[55]],this[dtData2[56]],this[dtData2[57]],this[dtData2[58]]]);
+                break;
+                case 60:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]], this[dtData2[44]], this[dtData2[45]],this[dtData2[46]], this[dtData2[47]],this[dtData2[48]],this[dtData2[49]],this[dtData2[50]],this[dtData2[51]],this[dtData2[52]],this[dtData2[53]],this[dtData2[54]],this[dtData2[55]],this[dtData2[56]],this[dtData2[57]],this[dtData2[58]],this[dtData2[59]]]);
+                break;
+                case 61:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]], this[dtData2[44]], this[dtData2[45]],this[dtData2[46]], this[dtData2[47]],this[dtData2[48]],this[dtData2[49]],this[dtData2[50]],this[dtData2[51]],this[dtData2[52]],this[dtData2[53]],this[dtData2[54]],this[dtData2[55]],this[dtData2[56]],this[dtData2[57]],this[dtData2[58]],this[dtData2[59]],this[dtData2[60]]]);
+                break;
+                case 62:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]], this[dtData2[44]], this[dtData2[45]],this[dtData2[46]], this[dtData2[47]],this[dtData2[48]],this[dtData2[49]],this[dtData2[50]],this[dtData2[51]],this[dtData2[52]],this[dtData2[53]],this[dtData2[54]],this[dtData2[55]],this[dtData2[56]],this[dtData2[57]],this[dtData2[58]],this[dtData2[59]],this[dtData2[60]],this[dtData2[61]]]);
+                break;
+                case 63:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]], this[dtData2[44]], this[dtData2[45]],this[dtData2[46]], this[dtData2[47]],this[dtData2[48]],this[dtData2[49]],this[dtData2[50]],this[dtData2[51]],this[dtData2[52]],this[dtData2[53]],this[dtData2[54]],this[dtData2[55]],this[dtData2[56]],this[dtData2[57]],this[dtData2[58]],this[dtData2[59]],this[dtData2[60]],this[dtData2[61]],this[dtData2[62]]]);
+                break;
+                case 64:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]], this[dtData2[44]], this[dtData2[45]],this[dtData2[46]], this[dtData2[47]],this[dtData2[48]],this[dtData2[49]],this[dtData2[50]],this[dtData2[51]],this[dtData2[52]],this[dtData2[53]],this[dtData2[54]],this[dtData2[55]],this[dtData2[56]],this[dtData2[57]],this[dtData2[58]],this[dtData2[59]],this[dtData2[60]],this[dtData2[61]],this[dtData2[62]],this[dtData2[63]]]);
+                break;
+                case 65:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]], this[dtData2[44]], this[dtData2[45]],this[dtData2[46]], this[dtData2[47]],this[dtData2[48]],this[dtData2[49]],this[dtData2[50]],this[dtData2[51]],this[dtData2[52]],this[dtData2[53]],this[dtData2[54]],this[dtData2[55]],this[dtData2[56]],this[dtData2[57]],this[dtData2[58]],this[dtData2[59]],this[dtData2[60]],this[dtData2[61]],this[dtData2[62]],this[dtData2[63]],this[dtData2[64]]]);
+                break;
+                case 66:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]], this[dtData2[44]], this[dtData2[45]],this[dtData2[46]], this[dtData2[47]],this[dtData2[48]],this[dtData2[49]],this[dtData2[50]],this[dtData2[51]],this[dtData2[52]],this[dtData2[53]],this[dtData2[54]],this[dtData2[55]],this[dtData2[56]],this[dtData2[57]],this[dtData2[58]],this[dtData2[59]],this[dtData2[60]],this[dtData2[61]],this[dtData2[62]],this[dtData2[63]],this[dtData2[64]],this[dtData2[65]]]);
+                break;          
+                case 67:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]], this[dtData2[44]], this[dtData2[45]],this[dtData2[46]], this[dtData2[47]],this[dtData2[48]],this[dtData2[49]],this[dtData2[50]],this[dtData2[51]],this[dtData2[52]],this[dtData2[53]],this[dtData2[54]],this[dtData2[55]],this[dtData2[56]],this[dtData2[57]],this[dtData2[58]],this[dtData2[59]],this[dtData2[60]],this[dtData2[61]],this[dtData2[62]],this[dtData2[63]],this[dtData2[64]],this[dtData2[65]],this[dtData2[66]]]);
+                break;    
+                case 68:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]], this[dtData2[44]], this[dtData2[45]],this[dtData2[46]], this[dtData2[47]],this[dtData2[48]],this[dtData2[49]],this[dtData2[50]],this[dtData2[51]],this[dtData2[52]],this[dtData2[53]],this[dtData2[54]],this[dtData2[55]],this[dtData2[56]],this[dtData2[57]],this[dtData2[58]],this[dtData2[59]],this[dtData2[60]],this[dtData2[61]],this[dtData2[62]],this[dtData2[63]],this[dtData2[64]],this[dtData2[65]],this[dtData2[66]],this[dtData2[67]]]);
+                break;    
+                case 69:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]], this[dtData2[44]], this[dtData2[45]],this[dtData2[46]], this[dtData2[47]],this[dtData2[48]],this[dtData2[49]],this[dtData2[50]],this[dtData2[51]],this[dtData2[52]],this[dtData2[53]],this[dtData2[54]],this[dtData2[55]],this[dtData2[56]],this[dtData2[57]],this[dtData2[58]],this[dtData2[59]],this[dtData2[60]],this[dtData2[61]],this[dtData2[62]],this[dtData2[63]],this[dtData2[64]],this[dtData2[65]],this[dtData2[66]],this[dtData2[67]],this[dtData2[68]]]);
+                break;    
+                case 70:
+                      dtData.push([this[dtData2[0]], this[dtData2[1]], this[dtData2[2]], this[dtData2[3]], this[dtData2[4]], this[dtData2[5]], this[dtData2[6]], this[dtData2[7]], this[dtData2[8]], this[dtData2[9]], this[dtData2[10]], this[dtData2[11]], this[dtData2[12]], this[dtData2[13]], this[dtData2[14]], this[dtData2[15]], this[dtData2[16]], this[dtData2[17]], this[dtData2[18]], this[dtData2[19]], this[dtData2[20]], this[dtData2[21]], this[dtData2[22]], this[dtData2[23]], this[dtData2[24]], this[dtData2[25]], this[dtData2[26]], this[dtData2[27]], this[dtData2[28]], this[dtData2[29]], this[dtData2[30]], this[dtData2[31]], this[dtData2[32]], this[dtData2[33]], this[dtData2[34]], this[dtData2[35]], this[dtData2[36]], this[dtData2[37]], this[dtData2[38]], this[dtData2[39]], this[dtData2[40]], this[dtData2[41]], this[dtData2[42]], this[dtData2[43]], this[dtData2[44]], this[dtData2[45]],this[dtData2[46]], this[dtData2[47]],this[dtData2[48]],this[dtData2[49]],this[dtData2[50]],this[dtData2[51]],this[dtData2[52]],this[dtData2[53]],this[dtData2[54]],this[dtData2[55]],this[dtData2[56]],this[dtData2[57]],this[dtData2[58]],this[dtData2[59]],this[dtData2[60]],this[dtData2[61]],this[dtData2[62]],this[dtData2[63]],this[dtData2[64]],this[dtData2[65]],this[dtData2[66]],this[dtData2[67]],this[dtData2[68]],this[dtData2[69]]]);
+                break;
+        }
+        });
+        if (!(typeof popTableModPageGrid1 === "undefined")) {
+            /* destroy table*/
+            //Delete the datable object first
+           // popTableModPageGrid1.fnDestroy();
+                /*if(popTableModPageGrid1[0].id == "Table1")
+                {
+            //popTableModPageGrid1.fnDestroy();
+                }*/
+            popTableModPageGrid1 = null;
+            // $('#'+TableID).dataTable( {"bDestroy": true      } );
+            //Remove all the DOM elements
+            $('#'+TableID).empty();
+            /* destry table*/
+            //        oSettings = popTable.fnSettings();
+            //        popTable.fnClearTable(this);
+            //        for (var i = 0; i < dtData.length; i++) {
+            //            popTable.oApi._fnAddData(oSettings, dtData[i]);
+            //        }
+            //        oSettings.aiDisplay = oSettings.aiDisplayMaster.slice();
+            //        popTable.fnDraw();
+        }
+        //dynamically add column name
+        var dtcolumn = [];
+        for (var i = 0; i < count; i++) {
+            var obj = {};
+            obj["sTitle"] = dtData2[i];
+    //added by manimala... <<start>> for date sorting
+       if (dtData2[i].indexOf('Date') !== -1)  {obj["sType"] =  "date"; }
+           //added by manimala... <<end>>
+            dtcolumn.push(obj);
+        }
+        if(myData1.length == 0)
+        {
+        dtData = [];
+        }
+        else if(Object.values(myData1[0])[0] == "")
+          {
+          dtData = [];
+          }
+                var cc = parseInt(count)-6;
+          var hideClm = [];
+          var hideClm1='[';
+          if(hdncolumn != undefined)
+          {
+          if(hdncolumn !="||")
+          {          
+          if ((hdncolumn.split('|')[2]!='')||(hdncolumn.split('|')[2]!=undefined))
+                {
+                      var hideClm1='['+hdncolumn.split('|')[2]+',';
+                }
+          hdncolumn=hdncolumn.split('|')[0];
+          }
+          }
+          for(c=parseInt(cc);c<count;c++)
+          {
+                if(c==parseInt(count)-1)
+                hideClm1=hideClm1+c.toString();
+          else
+                hideClm1=hideClm1+c.toString()+',';
+          }
+          hideClm1=hideClm1+']';
+          hideClm = hideClm1;
+          if (typeof popTableModPageGrid1 === "undefined" || popTableModPageGrid1 === null) {
+        	  
+        	  
+        	if (enablecontrol == "DocumentCheckList")
+             {
+        		 GridControlDetailKYC (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+             }
+           else if (enablecontrol == "DocumentCheckListOthers")
+             {
+        		  GridControlDetailOthers (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+             }
+        	else if (enablecontrol == "PFDEFR")
+           {
+        	   GridControlDetailPFDEFR (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+	else if (enablecontrol == "DEFRMNTKYC")
+            {
+         	   GridControlDetailDEFRMNTKYC (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+        	else if (enablecontrol == "DEFRMNTOTHRKYC")
+            {
+        		GridControlDetailDEFRMNTOTHRKYC (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+             }
+        	else if (enablecontrol == "DEFRMNTBANKDTL")
+            {
+        		GridControlDetailDEFRMNTBANKDTL (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+             }
+			 else if (enablecontrol == "DEFRMNTFINCDTL")
+            {
+        		GridControlDetailDEFRMNTFINCDTL (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+             }
+			  else if (enablecontrol == "MNGDEV")
+	            {
+	         	   GridControlDetailMNGDEV (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+				else if (enablecontrol == "MNGLEAD")
+	            {
+	         	   GridControlDetailMNGDEV (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+           else if (enablecontrol == "RCU")
+           {
+        	   GridControlDetailRCU (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		    else if (enablecontrol == "BRE")
+           {
+        	   GridControlDetailBRE (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		   
+		    else if (enablecontrol == "VENDDOCUPLOAD")
+           {
+        	   GridControlDetailVENDDOCUPLOAD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		   
+		   else if (enablecontrol == "VENDADDROLE")
+           {
+        	   GridControlDetailVENDADDROLE (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+        	
+		     else if (enablecontrol == "VENDADDTECHGROUP")
+           {
+        	   GridControlDetailVENDADDTECHGROUP (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		   
+		   
+		   
+		    else if (enablecontrol == "DOCUPLOAD")
+           {
+        	   GridControlDetailDOCUPLOAD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		   
+		    else if (enablecontrol == "PROPERVALUATION")
+           {
+        	   GridControlDetailPROVALU (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+
+           else if (enablecontrol == "ValuaUptProInfoI")
+           {
+        	   GridControlDetailUptProInfo (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+           else if (enablecontrol == "ValuaUptProInfoII")
+           {
+        	   GridControlDetailUptProInfoII (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+        	
+				else if (enablecontrol == "ValuaUptAMENITIES")
+           {
+        	   GridControlDetailUptValAMENTIES (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+        	
+           else if (enablecontrol == "ValuarAMENITIES")
+           {
+        	   GridControlDetailValuarAMENITIES (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+        	
+           else if (enablecontrol == "FINANCCAM")
+           {
+        	   GridControlDetailFINANCCAM (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		   //Aliance Grid Start
+		   
+		    else if (enablecontrol == "MPBFI")
+           {
+        	   GridControlDetailMPBFI (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		    else if (enablecontrol == "MPBFII")
+           {
+        	   GridControlDetailMPBFII (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		    else if (enablecontrol == "TRNOVERI")
+           {
+        	   GridControlDetailTRNOVERI (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		    else if (enablecontrol == "TRNOVERII")
+           {
+        	   GridControlDetailTRNOVERII (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		    else if (enablecontrol == "TRNOVERIII")
+           {
+        	   GridControlDetailTRNOVERIII(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		   else if (enablecontrol == "ELIGCALCI")
+           {
+        	   GridControlDetailELIGCALCI(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		   else if (enablecontrol == "ELIGCALCII")
+           {
+        	   GridControlDetailELIGCALCII(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		   //Aliance Grid End
+		   
+		   
+           else if (enablecontrol == "FINANCEXIXTING")
+           {
+        	   GridControlDetailFINANCEXIXTING (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+           else if (enablecontrol == "PRFINCOMEGRID")
+           {
+        	   GridControlDetailINCM (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		   else if (enablecontrol == "LGRIGRID")
+		   {
+			   GridControlDetailLGRIGRID (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+		   }
+		   //Credit Policy Change Strt
+		   else if (enablecontrol == "SEPCALCPROFINCOMEGRID")
+           {
+        	   GridControlDetailPRSEPCALC (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		   else if (enablecontrol == "SEPCALCGRMPINCOMEGRID")
+           {
+        	   GridControlDetailGRSEPCALC (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		   else if(enablecontrol == "MARGINGST")
+		   {
+			  GridControlDetailMARGINGST (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm); 
+		   }
+		   
+		   //Credit Policy Change End
+		   
+		   //MicroLAP Changes Start
+		    else if (enablecontrol == "PRFOTHINCOMEGRIDONE")
+           {
+        	   GridControlDetailIOTHNCMONE (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		    else if (enablecontrol == "PRFOTHINCOMEGRIDTWO")
+           {
+        	   GridControlDetailIOTHNCMTWO (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		   else if (enablecontrol == "PRFOTHINCOMEGRIDTHREE")
+           {
+        	   GridControlDetailIOTHNCMTHREE (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		   else if (enablecontrol == "PRFOTHINCOMEGRIDFOUR")
+           {
+        	   GridControlDetailIOTHNCMFOUR (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		   else if (enablecontrol == "ASSETCLASSGRID")
+           {
+        	   GridControlDetailIASSETCLASSGRID (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		   // MicroLAP Changes End
+		   
+           else if (enablecontrol == "PRFOTHINCOMEGRID")
+           {
+        	   GridControlDetailIOTHNCM (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+            else if (enablecontrol == "LISTBUSINESS")
+            {
+                GridControlDetail(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+            else if (enablecontrol == "RENTDATA")
+            {
+               GridControlDetail_OthrIncome(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+            else if (enablecontrol == "EMPOWERMNT")
+            {
+               GridControlDetail_EMPOWERMNT(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+			else if (enablecontrol == "EMPOWERMNTI")
+            {
+               GridControlDetail_EMPOWERMNTI(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+            else if (enablecontrol == "FINANCIAL")
+            {
+               GridControlDetail_FINANCIAL(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+        	
+            else if (enablecontrol == "LISTBUSINESS")
+            {
+
+          	  GridControlDetail(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+            else if (enablecontrol == "RENTDATA")
+            {
+          	  GridControlDetail_OthrIncome(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+            else if (enablecontrol == "EMPOWERMNT")
+            {
+          	  GridControlDetail_EMPOWERMNT(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+            else if (enablecontrol == "FINANCIAL")
+            {
+          	  GridControlDetail_FINANCIAL(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+            else if (enablecontrol == "ASSET")
+            {
+          	  GridControlDetail_ASSET(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+            else if (enablecontrol == "REPORT" || enablecontrol == "APPLICANT")
+            {
+          	  GridControlDetail_REPORT(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+            else if (enablecontrol == "EMPOWERMNTGRD")
+            {
+          	  GridControlDetail_EMPOWERMNTGRD(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+            else if (enablecontrol == "CHRGDTL")
+            {
+          	  GridControlDetail(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+            else if (enablecontrol == "RTRELIG")
+            {
+          	  GridControlDetailRTRELIG(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+            else if (enablecontrol == "RTRNORMS")
+            {
+          	  GridControlDetailRTRNORMS(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+            else if (enablecontrol == "FINCELIGB")
+            {
+          	  GridControlDetailFINCELIGB(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+            else if (enablecontrol == "RRELIG")
+            {
+          	  GridControlDetailRRELIG(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+        	
+        	  //Ratio Start 	
+            else if (enablecontrol == "RATIOPROFITLOSS")
+            {
+         	   GridControlDetailRATIOPROFITLOSS(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+         	
+            else if (enablecontrol == "RATIOBALSHEET")
+            {
+         	   GridControlDetailRATIOBALSHEET(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+			
+			 else if (enablecontrol == "RATIOASSETS")
+            {
+         	   GridControlDetailRATIOASSETS(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+			
+			 else if (enablecontrol == "RATIOSUMBALSHT")
+            {
+         	   GridControlDetailRATIOSUMMBALSHT(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+			
+			
+			 else if (enablecontrol == "RATIOSUMCASHFLOW")
+            {
+         	   GridControlDetailRATIORATIOSUMCASHFLOW(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+			
+			
+			  else if (enablecontrol == "FINANACESHEET")
+            {
+         	   GridControlDetailFINANACESHEET(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+			else if (enablecontrol == "FLEETSHEET")
+            {
+         	   GridControlDetailFLEETSHEET(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+			
+			else if (enablecontrol == "EXPOSURE")
+            {
+         	   GridControlDetailEXPOSURE(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+			
+			
+			else if (enablecontrol == "CASHFLOWGRID")
+            {
+         	   GridControlDetailCASHFLOWGRID(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+         	     	
+         	  else if (enablecontrol == "FINCSUMMARY")
+               {
+            	   GridControlDetailFINCSUMMARY(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+               }
+               //Ratio End
+			   else if (enablecontrol == "CREDITSUMMATION")
+             {
+          	   GridControlDetailCREDITSUMMATION(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+             }
+			  else if (enablecontrol == "CREDITPD")
+             {
+          	   GridControlDetailCREDITPD(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+             }
+         	 else if (enablecontrol == "REPAYCHQ")
+             {
+          	   GridControlDetailREPAYCHQ(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+             }
+			 else if (enablecontrol == "REPAYCHQMULTI")
+            {
+         	   GridControlDetailREPAYCHQMULTI(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+        	 // CIBIL REPORT GRID Start
+			  else if (enablecontrol == "CIBILReport")
+            {
+         	   GridControlCIBILRPTDATA(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+       	// CIBIL REPORT GRID END
+			  else if (enablecontrol == "LINS")
+	            {
+	         	   GridControlDetailLINS (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "MNDTRYPROPGRID")
+	            {
+	         	   GridControlDetailMNDTRYPROPGRID (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "ADPROPINSRNC")
+	            {
+	         	   GridControlDetailADPROPINSRNC (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "HEALTHCOMBOGRD")
+	            {
+	         	   GridControlDetailHEALTHCOMBOGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "LPDSGRID")
+	            {
+	         	   GridControlDetailLPDSGRID (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+				else if(enablecontrol == "MAEDGRID")
+				{
+					GridControlDetailMAEDGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+				}
+	         	else if (enablecontrol == "OPSASK")
+	            {
+	         	   GridControlDetailOPSASK (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "APPRLOANGRID")
+	            {
+	         	   GridControlDetailAPPRLOANGRID (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+        	 
+	         	else if (enablecontrol == "KYCDTL")
+	            {
+	         	   GridControlDetailKYCDTL (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "SANCTIONFILEDTL")
+	            {
+	         	   GridControlDetailSANCTIONFILEDTL (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "TechGDTL")
+	            {
+	         	   GridControlDetailTechGDTL (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "Applnnform")
+	            {
+	         		GridControlDetailApplnnform (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "OthrFile")
+	            {
+	         		GridControlDetailOthrFile (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "FIRprt")
+	            {
+	         		GridControlDetailFIRprt (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "RCURprt")
+	            {
+	         		GridControlDetailRCURprt (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "PropVst")
+	            {
+	         		GridControlDetailPropVst (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "Cibil")
+	            {
+	         		GridControlDetailCibil (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "TechRPRT")
+	            {
+	         		GridControlDetailTechRPRT (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "Incm")
+	            {
+	         		GridControlDetailIncm (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if ((enablecontrol == "Approvals")||(enablecontrol == "Apprvl"))
+	            {
+	         		GridControlDetailApprovals (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if ((enablecontrol == "BTNBTPrcs")||(enablecontrol == "BTPrcs"))
+	            {
+	         		GridControlDetailBTNBTPrcs (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "SancLtr")
+	            {
+	         		GridControlDetailSancLtr (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "Legl")
+	            {
+	         		GridControlDetailLegl (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "DM")
+	            {
+	         		GridControlDetailDM (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "LonAgr")
+	            {
+	         		GridControlDetailLonAgr (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "CrsSell")
+	            {
+	         		GridControlDetailCrsSell (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "BTOPS")
+	            {
+	         		GridControlDetailBTOPS (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+				else if (enablecontrol == "Repaymentkit")
+	            {
+	         		GridControlDetailRepaymentkit (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+				else if (enablecontrol == "MINIKYCDTL")
+	            {
+	         		GridControlDetailMINIKYCDTL (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+				else if (enablecontrol == "T2CheckLst")
+	            {
+	         		GridControlDetailT2CheckLst (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+				else if (enablecontrol == "GECLCheckLst")
+	            {
+	         		GridControlDetailGECLCheckLst (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "ENDUSEGRID")
+	            {
+	         		GridControlDetailENDUSEGRID (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+        	
+        	//OTC STRT
+	         	else if (enablecontrol == "SALES")
+	            {
+	         	   GridControlDetailSALES (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "BRANCH")
+	            {
+	         		GridControlDetailBRANCH (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "OPS")
+	            {
+	         		GridControlDetailOPS (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+				
+	        	//OTC STRT
+	         	else if (enablecontrol == "BALANCEGRID")
+	            {
+	         		GridControlDetailBALANCEGRID (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+				
+				else if (enablecontrol == "RTRGRD")
+	            {
+	         		GridControlDetailRTRGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+				
+        	//File CheckList Strt
+	         	else if (enablecontrol == "UPLDFILECHECK")
+	            {
+	         		GridControlDetailUPLDFILECHECK (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+        		//File CheckList End
+
+	            else if (enablecontrol == "UPDATEFLOWGRID")
+	                {
+	             	   GridControlDetailUPDATEFLOWGRID (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	                }
+	            else if (enablecontrol == "KARZAGRD")
+                {
+             	   GridControlDetailKARZAGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+                }
+				 else if (enablecontrol == "KARZAGRDIFSC")
+                {
+             	   GridControlDetailKARZAGRDIFSC (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+                }
+	            else if (enablecontrol == "PANKARZAGRD")
+                {
+             	   GridControlDetailPANKARZAGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+                }
+        	
+        	 //DEDUPE 	
+	            else if (enablecontrol == "DEDUBEGRID")
+	            {
+	         	   GridControlDetailDEDUBEGRID (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	            else if (enablecontrol == "CIBILReportDUDUPE")
+	            {
+	         	   GridControlCIBILReportDUDUPE(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+        	//Mini CheckLst Strt
+	         	else if (enablecontrol == "MINChkLst")
+	            {
+	         		GridControlDetailMINChkLst (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+        		//Mini CheckLst End
+	         	else if (enablecontrol == "DEDUPEBIFGRD")
+	            {
+	         		GridControlDetailDEDUPEBIFGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "DEDUPECIFGRD")
+	            {
+	         		GridControlDetailDEDUPECIFGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "DEDUPEAIFGRD")
+	            {
+	         		GridControlDetailDEDUPEAIFGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "AUDITTRAIL")
+	            {
+	         		GridControlDetailAUDITTRAIL(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "FINCSUMGRID")
+	            {
+	         		GridControlDetailFINCSUMGRID(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+	         	else if (enablecontrol == "DEDUPEAGREEGRD")
+	            {
+	         		GridControlDetailDEDUPEAGREEGRD(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+        	else if (enablecontrol == "REPAYGRD")
+	            {
+	         		GridControlDetailREPAYGRD(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+			else if (enablecontrol == "ODEDUCTGRD")
+	            {
+	         		GridControlDetailODEDUCTGRD(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+			
+            else if (enablecontrol == "APPRRTRFINANC")
+            {
+         		GridControlDetailAPPRRTRFINANC(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+			else if (enablecontrol == "APPRKYCLIST")
+            {
+         		GridControlDetailAPPRKYCLIST(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+			else if (enablecontrol == "INTERDEDUPE")
+            {
+         		GridControlDetailINTERDEDUPE(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+        	
+			else if (enablecontrol == "MNUEMPOWERMNT")
+            {
+         		GridControlDetailMNUEMPOWERMNT(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+			else if (enablecontrol == "RBIDEDUPE")
+            {
+         		GridControlDetailRBIDEDUPE(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+			else if (enablecontrol == "FAMILYCOMBOGRD")
+	            {
+	         	   GridControlDetailFAMILCOMBOGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
+			else if (enablecontrol == "SALESGRD")
+			{
+			   GridControlDetailSALESGRID (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+			}
+			else if (enablecontrol == "VIABILITYGRD")
+			{
+			   GridControlDetailVIABILITYGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+			}
+			else if (enablecontrol == "VIABINCOMEGRD")
+			{
+			   GridControlDetailVIABINCOMEGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+			}			
+			else if (enablecontrol == "VIABEXPENSEGRD")
+			{
+			   GridControlDetailVIABEXPENSEGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+			}			
+			else if (enablecontrol == "BNKBASEDGRD")
+			{
+			   GridControlDetailBNKBASEDGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+			}
+			
+			else if (enablecontrol == "MONTHSHEETGRD")
+			{
+			   GridControlDetailCASHFLOWGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+			}
+			else if (enablecontrol == "NONBNKBASEDGRD")
+			{
+			   GridControlDetailNONBANKGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+			}
+         // Grid Table Properties Set Start
+         $('#'+TableID).find("tbody").addClass("tbody");
+         $('#'+TableID).find("tbody").find("tr").addClass("tbodytr");
+         $('#'+TableID).find("tbody").find("tr").find("td").addClass("tbodytrtd");
+              $('#'+TableID+'_wrapper').find('label').each(function () {
+                  $(this).parent().append($(this).children());
+                  });
+                  $('#'+TableID+'_wrapper .dataTables_filter').find('input').each(function () {
+                       // $('#'+TableID+'_wrapper input').attr("placeholder", "Search");
+                        $('#'+TableID+'_wrapper input').removeClass('form-control-sm');
+                  });
+                  $('#'+TableID+'_wrapper .dataTables_length').addClass('d-flex flex-row');
+                  $('#'+TableID+'_wrapper .dataTables_filter').addClass('md-form');
+                  $('#'+TableID+'_wrapper select').removeClass('custom-select custom-select-sm form-control form-control-sm');
+                  $('#'+TableID+'_wrapper .dataTables_filter').find('label').remove();
+                  $("#"+TableID+"_wrapper .dataTables_scrollHeadInner").css("width","100%")
+                  $("#"+TableID+"_wrapper .dataTables_scrollHeadInner table").css("width","100%")
+                  $("#"+TableID).css("width","100%")
+                 $("#"+TableID+"_wrapper .dataTables_scrollHeadInner").addClass(par.TableHeader);
+                     // Middle row Customisation
+                     $($("#"+TableID+"_wrapper").find('.row')[1]).find('div').css("overflow-x","auto");
+                         $($("#"+TableID+"_wrapper").find('.row')[1]).find('div').removeClass("col-sm-12");
+                    $("#"+TableID+"_wrapper #"+TableID+" thead").addClass(par.TableHeader);
+                  $($("#" + TableID + "_wrapper").find(".row")[2]).remove();
+                          $($("#"+TableID+"_wrapper").find('.row')[1]).removeClass("row");
+                  $($("#" + TableID + "_wrapper").find('.row')[0]).find("div").remove();
+                   $($("#" + TableID + "_wrapper").find('.row')[0]).removeClass("row");
+// Field Initialisation Start
+// Dropdown
+$('#'+TableID+'_wrapper .Gridmdb-select').material_select();              
+// Calendar
+var $input = $(document).find('.Griddatepicker').pickadate({
+    //editable: 'true',
+format: 'dd/mm/yyyy',
+selectYears: 150,
+selectMonths: true
+})
+.on("change", function() {
+  $(this).prev().val($(this).val());
+  $(this).prev().focus();
+});
+//Field Initialisation End
+// Grid Table Properties Set End
+          }
+    }
+	
 
 function handlejsonDocChkLst(result,TableID, curcontl, hdncolumn, enablecontrol,par) {
     var dtData = [];
@@ -9168,6 +10196,10 @@ function handlejsonDocChkLst(result,TableID, curcontl, hdncolumn, enablecontrol,
            {
         	   GridControlDetailRCU (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
            }
+		    else if (enablecontrol == "BRE")
+           {
+        	   GridControlDetailBRE (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
 		   
 		    else if (enablecontrol == "VENDDOCUPLOAD")
            {
@@ -9179,6 +10211,11 @@ function handlejsonDocChkLst(result,TableID, curcontl, hdncolumn, enablecontrol,
         	   GridControlDetailVENDADDROLE (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
            }
         	
+		     else if (enablecontrol == "VENDADDTECHGROUP")
+           {
+        	   GridControlDetailVENDADDTECHGROUP (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		   
 		   
 		   
 		    else if (enablecontrol == "DOCUPLOAD")
@@ -9214,6 +10251,39 @@ function handlejsonDocChkLst(result,TableID, curcontl, hdncolumn, enablecontrol,
            {
         	   GridControlDetailFINANCCAM (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
            }
+		   //Aliance Grid Start
+		   
+		    else if (enablecontrol == "MPBFI")
+           {
+        	   GridControlDetailMPBFI (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		    else if (enablecontrol == "MPBFII")
+           {
+        	   GridControlDetailMPBFII (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		    else if (enablecontrol == "TRNOVERI")
+           {
+        	   GridControlDetailTRNOVERI (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		    else if (enablecontrol == "TRNOVERII")
+           {
+        	   GridControlDetailTRNOVERII (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		    else if (enablecontrol == "TRNOVERIII")
+           {
+        	   GridControlDetailTRNOVERIII(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		   else if (enablecontrol == "ELIGCALCI")
+           {
+        	   GridControlDetailELIGCALCI(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		   else if (enablecontrol == "ELIGCALCII")
+           {
+        	   GridControlDetailELIGCALCII(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+           }
+		   //Aliance Grid End
+		   
+		   
            else if (enablecontrol == "FINANCEXIXTING")
            {
         	   GridControlDetailFINANCEXIXTING (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
@@ -9350,17 +10420,53 @@ function handlejsonDocChkLst(result,TableID, curcontl, hdncolumn, enablecontrol,
             {
          	   GridControlDetailRATIOBALSHEET(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
             }
+			
+			 else if (enablecontrol == "RATIOASSETS")
+            {
+         	   GridControlDetailRATIOASSETS(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+			
+			 else if (enablecontrol == "RATIOSUMBALSHT")
+            {
+         	   GridControlDetailRATIOSUMMBALSHT(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+			
+			
+			 else if (enablecontrol == "RATIOSUMCASHFLOW")
+            {
+         	   GridControlDetailRATIORATIOSUMCASHFLOW(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+			
+			
 			  else if (enablecontrol == "FINANACESHEET")
             {
          	   GridControlDetailFINANACESHEET(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
             }
+			else if (enablecontrol == "FLEETSHEET")
+            {
+         	   GridControlDetailFLEETSHEET(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
 			
+			else if (enablecontrol == "EXPOSURE")
+            {
+         	   GridControlDetailEXPOSURE(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
+			
+			
+			else if (enablecontrol == "CASHFLOWGRID")
+            {
+         	   GridControlDetailCASHFLOWGRID(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+            }
          	     	
          	  else if (enablecontrol == "FINCSUMMARY")
                {
             	   GridControlDetailFINCSUMMARY(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
                }
                //Ratio End
+			    else if (enablecontrol == "CREDITSUMMATION")
+             {
+          	   GridControlDetailCREDITSUMMATION(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+             }
          	 else if (enablecontrol == "REPAYCHQ")
              {
           	   GridControlDetailREPAYCHQ(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
@@ -9395,6 +10501,10 @@ function handlejsonDocChkLst(result,TableID, curcontl, hdncolumn, enablecontrol,
 	            {
 	         	   GridControlDetailLPDSGRID (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
 	            }
+				else if(enablecontrol == "MAEDGRID")
+				{
+					GridControlDetailMAEDGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+				}
 	         	else if (enablecontrol == "OPSASK")
 	            {
 	         	   GridControlDetailOPSASK (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
@@ -9520,6 +10630,10 @@ function handlejsonDocChkLst(result,TableID, curcontl, hdncolumn, enablecontrol,
 	            {
 	         		GridControlDetailBALANCEGRID (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
 	            }
+				else if (enablecontrol == "RTRGRD")
+	            {
+	         		GridControlDetailRTRGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	            }
         	//File CheckList Strt
 	         	else if (enablecontrol == "UPLDFILECHECK")
 	            {
@@ -9534,6 +10648,10 @@ function handlejsonDocChkLst(result,TableID, curcontl, hdncolumn, enablecontrol,
 	            else if (enablecontrol == "KARZAGRD")
                 {
              	   GridControlDetailKARZAGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+                }
+				else if (enablecontrol == "KARZAGRDIFSC")
+                {
+             	   GridControlDetailKARZAGRDIFSC (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
                 }
 	            else if (enablecontrol == "PANKARZAGRD")
                 {
@@ -9613,11 +10731,57 @@ function handlejsonDocChkLst(result,TableID, curcontl, hdncolumn, enablecontrol,
 	            {
 	         	   GridControlDetailFAMILCOMBOGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
 	            }
-				
-			else if (enablecontrol == "FAMILYCOMBOGRD")
+			else if (enablecontrol == "SALESGRD")
+			{
+			   GridControlDetailSALESGRID (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+			}
+			else if (enablecontrol == "VIABILITYGRD")
 			{
 			   GridControlDetailVIABILITYGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
 			}
+			else if (enablecontrol == "VIABINCOMEGRD")
+			{
+			   GridControlDetailVIABINCOMEGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+			}			
+			else if (enablecontrol == "VIABEXPENSEGRD")
+			{
+			   GridControlDetailVIABEXPENSEGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+			}			
+			else if (enablecontrol == "BNKBASEDGRD")
+			{
+			   GridControlDetailBNKBASEDGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+			}
+			
+			else if (enablecontrol == "MONTHSHEETGRD")
+			{
+			   GridControlDetailCASHFLOWGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+			}
+			else if (enablecontrol == "CASHMONTHGRD")
+			{
+			   GridControlDetailCASHMONTHGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+			}
+			else if (enablecontrol == "NONBNKBASEDGRD")
+			{
+			   GridControlDetailNONBANKGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+			}
+			else if (enablecontrol == "SANCCONFR")
+			{
+			   GridControlDetailSANCCONFR (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+			}
+			//Control Grid Strt
+			else if (enablecontrol == "DEVATNTABLE")
+			{
+			   GridControlDetailDEVATNTABLE (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+			}
+			else if (enablecontrol == "DEVATNTABLE1")
+			{
+			   GridControlDetailDEVATNTABLE1 (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+			}
+			else if (enablecontrol == "ASSESTDEDUPE")
+			{
+			   GridControlDetailASSESTDEDUPE (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+			}
+			//Control Grid End
          // Grid Table Properties Set Start
          $('#'+TableID).find("tbody").addClass("tbody");
          $('#'+TableID).find("tbody").find("tr").addClass("tbodytr");
@@ -9638,7 +10802,7 @@ function handlejsonDocChkLst(result,TableID, curcontl, hdncolumn, enablecontrol,
                   $("#"+TableID).css("width","100%")
                  $("#"+TableID+"_wrapper .dataTables_scrollHeadInner").addClass(par.TableHeader);
                      // Middle row Customisation
-                     $($("#"+TableID+"_wrapper").find('.row')[1]).find('div').css("overflow-x","auto");
+                     $($("#"+TableID+"_wrapper").find('.row')[1]).find('div').css("overflow-x","visible");
                          $($("#"+TableID+"_wrapper").find('.row')[1]).find('div').removeClass("col-sm-12");
                     $("#"+TableID+"_wrapper #"+TableID+" thead").addClass(par.TableHeader);
                   $($("#" + TableID + "_wrapper").find(".row")[2]).remove();
@@ -10313,6 +11477,12 @@ function handlejsonMyAppl(result,TableID, curcontl, hdncolumn, enablecontrol,par
       else if(enablecontrol == "MANAGEDEFR"){
     	popTableModPageGrid1=  GridControlMANAGEDEFR (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
       }
+	  else if(enablecontrol == "MANAGEDEFRFLOW"){
+    	popTableModPageGrid1=  GridControlMANAGEDEFRFLOW (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+      }
+	  else if(enablecontrol == "MANGPDDFLOW"){
+    	popTableModPageGrid1=  GridControlMANGPDDFLOW (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+      }
 	  else if (enablecontrol == "VENDOR")
 	{
 		popTableModPageGrid1 = GridControlDetailVENDOR (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
@@ -10370,6 +11540,10 @@ function handlejsonMyAppl(result,TableID, curcontl, hdncolumn, enablecontrol,par
 		else if (enablecontrol == "VendorEmpanelmentAssigned")
 		{
 			popTableModPageGrid1 =  GridControlOPS (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+		}
+		else if (enablecontrol == "MigratedData")
+		{
+			popTableModPageGrid1 =  GridControlMIG (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
 		}
     // For internal Dedupe End
          // Grid Table Properties Set Start
@@ -11335,6 +12509,13 @@ function handlejsonMultiPagingGrd(result,TableID, curcontl, hdncolumn, enablecon
 	    	popTableModPageGrid1=GridControlDIRBRMAP (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
 	    	      
 	      }
+		  
+		 else if (enablecontrol == "DIRBRMODULEMAP")
+	      {
+	    	popTableModPageGrid1=GridControlDIRMODULEMAP (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	    	      
+	      }  
+		  
 	 else if (enablecontrol == "VDRBRMAP")
 	      {
 	    	popTableModPageGrid1=GridControlVDRBRMAP (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
@@ -11369,8 +12550,7 @@ function handlejsonMultiPagingGrd(result,TableID, curcontl, hdncolumn, enablecon
 	   
 	   else if (enablecontrol == "DIRBRUSERMAPMAIN")
 	      {
-	    	popTableModPageGrid1=GridControlBRANCHUSERMAPMAINBR (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
-	    	      
+	    	popTableModPageGrid1=GridControlBRANCHUSERMAPMAINBR (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);      
 	      }
 	   
 	   //end 
@@ -11425,9 +12605,27 @@ function handlejsonMultiPagingGrd(result,TableID, curcontl, hdncolumn, enablecon
 	    	popTableModPageGrid1=GridControlDIRBRMAPMAIN (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
 	    	      
 	      }
+		  
+		   else if (enablecontrol == "DIRUSERMODULEMAIN")
+	      {
+	    	popTableModPageGrid1=GridControlDIRUSERMODULEMAIN (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	    	      
+	      }
+		  
+		  
         else if (enablecontrol == "DIRROLEMAPMAIN")
 	      {
 	    	popTableModPageGrid1=GridControlDIRROLEMAPMAIN(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	    	      
+	      }
+	else if (enablecontrol == "BRVERTICAL")
+	      {
+	    	popTableModPageGrid1=GridControlBRVERTICAL(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+	    	      
+	      }
+	else if (enablecontrol == "VERTICALMAP")
+	      {
+	    	popTableModPageGrid1=GridControlVERTICALMAP(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
 	    	      
 	      }
 	else if (enablecontrol == "RPTUSRID")
@@ -11438,6 +12636,11 @@ function handlejsonMultiPagingGrd(result,TableID, curcontl, hdncolumn, enablecon
     else if (enablecontrol == "DIRUSER")
       {
     		popTableModPageGrid1=  GridControlDIRUSER (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
+    	      
+      }	
+	  else if (enablecontrol == "DRAWDOWN")
+      {
+    		popTableModPageGrid1=  GridControlDRAWDOWN (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm);
     	      
       }	
 			

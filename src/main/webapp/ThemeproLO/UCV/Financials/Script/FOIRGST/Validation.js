@@ -259,7 +259,7 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 	 
 	ROI=$("#FOGS_APPROI").val();
 	Tenur=$("#FOGS_TENURE").val();
-	 var result=UI_getdata(ROI,Tenur,LnAmt,"","","LSW_SGETEMI_DATA");
+	 var result=UI_getdata(ROI,Tenur,LnAmt,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 	 var EMI=$(result).find("EMI").text();
 	 	if(EMI=='')
 	{
@@ -318,7 +318,7 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 	 
 	ROI=$("#FOGS_APPROI").val();
 	Tenur=$("#FOGS_TENURE").val();
-	 var result=UI_getdata(ROI,Tenur,LOANPROPOSED,"","","LSW_SGETEMI_DATA");
+	 var result=UI_getdata(ROI,Tenur,LOANPROPOSED,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 	 var EMI1=$(result).find("EMI").text();
 	 	if(EMI1=='')
 	{

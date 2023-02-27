@@ -243,8 +243,20 @@ $(document).ready(function () {
 		
 		 var html=$(this).closest('.DYNROW')
 		
-		if($(this).text() == "Save & Next")
+		if($(this).text() == "Save" || $(this).text() == "Save & Next")
 		{
+			var PdcType = $("#RPCD_PDCTYPE0").val()
+			var RePaMode = $("input[name='PRPM_MODE']:checked").val()	
+		if(PdcType =="PDC" )
+			{
+				if(RePaMode == "ACH" || RePaMode=="E-NACH" )
+				{
+				alert("Kindly Choose SPDC for E-NACH and ACH ");
+				$("#RPCD_PDCTYPE0").val('')
+				$("#RPCD_PDCTYPE0").material_select();
+				return;
+				}
+			}
 		var MndtryChk = ChkMandatoryFlds("PRPMMndtry");
 		
 		if(MndtryChk == "Mandatory")

@@ -372,7 +372,7 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
           {
 			  
 			  
-		var DEVRAISE=UI_getdata($("#PrcsID").val(),"","","","","LSW_SRAISEDEVROI")  
+		//var DEVRAISE=UI_getdata($("#PrcsID").val(),"","","","","LSW_SRAISEDEVROI")  
 		/*	var xml=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHKSHCMFORAPPR")
 
 		    if($(xml).find('RESULT').text()!="Y")
@@ -608,14 +608,14 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
              		 {
              		   var ValuationID=DATA[x].split("|")[0];
              	       var row = $("." + ValuationID).find(".DYNROW").length;
-             	    for (var z=0;z<row;z++)
+/*              	    for (var z=0;z<row;z++)
           	           {
           	          //var HTML =	 $("." + ValuationID).find(".DYNROW")[i];
              	    	if(MndtryChk=="")
              	    		{
              	    		   MndtryChk = CheckDocMndtryEndUse("LoansTable"+[z+1],"EndUse","End Use");	
              	    		}
-          	            }
+          	            } */
                       }
              	if(MndtryChk != "")
         			{
@@ -760,6 +760,10 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
 			{
 			  $("#cke_AAPR_BANKINGSUMM").find(".cke_toolbar").find(".cke_button__save").click()
 			}
+			else if($(this).attr('data-form')=="Justification")
+			{
+			  $("#cke_AAPR_JUSTIFY").find(".cke_toolbar").find(".cke_button__save").click()
+			}
 			
         	var CHKresult=FormDataToDB(tbl, prfx, '');
         	if(CHKresult == "Fail")
@@ -787,7 +791,7 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
 		 if ($(this).text() == "Send for Approval")
 			{
 				
-			var PFNO1 ="";
+			/******var PFNO1 ="";
 	var PRCSID1 = $("#PrcsID").val();
 	var RECEIPTNO=""
 
@@ -822,10 +826,14 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
 			alert("Customer Creation/Updation failed. Contant IT!!!");
 			return;
 			   }
-		});	
-	
+		});	****/
+			if($("#VERTICAL").val()=="MSME")
+			 {
+			  var RES=UI_getdata($("#PrcsID").val(),"","","","","LSW_SPPFCOMPUT")
+			  }
+			  var DEVRAISE=UI_getdata($("#PrcsID").val(),"","","","","LSW_SRAISEDEVROI")
 		    var MILESTONE=UI_getdata('APPROVAL',$("#PrcsID").val(),"","","","LSW_SGETMILESTONEUPDATE")	 	
-			 var op = UI_getdata($("#PrcsID").val()+'|'+$("#ActvID").val(),"DEVIATIONS",$("#LogUsr").val(),"","","LSW_SONSUBMTWFDTLINS");
+			 var op = UI_getdata($("#PrcsID").val()+'|'+$("#ActvID").val(),"DEVIATIONS",$("#LogUsr").val(),"","","LSW_SONSUBMTWFDTLINS");			
 			 var pattern = /var_/;
 			 var exists = pattern.test($(op).find("WFVAR").text());
 				 if(exists) 

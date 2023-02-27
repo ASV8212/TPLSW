@@ -22,7 +22,6 @@
         <input type="text" id="FOIR_DTMODIFIED" hidden="hidden" name="FOIR_DTMODIFIED" class="form-control FOIRDBfields">
 		<input type="text" id="FOIR_SCHEMENAME" hidden="hidden" name="FOIR_SCHEMENAME" class="form-control FOIRDBfields">
 		<input type="text" id="FOIR_SCHEMEID" hidden="hidden" name="FOIR_SCHEMEID" class="form-control FOIRDBfields">
-		<input type="text" id="FOIR_LOANID" hidden="hidden" name="FOIR_LOANID" class="form-control FOIRDBfields">
 		
         <input type="text" id="FOIR_PRODUCT" hidden="hidden" name="FOIR_PRODUCT" class="form-control FOIRDBfields">		
 				 </br>
@@ -196,9 +195,9 @@
 				</div>
 			 
 				  </br>
-                  <div class="form-row">
+                  <div class="form-row"style="display:none">
                      <div class="col d-flex justify-content-center">
-                        <button type="button" id="Save" data-aria="LSW_TFOIRMETHOD|FOIR|FOIR_LOANID" class="btn btn-Syeloutline waves-effect waves-light Save FormSave">Save</button>   
+                        <button type="button" id="Save" data-aria="LSW_TFOIRMETHOD|FOIR|FOIR_SCHEMEID" class="btn btn-Syeloutline waves-effect waves-light Save FormSave">Save</button>   
                        <!-- <button type="button" data-aria="LSW_TFOIRMETHOD|FOIR" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> -->
                      </div>
                   </div>

@@ -22,7 +22,6 @@
 				  <input type="text" id="ATMI_SCHEMENAME" hidden="hidden" name="ATMI_SCHEMENAME" class="form-control ATMIDBfields">
 				  <input type="text" id="ATMI_SCHEMEID" hidden="hidden" name="ATMI_SCHEMEID" class="form-control ATMIDBfields">
 				  <input type="text" id="ATMI_ALLIANCETMI" hidden="hidden" name="ATMI_ALLIANCETMI" class="form-control ATMIDBfields">
-				  <input type="text" id="ATMI_LOANID" hidden="hidden" name="ATMI_LOANID" class="form-control ATMIDBfields">
 				  
                    
 				 </br>
@@ -44,7 +43,7 @@
 			</br>
 				   
 				  </br>
-                  <div class="form-row">
+                  <div class="form-row"style="display:none">
                      <div class="col d-flex justify-content-center">
                         <button type="button" id="Save" data-aria="LSW_TALLIANCETMI|ATMI|ATMI_SCHEMEID" class="btn btn-Syeloutline waves-effect waves-light Save FormSave">Save</button>   
                       <!--  <button type="button" data-aria="LSW_TTAKEOVERUBL|ATMI" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> -->

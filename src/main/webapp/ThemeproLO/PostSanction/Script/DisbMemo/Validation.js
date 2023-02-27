@@ -744,9 +744,9 @@ function HndlPEMI(HTML,i){
 		   {
 			   OTHRDEDUCTION=0;
 		   }
-		var TotalDET=parseInt(DEDUCTION)
+		var TotalDET=parseFloat(DEDUCTION)
 		$(HTML).find("input[name=DISB_TOTDEDUC]").val(CURCommaSep(parseFloat(TotalDET).toFixed(0)));
-	   var TotalDisb=parseInt(DISBAMT)-(parseInt(OTHRDEDUCTION))
+	   var TotalDisb=parseFloat(DISBAMT)-(parseFloat(OTHRDEDUCTION))
 		$(HTML).find("input[name=DISB_DISBAMT]").val(CURCommaSep(TotalDisb));
 		$(HTML).find("input[name=DISB_DISBAMT]").next().addClass("active");
 		
@@ -1586,4 +1586,33 @@ function GridControlDetailKARZAGRDIFSC (popTableModPageGrid1,TableID,dtData,dtco
         }
 
         });
+}
+function InitRCU()
+{
+	var op = UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETRCUSTATUS");
+	if($(op).find("RESULT_FLG").text() == "SUCCESS")
+	{
+	var GRP = $(op).find("RESULT_MSG").text().split("|")[0];
+	var UNIQid = $(op).find("RESULT_MSG").text().split("|")[1];
+	var UNIQid1 = $(op).find("RESULT_MSG").text().split("|")[2];
+	var OPXML = UI_getdata(GRP,"","","","","LSW_CHKIRCUGROUP");
+    var GRP= $(OPXML).find("RCU").text()
+	
+	var WFVndACTVINIT1 = WFVndActvInit($("#ActvID").val(),$("#PrcsID").val()+"|VendorInitiate|Vendor|var_status=SVF&var_statusHES="+GRP+"&var_INFO1="+GRP+"~"+GRP+"~"+UNIQid+"~"+UNIQid1+"|ADMIN","LSW_SWFACTVINITCALL");	
+	if (WFVndACTVINIT1 == "Success")
+			{
+			var OPXML = UI_getdata(GRP,UNIQid,UNIQid1,"","","LSW_SUPDATEIRCUGROUP");
+			alert("RCU - File Assigned");
+			return true;
+			}
+		else
+			{
+			alert("RCU - Initiation Failed");
+			return false;
+			}
+	}
+	else{
+		alert($(op).find("RESULT_MSG").text());
+		return false;
+	}
 }

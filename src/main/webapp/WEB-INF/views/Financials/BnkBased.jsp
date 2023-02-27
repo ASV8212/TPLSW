@@ -20,7 +20,6 @@
 				<input type="text" id="CBBA_GRIDMNTH" hidden="hidden" name="CBBA_GRIDMNTH" class="form-control CBBADBfields">
 				<input type="text" id="CBBA_PRODUCTID" hidden="hidden" name="CBBA_PRODUCTID" class="form-control CBBADBfields">  
 				<input type="text" id="CBBA_PRODUCTNAME" hidden="hidden" name="CBBA_PRODUCTNAME" class="form-control CBBADBfields">
-				<input type="text" id="CBBA_LOANID" hidden="hidden" name="CBBA_LOANID" class="form-control  CBBADBfields">
 				 <!--value="S00001"--> 
                    
 				</br>
@@ -218,7 +217,7 @@
 			</div>
 				
 			</br>
-            <div class="form-row">
+            <div class="form-row"style="display:none">
                 <div class="col d-flex justify-content-center">
                     <button type="button" id="Save" data-aria="LSW_TBANKINGBASED|CBBA|CBBA_SCHEMEID" class="btn btn-Syeloutline waves-effect waves-light Save FormSave">Save</button>   
                   <!--  <button type="button" data-aria="LSW_TBANKINGBASED|CBBA|CBBA_SCHEMEID" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> -->

@@ -9,7 +9,7 @@ $(document).ready(function() {
 	else
 	{
 		$("#OTC").show()
-		$("#PDD").show()
+		$("#PDD").show() 
 	}
 	
   if($("#DMY7").val().split("|")[8]=="HE02")
@@ -31,6 +31,8 @@ $(document).ready(function() {
 	 $($(".FormPageSubTab").find('li')[3]).remove()
 	 //$($(".FormPageSubTab").find('li')[1]).remove()
    }
+   
+    
    var Tranche= $(".FormPageMultiTab li.active a div").text();
 	
 	if(Tranche!="Tranche 1")
@@ -392,7 +394,37 @@ $(document).ready(function() {
 		alert('Disbursement Amount  should not be greater than Sanction amount');
 		return 
 		}
+		var Disamt=0;
+		var Lntyamt=0;
+		var Lnid='';
 		
+		
+		for(var i =0;i<$('.DISB').find('.DYNROW').length;i++)
+		{
+				var Lnid=$($('.DISB').find("input[name='DISB_LOANID']")[i]).val()
+				if(Lnid==$($('.DISB').find("input[name='DISB_LOANID']")[i]).val())
+				{
+					Disamt= parseFloat(Disamt) + parseFloat($($('.DISB').find("input[name='DISB_DISBAMT']")[i]).val().replace(/,/g, ""));
+				}
+			for(var j =0;j<$('.Memo').find('.DYNROW').length;j++)
+			{
+
+				if(Lnid==$($('.Memo').find('select[name=DBFD_LOANTYPE]')[j]).val())
+				{		
+					var Lntyamt=parseFloat(Lntyamt)+parseFloat($($('.Memo').find("input[name='DBFD_PAYAMT']")[j]).val().replace(/,/g, ""));
+				}										
+			}
+			if(Disamt<Lntyamt)
+				{
+					alert('Payee Amount  should not be greater than Disbursement amount');
+					return 
+				}
+				else if(Disamt>Lntyamt)
+				{
+					alert('Payee Amount  should not be less than Disbursement amount');
+					return 
+				}
+		}
 		
 		
 		
@@ -508,7 +540,7 @@ $(document).ready(function() {
 		}*/
 			
 			
-			if($(this).text() == "Send to OPS")
+			if($(this).text() == "Send to OPS" && $("#PrMs5").val().split("|")[0]=="Tranche1")
 			{
 				/************if($("#DMY7").val().split('|')[11] != "")
 				{
@@ -552,6 +584,54 @@ $(document).ready(function() {
 		                   }
 	               });
 			   }************/
+			   /*************** OVER ALL COLLECTION STRT **********/
+			var op_get_chrg_data = UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETCOLLECTION_PRCS");
+			if($(op_get_chrg_data).find("COLLECTIONAVL").text() == "YES")
+			{
+				if(confirm("Please make sure the details filled in charges screen, once the application moved to disbursement approval stage the details will be freeze (PF details/ Cross sell 1 – life and Cross sell 2 – Health)Do you want to continue to submit disbursement initiation stage."))
+				{
+				var PFNO1 = $(op_get_chrg_data).find("LOANUNIQID").text();
+				var components=UI_getdata($("#PrcsID").val(),$(op_get_chrg_data).find("LOANUNIQID").text(),"","","","LSW_SGETCOMPONENT");
+	                var PRCSID1 = $("#PrcsID").val();
+	                var RECEIPTNO=""
+                $.ajax({
+		            url: "/TPLSW/LMSPF",
+		            type: 'POST',
+		            data: {PRCSID:PRCSID1,PFNO:PFNO1,RECEIPTNO:RECEIPTNO,COMPONENT:$(components).find("RESULT").text(),Prvnt:$(window.parent.parent.document).find("#Prvnt").val()},
+		            async:true,
+		   // dataType: 'json',
+		   // contentType:'application/json',
+		    
+		            success: function(stm){        
+		   // var obj = JSON.parse(JSON.stringify(stm))
+		    	   if(stm == "")
+		    		{
+		    		  alert("Customer Creation/Updation failed. Contant IT!!!");
+					  
+					  UI_getdata($("#PrcsID").val(),PFNO1,stm,"","","LSW_SPUSHPFINTRRESULT");
+					  //$("#APCM_PFCOLLECTFLG").val(stm);
+		    		  return;
+		    		}
+		    	  else if(stm.split("|")[0] == "Fail")
+	    			{
+	    			  alert("Customer Creation/Updation failed. " + stm.split("|")[1]);
+					  UI_getdata($("#PrcsID").val(),PFNO1,stm,"","","LSW_SPUSHPFINTRRESULT");
+					  //$("#APCM_PFCOLLECTFLG").val(stm);
+		    		  return;
+	    			}
+		    	   else if (stm.split("|")[0] == "Success")
+	    			{
+						UI_getdata($("#PrcsID").val(),PFNO1,stm,"","","LSW_SPUSHPFINTRRESULT");
+						//$("#APCM_PFCOLLECTFLG").val(stm);
+					}
+			      }
+				})
+				}
+				else{
+					return;
+				}
+			}
+			/*************** OVER ALL COLLECTION END **********/
 			}
 			
 			
@@ -563,6 +643,19 @@ $(document).ready(function() {
 			if($(op).find("RESULT").text() != "SUCCESS"){
 				alert($(op).find("RESULT").text());
 				return;
+			}
+			else if($(op).find("RESULT").text() == "SUCCESS" && $("#PrMs5").val().split("|")[0]=="Tranche1")
+			{
+				var RCUUNIQID=UI_getdata($("#PrcsID").val(),"","","","","LSW_SPUSHDATATORCUTBL");
+					 if($(RCUUNIQID).find("RESULT").text() == "Y")
+					 {
+						 if(!InitRCU())
+						 {
+							 return;
+						 }
+						 UI_getdata($("#PrcsID").val(),"","","","","LSW_SUPDTINITSTATUS");
+					 }
+					 
 			}
 		   /*if(activityname =="BranchOPS")
 				{
@@ -708,9 +801,30 @@ $(document).ready(function() {
 			   }************/
 			}
 			
+			if($(this).text()== "Disburse")
+			{
+			if (confirm("Do you want to Disburse?") == false)
+				{
+					return;
+				}
+			}
+			
 			var op = PushtoLMS();
 			if(op !=""){
 				return;
+			}
+			if($(this).text()== "Disburse" && $("#PrMs5").val().split("|")[0]=="Tranche1")
+			{
+				ACHImageProcess();
+				if($("#DMY7").val().split('|')[20] == "Y")
+				{
+				LeadSQRStatusPush("Disbursed");
+				}
+				perodickyc();
+			var GETCUSID = UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHKLONTYPE");
+			var CUSID=$(GETCUSID).find("CUSID").text()
+				UI_getdata($("#PrcsID").val(),"DATAPUSHTOStagingCustom217");
+				UI_getdata($("#PrcsID").val(),CUSID,"DATAPUSHTOStagingCustom246");
 			}
 			var activityname1 = GetActivityName();
 			UI_getdata($("#PrcsID").val(), $("#ActvID").val(), $(".FormPageMultiTab li.active a div").text(), activityname1, $("#LogUsr").val(), "LSW_SDISBSTAGECHECK");

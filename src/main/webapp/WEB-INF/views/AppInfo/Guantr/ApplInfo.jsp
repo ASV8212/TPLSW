@@ -66,6 +66,7 @@ Application Info
 </div>
 </div>
 <input type="text" id="KARZASTATUS" name="KARZASTATUS" hidden="hidden" class="form-control DataNormal" value="">
+<input type="text" id="AADHARHITFROM" name="AADHARHITFROM" hidden="hidden" class="form-control DataNormal" value="">
 <div class="">
 
 <div class="row FormRows m-b-0">
@@ -102,7 +103,9 @@ Application Info
 
 </div>
 <div class="">
+
 <input type="text" id="GRBI_HIDPROFTYP" name="GRBI_HIDPROFTYP" hidden="hidden" class="form-control DataNormal GRBIDBfields" value="">
+
  <div class="row FormRows m-b-0 KYCInfo">
 
                                     <!--First column-->
@@ -131,7 +134,7 @@ Application Info
                </div>
            </div>
 
-			<div class="col-md-8 KYCPROOF"style="display:none">
+			<div class="col-md-8">
 		<div class="md-form">
                      <div class="" id="">
                         <select class="mdb-select md-form colorful-select dropdown-primary GRBIDBfields" multiple id="GRBI_KYCPROOFTYP" onchange="GETPROOFTYP();" name="GRBI_KYCPROOFTYP">
@@ -143,7 +146,7 @@ Application Info
 			                  <!--<option value="ADDRESS PROOF 1">ADDRESS PROOF 1</option>
 			                  <option value="ADDRESS PROOF 2">ADDRESS PROOF 2</option>-->
                          </select>
-                        <label class="mdb-main-label BTxt9">Proof Type *</label>
+                        <label class="mdb-main-label BTxt9">Proof Type <span class="MndtryAstr">*</span></label>
                     </div>
                    </div>
 		</div>
@@ -389,7 +392,7 @@ Application Info
 
 </div>
 </br>
-<img src="ThemeproLO/Common/Images/delete.png"  title="Delete" onclick="KYCDELETE('GRBI_VOTERIDVEIRFY','GRBI_VOTERID','voter','GRBI_VOTERIDATTACHMENT','GRBI_CUSID',' Upload Voters ID','GRBI_VOTERUPLOADVERIFY','Voter ID')"  class="rounded KYCDEL" alt="Cinque Terre" width="20" height="20"> 
+<img src="ThemeproLO/Common/Images/delete.png"  title="Delete" onclick="KYCDELETEFRTADBCK('GRBI_VOTERIDVEIRFY','GRBI_VOTERID','voter','GRBI_VOTERIDATTACHMENT','GRBI_VOTERATTACHMENTII','GRBI_CUSID',' Upload Voters ID','GRBI_VOTERUPLOADVERIFY','GRBI_VOTERUPLOADIIVERIFY','Voter ID','GRBI_VOTERIDPROOF','GRBI_VOTERIDTYPE')"  class="rounded KYCDEL" alt="Cinque Terre" width="20" height="20"> 
 </div>  
 </div>  
 </br>  
@@ -432,7 +435,7 @@ Application Info
 <label for="GRBI_AADHAR" class="">Aadhar *</label>
 </div>    
 </div>  
-<div class="col-md-4 Formcol-mdLR TxtCenter">
+<div class="col-md-4 Formcol-mdLR TxtCenter"  style="display:none">
 <div class="md-form">
 <input type="text" id="GRBI_AADHARVERIFY" hidden="hidden" name="GRBI_AADHARVERIFY" class="form-control GRBIDBfields">
 <!--<button type="button" data-Validatearia="GRBI_AADHARVERIFY" onclick="CheckKYCDetl(this,'GRBI_AADHARATTACHMENT','GRBI_AADHARVERIFY','AADHAAR XML VERIFY');" data-field="GRBI_DOB||GRBI_CUSTYPE|GRBI_CUSID|" data-validate="AADHAR" class="btn  waves-effect btn-yelInplain btn-sm BTNVerify">Verify</button>-->
@@ -464,9 +467,9 @@ Application Info
 <div class="md-form">
 <div class="GRBI_AADHARATTACHMENT" style="display:none" >
 <img src="ThemeproLO/Common/Images/UploadImg.png"  title="UPLOAD"  onclick="ReuploadFile(GRBI_AADHARATTACHMENT);" class="rounded ReUpld" alt="Cinque Terre" width="20" height="20">  <img src="ThemeproLO/Common/Images/Eyeview.png"  title="VIEW"  class="rounded AadharViewImg" onclick="GrdDocDwnld('GRBI_AADHARATTACHMENT')" alt="Cinque Terre" width="35" height="25"> 
-<img src="ThemeproLO/Common/Images/Eyeview.png" style="display:none"  title="Marking Aadhar Image" class="rounded AadharMskImg" onclick="DirImgDown('GRBI_MSKAADHARATTACHMENT')" alt="Cinque Terre" width="35" height="25"> 
+<img src="ThemeproLO/Common/Images/Eyeview.png" style="display:none"  title="Marking Aadhar Image" class="rounded AadharMskImg" onclick="GrdDocDwnld('GRBI_MSKAADHARATTACHMENT')" alt="Cinque Terre" width="35" height="25"> 
 <input type="text" id="GRBI_AADHARUPLOADVERIFY" hidden="hidden" name="GRBI_AADHARUPLOADVERIFY" class="form-control GRBIDBfields">
-<button type="button" onclick="CheckKYCUPLOADDOC(this,'GRBI_AADHARATTACHMENT','GRBI_AADHARUPLOADVERIFY','KYC OCR');" data-field="GRBI_SHARECODE|GRBI_AADHARMOB|GRBI_CUSTYPE|GRBI_CUSID|Aadhar|GRBI_AADHAR|GRBI_AADHARTYPE|GRBI_MSKAADHARATTACHMENT" data-Validatearia="GRBI_AADHARUPLOADVERIFY" data-validate="aadhar" class="btn GRBI_AADHARATTACHMENT waves-effect btn-yelInplain btn-sm BTNVerify INTDSBV">Upload Verify</button>
+<button type="button" onclick="CheckKYCUPLOADDOC(this,'GRBI_AADHARATTACHMENT','GRBI_AADHARUPLOADVERIFY','KYC OCR');" data-field="GRBI_SHARECODE|GRBI_AADHARMOB|GRBI_CUSTYPE|GRBI_CUSID|Aadhar|GRBI_AADHAR|GRBI_AADHARTYPE|GRBI_MSKAADHARATTACHMENT|Front" data-Validatearia="GRBI_AADHARUPLOADVERIFY" data-validate="aadhar" class="btn GRBI_AADHARATTACHMENT waves-effect btn-yelInplain btn-sm BTNVerify INTDSBV">Upload Verify</button>
 </div>
 </div>
 </div>
@@ -494,9 +497,9 @@ Application Info
 <img src="ThemeproLO/Common/Images/UploadImg.png"  title="UPLOAD"  onclick="ReuploadFile(GRBI_AADHARATTACHMENTII);" class="rounded ReUpld" alt="Cinque Terre" width="20" height="20"> 
 <img src="ThemeproLO/Common/Images/Eyeview.png"  title="VIEW"  class="rounded AadharViewImgII" onclick="GrdDocDwnld('GRBI_AADHARATTACHMENTII')" alt="Cinque Terre" width="35" height="25"> 
 
-<img src="ThemeproLO/Common/Images/Eyeview.png" style="display:none"  title="Marking Aadhar Image" class="rounded AadharMskImgII" onclick="DirImgDown('GRBI_MSKAADHARATTACHMENTII')" alt="Cinque Terre" width="35" height="25"> 
+<img src="ThemeproLO/Common/Images/Eyeview.png" style="display:none"  title="Marking Aadhar Image" class="rounded AadharMskImgII" onclick="GrdDocDwnld('GRBI_MSKAADHARATTACHMENTII')" alt="Cinque Terre" width="35" height="25"> 
 <input type="text" id="GRBI_AADHARUPLOADVERIFYII" hidden="hidden" name="GRBI_AADHARUPLOADVERIFYII" class="form-control GRBIDBfields">
-<button type="button" onclick="CheckKYCUPLOADDOC(this,'GRBI_AADHARATTACHMENTII','GRBI_AADHARUPLOADVERIFYII','KYC OCR');" data-field="GRBI_SHARECODE|GRBI_AADHARMOB|GRBI_CUSTYPE|GRBI_CUSID|Aadhar|GRBI_AADHAR|GRBI_AADHARTYPE|GRBI_MSKAADHARATTACHMENTII" data-Validatearia="GRBI_AADHARUPLOADVERIFYII" data-validate="aadhar" class="btn GRBI_AADHARATTACHMENTII waves-effect btn-yelInplain btn-sm BTNVerify INTDSBV">Upload Verify</button>
+<button type="button" onclick="CheckKYCUPLOADDOC(this,'GRBI_AADHARATTACHMENTII','GRBI_AADHARUPLOADVERIFYII','KYC OCR');" data-field="GRBI_SHARECODE|GRBI_AADHARMOB|GRBI_CUSTYPE|GRBI_CUSID|Aadhar|GRBI_AADHAR|GRBI_AADHARTYPE|GRBI_MSKAADHARATTACHMENTII|Back" data-Validatearia="GRBI_AADHARUPLOADVERIFYII" data-validate="aadhar" class="btn GRBI_AADHARATTACHMENTII waves-effect btn-yelInplain btn-sm BTNVerify INTDSBV">Upload Verify</button>
 </div>
 </div>
 </div>
@@ -508,7 +511,7 @@ Application Info
 <input type="text" id="GRBI_MSKAADHARATTACHMENT" hidden="hidden" data-Validate="GRBI_MSKAADHARATTACHMENT" name="GRBI_MSKAADHARATTACHMENT"  data-field=""  class="form-control File AADHARMndtry GRBIDBfields">    
 </div>
 </br>
-<img src="ThemeproLO/Common/Images/delete.png"  title="Delete" onclick="KYCDELETE('GRBI_AADHARVERIFY','GRBI_AADHAR','AADHAR','GRBI_AADHARATTACHMENT','GRBI_CUSID','Upload Aadhar ID','GRBI_AADHARUPLOADVERIFY','Aadhar')"  class="rounded KYCDEL" alt="Cinque Terre" width="20" height="20">   
+<img src="ThemeproLO/Common/Images/delete.png"  title="Delete" onclick="KYCDELETEFRTADBCK('GRBI_AADHARVERIFY','GRBI_AADHAR','AADHAR','GRBI_AADHARATTACHMENT','GRBI_AADHARATTACHMENTII','GRBI_CUSID','Upload Aadhar ID','GRBI_AADHARUPLOADVERIFY','GRBI_AADHARATTACHMENTII','Aadhar','GRBI_AADHARPROOF','GRBI_AADHARTYPE','GRBI_MSKAADHARATTACHMENT','GRBI_MSKAADHARATTACHMENTII')"  class="rounded KYCDEL" alt="Cinque Terre" width="20" height="20">   
 </div> 
 </div>    
 </br>       
@@ -617,7 +620,7 @@ Application Info
  
 </div> 
 </br>
-<img src="ThemeproLO/Common/Images/delete.png"  title="Delete" onclick="KYCDELETE('GRBI_DRIVLICNSVERIFY','GRBI_DRIVLICNS','dl','GRBI_DRIVINGLICATTACHMENT','GRBI_CUSID','Upload Driving License ID','GRBI_DLUPLOADVERIFY','Driving License')"  class="rounded KYCDEL" alt="Cinque Terre" width="20" height="20"> 
+<img src="ThemeproLO/Common/Images/delete.png"  title="Delete" onclick="KYCDELETEFRTADBCK('GRBI_DRIVLICNSVERIFY','GRBI_DRIVLICNS','dl','GRBI_DRIVINGLICATTACHMENT','GRBI_DRIVINGLICATTACHMENTII','GRBI_CUSID','Upload Driving License ID','GRBI_DLUPLOADVERIFY','GRBI_DLUPLOADIIVERIFY','Driving License','GRBI_DLPROOF','GRBI_DRIVNGTYPE')"  class="rounded KYCDEL" alt="Cinque Terre" width="20" height="20"> 
 </div>        
   </div>  
   </br>    
@@ -712,7 +715,7 @@ Application Info
   
 </div> 
 </br>
-<img src="ThemeproLO/Common/Images/delete.png"  title="Delete" onclick="KYCDELETE('GRBI_PASSPORTVERIFY','GRBI_PASSPORT','passport','GRBI_PASSPORTATTACHMENT','GRBI_CUSID','Upload Passport','GRBI_PASSUPLOADVERIFY','Passport')"  class="rounded KYCDEL" alt="Cinque Terre" width="20" height="20"> 
+<img src="ThemeproLO/Common/Images/delete.png"  title="Delete" onclick="KYCDELETEFRTADBCK('GRBI_PASSPORTVERIFY','GRBI_PASSPORT','passport','GRBI_PASSPORTATTACHMENT','GRBI_PASSPORTATTACHMENTII','GRBI_CUSID','Upload Passport','GRBI_PASSUPLOADVERIFY','GRBI_PASSUPLOADIIVERIFY','Passport','GRBI_PASSPORTPROOF','GRBI_PASPRTTYPE')"  class="rounded KYCDEL" alt="Cinque Terre" width="20" height="20"> 
 </div>        
   </div>  
 <br>

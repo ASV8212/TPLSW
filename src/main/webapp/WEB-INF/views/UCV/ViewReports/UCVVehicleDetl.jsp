@@ -105,9 +105,9 @@
 <input type="text" id="UCVD_VEHICRCDOC" data-val="UAM document"  hidden="hidden" data-Validate="UCVD_VEHICRCDOC"  name="UCVD_VEHICRCDOC" class="form-control voter File UCVDDBfields">
 <div class="UCVD_VEHICRCDOC" style="display">  
 <img src="ThemeproLO/Common/Images/Eyeview.png" title="VEHICLE RC"  class="rounded" onclick="GrdDocDwnld('UCVD_VEHICRCDOC')" alt="Cinque Terre" width="35" height="25"><span>Uploaded RC Document</div>
-</div>
 </div> 
-<div class=" col-md-4">
+</div> 
+     <div class=" col-md-4">
 	   <div class="md-form">				  
 <input type="text" id="UCVD_VEHICFCDOC" data-val="UAM document"  hidden="hidden" data-Validate="UCVD_VEHICFCDOC"  name="UCVD_VEHICFCDOC" class="form-control voter File UCVDDBfields">
 <div class="UCVD_VEHICFCDOC" style="display">  
@@ -177,8 +177,8 @@
 	 	    </div>	
             <div class="col-md-4">
 				<div class="md-form">
-                  	<input type="text" id="UCVD_FCVALID" name="UCVD_FCVALID" onchange="Datecheck('UCVD_DATEOFREG','UCVD_FCVALID','FC validity Date should be greater than Date of registration');" class="form-control UCVDDBfields UCVDMndtry IsNumberFields ISDatefield  NoSpecialChar vehiclmndry">
-                    <label for="UCVD_FCVALID" class="">FC Validitity<span class="MndtryAstr">*</span> </label>
+                  	<input type="text" id="UCVD_FCVALID" name="UCVD_FCVALID" onchange="Datecheck('UCVD_DATEOFREG','UCVD_FCVALID','FC validity Date should be greater than Date of registration');" class="form-control UCVDDBfields  IsNumberFields ISDatefield  NoSpecialChar ">
+                    <label for="UCVD_FCVALID" class="">FC Validitity<span class="MndtryAstr"></span> </label>
 					<img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"/>
                 </div>
 			</div>     
@@ -186,15 +186,15 @@
 		 <div class="form-row">
            <div class="col-md-4">
 				<div class="md-form">
-                  	<input type="text" id="UCVD_TAXVALID" name="UCVD_TAXVALID" onchange="Datecheck('UCVD_DATEOFREG','UCVD_TAXVALID','Tax validity Date should be greater than Date of registration');" class="form-control UCVDDBfields UCVDMndtry IsNumberFields ISDatefield  NoSpecialChar vehiclmndry">
-                    <label for="UCVD_TAXVALID" class="">Tax Validitity<span class="MndtryAstr">*</span> </label>
+                  	<input type="text" id="UCVD_TAXVALID" name="UCVD_TAXVALID" onchange="Datecheck('UCVD_DATEOFREG','UCVD_TAXVALID','Tax validity Date should be greater than Date of registration');" class="form-control UCVDDBfields  IsNumberFields ISDatefield  NoSpecialChar ">
+                    <label for="UCVD_TAXVALID" class="">Tax Validitity<span class="MndtryAstr"></span> </label>
 					<img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"/>
                 </div> 
 			</div>	
 			<div class="col-md-4">
 				<div class="md-form">
-                  	<input type="text" id="UCVD_PERMVALID" name="UCVD_PERMVALID" onchange="Datecheck('UCVD_DATEOFREG','UCVD_PERMVALID','Permit validity Date should be greater than Date of registration');" class="form-control UCVDDBfields UCVDMndtry IsNumberFields ISDatefield  NoSpecialChar vehiclmndry">
-                    <label for="UCVD_PERMVALID" class="">Permit Validitity<span class="MndtryAstr">*</span> </label>
+                  	<input type="text" id="UCVD_PERMVALID" name="UCVD_PERMVALID" onchange="Datecheck('UCVD_DATEOFREG','UCVD_PERMVALID','Permit validity Date should be greater than Date of registration');" class="form-control UCVDDBfields  IsNumberFields ISDatefield  NoSpecialChar ">
+                    <label for="UCVD_PERMVALID" class="">Permit Validitity<span class="MndtryAstr"></span> </label>
 					<img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"/>
                 </div>
 	 	    </div>	    
@@ -205,20 +205,20 @@
 			<div class="form-row">
            <div class="col-md-4">
 				<div class="md-form">
-                  	<input type="text" id="UCVD_COMNAME" name="UCVD_COMNAME"  class="form-control UCVDDBfields UCVDMndtry IsAlphaFields NoSpecialChar vehiclmndry">
-                    <label for="UCVD_COMNAME" class="">Name of the Company<span class="MndtryAstr">*</span> </label>
+                  	<input type="text" id="UCVD_COMNAME" name="UCVD_COMNAME"  class="form-control UCVDDBfields IsAlphaFields NoSpecialChar ">
+                    <label for="UCVD_COMNAME" class="">Name of the Company<span class="MndtryAstr"></span> </label>
                 </div> 
 			</div>	
 			<div class="col-md-4">
 				<div class="md-form">
-                  	<input type="text" id="UCVD_POLICYNUM" name="UCVD_POLICYNUM"  class="form-control  UCVDMndtry UCVDDBfields NoSpecialChar vehiclmndry">
-                    <label for="UCVD_POLICYNUM" class="">Policy Number<span class="MndtryAstr">*</span> </label>
+                  	<input type="text" id="UCVD_POLICYNUM" name="UCVD_POLICYNUM"  class="form-control UCVDDBfields NoSpecialChar ">
+                    <label for="UCVD_POLICYNUM" class="">Policy Number<span class="MndtryAstr"></span> </label>
                 </div>
 	 	    </div>	
             <div class="col-md-4">
 				<div class="md-form">
-                  	<input type="text" id="UCVD_POLICYISSUEDT" name="UCVD_POLICYISSUEDT"  class="form-control  UCVDDBfields UCVDMndtry IsNumberFields ISDatefield   NoSpecialChar vehiclmndry">
-                    <label for="UCVD_POLICYISSUEDT" class="">Policy Issued Date<span class="MndtryAstr">*</span> </label>
+                  	<input type="text" id="UCVD_POLICYISSUEDT" name="UCVD_POLICYISSUEDT"  class="form-control  UCVDDBfields IsNumberFields ISDatefield  NoSpecialChar ">
+                    <label for="UCVD_POLICYISSUEDT" class="">Policy Issued Date<span class="MndtryAstr"></span> </label>
 					<img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"/>
                 </div>
 			</div>     
@@ -226,30 +226,30 @@
 		 <div class="form-row">
            <div class="col-md-4">
 				<div class="md-form">
-                  	<input type="text" id="UCVD_PERIODINSFROM" name="UCVD_PERIODINSFROM" onchange="Datecheck('UCVD_POLICYISSUEDT','UCVD_PERIODINSFROM','Period of Insurance From Date should be greater than Policy Issued Date');" class="form-control UCVDDBfields UCVDMndtry IsNumberFields ISDatefield  NoSpecialChar vehiclmndry ">
-                    <label for="UCVD_PERIODINSFROM" class="">Period of Insurance From<span class="MndtryAstr">*</span> </label>
+                  	<input type="text" id="UCVD_PERIODINSFROM" name="UCVD_PERIODINSFROM" onchange="Datecheck('UCVD_POLICYISSUEDT','UCVD_PERIODINSFROM','Period of Insurance From Date should be greater than Policy Issued Date');" class="form-control UCVDDBfields IsNumberFields ISDatefield  NoSpecialChar  ">
+                    <label for="UCVD_PERIODINSFROM" class="">Period of Insurance From<span class="MndtryAstr"></span> </label>
 					<img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"/>
                 </div> 
 			</div>	
 			<div class="col-md-4">
 				<div class="md-form">
-                  	<input type="text" id="UCVD_PERIODINSTO" name="UCVD_PERIODINSTO" onchange="Datecheck('UCVD_POLICYISSUEDT','UCVD_PERIODINSTO','Period of Insurance To Date should be greater than Policy Issued Date');" class="form-control  UCVDDBfields UCVDMndtry IsNumberFields ISDatefield  NoSpecialChar vehiclmndry">
-                    <label for="UCVD_PERIODINSTO" class="">Period of Insurance To<span class="MndtryAstr">*</span> </label>
+                  	<input type="text" id="UCVD_PERIODINSTO" name="UCVD_PERIODINSTO" onchange="Datecheck('UCVD_POLICYISSUEDT','UCVD_PERIODINSTO','Period of Insurance To Date should be greater than Policy Issued Date');" class="form-control  UCVDDBfields IsNumberFields ISDatefield  NoSpecialChar ">
+                    <label for="UCVD_PERIODINSTO" class="">Period of Insurance To<span class="MndtryAstr"></span> </label>
 					<img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"/>
                 </div>
 	 	    </div>	 
             <div class="col-md-4">
 				<div class="md-form">
-                  	<input type="text" id="UCVD_PERIMPAID" name="UCVD_PERIMPAID"  class="form-control IsCURCommaFields  UCVDMndtry IsNumberFields  UCVDDBfields NoSpecialChar vehiclmndry">
-                    <label for="UCVD_PERIMPAID" class="">Premium Paid<span class="MndtryAstr">*</span> </label>
+                  	<input type="text" id="UCVD_PERIMPAID" name="UCVD_PERIMPAID"  class="form-control IsCURCommaFields  IsNumberFields  UCVDDBfields NoSpecialChar ">
+                    <label for="UCVD_PERIMPAID" class="">Premium Paid<span class="MndtryAstr"></span> </label>
                 </div>
 	 	    </div>				
         </div>
 		<div class="form-row">
            <div class="col-md-4">
 				<div class="md-form">
-                  	<input type="text" id="UCVD_IDV" name="UCVD_IDV"  class="form-control UCVDDBfields  UCVDMndtry IsCURCommaFields IsNumberFields NoSpecialChar vehiclmndry">
-                    <label for="UCVD_IDV" class="">IDV<span class="MndtryAstr">*</span> </label>
+                  	<input type="text" id="UCVD_IDV" name="UCVD_IDV"  class="form-control UCVDDBfields  IsCURCommaFields IsNumberFields NoSpecialChar ">
+                    <label for="UCVD_IDV" class="">IDV<span class="MndtryAstr"></span> </label>
                 </div> 
 			</div>	
 	    </div>
@@ -265,8 +265,8 @@
 			</div>	
 			<div class="col-md-4">
 				<div class="md-form">
-                  	<input type="text" id="UCVD_ESTIMATE" name="UCVD_ESTIMATE"  class="form-control IsNumberFields  UCVDDBfields UCVDMndtry NoSpecialChar vehiclmndry">
-                    <label for="UCVD_ESTIMATE" class="">Estimated Further life cycle of Vehicle<span class="MndtryAstr">*</span> </label>
+                  	<input type="text" id="UCVD_ESTIMATE" name="UCVD_ESTIMATE"  class="form-control IsNumberFields  UCVDDBfields NoSpecialChar ">
+                    <label for="UCVD_ESTIMATE" class="">Estimated Further life cycle of Vehicle<span class="MndtryAstr"></span> </label>
                 </div>
 	 	    </div>	 
             <div class="col-md-4">
@@ -304,6 +304,28 @@
                     <label for="UCVD_LOCAVALU" class="">Location Valuation<span class="MndtryAstr">*</span> </label>
                 </div>
 	 	    </div>	
+				<div class="col-md-4">
+          <label class="">Upload Report<span class="MndtryAstr">*</span></label>
+          <div class="md-form">
+     <div>
+    <table>
+    <tr>
+     <td>
+       <div id="UCVD_ATTACHMENTUPLOAD"  class="file-field">
+         <a class=""> 
+            <i class="fa fa-plus imgAdd" aria-hidden=""></i>
+            <input type="file"  name="datafile" onchange="DocFldUpldHndlr(UCVD_ATTACHMENT,'UCVD_ATTACHMENT','Voter ID')" class="UCVD_ATTACHMENT"  >
+          </a> 
+           <input type="text" id="UCVD_ATTACHMENT" hidden="hidden" data-Validate="UCVD_ATTACHMENT"  name="UCVD_ATTACHMENT" class="form-control File UCVDMndtry UCVDDBfields">
+           <span class="name">Click Here to Upload</span>
+      </div>
+    </td>
+    </tr>
+   </table>
+  </div> 
+    <div class="UCVD_ATTACHMENT" style="display:none"> <img src="ThemeproLO/Common/Images/UploadImg.png" onclick="ReuploadFile(UCVD_ATTACHMENT);" title="UPLOAD"  class="rounded Reuplod" alt="Cinque Terre" width="20" height="20">  <img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW"  class="rounded" onclick="GrdDocDwnld('UCVD_ATTACHMENT')" alt="Cinque Terre" width="35" height="25"> </div> 
+      </div>      
+        </div> 
  		</div>
 </div>
 

@@ -765,6 +765,14 @@ function CalcInOutCkhPerc(InwBonc,OutwBonc,TotInwBonc,TotOutwBonc,InwPerc,OutwPe
 	
 	var InwPerc1= parseInt(InwBonc1)/parseInt(TotInwBonc1)
 	var OutwPerc1= parseInt(OutwBonc1)/parseInt(TotOutwBonc1)
+	if(InwPerc1=="Infinity")
+	{
+		InwPerc1 = 0
+	}
+	if(OutwPerc1=="Infinity")
+	{
+		OutwPerc1 = 0
+	}
 	
 	if (isNaN(OutwPerc1)) 
 	{

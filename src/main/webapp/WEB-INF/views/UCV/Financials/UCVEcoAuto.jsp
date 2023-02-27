@@ -21,19 +21,19 @@
 			
 			<div class="col-md-4">
                 <div class="md-form">
-                   <input type="text" id="ECOA_NOOFACTLONS" name="ECOA_NOOFACTLONS" onchange="" maxlength="10"  class="form-control IsNumberFields NoSpecialChar  ECOADBfields ">
+                   <input type="text" id="ECOA_NOOFACTLONS" name="ECOA_NOOFACTLONS" onchange="LIMITELIGIBLE();" maxlength="10"  class="form-control IsNumberFields NoSpecialChar  ECOADBfields ">
                    <label for="ECOA_NOOFACTLONS" class="">No of Active Loans considered<span class="MndtryAstr">*</span></label>
 				</div>
             </div>
 			<div class="col-md-4">
                 <div class="md-form">
-                   <input type="text" id="ECOA_LNAMTREQ" name="ECOA_LNAMTREQ" onchange="" maxlength="10"  class="form-control IsCURCommaFields NoSpecialChar  ECOADBfields ">
+                   <input type="text" id="ECOA_LNAMTREQ" name="ECOA_LNAMTREQ"  maxlength="10"  class="form-control IsCURCommaFields NoSpecialChar  ECOADBfields ">
                    <label for="ECOA_LNAMTREQ" class="">Loan amount Requested<span class="MndtryAstr">*</span></label>
 				</div>
             </div>
 			<div class="col-md-4">
-                <div class="md-form">
-                   <input type="text" id="ECOA_MAXFUNSCHME" name="ECOA_MAXFUNSCHME" maxlength="15"  onchange="Chkmax();"  class="form-control IsCURCommaFields NoSpecialChar  ECOADBfields ">
+                <div class="md-form">	<!--onchange="Chkmax();"  -->
+                   <input type="text" id="ECOA_MAXFUNSCHME" name="ECOA_MAXFUNSCHME" maxlength="15" onchange="LIMITELIGIBLE();"  class="form-control IsCURCommaFields NoSpecialChar  ECOADBfields ">
                    <label for="ECOA_MAXFUNSCHME" class="">Max funding under the scheme<span class="MndtryAstr">*</span></label>
                 </div>
             </div>
@@ -55,7 +55,7 @@
 		</div>
                   </br>
 				  </br>
-                  <div class="form-row">
+                  <div class="form-row"style="display:none">
                      <div class="col d-flex justify-content-center">
                         <button type="button" id="Save" data-aria="LSW_TECOAUTO|ECOA|ECOA_UNIQID" class="btn btn-Syeloutline waves-effect waves-light Save FormSave">Save</button>   
                         <button type="button" data-aria="LSW_TECOAUTO|ECOA|ECOA_UNIQID" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 

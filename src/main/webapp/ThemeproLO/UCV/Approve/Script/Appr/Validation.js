@@ -216,16 +216,18 @@ function PushDatatoApprTbl1(){
 			else if($(OP).find("RESULT").text()=="SUCCESS")
 			{
 				if($("#ACTIONTAKEN").val()=="Approve"){
-					if($("#DMY7").val().split("|")[8]!="HE02"){
-					WFComplete ($("#ActvID").val(),"var_rstatus=Sanction","");
+					var op_xml = UI_getdata($("#PrcsID").val(),"","","","","LSW_SSTRAIGHTTHROUGHDISB");
+					if($(op_xml).find("RESULT").text() == "N"){
+					WFComplete ($("#ActvID").val(),"var_rstatus=Sanction&"+$(op_xml).find("STRTHRFLG").text(),"");
 					}
-					else if($("#DMY7").val().split("|")[8]=="HE02"){
-					WFComplete ($("#ActvID").val(),"var_rstatus=DSanction","");
+					else if($(op_xml).find("RESULT").text() == "Y"){
+					var WfStrthr = "var_rstatus=DSanction&"+$(op_xml).find("STRTHRFLG").text()
+					WFComplete ($("#ActvID").val(),WfStrthr,"");
 					
 					var ACTVTY="";
 					var OverAllStatus="";
 					var WFACTVINIT = "";
-					var ACTVTY=["PDD","OTC","OPSQD"]
+					ACTVTY=["OTC","PDD"];
 					
 					for(var j=0;j<ACTVTY.length;j++)
 					{
@@ -301,7 +303,22 @@ function PushDatatoApprTbl2(){
 			}
 			else if($(OP).find("RESULT").text()=="SUCCESS")
 			{
-				WFComplete ($("#ActvID").val(),"var_rstatus=SB","");
+				if($("#RECMTO").val()=="" || $("#RECMTO").val()===null)
+				{
+				  WFComplete ($("#ActvID").val(),"var_rstatus=SB","");
+				}
+				else
+				{
+				var op = UI_getdata($("#PrcsID").val()+'|'+$("#ActvID").val(),$("#DMY6").val()+'|'+$("#ACTIONTAKEN").val()+'|DEVIATIONS|'+$("#RECMTO").val(),$("#DMY3").val().split('|')[9],"","","LSW_SPCKAPPRWFVARONSBMT ");
+				var pattern = /var_/;
+				var exists = pattern.test($(op).find("WFVAR").text());
+				if(exists) {
+				   WFComplete ($("#ActvID").val(),$(op).find("WFVAR").text(),"");
+				}
+				else{
+					alert($(op).find("WFVAR").text());
+				}
+			  }
 			}
 			else{
 				alert("Approve and Recommend Submission Failed");
@@ -353,7 +370,7 @@ function GrdDocDwnld(evnt,row,UniqId,IdRow)
 		}
 	else if(PDFval=="CIBIL Score 1" || PDFval=="CIBIL Score 2")
 	   {
-		  var URL=$("#"+PDFID+row).val()
+		  /* var URL=$("#"+PDFID+row).val()
 		  var URLVal=URL.split("/g\/g")[0]
 	      var Curl= $("#DMY1").val()
 		  if (URL =="")
@@ -370,7 +387,9 @@ function GrdDocDwnld(evnt,row,UniqId,IdRow)
 			{
 			  RedirectURL =window.location.origin+"/TPLSW/DMSVIEW?PrcsID=" + $("#PrcsID").val() + "&DMSID=" + (URL).split("/")[0];
             	$("#DocView").attr("src", RedirectURL);
-			}
+			} */
+			
+			GentrateCIBIL(UniqId);
 	  }
 	else
 	  {
@@ -624,3 +643,26 @@ function InitRCU()
 		return false;
 	}
 }
+
+
+function GentrateCIBIL(UniqId)
+{
+	
+	var IOP=window.location.origin;
+	var PrcsId=$("#PrcsID").val()
+		 var Cusid=$("#"+UniqId).val();
+	// var Cus = UI_getdata(PrcsId,"","","","","LSW_SGETCIBILCUSID")
+	//var Cusid = $(Cus).find('CUSID').html()
+	 
+  ajaxindicatorstart("Downloading.. Please wait");
+	 var flname = IOP+LoadFrmXML("RT0119")+"&__format=pdf&Param1="+PrcsId+"&Param2="+Cusid+"&__filename=CibilReport_"+$(".FormPageMultiTab li.active").text()+".pdf";
+	   ajaxindicatorstop();
+	   
+	 var link=document.createElement('a');
+		document.body.appendChild(link);
+		link.download=flname;
+			link.href=flname;
+			link.click();
+			ajaxindicatorstop();
+			
+			}

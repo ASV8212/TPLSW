@@ -37,12 +37,12 @@ $(document).ready(function () {
 	var OrgCusID1 =$("#headingFour4 a").attr("data-aria").split("|")[3];
     //End
 	
-	
 	if  (DATA != "")
 	{
 		DATA = $("#"+DATA).val()+"|" + DATA;
 	}
 	
+		
 	var xml=UI_getdata("","","","","","LSW_SGETNATUR")
 	
 	$("#COOA_INDUSCATRGORY").html("")
@@ -51,10 +51,24 @@ $(document).ready(function () {
 	$("#COEI_INDUSCATRGORY").html("")
 	$("#COEI_INDUSCATRGORY").append($(xml).find("Industry").html());
 	
-	
 	GetSec();
 	FormDataFromDB(tbl, prfx + "_", prfx+"DBfields", DATA);
-	
+	if($("#COBI_PANVERIFY").val()=='Verified')
+	{
+		$(".COBI_PAN").addClass('VIEWDISABLE');
+	}
+	if($("#COBI_VOTERIDVEIRFY").val()=='Verified')
+	{
+		$(".COBI_VOTERID").addClass('VIEWDISABLE');
+	}
+	if($("#COBI_DRIVLICNSVERIFY").val()=='Verified')
+	{
+		$(".COBI_DRIVLICNS").addClass('VIEWDISABLE');
+	}
+	if($("#COBI_PASSPORTVERIFY").val()=='Verified')
+	{
+		$(".COBI_PASSPORT").addClass('VIEWDISABLE');
+	}
 	// Added Since Loading Issues Date - 28/05/2020 Start
 	
 	if($("#"+CICusID1).length>0)
@@ -80,6 +94,10 @@ $(document).ready(function () {
      {
       $(".AUPLDXMLII").hide();
       }
+	  if  (OrgDATA != "")
+	{
+		OrgDATA = $("#"+OrgDATA).val()+"|" + OrgDATA;
+	}
 	  FormDataFromDB(Orgtbl, Orgprfx + "_", Orgprfx+"DBfields", OrgDATA);
 	// End
 	if(($("#COBI_CUSTYPE").val() == "Non-Individual") && (($("#COBI_CONSTITUTION").val()=="Private Ltd ")||($("#COBI_CONSTITUTION").val()=="Public Ltd ")))
@@ -107,23 +125,21 @@ $(document).ready(function () {
 	Chkdirect();
 	CheckNumber();
 	CoCheckborrower();
-	Chkudyam();
+	//Chkudyam();
 	OtherKYC();
-	
 	if($("#COBI_HIDPROFTYP").val()!='')
 	{	
-	var HIDPROFTYP=$("#COBI_HIDPROFTYP").val()
-	var PROOFTYPE=HIDPROFTYP.split(",");
-	var row = $(PROOFTYPE).length;
-	for (i=0;i<row;i++)
-	{
-	if(PROOFTYPE[i] !="")
-	{
-	$("#COBI_KYCPROOFTYP option[value='"+PROOFTYPE[i]+"']").attr("selected","selected")
+		var HIDPROFTYP=$("#COBI_HIDPROFTYP").val()
+		var PROOFTYPE=HIDPROFTYP.split(",");
+		var row = $(PROOFTYPE).length;
+		for (i=0;i<row;i++)
+		{
+			if(PROOFTYPE[i] !="")
+			{
+				$("#COBI_KYCPROOFTYP option[value='"+PROOFTYPE[i]+"']").attr("selected","selected")
+			}
+		}
 	}
-	}
-	}
-	
 	var xml=UI_getdata("Karza",$("#VERTICAL").val(),"","","","LSW_SCHKINTGSTATUS")
 	var data=$(xml).find('STATUS').text()
 	
@@ -218,20 +234,22 @@ $(document).ready(function () {
 	//CheckGSTorNot();
 	CheckProfile("Load");
 	LoadVwImage('COBI_');
-	
-	 if($("#COBI_MSKAADHARATTACHMENT").val()!="")
+	if($("#COBI_PANUPLOADVERIFY").val()=="Upload Verified")
 	{
-	  $(".AadharMskImg").show();
-	  $(".AadharViewImg").hide();
-	  $("#COBI_AADHAR").attr("disabled",true);
-    }
+		 $(".TYP").show()
+	}
+	 if($("#COBI_MSKAADHARATTACHMENT").val()!="")
+	  {
+	   $(".AadharMskImg").show();
+	   $(".AadharViewImg").hide();
+	   $("#COBI_AADHAR").attr("disabled",true);
+      }
 	if($("#COBI_MSKAADHARATTACHMENTII").val()!="")
 	  {
 	   $(".AadharMskImgII").show();
 	   $(".AadharViewImgII").hide();
 	   $("#COBI_AADHAR").attr("disabled",true);
       }
-	
 	if($("#COBI_UBVERIFYTYPE").val()=="Mobile Authentication with OTP")
 	{
 		$(".UtilityLable").text("Service Number");
@@ -356,7 +374,11 @@ if($("#COBI_CUSTYPE").val()=='Non-Individual')
 	
 	$(document).on("click", ".ORGD", function()
     {
-		Chkudyam();
+		//if($("#"+$(this).attr("data-aria").split("|")[2]).val() == "")
+	  // {
+		$("#"+$(this).attr("data-aria").split("|")[2]).val($("#"+$(this).attr("data-aria").split("|")[3]).val())
+	  // }
+		//Chkudyam();
 	})
 	
 	// Employment Details Data Start
@@ -573,6 +595,14 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
 					if( personalinfocusid == "")
 					{
 						alert("Invalid Customer ID Has Been Picked For Processing, Pick a Valid Customer ID to Process Further");
+						return;
+					}
+					
+					var xmlsamecus=UI_getdata($("#PrcsID").val(),personalinfocusid,"","","","LSW_SCHKCUSTOMERIDEX");
+			
+					if($(xmlsamecus).find("RESULT").text() != "SUCCESS")
+					{
+						alert($(xmlsamecus).find("RESULT").text());
 						return;
 					}
 					/*if((contactcusid == personalinfocusid) && (contactcusid  == addrinfocusid))

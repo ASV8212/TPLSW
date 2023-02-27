@@ -2194,6 +2194,7 @@ $(document).ready(function () {
 		var Inpt2='';
 		var InPTindx=''
 		var Scheme=$("#RCCM_UNIQUID").val();
+		var LoanID=$("#RCCM_LOANUNIQID").val();
 		var Expr = $("#ICEG_EXPOUSER").val();
 		if(Expr==""){
 			Expr=0;
@@ -2215,7 +2216,7 @@ $(document).ready(function () {
 			//ViewRInavtivePGFlg="View";  
 		  }
 		// Added for Loan Amount filed is enable in Waiver Stage end
-		var op = UI_getdata(Inpt1+','+Inpt2,$("#PrcsID").val(),Scheme+'|'+ViewRInavtivePGFlg,Expr,'','LSW_SUCVGETELIGHSCHEME');
+		var op = UI_getdata(Inpt1+','+Inpt2,$("#PrcsID").val(),Scheme+'|'+ViewRInavtivePGFlg+'|'+LoanID,Expr,'','LSW_SUCVGETELIGHSCHEME');
 		for (i=0;i<$('.RECOMPUT').length;i++)
 		{
 			InPTindx=parseInt($($('.RECOMPUT')[i]).next().val())

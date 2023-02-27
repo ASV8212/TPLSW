@@ -261,7 +261,7 @@
            <div class="form-row">
                 <div class="col">
                   <div class="md-form">
-                  <select class="mdb-select md-form colorful-select dropdown-primary LBSIDBfields LBSIMndtry DataToFld" onchange="" searchable="Search here.." data-change="LBSI_BRID"  id="LBSI_BRANCH" name="LBSI_BRANCH">
+                  <select class="mdb-select md-form colorful-select dropdown-primary LBSIDBfields LBSIMndtry DataToFld"  searchable="Search here.." data-change="LBSI_BRID" id="LBSI_BRANCH" name="LBSI_BRANCH">
                          <option value="" selected>--Select--</option>
                               <!--<option value="Perangudi">Perangudi</option>
                               <option value="Anakapalli">Anakapalli</option> -->
@@ -290,7 +290,7 @@
             </div><!--SUBLON-----PROIIDROP-->
             <div class="col-md-6 ">
                  <div class="md-form">
-                       <select class="mdb-select md-form colorful-select dropdown-primary  LBSIDBfields  " id="LBSI_SUBLONTYPE" name="LBSI_SUBLONTYPE">
+                       <select class="mdb-select md-form colorful-select dropdown-primary LBSIMndtry LBSIDBfields  " id="LBSI_SUBLONTYPE" name="LBSI_SUBLONTYPE">
                         <option value="" selected>--Select--</option>
 						<!--<option value="">Fresh</option>
 						<option value="">Renewal at Existing</option>
@@ -350,7 +350,19 @@
                         </select>
                         <label class="mdb-main-label BTxt9">Constitution <span class="MndtryAstr">*</span></label>
                    </div>
-               </div>
+				   </div>
+				   <div class="col-md-6">
+					<div class="md-form">
+                  <!--<select class="mdb-select md-form colorful-select dropdown-primary LBSIDBfields LBSIMndtry" disabled id="LBSI_VERTICAL" name="LBSI_VERTICAL"> <!-- onchange="ChangeProduct();" 
+                        <option value="" selected>--Select--</option>
+                         <option value="HE01">Home Equity</option>
+                  </select>-->
+				    <input type="text" id="LBSI_REQAMT"  maxlength="30" name="LBSI_REQAMT" class="form-control LBSIDBfields IsCURCommaFields NoSpecialChar LBSIMndtry">
+                    
+                        <label class="mdb-main-label BTxt9">Requested Loan Amount (Rs.) <span class="MndtryAstr">*</span></label>
+                </div>
+				   </div>
+               
 			   
 			    <div class="col-md-6 " style="display:none">
                  <div class="md-form">

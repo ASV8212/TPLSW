@@ -4,13 +4,15 @@ $(document).ready(function () {
 	$("#ASST_SCHEMEID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
 	$("#ASST_SCHEMENAME").attr("value",$(".FormPageMultiTab li.active").text());
 	
-	GetTyProperty();
+	
 	FormDataFromDB("LSW_TASSETCREATION","ASST_","ASSTDBfields", "ASST_SCHEMEID");
 	   $("#ASST_PRCSID").val($("#PrcsID").val())
 	
 	$("#ASST_SCHEMEID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
 	$("#ASST_SCHEMENAME").attr("value",$(".FormPageMultiTab li.active").text());
-
+	var PRODUCTXML=UI_getdata($("#PrcsID").val(),$("#ASST_SCHEMEID").val(),"","","","LSW_SGETLOANDETAILS");
+	$("#ASST_PRODUCT").val(($(PRODUCTXML).find('PRODUCT').text()));
+	GetTyProperty();
 		var xmlSTATUS=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETACCESSCREADATA")
     	$("#ASST_NAMEENTITY").val($(xmlSTATUS).find('NAME').text())
 		$("#ASST_MONTHYEAR").val($(xmlSTATUS).find('INCORDATE').text())

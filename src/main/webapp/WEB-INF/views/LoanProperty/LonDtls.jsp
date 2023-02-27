@@ -67,7 +67,7 @@
                      </div>
 					 <div class="col-md-6 SOUDIR">
                   <div class="md-form">
-                  <select class="mdb-select md-form colorful-select dropdown-primary LODEDBfields DataToFld" data-change="LODE_CONECTID" searchable="Search here.." id="LODE_CONECTNAME" name="LODE_CONECTNAME">
+                  <select class="mdb-select md-form colorful-select dropdown-primary LODEDBfields DataToFld" disabled data-change="LODE_CONECTID" searchable="Search here.." id="LODE_CONECTNAME" name="LODE_CONECTNAME">
 				</select>
                     <label class="mdb-main-label BTxt9" >Source Name <span class="MndtryAstr">*</span> </label>
                   </div>
@@ -76,14 +76,14 @@
 				<div class="form-row">
                      <div class="col-md-6">
                         <div class="md-form">
-                           <select class="md-form colorful-select dropdown-primary  LODEDBfields LODEMndtry"  onchange="GetNaturProduct(this,'LODE_PRODUCT');CheckLIMITDTLS();getSchemeDetails1('Page')"  id="LODE_LONTYPE" name="LODE_LONTYPE">
+                           <select class="md-form colorful-select dropdown-primary  LODEDBfields LODEMndtry"  onchange="GetNaturProduct(this,'LODE_PRODUCT');CheckLIMITDTLS();getSchemeDetails1('Page'); getanchor();"  id="LODE_LONTYPE" name="LODE_LONTYPE">
                            </select>
                            <label class="mdb-main-label BTxt9"> Loan Type<span class="MndtryAstr">*</span></label>
                         </div>
                      </div>
 					  <div class="col-md-6">
                         <div class="md-form">
-                           <select class="md-form colorful-select dropdown-primary LODEDBfields LODEMndtry DataToFld"  data-change="LODE_PRODUCTNAME" onchange="Chkproduct(); GetSecUnsec(); getSchemeDetails1('Page'); Chksecunsec(); HandlePropDtl();"  id="LODE_PRODUCT" name="LODE_PRODUCT">
+                           <select class="md-form colorful-select dropdown-primary LODEDBfields LODEMndtry DataToFld"  data-change="LODE_PRODUCTNAME" onchange="Chkproduct(); GetSecUnsec(); getSchemeDetails1('Page'); Chksecunsec(); HandlePropDtl();" onblur='chkstpflow();' id="LODE_PRODUCT" name="LODE_PRODUCT">
                            </select>
                            <label class="mdb-main-label BTxt9">Product<span class="MndtryAstr">*</span></label>
                         </div>
@@ -130,11 +130,11 @@
                      <div class="col-md-6">
                         <div class="md-form">
                            <select class="md-form colorful-select dropdown-primary LODEDBfields LODEMndtry DataToFld"  id="LODE_SUBLONPURP" name="LODE_SUBLONPURP">
-                              <option value="" selected>--Select--</option>
+                              <!--<option value="" selected>--Select--</option>
                               <option value="Education">Education</option>
                               <option value="Vehicle">Vehicle</option>
                               <option value="Home">Home</option>
-							  <option value="Business">Business</option>
+							  <option value="Business">Business</option>-->
 							  
                            </select>
                            <label class="mdb-main-label BTxt9"> Sub Loan Purpose <span class="MndtryAstr">*</span> </label> 
@@ -142,16 +142,16 @@
                      </div>
 					 <div class="col-md-6 NEWPROD"><!--getReqROI('LODE_SCHEME','');-->
                         <div class="md-form">
-                            <select class="md-form colorful-select dropdown-primary LODEDBfields LODEMndtry" onchange="  GetScheme('LODE_SCHEME','LODE_LOANID','LODE_SCHEMEID'); CheckAmt(); CheckTenor(); CheckRoi();ChkCam();"   id="LODE_SCHEME" name="LODE_SCHEME">
+                            <select class="md-form colorful-select dropdown-primary  LODEDBfields LODEMndtry" onchange="  GetScheme('LODE_SCHEME','LODE_LOANID','LODE_SCHEMEID'); CheckAmt(); CheckTenor(); CheckRoi();ChkCam();CheckDemand();"   id="LODE_SCHEME" name="LODE_SCHEME">
 						    </select>
-                           <label class="mdb-main-label BTxt9">Scheme <span class="MndtryAstr">*</span></label>
+                           <label class="mdb-main-label NLIP BTxt9">Scheme <span class="MndtryAstr">*</span></label>
                          </div>
                      </div>
                   </div>
 				  <div class="form-row">
 				  <div class="col-md-6">
                         <div class="md-form"><!--onchange="CheckAmount();"-->
-                           <input type="text" id="LODE_REQLONAMT"  maxlength="30" onchange="CheckAmt();CheckDemand();AmountGst(); ChkCam();"  class="form-control IsCURCommaFields LODEDBfields NoSpecialChar LODEMndtry" name="LODE_REQLONAMT">
+                           <input type="text" id="LODE_REQLONAMT"  maxlength="30" onchange="CheckAmt();CheckDemand();AmountGst(); ChkCam();" onblur="chkstpflow();" class="form-control IsCURCommaFields LODEDBfields NoSpecialChar LODEMndtry" name="LODE_REQLONAMT">
                            <label for="LODE_REQLONAMT" class="">Requested Loan Amount (Rs.) <span class="MndtryAstr">*</span></label>
                         </div>
                      </div>
@@ -171,7 +171,7 @@
                      </div>
 				  <div class="col-md-6 MORAT ">
                         <div class="md-form">
-                           <input type="text" id="LODE_Moratoritm" maxlength="5" onchange="ChkROI();" class="form-control IsNumberFields  LODEDBfields NoSpecialChar LODEMndtry DataNormal" name="LODE_Moratoritm" title="">
+                           <input type="text" id="LODE_Moratoritm" maxlength="5" onchange="ChkROI();" class="form-control IsNumberFields MORT LODEDBfields NoSpecialChar LODEMndtry DataNormal" name="LODE_Moratoritm" title="">
                            <label for="LODE_Moratoritm" class="" >Moratorium (In Months)<span class="MndtryAstr">*</span></label>
                         </div>
                      </div>
@@ -195,7 +195,7 @@
                      </div>
 					 <div class="col-md-6 LMTREDUCEPER LMTPER">
                         <div class="md-form">
-                           <input type="text" id="LODE_LIMITREDUCE" maxlength="5" class="form-control IsPercentageSPL  LODEDBfields NoSpecialChar"  name="LODE_LIMITREDUCE" title="">
+                           <input type="text" id="LODE_LIMITREDUCE" maxlength="5" class="form-control IsPercentageSPL LMTRED LODEDBfields NoSpecialChar"  name="LODE_LIMITREDUCE" title="">
                            <label for="LODE_LIMITREDUCE" class="">% of Limit to reduce<span class="MndtryAstr">*</span></label>
                         </div>
                      </div>
@@ -203,7 +203,7 @@
                   <div class="form-row">
 				     <div class="col-md-6 LMTREDUCEAMT  LMTAMT" >
                         <div class="md-form">
-                           <input type="text" id="LODE_DLODAMOUNT" maxlength="" class="form-control IsCURCommaFields IsNumberFields NoSpecialChar CHKH LODEDBfields NoSpecialChar"  onchange="CheckLONAMT(this.id);" name="LODE_DLODAMOUNT" title="">
+                           <input type="text" id="LODE_DLODAMOUNT" maxlength="" class="form-control IsCURCommaFields IsNumberFields NoSpecialChar AMTRED CHKH LODEDBfields NoSpecialChar"  onchange="CheckLONAMT(this.id);" name="LODE_DLODAMOUNT" title="">
                            <label for="LODE_DLODAMOUNT" class="">Amount to reduce<span class="MndtryAstr">*</span></label>
                         </div>
                      </div>
@@ -324,7 +324,21 @@
                         </div>
                      </div>
                   </div>
-				  
+				  <div class="form-row">
+				  <div class="md-form">
+                           <div id="flowtype" class="select-radio LODEMndtry ">
+                              <div class="custom-control custom-radio custom-control-inline">
+                                 <input type="radio" class="custom-control-input LODEDBfields " disabled  value="Yes" id="FLOWTYPEYES" name="LODE_FLOWTYP">
+                                 <label class="custom-control-label" for="FLOWTYPEYES">STP</label>
+                              </div>
+                              <div class="custom-control custom-radio custom-control-inline LODEDBfields">
+                                 <input type="radio" class="custom-control-input LODEDBfields " disabled value="No" id="FLOWTYPENO" name="LODE_FLOWTYP">
+                                 <label class="custom-control-label" for="FLOWTYPENO">BAU</label>
+                              </div>
+                           </div>
+                           <label class="mdb-main-label BTxt9">Flow Type<span class="MndtryAstr">*</span></label>      
+                        </div>
+				  </div>
 	
 				  
                   <!--<div class="form-row">

@@ -1,6 +1,6 @@
 <button type="button" data-Validatearia="Dedupe" data-Validatedata="CBSI_DEDUPEVERIFY" onclick="PosdxChk('CBSI_CUSID','CBSI_CUSTYPE','CBSI_DEDUPEVERIFY','Applicant','CBSI_EXISTLONID','CBSI_CUSFISNAM');" data-validate="CBSI|DEDUPE" class="btn  waves-effect CBSI_DEDUPEVERIFY btn-yelInplain btn-sm BTNDedupe liSubpageTabIcons"><i class="fa fa-check"></i>Dedupe Check</button>
-<button type="button" class="btn  waves-effect  btn-yelInplain btn-sm liSubpageTabIcons" onclick="viewposidex('CBSI_CUSID','CBSI_CUSTYPE','CBSI_DEDUPEVERIFY','Applicant','CBSI_EXISTLONID','CBSI_CUSFISNAM')"><i class="fa fa-eye"></i>View Dedupe</button>
-       
+<button type="button" class="btn  waves-effect  btn-yelInplain btn-sm liSubpageTabIcons APPVIEWDEDUPE VIEWDISABLE" onclick="viewposidex('CBSI_CUSID','CBSI_CUSTYPE','CBSI_DEDUPEVERIFY','Applicant','CBSI_EXISTLONID','CBSI_CUSFISNAM')"><i class="fa fa-eye"></i>View Dedupe</button>
+ 
          <!--Main row-->
                <!--  <div class="row FormRows"> 
 
@@ -541,6 +541,7 @@
          <input type="text" id="CADI_DTMODIFIED" hidden="hidden"  name="CADI_DTMODIFIED" class="form-control CADIDBfields">
          
          <input type="text" id="CADI_CUSID"  name="CADI_CUSID" hidden="hidden"  class="form-control CADIDBfields" value="">
+		 <input type="text" id="CADI_GEOFLDGHTMLTOAPI"  name="CADI_GEOFLDGHTMLTOAPI" hidden="hidden"  class="form-control CADIDBfields" value="">
         
         <div class="form-row">
              <div class="col-md-6 VERIFYBTNPOSITION">   
@@ -563,6 +564,20 @@
                  </div>
                </div>
         </div>
+		<div class="form-row">
+			<div class="col-md-6">
+				<div class="md-form">
+                    <input type="text" id="CADI_LAT" maxlength="20" name="CADI_LAT" disabled class="form-control  CADIDBfields  NoSpecialChar   ">
+                    <label for="CADI_LAT" class="">Latitude<span class="MndtryAstr"></span></label>
+                  </div>
+			</div>
+			<div class="col-md-6">
+				<div class="md-form">
+                    <input type="text" id="CADI_LONG" maxlength="20" name="CADI_LONG" disabled class="form-control  CADIDBfields  NoSpecialChar   ">
+                    <label for="CADI_LONG" class="">Longitude<span class="MndtryAstr"></span></label>
+                  </div>
+			</div>
+		</div>
         <div class="form-row">
             <div class="col-md-6 VERIFYBTNPOSITION">   
                   <div class="md-form">
@@ -575,7 +590,8 @@
 			
 			<div class="col-md-6  ">
 		            <div class="md-form">
-                    <input type="text" id="CADI_CGEOLIMIT" maxlength="20" name="CADI_CGEOLIMIT" class="form-control IsNumberFields IsCURCommaFields CADIDBfields CADIMndtry NoSpecialChar   ">
+                    <input type="text" id="CADI_CGEOLIMIT" disabled maxlength="20" name="CADI_CGEOLIMIT" class="form-control IsNumberFields IsCURCommaFields CADIDBfields CADIMndtry NoSpecialChar   ">
+					<button type="button" class=" btn   btn-Verify waves-effect btn-yelInplain btn-sm BTNVerify VERIFYBTNPOSITIONRIGHT " onclick="getLocation('CADI_CUSID','CADI_LAT','CADI_LONG','CADI_CGEOLIMIT')" ><i class="fa fa-map-marker"></i> Initiate Geo Tagging</button>
                     <label for="CADI_CGEOLIMIT" class="">Geo limit from SCE Branch (In Kilometers)<span class="MndtryAstr">*</span></label>
                   </div>
 			</div>
@@ -589,7 +605,7 @@
         </div>
   <div class="INDU">
         <div class="form-row">
-        	<div class="col Btxt10">RESIDENCE ADDRESS</div>
+        	<div class="col Btxt10">CURRENT ADDRESS</div>
         </div>
         </br>
         
@@ -602,8 +618,8 @@
                 </div>
                 <div class="col">
                   <div class="md-form">
-                    <input type="text" id="CADI_ADDRLINII" maxlength="60" name="CADI_ADDRLINII" class="form-control AddrNoSpecialChar RSADDR RESSTAT  CADIDBfields">
-                    <label for="CADI_ADDRLINII" class="">Address Line 2</label>
+                    <input type="text" id="CADI_ADDRLINII" maxlength="60" name="CADI_ADDRLINII" class="form-control AddrNoSpecialChar RSADDR RESSTAT CADIMndtry  CADIDBfields">
+                    <label for="CADI_ADDRLINII" class="">Address Line 2<span class="MndtryAstr">*</span></label>
                   </div>
                </div>        
         </div>
@@ -700,7 +716,14 @@
              </div>
                </div>
         </div>
-        
+		<div class="form-row">
+		<div class="col-md-5">
+                <div class="md-form">
+                    <input type="text" id="CADI_RESISTABI" maxlength="5" name="CADI_RESISTABI" class="form-control  CADIDBfields NoSpecialChar IsNumberFields">
+                    <label for="CADI_RESISTABI" class="">Residence Stability in Current City(In Months)<span class="MndtryAstr"></span></label>
+                  </div> 
+                </div>
+        </div>
         <div class="form-row">
            
 <!--           <div class="col-md-5" >
@@ -722,7 +745,7 @@
             </div>
         </div>
         <div class="form-row">
-        	<div class="col Btxt10">PERMANENT ADDRESS</div>
+        	<div class="col Btxt10">CORRESPONDENCE ADDRESS</div>
         </div>
         </br>
         <div class="form-row">
@@ -730,7 +753,7 @@
             	<div class="md-form">
             	  <div class="custom-control custom-radio custom-control-inline">
  					  <input type="checkbox" class="custom-control-input  CADIDBfields RESSTAT" onclick="CheckAddrMndtry();" id="CADI_SAMRESIDADDR" name="CADI_SAMRESIDADDR">
-  					  <label class="custom-control-label" for="CADI_SAMRESIDADDR">Same as Residence Address</label>
+  					  <label class="custom-control-label" for="CADI_SAMRESIDADDR">Same as Current Address</label>
 				  </div>
 				</div>
             </div>
@@ -753,8 +776,8 @@
                 </div>
                 <div class="col">
                   <div class="md-form">
-                    <input type="text" id="CADI_PERMADDRLINII" maxlength="60" name="CADI_PERMADDRLINII" class="form-control AddrNoSpecialChar PRADDR CADIDBfields">
-                    <label for="CADI_PERMADDRLINII" class="ADDR">Address Line 2</label>
+                    <input type="text" id="CADI_PERMADDRLINII" maxlength="60" name="CADI_PERMADDRLINII" class="form-control AddrNoSpecialChar PRADDR CADIDBfields CADIMndtry">
+                    <label for="CADI_PERMADDRLINII" class="ADDR">Address Line 2<span class="MndtryAstr">*</span></label>
                   </div>
                </div>
         </div>
@@ -846,6 +869,131 @@
                </div>
            
         </div>
+				 <div class="form-row">
+			<div class="col-md-4">
+				<div class="md-form">
+					<label for="CADI_PERMANTADDRS" class="">Permanent Address</label>
+						</br>
+							<textarea class="form-control btxt24 AddrNoSpecialChar CADIDBfields  " rows="5" id="CADI_PERMANTADDRS" name="CADI_PERMANTADDRS" data-to="" style="height: 100px;width:380px;"></textarea>						
+				</div>
+			</div>	
+		</div>
+		
+		
+		<!--NEWLY CURRENT ADDRESS ADDED FOR OVD CHANGES START-->
+		      <div class="form-row" Style="display:none">
+        	<div class="col Btxt10">CURRENT ADDRESS</div>
+        </div>
+        </br>
+        
+        <div class="form-row" Style="display:none">
+            <div class="col">
+                  <div class="md-form">
+                    <input type="text" id="CADI_CURADDRLINI" maxlength="60" name="CADI_CURADDRLINI" class="form-control  AddrNoSpecialChar RSADDR RESSTAT CADIDBfields CADIMndtry">
+                    <label for="CADI_CURADDRLINI" class="">Address Line 1<span class="MndtryAstr">*</span></label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="md-form">
+                    <input type="text" id="CADI_CURADDRLINII" maxlength="60" name="CADI_CURADDRLINII" class="form-control AddrNoSpecialChar RSADDR RESSTAT CADIMndtry  CADIDBfields">
+                    <label for="CADI_CURADDRLINII" class="">Address Line 2<span class="MndtryAstr">*</span></label>
+                  </div>
+               </div>        
+        </div>
+        
+        <div class="form-row" Style="display:none">
+           
+            <div class="col">
+                  
+                  <div class="md-form">
+                    <input type="text" id="CADI_CURPINCODE" maxlength="6" name="CADI_CURPINCODE" onchange="fnOnFocusOut(this);Pindetls(this,'CADI_CURSTATE','CADI_CURCITY','CADI_STDC')" class="form-control  RESSTAT CADIDBfields IsNumberFields NoSpecialChar RSADDR IsPinFielde CADIMndtry">
+                    <label for="CADI_CURPINCODE" class="">Pin Code<span class="MndtryAstr">*</span></label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="md-form">
+                    <input type="text" id="CADI_CURCITY" disabled name="CADI_CURCITY" class="form-control ALLDIS RSADDR RESSTAT CADIDBfields CADIMndtry">
+                    <label for="CADI_CURCITY" class="">City<span class="MndtryAstr">*</span></label>
+                  </div>
+               </div>
+        </div>
+        
+        <div class="form-row" Style="display:none">
+           
+            <div class="col">
+                  
+                  <div class="md-form">
+                    <input type="text" id="CADI_CURSTATE" disabled name="CADI_CURSTATE" class="form-control ALLDIS RSADDR RESSTAT CADIDBfields CADIMndtry">
+                    <label for="CADI_CURSTATE" class="">State<span class="MndtryAstr">*</span></label>
+                  </div>
+                </div>
+                <div class="col">
+                  
+                  <div class="md-form">
+                    <input type="text" id="CADI_CURLNDMARK" maxlength="40" name="CADI_CURLNDMARK" onchange="ChkLanMark(this,'CADI_CURLNDMARK');" class="form-control RESSTAT RSADDR  CADIDBfields CADIMndtry">
+                    <label for="CADI_CURLNDMARK" class="">Landmark<span class="MndtryAstr">*</span></label>
+                  </div>
+               </div>
+        </div>
+        <div class="form-row" Style="display:none"> 
+            <div class="col-md-6">
+                  <div class="md-form">
+                  <select class="mdb-select md-form colorful-select dropdown-primary RSADDR CADIDBfields" id="CADI_CURRESIDTYPE" name="CADI_CURRESIDTYPE">
+                  	<option value="">--Select--</option>
+  					<option value="Self Owned">Self Owned</option>
+ 					 <option value="Rented">Rented</option>
+ 					 <option value="Owned by Relative">Owned by Relative</option>
+ 					 <option value="Company Provided">Company Provided</option>
+ 					 <option value="Family Owned">Family Owned</option>
+ 					 <option value="Leased">Leased</option>
+ 					 
+				</select>
+				<label class="mdb-main-label BTxt9">Ownership status<span class="MndtryAstr">*</span></label>
+             </div>
+                </div>
+                <div class="col-md-1">
+                   <div class="md-form">
+                        <input type="text" id="CADI_CURSTDC" maxlength="4" style="width:75px"  name="CADI_CURSTDC" class="form-control RSADDR CADIDBfields IsNumberFields IsLandlneFields"> 
+                        <label for="CADI_CURSTDC" class="">STD</label>
+                   </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="md-form">
+                    <input type="text" id="CADI_CURLNDLINENO" maxlength="10"  name="CADI_CURLNDLINENO" class="form-control RSADDR CADIDBfields IsNumberFields IsLandlneFields">
+                    <label for="CADI_CURLNDLINENO" class="">Landline No</label>
+                 </div>
+               </div>
+        </div>
+        <div class="form-row" Style="display:none">
+            <div class="col">
+                <div class="md-form">
+                    <input type="text" id="CADI_CURYEAROFRESID" maxlength="2" name="CADI_CURYEAROFRESID" class="form-control RSADDR CADIDBfields NoSpecialChar IsNumberFields CADIMndtry">
+                    <label for="CADI_CURYEAROFRESID" class="">Years of Residence<span class="MndtryAstr">*</span></label>
+                  </div> 
+                </div>
+                <div class="col">
+                  <div class="md-form">
+                  <select class="mdb-select md-form colorful-select dropdown-primary RSADDR CADIDBfields IsNumberFields" onchange="Chkresi()" id="CADI_CURMONTHS" name="CADI_CURMONTHS">
+                  	<option value="">--Select--</option>
+					<option value="0">0</option>
+  					<option value="1">1</option>
+  					<option value="2">2</option>
+  					<option value="3">3</option>
+  					<option value="4">4</option>
+  					<option value="5">5</option>
+  					<option value="6">6</option>
+  					<option value="7">7</option>
+  					<option value="8">8</option>
+  					<option value="9">9</option>
+  					<option value="10">10</option>
+  					<option value="11">11</option>
+ 					
+				</select>
+				<label class="mdb-main-label BTxt9">Months</label>
+             </div>
+               </div>
+			   </div>
+		<!--NEWLY CURRENT ADDRESS ADDED FOR OVD CHANGES END-->
      </div>
      <div class="NINDU">  
         <div class="form-row">
@@ -872,8 +1020,8 @@
                 <div class="col">
                   
                   <div class="md-form">
-                    <input type="text" id="CADI_ORGADDRLINII" maxlength="60"  name="CADI_ORGADDRLINII" class="form-control ORGADD AddrNoSpecialChar CADIDBfields">
-                    <label for="CADI_ORGADDRLINII" class="">Address Line 2</label>
+                    <input type="text" id="CADI_ORGADDRLINII" maxlength="60"  name="CADI_ORGADDRLINII" class="form-control ORGADD AddrNoSpecialChar CADIDBfields CADIMndtry">
+                    <label for="CADI_ORGADDRLINII" class="">Address Line 2<span class="MndtryAstr">*</span></label>
                   </div>
                </div>
            
@@ -922,7 +1070,16 @@
 				<label class="mdb-main-label BTxt9">Ownership status<span class="MndtryAstr"></span></label>
              </div>
           </div>
-          <div class="col-md-1">
+		  <div class="col">
+                  <div class="md-form">
+                    <input type="text" id="CADI_BUSIPREMSTAB" maxlength="4" name="CADI_BUSIPREMSTAB" class="form-control CADIDBfields IsNumberFields NoSpecialChar CADIMndtry">
+                    <label for="CADI_BUSIPREMSTAB" class="">Business Premises Stability(In Months)<span class="MndtryAstr">*</span></label>
+                  </div>
+                </div>
+          
+        </div>
+        <div class="form-row ">
+		<div class="col-md-1">
                    <div class="md-form">
                         <input type="text" id="CADI_ORGSTDC" maxlength="4" style="width:75px"  name="CADI_ORGSTDC" class="form-control PRADDR CADIDBfields IsNumberFields IsLandlneFields CADIMndtry"> 
                         <label for="CADI_ORGSTDC" class="">STD</label>
@@ -934,15 +1091,16 @@
                       <label for="CADI_ORGLNDLINENO" class="">Landline No</label>
                   </div>
                </div>
-        </div>
-        <div class="form-row INDU">
-            <div class="col">
+            <div class="col INDU">
                   <div class="md-form">
 				<input type="text" id="CADI_ORGYEAROFRESID" maxlength="2" name="CADI_ORGYEAROFRESID" class="form-control RSADDR CADIDBfields NoSpecialChar IsNumberFields CADIMndtry">
                     <label for="CADI_ORGYEAROFRESID" class="">Years of Residence<span class="MndtryAstr">*</span></label>
                   </div>
                   </div>
-                <div class="col">
+                
+           </div>
+		   <div class="form-row ">
+		   <div class="col INDU">
                   <div class="md-form">
                   <select class="mdb-select md-form colorful-select dropdown-primary CADIDBfields" onchange="Chkresi()" id="CADI_ORGMONTHS" name="CADI_ORGMONTHS">
                   	<option value="">--Select--</option>
@@ -963,7 +1121,7 @@
 				<label class="mdb-main-label BTxt9">Months</label>
              </div>
                </div>
-           </div>
+			   </div>
         </div>
        	</br>
        	    <div class="form-row">
@@ -1067,8 +1225,8 @@
                                     </div>
                                     <div class="col">
                                        <div class="md-form">
-                                          <input type="text" id="CEMI_ADDRLINEII" maxlength="60" name="CEMI_ADDRLINEII" class="form-control CEMIDBfields OFFADDR AddrNoSpecialChar">
-                                          <label for="CEMI_ADDRLINEII" class="OADDR">Address Line 2</label>
+                                          <input type="text" id="CEMI_ADDRLINEII" maxlength="60" name="CEMI_ADDRLINEII" class="form-control CEMIDBfields OFFADDR CEMIMndtry AddrNoSpecialChar">
+                                          <label for="CEMI_ADDRLINEII" class="OADDR">Address Line 2<span class="MndtryAstr">*</span></label>
                                        </div>
                                     </div>
                                  </div>
@@ -1241,7 +1399,7 @@
                                              <option value="Medium">Medium</option>
                                              <option value="High">High</option>
                                           </select>
-                                          <label class="mdb-main-label BTxt9">KYC Category<span class="MndtryAstr"></span></label>
+                                          <label class="mdb-main-label BTxt9">KYC Risk Category<span class="MndtryAstr"></span></label>
                                        </div>
                                     </div>
 									<div class="col-md-6 SEP OEMPONE">
@@ -1276,15 +1434,15 @@
                                           <div id="ORGSEP" class="select-radio EMPI">
                                              <div class="custom-control custom-radio custom-control-inline">
                                                 <input type="radio" class="custom-control-input CEMIDBfields"  value="Permanent Residence" id="PrePerRes" name="CEMI_PREFCOMMUADDR">
-                                                <label class="custom-control-label" for="PrePerRes">Permanent Residence</label>
+                                                <label class="custom-control-label" for="PrePerRes">Permanent Address</label>
                                              </div>
                                              <div class="custom-control custom-radio custom-control-inline CEMIDBfields">
                                                 <input type="radio" class="custom-control-input CEMIDBfields" value="Current Residence" id="PreCurRes" name="CEMI_PREFCOMMUADDR">
-                                                <label class="custom-control-label" for="PreCurRes">Current Residence</label>
+                                                <label class="custom-control-label" for="PreCurRes">Current Address</label>
                                              </div>
                                              <div class="custom-control custom-radio custom-control-inline CEMIDBfields">
                                                 <input type="radio" class="custom-control-input CEMIDBfields" value="Office" id="PreOff" name="CEMI_PREFCOMMUADDR">
-                                                <label class="custom-control-label" for="PreOff">Office</label>
+                                                <label class="custom-control-label" for="PreOff">Office Address</label>
                                              </div>
                                           </div>
                                           <label class="mdb-main-label BTxt9">Preferred Communication Address<span class="MndtryAstr">*</span></label>      
@@ -1517,7 +1675,21 @@
                   </div>
                 </div>
 				</div>
-							<div class="form-row">
+				
+				<div class="form-row">
+				<div class="col-md-6">
+					<div class="md-form">
+					<select class="md-form colorful-select dropdown-primary  CDOGDBfields" id="CDOG_KYCCATEGORY" name="CDOG_KYCCATEGORY">
+                                             <option value="">Select</option>
+                                             <option value="Low">Low</option>
+                                             <option value="Medium">Medium</option>
+                                             <option value="High">High</option>
+                                          </select>
+                    <label for="CDOG_KYCCATEGORY" class="">KYC Category<span class="MndtryAstr"></span></label>
+					</div>
+					</div>
+				</div>
+							<!-- <div class="form-row">
                                 <div class="col">
                                     <div class="md-form">
 										<div class="custom-control custom-radio custom-control-inline ">
@@ -1526,7 +1698,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 		 
 	 
 							 
@@ -1963,7 +2135,66 @@
     </div>
   </div>
   </div>
-  
+  <script>
+
+function getLocation(cusid,Lat,Long,DistanceFld) {
+	$("#"+Lat).val("");
+	$("#"+Long).val("");
+	$("#collapseTwo2").find("#Save2").click()
+	var op1 = UI_getdata($("#PrcsID").val(),$("#"+cusid).val(),"","","","LSW_SGEOTAGGINGVALIDATOR");
+	if($(op1).find("RESULT").text() == "N")
+	{
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
+	setTimeout (function() {
+		if((($("#"+Lat).val()) !=  "") && (($("#"+Long).val()) != ""))
+	{
+		$("#"+DistanceFld).val("");
+		$("#collapseTwo2").find("#Save2").click()
+		var APIData=GeoTagging($("#PrcsID").val(),$("#"+cusid).val(),"getLatLngByAddress");
+		var obj= JSON.parse(APIData)
+		
+		GetCoordinateDistance(Lat,Long,DistanceFld,"BRANCH TO HTML");
+		GetCoordinateDistance(Lat+"~"+obj.data.lat,Long+"~"+obj.data.lang,"CADI_GEOFLDGHTMLTOAPI","HTML TO API");
+		$("#collapseTwo2").find("#Save2").click()
+	} 
+		
+	}, 2000)
+	
+  } else { 
+    alert("Geolocation is not supported by this browser.");
+  }
+	}
+	else{
+		alert("Fill the Address Fields to Initiate Geo Tagging");
+		return;
+	}
+}
+
+function showPosition(position) {
+  $("#CADI_LAT").val(position.coords.latitude);
+  $("#CADI_LAT").next().addClass("active");
+  $("#CADI_LONG").val(position.coords.longitude);
+  $("#CADI_LONG").next().addClass("active");
+}
+
+function showError(error) {
+  switch(error.code) {
+    case error.PERMISSION_DENIED:
+      alert("User denied the request for Geolocation.")
+      break;
+    case error.POSITION_UNAVAILABLE:
+      alert("Location information is unavailable.")
+      break;
+    case error.TIMEOUT:
+      alert("The request to get user location timed out.")
+      break;
+    case error.UNKNOWN_ERROR:
+      alert("An unknown error occurred.")
+      break;
+  }
+}
+</script>
 
                 
                                   <!--   </div>

@@ -38,6 +38,7 @@ if($("#DMY7").val().split('|')[0]=="Grampanchayt property")
 		
     
 Getsectype();
+GETMANUFAC();
 
 	//$(".LPDT_PROPERTYNO").text($("#LPDT_PROPERTYNO").val());
 	GetCustomerName();
@@ -58,6 +59,11 @@ Getsectype();
 	CheckSecurityType();
 	DocView();
 	Checkmndry();
+		Chkdepo();
+	CHKCHRGTYP();
+	TYPOFSEC();
+	MORTGETYP();
+	
 	if($("#LPDT_PROPTYPE").val()!="" && $("#DMY7").val().split('|')[8]=="ML01")
 	{
 		var PropType=$("#LPDT_PROPTYPE").val();
@@ -68,6 +74,8 @@ Getsectype();
 	      $("#LPDT_PROPTYPE option[value='"+PropType+"']").attr("selected","selected")
 		  $("#LPDT_PROPTYPE").material_select(); 
 	}
+
+
 
 	 var xmlSTATUS=UI_getdata($("#PrcsID").val(),$("#LPDT_PROPERTYNO").val(),"","","","LSW_SGETPROPERTYDETAILS")
 		

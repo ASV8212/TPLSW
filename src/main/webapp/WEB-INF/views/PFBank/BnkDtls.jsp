@@ -24,7 +24,7 @@
       </br>
       <!-- card -->
  <div class="HyperControls form-row FltRight" > 
-			      <a onclick="AddPageMultiData('',$('#BKDT_PRCSID').val(),'','BankDetail1','BKDTDBfields')" class="Btxt4 FltRight ADDBTN"  href="#">+ Add Account</a>
+			      <a onclick="AddPageMultiData_Onscreen('',$('#BKDT_PRCSID').val(),'','BankDetail1','BKDTDBfields')" class="Btxt4 FltRight ADDBTN"  href="#">+ Add Account</a>
 			<!-- <a class="Btxt4" id="AuditTrail" href="#">Audit Trail</a> -->
 			      </div>
       <div class="card CardNS">
@@ -58,7 +58,11 @@
                         <input type="text" id="BKDT_BNKREFNAME" hidden="hidden" name="BKDT_BNKREFNAME" class="form-control BKDTDBfields">
 						 <input type="text" id="BKDT_MULTIATTACH" hidden="hidden" name="BKDT_MULTIATTACH" class="form-control BKDTDBfields">
 						 <input type="text" id="BKDT_INITIATEBSA" hidden="hidden" name="BKDT_INITIATEBSA" class="form-control BKDTDBfields">
-						
+						 <input type="text" id="BKDT_TRANSACTIONSTATUS" hidden="hidden" name="BKDT_TRANSACTIONSTATUS" class="form-control BKDTDBfields">
+						<input type="text" id="BKDT_BANKDETGRID" hidden="hidden" name="BKDT_BANKDETGRID" class="form-control BKDTDBfields">
+						 <input type="text" id="BKDT_PROCESSMODE" hidden="hidden" name="BKDT_PROCESSMODE" class="form-control BKDTDBfields">
+						 <input type="text" id="BKDT_BSAMSINITRESP" hidden="hidden" name="BKDT_BSAMSINITRESP" class="form-control BKDTDBfields">
+						<input type="text" id="BKDT_TRANSCOMP" hidden="hidden" name="BKDT_TRANSCOMP" class="form-control BKDTDBfields">
                         <!-- </br>
                            <div class="form-row">
                            	<div class="col Btxt3"></div>
@@ -185,7 +189,7 @@
                               <div class="md-form">
                                  <input type="text" id="BKDT_IFSCVERIFY" hidden="hidden" maxlength="30" name="BKDT_IFSCVERIFY" class="form-control IFSC BKDTDBfields">
                                  <button style="display:none" type="button" data-Validatearia="BKDT_IFSCVERIFY" onclick="CheckKYCDetl(this,'BKDT_IFSC'+$(this).closest('.DYNROW').attr('data-row'),'BKDT_IFSCVERIFY'+$(this).closest('.DYNROW').attr('data-row'),'IFSC',$(this).closest('.DYNROW'));" data-field="BKDT_IFSCVERIFY|BKDT_ACCTNO|BKDT_BNKNO||MULTIEMP" data-validate="IFSC"  class="btn btn-Verify BKDT_IFSCVERIFY waves-effect btn-yelInplain btn-sm BTNVerify INTDSBV">Verify</button>
-								 <input type="text" id="BKDT_IFSC"  maxlength="11"  data-link="BKDT_IFSC|BKDT_IFSCVERIFY|IFSC|Multi||BKDT_IFSCVERIFY||"  name="BKDT_IFSC" onblur="Ifscdetls(this,'BKDT_BNKNAME','BKDT_BNKBRCH','BKDT_CITY','BKDT_STATE')" class="form-control IsIFSCFields datalink OCRDSBL NoSpecialChar BKDTMndtry BKDTDBfields">
+								 <input type="text" id="BKDT_IFSC"  maxlength="11"  data-link="BKDT_IFSC|BKDT_IFSCVERIFY|IFSC|Multi||BKDT_IFSCVERIFY||"  name="BKDT_IFSC" onblur="Ifscdetls(this,'BKDT_BNKNAME','BKDT_BNKBRCH','BKDT_CITY','BKDT_STATE')" class="form-control IsUpprCse IsIFSCFields datalink OCRDSBL NoSpecialChar BKDTMndtry BKDTDBfields">
                                  <label for="BKDT_IFSC" class="">IFSC <span class="MndtryAstr">*</span></label>
                               </div>
                            </div> 
@@ -230,6 +234,11 @@
                                  <input type="text" id="BKDT_DRAWPWR" maxlength="40" name="BKDT_DRAWPWR" class="form-control BKDTMndtry BKDTDBfields">
                                  <label for="BKDT_DRAWPWR" class="">Drawing Power<span class="MndtryAstr">*</span></label>
                               </div>
+							</div>
+						   </div>
+						   <div class="form-row">
+							<div class="col-md-12">
+								<label style="color:red" class=" CallbackStatusHolder"><span></span></label>
 							</div>
 						   </div>
                         <div class="form-row">
@@ -321,42 +330,42 @@
                                 <img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"/>
                             </div>-->
                           </div>
-						  
+						 
 	 	<div class="form-row">
 			<div class="col-md-4">
 			    <div class="md-form">
-					<button type="button" id="InitiateBSA" onclick="Chkbutton($(this).closest('.DYNROW')[0],this.id)" class="btn btn-Syel waves-effect waves-light">Initiate BSA</button> 
+					<button type="button" id="InitiateBSA" onclick="Chkbutton($(this).closest('.DYNROW')[0],this.id)" class="btn btn-Syel waves-effect BTNHIDE waves-light">Initiate BSA</button> 
 				</div>
             </div>
 		</div>	  
 		<div class="form-row Auto" style="display:none">
 			<div class="col-md-4">
 				<div class="md-form">
-					<button type="button" onclick="NetBankingInteg('Statement','BKDT_BNKNO'+$(this).closest('.DYNROW').attr('data-row'),'BKDT_STDATE'+$(this).closest('.DYNROW').attr('data-row'),'BKDT_ENDDATE'+$(this).closest('.DYNROW').attr('data-row'))" class="btn btn-Syel waves-effect waves-light">Upload</button> 
+					<button type="button" onclick="NetBankingInteg('Statement','BKDT_BNKNO'+$(this).closest('.DYNROW').attr('data-row'),'BKDT_STDATE'+$(this).closest('.DYNROW').attr('data-row'),'BKDT_ENDDATE'+$(this).closest('.DYNROW').attr('data-row'),$(this).closest('.DYNROW')[0],'BKDT_TRANSACTIONSTATUS'+$(this).closest('.DYNROW').attr('data-row'),this)" class="btn btn-Syel waves-effect BTNHIDE waves-light">Upload</button> 
 				</div>
 			</div>
 			<div class="col-md-4">
                 <div class="md-form">
-					<button type="button" onclick="NetBankingInteg('NetBanking','BKDT_BNKNO'+$(this).closest('.DYNROW').attr('data-row'),'BKDT_STDATE'+$(this).closest('.DYNROW').attr('data-row'),'BKDT_ENDDATE'+$(this).closest('.DYNROW').attr('data-row'))" class="btn btn-Syel waves-effect waves-light">Net Banking</button> 
+					<button type="button" onclick="NetBankingInteg('NetBanking','BKDT_BNKNO'+$(this).closest('.DYNROW').attr('data-row'),'BKDT_STDATE'+$(this).closest('.DYNROW').attr('data-row'),'BKDT_ENDDATE'+$(this).closest('.DYNROW').attr('data-row'),$(this).closest('.DYNROW')[0],'BKDT_TRANSACTIONSTATUS'+$(this).closest('.DYNROW').attr('data-row'),this)" class="btn btn-Syel waves-effect BTNHIDE waves-light">Net Banking</button> 
 				</div>
             </div>
 			<div class="col-md-4">
                 <div class="md-form">
-					<button type="button" onclick="NetBankingInteg('ManualStatement','BKDT_BNKNO'+$(this).closest('.DYNROW').attr('data-row'),'BKDT_STDATE'+$(this).closest('.DYNROW').attr('data-row'),'BKDT_ENDDATE'+$(this).closest('.DYNROW').attr('data-row'))" class="btn btn-Syel waves-effect waves-light">Manual Statement</button> 
+					<button type="button" onclick="ManualStatementInit('BKDT_BNKNO'+$(this).closest('.DYNROW').attr('data-row'),'BKDT_CUSID'+$(this).closest('.DYNROW').attr('data-row'),'BKDT_PROCESSMODE'+$(this).closest('.DYNROW').attr('data-row'),this)" class="btn btn-Syel waves-effect waves-light">Manual Statement</button> 
 				</div>
             </div>
         </div>
 		<div class="form-row Rpt" style="display:none">
             <div class="col-md-4">
                 <div class="md-form">
-                  	<input type="text" id="BKDT_STDATE" name="BKDT_STDATE"  maxlength="10" class=" form-control  ISFutureDateFields IsNumberFields  NoSpecialChar BKDTDBfields ISDatefield">
+                  	<input type="text" id="BKDT_STDATE" name="BKDT_STDATE" onblur="DateValidate('BKDT_STDATE'+$(this).closest('.DYNROW').attr('data-row'),'BKDT_ENDDATE'+$(this).closest('.DYNROW').attr('data-row'));" onchange="DateValidate('BKDT_STDATE'+$(this).closest('.DYNROW').attr('data-row'),'BKDT_ENDDATE'+$(this).closest('.DYNROW').attr('data-row'));"  maxlength="10" class=" form-control  ISFutureDateFields IsNumberFields  NoSpecialChar BKDTDBfields ISDatefield">
                     <label for="BKDT_STDATE" class="">Start Date<span class="MndtryAstr">*</span></label>
                     <img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"/>
 				</div>
             </div> 
             <div class="col-md-4">
                 <div class="md-form">
-                  	<input type="text" id="BKDT_ENDDATE" name="BKDT_ENDDATE" onchange="DateValidate('BKDT_STDATE'+$(this).closest('.DYNROW').attr('data-row'),'BKDT_ENDDATE'+$(this).closest('.DYNROW').attr('data-row'));"  maxlength="10"  class="form-control   ISFutureDateFields IsNumberFields NoSpecialChar  BKDTDBfields ISDatefield">
+                  	<input type="text" id="BKDT_ENDDATE" name="BKDT_ENDDATE" onblur="DateValidate('BKDT_STDATE'+$(this).closest('.DYNROW').attr('data-row'),'BKDT_ENDDATE'+$(this).closest('.DYNROW').attr('data-row'));" onchange="DateValidate('BKDT_STDATE'+$(this).closest('.DYNROW').attr('data-row'),'BKDT_ENDDATE'+$(this).closest('.DYNROW').attr('data-row'));"  maxlength="10"  class="form-control   ISFutureDateFields IsNumberFields NoSpecialChar  BKDTDBfields ISDatefield">
                     <label for="BKDT_ENDDATE" class="">End Date<span class="MndtryAstr">*</span></label>
                     <img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"/>
 				</div>
@@ -368,6 +377,36 @@
                  </div>
             </div>--> 
 		</div>
+		 <div class="form-row MODEMANUAL">
+						  <div class="col-md-6">
+                              <div class="md-form">
+									<select class="md-form colorful-select dropdown-primary  MANU BKDTDBfields " onchange="BANKGRD($(this).closest('.DYNROW')[0]);" id="BKDT_MODE"  name="BKDT_MODE">
+                                    <option value="">Select</option>
+                                    <option  value="Manual">Manual</option>
+                                    <option  value="Upload">Upload</option>
+									</select>
+								<label class="mdb-main-label BTxt9">Mode <span class="MndtryAstr">*</span></label>		 
+                              </div>
+                           </div>
+						</div>
+						<div class="form-row MODEMANUAL">					
+			<div class="col-md-6">
+			  <div class="md-form">
+					<select class="md-form colorful-select dropdown-primary  MANU BKDTDBfields " searchable="Search here.." onchange="" id="BKDT_INSID"  name="BKDT_INSID">
+					<option value="">Select</option>
+					</select>
+				<label class="mdb-main-label BTxt9">Institution ID <span class="MndtryAstr">*</span></label>		 
+			  </div>
+		   </div>
+		</div>
+		<div class="form-row MODEMANUAL">
+		   <div class="col">
+             <input type="button" data-button="GridButton" data-value="BANKTable|LSW_SBANKDETGRID|PrcsID|BKDT_BNKNO|BKDT_CUSID|1,4,5,6|BANKGRID" data-custom-html-handle="Yes" style="display:none" class="DashTrg BKDTDBfields BankGrdTrg  MultiGridTrg " id="BTNBANKGRD" name="BTNBANKGRD" />
+             <table cellpadding="0"  cellspacing="0" border="0" style="width: 80%" class="display BKDTDBfields DataGrid" name="BANKTable" id="BANKTable">
+             </table>
+          </div>
+		</div>
+		
 			 		  
 						  
 						  
@@ -436,6 +475,7 @@
 			  </br>
                         <div class="form-row">
                            <div class="col d-flex justify-content-center">
+						   <button type="button" id="CompleteTrans" data-aria="LSW_TLONBANKDTLS|BKDT|BKDT_BNKNO" style="height:2rem;width:15rem;display:none;" onclick="ManualStatementCompTrans(this)" class="btn btn-Syeloutline waves-effect waves-light Save  FormSave">Complete Transaction</button>   
                               <button type="button" id="Save" data-aria="LSW_TLONBANKDTLS|BKDT|BKDT_BNKNO"  class="btn btn-Syeloutline waves-effect waves-light Save  FormSave">Save</button>   
                               <button type="button" data-aria="LSW_TLONBANKDTLS|BKDT|BKDT_BNKNO" data-card="0" class="btn btn-Syel waves-effect waves-light Formnxt FormSave">Save & Next</button> 
                            </div>
@@ -488,3 +528,16 @@
    });
    	
 </script>
+
+<table style="display:none" id="GridBANKTable">
+   <thead>
+<th>BKDG_MONTH</th>
+<th>ROWNUM</th>
+<th>BKDG_UPLD</th>
+<th>BKDG_INTEGBTN</th>
+<th>BKDG_BNKNO</th>
+<th>BKDG_CUSID</th>
+<th>BKDG_UPLOADREP</th>
+
+	</thead> 
+</table> 

@@ -44,7 +44,7 @@ function GridControlDetail_EMPOWERMNTGRD(popTableModPageGrid1, TableID, dtData, 
                 "render": function(data, type, row, meta) {
 
                     var rowno = meta.row;
-                    var HTML = '<span><input type="text" style = "" id="APED_REMARK' + rowno + '"  name="APED_REMARK' + rowno + '" maxlength="300"  class="form-control  form-control ">';
+                    var HTML = '<span><input type="text" style = "" id="APED_REMARK' + rowno + '"  name="APED_REMARK' + rowno + '"  class="form-control  form-control ">';
                     HTML = HTML + '</span>';
 
                     var htmldata = $(HTML);
@@ -184,7 +184,7 @@ function GridControlDetailMNUEMPOWERMNT (popTableModPageGrid1,TableID,dtData,dtc
 	   { targets: 0, "render": function ( data, type, row, meta ) {                            
 			
 			 var rowno = meta.row;	 
-				var HTML =	'<span><input type="text" id="AEMD_EMPOWTYP'+rowno+'" style=""  name="AEMD_EMPOWTYP"  class="form-control ManuMiti NoSpecialChar">';			 
+				var HTML =	'<span><input type="text" id="AEMD_EMPOWTYP'+rowno+'" style=""  name="AEMD_EMPOWTYP"  class="form-control ManuMiti ">';			 
 				HTML = HTML + '</span>'; 
 					 
 				var htmldata = $(HTML);
@@ -215,7 +215,7 @@ function GridControlDetailMNUEMPOWERMNT (popTableModPageGrid1,TableID,dtData,dtc
 				 { targets: 2, "render": function ( data, type, row, meta ) {                            
 			 			
 					 var rowno = meta.row;	 
-						var HTML =	'<span><input type="text" id="AEMD_METIGANTS'+rowno+'" style=""  name="AEMD_METIGANTS"  maxlength="100" class="form-control ManuMiti NoSpecialChar form-control">';			 
+						var HTML =	'<span><input type="text" id="AEMD_METIGANTS'+rowno+'" style=""  name="AEMD_METIGANTS"  class="form-control ManuMiti  form-control">';			 
 						HTML = HTML + '</span>'; 
 							 
 						var htmldata = $(HTML);

@@ -36,15 +36,12 @@ $(document).ready(function () {
 	var OrgCusID1 =$("#headingFour4 a").attr("data-aria").split("|")[3];
     //End
 	
-	
-	
-	
 	if  (DATA != "")
 	{
 		DATA = $("#"+DATA).val()+"|" + DATA;
 	}
-	
-		var xml=UI_getdata("","","","","","LSW_SGETNATUR")
+		
+	var xml=UI_getdata("","","","","","LSW_SGETNATUR")
 	
 	$("#COOA_INDUSCATRGORY").html("")
 	$("#COOA_INDUSCATRGORY").append($(xml).find("Industry").html());
@@ -54,7 +51,22 @@ $(document).ready(function () {
 	
 	GetSec();
 	FormDataFromDB(tbl, prfx + "_", prfx+"DBfields", DATA);
-	
+	if($("#COBI_PANVERIFY").val()=='Verified')
+	{
+		$(".COBI_PAN").addClass('VIEWDISABLE');
+	}
+	if($("#COBI_VOTERIDVEIRFY").val()=='Verified')
+	{
+		$(".COBI_VOTERID").addClass('VIEWDISABLE');
+	}
+	if($("#COBI_DRIVLICNSVERIFY").val()=='Verified')
+	{
+		$(".COBI_DRIVLICNS").addClass('VIEWDISABLE');
+	}
+	if($("#COBI_PASSPORTVERIFY").val()=='Verified')
+	{
+		$(".COBI_PASSPORT").addClass('VIEWDISABLE');
+	}
 	// Added Since Loading Issues Date - 28/05/2020 Start
 	
 	if($("#"+CICusID1).length>0)
@@ -78,6 +90,10 @@ $(document).ready(function () {
      {
       $(".AUPLDXMLII").hide();
       }
+	    if  (OrgDATA != "")
+	{
+		OrgDATA = $("#"+OrgDATA).val()+"|" + OrgDATA;
+	}
 	FormDataFromDB(Orgtbl, Orgprfx + "_", Orgprfx+"DBfields", OrgDATA);
 	// End
 	//if(($("#COBI_CUSTYPE").val() == "Non-Individual") && ($("#COBI_CONSTITUTION").val()=="Private Ltd"))
@@ -103,6 +119,19 @@ $(document).ready(function () {
 	CoCheckborrower();
 	Chkudyam();
 	OtherKYC();
+	if($("#COBI_HIDPROFTYP").val()!='')
+{	
+var HIDPROFTYP=$("#COBI_HIDPROFTYP").val()
+var PROOFTYPE=HIDPROFTYP.split(",");
+var row = $(PROOFTYPE).length;
+for (i=0;i<row;i++)
+{
+if(PROOFTYPE[i] !="")
+{
+$("#COBI_KYCPROOFTYP option[value='"+PROOFTYPE[i]+"']").attr("selected","selected")
+}
+}
+}
 	var xml=UI_getdata("Karza",$("#VERTICAL").val(),"","","","LSW_SCHKINTGSTATUS")
 	var data=$(xml).find('STATUS').text()
 	
@@ -147,7 +176,6 @@ $(document).ready(function () {
 		
 	
 	$("#COEI_CUSID").attr("value",$("#"+CusID).val());
-	
 
 
 	//CheckLoanType('COBI','COAI','COEI','COOA');
@@ -202,7 +230,7 @@ $(document).ready(function () {
    if($("#COBI_MSKAADHARATTACHMENT").val()!="")
 	{
 	  $(".AadharMskImg").show();
-	  $(".AadharViewImg").hide();
+	   $(".AadharViewImg").hide();
 	  $("#COBI_AADHAR").attr("disabled",true);
     }
 	if($("#COBI_MSKAADHARATTACHMENTII").val()!="")
@@ -336,6 +364,10 @@ $(document).ready(function () {
 	
 	$(document).on("click", ".ORGD", function()
     {
+		//if($("#"+$(this).attr("data-aria").split("|")[2]).val() == "")
+	   //{
+		$("#"+$(this).attr("data-aria").split("|")[2]).val($("#"+$(this).attr("data-aria").split("|")[3]).val())
+	  // }
 		Chkudyam();
 	})
 	
@@ -539,6 +571,13 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
 					if( personalinfocusid == "")
 					{
 						alert("Invalid Customer ID Has Been Picked For Processing, Pick a Valid Customer ID to Process Further");
+						return;
+					}
+					var xmlsamecus=UI_getdata($("#PrcsID").val(),personalinfocusid,"","","","LSW_SCHKCUSTOMERIDEX");
+			
+					if($(xmlsamecus).find("RESULT").text() != "SUCCESS")
+					{
+						alert($(xmlsamecus).find("RESULT").text());
 						return;
 					}
 					/*if((contactcusid == personalinfocusid) && (contactcusid  == addrinfocusid))

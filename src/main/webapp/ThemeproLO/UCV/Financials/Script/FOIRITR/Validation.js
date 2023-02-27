@@ -97,7 +97,7 @@ $(document).on("blur", ".Charges", function() {
 	 
 	ROI=$("#FOIR_INAPPROIPRO").val();
 	Tenur=$("#FOIR_SETENUREPRO").val();
-	 var result=UI_getdata(ROI,Tenur,LnAmt,"","","LSW_SGETEMI_DATA");
+	 var result=UI_getdata(ROI,Tenur,LnAmt,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 	 var EMI=$(result).find("EMI").text();
 	 	if(EMI=='')
 	{
@@ -176,7 +176,7 @@ var ROI=0;
 var Tenur=0; 
 ROI=$("#FOIR_INAPPROIPRO").val();
 Tenur=$("#FOIR_SETENUREPRO").val();
-var result=UI_getdata(ROI,Tenur,LOANPROP,"","","LSW_SGETEMI_DATA");
+var result=UI_getdata(ROI,Tenur,LOANPROP,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 var EMI1=$(result).find("EMI").text();
 if(EMI1=='')
 {

@@ -1,5 +1,7 @@
 </br>
-<button type="button" data-Validatearia="ENACH"  data-Validatedata="AEND_ENACHVERIFY" onclick="ChkENACH('AEND_ENACHVERIFY','AEND_ENACHUNIQID','AEND_ENACHURMNO','AEND_ENACHSTATUS');" data-validate="AEND|ENACH" class="btn ENACH waves-effect btn-yelInplain btn-sm  liSubpageTabIcons">Initiate E-NACH</button>
+</br>
+
+
  
 <!--Main row-->
 <!--  <div class="row FormRows"> 
@@ -41,20 +43,39 @@
 			   
 			   <input type="text" id="AEND_LOANID" hidden="hidden" name="AEND_LOANID" class="form-control AENDDBfields">
 			   <input type="text" id="AEND_LOANNAME" hidden="hidden"  name="AEND_LOANNAME" class="form-control AENDDBfields">
-               <div class="form-row">
-        		<div class="col Btxt3">E-REGISTRATION</div>
-        		</div>
-        		</br>
+              
+        		
+				<div class="form-row">
+					
+					<div class="col-md-4">
+					<div class="col Btxt3">E-REGISTRATION</div>
+					</div>
+					<div class="col-md-4">
+					
+					<label style="color:red" class="Btxt4 CallbackStatus"></label>
+				
+					</div>
+					<div class="col-md-4">
+					</br>
+					</br>
+					<button type="button" data-Validatearia="ENACH"  data-Validatedata="AEND_ENACHVERIFY" onclick="ChkENACH('AEND_ENACHVERIFY','AEND_ENACHUNIQID','AEND_ENACHURMNO','AEND_ENACHSTATUS');" data-validate="AEND|ENACH" class="btn ENACH waves-effect btn-yelInplain btn-sm  liSubpageTabIcons">Initiate E-NACH</button>
+					<button type="button" data-Validatearia=""  data-Validatedata="" onclick="ChkENACHStatus();" data-validate="AEND|ENACH" class="btn  waves-effect btn-yelInplain btn-sm  liSubpageTabIcons">Check E-NACH Status</button>
+					
+					</div>					
+				</div>
+
         		<div class="form-row" style="display:none">
+				
         		<div class="col-md-4">
+
         		</div>
-        		<div class="col-md-8">
+        		<div class="col-md-8" >
         		<div class="HyperControls">
                     <a type="button" class="Btxt4" onclick="" data-toggle="modal" data-target="#ADDKYCDocModal" href="#">Link</a>
                </div>
                </div>
                </div>
-        	</br>
+        	
                <div class="form-row">
                         <div class="col-md-4">
                            <div class="md-form">
@@ -119,6 +140,12 @@
 			</div>
 			<div class="form-row">
 			<div class="col-md-4">
+					<div class="md-form">
+						<select class="md-form colorful-select dropdown-primary AENDDBfields AENDMndtry"  onchange="" id="AEND_CHNLTYP" name="AEND_CHNLTYP">
+                                 <option value="" >--Select--</option>
+                              </select>
+                              <label class="mdb-main-label BTxt9">Channel Type*</label>
+					</div>
 			</div>
 			<div class="col-md-4">
 			</div>

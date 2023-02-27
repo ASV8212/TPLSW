@@ -22,7 +22,7 @@ $(document).ready(function () {
 		{
 	$("#BKDT_BNKNO").val($(".FormPageMultiTab li.active").attr("id"))
 		}
-	
+	//$("#BTNBANKGRD").click();
 	//FormDataFromDB("LSW_TLONBANKDTLS","BKDT_","BKDTDBfields", $("#BKDT_BNKNO").val()+"|BKDT_BNKNO");
 	CheckLoanType('BKDT');
 	var DATA=["BankDetail1|"];
@@ -37,7 +37,20 @@ $(document).ready(function () {
 	CheckPrimAcct(HTML,i,'Load')
 	//var acctype=($(html).find("input[select='BKDT_ACCTTYPE']").val())
 	ODCCLOAD(HTML);
-	
+	LoadBSAStatus(HTML);
+	//BANKGRD(HTML);
+	if($(HTML).find("select[name=BKDT_MODE]").val()=="Manual")
+	{
+			$(HTML).find(".MODEMANUAL").show()
+            $(".MANU").addClass('BKDTMndtry');			
+	}
+	else
+	{
+			$(HTML).find(".MODEMANUAL").hide()
+			$(".MANU").removeClass('BKDTMndtry');			
+	}
+			
+	}
 	if($(HTML).find("input[name=BKDT_INITIATEBSA]").val()=="Initiated")
 	{
 			$(HTML).find(".Auto").show()
@@ -51,13 +64,27 @@ $(document).ready(function () {
 			$(HTML).find(".Rpt").hide()
 			$(HTML).find("#InitiateBSA").show();
 	}
-	//ODCC(HTML,acctype);
-	 }
+	/* if($(HTML).find("input[name=BKDT_TRANSACTIONSTATUS]").val()!="")
+	{
+		$(HTML).find(".Auto").hide();
+	} */
+	if($(HTML).find("[name=BKDT_TRANSACTIONSTATUS]").val() == "Statement")
+	{
+		$($(HTML).find(".Auto").find(".col-md-4")[1]).hide();
+		$($(HTML).find(".Auto").find(".col-md-4")[2]).hide();
 	}
+	else if($(HTML).find("[name=BKDT_TRANSACTIONSTATUS]").val() == "NetBanking")
+	{
+		$($(HTML).find(".Auto").find(".col-md-4")[0]).hide();
+		$($(HTML).find(".Auto").find(".col-md-4")[2]).hide();
+	} 
+	//ODCC(HTML,acctype);
+	LoadCheckOnIntegration(HTML);
+	LoadInstOptn(HTML);
+	 }
 	
-	
-	
-	
+
+
 	/* var DATA=["BankDetail1|"];
 
     for (P=0;P<DATA.length;P++){
@@ -252,7 +279,26 @@ $(document).ready(function () {
 		
 		// Customer Seq ID Gen Start		
 		
+		/* var BKDT_BANKDETGRID = TxtGridsubmitdata_V1("BANKTable","BKDG_","BKDT_");
+		    AssignGridXmltoField("BKDT_BANKDETGRID", BKDT_BANKDETGRID) */
+		/* var BKDT_BANKDETGRID = TxtGridsubmitdata_V2("BANKG","BKDG_","BKDT_","BKDGDBfields"); 
+        AssignGridXmltoField("BKDT_BANKDETGRID", BKDT_BANKDETGRID)  */
+			
+			var BKDT_BANKDETGRID = TxtGridsubmitdata_V10("BANKTable","BKDG_","BKDT_",html);
 		
+			
+	     var BALANCEDATA=["BankDetail1|"];
+		 for (j=0;j<BALANCEDATA.length;j++)
+			 {
+			   var BNKDATA=BALANCEDATA[j].split("|")[0];
+		       var row = $("." + BNKDATA).find(".DYNROW").length;
+		       for (i=0;i<row;i++)
+		       {
+		         var BnkHtml = $("." + BNKDATA).find(".DYNROW")[i];
+		         $(BnkHtml).find('[name = BKDT_BANKDETGRID]').val(BKDT_BANKDETGRID)
+				}
+		     }
+		      // AssignGridXmltoField("BKDT_BANKDETGRID", BKDT_BANKDETGRID);
 		
 	
 		if($(html).find("[name=BKDT_BNKNO]").val() == "")

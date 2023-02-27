@@ -17,7 +17,7 @@ $(document).ready(function () {
 	
 	$(".FormPageMultiTabAdd").hide();
 	FormDataFromDB("LSW_TSCHEMEABB","SABB_","SABBDBfields", "");
-	
+	BANKSUMAVG();
 
 	//	var xmlSTATUS=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETACCESSCREADATA")
     	

@@ -521,8 +521,40 @@ function GridControlDetailUPDATEFLOWGRID (popTableModPageGrid1,TableID,dtData,dt
 							
 				         } 
 						 },
+						 { targets: 5, "render": function ( data, type, row, meta ) {                            	
+					 var rowno = meta.row;	 
+						var HTML =	'<span><input type="text" id="UPFD_CASHDEP'+rowno+'" data-item="Amount" data-scr="OUTFLOW" name="UPFD_CASHDEP'+rowno+'" data-to="FCBD_OUTFLWSUM" data-item="Amount" data-total="UPFD_CASHDEP" maxlength="30" class="form-control NoSpecialChar IsNumberFields UPFDDBfields form-control ">';			 
+						HTML = HTML + '</span>'; 
+							 
+						var htmldata = $(HTML);
+							
+						if ($(htmldata).find('[name=UPFD_CASHDEP'+rowno+']').hasClass("IsCURCommaFields"))
+							{
+							data = CURCommaSep(data);
+							}
+							$(htmldata).find('[name=UPFD_CASHDEP'+rowno+']').attr("value",data);
+							return htmldata[0].outerHTML;   		
+							
+				         } 
+						 },
+						 { targets: 6, "render": function ( data, type, row, meta ) {                            	
+					 var rowno = meta.row;	 
+						var HTML =	'<span><input type="text" id="UPFD_CASHWITDRA'+rowno+'" data-item="Amount" data-scr="OUTFLOW" name="UPFD_CASHWITDRA'+rowno+'" data-to="FCBD_OUTFLWSUM" data-item="Amount" data-total="UPFD_CASHWITDRA" maxlength="30" class="form-control NoSpecialChar IsNumberFields UPFDDBfields form-control ">';			 
+						HTML = HTML + '</span>'; 
+							 
+						var htmldata = $(HTML);
+							
+						if ($(htmldata).find('[name=UPFD_CASHWITDRA'+rowno+']').hasClass("IsCURCommaFields"))
+							{
+							data = CURCommaSep(data);
+							}
+							$(htmldata).find('[name=UPFD_CASHWITDRA'+rowno+']').attr("value",data);
+							return htmldata[0].outerHTML;   		
+							
+				         } 
+						 },
 						 
-						 { targets: 5, "render": function ( data, type, row, meta ) {                            
+						 { targets: 7, "render": function ( data, type, row, meta ) {                            
 					 			
 							 var rowno = meta.row;	 
 								var HTML =	'<span><input type="text" id="UPFD_UNIQID'+rowno+'" name="UPFD_UNIQID'+rowno+'"  data-total="UPFD_UNIQID" maxlength="15" class="form-control NoSpecialChar UPFDDBfields form-control ">';			 
@@ -825,6 +857,34 @@ function BNKREMARKPOPUP(Evnt,ID){
 	}
 }
 
+function CalcperinChqBounc(EMI,InwBonc,TotInwBonc,InClrDys,PerofInw)
+{
+var EMI1=$("#"+EMI).val();
+var InwBonc1=$("#"+InwBonc).val();
+var TotInwBonc1=$("#"+TotInwBonc).val();
+var InClrDys1=$("#"+InClrDys).val();
+var PerofInw1=$("#"+PerofInw).val();
+
+var a=parseInt(InwBonc1)-parseInt(InClrDys1)
+var b=parseInt(TotInwBonc1)+parseInt(EMI1)
+
+var c=parseInt(a)/parseInt(b)*100;
+
+
+if (isNaN(c)) 
+	{
+		c = 0
+	}
+	if (isNaN(c)) 
+	{
+		c = 0
+	}
+c=c.toFixed(2)
+  $("#"+PerofInw).val(c);
+	$("#"+PerofInw).next().addClass('active');
+
+}
+
 function CalcInOutCkhPerc(InwBonc,OutwBonc,TotInwBonc,TotOutwBonc,InwPerc,OutwPerc,Transaction)
 {
 	var InwBonc1=$("#"+InwBonc).val();
@@ -835,6 +895,15 @@ function CalcInOutCkhPerc(InwBonc,OutwBonc,TotInwBonc,TotOutwBonc,InwPerc,OutwPe
 	
 	var InwPerc1= parseInt(InwBonc1)/parseInt(TotInwBonc1)
 	var OutwPerc1= parseInt(OutwBonc1)/parseInt(TotOutwBonc1)
+	
+	if(InwPerc1=="Infinity")
+	{
+		InwPerc1 = 0
+	}
+	if(OutwPerc1=="Infinity")
+	{
+		OutwPerc1 = 0
+	}
 	
 	if (isNaN(OutwPerc1)) 
 	{
@@ -865,10 +934,6 @@ function CalcInOutCkhPerc(InwBonc,OutwBonc,TotInwBonc,TotOutwBonc,InwPerc,OutwPe
 	{
 		InwPerc1 = 0
 	}
-	if(InwPerc1=='Infinity')
-	{
-		InwPerc1=0;
-	}
 	InwPerc1=InwPerc1.toFixed(2)
 	$("#"+InwPerc).val(InwPerc1);
 	$("#"+InwPerc).next().addClass('active');
@@ -891,10 +956,6 @@ function CalcInOutCkhPerc(InwBonc,OutwBonc,TotInwBonc,TotOutwBonc,InwPerc,OutwPe
 	if (isNaN(OutwPerc1)) 
 	{
 		OutwPerc1 = 0
-	}
-	if(OutwPerc1=='Infinity')
-	{
-		OutwPerc1=0;
 	}
 	OutwPerc1=OutwPerc1.toFixed(2)
 	

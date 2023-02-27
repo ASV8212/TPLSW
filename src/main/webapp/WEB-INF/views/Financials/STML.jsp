@@ -10,9 +10,8 @@
          <input type="text" id="STML_DTCREATED" hidden="hidden" name="STML_DTCREATED" class="form-control STMLDBfields">
          <input type="text" id="STML_MODIFIEDBY" hidden="hidden" name="STML_MODIFIEDBY" class="form-control STMLDBfields">
          <input type="text" id="STML_DTMODIFIED" hidden="hidden" name="STML_DTMODIFIED" class="form-control STMLDBfields">
-		 <input type="text" hidden="hidden" id="STML_SCHEMEID" name="STML_SCHEMEID" class="form-control STMLDBfields">
+		 <input type="text" hidden="hidden" id="STML_SCHEMEID" value="S00001" name="STML_SCHEMEID" class="form-control STMLDBfields">
 	     <input type="text" id="STML_SCHEMENAME" hidden="hidden" name="STML_SCHEMENAME" class="form-control STMLDBfields">
-		 <input type="text" hidden="hidden" id="STML_LOANID" name="STML_LOANID" class="form-control STMLDBfields">
 		 
       	</br>
 		
@@ -310,7 +309,7 @@
                 </div>
            </div>
 		   </br>
-		    <div class="form-row">
+		    <div class="form-row"style="display:none">
                  <div class="col d-flex justify-content-center">
                      <button type="button" id="Save" data-aria="LSW_TCAMSTML|STML|STML_SCHEMEID" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
                      <!--<button type="button" data-aria="LSW_TCAMSTML|STML|STML_SCHEMEID" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> -->

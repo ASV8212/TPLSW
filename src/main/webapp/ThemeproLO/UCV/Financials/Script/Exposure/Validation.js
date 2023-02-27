@@ -330,6 +330,11 @@ function CheckAmt(){
 	  $("#EXPO_PRINPAL").val($(chck).find ('PRINCIPLE').text());
 	  $("#EXPO_PRINPAL").next().addClass('active');
 	}
+	if($("#EXPO_PROEXPDGV").val()=="")
+	{
+	  $("#EXPO_PROEXPDGV").val($(chck).find ('ASSETCOST').text());
+	  $("#EXPO_PROEXPDGV").next().addClass('active');
+	}
 	 var Tot = parseFloat(ExLnAmt)+parseFloat($("#DMY3").val().split("|")[0])
 	if(Tot=="")
 	{

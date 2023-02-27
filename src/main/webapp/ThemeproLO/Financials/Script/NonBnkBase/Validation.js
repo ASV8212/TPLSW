@@ -246,19 +246,11 @@ $("#OUBL_EMILAKH").next().addClass('active');
 		{
 			val1=0;
 		}
-		if(val1=='Infinity')
-		{
-			val1=0;
-		}
 		 if(val2 == "")
 		{
 			val2=0;
 		}
 		if(isNaN(val2))
-		{
-			val2=0;
-		}
-		if(val2=='Infinity')
 		{
 			val2=0;
 		}
@@ -270,10 +262,7 @@ $("#OUBL_EMILAKH").next().addClass('active');
 		{
 			val3=0;
 		}
-		if(val3=='Infinity')
-		{
-			val3=0;
-		}
+		
 		if(val4 == "")
 		{
 			val4=0;
@@ -282,10 +271,7 @@ $("#OUBL_EMILAKH").next().addClass('active');
 		{
 			val4=0;
 		}
-		if(val4=='Infinity')
-		{
-			val4=0;
-		}
+		
 		if(val5 == "")
 		{
 			val5=0;
@@ -294,10 +280,7 @@ $("#OUBL_EMILAKH").next().addClass('active');
 		{
 			val5=0;
 		}
-		if(val5=='Infinity')
-		{
-			val5=0;
-		}
+		
 		if(val6 == "")
 		{
 			val6=0;
@@ -306,10 +289,7 @@ $("#OUBL_EMILAKH").next().addClass('active');
 		{
 			val6=0;
 		}
-		if(val6=='Infinity')
-		{
-		 val6=0;
-		}
+		
 		if(val7 == "")
 		{
 			val7=0;
@@ -318,10 +298,7 @@ $("#OUBL_EMILAKH").next().addClass('active');
 		{
 			val7=0;
 		}
-		if(val7=='Infinity')
-		{
-		 val7=0;
-		}
+		
 		if(val8 == "")
 		{
 			val8=0;
@@ -330,10 +307,7 @@ $("#OUBL_EMILAKH").next().addClass('active');
 		{
 			val8=0;
 		}
-		if(val8=='Infinity')
-		{
-		 val8=0;
-		}
+		
 		if(val9 == "")
 		{
 			val9=0;
@@ -342,10 +316,7 @@ $("#OUBL_EMILAKH").next().addClass('active');
 		{
 			val9=0;
 		}
-		if(val9=='Infinity')
-		{
-		 val9=0;
-		}
+		
 		if(val10 == "")
 		{
 			val10=0;
@@ -354,10 +325,7 @@ $("#OUBL_EMILAKH").next().addClass('active');
 		{
 			val10=0;
 		}
-		if(val10=='Infinity')
-		{
-		 val10=0;
-		}
+		
 		if(val11 == "")
 		{
 			val11=0;
@@ -365,10 +333,6 @@ $("#OUBL_EMILAKH").next().addClass('active');
 		if(isNaN(val11))
 		{
 			val11=0;
-		}
-		if(val11=='Infinity')
-		{
-		 val11=0;
 		}
 		if(val12 == "")
 		{
@@ -379,10 +343,7 @@ $("#OUBL_EMILAKH").next().addClass('active');
 			val12=0;
 		}
 		
-	    if(val12=='Infinity')
-		{
-		 val12=0;
-		}
+	
 		
 		amt=parseFloat(val1)+parseFloat(val2)+parseFloat(val3)+parseFloat(val4)+parseFloat(val5)+parseFloat(val6)+parseFloat(val7)+parseFloat(val8)+parseFloat(val9)+parseFloat(val10)+parseFloat(val11)+parseFloat(val12);
 	
@@ -472,10 +433,6 @@ function Chkprofit()
 		{
 		AmtTotal=0;
 		}
-		if(AmtTotal=='Infinity')
-		{
-		  AmtTotal=0;	
-		}
 		
 		AmtTotal=CURINRCommaSep(parseFloat(AmtTotal).toFixed(2));
 		$("#NBNK_GROSSPRO").val(AmtTotal);
@@ -486,10 +443,6 @@ function Chkprofit()
 		if(isNaN(ResultI7))
 		{
 		ResultI7=0;
-		}
-		if(ResultI7=='Infinity')
-		{
-		 ResultI7=0;	
 		}
 		ResultI7=CURINRCommaSep(parseFloat(ResultI7).toFixed(2));
 		$("#NBNK_GROSSPROMON").val(ResultI7);
@@ -543,10 +496,6 @@ function Chkprofit()
 	{
 	  Eleresult=0;
 	}	
-	if(Eleresult=='Infinity')
-	{
-		Eleresult=0;
-	}
 	Eleresult=CURINRCommaSep(parseFloat(Eleresult).toFixed(2));	
 	$("#NBNK_DSR").val(Eleresult);
 	$("#NBNK_DSR").next().addClass('active');
@@ -573,10 +522,6 @@ function Existemi()
 	{
 	Res=0;
 	}	
-	if(Res=='Infinity')
-	{
-	Res=0;	
-	}
 	
 	Res=CURINRCommaSep(parseFloat(Res).toFixed(2));	
 	$("#NBNK_AVALFUND").val(Res);
@@ -676,18 +621,13 @@ function Existemi()
 	{
 	Tenur=0;
 	}
-	var result=UI_getdata(ROI,Tenur,LnAmt,"","","LSW_SGETEMI_DATA");
+	var result=UI_getdata(ROI,Tenur,LnAmt,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 	var EMI=$(result).find("EMI").text();
 
 	if(isNaN(EMI))
 	{
 	EMI=0;
 	}
-	if(EMI=='Infinity')
-	{
-	EMI=0;	
-	}
-	
 	$("#NBNK_EMIPERLAKH").val(CURINRCommaSep(parseFloat(EMI).toFixed(2)));
 	$("#NBNK_EMIPERLAKH").next().addClass('active'); 
 	
@@ -734,10 +674,6 @@ function Existemi()
 	if(isNaN(firstmin))
 	{
 	firstmin=0;
-	}
-	if(firstmin=='Infinity')
-	{
-	 firstmin=0;	
 	}
 	firstmin=CURINRCommaSep(parseFloat(firstmin).toFixed(2));
 	$("#NBNK_LOANEGBLAKH").val(firstmin);

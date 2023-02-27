@@ -121,7 +121,7 @@ function CheckAmount()
 
 if(Amt!="")// && $("#VERTICAL").val()=='UCV Eco')
 {
-	var xml=UI_getdata(lon,Amt.replace(/,/g, ""),"Lnamt",$("#VERTICAL").val(),"","LSW_SLNCHKUCVECO")
+	var xml=UI_getdata(lon,Amt.replace(/,/g, ""),"Lnamt",$("#VERTICAL").val(),$("#LODE_SCHEME").val(),"LSW_SLNCHKUCVECO")
 	var Result=$(xml).find('Result').text()
 	if(Result!="Success")
 		{
@@ -239,6 +239,15 @@ function getLoanDetails()
 		$("#LODE_PRODUCT").material_select();
 		
 		return false;
+	}
+	
+	if(LODE_PRODUCT=="T315" || LODE_PRODUCT=="T310" || LODE_PRODUCT=="T307" || LODE_PRODUCT=="T316")
+	{
+	$("#LODE_DEMANDamt").attr('disabled',false);
+	}
+	else
+	{
+	$("#LODE_DEMANDamt").attr('disabled',true);
 	}
 }   
 function getLoanDetails1(HTML)
@@ -566,7 +575,8 @@ function GetSecUnsec(Event)
 	 if(Event=="Load")
 	 {
 		var Prod=$("#LODE_PRODUCT").val() 
-		if(Prod=="T311"|| Prod=="T303" || Prod=="T302" || Prod=="T301" || Prod=="T304"||Prod=="T208")	
+
+		if(Prod=="T311"|| Prod=="T303" || Prod=="T302" || Prod=="T301" || Prod=="T304" ||Prod=="T208" || Prod=="T312" || Prod=="T313" || Prod=="T317")	
 	     {
 			$('.SECUR').attr('disabled',false);
 		 }
@@ -577,7 +587,7 @@ function GetSecUnsec(Event)
 	 }
 	  if(Prod=="T303")
 		 {
-		 $('.UNSECUR').attr('disabled',false);
+		 $('.UNSECUR').attr('disabled',true);
 		
 		 }
 	 else
@@ -585,7 +595,7 @@ function GetSecUnsec(Event)
 
 	var PRO =$("#LODE_PRODUCT").val();
 	
-  if(PRO=="T311"|| PRO=="T303" || PRO=="T302" || PRO=="T301" || PRO=="T304"||PRO=="T208")	
+  if(PRO=="T311"|| PRO=="T303" || PRO=="T302" || PRO=="T301" || PRO=="T304"||PRO=="T208" || PRO=="T312" || PRO=="T313" || Prod=="T317")	
 	{
 	 $('.SECUR').attr('disabled',false)
 	}
@@ -600,7 +610,7 @@ function GetSecUnsec(Event)
 
  if(PRO=="T303" || Prod=="T208" )
 		 {
-		 $('.UNSECUR').attr('disabled',false);
+		 $('.UNSECUR').attr('disabled',true);
 		 
 		 } 
 	
@@ -958,6 +968,9 @@ function GetPropType()
 
 function HandlePropDtl()
 {
+var ver=$("#VERTICAL").val();
+if(ver!="UCV Eco")
+{
 	if($("input[name=LODE_SECURED]:checked").val() == "Secured")
 	{
 		$("#FormPageTab2").show();
@@ -969,6 +982,7 @@ function HandlePropDtl()
 		$('#LODE_INCCON').prop('checked', false);
 		CheckIncome();
 		$('#LODE_INCCON').attr("disabled","disabled");
+	}
 	}
 }
 
@@ -1028,12 +1042,12 @@ function CheckLIMITDTLS()
 	if(Data=="DLOD")
 		{
 		$(".LMTREDUCE").show()
-		$(".LMTAMT").show()
+		//$(".LMTAMT").show()
 		}
 	else
 		{
 		$(".LMTREDUCE").hide()
-		$(".LMTAMT").hide()
+		//$(".LMTAMT").hide()
 		}
 		
 		if(Data!="Term Loan")
@@ -1049,6 +1063,9 @@ function CheckLIMITDTLS()
 			$(".MOR").show()
 			$("#LODE_Moratoritm").addClass('LODEMndtry');
 			$("#LODE_Moratoritm").parent().next().find(".MndtryAstr").html("*");
+				$("#LODE_Moratoritm").val('0');		
+				$("#LODE_Moratoritm").next().addClass('active');
+				$(".MORT").attr("disabled",true)
 		}
 	/* if(Data=="WCDL")
 		{
@@ -1073,9 +1090,10 @@ function CheckLIMITDTLS()
 
 function CheckLIMITDTLSOnload()
 {
+	var Data=$("#LODE_LONTYPE").val();
 if($("#LODE_REPAYMENT").val()=='')
 		{
-	var Data=$("#LODE_LONTYPE").val();
+	
 		if($("#LODE_REPAYMENT").val()=='')
 		{
 		var vertical=$("#VERTICAL").val();
@@ -1130,12 +1148,12 @@ if($("#LODE_REPAYMENT").val()=='')
 	if(Data=="DLOD")
 		{
 		$(".LMTREDUCE").show()
-		$(".LMTAMT").show()
+		//$(".LMTAMT").show()
 		}
 	else
 		{
 		$(".LMTREDUCE").hide()
-		$(".LMTAMT").hide()
+		//$(".LMTAMT").hide()
 		}
 		if(Data!="Term Loan" && $("#LODE_Moratoritm").val()=='')
 		{
@@ -1150,6 +1168,9 @@ if($("#LODE_REPAYMENT").val()=='')
 			$(".MOR").show()
 			$("#LODE_Moratoritm").addClass('LODEMndtry');
 			$("#LODE_Moratoritm").parent().next().find(".MndtryAstr").html("*");
+				$("#LODE_Moratoritm").val('0');		
+				$("#LODE_Moratoritm").next().addClass('active');
+				$(".MORT").attr("disabled",true)
 		}
 		/* 
 	if(Data=="DLOD")
@@ -1246,16 +1267,18 @@ function CheckREDUCE()
 		{
 		$(".LMTPER").show()
 		$(".LMTAMT").hide()
+		$(".AMTRED").val('')
 		}
 	else if(Data=="Amount")
 		{
 		$(".LMTPER").hide()
 		$(".LMTAMT").show()
+		$(".LMTRED").val('')
 		}
-	else if(Lon=="DLOD")
+/* 	else if(Lon=="DLOD")
 		{
 		$(".LMTAMT").show()
-		}
+		} */
 		else{
 		$(".LMTPER").hide()
 		$(".LMTAMT").hide()
@@ -1518,6 +1541,8 @@ function ChkCrdt()
 		// $(".CRDT").addClass('CEMIMndtry');
          $("#LODE_CRDTAMT").addClass('LODEMndtry');
          $("#LODE_CRDTAMT").next().find(".MndtryAstr").html("*");
+		 		 $("#LODE_HOSPICRDTAMT").addClass('LODEMndtry');
+         $("#LODE_HOSPICRDTAMT").next().find(".MndtryAstr").html("*");
 	  }
 	  else
 	  {
@@ -1525,6 +1550,9 @@ function ChkCrdt()
 		 $("#LODE_CRDTAMT").val('');
 		 $("#LODE_CRDTAMT").removeClass('LODEMndtry');
          $("#LODE_CRDTAMT").next().find(".MndtryAstr").html("");
+		 		 $("#LODE_HOSPICRDTAMT").val('');
+		 $("#LODE_HOSPICRDTAMT").removeClass('LODEMndtry');
+         $("#LODE_HOSPICRDTAMT").next().find(".MndtryAstr").html("");
 		 $(".CRDT").hide();
 	  }
 }
@@ -1565,6 +1593,7 @@ if(parseInt(FirstLetter)==0)
 function CheckDemand()
 {
 	
+	var lon=$("#LODE_PRODUCT").val();
 		//var LnAmt=$("#DMY3").val().split("|")[0]
 		if($("#VERTICAL").val()=='UCV')
 		{
@@ -1575,16 +1604,32 @@ function CheckDemand()
 				$("#LODE_REGINTSRAT").next().addClass('active');		
 			} */
 			var amt= $("#LODE_REQLONAMT").val() .replace(/,/g,'');
-				var den= (2*amt)/100;
+			var xml=UI_getdata(lon,"","PFMAX",$("#VERTICAL").val(),$("#LODE_SCHEME").val(),"LSW_SLNCHKUCVECO")
+			var Pfmaxi=$(xml).find('PFMAX').text()
+				var den= (parseFloat(Pfmaxi)*amt)/100;
+				if(isNaN(den))
+				{
+					den = 0;
+				}
 				$("#LODE_DEMANDamt").val(CURINRCommaSep(parseFloat(den).toFixed(2)));
 				$("#LODE_DEMANDamt").next().addClass('active');
 		}
 	if($("#VERTICAL").val()=='UCV Eco')
 	{
 	var amt= $("#LODE_REQLONAMT").val() .replace(/,/g,'');
-	var den= (0*amt)/100;
+	var xml=UI_getdata(lon,"","PFMAX",$("#VERTICAL").val(),$("#LODE_SCHEME").val(),"LSW_SLNCHKUCVECO")
+	var Pfmaxi=$(xml).find('PFMAX').text()
+	var den= (parseFloat(Pfmaxi)*amt)/100;
 	var num=(18/100)*den;
 	var total=den+num;
+	if(isNaN(den))
+	{
+		den = 0;
+	}
+	if(isNaN(total))
+	{
+		total = 0;
+	}
 	$("#LODE_AMT").val(CURINRCommaSep(parseFloat(total).toFixed(2)));
     $("#LODE_AMT").next().addClass('active');
     $("#LODE_DEMANDamt").val(CURINRCommaSep(parseFloat(den).toFixed(2)));
@@ -1597,11 +1642,17 @@ function AmountGst()
 	var dem=$("#LODE_DEMANDamt").val() .replace(/,/g,'');
 	var num=(18/100)*dem;
 	var total=parseFloat(dem)+parseFloat(num);
+	if(isNaN(total))
+	{
+		total = 0;
+	}
 	$("#LODE_AMT").val(CURINRCommaSep(parseFloat(total).toFixed(2)));
     $("#LODE_AMT").next().addClass('active');
 }
 function CheckDemandLoad()
 {
+	
+	var lon=$("#LODE_PRODUCT").val();
 	
 	//var LnAmt=$("#DMY3").val().split("|")[0]
 	if($("#VERTICAL").val()=='UCV')
@@ -1613,22 +1664,38 @@ function CheckDemandLoad()
 			$("#LODE_REGINTSRAT").next().addClass('active');
 			
 		} */
-			if(VieworInavtivePGFlg!="View")
+			if(VieworInavtivePGFlg!="View"&& $("#LODE_REQLONAMT").val() == "")
 			{	
 			var amt= $("#LODE_REQLONAMT").val() .replace(/,/g,'');
-			var den= (2*amt)/100;
-			$("#LODE_DEMANDamt").val(CURINRCommaSep(parseFloat(den).toFixed(2)));
+			var xml=UI_getdata(lon,"","PFMAX",$("#VERTICAL").val(),$("#LODE_SCHEME").val(),"LSW_SLNCHKUCVECO")
+			var Pfmaxi=$(xml).find('PFMAX').text()
+			var den= (parseFloat(Pfmaxi)*amt)/100;
+			if(isNaN(den))
+			{
+				den = 0;
+			}
+			$("#LODE_DEMANDamt").val(CURINRCommaSep(parseFloat(den).toFixed(2))); 
 			$("#LODE_DEMANDamt").next().addClass('active');
 			}
 	}
 	if($("#VERTICAL").val()=='UCV Eco')
 	{
-		if(VieworInavtivePGFlg!="View")
+		if(VieworInavtivePGFlg!="View"&& $("#LODE_REQLONAMT").val() == "")
 			{	
 				var amt= $("#LODE_REQLONAMT").val() .replace(/,/g,'');
-				var den= (0*amt)/100;
+				var xml=UI_getdata(lon,"","PFMAX",$("#VERTICAL").val(),$("#LODE_SCHEME").val(),"LSW_SLNCHKUCVECO")
+				var Pfmaxi=$(xml).find('PFMAX').text()
+				var den= (parseFloat(Pfmaxi)*amt)/100;
 				var num=(18/100)*den;
 				var total=den+num;
+				if(isNaN(den))
+				{
+					den = 0;
+				}
+				if(isNaN(total))
+				{
+					total = 0;
+				}
 				$("#LODE_AMT").val(CURINRCommaSep(parseFloat(total).toFixed(2)));
 				$("#LODE_AMT").next().addClass('active');
 				$("#LODE_DEMANDamt").val(CURINRCommaSep(parseFloat(den).toFixed(2)));
@@ -1643,6 +1710,10 @@ function AmountGstLoad()
 	var dem=$("#LODE_DEMANDamt").val() .replace(/,/g,'');
 	var num=(18/100)*dem;
 	var total=parseFloat(dem)+parseFloat(num);
+	if(isNaN(total))
+	{
+		total = 0;
+	}
 	$("#LODE_AMT").val(CURINRCommaSep(parseFloat(total).toFixed(2)));
     $("#LODE_AMT").next().addClass('active');
 }
@@ -1668,6 +1739,9 @@ function Chkmortum()
 				$(".MOR").show();			
 				$("#LODE_Moratoritm").addClass('LODEMndtry');
 				$("#LODE_Moratoritm").next().find(".MndtryAstr").html("*");
+				$("#LODE_Moratoritm").val('0');	
+				$("#LODE_Moratoritm").next().addClass('active');				
+				$(".MORT").attr("disabled",true)
 			}
 		}
 	}
@@ -1681,7 +1755,7 @@ function CheckAmt()
 	
 if(LnAmt!="" && $("#VERTICAL").val()=='UCV Eco')
 {
-	var xml=UI_getdata(Pro,LnAmt.replace(/,/g, ""),"Lnamt","","","LSW_SLNCHKUCVECO")
+	var xml=UI_getdata(Pro,LnAmt.replace(/,/g, ""),"Lnamt","",$("#LODE_SCHEME").val(),"LSW_SLNCHKUCVECO")
 	var Result=$(xml).find('Result').text()
 	if(Result!="Success")
 		{
@@ -1699,7 +1773,7 @@ function CheckTenor()
 	
 if(Tenr!="")// && $("#VERTICAL").val()=='UCV Eco')
 {
-	var xml=UI_getdata(Prod,Tenr,"Tenor",$("#VERTICAL").val(),"","LSW_SLNCHKUCVECO")
+	var xml=UI_getdata(Prod,Tenr,"Tenor",$("#VERTICAL").val(),$("#LODE_SCHEME").val(),"LSW_SLNCHKUCVECO")
 	var Result=$(xml).find('Result').text()
 	if(Result!="Success")
 		{				
@@ -1720,7 +1794,7 @@ function CheckRoi()
 	
 if(Intrst!="")// && $("#VERTICAL").val()=='UCV Eco')
 {
-	var xml=UI_getdata(Pro,Intrst,"Roi",$("#VERTICAL").val(),"","LSW_SLNCHKUCVECO")
+	var xml=UI_getdata(Pro,Intrst,"Roi",$("#VERTICAL").val(),$("#LODE_SCHEME").val(),"LSW_SLNCHKUCVECO")
 	var Result=$(xml).find('Result').text()
 	if(Result!="Success")
 		{
@@ -1817,3 +1891,27 @@ function Chkstepdwnamt()
 
 
 }     
+
+function getanchor()
+{ 
+	var Data= $("#LODE_LONTYPE").val();
+	if($("#VERTICAL").val()=='UCV')
+	{
+	 if(Data=="Bill Discounting")
+		{
+			
+		$(".ALIANCE").show();
+		$("#LODE_ANCHORNAME").addClass('LODEMndtry');
+		var LonPurpose = UI_getdata("ANCHORNAME","","","","","LSW_SGETPRODVAL");
+		$("#LODE_ANCHORNAME").append($(LonPurpose).find("RESULT").html());
+	 $("#LODE_ANCHORNAME").material_select();
+		}
+		else
+		{
+		$("#LODE_ANCHORNAME").removeClass('LODEMndtry');
+		$("#LODE_ANCHORNAME").material_select();
+		
+		$(".ALIANCE").hide();
+		}
+	}
+}

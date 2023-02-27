@@ -13,6 +13,10 @@ function SUBTRACTIONAMOUNT(MAINAMT,SUBAMT,TOTALFILED)
 	}
 	var TOTAL=parseFloat(MAINAMT)-parseFloat(SUBAMT)
 	$('#'+TOTALFILED).val(TOTAL)
+	if(isNaN(TOTAL))
+		{
+			TOTAL=0;
+		}
 	  $('#'+TOTALFILED).next().addClass('active');
 	  
 	TOTALASSCTCREATED();
@@ -66,18 +70,24 @@ function TOTALASSCTCREATED()
 	ASST_HOUSRENVASSETES=0	
 	}
 	
-var TOTAL=parseFloat(ASST_GOLD)+parseFloat(ASST_POSTALDEP)+parseFloat(ASST_MUTUALFUND)+parseFloat(ASST_INSUPOLICY)+parseFloat(ASST_VEHICLEASSETS)+parseFloat(ASST_HOUSEASSETES)+parseFloat(ASST_HOUSRENVASSETES)
-
-var MONTHCONTRI=parseFloat(TOTAL)/36
-
-	MONTHCONTRI=CURINRCommaSep(parseFloat(MONTHCONTRI).toFixed(0));
-	TOTAL=CURINRCommaSep(parseFloat(TOTAL).toFixed(0));
+var TOTALASSET=parseFloat(ASST_GOLD)+parseFloat(ASST_POSTALDEP)+parseFloat(ASST_MUTUALFUND)+parseFloat(ASST_INSUPOLICY)+parseFloat(ASST_VEHICLEASSETS)+parseFloat(ASST_HOUSEASSETES)+parseFloat(ASST_HOUSRENVASSETES)
+	if(isNaN(TOTALASSET))
+		{
+			TOTALASSET=0;
+		}
+var MONTHCONTRI=parseFloat(TOTALASSET)/36
+	if(isNaN(MONTHCONTRI))
+		{
+			MONTHCONTRI=0;
+		}
+	$('#ASST_MONTHCONTR').val(CURINRCommaSep(parseFloat(MONTHCONTRI).toFixed(0)));
+	$('#ASST_TOTALASSETS').val(CURINRCommaSep(parseFloat(TOTALASSET).toFixed(0)));
 	
 
-	$('#ASST_TOTALASSETS').val(TOTAL)
+	//$('#ASST_TOTALASSETS').val(TOTAL)
     $('#ASST_TOTALASSETS').next().addClass('active');
 	
-	$('#ASST_MONTHCONTR').val(MONTHCONTRI)
+	//$('#ASST_MONTHCONTR').val(MONTHCONTRI)
     $('#ASST_MONTHCONTR').next().addClass('active');
 }
 
@@ -89,23 +99,25 @@ function GetTyProperty(){
 	$("#ASST_TYPEPROPE").append($(xml).find("RESULT").html());
 	$("#ASST_TYPEPROPE").material_select(); 
 	
-	var chknl=UI_getdata($("#PrcsID").val(),$("#ASST_SCHEMEID").val(),"","","","LSW_SGETLOANDETAILS");
-	var chkfl=($(chknl).find('PRODUCT').text());
-	if(chkfl=='T201')
+	
+	if($("#ASST_PRODUCT").val()=='T201')
 	{
 		$(".CHKLNTY").hide()
+		$(".ASSTUBL").show()
 		
 	}
 	else
 	{
 		$(".CHKLNTY").show()
+		$(".ASSTUBL").hide()
 	}
+	//var ABBXML=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETABBDETAILS");
 }
 
 $(document).on("blur",".TIMSABB",function(){
-
-var check1=UI_getdata($("#PrcsID").val(),$("#ASST_SCHEMEID").val(),"","","","LSW_SGETLOANDETAILS");
-var pro3=($(check1).find('PRODUCT').text());	
+//Times ABB
+//var check1=UI_getdata($("#PrcsID").val(),$("#ASST_SCHEMEID").val(),"","","","LSW_SGETLOANDETAILS");
+var pro3=$("#ASST_PRODUCT").val()	
 var check=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETABBDETAILS");
 if(pro3=='T201')
 {
@@ -137,16 +149,39 @@ else if(LnAt>1500000)
 	$("#ASST_TIMEABB").val(pro4);
 	$("#ASST_TIMEABB").next().addClass('active'); 
 	
-//TWICE OF TRACK RECORD
 
-var twice=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETABBDETAILS");
-var twice1=($(twice).find ('EMIPAID').text());
+
+var ABBXML=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETABBDETAILS");
+//AVERAGE CREDIT SUMMATION
+var REVISEDCREDITSUM=($(ABBXML).find ('REVISEDCREDITSUM').text());
+var MONTHS=($(ABBXML).find ('MONTHS').text());
+var AVGCRDSUM=parseFloat(REVISEDCREDITSUM)/parseFloat(MONTHS)
+	if(isNaN(AVGCRDSUM))
+		{
+			AVGCRDSUM=0;
+		}
+$("#ASST_AVGCRDSUM").val(AVGCRDSUM.toFixed(0));
+$("#ASST_AVGCRDSUM").next().addClass('active');
+
+//Existing Loan Obligation
+$("#ASST_EXLONOBLI").val($(ABBXML).find ('TOTEXISTOBLI').text());
+$("#ASST_EXLONOBLI").next().addClass('active');
+//TWICE OF TRACK RECORD
+var twice1=($(ABBXML).find ('EMIPAID').text());
 var mulrecrd=2*parseFloat(twice1);
 
 mulrecrd=CURINRCommaSep(parseFloat(mulrecrd).toFixed(0));
 $("#ASST_TWICETRACKER").val(mulrecrd);
 $("#ASST_TWICETRACKER").next().addClass('active'); 
-	
+//Maximum permissible EMI for proposed loan
+var EXLONOBLI=$("#ASST_EXLONOBLI").val()
+var MAXPERIS=parseFloat((parseFloat(AVGCRDSUM)-(parseFloat(EXLONOBLI)*2))/2).toFixed(0)
+	if(isNaN(MAXPERIS))
+		{
+			MAXPERIS=0;
+		}
+$("#ASST_MAXEMI").val(MAXPERIS);
+$("#ASST_MAXEMI").next().addClass('active');	
 //ADJUST FUND 
 
 var adjust=$("#ASST_MONTHCONTR").val().replace(/,/g,'');
@@ -225,7 +260,7 @@ $("#ASST_ASSTSFUN").next().addClass('active');
 	 
 	ROI=$("#ASST_INTERATE").val();
 	Tenur=$("#ASST_PROPOSEDTENU").val();
-	 var result=UI_getdata(ROI,Tenur,LnAmt,"","","LSW_SGETEMI_DATA");
+	 var result=UI_getdata(ROI,Tenur,LnAmt,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 	 var EMI=$(result).find("EMI").text();
 	 	if(EMI=='')
 	{
@@ -242,6 +277,8 @@ $("#ASST_ASSTSFUN").next().addClass('active');
 	
 	var ProposedEMI=$("#ASST_ASSTSFUN").val().replace(/,/g,'');
 	var EMIPerLakh=$("#ASST_EMI").val().replace(/,/g,'');
+	var MAXPERIS=$("#ASST_MAXEMI").val().replace(/,/g,'');
+	var MONTHCONTRI=$("#ASST_MONTHCONTR").val().replace(/,/g,'');
 	var TyPro=$("#ASST_TYPEPROPE").val();
 	var result=UI_getdata("PROTYPE",TyPro,"","","","LSW_SGETFINANCIALVAL");
 	var MarginVal=$(result).find("VALUE").text();
@@ -279,13 +316,50 @@ $("#ASST_ASSTSFUN").next().addClass('active');
 	{
 		Proval=0;
 	}
+	if(isNaN(MAXPERIS))
+	{
+		MAXPERIS=0;
+	}
+	if(MAXPERIS=='')
+	{
+		MAXPERIS=0;
+	}
+	if(isNaN(MONTHCONTRI))
+	{
+		MONTHCONTRI=0;
+	}
+	if(MONTHCONTRI=='')
+	{
+		MONTHCONTRI=0;
+	}
+	
 	var  amt1=0,amt2=0,amt=0;
 	
 	/* var chknl=UI_getdata($("#PrcsID").val(),$("#ASST_SCHEMEID").val(),"","","","LSW_SGETLOANDETAILS");
 	var chkfl=($(chknl).find('PRODUCT').text()); */
 	if(pro3=='T201')
 	{
-		amt=parseFloat(ProposedEMI)/parseFloat(EMIPerLakh)*100000;
+		var CALA1=(Math.min(parseFloat(MAXPERIS),parseFloat(MONTHCONTRI))/parseFloat(EMIPerLakh))*100000
+		var CALA2=(parseFloat(MONTHCONTRI)/parseFloat(EMIPerLakh))*100000
+		var CALA3=Math.min(CALA1, 500000)
+		var CALA4= Math.min(CALA2,300000)
+		if(isNaN(CALA1))
+		{
+		CALA1=0;
+		}
+		if(isNaN(CALA2))
+		{
+		CALA2=0;
+		}
+		if(CALA1 > 300000) 
+		{
+		amt=CALA3
+		} 
+		else 
+		{
+		amt=CALA4
+		}
+		//amt=parseFloat(ProposedEMI)/parseFloat(EMIPerLakh)*100000;
 		
 	}
 	else
@@ -299,6 +373,7 @@ $("#ASST_ASSTSFUN").next().addClass('active');
 	/* amt2=parseFloat(MarginVal/100)*parseFloat(Proval);
 	amt1=parseFloat(ProposedEMI)/parseFloat(EMIPerLakh)*100000;
 	amt=Math.min(amt1,amt2); */
+	amt=Math.round(amt/1000) * 1000
 	$("#ASST_LOANELIGIBIL").val(CURINRCommaSep(parseFloat(amt).toFixed(0)));
 	$("#ASST_LOANELIGIBIL").next().addClass('active'); 
 	

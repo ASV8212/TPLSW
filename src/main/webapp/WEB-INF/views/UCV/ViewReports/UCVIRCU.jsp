@@ -105,9 +105,22 @@ editData.setHistVar(HistVar); %>
             <form >
                </br>
                <div class="form-row">
+			   <div class="col-md-6">
+			   <div class="md-form">
                   <div class="col Btxt3">KYC</div>
                   <!--<div class="col Btxt14 TxtRight">Note: All the OSV needs to be done by employee only</div> -->
                </div>
+               </div>
+			   <div class="col-md-6">
+			   </div>
+			   <div class="col-md-6">
+			   </div>
+			   <div class="col-md-6">
+			   <div class="md-form">
+                  <button type="button" id="MULTIDOWNLOADER" class="btn  waves-effect  btn-yelInplain btn-sm liSubpageTabIcons" onclick="MULTIDOWNLOADER1('IRCM_CUSID')"><i class="fa fa-eye"></i>View All Documents</button>
+               </div>
+			   </div>
+			   </div>
                </br>
                <div class="form-row">
                   <div class="col">

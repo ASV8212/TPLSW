@@ -430,6 +430,7 @@ if($("#DOCP_PROPERTYDOC").val()=='')
 		   {
 			 $("#SendBack").show();  
 		   }
+		  
 	 }
 	 else{
 		  $("#ApplForm").hide();
@@ -437,7 +438,20 @@ if($("#DOCP_PROPERTYDOC").val()=='')
 	 }
 		 if(activityname=="PLVer"){
 			 $("#Reject").hide();
-		 }			 
+		 }
+		if(ButtonName=="Save & Submit" && activityname=="PreLoginSB")
+		   {
+			 var CHKREJECT=UI_getdata($("#PrcsID").val(),"","","","","LSW_SREJECTBTN")
+			 if($(CHKREJECT).find('RESULT').text()=='REJECT')
+			 {
+				$("#Reject").show();  
+			 }
+			 else
+			 {
+				$("#Reject").hide();  
+			 }
+			 
+		   }		 
 	  
 	  if(activityname=="DEFAppr")
 		  {
@@ -456,6 +470,7 @@ if($("#DOCP_PROPERTYDOC").val()=='')
 			{
 		         $('.BTNDOCMVL').hide()
 		    }
+			
 
             			
 		 if($(op).find("COAPPLI").text()=="NO")
@@ -924,6 +939,11 @@ if($("#DOCP_PROPERTYDOC").val()=='')
 			}  */
 			if(($(this).text() == "Save & Submit") && (activityname == "PreLogin" || activityname == "PreLoginSB"))
 				{
+					var BSASTATXML=UI_getdata($("#PrcsID").val(),"","","","","LSW_SSTPBSASTATUS")
+					if($(BSASTATXML).find('ALERTMSG').text()!='Yes')
+					{
+						alert($(BSASTATXML).find('ALERTMSG').text())
+					}
 					 
 				   var xml=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHECKPFCOLLECTION")
 					
@@ -1072,7 +1092,8 @@ if($("#DOCP_PROPERTYDOC").val()=='')
 				        UI_getdata($("#PrcsID").val(),activityname,"","","","LSW_SUPDTPFSTST");
 					 }
 				        var Button = "DAS";
-				    WFComplete ($("#ActvID").val(),"var_status="+Button,"");
+						var opxml = UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETPERLOGINPERFUSR");
+				    WFComplete ($("#ActvID").val(),"var_status="+Button+$(opxml).find("RESULT").text(),"");
 				 }
 			 if(($(this).text() == "Save & Submit") && (activityname == "PLVer"))
 			 {
@@ -1110,15 +1131,43 @@ if($("#DOCP_PROPERTYDOC").val()=='')
 					  }
 				 
 				 var activityname1 = GetActivityName();
+				 var BSASTATXML=UI_getdata($("#PrcsID").val(),"","","","","LSW_SSTPBSASTATUS")
+					if($(BSASTATXML).find('ALERTMSG').text()!='Yes')
+					{
+						alert($(BSASTATXML).find('ALERTMSG').text())
+					}
 					var xml=UI_getdata($("#PrcsID").val(),activityname1,"","","","LSW_SWFVARDECIDE");
 					
 					var Button = $(xml).find("WFVAR").text();
-					if(Button=="SC" || Button=="Login"){
+					if(Button=="SC" || Button=="Login" || Button=="AUSTP"){
 						WFComplete ($("#ActvID").val(),"var_status="+Button,"");
 					}
+					else if(Button == "STPFLOW")
+					{
+						$.ajax({
+         
+						 url: "/TPLSW/processSTPFlow-Web",
+						 //dataType: "json",
+						 data: {PrcsID : $("#PrcsID").val(),Prvnt : $("#Prvnt").val()},
+						 async: true,	      
+						 type: "POST",
+						 success: function(res) {
+							 
+							alert("Sanction In Progress, Kindly Check After Sometimes.");
+						 
+							$(location).attr('href',window.location.origin + "/TPLSW/MyApplication")   
+							
+						 },
+						 error: function(res) {
+							 
+							alert("Loan Submission Failed");
+								}
+					 });
+					}
 					else{
-						alert(Button);
-						return;
+						 alert(Button);
+						return; 
+						
 					}
 			 }
 			 
