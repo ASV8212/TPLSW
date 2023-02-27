@@ -75,8 +75,14 @@ public class PosidexDedupe {
 		    	}
 		    	
 		    if(colCount>1){
-		    	
-		    	Result=InterfacePosidex.InterfacePosidexService(URL, XMLData, "application/x-www-form-urlencoded", uniqueid);
+		    	if(!Input3.equals("GetStatus"))
+		    	{
+		    		Result=InterfacePosidex.InterfacePosidexService(URL, XMLData, "application/x-www-form-urlencoded", uniqueid);
+		    	}
+		    	if(Input3.equals("GetStatus"))
+		    	{
+		    		Result=InterfacePosidex.InterfacePosidexService(URL, XMLData, "application/json", uniqueid);
+		    	}
 		    	
 		    	String[] resultval=Result.split("!@#");
 		    	
@@ -94,14 +100,43 @@ public class PosidexDedupe {
 			  	prsPS1.executeQuery();
 			  	
 			  	JSONObject jd= new JSONObject(Message);
-			  	
-			  	if(jd.getString("statusCode").equals("SR") && Input3.equals("Insert"))
-			  	{
-			  		Thread.sleep(timer);
-			  		Result=new PosidexDedupe().PosidexService("LSW_SPOSIDEXAPICREATE",uniqueid, Input2, "GetStatus",Cusid, processid);
-			  	}
-
-		    
+				if (Input3.equals("Insert")) {
+					if (jd.getString("statusCode").equals("SR")) {
+						Thread.sleep(timer);
+						Result = new PosidexDedupe().PosidexService("LSW_SPOSIDEXAPICREATE", uniqueid, Input2,
+								"GetStatus", Cusid, processid);
+					}
+				}
+				if (Input3.equals("GetStatus")) {
+					if (jd.getString("statusCode").equals("SR")) {
+						if (jd.getJSONArray("matchdetails").length() == 0) {
+							Thread.sleep(timer);
+							Result = new PosidexDedupe().PosidexService("LSW_SPOSIDEXAPICREATE", uniqueid, Input2,
+									"initcustomerid", Cusid, processid);
+						}
+					}
+					if (jd.getString("statusCode").equals("ER")) {
+						if(jd.getString("statusMessage").equals("No enquiry details found.")) {
+							Thread.sleep(timer);
+							Result = new PosidexDedupe().PosidexService("LSW_SPOSIDEXAPICREATE", uniqueid, Input2,
+									"initcustomerid", Cusid, processid);
+						}
+					}
+				}
+				if (Input3.equals("initcustomerid")) {
+					if (jd.getString("status").equals("SR")) {
+						Thread.sleep(timer);
+						Result = new PosidexDedupe().PosidexService("LSW_SPOSIDEXAPICREATE", uniqueid, Input2,
+								"getcustomerid", Cusid, processid);
+					}
+				}
+				
+				if (Input3.equals("getcustomerid")) {
+					if (jd.getString("status").equals("SR")) {
+						Thread.sleep(timer);
+						Result = pushcusdetl(processid,Cusid,jd.getJSONObject("data").get("customerno").toString(),jd.getJSONObject("data").get("posiid").toString());
+					}
+				}
 			 //LMS START   
 			    if(Input3.equals("Insert"))
 			  	{ 
@@ -130,7 +165,7 @@ public class PosidexDedupe {
 			 proc_stmt.setString(2, LMSRESXML); // 
 			 proc_stmt.setString(3, processid); // 
 			 proc_stmt.setString(4, Cusid); // 
-			 proc_stmt.setString(5, ""); // 
+			 proc_stmt.setString(5, Message); // 
 	
 			 rs = proc_stmt.executeQuery();
 			 	
@@ -142,8 +177,8 @@ public class PosidexDedupe {
 	
 			 if (CUSINFO.contains("ERROR"))
 			 {
-			 	ProcessID = "No Data";
-			 	ActivityID = "No Data";
+			 	ProcessID = CUSINFO.split("~")[0];
+			 	ActivityID = CUSINFO.split("~")[1];
 			 }
 			 else
 			 {
@@ -164,5 +199,73 @@ public class PosidexDedupe {
 			DBConnection.closeConnection(conPS, prsPS, rstPS);
 		}
 		 return ProcessID +"~" + ActivityID;
+	}
+
+	protected String pushcusdetl(String prcsid, String loscusid, String posidexcusid,String posid) throws Exception {
+		PreparedStatement prsPS = null;
+		ResultSet rs1 = null;
+		Connection con1 = DBConnection.getConnection(null);
+
+		PreparedStatement prsPS1 = null;
+		ResultSet rs2 = null;
+		Connection con2 = DBConnection.getConnection(null);
+		
+		PreparedStatement prsPS2 = null;
+		Connection con3 = DBConnection.getConnection(null);
+		
+		String Result = "";
+		String request = "";
+		String URL = "";
+		try {
+			prsPS = con1.prepareStatement("{ call LSW_SPUSHPOSIDEXTOCUSID (?,?,?) }");
+
+			prsPS.setString(1, prcsid);
+			prsPS.setString(2, loscusid);
+			prsPS.setString(3, posidexcusid);
+
+			rs1 = prsPS.executeQuery();
+
+			while (rs1.next()) {
+				Result = rs1.getString(1);
+			}
+
+			Connections.Call(prsPS, rs1, con1, "Commit");
+
+			prsPS1 = con2.prepareStatement("{ call LSW_SPASSCUSDATATOPOSIDEX_1 (?,?,?,?,?) }");
+
+			prsPS1.setString(1, posid);
+			prsPS1.setString(2, "");
+			prsPS1.setString(3, "");
+			prsPS1.setString(4, "");
+			prsPS1.setString(5, "");
+
+			rs2 = prsPS1.executeQuery();
+
+			while (rs2.next()) {
+				request = rs2.getString(1);
+				URL = rs2.getString(2);
+				
+			}
+			Result = InterfacePosidex.InterfacePosidexService(URL, request, "application/json", "");
+			
+			prsPS2 = con2.prepareStatement("{ call LSW_SPASSCUSDATATOPOSIDEX_1_UPD (?,?,?,?,?) }");
+
+			prsPS2.setString(1, posid);
+			prsPS2.setString(2, Result);
+			prsPS2.setString(3, "");
+			prsPS2.setString(4, "");
+			prsPS2.setString(5, "");
+
+			prsPS2.executeQuery();
+			
+		} catch (Exception excd) {
+			excd.printStackTrace();
+			Result = "Exception" + "~" + excd.getMessage();
+		} finally {
+			DBConnection.closeConnection(con1, prsPS, rs1);
+			DBConnection.closeConnection(con2, prsPS1, rs2);
+			DBConnection.closeConnection(con3, prsPS2, null);
+		}
+		return Result;
 	}
 }
