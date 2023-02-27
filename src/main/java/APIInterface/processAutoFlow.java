@@ -23,44 +23,89 @@ import Integration.PosidexDedupe;
 public class processAutoFlow {
 	static String execprocName = "LSW_SAUTOFLOWDATA_EXECPTN";
 	static List<Map<String, Object>> resultList_cusid = new ArrayList<Map<String, Object>>();
-	public static String processAutoFlowHandlr(String prcsid,String refno,String reqfrm) {
-		String resp = null;
+
+	public static String processAutoFlowHandlr(String prcsid, String refno,String reqfrm) {
+		String resp = "Success";
+		String actvtyid = "";
+		String response = "";
 		ArrayList<String> data = new ArrayList<String>();
-		
-		
-		if (chkPosidex(prcsid).equals("Fail")) {
-			data = GetDBData.Call("DeDupe Failed", "", "", "", refno, execprocName);
-			return data.get(0);
-		}
-		/***********CIBIL FAIL OCCURED WHILE ON HITTING IN N8*********/
-		
-		  if (chkCibil(prcsid).equals("Fail")) { 
-			  data = GetDBData.Call("Cibil Failed","", "", "", refno, execprocName); 
-			  return data.get(0); 
-		}
-		 
-		data = GetDBData.Call(prcsid, "", "", "", "", "LSW_SCHKSCHEMECOUNT");
-		/***********ALL THE STAGE VALIDATION HAS BEEN REMOVED FOR UCV ECO*********/
-		if (!data.get(0).equals("")) {
-			data = GetDBData.Call("Underwriting Stage Validation Failed", data.get(0), "", "", refno,
-					execprocName);
-			return data.get(0);
-		}
-		if (chkBRERule(prcsid).equals("Fail")) {
-			/***********ALL THE BRE RESPONSE FAILED*********/
-			data = GetDBData.Call("BRE Rule Failed", "", "", "", refno, execprocName);
-			return data.get(0);
-		}
-		data=genScoreCard(prcsid);
-		if(!data.get(0).equals("SUCCESS"))
-		{
-			data = GetDBData.Call("Score Card Failed", "", "", "", refno, execprocName);
+
+		try {
+			if (!reqfrm.equals("WEB")) {
+				if (chkPosidex(prcsid,reqfrm).equals("Fail")) {
+					data = GetDBData.Call("DeDupe Failed", "", "", "", refno, execprocName);
+					return data.get(0);
+				}
+			}
+			/*********** CIBIL FAIL OCCURED WHILE ON HITTING IN N8 *********/
+
+			if (chkCibil(prcsid).equals("Fail")) {
+				data = GetDBData.Call("Cibil Failed", "", "", "", refno, execprocName);
+				return data.get(0);
+			}
+
+			data = GetDBData.Call(prcsid, "", "", "", "", "LSW_SCHKSCHEMECOUNT");
+			/*********** ALL THE STAGE VALIDATION HAS BEEN REMOVED FOR UCV ECO *********/
+			if (!data.get(0).equals("")) {
+				data = GetDBData.Call("Underwriting Stage Validation Failed", data.get(0), "", "", refno, execprocName);
+				return data.get(0);
+			}
+			if (chkBRERule(prcsid).equals("Fail")) {
+				/*********** ALL THE BRE RESPONSE FAILED *********/
+				data = GetDBData.Call("BRE Rule Failed, File has been Rejected", "", "", "", refno, execprocName);
+				return data.get(0);
+			}
+			data = genScoreCard(prcsid);
+			if (data.get(0).equals("Fail")) {
+				data = GetDBData.Call("Score Card Failed", "", "", "", refno, execprocName);
+				return data.get(0);
+			}
+			if(reqfrm.equals("API"))
+			{
+				return resp;
+			}
+			else if(reqfrm.equals("WEB"))
+			{
+				if (resp.equals("Success")) {
+					data = GetDBData.Call(prcsid, "SendToCredit", "", "", "", "LSW_SGETACTIVITYID_AUTOFLOW");
+					actvtyid = data.get(0);
+					data = GetDBData.Call(prcsid + "|" + actvtyid, "DEVIATIONS", "APIUser", "", "", "LSW_SONSUBMTWFDTLINS");
+					if (data.get(0).contains("var_")) {
+						response = WFCall.WFComplete(actvtyid, data.get(0), "APIUser", "themepass", "",
+								"LSW_SWFCompleteCALL");
+						if (response.split("~")[0].equals("completed")) {
+							data = GetDBData.Call(prcsid, "RCMDI", "", "", "", "LSW_SGETACTIVITYID_AUTOFLOW");
+							actvtyid = data.get(0);
+						} else {
+							resp = response;
+							return resp;
+						}
+	   				} else {
+						data = GetDBData.Call(data.get(0), "", "", "", "", execprocName);
+						return data.get(0);
+					}
+
+					response = WFCall.WFComplete(actvtyid, "var_rstatus=Sanction", "APIUser", "themepass", "",
+							"LSW_SWFCompleteCALL");
+					if (response.split("~")[0].equals("completed")) {
+						//data = GetDBData.Call(prcsid, "RCMDI", "", "", "", "LSW_SGETACTIVITYID_AUTOFLOW");
+						//actvtyid = data.get(0);
+					} else {
+						resp = response;
+						return resp;
+					}
+
+				}
+			}
+			
+		} catch (Exception e) {
+			data = GetDBData.Call(e.getMessage(), "", "", "", "", execprocName);
 			return data.get(0);
 		}
 		return resp;
 	}
 	
-	private static String chkPosidex(String prcsid) {
+	private static String chkPosidex(String prcsid,String reqfrm) {
 		String resp = "";
 		int counter = 0;
 		Connection con = DBConnection.getConnection(null);
@@ -87,7 +132,10 @@ public class processAutoFlow {
 		    	op= "";
 		    	op = getdata.PosidexService("LSW_SPOSIDEXAPICREATE","",resultList_cusid.get(i).get("CUSTYPE").toString(),"Insert",
 		    			resultList_cusid.get(i).get("CUSID").toString(),prcsid);
-		    	if(op.split("~")[0].equals("No Data"))
+		    	ArrayList<String> data = new ArrayList<String>();
+		    	data = GetDBData.Call(prcsid, resultList_cusid.get(i).get("CUSID").toString(), "Insert", resultList_cusid.get(i).get("CUSTYPE").toString(), reqfrm, "LSW_SGETPOSIDEXRESPONSE");
+		    	op = data.get(0);
+		    	if(!op.split("~")[0].equals("Success"))
 		    	{
 		    		counter++;
 		    	}
@@ -127,7 +175,7 @@ public class processAutoFlow {
 		String op = "";
 		String applicationNo = null;
 		CibilSerivceAPI getdata = new CibilSerivceAPI();
-		Connection con = DBConnection.getConnection("INTR1");
+		Connection con = DBConnection.getConnection(null);
 		Statement st = null;
 		ResultSet rs = null;
 		try {
@@ -185,8 +233,9 @@ public class processAutoFlow {
 			data = GetDBData.Call(prcsid, "SendToCredit", "", "", "",
 					"LSW_SGETACTIVITYID_AUTOFLOW");
 			actvtyid = data.get(0);
-			WFCall.WFComplete(actvtyid,"var_rstatus=Cancel", "APIUser", "themepass", "",
+			WFCall.WFComplete(actvtyid,"var_status=Cancel", "APIUser", "themepass", "",
 					"LSW_SWFCompleteCALL");
+			return "Fail";
 		}
 		return data.get(0);
 	}
