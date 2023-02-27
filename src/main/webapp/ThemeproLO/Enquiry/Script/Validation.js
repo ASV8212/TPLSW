@@ -1,7 +1,7 @@
 function getPrdVal()
 {
 
-var PrdType = UI_getdata("PRODUCT","","","","","LSW_SGETPRODVAL");
+var PrdType = UI_getdata("ProductID",$("#VERTICAL").val(),"","","","LSW_SGETPRODVAL");
 
 	$("#PrdName").html("")
 	$("#PrdName").append($(PrdType).find("RESULT").html());
@@ -172,3 +172,12 @@ var futDate=date.getDate() + "/" + Month + "/" + date.getFullYear();
          });
 	  return popTableModPageGrid1;
  }
+ 
+function ClearVal()
+{
+	$(".ClearField").val('');
+	$(".ClearFielddrop").val('');
+	$(".ClearFielddrop").material_select('destroy');
+	$(".ClearFielddrop").material_select();
+	FncallMyAppl(this,'Table3',{spname:'LSW_SENQUIRYVIEWTAB',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#LogUsr').val(),brid:'Loan|'+$('#FromDate').val()+'|'+$('#ToDate').val()+'|||||||'+$('#VERTICAL').val(),MnuId:'Load'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||3,10','ENQUIRTYTAB');
+}

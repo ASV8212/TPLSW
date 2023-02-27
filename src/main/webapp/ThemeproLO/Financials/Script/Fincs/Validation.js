@@ -2194,6 +2194,7 @@ $(document).ready(function () {
 		var Inpt2='';
 		var InPTindx=''
 		var Scheme=$("#RCCM_UNIQUID").val();
+		var LonID=$("#RCCM_LOANUNIQID").val();
 		var Expr = $("#ICEG_EXPOUSER").val();
 		if(Expr==""){
 			Expr=0;
@@ -2215,7 +2216,7 @@ $(document).ready(function () {
 			//ViewRInavtivePGFlg="View";  
 		  }
 		// Added for Loan Amount filed is enable in Waiver Stage end
-		var op = UI_getdata(Inpt1+','+Inpt2,$("#PrcsID").val(),Scheme+'|'+ViewRInavtivePGFlg,Expr,'','LSW_SGETELIGHSCHEME');
+		var op = UI_getdata(Inpt1+','+Inpt2,$("#PrcsID").val(),Scheme+'|'+ViewRInavtivePGFlg+'|'+LonID,Expr,'','LSW_SGETELIGHSCHEME');
 		for (i=0;i<$('.RECOMPUT').length;i++)
 		{
 			InPTindx=parseInt($($('.RECOMPUT')[i]).next().val())
@@ -2946,6 +2947,7 @@ function EnableFnlElgFld()
 				$($("[name=FCEB_HIDDENID]")[i]).prev().addClass("LoanAmt");
 				}
             	
+				$($("[name=FCEB_HIDDENID]")[i]).prev().addClass("LoanAmt");
             	$($("[name=FCEB_HIDDENID]")[i]).prev().attr('maxlength','10');
 				$($("[name=FCEB_HIDDENID]")[i]).prev().addClass("AUTOCOMPUTFLD ");
             }
@@ -3113,16 +3115,25 @@ function OnClickChkElig(){
 function GentrateCAM()
 {
 	var IOP=window.location.origin;
-	var PrcsId=$("#PrcsID").val()
-	var Scheme=$("#RCCM_UNIQUID").val()
-	
-	var LonType=$("#DMY7").val().split("|")[0]
-	LonType=LonType.replace('%','')
-
+	var PrcsId=$("#DMY7").val().split("|")[7]
+	var UniqId=$(".FormPageMultiTab li.active").attr('id');
+	var Year=$("#RACD_FINYEAR").val()
+	var Consolid=$("input:radio[name=RACD_TYP]:checked").val()
 
     ajaxindicatorstart("Downloading.. Please wait");
 	
-	var flname = IOP+LoadFrmXML("RT039")+"&__format=pdf&@PARAM1="+PrcsId+"&@PARAM2="+Scheme+"&@PARAM3="+LonType+"&@PARAM4="+$("#DMY7").val().split("|")[8]+"&__filename=CAM_"+$("#DMY7").val().split("|")[7]+"_"+$(".FormPageMultiTab li.active").text()+".pdf";
+	  if($("#VERTICAL").val()=="MSME")
+	  {
+          var flname = IOP+LoadFrmXML("RT0106")+"&__format=pdf&param1="+PrcsId+"&__format=pdf&param2="+UniqId+"&__filename=CAM_"+$(".FormPageMultiTab li.active").text()+".pdf";
+	  }
+	  else if($("#VERTICAL").val()=="MSME Alliance")
+	  {
+	      var flname = IOP+LoadFrmXML("RT0115")+"&__format=pdf&param1="+PrcsId+"&__format=pdf&param2="+UniqId+"&__filename=CAM_"+$(".FormPageMultiTab li.active").text()+".pdf";
+	 }
+	
+	
+	ajaxindicatorstop();
+	  
 	
 	var link=document.createElement('a');
 		document.body.appendChild(link);
@@ -3130,7 +3141,30 @@ function GentrateCAM()
 			link.href=flname;
 			link.click();
 			ajaxindicatorstop();
-}	  
+			
+	/* var IOP=window.location.origin;
+	var PrcsId=$("#PrcsID").val()
+	var Scheme=$("#RCCM_UNIQUID").val()
+	var LoanID=$("#RCCM_LOANUNIQID").val()
+	
+	var LonType=$("#DMY7").val().split("|")[0]
+	LonType=LonType.replace('%','')
+
+    ajaxindicatorstart("Downloading.. Please wait");
+	
+	  if($("#VERTICAL").val()=="MSME")
+	  {
+	    var flname = IOP+LoadFrmXML("RT0103")+"&__format=pdf&param1="+LoanID+"&__filename=CAM_"+$("#DMY7").val().split("|")[7]+"_"+$(".FormPageMultiTab li.active").text()+".pdf";
+	  }	
+	
+	
+	var link=document.createElement('a');
+		document.body.appendChild(link);
+		link.download=flname;
+		link.href=flname;
+	    link.click();
+			ajaxindicatorstop(); */
+}	  	  
 
 function CheckRadio()
 {
@@ -3195,7 +3229,7 @@ function CheckDocMndtry(TableID,FldClas,HDR)
 function HndlRRValdtn(){
 	for(var i = 0;i<$($('.ELIGHSCHEME').find('input[name=FCEB_PROFILE]')).length;i++)
 		{
-		if(hasValue('#'+$($('.ELIGHSCHEME').find('input[name=FCEB_PROFILE]')[i]).attr("id"),"TERM (In Years)"))
+		if(hasValue('#'+$($('.ELIGHSCHEME').find('input[name=FCEB_PROFILE]')[i]).attr("id"),"TERM (In Months)"))
 			{
 			$('#'+$($('.ELIGHSCHEME').find('input[name=FCEB_PROFILE]')[i]).attr("id")).closest('.GryShd').next().next().next().find('input').attr("value","Tenure selected more than lease period")
 			$('#'+$($('.ELIGHSCHEME').find('input[name=FCEB_PROFILE]')[i]).attr("id")).closest('.GryShd').next().next().next().find('input').addClass("TERMINYR")
@@ -4861,4 +4895,113 @@ function getIndustry(html,Row)
 	  var xml=$("#HiddenINDUSCATRGORY").val()
 	  $(html).find('[name=INDUSTRYCAT]').val($($(xml).find('INDUSCATRGORY')[Row]).text());
 	//$("#HiddenINDUSCATRGORY").val($(xml1).find("INDUSCATRGORY").text());
+}
+
+function GridControlDetailREPAYGRD(popTableModPageGrid1, TableID, dtData, dtcolumn, hideClm) {
+
+    popTableModPageGrid1 = $('#' + TableID).DataTable({
+        'aaData': dtData,
+        "aoColumns": dtcolumn,
+        "bAutoWidth": false,
+        "autoWidth": false,
+        'bPaginate': false,
+        "aaSorting": [],
+        // "pageLength": 5,
+        "bDeferRender": true,
+        'bInfo': true,
+        'bFilter': true,
+        "bDestroy": true,
+        "bJQueryUI": true,
+        //"scrollY": true,
+        // "scrollX": "200px",
+        "sPaginationType": "full_numbers",
+        "aoColumnDefs": [{
+                "sClass": "dpass",
+                "aTargets": jQuery.parseJSON(hideClm)
+            },
+            {
+                targets: 2,
+                "render": function(data, type, row, meta) {
+                    var rowno = meta.row;
+                    var HTML = '<span><input type="text" disabled style = "width:100px" id="OPENINGBALANCE' + rowno + '"  name="OPENINGBALANCE' + rowno + '" maxlength="10" class="form-control DSVLBL form-control  IsNumberFields IsCURCommaFields">';
+                    HTML = HTML + '</span>';
+                    var htmldata = $(HTML);
+                    if ($(htmldata).find('[name=OPENINGBALANCE' + rowno + ']').hasClass("IsCURCommaFields")) {
+                        data = CURCommaSep(data);
+                    }
+                    $(htmldata).find('[name=OPENINGBALANCE' + rowno + ']').attr("value", data);
+                    return htmldata[0].outerHTML;
+                }
+            },
+            {
+                targets: 3,
+                "render": function(data, type, row, meta) {
+                    var rowno = meta.row;
+                    var HTML = '<span><input type="text" disabled style = "width:100px" id="INTEREST' + rowno + '"  name="INTEREST' + rowno + '" maxlength="10" class="form-control DSVLBL form-control  IsNumberFields IsCURCommaFields">';
+                    HTML = HTML + '</span>';
+                    var htmldata = $(HTML);
+                    if ($(htmldata).find('[name=INTEREST' + rowno + ']').hasClass("IsCURCommaFields")) {
+                        data = CURCommaSep(data);
+                    }
+                    $(htmldata).find('[name=INTEREST' + rowno + ']').attr("value", data);
+                    return htmldata[0].outerHTML;
+                }
+            },
+            {
+                targets: 4,
+                "render": function(data, type, row, meta) {
+                    var rowno = meta.row;
+                    var HTML = '<span><input type="text" disabled style = "width:100px" id="PRINCIPAL' + rowno + '"  name="PRINCIPAL' + rowno + '" maxlength="10" class="form-control DSVLBL form-control  IsNumberFields IsCURCommaFields">';
+                    HTML = HTML + '</span>';
+                    var htmldata = $(HTML);
+                    if ($(htmldata).find('[name=PRINCIPAL' + rowno + ']').hasClass("IsCURCommaFields")) {
+                        data = CURCommaSep(data);
+                    }
+                    $(htmldata).find('[name=PRINCIPAL' + rowno + ']').attr("value", data);
+                    return htmldata[0].outerHTML;
+                }
+            },
+            {
+                targets: 5,
+                "render": function(data, type, row, meta) {
+                    var rowno = meta.row;
+                    var HTML = '<span><input type="text" disabled style = "width:100px" id="EMI' + rowno + '"  name="EMI' + rowno + '" maxlength="10" class="form-control DSVLBL form-control  IsNumberFields IsCURCommaFields">';
+                    HTML = HTML + '</span>';
+                    var htmldata = $(HTML);
+                    if ($(htmldata).find('[name=EMI' + rowno + ']').hasClass("IsCURCommaFields")) {
+                        data = CURCommaSep(data);
+                    }
+                    $(htmldata).find('[name=EMI' + rowno + ']').attr("value", data);
+                    return htmldata[0].outerHTML;
+                }
+            },
+            {
+                targets: 6,
+                "render": function(data, type, row, meta) {
+                    var rowno = meta.row;
+                    var HTML = '<span><input type="text" disabled style = "width:100px" id="CLOSINGBALANCE' + rowno + '"  name="CLOSINGBALANCE' + rowno + '" maxlength="10" class="form-control DSVLBL form-control  IsNumberFields IsCURCommaFields">';
+                    HTML = HTML + '</span>';
+                    var htmldata = $(HTML);
+                    if ($(htmldata).find('[name=CLOSINGBALANCE' + rowno + ']').hasClass("IsCURCommaFields")) {
+                        data = CURCommaSep(data);
+                    }
+                    $(htmldata).find('[name=CLOSINGBALANCE' + rowno + ']').attr("value", data);
+                    return htmldata[0].outerHTML;
+                }
+            }
+            
+
+        ],
+
+        "fnDrawCallback": function(oSettings) {
+
+        }
+
+    });
+
+}
+
+function Gentraterepay()
+{
+	$("#FIOFFICEUPDATE").click()
 }

@@ -24,18 +24,32 @@ $(document).ready(function() {
     if(activityname=="BranchOPS" || activityname=="CreditOPS")
 	 {
 	  $("#Save1111").show();
+	  if(activityname=="BranchOPS")
+	  {
+		  $("#PDDINIT").show();
+		  for(var zm = 0;zm<$("#Table3").find(".tbodytr").length;zm++)
+		  {
+			if($($($("#Table3").find(".tbodytr")[zm]).find(".tbodytrtd")[3]).find('input[type=text]').val() == "Collected")
+			{
+				$("#PDDINIT").show();
+				break;
+			}
+		  }
+	  }
 	 }
 	 if(activityname=="OPS"){
 		 $("#RaiseQuery").show();
 	 }
 	 if(activityname=="PDD"){
-		 $("#Save").hide();
+		  $("#Save").hide();
 		 $("#SaveNxt").hide();
 		 $("#Submit").show();
 	 }
 
     $(document).on("click", ".FormSave", function() {
-		
+		if($(this).text() == "PDD Initialization"){
+		$("#PDDINIT").hide();
+		}
 		if($(this).text() == "Submit"){
 			var apprvCNTP=0;
 			var rejtCNTP=0;
@@ -84,7 +98,7 @@ $(document).ready(function() {
 				return;
 			}
 		}
-
+		
         var html = $(this).closest('.DYNROW')
         var tbl = $(this).attr("data-aria").split("|")[0];
         var prfx = $(this).attr("data-aria").split("|")[1];
@@ -94,7 +108,7 @@ $(document).ready(function() {
         if ($(this).text() == "Save & Next") {
             var MndtryChk = ChkMandatoryFlds(prfx + "Mndtry");
             if (MndtryChk == "Mandatory") {
-                alert("Fill the Mandatory Fields");
+                alert("Fill the Mandatory Fields / Document(s)");
                 return false;
             }
         }
@@ -157,6 +171,49 @@ $(document).ready(function() {
 		if ($(this).text() == "Submit") {
 			 $(location).attr('href',window.location.origin + "/TPLSW/ManagePDD")   
 		}
+		if ($(this).text() == "PDD Initialization") {
+			var oprslt = UI_getdata($("#PrcsID").val(), "", "", "", "", "LSW_SCHKHEFLOWANDPDDFLOWLINK");
+			if($(oprslt).find("FLG").text() == "N")
+			{
+				alert("PDD Flow has already been initated.")
+				return;
+			}
+			
+			
+			var Code="C013";
+		var NAME="WFINIT";
+		var initSP="LSW_SWFINITCALLALL_PDD";
+		
+		
+	 $.ajax({
+	       
+	        url: "/TPLSW/WFINITV1_NLY_INIT",
+	        //dataType: "json",
+	        data: {CODE : Code,NAME : NAME,prcsid : $("#PrcsID").val(),initSP :initSP,Prvnt : $("#Prvnt").val()},
+	        async: true,	      
+	        type: "POST",
+	        success: function(res) {
+	        		            	
+	        if	(res.split("~")[0] == "Workflow Initiated")
+	        	{
+					UI_getdata($("#PrcsID").val(), res.split("~")[1], $("#LogUsr").val(), "", "", "LSW_SHEFLOWANDPDDFLOWLINK");
+					
+					alert("PDD Flow Initiated, Once the Approver Approves, Document Will Be Marked as Collected")
+	        	}
+	        else
+	        	{
+	        	alert("Flow Initiation Failed");
+	        	}
+	            //console.log(res)
+	        },
+	        error: function(res) {
+	        	
+	        	alert("Flow Initiation Failed");
+	            }
+	    });
+		}
+		
+		
     });
     
     $(".OTCSTATUS").on('click', function() {
@@ -193,7 +250,31 @@ $(document).ready(function() {
     		}
 
     });
-		 $(document).on("click",".RaiseQry",function() {
+	$(document).on("click",".OOTDRADIOCHK",function(){
+		if(this.value=="Waiver" && $(this).closest('.tbodytrtd').next().find('input').val()=="")
+		{
+			$(this).prop("checked", false);
+			alert("Kindly fill the remarks")
+			return;
+		}
+		if(this.value=="Collected" && $($($(this).closest(".tbodytr")).find(".tbodytrtd")[14]).find("input[type=text]").val()=="")
+		{
+			$(this).prop("checked", false);
+			alert("Kindly upload the document")
+			return;
+		}
+		if(this.value=="Collected" && $($($(this).closest(".tbodytr")).find(".tbodytrtd")[15]).find("input[type=text]").val()!="Approve")
+		{
+			$(this).prop("checked", false);
+			alert("Initiate PDD Flow, Based on the Approval Collection will be Marked")
+			return;
+		}
+		if(this.value=="Collected" && $($($(this).closest(".tbodytr")).find(".tbodytrtd")[14]).find("input[type=text]").val()!="")
+		{
+			$("#PDDINIT").show();
+		}
+	});
+	$(document).on("click",".RaiseQry",function() {
 		 var op=UI_getdata("PDD",$("#PrcsID").val(),"PDD"+$($(this).closest('.tbodytr').find('.tbodytrtd')[8]).text(),"","","LSW_SCHKQURYRAISED")
 		if($(op).find("RESULT").text()=="ALLOW"){
 		var xml = UI_getdata("",$("#PrcsID").val(),$('#LogUsr').val(),$($(this).closest('.tbodytr').find('.tbodytrtd')[9]).text(),$($(this).closest('.tbodytr').find('.tbodytrtd')[8]).text(),"LSW_SGETQURYTYP");
@@ -256,4 +337,5 @@ $(document).ready(function() {
 			return;
 		}
 				});	
+
 });

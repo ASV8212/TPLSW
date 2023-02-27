@@ -2,11 +2,8 @@ package Controls;
 
 
 import CommonModel.*;
-import Integration.PosidexDedupe;
-
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -178,7 +175,7 @@ ActivityID = "No Data";
     return ProcessID +"~" + ActivityID;
   }
   
-  public static  String WFComplete(String Param1,String Param2,String Param3,String Param4,String Param5,String SPName) {
+  public static String WFComplete(String Param1,String Param2,String Param3,String Param4,String Param5,String SPName) {
 	  
 	    String DBSrc=null;    
 	    ArrayList<String> Data=new ArrayList<String>();
@@ -204,9 +201,6 @@ ActivityID = "No Data";
 	    String ProcessID = "No Data";
 	    String ActivityID = "No Data";
 	    String Referer="";
-	    String ActCode = "";
-	    
-	    JSONObject jsonObj = null;
 		
 		Connection con = DBConnection.getConnection(DBSrc);
 		PreparedStatement proc_stmt = null;
@@ -251,51 +245,10 @@ ActivityID = "No Data";
 
 		ErrorMsg = Reponse[1];
 		
-		System.out.println(Intrresponse.toString());
 		
-		System.out.println(ErrorMsg.toString());
+		JSONObject jsonObj = new JSONObject(Intrresponse.toString());
+		Status = jsonObj.getString("status");
 		
-		 if (ErrorMsg.equals ("Success"))
- 	     {
-		     jsonObj = new JSONObject(Intrresponse.toString());
- 	     }
-		 else
-		 {
-			 String ReHit[] = ErrorMsg.split("#");
-			 
-			 Intrresponse = ReHit[0];
-			 
-			 ActCode = ReHit[1];
-
-			 ErrorMsg = ReHit[2];
-			 
-			 jsonObj = new JSONObject(ErrorMsg.toString());
-			 
-			 if(jsonObj.getJSONObject("error").getString("code").equals("404") || jsonObj.getJSONObject("error").getString("code").equals("500"))
-			  	{
-					   System.out.println("Current Activity ID "+Param1);
-					   
-					ArrayList<String> NxtFlag = new ArrayList<String>();
-					
-					NxtFlag = GetDBData.Call(Param1,"", "", "", "", "LSW_SCHKNXTACTIVITY");
-			 	      String ActFlag = NxtFlag.get(0);
-			 	      
-			 	      System.out.println("Activity Recall Flag "+ActFlag);
-			 	      
-			 	     if (ActFlag.equals ("Y"))
-			 	     {
-				       new WFCall();
-				       Intrresponse=WFCall.WFComplete(Param1,Param2, Param3, Param4,Param5, SPName);
-			 	     }
-			  	}
-		 }
-		 
-		  System.out.println("Success OP "+jsonObj + Intrresponse);
-		  
-		  if (jsonObj.has("status")) {
-		      Status = jsonObj.getString("status");
-		  }
-
 		if (Status.equals ("completed"))
 		{
 			
@@ -484,15 +437,13 @@ ActivityID = "No Data";
 
 		ErrorMsg = Reponse[1];
 		
-     JSONObject jsonObj = new JSONObject(Intrresponse.toString());
-     Status = jsonObj.getString("result");
 		
+		JSONObject jsonObj = new JSONObject(Intrresponse.toString());
+		Status = jsonObj.getString("result");
 		
-     ArrayList<String> InsData = new ArrayList<String>();
-	 InsData = GetDBData.Call("FINALINSERT", Status, "", "", "", "LSW_SSTRACTIVITYLOG");
-		
-		  if(Status.equals ("true"))
-		  {
+		if (Status.equals ("true"))
+		{
+			
 			if (Intrresponse.contains("processId"))
 			{
 			

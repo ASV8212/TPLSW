@@ -183,6 +183,24 @@ function GridControlDetailPROVALU(popTableModPageGrid1,TableID,dtData,dtcolumn,h
 			
         } 
 		 }
+		 ,
+		 { targets: 5, "render": function ( data, type, row, meta ) {                            
+				
+			 var rowno = meta.row;		 
+		 		var HTML =	'<span><input type="radio" class="custom-control-input PVCSDBfields" value="Yes" id="PVCS_GEOGRAPHYES'+rowno+'" name="PVCS_GEOGRAPH'+rowno+'"><label class="custom-control-label" for="PVCS_GEOGRAPHYES'+rowno+'">Yes</label>';			 
+		 		HTML = HTML + '<input type="radio" class="custom-control-input PVCSDBfields" value="No" id="PVCS_GEOGRAPHNO'+rowno+'" name="PVCS_GEOGRAPH'+rowno+'"><label class="custom-control-label" for="PVCS_GEOGRAPHNO'+rowno+'">No</label></span>';			  
+		 		
+		 		var htmldata = $(HTML);
+					
+					$(htmldata).find('[name=PVCS_GEOGRAPH'+rowno+'][value="'+data+'"]').attr('checked', 'checked');
+
+					//alert($(htmldata).find('[name=OKYD_DOCSTATUS'+rowno+'][value="'+data+'"]').length)
+					//alert(htmldata[0].outerHTML);
+					
+	        	return htmldata[0].outerHTML;      		
+			
+        } 
+		 }
 
     	   ],
 

@@ -4,6 +4,14 @@ $(document).ready(function () {
 	$("#FOGS_SCHEMENAME").attr("value",$(".FormPageMultiTab li.active").text());
 	
     $("#FOGS_PRCSID").attr("value", $("#PrcsID").val());
+	if($("#VERTICAL").val()=="MSME Alliance")
+	 {
+		 $(".ALLI").show()
+	 }
+	 else
+	 {
+		 $(".ALLI").hide()
+	 }
 
 	FormDataFromDB("LSW_TFOIRGST","FOGS_","FOGSDBfields", "");
 	
@@ -22,7 +30,7 @@ $(document).ready(function () {
 			
 			if(MndtryChk == "Mandatory")
 				{
-				alert("Fill the Mandatory Fields");
+				alert("Fill the Mandatory Fields / Document(s)");
 				return false;
 				}
 			}

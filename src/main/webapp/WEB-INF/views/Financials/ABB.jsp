@@ -31,40 +31,54 @@
                         <label class="mdb-main-label BTxt9">Number of Bank accounts considered for eigibiity<span class="MndtryAstr"></span></label>
                      </div>
                   </div>
+				  
+				   <div class="col-md-4">
+                     <div class="md-form">
+                        <select class="mdb-select md-form colorful-select dropdown-primary  SABBDBfields"  onchange="BANKSUMAVG();" id="SABB_BANKMONTHS" name="SABB_BANKMONTHS">
+                           <option value="" selected>--Select--</option>
+						   <option value="6 Month">6 Month</option>
+                           <option value="12 Month">12 Month</option>
+                          
+                        </select>
+                        <label class="mdb-main-label BTxt9">Banking Months<span class="MndtryAstr"></span></label>
+                     </div>
+                  </div>
 				  <div class="col-md-4">
                      <div class="md-form">
                         <input type="text" id="SABB_SUMAVG" disabled  maxlength="200"  class="form-control   IsCURCommaFields IsNumberFields NoSpecialChar  SABBDBfields " name="SABB_SUMAVG">
                         <label for ="SABB_SUMAVG" class="">Sum of Averages <span class="MndtryAstr"></span></label>
                      </div>
                   </div>
+				    </div>
+			   <div class="form-row ">
 				  <div class="col-md-4">
                      <div class="md-form">
                         <input type="text" id="SABB_MONTHABB"  disabled maxlength="200"  class="form-control   IsCURCommaFields IsNumberFields NoSpecialChar  SABBDBfields " name="SABB_MONTHABB">
                         <label for ="SABB_MONTHABB" class="">Monthly ABB<span class="MndtryAstr"></span></label>
                      </div>
                   </div>
-               </div>
-			   <div class="form-row ">
                   <div class="col-md-4">
                      <div class="md-form">
-                        <input type="text" id="SABB_TOTCREBANKACC"  onblur="SUBTRACTIONAMOUNT(); PERNONBUSINESS()"  maxlength="200"  class="form-control   IsCURCommaFields IsNumberFields NoSpecialChar  SABBDBfields " name="SABB_TOTCREBANKACC">
+                        <input type="text" id="SABB_TOTCREBANKACC" disabled onblur="SUBTRACTIONAMOUNT(); PERNONBUSINESS()"  maxlength="200"  class="form-control   IsCURCommaFields IsNumberFields NoSpecialChar  SABBDBfields " name="SABB_TOTCREBANKACC">
                         <label for ="SABB_TOTCREBANKACC" class="">Total credit summation in Bank Account<span class="MndtryAstr"></span></label>
                      </div>
                   </div>
 				  <div class="col-md-4">
                      <div class="md-form">
-                        <input type="text" id="SABB_BUSINCRESUM"  onblur="SUBTRACTIONAMOUNT();PERNONBUSINESS(); AJUSTABB();" maxlength="200"  class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar SABBDBfields  " name="SABB_BUSINCRESUM">
+                        <input type="text" id="SABB_BUSINCRESUM" disabled onblur="SUBTRACTIONAMOUNT();PERNONBUSINESS(); AJUSTABB();" maxlength="200"  class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar SABBDBfields  " name="SABB_BUSINCRESUM">
                         <label for ="SABB_BUSINCRESUM" class="">Total non-business credit summation<span class="MndtryAstr"></span></label>
                      </div>
                   </div>
-                  <div class="col-md-4">
-                     <div class="md-form">
-                        <input type="text" id="SABB_REVBUSICRESUM"  disabled  maxlength="200" class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar SABBDBfields" name="SABB_REVBUSICRESUM">
-                        <label for ="SABB_REVBUSICRESUM" class="">Revised Credit Summation (Business)<span class="MndtryAstr"></span></label>
+				  
+				   </div>
+              <div class="form-row ">
+				  <div class="col-md-4">
+					<div class="md-form">
+                        <input type="text" id="SABB_ADJUSTCRESUM"  disabled  maxlength="200" class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar SABBDBfields" name="SABB_ADJUSTCRESUM">
+                        <label for ="SABB_ADJUSTCRESUM" class="">Total Adjusted Credit Summation (Business)<span class="MndtryAstr"></span></label>
                      </div>
                   </div>
-			  </div>
-              <div class="form-row ">
+			 
 				  <div class="col-md-4">
                      <div class="md-form">
                         <input type="text" id="SABB_PRCNONSUM"  disabled maxlength="200"  class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar  SABBDBfields "  name="SABB_PRCNONSUM">
@@ -77,14 +91,61 @@
                         <label for ="SABB_ADJUCTABB" class="">Adjusted ABB <span class="MndtryAstr"></span></label>
                      </div>
                   </div>
-                  <div class="col-md-4">
+				    </div> 
+				<div class="form-row ">
+				  <div class="col-md-4">
+					<div class="md-form">
+                        <input type="text" id="SABB_CRDSUMFIRST3"  disabled  maxlength="200" class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar SABBDBfields" name="SABB_CRDSUMFIRST3">
+                        <label for ="SABB_CRDSUMFIRST3" class="">Credit Summation in first three months (C1)<span class="MndtryAstr"></span></label>
+                     </div>
+                  </div>
+			 
+				  <div class="col-md-4">
+                     <div class="md-form">
+                        <input type="text" id="SABB_CRDSUMLAST3"  disabled maxlength="200"  class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar  SABBDBfields "  name="SABB_CRDSUMLAST3">
+                        <label for ="SABB_CRDSUMLAST3" class="">Credit Summation in last three months (C2)<span class="MndtryAstr"></span></label>
+                     </div>
+                  </div>
+				  <div class="col-md-4">
+                     <div class="md-form">
+                        <input type="text" id="SABB_VARIANCE"  disabled onblur="FINALABB();  " maxlength="200"  class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar SABBDBfields  " name="SABB_VARIANCE">
+                        <label for ="SABB_VARIANCE" class="">Variance<span class="MndtryAstr"></span></label>
+                     </div>
+                  </div>
+				    </div>
+				<div class="form-row ">
+				  <div class="col-md-4">
+                     <div class="md-form">
+                        <select class="mdb-select md-form colorful-select dropdown-primary SABBDBfields MULTIDIS" onchange="Revisedcreditsum();" id="SABB_VARMULTI" name="SABB_VARMULTI">
+                           <option value="" selected>--Select--</option>
+						   <option value="125">125</option>
+                           <option value="135">135</option>
+						   <option value="150">150</option>
+                        </select>
+					 <label for ="SABB_VARMULTI" class="">Select multiplier<span class="MndtryAstr"></span></label>
+                     </div>
+                  </div>
+				  <div class="col-md-4">
+                     <div class="md-form">
+                        <input type="text" id="SABB_REVBUSICRESUM"  disabled  maxlength="200" class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar SABBDBfields" name="SABB_REVBUSICRESUM">
+                        <label for ="SABB_REVBUSICRESUM" class="">Revised Credit Summation (Business)<span class="MndtryAstr"></span></label>
+                     </div>
+                  </div>
+				  <div class="col-md-4">
+                     <div class="md-form">
+                        <input type="text" id="SABB_TOTEXISTOBLI" maxlength="200" class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar SABBDBfields" name="SABB_TOTEXISTOBLI">
+                        <label for ="SABB_TOTEXISTOBLI" class="">Total Existing Obligation<span class="MndtryAstr"></span></label>
+                     </div>
+                  </div>
+				  
+				    </div>       
+               <div class="form-row ">
+			   <div class="col-md-4">
                      <div class="md-form">
                         <input type="text" id="SABB_EMILASTSIXMONTH"   onblur="FINALABB();" maxlength="200"  class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar  SABBDBfields "  name="SABB_EMILASTSIXMONTH">
                         <label for ="SABB_EMILASTSIXMONTH" class="">EMI of Loan takenwithin last  6 months<span class="MndtryAstr"></span></label>
                      </div>
                   </div>
-			   </div>       
-               <div class="form-row ">
 				  <div class="col-md-4">
                      <div class="md-form">
                         <input type="text" id="SABB_EMICLOSIXMONTH"  onblur="FINALABB();" maxlength="200"  class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar SABBDBfields  " name="SABB_EMICLOSIXMONTH">
@@ -97,7 +158,11 @@
                         <label for ="SABB_FINALABB" class="">Final ABB for eligibility <span class="MndtryAstr"></span></label>
                      </div>
                   </div>
-                  <div class="col-md-4">
+				  
+				  </div>  
+				  
+				<div class="form-row" >
+					<div class="col-md-4">
                      <div class="md-form">
                         <input type="text" id="SABB_EMIPAIDSIXMONTH"  onblur="GetEmiperlakh(); GetMaxEmi();" maxlength="200" class="form-control  IsCURCommaFields IsNumberFields NoSpecialChar  SABBDBfields " name="SABB_EMIPAIDSIXMONTH">
                         <label for ="SABB_EMIPAIDSIXMONTH" style="word-wrap: break-word;" class="">EMI Paid in the last 12 months (of Loan EMI Vintage of 12 months or more)<span class="MndtryAstr"></span></label>

@@ -65,13 +65,13 @@
                </div>
                <div class="col-md-4">
                   <div class="md-form">
-                    <input type="text" id="TVPI_CITY" disabled name="TVPI_CITY" class="form-control TVPIMndtry SMADDR TVPIDBfields">
+                    <input type="text" id="TVPI_CITY" disabled name="TVPI_CITY" class="form-control TVPIMndtry SMADDR NoSpecialChar TVPIDBfields">
                     <label for="TVPI_CITY" class="">City<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="md-form">
-                     <input type="text" id="TVPI_STATE" disabled  name="TVPI_STATE" class="form-control TVPIMndtry SMADDR TVPIDBfields">
+                     <input type="text" id="TVPI_STATE" disabled  name="TVPI_STATE" class="form-control TVPIMndtry SMADDR NoSpecialChar TVPIDBfields">
                      <label for="TVPI_STATE" class="">State<span class="MndtryAstr">*</span></label>
                   </div>
                </div>
@@ -79,7 +79,7 @@
            <div class="form-row">
               <div class=" col-md-12">
                   <div class="md-form">
-                    <input type="text" id="TVPI_LANDMARK" name="TVPI_LANDMARK" class="form-control NoSpecialChar TVPIMndtry SMADDR TVPIDBfields">
+                    <input type="text" id="TVPI_LANDMARK" name="TVPI_LANDMARK" class="form-control  TVPIMndtry SMADDR AddrNoSpecialChar TVPIDBfields">
                     <label for="TVPI_LANDMARK" class="">LandMark<span class="MndtryAstr">*</span></label>
                  </div>
              </div>
@@ -115,17 +115,70 @@
                </div>
                <div class="col-md-4">
                   <div class="md-form">
-                    <input type="text" id="TVPI_CITY1" name="TVPI_CITY1" class=" SMDOC form-control SMADDR TVPIDBfields">
+                    <input type="text" id="TVPI_CITY1" name="TVPI_CITY1" class=" SMDOC form-control NoSpecialChar SMADDR TVPIDBfields">
                     <label for="TVPI_CITY1" class="ADDR">City<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="md-form">
-                   <input type="text" id="TVPI_STATE1" maxlength=""  name="TVPI_STATE1" class="form-control SMDOC SMADDR TVPIDBfields ">
+                   <input type="text" id="TVPI_STATE1" maxlength=""  name="TVPI_STATE1" class="form-control SMDOC NoSpecialChar SMADDR TVPIDBfields ">
                     <label for="TVPI_STATE1" class="ADDR">State<span class="MndtryAstr"></span></label>
                   </div>
                </div>
           </div>  
+		  <div class="form-row">
+		  <div class="col-md-6">
+                    <div class="col Btxt10">Uploaded Security Documents</div>
+                     <div data-for="BankDetail1" class="BankDetail1"> 
+                     </div>
+                     <div class="DynamicPageGrid" data-val="PROPTXTHDR|" id="BankDetail1" style="display:none">
+                        <div data-row="" class="card-body px-lg-5 pt-0 DYNROW">
+                           </br>
+                           <input type="text" id="PRDO_PRCSID" hidden="hidden" name="PRDO_PRCSID" value="" class="form-control PRDODBfields">
+                           <input type="text" id="PRDO_ACTIVITYID" hidden="hidden" name="PRDO_ACTIVITYID" class="form-control PRDODBfields">
+                           <input type="text" id="PRDO_DTCREATED" hidden="hidden" name="PRDO_DTCREATED" class="form-control PRDODBfields">
+                           <input type="text" id="PRDO_CREATEDBY" hidden="hidden" name="PRDO_CREATEDBY" class="form-control PRDODBfields">
+                           <input type="text" id="PRDO_DTMODIFIED" hidden="hidden" name="PRDO_DTMODIFIED" class="form-control PRDODBfields">
+                           <input type="text" id="PRDO_MODIFIEDBY" hidden="hidden" name="PRDO_MODIFIEDBY" class="form-control PRDODBfields">
+                           <input type="text" id="PRDO_PROPNUM" hidden="hidden" name="PRDO_PROPNUM" class="form-control PRDODBfields">
+						   <div class="form-row">
+                              <div class="col">
+                                 <div class="md-form " >
+                                    <table>
+                                       <tr>
+                                          <td>
+                                             <div id="PRDO_DOCUMENTUPLOAD"  class="file-field" style="display:none">
+                                                <a class="">
+                                                <i class="fa fa-plus imgAdd" aria-hidden=""></i>
+                                                <input type="file"  name="datafile" onchange="DocFldUpldHndlr_V1(this,'PRDO_DOCUMENT'+$(this).closest('.DYNROW').attr('data-row'),'PRDO_DOCUMENT','PDDetails','PDDate','PD',$(this).closest('.DYNROW'))" class="PRDO_DOCUMENT"  >
+                                                </a>
+                                                <input type="text" id="PRDO_DOCUMENT" hidden="hidden" data-Validate="PRDO_DOCUMENT"  name="PRDO_DOCUMENT" class="form-control File PRDODBfields PRDOMndtry">
+                                                <span class="name">Upload Documents</span> 
+                                             </div>
+                                          </td>
+                                          <div class="md-form" >
+                                             <div class="md-form Formcol-mdLR">
+                                                
+												 <div class="PRDO_DOCUMENT"> 
+												 <img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW" 
+                                                onclick="GrdDocDwnld('PRDO_DOCUMENT'+$(this).closest('.DYNROW').attr('data-row'))" class="rounded" 
+                                                alt="Cinque Terre" width="35" height="25">
+												</div>
+                                             </div>
+                                          </div>
+                                       </tr>
+                                    </table>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="HyperControls form-row" style="display:none" >
+                        <a onclick="AddPageMultiData('',$('#PRDO_PRCSID').val(),$('#LPDT_PROPERTYNO').val(),'BankDetail1','PRDODBfields');" class="Btxt4 FltRight ADDBTN "  href="#">+ Add</a>
+                        <!-- <a class="Btxt4" id="AuditTrail" href="#">Audit Trail</a> -->
+                     </div>
+                  </div>
+				  </div>
            <div class="form-row">
         		<div class="col Btxt10">TECHNICAL VALUATION DETAILS</div>
         		<!--<div class="col Btxt14 TxtRight">Note: All the OSV needs to be done by employee only</div> -->
@@ -270,7 +323,22 @@
                </div>   
             </div> 
                   <div class="form-row ">
-             <div class="col-md-12">     
+				  <div class="col-md-4">
+                 <div class="md-form">
+                  <select class="mdb-select md-form colorful-select dropdown-primary TVPIMndtry TVPIDBfields" id="TVPI_PROPOCCUPBY" name="TVPI_PROPOCCUPBY">
+                  	<option value="" selected>--Select--</option>
+                  	<option value="Tenant">Tenant</option>
+                  	<option value="Self">Self</option>
+					<option value="Vacant">Vacant</option>
+					<option value="Self cum Tenant">Self cum Tenant</option>
+	               </select>
+				<label class="mdb-main-label BTxt9"> Property Occupied by<span class="MndtryAstr">*</span></label>
+             </div>
+            </div>  
+				  
+				  
+				  
+             <div class="col-md-8">     
       <div class="md-form">
           <div class="select-radio"> 
     <div class="custom-control custom-radio custom-control-inline">
@@ -357,11 +425,47 @@
     </div> 
 	
 	
+	
+	<div class="form-row">
+        <div class="col-md-2">
+           <div class="md-form">
+              <label class="">Total Construction<span class="MndtryAstr"></span></label>
+           </div>
+        </div>
+        <div class="col-md-2">
+           <div class="md-form">
+            <input type="text" id="TVPI_CONSASPERDOC" maxlength="30" disabled name="TVPI_CONSASPERDOC" class="form-control DOCU DSVLBL IsCURCommaFields IsNumberFields NoSpecialChar TVPIDBfieldS">
+            </div>
+        </div>
+        <div class="col-md-2">
+           <div class="md-form">
+              <input type="text" id="TVPI_CONSASPERACTUAL" maxlength="30" disabled name="TVPI_CONSASPERACTUAL" class="form-control IsCURCommaFields DSVLBL IsNumberFields NoSpecialChar TVPIDBfieldS">
+           </div>
+        </div>
+        <div class="col-md-2">
+           <div class="md-form">
+             <input type="text" id="TVPI_CONSAREACONS" maxlength="30" disabled name="TVPI_CONSAREACONS" class="form-control DSVLBL IsCURCommaFields IsNumberFields NoSpecialChar TVPIDBfieldS">
+           </div>
+        </div>
+         <div class="col-md-2">
+           <div class="md-form">
+            <input type="text" id="TVPI_CONSASPERRATE"  maxlength="30" disabled name="TVPI_CONSASPERRATE" class="form-control DSVLBL IsCURCommaFields IsNumberFields NoSpecialChar TVPIDBfieldS">
+            </div>
+        </div>
+        <div class="col-md-2">
+           <div class="md-form">
+              <input type="text" id="TVPI_CONSTOTVAL" maxlength="30" disabled name="TVPI_CONSTOTVAL" class="form-control DSVLBL IsCURCommaFields IsNumberFields NoSpecialChar TVPIDBfieldS">
+           </div>
+        </div>
+    </div> 
+	
+	
+	
 	    <div class="form-row">
          <div class="col-md-12">
            <div class="md-form">
              <div class="HyperControls"> 
-                  <a type="button" class="Btxt4 FltRight" data-toggle="modal" id="AddAMENTIES" data-target="#AddAMENTIESModal" href="#">+ Add Amenities</a>
+                  <a type="button" class="Btxt4 FltRight " data-toggle="modal" id="AddAMENTIES" data-target="#AddAMENTIESModal" href="#">+ Add Amenities</a>
              </div>
           </div>
       </div>
@@ -382,45 +486,14 @@
         </div>
         <div class="col-md-4">
            <div class="md-form">
-            <input type="text" id="TVPI_AMENTIESVAL" maxlength="10" disabled name="TVPI_AMENTIESVAL" class="form-control DOCU DSVLBL IsCURCommaFields IsNumberFields TVPIDBfieldS">
+            <input type="text" id="TVPI_AMENTIESVAL" maxlength="30" disabled name="TVPI_AMENTIESVAL" class="form-control DOCU DSVLBL IsCURCommaFields NoSpecialChar IsNumberFields TVPIDBfieldS">
             </div>
         </div>
          <div class="col-md-4">
          </div>
         </div>
 	
-    <div class="form-row">
-        <div class="col-md-2">
-           <div class="md-form">
-              <label class="">Total Construction<span class="MndtryAstr"></span></label>
-           </div>
-        </div>
-        <div class="col-md-2">
-           <div class="md-form">
-            <input type="text" id="TVPI_CONSASPERDOC" maxlength="10" disabled name="TVPI_CONSASPERDOC" class="form-control DOCU DSVLBL IsCURCommaFields IsNumberFields TVPIDBfieldS">
-            </div>
-        </div>
-        <div class="col-md-2">
-           <div class="md-form">
-              <input type="text" id="TVPI_CONSASPERACTUAL" maxlength="10" disabled name="TVPI_CONSASPERACTUAL" class="form-control IsCURCommaFields DSVLBL IsNumberFields TVPIDBfieldS">
-           </div>
-        </div>
-        <div class="col-md-2">
-           <div class="md-form">
-             <input type="text" id="TVPI_CONSAREACONS" maxlength="10" disabled name="TVPI_CONSAREACONS" class="form-control DSVLBL IsCURCommaFields IsNumberFields TVPIDBfieldS">
-           </div>
-        </div>
-         <div class="col-md-2">
-           <div class="md-form">
-            <input type="text" id="TVPI_CONSASPERRATE"  maxlength="10" disabled name="TVPI_CONSASPERRATE" class="form-control DSVLBL IsCURCommaFields IsNumberFields TVPIDBfieldS">
-            </div>
-        </div>
-        <div class="col-md-2">
-           <div class="md-form">
-              <input type="text" id="TVPI_CONSTOTVAL" maxlength="10" disabled name="TVPI_CONSTOTVAL" class="form-control DSVLBL IsCURCommaFields IsNumberFields TVPIDBfieldS">
-           </div>
-        </div>
-    </div> 
+    
     <div class="form-row">
          <div class="col-md-3">
         		<div class="col Btxt10">Total Estimate Value</div>
@@ -452,10 +525,10 @@
         </div> 
         <div class="col-md-4">
               <div class="md-form">
-                    <input type="text" id="TVPI_PROPINS" onchange="CheckPropIns();" maxlength="30" name="TVPI_PROPINS"  class="form-control NoSpecialChar TVPIMndtry IsCURCommaFields IsNumberFields TVPIDBfields">
-                    <label for="TVPI_PROPINS" class="">Property Insurance<span class="MndtryAstr">*</span></label>
+                    <input type="text" id="TVPI_PROPINS" maxlength="30" onchange="CheckPropIns();" name="TVPI_PROPINS" class="form-control NoSpecialChar TVPIMndtry IsCURCommaFields IsNumberFields TVPIDBfields">
+                    <label for="TVPI_PROPINS" class="">Property Insurance Value<span class="MndtryAstr">*</span></label>
              </div>
-        </div>  		
+        </div>		
     </div>  
     <div class="form-row">
        <div class="col Btxt10">CONSTRUCTION STAGE</div>
@@ -473,13 +546,13 @@
        </div>
        <div class="col-md-4">
             <div class="md-form">
-                 <input type="text" id="TVPI_PERCOMPLETED" maxlength="3"  data-field="TVPI_PERCOMPLETED|" name="TVPI_PERCOMPLETED" class="form-control NoSpecialChar TVPIMndtry IsPercentageFld IsNumberFields TVPIDBfields">
+                 <input type="text" id="TVPI_PERCOMPLETED" maxlength="5"  data-field="TVPI_PERCOMPLETED|" name="TVPI_PERCOMPLETED" class="form-control NoSpecialChar TVPIMndtry IsPercentageFld IsNumberFields TVPIDBfields">
                  <label for="TVPI_PERCOMPLETED" class="">Percentage Completed<span class="MndtryAstr">*</span></label>
              </div>
        </div>   
         <div class="col-md-4">
             <div class="md-form">
-                <input type="text" id="TVPI_ADDICONSSITE" maxlength="3" name="TVPI_ADDICONSSITE" data-field="TVPI_ADDICONSSITE|"  class="form-control NoSpecialChar  IsPercentageFld IsNumberFields TVPIDBfields">
+                <input type="text" id="TVPI_ADDICONSSITE" maxlength="5" onchange="Chkconsper();" name="TVPI_ADDICONSSITE" data-field="TVPI_ADDICONSSITE|"  class="form-control NoSpecialChar  IsPercentageFld IsNumberFields TVPIDBfields">
                 <label for="TVPI_ADDICONSSITE" class="">Additional Construction at Site (in %)<span class="MndtryAstr"></span></label>
             </div>
        </div>    
@@ -487,34 +560,44 @@
   <div class="form-row">
        <div class="col-md-4">
             <div class="md-form">
-               <input type="text" id="TVPI_RECMDISBAMT" maxlength="10" onchange="DisburseAmtChk('TVPI_RECMDISBAMT')" name="TVPI_RECMDISBAMT" maxlength="10" class="form-control  TVPIDBfields NoSpecialChar IsNumberFields IsCURCommaFields ">
-               <label for="TVPI_RECMDISBAMT" class="">Disbursement Recommended Amount (Rs.)<span class="MndtryAstr">*</span></label>
+               <input type="text" id="TVPI_RECMDISBAMT" maxlength="30" onchange="DisburseAmtChk('TVPI_RECMDISBAMT')" name="TVPI_RECMDISBAMT" class="form-control  TVPIDBfields NoSpecialChar IsNumberFields IsCURCommaFields ">
+               <label for="TVPI_RECMDISBAMT" class="">Disbursement Recommended Amount (Rs.)<span class="MndtryAstr"></span></label>
             </div>
        </div>
  </div>
  <div class="form-row">
-    <div class=" col-md-12">
+    <div class=" col-md-4">
          <div class="md-form">
-             <input type="text" id="TVPI_OVERALLREMARK" name="TVPI_OVERALLREMARK" class="form-control TVPIMndtry TVPIDBfields">
+             <input type="text" id="TVPI_OVERALLREMARK" maxlength="300"   name="TVPI_OVERALLREMARK" class="form-control TVPIMndtry AddrNoSpecialChar  TVPIDBfields">
              <label for="TVPI_OVERALLREMARK" class="">Overall Remarks<span class="MndtryAstr">*</span></label>
          </div>
+   </div>
+   <div class="col-md-4">
+   		<div class="md-form">
+			<select  class="mdb-select md-form colorful-select dropdown-primary NoSpecialChar TVPIDBfields TVPIMndtry" id="TVPI_PROPSTATUS" name="TVPI_PROPSTATUS">
+				<option value="" selected>--Select--</option>
+                    <option value="Positive">Positive</option>
+                    <option value="Negative">Negative</option>				
+            </select>
+              <label class="mdb-main-label BTxt9">Status<span class="MndtryAstr">*</span></label>
+   		</div>
    </div>
 </div>     
  <div class="form-row ">
      <div class="col-md-4">
                   <div class="md-form">
-                    <input type="text" id="TVPI_LATTITUTE" maxlength="10" name="TVPI_LATTITUTE" class="form-control TVPIDBfields">
+                    <input type="text" id="TVPI_LATTITUTE" maxlength="10" name="TVPI_LATTITUTE" class="form-control NoSpecialChar TVPIDBfields">
                     <label for="TVPI_LATTITUTE" class="">Lattitude<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
                   <div class="col-md-4">
                   <div class="md-form">
-                    <input type="text" id="TVPI_LONGITUDE" maxlength="10" name="TVPI_LONGITUDE" class="form-control TVPIDBfields">
+                    <input type="text" id="TVPI_LONGITUDE" maxlength="10" name="TVPI_LONGITUDE" class="form-control NoSpecialChar TVPIDBfields">
                     <label for="TVPI_LONGITUDE" class="">Longitude<span class="MndtryAstr"></span></label>
                   </div>
                 </div>   
           <div class="col-md-4">
-          <label class="">Upload Document<span class="MndtryAstr">*</span></label>
+          <label class="">Upload Report<span class="MndtryAstr">*</span></label>
           <div class="md-form">
      <div>
     <table>
@@ -532,7 +615,7 @@
     </tr>
    </table>
   </div> 
-    <div class="TVPI_ATTACHMENT" style="display:none"> <img src="ThemeproLO/Common/Images/UploadImg.png" onclick="ReuploadFile(TVPI_ATTACHMENT);" title="UPLOAD"  class="rounded" alt="Cinque Terre" width="20" height="20">  <img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW"  class="rounded" onclick="GrdDocDwnld('TVPI_ATTACHMENT')" alt="Cinque Terre" width="35" height="25"> </div> 
+    <div class="TVPI_ATTACHMENT" style="display:none"> <img src="ThemeproLO/Common/Images/UploadImg.png" onclick="ReuploadFile(TVPI_ATTACHMENT);" title="UPLOAD"  class="rounded Reuplod" alt="Cinque Terre" width="20" height="20">  <img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW"  class="rounded" onclick="GrdDocDwnld('TVPI_ATTACHMENT')" alt="Cinque Terre" width="35" height="25"> </div> 
       </div>      
         </div>    
             </div>
@@ -549,7 +632,7 @@
 			</div>
                 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="TVPI_SPECIFYDEVI" maxlength="25" name="TVPI_SPECIFYDEVI" class="form-control NoSpecialChar  TVPIDBfields">
+                    <input type="text" id="TVPI_SPECIFYDEVI" maxlength="100" name="TVPI_SPECIFYDEVI" class="form-control AddrNoSpecialChar TVPIDBfields">
                     <label for="TVPI_SPECIFYDEVI" class="">If, Yes Specify the Deviation<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
@@ -568,15 +651,15 @@
                       <label class="mdb-main-label BTxt9" >Min Area norm Met<span class="MndtryAstr">*</span></label>
                    </div>
 			    </div>
-             </div> 
-			 <div class="form-row">
+             </div>
+             <div class="form-row">
 			    <div class=" col-md-4">
                   <div class="md-form">
                     <input type="text" id="TVPI_MLTITENANT" maxlength="3" onchange="ChkMultiTenant(this)" name="TVPI_MLTITENANT" class="form-control NoSpecialChar TVPIMndtry IsNumberFields  TVPIDBfields">
                     <label for="TVPI_MLTITENANT" class="">Multi Tenant<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
-			</div>
+			</div>			 
              <div class="form-row">
                  <div class="col d-flex justify-content-center">
                      <button type="button" id="Save1" data-aria="LSW_TECHVALPROINF|TVPI|TVPI_ALTERPROREFID"  class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   

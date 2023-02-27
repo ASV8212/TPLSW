@@ -1,5 +1,50 @@
 $(document).ready(function () {
+
+$($('.AFormaccordion')[0]).click();
+
+	/* var result=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHECKSECURITY");
+	var chk=$(result).find("RESULT").text();
+	 
+	if(chk=='Y')	
+	{
+		$(".PROPERTY").show()
+	}
+	else
+	{
+		$(".PROPERTY").hide()
+	} */	
+	/* 
+	var result=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHKSECURITYNDTYPE");
+	var chksec=$(result).find("RESULT").text();
+	var chkval=$(result).find("VALUATION").text(); 
+	var chkleg=$(result).find("LEGAL").text(); 
 	
+	if(chksec=='Y')	
+	{
+		$(".PROPERTY").show();	
+		$(".LEGAL").show();		
+	}
+	else
+	{
+		$(".PROPERTY").hide();
+		$(".LEGAL").hide();
+	}	
+	if(chkval=='Y')
+	{
+		$(".PROPERTY").show();
+	}
+	else{
+		$(".PROPERTY").hide();
+	}
+	if(chkleg=='Y')
+	{
+		$(".LEGAL").show();
+	}
+	else{
+		$(".LEGAL").hide();
+	}
+	
+	 */
 
 //	FormDataFromDB("LSW_TDEDUBEDETAILS","DEDE_","DEDEDBfields", "");
 	
@@ -19,7 +64,6 @@ $(document).ready(function () {
    	var row = $("." + ValuationID).find(".DYNROW").length;
    	for (i=0;i<row;i++){
    		var HTML =	 $("." + ValuationID).find(".DYNROW")[i];
-
    		{   
             
    			var buttonname=$(HTML).find("[name='REPT_ACTION']").val()
@@ -86,9 +130,8 @@ $(document).ready(function () {
 	   	var ValuationID=DATA[j].split("|")[0];
 	   	var row = $("." + ValuationID).find(".DYNROW").length;
 	   	for (i=0;i<row;i++){
-	   		var HTML =	 $("." + ValuationID).find(".DYNROW")[i];
-
-	   		{   
+	   		var HTML =$("." + ValuationID).find(".DYNROW")[i];
+	   		  {   
 	            
 	   			var buttonname=$(HTML).find("[name='PROP_TECHIACTION']").val()
 	   			$(HTML).find("[name='PROP_TECHIACTIONBTN']").text(buttonname)
@@ -184,6 +227,37 @@ $(document).ready(function () {
 		   	       }
 	  
 	   		}
+			
+			
+	var result=UI_getdata($("#PrcsID").val(),$(HTML).find("[name='PROP_PROPERTYNO']").val(),"","","","LSW_SCHKSECURITYNDTYPE");
+	var chksec=$(result).find("RESULT").text();
+	var chkval=$(result).find("VALUATION").text(); 
+	var chkleg=$(result).find("LEGAL").text(); 
+	if(chksec=='Y')	
+	{
+		$(HTML).find(".PROPERTY").show();	
+		$(HTML).find(".LEGAL").show();		
+	}
+	else
+	{
+		$(HTML).find(".PROPERTY").hide();
+		$(HTML).find(".LEGAL").hide();
+	}	
+	if(chkval=='Y')
+	{
+		$(HTML).find(".PROPERTY").show();
+	}
+	else{
+		$(HTML).find(".PROPERTY").hide();
+	}
+	if(chkleg=='Y')
+	{
+		$(HTML).find(".LEGAL").show();
+	}
+	else{
+		$(HTML).find(".LEGAL").hide();
+	}
+	
 	   	}
 	     }
 	   
@@ -231,7 +305,7 @@ if($("#REPT_RCUSTATUS").val()=="Completed")
 			
 			if(MndtryChk == "Mandatory")
 				{
-				alert("Fill the Mandatory Fields");
+				alert("Fill the Mandatory Fields / Document(s)");
 				return false;
 				}
 			}

@@ -29,9 +29,14 @@
         	<div class="col Btxt10">TurnOver Method - originally suggested by Nayak Committee for SSI units</div>
         </div>
       	</br>
+		
+		 
+		 <div class="form-row">
+        	<div class="col Btxt10" style="color: rgb(255, 0, 0);">Details to be entered in actuals (Rs)</div>
+        </div>
        <div class="form-row">
            <div class="col">
-             <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table5',{spname:'LSW_STURNOVERII',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#TGST_SCHEMEID').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||3,4','TRNOVERII');" id="BTNTRNOVERIIGRD" name="BTNTRNOVERIIGRD" />
+             <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table5',{spname:'LSW_STURNOVERII',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#TGST_SCHEMEID').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||2,3,4','TRNOVERII');" id="BTNTRNOVERIIGRD" name="BTNTRNOVERIIGRD" />
              <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display DataGrid" id="Table5">
              </table>
            </div>
@@ -39,7 +44,7 @@
 			</br>
 				   
 				  </br>
-                  <div class="form-row">
+                  <div class="form-row"style="display:none">
                      <div class="col d-flex justify-content-center">
                         <button type="button" id="Save" data-aria="LSW_TTURNOVERGST|TGST|TGST_SCHEMEID" class="btn btn-Syeloutline waves-effect waves-light Save FormSave">Save</button>   
                       <!--  <button type="button" data-aria="LSW_TTAKEOVERUBL|TGST" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> -->

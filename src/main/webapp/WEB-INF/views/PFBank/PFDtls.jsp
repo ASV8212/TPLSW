@@ -59,8 +59,10 @@
         	   <input type="text" id="PFDT_STATE" hidden="hidden" name="PFDT_STATE" class="form-control PFDTDBfields">
         	<input type="text" id="PFDT_CITY" hidden="hidden" name="PFDT_CITY" class="form-control PFDTDBfields">
         	<input type="text" id="PFDT_ACCOUNTNO" hidden="hidden" name="PFDT_ACCOUNTNO" class="form-control PFDTDBfields">
-        	 <input type="text" id="PFDT_SMSVARIFY" hidden="hidden" name="PFDT_SMSVARIFY" class="form-control PFDTDBfields">
+			
+			<input type="text" id="PFDT_SMSVARIFY" hidden="hidden" name="PFDT_SMSVARIFY" class="form-control PFDTDBfields">
         	<input type="text" id="PFDT_EMAILVARIFY" hidden="hidden" name="PFDT_EMAILVARIFY" class="form-control PFDTDBfields">
+        	 
         	 
         	 </br>
         	 <div class="form-row">
@@ -83,7 +85,7 @@
            
             <div class="col">
                    <div class="md-form">
-                    <input type="text" id="PFDT_DEMANDAMT" name="PFDT_DEMANDAMT" disabled maxlength="8" class="form-control  IsCURCommaFields NoSpecialChar PFDTMndtry PFDTDBfields">
+                    <input type="text" id="PFDT_DEMANDAMT" name="PFDT_DEMANDAMT" disabled maxlength="30" class="form-control  IsCURCommaFields NoSpecialChar PFDTMndtry PFDTDBfields">
                     <label for="PFDT_DEMANDAMT" class="">Demand Amount (Rs.)<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
@@ -125,7 +127,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="md-form">
-                    <input type="text" id="PFDT_AMOUNT" name="PFDT_AMOUNT" maxlength="8" onchange="CheckDmndAmt('PFDT_DEMANDAMT','PFDT_AMOUNT')" class="form-control IsCURCommaFields NoSpecialChar PFDTMndtry PFDTDBfields">
+                    <input type="text" id="PFDT_AMOUNT" name="PFDT_AMOUNT" maxlength="30" onchange="CheckDmndAmt('PFDT_DEMANDAMT','PFDT_AMOUNT')" class="form-control IsCURCommaFields NoSpecialChar PFDTMndtry PFDTDBfields">
                     <label for="PFDT_AMOUNT" class="">Amount (incl GST) (Rs.) <span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
@@ -161,6 +163,7 @@
             <div class="form-row" style="display:none">
            <div class="col">
                  <button type="button" class="btn Collected  waves-effect btn-yelInplain btn-sm BTNVerify">Collected</button>
+				 <button type="button" class="btn CollectedPage  waves-effect btn-yelInplain btn-sm BTNVerify">CollectedPage</button>
                  <button type="button" class="btn PartiCollected waves-effect btn-yelInplain btn-sm BTNVerify">Partially Collected</button>
            </div>
            </div>
@@ -187,7 +190,7 @@
            	   <div class="col-md-6">
                   <div class="md-form">
                      <div class="HyperControls">
-                        <a class="Btxt4 BTNHIDE SMSLINK" id="PSndLnk"  onclick="ChkPayAmt();PSendLink('PFDT_ONLINEMOD','PFDT_AMOUNT','SMS','PFDT_SMSVARIFY')" href="#">Send Link :  </a>               <span class="SMS Btxt29"></span>
+                        <a class="Btxt4 BTNHIDE SMSLINK" id="PSndLnk" style="display:none" onclick="ChkPayAmt();PSendLink('PFDT_ONLINEMOD','PFDT_AMOUNT','SMS','PFDT_SMSVARIFY')" href="#">Send Link :  </a>               <span style="display:none" class="SMS Btxt29"></span>
 						</br>
                         <a class="Btxt4 BTNHIDE EMAILLINK" id="PSndLnk"  onclick="ChkPayAmt();PSendLink('PFDT_ONLINEMOD','PFDT_AMOUNT','EMAIL','PFDT_EMAILVARIFY')" href="#">Send Link : </a>              <span class="EMAIL Btxt29"></span>
                     </div>
@@ -312,7 +315,7 @@
                  <div class="col d-flex justify-content-center">
                      <button type="button" id="Save1" data-aria="LSW_TLONPFDTLS|PFDT|PFDT_PFNO" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
                      <button type="button" id="Save2" data-card="0" data-aria="LSW_TLONPFDTLS|PFDT|PFDT_PFNO" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
-                 <button type="button" id="Save3" data-aria="LSW_TLONPFDTLS|PFDT|PFDT_PFNO" style="display:none" class="btn btn-Syeloutline waves-effect waves-light FormSave3">HDNSave 3</button> 
+                 <button type="button" id="Save3" data-aria="LSW_TLONPFDTLS|PFDT|PFDT_PFNO" style="display:none" class="btn btn-Syeloutline waves-effect waves-light FormSave3">HDNSave 3</button>   
 				</div>
             </div> 
             </form>    
@@ -416,7 +419,7 @@
          <div class="modal-footer align-middle">
       <!--  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
             <button type="button" data-card="1" id=""onclick="NXTTAB(this)" class="btn btn-yel Btxt2  BTNHIDE">Next</button>
-			<button type="button"  id="InitColcRe" onclick="REinitCol()" class="btn btn-yel Btxt2  BTNHIDE">Initiate Collections</button>
+			<button type="button"  id="InitColcRe" onclick="REinitCol()" class="btn btn-yel Btxt2  BTNHIDE STANDALONEDELAY">Initiate Collections</button>
          </div>
       </div>
       
@@ -486,12 +489,11 @@
                 <label for="CHECKSTATUS"  class="Btxt9 ">Status</label>
              </div>
            </div> 
-           <div class="col-md-4" style="display:none">
+           <div class="col-md-4">
              <div class="md-form">
 			 <label for="CHECKSTATUS"  class="Btxt9 ">Cheque</label>
 			 </br> </br> 
                 <img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW" onclick="ChequeView('PFDT_COLLATTACHMENT')" class="rounded" alt="Cinque Terre" width="35" height="25">
-                
              </div>
            </div> 
      </div>

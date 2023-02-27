@@ -34,6 +34,8 @@ $(document).ready(function () {
     $("#HIDDENCOL").val('')
 	 FncallDocChkLst(this,'Table4',{spname:'LSW_SGETVENADDROLE',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'',MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||2,3'+$("#HIDDENCOL").val(),'VENDADDROLE');
 
+
+         FncallDocChkLst(this,'Table51',{spname:'LSW_SGETVENDORTECHMAPPING',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'',MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||2,3'+$("#HIDDENCOL").val(),'VENDADDTECHGROUP');
 	 if($("#VECR_UNIQID").val()=="")
 	  {
        $("#VECR_UNIQID").val($("#PrcsID").val())
@@ -335,7 +337,7 @@ if(activityname=="Checker")
 				var table = $("#"+TableID).DataTable();
 				 
 				var rowNode = table
-				.row.add( [ '', '', '', '', '','','', '', '',''] )
+				.row.add( [ '', '', '', '', '','','', '', '', ''] )
 				    .draw()
 				    .node();
 				
@@ -388,6 +390,124 @@ if(activityname=="Checker")
 			alert("Select Any One Proof");
 			}
 		});	 
+		
+		
+		
+		
+	
+
+ $('#AddVALUGROUP').on('click', function() {
+            
+			
+			
+			
+			if ($("#VECR_VALUATIONGROUP").val() == "")
+			{	
+		        alert("Fill the Valuation Group");
+			return false;
+			}
+			var TableID = "";
+			
+	
+			TableID = "Table51"
+			
+			
+		var rowCnt = $("#"+TableID).find("tbody tr").length;
+		var ColumnCnt = $($("#"+TableID).find('thead tr')).find('th').length;
+		
+		var HTML="";
+		
+		var atLeastOneChecked=false;
+		var checkcount = "";
+		if (TableID == "Table2")
+			{
+		$('[name=CBSI_ProofAs]').each(function() {
+	         if ($(this).prop("checked") == true) {
+	             atLeastOneChecked = true;
+	             
+	             checkcount = $('[name=CBSI_ProofAs]').length;
+	         }
+	         
+	     });
+			}
+		else
+			{
+			atLeastOneChecked = true;
+			checkcount = 1;
+			}
+		
+		if (atLeastOneChecked == true)
+			{
+		
+		for (var j=0;j<checkcount;j++) 
+			{
+
+			if ($($('[name=CBSI_ProofAs]')[j]).prop('checked') == true || TableID == "Table51")
+				{
+			
+				var table = $("#"+TableID).DataTable();
+				 
+				var rowNode = table
+				.row.add( [ '', '', '', '', '','','', '', '', ''] )
+				    .draw()
+				    .node();
+				
+
+		
+				var NewrowCnt = $("#"+TableID).find("tbody tr").length;
+				
+				HTML = $($("#"+TableID).find('tbody tr')[parseInt(NewrowCnt)-1]);
+				$($(HTML).find('td')[0]).find('img').show()
+				//$($(HTML).find('td')[1]).text($("#KYCD_DOCNAME").val());
+				//$($(HTML).find('td')[2]).text($("#KYCD_DOCID").val());
+				$($(HTML).find('td')[1]).find("[type=text]").val($("#VECR_VALUATIONGROUP").val());
+				$($(HTML).find('td')[3]).find("[type=text]").val($("#VECR_UNIQID").val());
+			
+				$(HTML).addClass("tbodytr");
+				$(HTML).find("td").addClass("tbodytrtd");
+
+			
+				
+
+				$('#'+TableID+' .Gridmdb-select').material_select("destroy");    
+				
+				$('#'+TableID+' .Gridmdb-select').material_select();               
+
+				// Calendar
+
+				var $input = $(document).find('.Griddatepicker').pickadate({
+				    //editable: 'true',
+					format: 'dd/mm/yyyy',
+					selectYears: 150,
+					selectMonths: true
+					
+				})
+				.on("change", function() {
+				  
+					
+					   $(this).prev().val($(this).val());
+					   $(this).prev().focus();
+				   
+				});
+
+		
+			}
+			}
+		$("#ADDVALGROUPCLOSE").click();
+	
+			}
+		else
+			{
+			alert("Select Any One Proof");
+			}
+		});	 	
+		
+		
+		
+		
+		
+		
+		
 	 
 	$('.FormSave').on('click', function() {
 		var ChkFlow = UI_getdata($("#ActvID").val(),"","","","","LSW_SCHKACTCMPLT")
@@ -398,7 +518,7 @@ if(activityname=="Checker")
 
 		if($(this).text() == "Submit" || $(this).text() == "Approve")
 			{
-
+			chksapcodeex();
 			var MndtryChk = ChkMandatoryFlds("VECRMndtry");
 			
 			if(MndtryChk == "Mandatory")
@@ -494,8 +614,11 @@ if(activityname=="Checker")
 			var ID=$(xml).find("Val1").text()
 			
              alert('Vendor ID - '+ID)
+			 
+			 $("[name=VETE_USERNAME]").val(ID)
 			
 		    }
+			
 		var VECR_BANKDETAILS = TxtGridsubmitdata_V2("VENDORBANK","VEBN_","VECR_","VEBNDBfields"); 
 		AssignGridXmltoField("VECR_BANKDETAILS", VECR_BANKDETAILS) 
 		
@@ -504,6 +627,9 @@ if(activityname=="Checker")
 			
 		 var VECR_ADDROLEDET = TxtGridsubmitdata_SV1("Table4","VEAD_","VECR_");
           AssignGridXmltoField("VECR_ADDROLEDET", VECR_ADDROLEDET);		
+		  
+		  var VECR_ADDVALGROUP = TxtGridsubmitdata_SV1("Table51","VETE_","VECR_");
+          AssignGridXmltoField("VECR_ADDVALGROUP", VECR_ADDVALGROUP);	
 				
 			
 			var tbl = $(this).attr("data-aria").split("|")[0];

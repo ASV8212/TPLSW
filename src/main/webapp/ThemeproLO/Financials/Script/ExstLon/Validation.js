@@ -489,3 +489,177 @@ function CHKNOBOUNCEONLOAD()
       }
 
 }
+
+
+
+
+
+function CHECKBOUNCEDDT(Month,Years,ACCOUNTDT)
+{
+	if($("#"+ACCOUNTDT).val()=='')
+	{
+		alert('Kindly choose the EMI beginning date');
+		$("#"+Years).val('');	
+        $("#"+Years).material_select();
+		
+		
+	}
+var month1= $("#"+Month).val()
+var years1= $("#"+Years).val()
+var MonCou = "";
+if(month1!="")
+{
+if(years1!="")
+	{
+
+ if(month1=="January")
+{
+MonCou='01'
+}
+else if(month1=="February")
+{
+MonCou='02'
+}
+
+else if(month1=="March")
+{
+MonCou='03'
+}
+else if(month1=="April")
+{
+MonCou='04'
+}
+else if(month1=="May")
+{
+MonCou='05'
+}
+else if(month1=="June")
+{
+MonCou='06'
+}
+else if(month1=="July")
+{
+MonCou='07'
+}
+else if(month1=="August")
+{
+MonCou='08'
+}
+else if(month1=="September")
+{
+MonCou='09'
+}
+else if(month1=="October")
+{
+MonCou='10'
+}
+else if(month1=="November")
+{
+MonCou='11'
+}
+else if(month1=="December")
+{
+MonCou='12'
+}
+}
+var BOUNCEDT=years1+MonCou
+var ACCDT=$("#"+ACCOUNTDT).val().split("/")
+var ACCDT =(ACCDT[2])+(ACCDT[1])
+
+if(parseInt(BOUNCEDT)<parseInt(ACCDT))
+{
+alert ('Bounce years is lesser  than EMI beginning Date')
+$("#"+Month).val('')
+$("#"+Years).val('')
+
+$("#"+Month).material_select("destroy");	
+$("#"+Month).material_select();
+$("#"+Years).material_select("destroy");	
+$("#"+Years).material_select();
+}
+
+
+}
+}
+
+        function CACLYEAR(HTML,NAME) {
+
+    //var html=$('.BankDetail1').find(".DYNROW")
+    var row = $('.BankDetail1').find(".DYNROW").length;
+	row=row+1
+     var EMIYEAR = $("#"+HTML+row).val();
+	  var EMIBOUNCE = $("#"+NAME+row).val();
+	  
+	  date = new Date();
+	    var y = date.getFullYear();
+	    var EMIYEAR1 = EMIYEAR.split("/");
+	    var dd = EMIYEAR1[0];
+	    var mm = EMIYEAR1[1];
+	    var yy = EMIYEAR1[2];
+
+	var EMIYEAR2=yy
+
+	    var EMIBOUNC1 = EMIBOUNCE.split("/");
+	     var dd1 = EMIBOUNC1[0];
+	     var mm1 = EMIBOUNC1[1];
+	     var yy1 = EMIBOUNC1[2];
+     var EMIBOUNC2=yy1
+	 
+	 if(EMIYEAR2>EMIBOUNC1)
+	    	{
+	    	 window.alert('EMI start should not be less than  EMI bounce year');
+	    	 $("#"+NAME+row).val('')
+			 $("#"+NAME+row).material_select();
+			
+ 			 
+			 
+	    	}
+	  
+	 
+	}
+
+  /* function CACLYEAR (XID,YID)
+   {
+     	
+	    var STDATE=$("#"+XID).val()
+	    var ENDDATE=$("#"+YID).val()
+
+
+	  
+	  
+   }*/
+	   function Checkemidate(Evnt)
+	   {
+		   var emidate=$(Evnt).val();
+		   if(emidate=='')
+		   {
+			   alert('Kindly fill the EMI Beginning Date');
+		   }
+	   }
+	   
+function UTILIZATION()
+{
+
+var DATA=["ExistingLoan1|"];
+    for (j=0;j<DATA.length;j++)
+ 	 {
+	  var ValuationID=DATA[j].split("|")[0];
+      var row = $("." + ValuationID).find(".DYNROW").length;
+        for (i=0;i<row;i++)
+        {
+            var HTML =	 $("." + ValuationID).find(".DYNROW")[i];
+var loantype = $(HTML).find("[name='FELD_EXLONTYP']").val();
+if(loantype=="OverDraft/cash credit")
+{
+$(HTML).find(".LOANTYPE").hide()
+$(HTML).find(".UTILIZAMT").show()
+}
+else
+{
+$(HTML).find(".LOANTYPE").show()
+$(HTML).find(".UTILIZAMT").hide()
+}
+}
+}
+}   
+	  // "Checkemidate('FELD_EMIBEGNDAT'+$(this).closest('.DYNROW').attr('data-row'));

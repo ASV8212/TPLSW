@@ -5,7 +5,14 @@ $(document).ready(function() {
 	
     $("#FOIR_PRCSID").attr("value", $("#PrcsID").val());
 	 
-	 
+	 if($("#VERTICAL").val()=="MSME Alliance")
+	 {
+		 $(".ALLI").show()
+	 }
+	 else
+	 {
+		 $(".ALLI").hide()
+	 }
 	
     FormDataFromDB("LSW_TFOIRMETHOD", "FOIR_", "FOIRDBfields", "");
       Product();
@@ -28,7 +35,7 @@ $(document).ready(function() {
             var MndtryChk = ChkMandatoryFlds(prfx + "Mndtry");
             if (MndtryChk == "Mandatory") 
             {
-                alert("Fill the Mandatory Fields");
+                alert("Fill the Mandatory Fields / Document(s)");
                 return false;
             }
     

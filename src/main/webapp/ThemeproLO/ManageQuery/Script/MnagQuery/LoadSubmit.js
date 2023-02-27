@@ -407,6 +407,15 @@ $(".CQRES").show()
             $(".ResolutionSend").show();
 		    $(".IQQRLBTN").show()
 	        $(".IQReopen").show()
+			//$(".IQReopen").hide()
+				if($("#LogUsr").val()=="business12")
+				{
+				$(".IQReopen").hide()
+				}
+				else
+				{
+				$(".IQReopen").show()
+				}
 		   }
 		   else
 		   {
@@ -414,6 +423,7 @@ $(".CQRES").show()
             $(".ResolutionSend").show();
 		    $(".IQQRLBTN").show()
 	        $(".IQReopen").hide()
+		   //$(".IQReopen").show()
 		   }
 	 }
 
@@ -440,7 +450,7 @@ $(".CQRES").show()
 		  var TOId=$(this).attr("data-aria").split("|")[8]   
 		  var FromRole=$(this).attr("data-aria").split("|")[9] 
 		  var ToRole=$(this).attr("data-aria").split("|")[10] 
-		  var Status=$(this).attr("data-aria").split("|")[11] 
+		   var Status=$(this).attr("data-aria").split("|")[11] 
 		   var html=$(this).closest(".DYNROW")
 		  $(".RESOLUTIONPOP").empty();
 		LoadMultiDataQuery_V1("",$("#PrcsID").val()+'|'+$("#LogUsr").val()+'|'+'Resolution'+'|'+$(html).find("#"+MainQry+RCnt).val(),"","RESOLUTIONPOP","MQMRDBfields","LSW_SFETCHQUYDATA");
@@ -468,9 +478,8 @@ $(".CQRES").show()
 		$("#MNGD_TOUSRID").val($(html).find("#"+TOId+RCnt).val())
 		$("#MNGD_FRMUSRROLE").val($(html).find("#"+FromRole+RCnt).val())
 		$("#MNGD_TOUSRROLE").val($(html).find("#"+ToRole+RCnt).val())
-		$("#MNGD_QRYSTUS").val($(html).find("#"+Status+RCnt).val())
-		
 		$("#MNGD_PRCSID").val($("#PrcsID").val())
+		$("#MNGD_QRYSTUS").val($(html).find("#"+Status+RCnt).val())
 		 $("#RESOLUTION").click();
 	 });
 	
@@ -520,6 +529,7 @@ $(".CQRES").show()
 		  var AcctType=$(this).attr("data-aria").split("|")[8]
           var URL=$(this).attr("data-aria").split("|")[9]
 		  var Comment=$(this).attr("data-aria").split("|")[10]
+		  
 		  var Status1=$(this).attr("data-aria").split("|")[11]
 		  
 		$(".REOPENQRY").find("#MNGQ_MNQID").val($("#"+MainQry).val())
@@ -534,7 +544,7 @@ $(".CQRES").show()
 		$(".REOPENQRY").find("#MNGQ_TOUSRROLE").val($("#"+ToRole).val())
 		$(".REOPENQRY").find("#MNGQ_ATTACHURL").val($("#"+URL).val())
 		$(".REOPENQRY").find("#MNGQ_DESC").val($("#"+Comment).val())
-		$(".REOPENQRY").find("#MNGQ_QRYSTUS").val($("#"+Status1).val())
+			$(".REOPENQRY").find("#MNGQ_QRYSTUS").val($("#"+Status1).val())
 		$("#ReopenQryPop").click();
 		 }
 		
@@ -568,9 +578,6 @@ $(".CQRES").show()
 
 	  var xml = submitdata("MQRODBfields");
 	   var Data=UI_getdata("REOPEN|"+Status,xml,$(".REOPENQRY").find("#MNGQ_MNQID").val(),$("#PrcsID").val()+'|'+$("#LogUsr").val(),$("input[name='QRYPERSON']:checked").val(),"LSW_SPUSHDATATOQRYTBL2")
-	   
-	   
-	   
 	   if($(Data).find('RESULT').text() != 'SUCCESS')
 	   {
 		   alert($(Data).find('RESULT').text())
@@ -603,7 +610,7 @@ $(".CQRES").show()
 		  var TOId=$(this).attr("data-aria").split("|")[8]   
 		  var FromRole=$(this).attr("data-aria").split("|")[9] 
 		  var ToRole=$(this).attr("data-aria").split("|")[10] 
-		  var Status=$(this).attr("data-aria").split("|")[11] 
+		   var Status=$(this).attr("data-aria").split("|")[11] 
 		 var html=$(this).closest(".DYNROW")
 		$(".REASSIGN").find("#MNGQ_MNQID").val($(html).find("#"+MainQry+RCnt).val())
 		$(".REASSIGN").find("#MNGQ_ACTNTYP").val('Re-Assign');
@@ -641,12 +648,9 @@ $(".CQRES").show()
 	  
 	  var xml = submitdata("MQRSDBfields");
 	   var Data=UI_getdata("REASSIGN|"+Staus,xml,$('.REASSIGN').find("#MNGQ_MNQID").val(),$("#PrcsID").val()+'|'+$("#LogUsr").val(),"","LSW_SPUSHDATATOQRYTBL2")
-	   
-	 
-	   
 	   if($(Data).find('RESULT').text() != 'SUCCESS')
 	   {
-		   alert($(Data).find('RESULT').text())
+		  alert($(Data).find('RESULT').text())
 		     if($(Data).find('RELOAD').text()=="Y")
 			  {
 				 location.reload(true); 
@@ -676,13 +680,10 @@ $(".CQRES").show()
 		   var html=	$(this).closest(".DYNROW")
 		    var xml = submitdata_V1("MNGQDBfields",html);
             var Desc=$("#MNGD_DESC").val()
-			var Status=$("#MNGD_QRYSTUS").val()
+				var Status=$("#MNGD_QRYSTUS").val()
             var URL=$("#MNGD_ATTACHURL").val()
 		    var Data=UI_getdata("CLOSED|"+Status,"<Form><Details><MNGD_ATTACHURL>"+URL+"</MNGD_ATTACHURL><MNGD_DESC>"+Desc+"</MNGD_DESC></Details></Form>",$("#MNGD_MNQID").val(),$("#PrcsID").val()+'|'+$("#LogUsr").val(),"","LSW_SPUSHDATATOQRYTBL2")
-		     
-			
-			 
-			 if($(Data).find('RESULT').text() != "SUCCESS")
+		     if($(Data).find('RESULT').text() != "SUCCESS")
 			 {
 			 	alert($(Data).find('RESULT').text())
 				 if($(Data).find('RELOAD').text()=="Y")
@@ -718,16 +719,13 @@ $(".CQRES").show()
 			var html=	$(this).closest(".DYNROW")
 			var xml = submitdata_V1("MNGQDBfields",html);
 			var Desc=$("#MNGD_DESC").val()
-			var Status=$("#MNGD_QRYSTUS").val()
             var URL=$("#MNGD_ATTACHURL").val()
+			var Status=$("#MNGD_QRYSTUS").val()
 			var Data=UI_getdata("RESOLVED|"+Status,"<Form><Details><MNGD_ATTACHURL>"+URL+"</MNGD_ATTACHURL><MNGD_DESC>"+Desc+"</MNGD_DESC></Details></Form>",$("#MNGD_MNQID").val(),$("#PrcsID").val()+'|'+$("#LogUsr").val(),"","LSW_SPUSHDATATOQRYTBL2")
-			  
-			 
-			  
 			  if($(Data).find('RESULT').text() != "SUCCESS")
 			 {
 			 	alert($(Data).find('RESULT').text())
-				 if($(Data).find('RELOAD').text()=="Y")
+			if($(Data).find('RELOAD').text()=="Y")
 			  {
 				 location.reload(true); 
 			  }

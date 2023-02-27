@@ -26,7 +26,7 @@
        <br>
       	<div  class="col Btxt8">CIBIL Reports</div>
       	<br>
-         	<div class="form-row">
+		<div class="form-row"  style="display:none" >
          	   <div class="col-md-4">
            			<div class="md-form">
            			<select id="RCBP_NOFEIBILENQ" class="mdb-select md-form colorful-select dropdown-primary RCBPDBfields RCBPMndtry" name="RCBP_NOFEIBILENQ" onchange="">
@@ -63,24 +63,35 @@
                       <label for="RCBP_BTLONCIBIL" class="">BT loan reflecting in CIBIL<span class="MndtryAstr">*</span></label>
                    </div>
 			    </div>
-			    <div class="col-md-4">
+			    <!--<div class="col-md-4">
+      	          <div class="HyperControls form-row FltRight"> 
+			           <a  class="Btxt4 FltRight ADDBTN CIBIL" data-toggle="modal" name="CIBILModal" data-target="#CIBILModal" href="#" >Upload CIBIL Report</a>
+			      </div>
+			    </div>-->
+			 </div>
+         	<div class="form-row">
+         	   <div class="col-md-6">
+      	          
+			    </div>
+			    <div class="col-md-6">
       	          <div class="HyperControls form-row FltRight"> 
 			           <a  class="Btxt4 FltRight ADDBTN CIBIL" data-toggle="modal" name="CIBILModal" data-target="#CIBILModal" href="#" >Upload CIBIL Report</a>
 			      </div>
 			    </div>
 			 </div>
-             <div class="form-row">
-                <div class="col">
-                     <button type="button" style="display:none" id="CBLViewRpt" onclick="FncallDocChkLst(this,'CBRTable',{spname:'LSW_SCIBILRPTDATA',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'',MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||','CIBILReportDUDUPE');"  class="btn waves-effect btn-yelInplain btn-sm"></button>
-	                   <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" id="CBRTable">
-                       </table>
-	            </div>
-	         </div>
-	            <div class="form-row">
-                    <div class="col d-flex justify-content-center">
-	                        <button type="button" data-aria="LSW_TRPTCIBILPAGE|RCBP" data-form="" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Next</button> 
-       	            </div>
-       	        </div>
+            <div class="form-row">
+               <div class="col">
+                    <button type="button" style="display:none" id="CBLViewRpt" onclick="FncallDocChkLst(this,'CBRTable',{spname:'LSW_SCIBILRPTDATA',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'',MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||6','CIBILReportDUDUPE');"  class="btn waves-effect btn-yelInplain btn-sm"></button>
+	                <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" id="CBRTable">
+                    </table>
+	           </div>
+	        </div>
+	        <div class="form-row">
+                  <div class="col d-flex justify-content-center">
+	                  <button type="button" data-aria="LSW_TRPTCIBILPAGE|RCBP" data-form="" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Next</button>
+                      <button type="button" id="Save" data-aria="LSW_TRPTCIBILPAGE|RCBP" style="display:none" data-form="" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save</button> 							
+       	          </div>
+       	    </div>
        	</form>
       </div>
     </div>
@@ -144,7 +155,7 @@
            <div class="form-row">
            		<div class="col-md-6">
            			<div class="md-form">
-           			<select id="FIEG_CUSID" class="mdb-select md-form colorful-select dropdown-primary FIEGDBfields CIBILMndtry" name="FIEG_CUSID" onchange="">
+           			<select id="FIEG_CUSID" class="mdb-select md-form colorful-select dropdown-primary FIEGDBfields CIBILMndtry" onchange=" CheckCusType();" name="FIEG_CUSID" onchange="">
                         <option value="" selected>--Select--</option>  
                     </select>
                    <label class="mdb-main-label BTxt9">Party Name<span class="MndtryAstr">*</span></label>
@@ -152,16 +163,16 @@
            		</div>
            		<div class="col-md-6">
            		   <div class="md-form">
-                      <input type="text" id="FIEG_CIBILSCOREI" name="FIEG_CIBILSCOREI" maxlength="3" class="form-control IsNumberFields CCLR FIEGDBfields CIBILMndtry">
-                      <label for="FIEG_CIBILSCOREI" class="">Transunion Score<span class="MndtryAstr">*</span></label>
+                      <input type="text" id="FIEG_CIBILSCOREI" name="FIEG_CIBILSCOREI" maxlength="3" class="form-control NoSpecialCharNOTHYPHEN IsNumberFields CCLR FIEGDBfields">
+                      <label for="FIEG_CIBILSCOREI" class="">Transunion Score<span class="MndtryAstr"></span></label>
                    </div>
            		</div>
            </div>
            <div class="form-row">
            		<div class="col-md-6">
            		   <div class="md-form">
-                      <input type="text" id="FIEG_CIBILSCOREII" name="FIEG_CIBILSCOREII" maxlength="3" class="form-control IsNumberFields CCLR FIEGDBfields CIBILMndtry">
-                      <label for="FIEG_CIBILSCOREII" class="">PL Score<span class="MndtryAstr">*</span></label>
+                      <input type="text" id="FIEG_CIBILSCOREII" name="FIEG_CIBILSCOREII" maxlength="3" class="form-control IsNumberFields CCLR FIEGDBfields">
+                      <label for="FIEG_CIBILSCOREII" class="">PL Score<span class="MndtryAstr"></span></label>
                    </div>
            		</div>
            		<div class="col-md-6">
@@ -187,6 +198,15 @@
                </table>
            </div> 
          </div>
+       </div>
+	    <div class="form-row">
+           	<div class="col-md-6">
+				<div class="md-form"><!--onblur="CompareJointoDOB(this,CBSI_DOB,CEMI_NOOFYERBUSINESS,'CBSI_PROFILE');ExpYearvalid(this,CEMI_NOOFYERBUSINESS);"-->
+                       <input type="text" id="FIEG_DATEOFINIT" maxlength="10"  name="FIEG_DATEOFINIT" class="form-control NoSpecialChar ISFutureDateFields  FIEGDBfields CIBILMndtry IsNumberFields  ISDatefield">
+                      <label for="FIEG_DATEOFINIT" class="">Date of Initiation<span class="MndtryAstr">*</span></label>
+                      <img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker"   />
+                </div>
+			</div>
        </div>
       <!-- grid  show -->
     <!--Main layout-->

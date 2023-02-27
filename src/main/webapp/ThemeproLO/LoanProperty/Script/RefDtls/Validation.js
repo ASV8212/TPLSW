@@ -97,7 +97,7 @@ if(FirRefRel==SecRefRel)
 }
 }*/
 
-
+/*
 function checkRadio(id)
 {	
 	var CurRelation=$(id).attr('name')
@@ -115,7 +115,7 @@ if(FirRefRel==SecRefRel)
 }
 }
 
-
+*/
 function CheckLoanType(Prifx1)
 {
 	var LoanType=$("#APFI_LONTYPE").text()
@@ -128,4 +128,19 @@ function CheckLoanType(Prifx1)
 		{
 		  $("."+Prifx1+"DBfields").attr('disabled',false);
 		}
+}
+
+
+
+function GetRelationship()
+{
+	 
+ $("#LRDT_FIRREFREL").val('');
+	$("#LRDT_FIRREFREL").find('option').remove()
+	$("#LRDT_FIRREFREL").material_select("destroy");
+	$("#LRDT_FIRREFREL").material_select(); 
+   var RelType=UI_getdata("RELTYPE",$("#VERTICAL").val(),"","","","LSW_SGETPRODVAL")
+	 $("#LRDT_FIRREFREL").append($(RelType).find("RESULT").html());
+	 $("#LRDT_FIRREFREL").material_select();
+ 
 }

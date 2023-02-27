@@ -21,7 +21,7 @@
 function Product()
 {
 	//var xmlSTATUS=UI_getdata($("#PrcsID").val(),$("#RCCM_SCHEME").val(),"","","","LSW_SGETLOANDETAILS")
-	var xmlSTATUS=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETLOANDET");
+	var xmlSTATUS=UI_getdata($("#PrcsID").val(),$("#FOGS_SCHEMEID").val(),"","","","LSW_SGETLOANDET");
 	$("#FOGS_PRODUCT").val($(xmlSTATUS).find('PRODUCT').text());
 	$("#FOGS_PRDNAME").val($(xmlSTATUS).find('PRDNAME').text());
 	$("#FOGS_APPROI").val($(xmlSTATUS).find('INTERESTRATE').text());
@@ -108,7 +108,14 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 	
 	var check=UI_getdata("MARGINVAL",$("#FOGS_INDGROUP").val(),$("#FOGS_SUBINSTGROUP").val(),$("#FOGS_BUSINESSTYE").val(),"","LSW_SGETPRODVAL");  
 	var INDUS=$(check).find ('RESULT').text()
-	
+	if(INDUS=='')
+		{
+			INDUS=0;
+		}
+	if(isNaN(INDUS))
+		{
+			INDUS=0;
+		}
 	$("#FOGS_INDMARGIN").val(parseFloat(INDUS).toFixed(2));  
     $("#FOGS_INDMARGIN").attr('disabled',true); 
 
@@ -120,7 +127,7 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 		var INTERPAID=$("#FOGS_INTERPAID").val().replace(/,/g,'');
 		var RENUM=$("#FOGS_RECUMPARTENER").val().replace(/,/g,'');
 		var OTHERIN=$("#FOGS_OTHERINCOME").val().replace(/,/g,'');
-	//	var INDITAX=$("#FOGS_INDTAX").val().replace(/,/g,''); 
+		var INDITAX=$("#FOGS_INDTAXI").val().replace(/,/g,''); 
 		if(PAT=='')
 		{
 			PAT=0;
@@ -141,13 +148,13 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 		{
 			OTHERIN=0;
 		}
-		/* if(INDITAX=='')
+		if(INDITAX=='')
 		{
 			INDITAX=0;
-		} */
+		} 
 		var GROSSPROF1=parseFloat(parseFloat(parseFloat(PAT)+parseFloat(DEP))*2);
 		var GROSSPROF2=parseFloat(parseFloat(parseFloat(RENUM)+parseFloat(OTHERIN))*(75/100));
-		var GROSSPROF=parseFloat(GROSSPROF1)+parseFloat(INTERPAID)+parseFloat(GROSSPROF2);//-parseFloat(INDITAX);
+		var GROSSPROF=parseFloat(GROSSPROF1)+parseFloat(INTERPAID)+parseFloat(GROSSPROF2)- parseFloat(INDITAX);
 		if(isNaN(GROSSPROF))
 		{
 			GROSSPROF=0;
@@ -167,11 +174,18 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 		 }
 		 
 		 var GROSSMARGIN= parseFloat(GROSSPROF)/parseFloat(GROSSMARGIN1); 
-		 if(isNaN(GROSSMARGIN))
+		
+		 GROSSMARGIN=GROSSMARGIN*100;
+		  if(isNaN(GROSSMARGIN))
 		 {
 			 GROSSMARGIN=0;
 		 }
-		 GROSSMARGIN=GROSSMARGIN*100;
+		 
+		 if(GROSSMARGIN=="Infinity")
+		{
+			GROSSMARGIN=0;
+		}
+		 
 		 $("#FOGS_GROSSMARGIN").val(parseFloat(GROSSMARGIN).toFixed(2));  
 		 $("#FOGS_GROSSMARGIN").next().addClass('active');
 		  
@@ -259,7 +273,7 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 	 
 	ROI=$("#FOGS_APPROI").val();
 	Tenur=$("#FOGS_TENURE").val();
-	 var result=UI_getdata(ROI,Tenur,LnAmt,"","","LSW_SGETEMI_DATA");
+	 var result=UI_getdata(ROI,Tenur,LnAmt,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 	 var EMI=$(result).find("EMI").text();
 	 	if(EMI=='')
 	{
@@ -286,8 +300,11 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 	
 	
 	//Loan Proposed
+	var xmlSTATUS=UI_getdata($("#PrcsID").val(),$("#FOGS_SCHEMEID").val(),"","","","LSW_SGETLOANDET");
+	var LoanAmt=parseFloat($(xmlSTATUS).find('LOANAMOUNT').text());
 	
-	 var LOANPROPOSED=parseFloat(Math.min(LOANELIGI,$("#DMY3").val().split('|')[0])); 
+	
+	 var LOANPROPOSED=parseFloat(Math.min(LOANELIGI,LoanAmt)); 
 		if(isNaN(LOANPROPOSED))
 		{
 			LOANPROPOSED=0;
@@ -303,7 +320,10 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 		{
 			PREFUNDSCR=0;
 		}
-	  
+	  if(PREFUNDSCR=="Infinity")
+		{
+			PREFUNDSCR=0;
+		}
 	 $("#FOGS_PREFUNDSCR").val(CURINRCommaSep(parseFloat(PREFUNDSCR).toFixed(2)));
 	$("#FOGS_PREFUNDSCR").next().addClass('active');
 
@@ -315,7 +335,7 @@ var MONTHCONTRI=parseFloat(TOTAL)/36
 	 
 	ROI=$("#FOGS_APPROI").val();
 	Tenur=$("#FOGS_TENURE").val();
-	 var result=UI_getdata(ROI,Tenur,LOANPROPOSED,"","","LSW_SGETEMI_DATA");
+	 var result=UI_getdata(ROI,Tenur,LOANPROPOSED,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 	 var EMI1=$(result).find("EMI").text();
 	 	if(EMI1=='')
 	{

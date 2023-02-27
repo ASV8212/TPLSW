@@ -12,13 +12,20 @@ $(document).ready(function () {
 	$(".COBI_CUSID").text($("#COBI_CUSID").val());
 		} */
 	LoadMultiData("",$("#PrcsID").val(),$("#PrMs5").val(),"NICETOHAVE","TVRLDBfields","LSW_STVREMARKLINE");
+	LoadMultiData("",$("#PrcsID").val(),$("#PrMs6").val(),"UploadSecurityDoc","PRDODBfields","LSW_SGETPROPUPDDT");
+	
+	 
 	
 	$("#TPIF_PROPERTYNO").val($("#PrMs6").val());
 	$("#TPIF_ALTNPROPERTYNO").val($("#PrMs5").val());
 	$("#TVRL_REFNO").attr("value",$("#PrMs5").val())
 	$("#TRPU_UNIDID").val($("#PrMs6").val());
 	$("#TRPU_ALTUNIQID").attr("value",$("#PrMs5").val())
+	$("#TDSU_REFNO").attr("value",$("#PrMs5").val())
+	
    LoadMultiData("",$("#PrcsID").val(),$("#PrMs5").val(),"BankDetail1","TRPUDBfields","LSW_STECHRMKPHS");
+   
+  LoadMultiData("",$("#PrcsID").val(),$("#PrMs5").val(),"DOCUSUB","TDSUDBfields","LSW_STECHDOCSUBMIT");
 
 	var tbl = $("#heading1 a").attr("data-aria").split("|")[0];	
 	var prfx = $("#heading1 a").attr("data-aria").split("|")[1];
@@ -112,7 +119,7 @@ mySelect.appendChild(newOption);
 	   $("#TPIF_PROXIMITY option[value='"+PROXIMITYVal[i]+"']").attr("selected","selected")
 		 }
 	 }
-
+$(document).on("click", ".Structural", function() {	
 var AMENITIESPROI=$("#THSD_AMENITIESPROI").val()
 	 var AMENITIESPROIVal=AMENITIESPROI.split(",");
 	 var row = $(AMENITIESPROIVal).length;
@@ -120,11 +127,59 @@ var AMENITIESPROI=$("#THSD_AMENITIESPROI").val()
 	 {
 		 if(AMENITIESPROIVal[i] != "")
 		 {
-	   $("#THSD_AMENITIESPRO option:contains("+AMENITIESPROIVal[i]+")").attr("selected","selected")
+	   //$("#THSD_AMENITIESPRO option:contains("+AMENITIESPROIVal[i]+")").attr("selected","selected")
+	   $("#THSD_AMENITIESPRO option[value='"+AMENITIESPROIVal[i]+"']").attr("selected","selected")
 		 }
 	 }
-
+	 
+	  
+	 $("#THSD_AMENITIESPRO ").material_select();
+	 
+	 if($("#PrMs1").val()=="View")
+	 {
+		  $('.select-dropdown').attr('disabled',true)
+	 }
 	
+});	
+	   
+	   
+	   
+	   		
+	 $(document).on("click", ".DELDOCU" , function() {
+
+	         
+			  if(confirm('Delete Document Submitted') == true)
+		 		{
+		     $(this).closest('.DYNROW').remove()	
+			var k= $('.DOCUSUB').find('.DYNROW').length
+			for(i=0;i<k;i++)
+				{
+				//('.BankDetail1').find('.DYNROW')[i]
+			    var	j=i+1
+	         $($('.DOCUSUB').find('.DYNROW')[i]).find('#PROPTXTHDR').text(j)
+				}
+				}
+          })
+	   
+			
+          $(document).on("click", ".DELREMARKS" , function() {
+
+	         
+			  if(confirm('Delete Remarks') == true)
+		 		{
+		     $(this).closest('.DYNROW').remove()	
+			var k= $('.NICETOHAVE').find('.DYNROW').length
+			for(i=0;i<k;i++)
+				{
+				//('.BankDetail1').find('.DYNROW')[i]
+			    var	j=i+1
+	         $($('.NICETOHAVE').find('.DYNROW')[i]).find('#PROPTXTHDR').text(j)
+				}
+				}
+          })
+	   
+	   
+	   
 	   
 $(document).on("click", ".DELETEAMTIES", function() {
 		
@@ -190,11 +245,19 @@ if (r == true) {
  for(var i=0;i<K;i++)
 	{
 	  var    R=i+1
-      value = inWords(R - 1) + " Floor";
-	  if(R==0)
-	    	{
-	    	value='Ground Floor'
-	    	}
+      value = inWords(R - 3) + " Floor";
+	   if(R==1)
+			{
+			value='Basement'	
+			}
+			else if(R==2)
+			{
+			value='Stilt area'	
+			}
+			else if(R==3)
+			{
+			value='Ground Floor'	
+			}
       HTML = $($("#"+TableID).find('tbody tr')[R-1]);
       if($("#Table3").find("tbody tr td").text()!="No data available in table")
     	  {
@@ -252,8 +315,19 @@ $(document).on("click", "#AddFloor", function() {
 
 		var NewrowCnt = $("#"+TableID).find("tbody tr").length;
 		
-		value = inWords($("#"+TableID).find("tbody tr").length - 1) + " Floor";
-		
+		value = inWords($("#"+TableID).find("tbody tr").length - 3) + " Floor";
+		if(NewrowCnt==1)
+			{
+			value='Basement'	
+			}
+			else if(NewrowCnt==2)
+			{
+			value='Stilt area'	
+			}
+			else if(NewrowCnt==3)
+			{
+			value='Ground Floor'	
+			}
 		HTML = $($("#"+TableID).find('tbody tr')[parseInt(NewrowCnt)-1]);
 		   
 	    $($(HTML).find('td')[0]).text(value);	    
@@ -361,8 +435,21 @@ $(document).on("click", "#AddFloor", function() {
 	  
 	
 	$('.FormSave').on('click', function() {
-
-        var MndtryChk="";
+		
+		
+		var xml=UI_getdata($("#PrcsID").val(),$("#PrMs6").val(),$("#PrMs5").val(),"Valuation","","LSW_SCHKPROPERTY");
+		
+		if($(xml).find("RESULT").text()!="Yes")
+		{
+			alert($(xml).find("RESULT").text());
+			var RedirectURL=""
+              var   PAGENAME="MyApplication"
+	          RedirectURL = window.location.origin+"/TPLSW/"+PAGENAME;
+               $(location).attr('href',encodeURI(RedirectURL));
+			   return false;
+		}
+        
+		var MndtryChk="";
 		
 		var GridData = $(this).attr("data-aria").split("|")[3];
 		
@@ -383,6 +470,7 @@ $(document).on("click", "#AddFloor", function() {
 		
 		     }
 		}
+		
 		if($(this).text() == "Save & Next")
 		{
 		var prfx = $(this).attr("data-aria").split("|")[1];
@@ -390,7 +478,7 @@ $(document).on("click", "#AddFloor", function() {
 		
 		if(MndtryChk == "Mandatory")
 			{
-			alert("Fill the Mandatory Fields");
+			alert("Fill the Mandatory Fields / Document(s)");
 			return false;
 			}
 		}
@@ -407,22 +495,22 @@ $(document).on("click", "#AddFloor", function() {
 			var MndtryChk3 = ChkMandatoryFlds("TPIFMndtry");
 			if(MndtryChk == "Mandatory")
 			{
-			alert("Fill the Mandatory Fields");
+			alert("Fill the Mandatory Fields / Document(s)");
 			return false;
 			}
 			else if(MndtryChk1 == "Mandatory")
 			{
-				alert("Fill the Mandatory Fields");
+				alert("Fill the Mandatory Fields / Document(s)");
 				return false;
 			}
 			else if(MndtryChk2 == "Mandatory")
 		    {
-				alert("Fill the Mandatory Fields");
+				alert("Fill the Mandatory Fields / Document(s)");
 				return false;
 			}
 			else if(MndtryChk3 == "Mandatory")
 			{
-				alert("Fill the Mandatory Fields");
+				alert("Fill the Mandatory Fields / Document(s)");
 				return false;
 			}
 			
@@ -458,16 +546,16 @@ $(document).on("click", "#AddFloor", function() {
 		var tbl = $(this).attr("data-aria").split("|")[0];
 		var prfx = $(this).attr("data-aria").split("|")[1];
 		var DATA = $(this).attr("data-aria").split("|")[2];
-		
+		var GridData = $(this).attr("data-aria").split("|")[3];
 		
 		if(GridData=="Valuation")
 			{
 		var PROPINFOLNDGRD = TxtGridsubmitdata_V1("Table2","PLAG_","THVD_");
 		AssignGridXmltoField("THVD_VALUBUILTCONSGRD", PROPINFOLNDGRD);
-		var PROPINFOBUILDGRD = TxtGridsubmitdata_V1("Table3","PBDG_","THVD_");
+		var PROPINFOBUILDGRD = TxtGridsubmitdata_SV1("Table3","PBDG_","THVD_");
 		AssignGridXmltoField("THVD_VALUAREADETLDRD", PROPINFOBUILDGRD);
 		
-		var THVD_AMENTIES = TxtGridsubmitdata_V1("Table4","TEVL_","THVD_");
+		var THVD_AMENTIES = TxtGridsubmitdata_SV1("Table4","TEVL_","THVD_");
 		AssignGridXmltoField("THVD_AMENTIES", THVD_AMENTIES);
 		
 		
@@ -480,6 +568,10 @@ $(document).on("click", "#AddFloor", function() {
 			
 			var THVR_UPLODPHS = TxtGridsubmitdata_V2("BankDetail1","TRPU_","THVR_","TRPUDBfields");
 		    AssignGridXmltoField("THVR_UPLODPHS", THVR_UPLODPHS)
+			
+			var THVR_DOCUSUB = TxtGridsubmitdata_V2("DOCUSUB","TDSU_","THVR_","TDSUDBfields");
+		    AssignGridXmltoField("THVR_DOCUSUB", THVR_DOCUSUB)
+			
 			
 			}
 		
@@ -496,7 +588,8 @@ $(document).on("click", "#AddFloor", function() {
 			 NXTTAB(this);
 		}
 		if($(this).text() == "Submit")
-        {
+		{
+			
 			var xml1=UI_getdata($("#TPIF_PRCSID").val(),$("#TPIF_ALTNPROPERTYNO").val(),"","","","LSW_SCHKVENDORCOMP")
              var VENCOMSTA=$(xml1).find('RESULT').text()
 			 if(VENCOMSTA=="YES")
@@ -509,7 +602,6 @@ $(document).on("click", "#AddFloor", function() {
 			 }
 			else
 			{
-			
 			var xml=UI_getdata($("#TPIF_PRCSID").val(),$("#TPIF_ALTNPROPERTYNO").val(),"VALUERVENDOR",$("#LogUsr").val(),"","LSW_SSTATUSUPDATE")
 			WFComplete ($("#ActvID").val(),"",""); 
 			}

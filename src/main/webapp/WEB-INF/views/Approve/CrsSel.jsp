@@ -7,7 +7,7 @@
 <!--Admin panel-->
 <div class="admin-panel">
    <div class="form-row">
-      <div class="col-lg-12">
+   <div class="col-lg-12">
          <ul title="Bank" data-aria="LSW_TLONBANKDTLS|BKDT|" data-popup="No"  class="nav FormPageMultiTab">
             <%-- ${SUBPAGETABDATA} --%>
             <li id="LifeInsurance" value="CrsSel" title="Life Insurance" class="nav-item active">
@@ -23,6 +23,21 @@
          </ul>
       </div>
    </div>
+   <div class="row">
+         <div class="col-lg-12">
+            <ul title="Bank" data-aria="LSW_TAPPRCHRGHDR|APCM|" data-popup="No"  class="nav FormPageMultiTab">
+               ${SUBPAGETABDATA}
+               <!-- <li id="Co-Applicant1" value="" title = "Co-Applicant1" class="nav-item  active">
+                  <a> <div class="nav-link" href="#">Co-Applicant 1</div></a>
+                  </li>      
+                     
+                  <li id=""  value="Add" title = "" class="nav-item FormPageMultiTabAdd">
+                  <a> <div class="nav-link" href="#">+ Add</div>  </a>
+                  </li>
+                  --> 
+            </ul>
+         </div>
+      </div>
    </br>
    <!-- Start -->
    <!--Accordion wrapper-->
@@ -69,11 +84,13 @@
                      <input type="text" id="ALIH_DTMODIFIED"  name="ALIH_DTMODIFIED" hidden="hidden"  class="form-control ALIHDBfields" value="">
                      <input type="text" id="ALIH_INSDTL"  name="ALIH_INSDTL" hidden="hidden"  class="form-control ALIHDBfields" value="">
                      <input type="text" id="ALIH_CUSID"  name="ALIH_CUSID" hidden="hidden"  class="form-control ALIHDBfields" value="">
+					
                      <input type="text" id="ALIH_INSPTNRHIDDEN"  name="ALIH_INSPTNRHIDDEN" hidden="hidden"  class="form-control ALIHDBfields" value="">
                      <input type="text" id="ALIH_MNMFORM"  name="ALIH_MNMFORM" hidden="hidden"  class="form-control ALIHDBfields" value="">
-                     <input type="text" id="ICICIGRDVAL"  name="ICICIGRDVAL" hidden="hidden"  class="form-control ALIHDBfields" value="">
-				 
-                    <div class="form-row">
+                     <input type="text" id="FILESTATUS"  name="FILESTATUS" hidden="hidden"  class="form-control ALIHDBfields" value="">
+                     <input type="text" id="ICICIGRDVAL" name="ICICIGRDVAL" hidden="hidden" class="form-control ALIHDBfields" value="">
+
+				   <div class="form-row">
                     <div class="col-md-4">
                           <div class="md-form">
                               <select class="md-form colorful-select dropdown-primary ALIHMndtry  ALIHDBfields " onchange="CheckApplicable(this,'Change');" id="ALIH_APPCONSIDER" name="ALIH_APPCONSIDER">
@@ -84,43 +101,44 @@
                               <label class="mdb-main-label BTxt9">Applicable<span class="MndtryAstr">*</span></label>
                            </div>
                         </div>
+						
+						 <div class="col-md-4" style="display:none">
+                          <div class="md-form">
+                              <select class="md-form colorful-select dropdown-primary  ALIHDBfields"  id="ALIH_LOANID" name="ALIH_LOANID">
+                               
+                              </select>
+                              <label class="mdb-main-label BTxt9">Loan Type<span class="MndtryAstr"></span></label>
+                           </div>
+                        </div>
+						
                         </div>
          
-         <div  class="Applicable">
-               <div class="form-row">
+                 <div class="Applicable">
+                    <div class="form-row">
                         <div class="col-md-4">
                            <div class="md-form">
-                              <input type="text" id="ALIH_SUMASRD" maxlength="11"  name="ALIH_SUMASRD" class="form-control ALIHDBfields DSVLBL IsNumberFields IsCURCommaFields">
+                              <input type="text" id="ALIH_SUMASRD" maxlength="11"  name="ALIH_SUMASRD" class="form-control ALIHDBfields IsNumberFields IsCURCommaFields">
                               <label for="ALIH_SUMASRD" class="">Sum Assured<span class="MndtryAstr"></span></label>
                            </div>
                         </div>
                         <div class="col-md-4">
                            <div class="md-form">
-                              <input type="text" id="ALIH_LONTNR" maxlength="2" disabled name="ALIH_LONTNR" class="form-control ALIHDBfields DSVLBL IsNumberFields">
-                              <label for="ALIH_LONTNR" class="">Loan Tenure in years<span class="MndtryAstr"></span></label>
+                              <input type="text" id="ALIH_LONTNR" maxlength="2" name="ALIH_LONTNR" class="form-control ALIHDBfields IsNumberFields">
+                              <label for="ALIH_LONTNR" class="">Loan Tenure in Months<span class="MndtryAstr"></span></label>
                            </div>
                         </div>
                         <div class="col-md-4">
                            <div class="md-form">
                               <input type="text" id="ALIH_INSTNR" maxlength="2"  onblur="INSURTENURE('ALIH_INSTNR'+$(this).closest('.DYNROW').attr('data-row'),this)"   name="ALIH_INSTNR" class="APPSTA ALIHMndtry form-control ALIHDBfields  IsNumberFields">
-                              <label for="ALIH_INSTNR" class="">Premium Tenure<span class="MndtryAstr">*</span></label>
+                              <label for="ALIH_INSTNR" class="">Premium Tenure in Years<span class="MndtryAstr">*</span></label>
                            </div>
                         </div>
                      </div>
                      <div class="form-row">
                         <div class="col-md-4">
-                           <div class="md-form">
-                              <div id="" class="select-radio">
-                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input ALIHDBfields" onclick="INSURDETAILS(this,'ALIH_INSPTNRHIDDEN'+$(this).closest('.DYNROW').attr('data-row')),ShowInsurLink(this,'ALIH_CUSID'+$(this).closest('.DYNROW').attr('data-row'),'Page')" value="HDFC Bank" id="HDFCBank" name="ALIH_INSPTNR">
-                                    <label class="custom-control-label" for="HDFCBank">HDFC Bank</label>
-                                 </div>
-                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input ALIHDBfields" onclick="INSURDETAILS(this,'ALIH_INSPTNRHIDDEN'+$(this).closest('.DYNROW').attr('data-row')),ShowInsurLink(this,'ALIH_CUSID'+$(this).closest('.DYNROW').attr('data-row'),'Page')"  value="ICICI Bank" id="ICICIBank" name="ALIH_INSPTNR">
-                                    <label class="custom-control-label" for="ICICIBank">ICICI Bank</label>
-                                 </div>
-                              </div>
-                              <label class="mdb-main-label BTxt9">Insurance Partner<span class="MndtryAstr"></span></label>      
+						   <div class="md-form">
+                              <input type="text" id="ALIH_INSPTNR" maxlength="40"  onblur=""   name="ALIH_INSPTNR" class="APPSTA ALIHMndtry form-control ALIHDBfields IsAlphaFields">
+                              <label for="ALIH_INSPTNR" class="">Insurance Partner<span class="MndtryAstr">*</span></label>
                            </div>
                         </div>
                     <!--        <div class="col-md-4">
@@ -136,21 +154,21 @@
                         </div> -->  
                         <div class="col-md-4">
                            <div class="md-form">
-                              <input type="text" id="ALIH_INSAMOUNT" disabled maxlength="11"  name="ALIH_INSAMOUNT" class=" form-control ALIHDBfields PMAMT IsNumberFields IsCURCommaFields">
-                              <label for="ALIH_INSAMOUNT" class="">Premium Amount<span class="MndtryAstr"></span></label>
+                              <input type="text" id="ALIH_INSAMOUNT" maxlength="11"  name="ALIH_INSAMOUNT" class=" form-control ALIHMndtry ALIHDBfields PMAMT IsNumberFields IsCURCommaFields">
+                              <label for="ALIH_INSAMOUNT" class="">Premium Amount<span class="MndtryAstr">*</span></label>
                            </div>
                       </div>
 					  <div class="col-md-4 HDFC" style="display:none"> 
                          <div class="md-form">
-                            <div class=" "> 
-                                <a type="button" class="Btxt4 FltLeft  ALIHDBfields"  onclick="generatePDF('ALIH_CUSID'+$(this).closest('.DYNROW').attr('data-row'),'ALIH_INSPTNR',$(this).closest('.DYNROW')[0])">HDFC Policy Insured.pdf</a>
+                            <div class="HyperControls"> 
+                                <a type="button" class="Btxt4 FltLeft  ALIHDBfields"  onclick="generatePDF('ALIH_CUSID'+$(this).closest('.DYNROW').attr('data-row'),'ALIH_INSPTNR',$(this).closest('.DYNROW')[0])" href="#" >HDFC Policy Insured.pdf</a>
                             </div>
                          </div>
                      </div>
 					 <div class="col-md-4 ICICI" style="display:none"> 
                          <div class="md-form">
-                            <div class=" "> 
-                                <a type="button" class="Btxt4 FltLeft  ALIHDBfields" onclick="generatePDF('ALIH_CUSID'+$(this).closest('.DYNROW').attr('data-row'),'ALIH_INSPTNR',$(this).closest('.DYNROW')[0])">ICICI Policy Insured.pdf</a>
+                            <div class="HyperControls"> 
+                                <a type="button" class="Btxt4 FltLeft  ALIHDBfields" onclick="generatePDF('ALIH_CUSID'+$(this).closest('.DYNROW').attr('data-row'),'ALIH_INSPTNR',$(this).closest('.DYNROW')[0])" href="#" >ICICI Policy Insured.pdf</a>
                             </div>
                          </div>
                      </div>
@@ -173,7 +191,7 @@
                      </div>
                      <div class="form-row">
                         <div class="col">
-                           <input type="button" data-button="GridButton" data-value="Table2|LSW_SGETQNFRMMSTR|PrcsID|ALIH_INSPTNRHIDDEN~PrcsID|ALIH_CUSID|0,3,4|LINS" style="display:none" class="DashTrg ALIHDBfields MultiGridTrg" id="BTNLYFINSRNC" name="BTNLYFINSRNC" />
+                           <input type="button" data-button="GridButton" data-value="Table2|LSW_SGETQNFRMMSTR|PrcsID|ALIH_INSPTNRHIDDEN~ALIH_LOANID|ALIH_CUSID|0,3,4,5|LINS" style="display:none" class="DashTrg ALIHDBfields MultiGridTrg" id="BTNLYFINSRNC" name="BTNLYFINSRNC" />
                            <!-- <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table2',{spname:'LSW_SGETQNFRMMSTR',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#ALIH_INSPTNR').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||3,4,5','LINS');" id="BTNRTRCAMGRD" name="BTNRTRCAMGRD" /> -->
                            <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display ALIHDBfields DataGrid" name="Table2" id="Table2">
                            </table>
@@ -190,10 +208,11 @@
                         </div>-->
                         <div class="col-md-4">
                            <div class="md-form">
-                              <input type="text" id="ALIH_CONTCTDTL"  onchange="ChkNomiName('ALIH_CUSID'+$(this).closest('.DYNROW').attr('data-row'),'ALIH_CONTCTDTL'+$(this).closest('.DYNROW').attr('data-row'))"  maxlength="100" name="ALIH_CONTCTDTL" class=" APPSTA form-control  ALIHMndtry ALIHDBfields  IsAlphaFields IsUpprCse ">
+                              <input type="text" id="ALIH_CONTCTDTL"    maxlength="100" name="ALIH_CONTCTDTL" class=" APPSTA form-control  ALIHMndtry ALIHDBfields  IsAlphaFields IsUpprCse ">
                               <label for="ALIH_CONTCTDTL" class="">Nominee Name<span class="MndtryAstr">*</span></label>
                            </div>
                         </div>
+                        
                         <div class="col-md-4">
                            <div class="md-form">
                               <input type="text" id="ALIH_DOB" name="ALIH_DOB"  maxlength="10" onblur="AgeVal(this,ALIH_AGE);" class="APPSTA ALIHMndtry form-control ISFutureDateFields form-control ALIHDBfields IsNumberFields NoSpecialChar  ISDatefield">
@@ -207,15 +226,15 @@
                            <div class="md-form">
                               <div id="" class="select-radio Applradio">
                                  <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input ALIHDBfields" onclick="CheckGender(this,'ALIH_RELVID'+$(this).closest('.DYNROW').attr('data-row'),'Page')"  value="Male" id="GenMale" name="ALIH_GENDR">
+                                    <input type="radio" class="custom-control-input ALIHDBfields" onclick="CheckGender(this,'ALIH_RELVID'+$(this).closest('.DYNROW').attr('data-row'),'Page')" value="Male" id="GenMale" name="ALIH_GENDR">
                                     <label class="custom-control-label" for="GenMale">Male</label>
                                  </div>
                                  <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input ALIHDBfields" onclick="CheckGender(this,'ALIH_RELVID'+$(this).closest('.DYNROW').attr('data-row'),'Page')"  value="Female" id="GenFemale" name="ALIH_GENDR">
+                                    <input type="radio" class="custom-control-input ALIHDBfields" onclick="CheckGender(this,'ALIH_RELVID'+$(this).closest('.DYNROW').attr('data-row'),'Page')" value="Female" id="GenFemale" name="ALIH_GENDR">
                                     <label class="custom-control-label" for="GenFemale">Female</label>
                                  </div>
                                  <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input ALIHDBfields" onclick="CheckGender(this,'ALIH_RELVID'+$(this).closest('.DYNROW').attr('data-row'),'Page')"  value="Transgender" id="GenTransgender" name="ALIH_GENDR">
+                                    <input type="radio" class="custom-control-input ALIHDBfields" onclick="CheckGender(this,'ALIH_RELVID'+$(this).closest('.DYNROW').attr('data-row'),'Page')" value="Transgender" id="GenTransgender" name="ALIH_GENDR">
                                     <label class="custom-control-label" for="GenTransgender">Transgender</label>
                                  </div>
                               </div>
@@ -256,24 +275,24 @@
                      </div>
 					 <div class="col-md-4 HDFCMRPT justify-content-center" style="display:none"> 
                          <div class="md-form">
-                            <div class=" "> 
-                                <a type="button" class="Btxt4 FltLeft"  onclick="GentrateHDFCMedical('ALIH_CUSID'+$(this).closest('.DYNROW').attr('data-row'),'Page');GentrateHDFCCovid('ALIH_CUSID'+$(this).closest('.DYNROW').attr('data-row'),'Page')">HDFC Medical Form.pdf</a>
+                            <div class="HyperControls"> 
+                                <a type="button" class="Btxt4 FltLeft"  onclick="GentrateHDFCMedical('ALIH_CUSID'+$(this).closest('.DYNROW').attr('data-row'),'Page');GentrateHDFCCovid('ALIH_CUSID'+$(this).closest('.DYNROW').attr('data-row'),'Page')" href="#">HDFC Medical Form.pdf</a>
                             </div>
                          </div>
                      </div>
 					 </br>
 					 <div class="col-md-4 HDFCNMRPT justify-content-center" style="display:none"> 
                          <div class="md-form">
-                            <div class=" "> 
-                                <a type="button" class="Btxt4 FltLeft"  onclick="GentrateHDFCNonMedical('ALIH_CUSID'+$(this).closest('.DYNROW').attr('data-row'),'Page');GentrateHDFCCovid('ALIH_CUSID'+$(this).closest('.DYNROW').attr('data-row'),'Page')">HDFC Non-Medical Form.pdf</a>
+                            <div class="HyperControls"> 
+                                <a type="button" class="Btxt4 FltLeft"  onclick="GentrateHDFCNonMedical('ALIH_CUSID'+$(this).closest('.DYNROW').attr('data-row'),'Page');GentrateHDFCCovid('ALIH_CUSID'+$(this).closest('.DYNROW').attr('data-row'),'Page')" href="#">HDFC Non-Medical Form.pdf</a>
                             </div>
                          </div>
                      </div>
 					  </br>
 					 <div class="col-md-4 ICICIRPT justify-content-center" style="display:none"> 
                          <div class="md-form">
-                            <div class=" "> 
-                                <a type="button" class="Btxt4 FltLeft" onclick="GentrateICICIMedical('ALIH_CUSID'+$(this).closest('.DYNROW').attr('data-row'),'Page')">ICICI Form.pdf</a>
+                            <div class="HyperControls"> 
+                                <a type="button" class="Btxt4 FltLeft" onclick="GentrateICICIMedical('ALIH_CUSID'+$(this).closest('.DYNROW').attr('data-row'),'Page')" href="#">ICICI Form.pdf</a>
                             </div>
                          </div>
                      </div>
@@ -315,6 +334,8 @@
       <th>APQA_OPTN</th>
       <th>APQA_INSRNCPTNR</th>
       <th>APQA_CUSID</th>
+	   <th>APQA_LOANID</th>
+	  
 
       <!--<th>FPOI_PRCSID</th>
          <th>FPOI_ACTIVITYID</th>

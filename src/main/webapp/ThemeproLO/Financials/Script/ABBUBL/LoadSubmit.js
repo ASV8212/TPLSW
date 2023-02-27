@@ -8,9 +8,8 @@ $(document).ready(function() {
 	 
 	
     FormDataFromDB("LSW_TABBUBLSCREEN", "ABBL_", "ABBLDBfields", "ABBL_SCHEMEID");
-      //Product();
-	 //EMIAMOUNT();
-    //$(".FormPageMultiTabAdd").hide();
+      Product();
+	 
 	
 	
     $(document).on("click", ".FormSave", function(){
@@ -28,7 +27,7 @@ $(document).ready(function() {
             var MndtryChk = ChkMandatoryFlds(prfx + "Mndtry");
             if (MndtryChk == "Mandatory") 
             {
-                alert("Fill the Mandatory Fields");
+                alert("Fill the Mandatory Fields / Document(s)");
                 return false;
             }
     

@@ -75,7 +75,7 @@ function GridControlDetailUptProInfo (popTableModPageGrid1,TableID,dtData,dtcolu
 				 { targets: 3, "render": function ( data, type, row, meta ) {                            
 			 			
 						var rowno = meta.row;	 
-						var HTML =	'<span><input type="text" id="PIAG_LNAAREACONSD'+rowno+'"  name="PIAG_LNAAREACONSD'+rowno+'" maxlength="10" data-item="Area" disabled class="form-control DISCOM DSVLBL TOTVAL LandMultp form-control IsCURCommaFields NoSpecialChar IsNumberFields">';			 
+						var HTML =	'<span><input type="text" id="PIAG_LNAAREACONSD'+rowno+'"  name="PIAG_LNAAREACONSD'+rowno+'" disabled maxlength="10" data-item="Area" class="form-control DISCOM DSVLBL TOTVAL LandMultp form-control IsCURCommaFields NoSpecialChar IsNumberFields">';			 
 						HTML = HTML + '</span>'; 
 							 
 						var htmldata = $(HTML);
@@ -92,7 +92,7 @@ function GridControlDetailUptProInfo (popTableModPageGrid1,TableID,dtData,dtcolu
 		 { targets: 4, "render": function ( data, type, row, meta ) {                            
 	 			
 				var rowno = meta.row;	 
-				var HTML =	'<span><input type="text" id="PIAG_LNDRATSQFT'+rowno+'"  name="PIAG_LNDRATSQFT'+rowno+'" maxlength="15" data-item="Rate" class="form-control LandMultp DISCOM TOTVAL form-control IsCURCommaFields NoSpecialChar IsNumberFields">';			 
+				var HTML =	'<span><input type="text" id="PIAG_LNDRATSQFT'+rowno+'"  name="PIAG_LNDRATSQFT'+rowno+'" maxlength="30" data-item="Rate" class="form-control LandMultp DISCOM TOTVAL form-control IsCURCommaFields NoSpecialChar IsNumberFields">';			 
 				HTML = HTML + '</span>'; 
 					 
 				var htmldata = $(HTML);
@@ -110,7 +110,7 @@ function GridControlDetailUptProInfo (popTableModPageGrid1,TableID,dtData,dtcolu
 				 { targets: 5, "render": function ( data, type, row, meta ) {                            
 			 			
 						var rowno = meta.row;	 
-						var HTML =	'<span><input type="text" id="PIAG_LNDTOTVAL'+rowno+'"  name="PIAG_LNDTOTVAL'+rowno+'" maxlength="10" data-item="Result" disabled class="form-control DSVLBL DISCOM TOTVAL LandMultp form-control IsCURCommaFields NoSpecialChar IsNumberFields">';			 
+						var HTML =	'<span><input type="text" id="PIAG_LNDTOTVAL'+rowno+'"  name="PIAG_LNDTOTVAL'+rowno+'" disabled maxlength="10" data-item="Result" class="form-control DSVLBL DISCOM TOTVAL LandMultp form-control IsCURCommaFields NoSpecialChar IsNumberFields">';			 
 						HTML = HTML + '</span>'; 
 							 
 						var htmldata = $(HTML);
@@ -215,7 +215,7 @@ function GridControlDetailUptProInfoII (popTableModPageGrid1,TableID,dtData,dtco
 				 { targets: 3, "render": function ( data, type, row, meta ) {                            
 			 			
 						var rowno = meta.row;	 
-						var HTML =	'<span><input type="text" id="PIFG_BUILDAREACONSD'+rowno+'"  name="PIFG_BUILDAREACONSD" maxlength="10" data-total1="TVPI_CONSAREACONS" disabled data-total="TVPI_CONSTOTVAL|TVPI_TOTEXTIMVAL|PIAG_LNDTOTVAL" data-item="Area" class="form-control FloorTot4 FloorTot2 DSVLBL FloorMultp form-control IsCURCommaFields NoSpecialChar IsNumberFields">';			 
+						var HTML =	'<span><input type="text" id="PIFG_BUILDAREACONSD'+rowno+'" disabled name="PIFG_BUILDAREACONSD" maxlength="10" data-total1="TVPI_CONSAREACONS" data-total="TVPI_CONSTOTVAL|TVPI_TOTEXTIMVAL|PIAG_LNDTOTVAL" data-item="Area" class="form-control FloorTot4 FloorTot2 DSVLBL FloorMultp form-control IsCURCommaFields NoSpecialChar IsNumberFields">';			 
 						HTML = HTML + '</span>'; 
 							 
 						var htmldata = $(HTML);
@@ -232,7 +232,7 @@ function GridControlDetailUptProInfoII (popTableModPageGrid1,TableID,dtData,dtco
 		 { targets: 4, "render": function ( data, type, row, meta ) {                            
 	 			
 				var rowno = meta.row;	 
-				var HTML =	'<span><input type="text" id="PIFG_BUILDRATSQFT'+rowno+'"  name="PIFG_BUILDRATSQFT" maxlength="25"  data-item="Rate" data-total1="TVPI_CONSASPERRATE" data-total="TVPI_CONSTOTVAL|TVPI_TOTEXTIMVAL|PIAG_LNDTOTVAL" class="form-control FloorTot4 FloorTot3 DISCOM form-control FloorMultp  NoSpecialChar IsCURCommaFields IsNumberFields">';			 
+				var HTML =	'<span><input type="text" id="PIFG_BUILDRATSQFT'+rowno+'"  name="PIFG_BUILDRATSQFT" maxlength="30"  data-item="Rate" data-total1="TVPI_CONSASPERRATE" data-total="TVPI_CONSTOTVAL|TVPI_TOTEXTIMVAL|PIAG_LNDTOTVAL" class="form-control FloorTot4 FloorTot3 DISCOM form-control FloorMultp  NoSpecialChar IsCURCommaFields IsNumberFields">';			 
 				HTML = HTML + '</span>'; 
 					 
 				var htmldata = $(HTML);
@@ -253,7 +253,7 @@ function GridControlDetailUptProInfoII (popTableModPageGrid1,TableID,dtData,dtco
 				 { targets: 5, "render": function ( data, type, row, meta ) {                            
 			 			
 						var rowno = meta.row;	 
-						var HTML =	'<span><input type="text" id="PIFG_BUILDTOTVAL'+rowno+'"  name="PIFG_BUILDTOTVAL maxlength="10" data-item="Result" disabled  data-total="TVPI_CONSTOTVAL|TVPI_TOTEXTIMVAL|PIAG_LNDTOTVAL" class="form-control FloorTot4 DISCOM DSVLBL LandMultp form-control IsCURCommaFields NoSpecialChar IsNumberFields">';			 
+						var HTML =	'<span><input type="text" id="PIFG_BUILDTOTVAL'+rowno+'" disabled name="PIFG_BUILDTOTVAL" maxlength="10" data-item="Result"  data-total="TVPI_CONSTOTVAL|TVPI_TOTEXTIMVAL|PIAG_LNDTOTVAL" class="form-control FloorTot4 DISCOM DSVLBL LandMultp form-control IsCURCommaFields NoSpecialChar IsNumberFields">';			 
 						HTML = HTML + '</span>'; 
 							 
 						var htmldata = $(HTML);
@@ -271,12 +271,21 @@ function GridControlDetailUptProInfoII (popTableModPageGrid1,TableID,dtData,dtco
 			           	  {
 			       			 targets: 7, "render": function ( data, type, row, meta ) {
 			       				var rowno = meta.row; 
-			    
-			           				var HTML =	'<span><img src="ThemeproLO/Common/Images/Delete_Img.png"  class="DELETEFLOOR btn" title="Delete" attr-Upd="ACTION'+rowno+'"  width="20" height="20"/>';			 
+			                           if(row[0]=="Basement"||row[0]=="Stilt area"||row[0]=="Ground Floor")
+       					          {
+			           				var HTML =	'<span><img src="ThemeproLO/Common/Images/Delete_Img.png" style="display:none" class="DELETEFLOOR btn" title="Delete" attr-Upd="ACTION'+rowno+'"  width="20" height="20"/>';			 
 			        				HTML = HTML + '</span>';  
 			        				var htmldata = $(HTML);				
 			        				return htmldata[0].outerHTML;
-			       				
+								  }
+								  else
+								  {
+									var HTML =	'<span><img src="ThemeproLO/Common/Images/Delete_Img.png"  class="DELETEFLOOR btn" title="Delete" attr-Upd="ACTION'+rowno+'"  width="20" height="20"/>';			 
+			        				HTML = HTML + '</span>';  
+			        				var htmldata = $(HTML);				
+			        				return htmldata[0].outerHTML;  
+									  
+								  }
 
 			       				  
 			       			 }
@@ -365,7 +374,7 @@ if($(id).closest('td').find('input[type="file"]').val()!="")
     var domain= LoadFrmXML("RS001");
     var usrpwd= LoadFrmXML("RS002");
     var PrcsID=getUrlParam("PrcsID");
-    var FormName= 'KYC';
+    var FormName= 'VENDOR';
     var CusID='';//$('#CBSI_CUSID').val()
     var DocName=KYCName
     var names="";
@@ -395,18 +404,26 @@ var CountAttch=1;
 	 }
 	 
 	 var FileSize=parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2);
-     var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
-	 
+    // var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
+	//   var Filename  = names.replace(',','')
+           var Filename  = $(id).closest('td').find('input[type="file"]')[0].files[0].name
+	      var FileType= Filename.substring(Filename.lastIndexOf('.')+1);
+          var  Filename= Filename.substring(0, Filename.lastIndexOf('.'));
+          var names=Filename
 
-		var xml=UI_getdata(FileType,FileSize,"","","","LSW_SGETDOCUMNTSIZE")
+		  
+		var xml=UI_getdata(FileType,FileSize,Filename,"","","LSW_SGETDOCUMNTSIZE")
 		var FileAccept=$(xml).find('RESULT').text()
 	if(FileAccept == 'No')
 	{
-		alert("File Size not matched")
+		alert($(xml).find("alert").text());
+		$(id).closest('td').find('input[type="file"]').val('')
 		return
     }
+	
+names=names+'.'+FileType
 var y=  names;
-var specialChars = "<>&#^|~`"
+/*var specialChars = "<>&#^|~`"
 var check = function(string){
     for(i = 0; i < specialChars.length;i++){
         if(string.indexOf(specialChars[i]) > -1){
@@ -419,10 +436,10 @@ var check = function(string){
 if(check(y) == false){
     // Code that needs to execute when none of the above is in the string
 }else{
-    alert('Error in File Name');
+    alert('File name contains special character please remove and upload');
 	$(id).closest('td').find('input[type="file"]').val('')
 	return;
-}
+}*/
 	 
 	 
 	 
@@ -462,7 +479,7 @@ if(check(y) == false){
 				var UPLOAD=docu+'UPLOAD'
 				$('#'+UPLOAD).hide();
 				$('.'+docu).show();
-				$(id).closest('.md-form').append('<span class="name">'+names.slice(0,-1)+'</span>');
+				$(id).closest('.md-form').append('<span class="name">'+names+'</span>');
 				
 				
 			
@@ -750,7 +767,7 @@ $(document).on("blur", ".FloorTot2", function() {
 	var TotalAverageFld = $(this).attr("data-total1");
 
 	$("#"+TotalAverageFld).val(CURINRCommaSep(Amount));
-       
+
 	});
 
 $(document).on("blur", ".FloorTot3", function() {
@@ -1004,7 +1021,7 @@ function GridControlDetailUptValAMENTIES (popTableModPageGrid1,TableID,dtData,dt
 		 { targets: 0, "render": function ( data, type, row, meta ) {                            
 			
 		var rowno = meta.row;	 
-		var HTML =	'<span><input type="text" id="TEUP_AMENTIESNAME'+rowno+'"  name="TEUP_AMENTIESNAME" maxlength="25" data-item="Docu" data-total="" class=" NoSpecialChar AMENAME form-control">';			 
+		var HTML =	'<span><input type="text" id="TEUP_AMENTIESNAME'+rowno+'"  name="TEUP_AMENTIESNAME" maxlength="100" data-item="Docu" data-total="" class=" NoSpecialChar  form-control">';			 
 		HTML = HTML + '</span>'; 
 			 
 		var htmldata = $(HTML);
@@ -1026,7 +1043,7 @@ function GridControlDetailUptValAMENTIES (popTableModPageGrid1,TableID,dtData,dt
 		 { targets: 1, "render": function ( data, type, row, meta ) {                            
 	 			
 				var rowno = meta.row;	 
-				var HTML =	'<span><input type="text" id="TEUP_AMENTIESVALUE'+rowno+'"  name="TEUP_AMENTIESVALUE" maxlength="25"   data-item="AMEVAL" class="form-control IsCURCommaFields NoSpecialChar IsNumberFields AMENAME Amenitval form-control">';			 
+				var HTML =	'<span><input type="text" id="TEUP_AMENTIESVALUE'+rowno+'"  name="TEUP_AMENTIESVALUE" maxlength="25"   data-item="AMEVAL" class="form-control IsCURCommaFields NoSpecialChar IsNumberFields Amenitval form-control">';			 
 				HTML = HTML + '</span>'; 
 					 
 				var htmldata = $(HTML);
@@ -1198,7 +1215,6 @@ function CheckMndtryTotAmenities(TableID,FldClas,HDR)
 	 return RTNVAL;
 }
 
-
 function CalcPropIns()
 {
 	
@@ -1222,7 +1238,8 @@ function CheckPropIns()
 		alert('Property Insurance value should not be lesser than total area consider value,total area consider * 1200')
 		$("#TVPI_PROPINS").val(CURINRCommaSep(CalcPropIns))
 		return false;
-	}	
+	}
+	
 }
 
 function ChkMultiTenant(Evnt)
@@ -1232,5 +1249,17 @@ function ChkMultiTenant(Evnt)
 		Evnt.value='';
 		alert("Multi Tenant can't be greater than 100");
 		return
+	}
+}
+
+function Chkconsper ()
+{
+	var per=$("#TVPI_PERCOMPLETED").val();
+	var add=$("#TVPI_ADDICONSSITE").val();
+	var site=parseFloat(per)+parseFloat(add)
+	if(parseFloat(site)>100)
+	{
+		alert("Percentage Completed and Additional Construction value can't be greater than 100")
+		$("#TVPI_ADDICONSSITE").val('');
 	}
 }

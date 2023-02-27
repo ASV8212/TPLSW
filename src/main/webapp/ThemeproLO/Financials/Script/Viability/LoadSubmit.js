@@ -93,10 +93,28 @@ $(document).ready(function () {
 		DATA = $("#"+DATA).val()+"|" + DATA;
 	}*/
  
+ 
+	
+	var result=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHKVIABILITYTAB");
+	var chk=$(result).find("RESULT").text();
+	 
+	if(chk=='Y')	
+	{
+		$("#FormPageTab9").show()
+	}
+	else
+	{
+		$("#FormPageTab9").hide()
+	}
+	
 	$("#VIAB_PRCSID").val("#prcsid");
 	$("#VIAB_ACTIVITYID").val("#ActvID");
     FormDataFromDB("LSW_TVIABILITYDETL","VIAB_", "VIABDBfields","");
 	 
+	 
+	var PRODUCT=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETPRODUCTNAME");
+	$("#VIAB_PRODUCTNAME").val($(PRODUCT).find("PRDNAME").text());
+	
 	
 	
 	$("#BTNVIABILITYGRD").click();
@@ -114,13 +132,22 @@ $(document).ready(function () {
         var prfx = $(this).attr("data-aria").split("|")[1];
         var DATA = $(this).attr("data-aria").split("|")[2];
 
-        if ($(this).text() == "Save & Next") {
-            var MndtryChk = ChkMandatoryFlds(prfx + "Mndtry");
+        if (($(this).text() == "Save & Next")||($(this).text() == "Save")) {
+		if($("#VIAB_PRODUCTNAME").val()=="Loan Against Machinery")
+		{
+		$(".PROD").next().addClass('VIABMNDTRY');
+		var MndtryChk = ChkMandatoryFlds(prfx + "Mndtry");
             if (MndtryChk == "Mandatory") 
             {
-                alert("Fill the Mandatory Fields");
+                alert("Fill the Mandatory Fields / Document(s)");
                 return false;
             }
+		}
+		else
+		{
+		$(".PROD").next().removeClass('VIABMNDTRY');
+		}
+            
     
         }
 			var VIAB_VIABILITY = TxtGridsubmitdata_V1("Table3","VIAG_","VIAB_");

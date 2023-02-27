@@ -29,6 +29,9 @@
 			    <div class="Btxt10">FOIR-ITR</div>
 			</div>
 			</br>
+			<div class="form-row ALLI">
+        	<div class="col Btxt10" style="color: rgb(255, 0, 0);">Details to be entered in actuals (Rs)</div>
+        </div>
 			<div class="form-row">
             <div class="col-md-4">
                   <div class="md-form">
@@ -38,7 +41,7 @@
             </div>
             <div class="col-md-4">
                   <div class="md-form">
-                  	  <input type="text" id="FOIR_FOIRPER"  maxlength="30"  name="FOIR_FOIRPER" class="form-control FOIRMndtry IsNumberFields  FOIRDBfields   DataNormal">
+                  	  <input type="text" id="FOIR_FOIRPER"  maxlength="30"  name="FOIR_FOIRPER" class="form-control FOIRMndtry IsNumberFields Charges FOIRDBfields   DataNormal">
                       <label for="FOIR_FOIRPER" class="">FOIR %<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
@@ -192,7 +195,7 @@
 				</div>
 			 
 				  </br>
-                  <div class="form-row">
+                  <div class="form-row"style="display:none">
                      <div class="col d-flex justify-content-center">
                         <button type="button" id="Save" data-aria="LSW_TFOIRMETHOD|FOIR|FOIR_SCHEMEID" class="btn btn-Syeloutline waves-effect waves-light Save FormSave">Save</button>   
                        <!-- <button type="button" data-aria="LSW_TFOIRMETHOD|FOIR" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> -->

@@ -151,20 +151,28 @@ var CountAttch=1;
 	 }
 	 
 	 var FileSize=parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2);
-     var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
+  //   var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
+  //   var Filename  = names.replace(',','')
+      var Filename  = $(id).closest('td').find('input[type="file"]')[0].files[0].name
+	      var FileType= Filename.substring(Filename.lastIndexOf('.')+1);
+          var  Filename= Filename.substring(0, Filename.lastIndexOf('.'));
+          var names=Filename
+  
 	 
-
-		var xml=UI_getdata(FileType,FileSize,"","","","LSW_SGETDOCUMNTSIZE")
+	 
+	 
+		var xml=UI_getdata(FileType,FileSize,Filename,"","","LSW_SGETDOCUMNTSIZE")
 		var FileAccept=$(xml).find('RESULT').text()
 	if(FileAccept == 'No')
 	{
 		alert($(xml).find("alert").text());
+		$(id).closest('td').find('input[type="file"]').val('')
 		return
     }
 	
-	  names=names.slice(0,-1)+'.'+FileType	
+	  names=names+'.'+FileType	
 var y=  names;
-var specialChars = "<>&#^|~`"
+/*var specialChars = "<>&#^|~`"
 var check = function(string){
     for(i = 0; i < specialChars.length;i++){
         if(string.indexOf(specialChars[i]) > -1){
@@ -177,11 +185,11 @@ var check = function(string){
 if(check(y) == false){
     // Code that needs to execute when none of the above is in the string
 }else{
-    alert('Error in File Name');
+    alert('File name contains special character please remove and upload');
 	$(id).closest('td').find('input[type="file"]').val('')
 	return;
 }
-	 
+	*/ 
 	 
 	 
 
@@ -257,6 +265,7 @@ if($("#RCUI_DATEOFINIT").val()=="")
 {
 var today=$("#DMY7").val().split("|")[1] 	
 $("#RCUI_DATEOFINIT").val(today)
+$(RCUI_DATEOFINIT).next().addClass('active')
 }
 	
 if($("#RCUI_INITIDATED").val()=='Yes')
@@ -273,6 +282,14 @@ else
   $("#RCUI_VENDORNAME").attr('disabled',false)
   $("#RCUI_BRANCHNAME").attr('disabled',false)
 }
+
+
+if($("#RCUI_DATEOFCOMP").val() != "")
+{
+	$('.RCUSUB').text('Re-submit')
+}	
+
+
 RCUVENDORONLOAD()
 }
 
@@ -302,13 +319,15 @@ function StatusData (Status,RowHTML,StatusFld,FIOAddr)
 	
 	if (Status == "To be Initiated")
 	{
+		
 	$(RowHTML).find(".ValuationInit").show();
+	
 	$(RowHTML).find(".ReAssignPopup").hide();
 	$(RowHTML).find(".ViewDataRpt").hide();
 	$(RowHTML).find(".ViewRpt").hide();
 	$(RowHTML).find(".SaveRpt").hide();
 	$(RowHTML).find(".RADCOMPL").hide();
-	
+	$(RowHTML).find(".PORDOC").hide();
 	
 	$(RowHTML).find("[name=" + FIOAddr + "]").attr('disabled',true)
 	$(RowHTML).find('input[type=radio]').attr('disabled',false)
@@ -323,10 +342,11 @@ else if (Status == "In Progress")
 	$(RowHTML).find(".ViewRpt").show();
 	$(RowHTML).find(".SaveRpt").hide();
 	$(RowHTML).find(".RADCOMPL").hide();
-	
+	$(RowHTML).find(".PORDOC").hide();
 	$(RowHTML).find("."+prfx+"DBfields").attr('disabled',true)
 	$(RowHTML).find('input[type=radio]').attr('disabled',false)
 	$(RowHTML).find('.select-dropdown').attr('disabled',true)
+	$(RowHTML).find('.APPLIC').attr('disabled',true)
 	}
 else if (Status == "Completed")
 {
@@ -336,9 +356,11 @@ $(RowHTML).find(".ViewDataRpt").show();
 $(RowHTML).find(".ViewRpt").hide();
 $(RowHTML).find(".SaveRpt").show();
 $(RowHTML).find(".RADCOMPL").show();
+$(RowHTML).find(".PORDOC").hide();
 $(RowHTML).find("."+prfx+"DBfields").attr('disabled',true)
 $(RowHTML).find('input[type=radio]').attr('disabled',false)
 $(RowHTML).find('.select-dropdown').attr('disabled',true)
+$(RowHTML).find('.APPLIC').attr('disabled',true)
 }	
 else if (Status == "Verified")
 {
@@ -348,10 +370,13 @@ $(RowHTML).find(".ViewDataRpt").show();
 $(RowHTML).find(".ViewRpt").hide();
 $(RowHTML).find(".SaveRpt").show();
 $(RowHTML).find(".RADCOMPL").show();
+$(RowHTML).find(".PORDOC").hide();
 $(RowHTML).find("."+prfx+"DBfields").attr('disabled',true)
 $(RowHTML).find('input[type=radio]').attr('disabled',false)
 $(RowHTML).find('.select-dropdown').attr('disabled',true)
+$(RowHTML).find('.APPLIC').attr('disabled',true)
 //$(RowHTML).find(".CORRDISB").attr("disabled",true)
+ 
 
 }	
 }
@@ -397,6 +422,7 @@ function getInitdate(RowHTML) {
 var  today = $("#DMY7").val().split("|")[1]
  
     $(RowHTML).find(".CURDATE").val(today)
+	 $(RowHTML).find(".CURDATE").next().addClass('active')
 }
 
 
@@ -633,16 +659,32 @@ for (j=0;j<row;j++)
 $("#TVII_VENDORNAME"+[j+1]).empty();
 var PrcsID=$("#PrcsID").val();
 var val=$("#TVII_BRANCNAME"+[j+1]).val()
+
+
+var UNIQID=""
+	
+	var VENDID=$("#TVII_VENDORID"+[j+1]).val()
+	if(VENDID=="")
+	{
+	 var UNIQID=$("#TVII_PROPERTYNO"+[j+1]).val()	
+	}
+	
+	
+	
 if(val!="")
 {
 //var xml=UI_getdata(PrcsID,val,"","","","LSW_SGETBANKDTLCUSWS")
-var xml=UI_getdata("Valuation",val,"","","","LSW_SGETVALUATION")
+var xml=UI_getdata("Valuation",val,$("#PrcsID").val(),UNIQID,"","LSW_SGETVALUATION")
 var CusName=$(xml).find('RESULT').html();	
 $("#TVII_VENDORNAME"+[j+1]).append(CusName)
+$("#TVII_VENDORNAME"+[j+1]).material_select("destroy");	
+$("#TVII_VENDORNAME"+[j+1]).material_select();
 var Data=$("#TVII_VENDORID"+[j+1]).val()
 if(Data!="")
 {
 $("#TVII_VENDORNAME"+[j+1]+" option:contains("+Data+")").attr("selected","selected")
+$("#TVII_VENDORNAME"+[j+1]).material_select("destroy");	
+$("#TVII_VENDORNAME"+[j+1]).material_select();
 }
 }
 }
@@ -660,16 +702,29 @@ function TechI()
 	$("#TEVD_VENDORNAME"+[j+1]).empty();
 	var PrcsID=$("#PrcsID").val();
 	var val=$("#TEVD_BRANCNAME"+[j+1]).val()
+	
+	var UNIQID=""
+	
+	var VENDID=$("#TEVD_VENDORID"+[j+1]).val()
+	if(VENDID=="")
+	{
+	 var UNIQID=$("#TEVD_PROPERTYNO"+[j+1]).val()	
+	}
+	
 	if(val!="")
     {
 	//var xml=UI_getdata(PrcsID,val,"","","","LSW_SGETBANKDTLCUSWS")
-	var xml=UI_getdata("Valuation",val,"","","","LSW_SGETVALUATION")
+	var xml=UI_getdata("Valuation",val,$("#PrcsID").val(),UNIQID,"","LSW_SGETVALUATION")
 	var CusName=$(xml).find('RESULT').html();	
 	$("#TEVD_VENDORNAME"+[j+1]).append(CusName)
+	$("#TEVD_VENDORNAME"+[j+1]).material_select("destroy");	
+	$("#TEVD_VENDORNAME"+[j+1]).material_select();
 	var Data=$("#TEVD_VENDORID"+[j+1]).val()
 	if(Data!="")
 	{
 	$("#TEVD_VENDORNAME"+[j+1]+" option:contains("+Data+")").attr("selected","selected")
+    $("#TEVD_VENDORNAME"+[j+1]).material_select("destroy");	
+	$("#TEVD_VENDORNAME"+[j+1]).material_select();
 	}
 	}
 	}
@@ -685,16 +740,31 @@ for (j=0;j<row;j++)
 $("#TIII_VENDORNAME"+[j+1]).empty();
 var PrcsID=$("#PrcsID").val();
 var val=$("#TIII_BRANCNAME"+[j+1]).val()
+
+	var UNIQID=""
+	
+	var VENDID=$("#TIII_VENDORID"+[j+1]).val()
+	if(VENDID=="")
+	{
+	 var UNIQID=$("#TIII_PROPERTYNO"+[j+1]).val()	
+	}
+	
+	
+	
 if(val!="")
     {
 //var xml=UI_getdata(PrcsID,val,"","","","LSW_SGETBANKDTLCUSWS")
-var xml=UI_getdata("Valuation",val,"","","","LSW_SGETVALUATION")
+var xml=UI_getdata("Valuation",val,$("#PrcsID").val(),UNIQID,"","LSW_SGETVALUATION")
 var CusName=$(xml).find('RESULT').html();	
 $("#TIII_VENDORNAME"+[j+1]).append(CusName)
+$("#TIII_VENDORNAME"+[j+1]).material_select("destroy");	
+$("#TIII_VENDORNAME"+[j+1]).material_select();
 var Data=$("#TIII_VENDORID"+[j+1]).val()
 if(Data!="")
 {
 $("#TIII_VENDORNAME"+[j+1]+" option:contains("+Data+")").attr("selected","selected")
+$("#TIII_VENDORNAME"+[j+1]).material_select("destroy");	
+$("#TIII_VENDORNAME"+[j+1]).material_select();
 }
 }
 }
@@ -712,16 +782,29 @@ function LegalI()
 	$("#LEGD_VENDORNAME"+[j+1]).empty();
 	var PrcsID=$("#PrcsID").val();
 	var val=$("#LEGD_BRANCNAME"+[j+1]).val()
+	var UNIQID=""
+	
+	var VENDID=$("#LEGD_VENDORID"+[j+1]).val()
+	if(VENDID=="")
+	{
+	 var UNIQID=$("#LEGD_PROPERTYNO"+[j+1]).val()	
+	}
+	
 	if(val!="")
     {
 	//var xml=UI_getdata(PrcsID,val,"","","","LSW_SGETBANKDTLCUSWS")
-	var xml=UI_getdata("LEGAL",val,"","","","LSW_SGETVALUATION")
+    var xml=UI_getdata("LEGAL",val,$("#PrcsID").val(),UNIQID,"","LSW_SGETVALUATION")
 	var CusName=$(xml).find('RESULT').html();	
 	$("#LEGD_VENDORNAME"+[j+1]).append(CusName)
+		
+$("#LEGD_VENDORNAME"+[j+1]).material_select("destroy");	
+$("#LEGD_VENDORNAME"+[j+1]).material_select();
 	var Data=$("#LEGD_VENDORID"+[j+1]).val()
 	if(Data!="")
 	{
 	$("#LEGD_VENDORNAME"+[j+1]+" option:contains("+Data+")").attr("selected","selected")
+	$("#LEGD_VENDORNAME"+[j+1]).material_select("destroy");	
+	$("#LEGD_VENDORNAME"+[j+1]).material_select();
 	}
 	}
 	}
@@ -739,20 +822,53 @@ function LegalII()
 	$("#LDII_VENDORNAME"+[j+1]).empty();
 	var PrcsID=$("#PrcsID").val();
 	var val=$("#LDII_BRANCNAME"+[j+1]).val()
+	
+		var UNIQID=""
+	
+	var VENDID=$("#LDII_VENDORID"+[j+1]).val()
+	if(VENDID=="")
+	{
+	 var UNIQID=$("#LDII_PROPERTYNO"+[j+1]).val()	
+	}
+	
+	
 	if(val!="")
     {
 	//var xml=UI_getdata(PrcsID,val,"","","","LSW_SGETBANKDTLCUSWS")
-	var xml=UI_getdata("LEGAL",val,"","","","LSW_SGETVALUATION")
+	var xml=UI_getdata("LEGAL",val,$("#PrcsID").val(),UNIQID,"","LSW_SGETVALUATION")
 	var CusName=$(xml).find('RESULT').html();	
 	$("#LDII_VENDORNAME"+[j+1]).append(CusName)
+	$("#LDII_VENDORNAME"+[j+1]).material_select("destroy");	
+	$("#LDII_VENDORNAME"+[j+1]).material_select();
 	var Data=$("#LDII_VENDORID"+[j+1]).val()
 	if(Data!="")
 	{
 	$("#LDII_VENDORNAME"+[j+1]+" option:contains("+Data+")").attr("selected","selected")
+	$("#LDII_VENDORNAME"+[j+1]).material_select("destroy");	
+	$("#LDII_VENDORNAME"+[j+1]).material_select();
 	}	
 	}
 	}
 }
+
+
+
+function FIRESIADDRESS(CUSID,ADDRESSFIELD,FITYPECHK)
+{
+	var CUSID=$("#"+CUSID).val();
+	var FITYPECHK=$("#"+FITYPECHK).val();
+	var xml=UI_getdata(CUSID,$("#PrcsID").val(),FITYPECHK,"","","LSW_SFIRESIADDR")
+
+	var ADDRESS=$(xml).find('ADDRESS').text();
+	$("#"+ADDRESSFIELD).val(ADDRESS)
+	$("#"+ADDRESSFIELD).next().addClass('active');
+	
+}
+
+
+
+
+
 
 
 function FIRES()
@@ -771,10 +887,14 @@ function FIRES()
 	var xml=UI_getdata("FI",val,"","","","LSW_SGETVALUATION")
 	var CusName=$(xml).find('RESULT').html();	
 	$("#FIRV_VENDNAME"+[j+1]).append(CusName)
+	$("#FIRV_VENDNAME"+[j+1]).material_select("destroy");	
+	$("#FIRV_VENDNAME"+[j+1]).material_select();
 	var Data=$("#FIRV_VENDORID"+[j+1]).val()
 	if(Data!="")
 	{
 	$("#FIRV_VENDNAME"+[j+1]+" option:contains("+Data+")").attr("selected","selected")
+	$("#FIRV_VENDNAME"+[j+1]).material_select("destroy");	
+	$("#FIRV_VENDNAME"+[j+1]).material_select();
 	}	
 	}
 	}
@@ -796,11 +916,15 @@ function FIOFFICE()
 	var xml=UI_getdata("FI",val,"","","","LSW_SGETVALUATION")
 	var CusName=$(xml).find('RESULT').html();	
 	$("#FIOV_VENDNAME"+[j+1]).append(CusName)
+
 	var Data=$("#FIOV_VENDORID"+[j+1]).val()
 	if(Data!="")
 	{
 	$("#FIOV_VENDNAME"+[j+1]+" option:contains("+Data+")").attr("selected","selected")
+	
 	}
+	$("#FIOV_VENDNAME"+[j+1]).material_select("destroy");	
+	$("#FIOV_VENDNAME"+[j+1]).material_select();
 	}
 	}
 
@@ -809,14 +933,13 @@ function FIOFFICE()
 function VendorDropdown()
 {  
 	TechI()
-	TechII()
-	TechIII()
-	LegalI()
-	LegalII()
-	FIRES()
-	FIOFFICE()
+//	TechII()
+//	TechIII()
+//	LegalI()
+//	LegalII()
+//	FIRES()
+//	FIOFFICE()
 }
-
 
 
 
@@ -869,9 +992,9 @@ if(RESASSVENDOR == "")
 	{
 	if(DEVSTATUSVAL!="Approve")
 	{
-	$(RowHTML).find(".ViewRpt").hide();
-	$(RowHTML).find(".ValuationInit").show();
-	$(RowHTML).find(".ReAssignPopup").hide();
+	//$(RowHTML).find(".ViewRpt").hide();
+	//$(RowHTML).find(".ValuationInit").show();
+	//$(RowHTML).find(".ReAssignPopup").hide();
 	}
 	/*else
       {
@@ -941,7 +1064,7 @@ function HndlCheckMCAClk(Evnt,ASSIGNRESPTOHDN){
 	                    alert("Error Occured. Contant IT!!!");	
                           return false;						 
 					  }	
-		    	   if(xml1=="REQUESTED")
+		    	   else if(xml1=="REQUESTED")
 		    		   {
 		    		   $(Evnt).closest('.DYNROW').find("input[name="+ASSIGNRESPTOHDN+"]").val(xml1);
 		    		   $(Evnt).closest('.DYNROW').find("."+ASSIGNRESPTOHDN+"").hide();
@@ -954,7 +1077,7 @@ function HndlCheckMCAClk(Evnt,ASSIGNRESPTOHDN){
 		    		   $(Evnt).closest('.DYNROW').find("."+ASSIGNRESPTOHDN+"").show();
 		    		   alert("Kindly click MCA Verification hyperlink to get the report.")
 					   $(Evnt).closest('.DYNROW').find('.Save').click();
-		    	   }
+		    	   }	
 		    	   else{
 		    		   alert(xml1);
 		    		   return
@@ -1091,6 +1214,21 @@ function GetRCUVENDOR()
 
 function RCUVENDORONLOAD()
 {
+	
+	if($("#RCUI_BRANCHNAME").val()=="")
+	{
+		
+	var xml=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETRCUBRANCH")
+    var BRANCH=$(xml).find('BRANCH').text()
+    var BRID=$(xml).find('BRID').text()
+   $("#RCUI_BRANCHNAME").val(BRANCH) 
+   $("#RCUI_BRANCHID").val(BRID) 
+	 
+	var Data=$("#RCUI_BRANCHID").val()
+	$("#RCUI_BRANCHNAME option:contains("+Data+")").attr("selected","selected")	
+	$("#RCUI_BRANCHNAME").material_select();		
+	}
+	
 
 	var val=$("#RCUI_BRANCHNAME").val();
 	if(val!="")
@@ -1098,14 +1236,19 @@ function RCUVENDORONLOAD()
 	var xml=UI_getdata("RCU",val,"","","","LSW_SGETVALUATION")
 	var CusName=$(xml).find('RESULT').html();	
 	$("#RCUI_VENDORNAME").append(CusName)
+	$("#RCUI_VENDORNAME").material_select("destroy");	
+	$("#RCUI_VENDORNAME").material_select();
 	var Data=$("#RCUI_VENDORID").val()
+	if(Data!="")
+	{
 	$("#RCUI_VENDORNAME option:contains("+Data+")").attr("selected","selected")
+	$("#RCUI_VENDORNAME").material_select("destroy");	
+	$("#RCUI_VENDORNAME").material_select();
+	}
 	}
 	
 
 }
-
-
 
 
 
@@ -1646,6 +1789,9 @@ if(STATUS=="Y")
 
 
 
+
+
+
 function MCAADDOFFICE()
 {
 	 var row = $(".MCAVerify").find(".DYNROW").length;
@@ -1680,6 +1826,7 @@ function MCAADDOFFICE()
 }
 
 
+
 function MCACINCHANGE(Evnt,ASSIGNRESPTOHDN)
 {
 
@@ -1688,3 +1835,313 @@ $(Evnt).closest('.DYNROW').find('.MCAV_MCARPTREQ').hide();
 		    		
 }
 
+function InitRCU(Evnt)
+{
+	var GRP = $("#"+$(Evnt).attr("data-info").split("|")[0]).val();
+	var UNIQid = $("#"+$(Evnt).attr("data-info").split("|")[1]).val();
+	var UNIQid1 = $("#"+$(Evnt).attr("data-info").split("|")[1]).val()+GRP;
+	var OPXML = UI_getdata(GRP,"","","","","LSW_CHKIRCUGROUP");
+    var GRP= $(OPXML).find("RCU").text()
+	
+	var WFVndACTVINIT1 = WFVndActvInit($("#ActvID").val(),$("#PrcsID").val()+"|VendorInitiate|Vendor|var_status=SVF&var_statusHES="+GRP+"&var_INFO1="+GRP+"~"+GRP+"~"+UNIQid+"~"+UNIQid1+"|ADMIN","LSW_SWFACTVINITCALL");	
+	if (WFVndACTVINIT1 == "Success")
+			{
+			var OPXML = UI_getdata(GRP,UNIQid,UNIQid1,"","","LSW_SUPDATEIRCUGROUP");
+			alert("File Assigned");
+			}
+		else
+			{
+			alert("Initiation Failed");
+			}
+}
+
+
+
+
+function CheckFutureDt(Evnt)
+{
+	var APLNDT=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETAPPLNDATE")
+
+   // $('.ISFutureDateFields').on("change", function () {
+        //Total time for one day
+        var t1 = $(APLNDT).find("APPLNDATE").text();
+        var datefield_id = $(Evnt).attr('id');
+        var t2 = document.getElementById(datefield_id).value;
+
+        var one_day = 1000 * 60 * 60 * 24;  //Here we need to split the inputed dates to convert them into standard format for further execution
+        var x = t1.split("-");
+        var y = t2.split("/");   //date format(Fullyear,month,date) 
+
+        var date1 = new Date(x[2], (x[1] - 1), x[0]);
+
+        // it is not coded by me,but it works correctly,it may be useful to all
+
+        var date2 = new Date(y[2], (y[1] - 1), y[0])
+        var month1 = x[1] - 1;
+        var month2 = y[1] - 1;
+
+        //Calculate difference between the two dates, and convert to days
+
+        Diff = Math.ceil((date2.getTime() - date1.getTime()) / (one_day));
+
+		if(t2!="")
+		{
+         if (Diff < 0) {
+			$('#'+datefield_id).focus();
+			document.getElementById(datefield_id).value = "";
+           // alert(LoadFrmXML("V0091")+'|'+datefield_id);
+			alert(LoadFrmXML("V0091"));
+            return 
+        }
+		}
+		
+		t1 = get2date();
+        datefield_id = $(Evnt).attr('id');
+        t2 = document.getElementById(datefield_id).value;
+
+        
+        x = t1.split("-");
+        y = t2.split("/");   //date format(Fullyear,month,date) 
+
+        date1 = new Date(x[2], (x[1] - 1), x[0]);
+
+        // it is not coded by me,but it works correctly,it may be useful to all
+
+        date2 = new Date(y[2], (y[1] - 1), y[0])
+        month1 = x[1] - 1;
+        month2 = y[1] - 1;
+
+        //Calculate difference between the two dates, and convert to days
+
+        Diff = Math.ceil((date2.getTime() - date1.getTime()) / (one_day));
+
+		if(t2!="")
+		{
+        if (Diff >= 1) {
+		
+			$('#'+datefield_id).focus();
+		 	document.getElementById(datefield_id).value = "";
+           //alertify.alert(LoadFrmXML("V0090")+'|'+datefield_id);
+		   
+		   window.alert(LoadFrmXML("V0090"));
+		  
+		  
+            return 
+        }
+		}
+}
+function ChkAdr()
+{
+	//var TechI=$("#TEVD_PROPERTYNO").val()
+	var ResI=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHKSECTYPE");
+	var ChkAddI=$(ResI).find("RESULT").text();	
+	if(ChkAddI=='Y')	
+	{
+		$(".CHKADRS").hide();		
+	}
+	else
+	{
+		$(".CHKADRS").show();	
+	}
+	
+	//var TechII=$("#TVII_PROPERTYNO").val()
+	var ResII=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHKSECTYPE");
+	var ChkAddII=$(ResII).find("RESULT").text();	
+	if(ChkAddII=='Y')	
+	{
+		$(".CHKADRSII").hide();		
+	}
+	else
+	{
+		$(".CHKADRSII").show();	
+	}
+	
+	//var TechIII=$("#TIII_PROPERTYNO").val()
+	var ResIII=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHKSECTYPE");
+	var ChkAddIII=$(ResIII).find("RESULT").text();	
+	if(ChkAddIII=='Y')	
+	{
+		$(".CHKADRSIII").hide();		
+	}
+	else
+	{
+		$(".CHKADRSIII").show();	
+	}
+	
+	
+	
+} 
+
+ function Applicable(Evnt)
+   {
+	   
+	  var row=$(Evnt).closest('.DYNROW').attr('data-row')
+	var Statu=$("#TEVD_STATUS"+row).val()
+	var Wav=$(Evnt).val();
+	  if(Statu=="To be Initiated")
+	  {
+	 if(Wav=="Waiver"||Wav=="Not Applicable")
+	 {
+		  $(Evnt).closest('.DYNROW').find('.ValuationInitone').hide();
+		  
+		  
+		 
+	 }
+	 else
+	 {
+		 $(Evnt).closest('.DYNROW').find('.ValuationInitone').show();
+
+	 }
+	  }
+	 
+   }
+   
+   /*  function AppLoad(ValuationStatus,HTML)
+   {
+	     var DATA=["PropertyValuer1|TEVD_STATUS|TEVD_ADDPROPERTY"]
+     
+		for (j=0;j<DATA.length;j++)
+		{
+	 
+			var ValuationID=DATA[j].split("|")[0];
+			var ValuationStatus=DATA[j].split("|")[1];
+			var FIOAddr=DATA[j].split("|")[2];
+		
+			var row = $("." + ValuationID).find(".DYNROW").length;
+			for (i=0;i<row;i++)
+			{
+				var Wav=$(HTML).val();
+				var statu=$("#"+ValuationStatus+row).val();
+				if(statu=="To be Initiated")
+				{
+					if(Wav=="Waiver"||Wav=="Not Applicable")
+					{
+						$(HTML).closest('.DYNROW').find('.ValuationInit').hide();
+			
+					
+					}
+					else
+					{
+						$(HTML).closest('.DYNROW').find('.ValuationInit').show();
+				
+					}
+				}
+		}
+	 }
+   }  */
+
+
+     function Notapplicable(Evnt)
+   {
+	  var row=$(Evnt).closest('.DYNROW').attr('data-row')
+	   var Statu=$("#TVII_STATUS"+row).val()
+	  var Wav=$(Evnt).val();
+	  if(Statu=="To be Initiated")
+	  {
+		if(Wav=="Waiver"||Wav=="Not Applicable")
+		{
+			$(Evnt).closest('.DYNROW').find('.ValuationInittwo').hide();
+			
+		}
+		else
+		{
+			$(Evnt).closest('.DYNROW').find('.ValuationInittwo').show();
+			
+		}
+	  }
+   } 
+   
+   /*  function NotappLoad(ValuationStatus,HTML)
+   {
+	   
+	  var Wav=$(HTML).val();
+	   var statu=$(ValuationStatus).val();
+	 if(statu=="To be Initiated")
+	 {
+	 if(Wavir=="Waiver"||Wavir=="Not Applicable")
+	 {
+		  $(HTML).closest('.DYNROW').find('.ValuationInit').hide();
+		 
+	 }
+	 else
+	 {
+		 $(HTML).closest('.DYNROW').find('.ValuationInit').show();
+		 
+	 }
+	 }
+   } */
+   
+   function AppWaiver(Evnt)
+   {
+	   var row=$(Evnt).closest('.DYNROW').attr('data-row')
+	   var Statu=$("#TIII_STATUS"+row).val()
+	  var Wav=$(Evnt).val();
+	  if(Statu=="To be Initiated")
+	  {
+	  
+	 if(Wav=="Waiver"||Wav=="Not Applicable")
+	 {
+		  $(Evnt).closest('.DYNROW').find('.ValuationInitthree').hide();
+		 
+	 }
+	 else
+	 {
+		 $(Evnt).closest('.DYNROW').find('.ValuationInitthree').show();
+		 
+	 }
+	  }
+   }
+  /*  function Chkinit()
+   {
+	   var Chk=$(Evnt).val();
+	   if(Chk=="Initiate")
+	   {
+		   $(Evnt).closest('.DYNROW').find('.APPLIC').hide();
+	   }
+   } */
+   
+   
+function Pindetls(idval,state,city,STDCode)
+{
+var val=GetPin($(idval).val());
+
+if($(val).find("statename").text()!="")
+{
+$('#'+state).attr('disabled',true)
+$('#'+state).val($(val).find("statename").text());
+$('#'+state).next().addClass('active');
+}
+else
+{
+$('#'+state).attr('disabled',true)
+$('#'+state).val('');
+$('#'+state).next().removeClass('active');
+$(idval).val('');
+}
+if($(val).find("Telephone").text()!="")
+{
+$('#'+STDCode).attr('disabled',true)
+$('#'+STDCode).val($(val).find("Telephone").text());
+$('#'+STDCode).next().addClass('active');
+}
+else
+{
+$('#'+STDCode).attr('disabled',false)
+$('#'+STDCode).val('');
+$('#'+STDCode).next().removeClass('active');
+//$(idval).val('');
+}
+if($(val).find("Districtname").text()!="")
+{
+$('#'+city).attr('disabled',true)
+$('#'+city).val($(val).find("Districtname").text());
+$('#'+city).next().addClass('active');
+}
+else
+{
+$('#'+city).attr('disabled',true)
+$('#'+city).val('');
+$('#'+city).next().removeClass('active');
+$(idval).val('');
+}
+}

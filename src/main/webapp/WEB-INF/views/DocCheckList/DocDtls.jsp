@@ -55,8 +55,21 @@
             <form >
                </br>
                <div class="form-row">
+			   <div class="col-md-6">
+			   <div class="md-form">
                   <div class="col Btxt3">KYC</div>
                   <!--<div class="col Btxt14 TxtRight">Note: All the OSV needs to be done by employee only</div> -->
+				  </div>
+               </div>
+			   <div class="col-md-6">
+			   </div>
+			   <div class="col-md-6">
+			   </div>
+			   <div class="col-md-6">
+			   <div class="md-form">
+                  <button type="button" id="MULTIDOWNLOADER" class="btn  waves-effect  btn-yelInplain btn-sm liSubpageTabIcons VIEWDISABLE" onclick="MULTIDOWNLOADER1('UPDC_CUSID')"><i class="fa fa-eye"></i>View All Documents</button>
+               </div>
+			   </div>
                </div>
                </br>
                <div class="form-row">
@@ -71,7 +84,7 @@
       </div>
       <!-- card -->
       </br>
-<div class="NGECL" style="display:none">
+	  <div class="NGECL" style="display:none">
       <!--  card -->
       <div class="card cardNS PropertyDocuments">
          <!-- Card body -->
@@ -124,9 +137,9 @@
                      </div>
                   </div>
                   
-                  <div class="col-md-2 CREDIT">
+                  <div class="col-md-2   CREDIT">
                      <div class="md-form">
-                       <button type="button" id="PRORAISEQU" data-quey-sec="S03" data-aria="" data-form="PersonalInfo" style="width:160px;height:35px" class="btn btn-Syeloutline waves-effect waves-light PODSave RaiseQry">Raise Query</button>
+                      <button type="button" id="PRORAISEQU" data-quey-sec="S03" data-aria="" data-form="PersonalInfo" style="width:160px;height:35px" class="btn btn-Syeloutline waves-effect waves-light PODSave VRFY1  RaiseQry">Raise Query</button>
                      </div>
                   </div>
                   
@@ -144,6 +157,35 @@
                                     </div>
                                  </div>
                               </div> -->
+							  </div>
+				  <div class="form-row">
+							   <div class="col-md-6 UPLD">
+							<div class="md-form">
+											<div class=""> </div>
+											<div class="row UAMN" >
+							<div class="col-md-8  Formcol-mdLR UAMNupload"style="display:none">
+							<div class="md-form">
+							<table><tr>
+							<td>
+							<div id="DOCP_PROPERTYDOCUPLOAD"  class="file-field" >
+								 
+							<input type="text" id="DOCP_PROPERTYDOC" data-val="Upload Document"    data-Validate="DOCP_PROPERTYDOC"  name="DOCP_PROPERTYDOC" class="form-control voter File DOCPDBfields">
+							
+							</div>
+							</td>
+							</tr></table>
+							</div>    
+							</div>  
+							<div class="md-form">
+							  <span class="name1">&nbsp;&nbsp;&nbsp;Property Document</span> 
+							<img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW"  class="rounded" onclick="GrdDocDwnld('DOCP_PROPERTYDOC1')" alt="Cinque Terre" width="35" height="25"> </div>
+							</div>
+							</div>  
+							</div>
+							</div>
+							</div>
+							  
+							  
                            </div>
                         </form>
                      </div>
@@ -152,6 +194,7 @@
             </div>
          </div>
       </div>
+	  
       <!-- card -->
       </br>
       <!--  card -->
@@ -200,13 +243,14 @@
                         <div class="form-row">
                            <div class="col-md-6">
                               <div class="md-form">
-                                 <select class="md-form colorful-select dropdown-primary  UPDCMndtry BNKSDBfields" onchange="UpdtDefrFlg(this,'BNKS_DEFRSTUS')" id="BNKS_FINANCCOLLCT" name="BNKS_FINANCCOLLCT">
+                                 <select class="md-form colorful-select dropdown-primary UPDCMndtry BNKSDBfields" onchange="UpdtDefrFlg(this,'BNKS_DEFRSTUS')" id="BNKS_FINANCCOLLCT" name="BNKS_FINANCCOLLCT">
                                     <option value="">Select</option>
                                     <!-- <option value="Last 12 Months">Last 12 Months</option>
                                     <option value="2 Years">2 Years</option>
                                     <option value="5 Years">5 Years</option>
                                     <option value="10 Years">10 Years</option>
                                     <option value="10+ Years">10+ Years</option> -->
+									<option value="Last 3 months">Last 3 months</option>                                    
                                     <option value="Last 6 months">Last 6 months</option>
                                     <option value="Last 12 months">Last 12 months</option>
 									<option disabled value="Last 24 months" class="BSO" >Last 24 months</option>
@@ -233,7 +277,7 @@
                   
                   <div class="col-md-1 CREDIT">
                      <div class="md-form">
-                      <button type="button" id="PRORAISEQU" data-quey-sec="S02" data-aria="" data-form="PersonalInfo" style="width:160px;height:35px" class="btn btn-Syeloutline waves-effect waves-light PODSave RaiseQry">Raise Query</button>
+                      <button type="button" id="PRORAISEQU" data-aria="" data-quey-sec="S02" data-form="PersonalInfo" style="width:160px;height:35px" class="btn btn-Syeloutline waves-effect waves-light PODSave RaiseQry">Raise Query</button>
                      </div>
                   </div>
                   
@@ -259,6 +303,7 @@
          </div>
          <!-- </div> -->
       </div>
+	  
       <!-- card -->
       </br>
       <!--  card -->
@@ -322,7 +367,6 @@
                               </div>
                         	</div>
                         </div>
-						
 						<div class="form-row APLNTPLVERFY " >
 					<div class="col-md-6 CREDIT">
 						<div class="md-form">
@@ -341,9 +385,9 @@
             </form>
          </div>
       </div>
-</div>
       <!-- card -->
-	  </br>
+	</div>
+      </br>
       <!--  card -->
       <div class="card cardNS">
          <!-- Card body -->
@@ -378,7 +422,7 @@
                </br>
                <div class="form-row">
                   <div class="col">
-                     <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table4',{spname:'LSW_TKYCDOCCHECKLIST1',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:'Others',brid:$('#PrcsID').val(),MnuId:$('#UPDC_CUSID').val()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||8','DocumentCheckList');" id="BTNKYCOthers" name="BTNKYCOthers" />
+                     <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table4',{spname:'LSW_TRCUDOCCHECKLIST1',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:'Others',brid:$('#PrcsID').val(),MnuId:$('#UPDC_CUSID').val()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||8','DocumentCheckList');" id="BTNKYCOthers" name="BTNKYCOthers" />
                      <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" id="Table4">
                      </table>
                   </div>
@@ -434,24 +478,27 @@
                         </div>
          	 </form>
          	</div>
-         </div>
-		      <div class="form-row GenApplForm" style="display:none">
+         </div><!--style="display:none  GenApplForm"-->
+		      <div class="form-row " >
               <span class="HyperControls FltRight">
 		         <a onclick="GentrateApplicform();" class="Btxt4 FltRight" href="#">Application Form.pdf</a>
 		      </span>
-			     <span class="HyperControls FltRight">
+			   <!--<span class="HyperControls FltRight" style="display:none">
 		         <a onclick="GentrateEndUse();" class="Btxt4 FltRight" href="#">End Use.pdf</a>
-		      </span>
+		      </span>-->
           </div>
           <!-- card -->
+		   <div class="form-row"  style="display:none;" >
+		   <button type="button" style="display:none;" id="SendBackCon" data-aria="LSW_TUPLOADDOCUMENT|UPDC|UPDC_CUSID" data-card="0" class="btn btn-Syel waves-effect BTNDOCMVL waves-light FormSave">Send Back</button>
+		   </div>
       <div class="form-row">
          <div class="col d-flex justify-content-center">
             <button type="button" id="Save4" data-aria="LSW_TUPLOADDOCUMENT|UPDC|UPDC_CUSID"  class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
             <button type="button" id="MoveToLogin" data-aria="LSW_TUPLOADDOCUMENT|UPDC|UPDC_CUSID" data-card="0" class="btn btn-Syel waves-effect BTNDOCMVL waves-light FormSave">Move to Login</button>
-            <button type="button" style="display:none;" id="SendBack" data-aria="LSW_TUPLOADDOCUMENT|UPDC|UPDC_CUSID" data-card="0" class="btn btn-Syel waves-effect BTNDOCMVL waves-light FormSave">Send Back</button>
-             <button type="button" style="display:none;" id="Reject" data-aria="LSW_TUPLOADDOCUMENT|UPDC|UPDC_CUSID" data-card="0" class="btn btn-Syel waves-effect BTNDOCMVL waves-light">Reject</button> 
-           <button type="button" style="display:none;" id="ApplForm" onclick="GentrateApplicform()" data-form="CAM" data-card="0" class="btn btn-Syel waves-effect waves-light ApplForm">Application form</button> 		 
-		  <button type="button" style="display:none;" id="EndUse" onclick="GentrateEndUse()" data-form="CAM" data-card="0" class="btn btn-Syel waves-effect waves-light ApplForm">End Use</button> 
+            <button type="button" style="display:none;" id="SendBack" data-aria="LSW_TUPLOADDOCUMENT|UPDC|UPDC_CUSID" data-card="0" class="btn btn-Syel waves-effect BTNDOCMVL waves-light BTNHIDE SendPOPUP">Send Back</button>
+			<button type="button" style="display:none;" id="Reject" data-aria="LSW_TUPLOADDOCUMENT|UPDC|UPDC_CUSID" data-card="0" class="btn btn-Syel waves-effect BTNDOCMVL waves-light ">Reject</button> 
+             <button type="button" style="display:none;" id="ApplForm" onclick="GentrateApplicform()" data-form="CAM" data-card="0" class="btn btn-Syel waves-effect waves-light ApplForm FormSave">Application form</button> 		 
+		    <!-- <button type="button" style="display:none;" id="EndUse" onclick="GentrateEndUse()" data-form="CAM" data-card="0" class="btn btn-Syel waves-effect waves-light ApplForm FormSave">End Use</button> -->
 		
 		</div>
       </div>
@@ -476,7 +523,7 @@
                            <div class="col">
                               <div class="md-form">
                                  <div class="" id="">
-                                    <select class="mdb-select md-form colorful-select dropdown-primary KYCDMndtry DOCU" onchange="CheckDocType();" id="DOCU_KYC" name="DOCU_KYC">
+                                    <select class="mdb-select md-form colorful-select dropdown-primary KYCDMndtry DOCU BranchOPSNotDSBL" onchange="CheckDocType();" id="DOCU_KYC" name="DOCU_KYC">
                                        <option value="" selected>--Select--</option>
                                        <!-- <option value="Public Limited Company - Listed">PAN</option> -->
                                        <option value="KYC">KYC</option>
@@ -489,7 +536,7 @@
                            <div class="col">
                               <div class="md-form">
                                  <div class="" id="">
-                                    <input type="text" id="KYCD_DOCNAME" name="KYCD_DOCNAME" data-aria="2" class="form-control NoSpecialChar KYCDMndtry PGToGRID">
+                                    <input type="text" id="KYCD_DOCNAME" name="KYCD_DOCNAME" data-aria="2" class="form-control NoSpecialChar BranchOPSNotDSBL KYCDMndtry PGToGRID">
                                     <label for="KYCD_DOCNAME" class="">Document Name <span class="MndtryAstr">*</span></label>
                                  </div>
                               </div>
@@ -514,7 +561,7 @@
                                              <td>
                                                 <div id="KYCD_DOCATTACHMENTUPLOAD"  class="file-field DDU">
                                                    <a class="">
-                                                   <i class="fa fa-plus imgAdd" aria-hidden=""></i>
+                                                   <i class="fa fa-plus imgAdd BranchOPSNotDSBL" aria-hidden=""></i>
                                                    <input type="file"  name="datafile" onchange="DocFldUpldHndlr(KYCD_DOCATTACHMENT,'KYCD_DOCATTACHMENT')" class="KYCD_DOCATTACHMENT"  >
                                                    </a>
                                                    <input type="text" id="KYCD_DOCATTACHMENT" hidden="hidden" data-Validate="KYCD_DOCATTACHMENT"  name="KYCD_DOCATTACHMENT" class="form-control File KYCDDBfields">
@@ -537,19 +584,19 @@
                                  <div class="" id="">
                                     <div class="select-radio">
                                        <div class="custom-control custom-radio custom-control-inline">
-                                          <input type="checkbox" class="custom-control-input PGToGRID DocChkBox CBSI_ProofAs" data-aria="1" id="CBSI_ID" name="CBSI_ProofAs">
+                                          <input type="checkbox" class="custom-control-input PGToGRID DocChkBox CBSI_ProofAs BranchOPSNotDSBL" data-aria="1" id="CBSI_ID" name="CBSI_ProofAs">
                                           <label class="custom-control-label" for="CBSI_ID">ID</label>
                                        </div>
                                        <div class="custom-control custom-radio custom-control-inline">
-                                          <input type="checkbox" class="custom-control-input PGToGRID DocChkBox CBSI_ProofAs" data-aria="1" id="CBSI_SIGN" name="CBSI_ProofAs">
+                                          <input type="checkbox" class="custom-control-input PGToGRID DocChkBox CBSI_ProofAs BranchOPSNotDSBL" data-aria="1" id="CBSI_SIGN" name="CBSI_ProofAs">
                                           <label class="custom-control-label" for="CBSI_SIGN">SIGN</label>
                                        </div>
                                        <div class="custom-control custom-radio custom-control-inline">
-                                          <input type="checkbox" class="custom-control-input PGToGRID DocChkBox CBSI_ProofAs" data-aria="1" id="CBSI_DOB" name="CBSI_ProofAs">
+                                          <input type="checkbox" class="custom-control-input PGToGRID DocChkBox CBSI_ProofAs BranchOPSNotDSBL" data-aria="1" id="CBSI_DOB" name="CBSI_ProofAs">
                                           <label class="custom-control-label" for="CBSI_DOB">DOB</label>
                                        </div>
                                        <div class="custom-control custom-radio custom-control-inline">
-                                          <input type="checkbox" class="custom-control-input PGToGRID DocChkBox CBSI_ProofAs" data-aria="1" id="CBSI_ADDRESS" name="CBSI_ProofAs">
+                                          <input type="checkbox" class="custom-control-input PGToGRID DocChkBox CBSI_ProofAs BranchOPSNotDSBL" data-aria="1" id="CBSI_ADDRESS" name="CBSI_ProofAs">
                                           <label class="custom-control-label" for="CBSI_ADDRESS">ADDRESS</label>
                                        </div>
                                     </div>
@@ -569,6 +616,56 @@
          </div>
       </div>
    </div>
+   
+   
+   
+    <a type="button" id="SENDOPUP" class="btn btn-floating btn-large red" style="display:none" data-toggle="modal" data-target="#SENDPOPModal">
+   <i class="fa fa-plus"></i>
+        </a>
+<div class="modal fade" id="SENDPOPModal" tabindex="-1" role="dialog" aria-labelledby="SENDPOPModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" style="max-width:600px" role="document">
+    <div class="modal-content">
+       <div class="modal-header">
+        <div class="Btxt8">Send Back</div> 
+        <a href="#"><img id="" class="close" data-dismiss="modal" aria-label="Close" src="ThemeproLO/Common/FEP/images/Close1.png" alt="DashSearch"></img></a>     
+      </div>  
+      <div class="modal-body">
+   <div class="">
+    <!-- Card body -->
+     <div class="">  
+         <form>
+           <div class="form-row">
+		   
+                     <div class="md-form">
+						<label for="URCR_REMARK" class="active">Remarks<span class="MndtryAstr"></span>*</label>
+						 <br><br>
+                          <textarea class="form-control URCRDBfields" id="REMARKF" name="REMARKF" style="height: 100px;width:500px;"></textarea>					
+                     </div>
+               
+				  </div>
+				 
+ 
+              <div class="form-row">
+                   <div class="col d-flex justify-content-center">
+                     <button type="button" id="Save" data-aria="" onclick="Sendbackcall()" class="btn btn-Syeloutline waves-effect waves-light ">Confirm</button>   
+                   
+                  </div>
+              </div>        
+         </form>
+        </div>
+     </div>
+      </div>   
+      </div>
+    </div>
+  </div> 
+  
+  
+  
+  
+  
+  
+  
    <table style="display:none" id="GridTable2">
       <thead>
       	<th>ACTION</th>
@@ -610,7 +707,7 @@
          <th>OKYD_VRFY</th>
          <th>OKYD_RSQURY</th>
          <th>OKYD_DFRSTATUS</th>
-         <th>OKYD_UNIQNO</th>
+         <th>OKYD_UNIQID</th>
          <th>OKYD_AUTODD</th>
          <th>OKYD_CUSTYPE</th>
          <!-- <th>OKYD_PRCSID</th>

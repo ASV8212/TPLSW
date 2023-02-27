@@ -66,16 +66,15 @@
         <input type="text" id="RCCM_SCHEME"  name="RCCM_SCHEME" hidden="hidden"  class="form-control RCCMDBfields" value="">
         <input type="text" id="RCCM_UNIQUID"  name="RCCM_UNIQUID" hidden="hidden"  class="form-control RCCMDBfields" value="">
         <input type="text" id="RCCM_LOANUNIQID"  name="RCCM_LOANUNIQID" hidden="hidden"  class="form-control RCCMDBfields" value="">
-        
+        <input type="text" id="RCCM_PRODUCT"  name="RCCM_PRODUCT" hidden="hidden"  class="form-control RCCMDBfields" value="">
         <input type="text" id="RCCM_COAPPLIST"  name="RCCM_COAPPLIST" hidden="hidden"  class="form-control RCCMDBfields" value="">
         <input type="text" id="HiddenVal" hidden="hidden" name="HiddenVal" value="Net profit as per P/L|Tax Paid As Per ITR,Net Profile After Tax" class="form-control RCCMDBfields">
         <input type="text" id="HiddenCashPrft" hidden="hidden" name="HiddenCashPrft" value="Depreciation|,Cash Profit" class="form-control RCCMDBfields">
         <input type="text" id="HiddenINDUSCATRGORY" hidden="hidden" name="HiddenINDUSCATRGORY" value="" class="form-control ">
 		
-		
-		
 		<input type="text" id="CAM" hidden="hidden" name="CAM" value="" class="form-control ">
 		<input type="text" id="ISELGBLTYCHECKED" hidden="hidden" name="ISELGBLTYCHECKED" value="1" class="form-control ">
+		
 		<div class="form-row loadfincscreen">
 			<jsp:include page="//${DMY16}"></jsp:include>
 		</div>
@@ -93,6 +92,7 @@
          <input type="text" id="FCEB_MODIFIEDBY" hidden="hidden" name="FCEB_MODIFIEDBY" class="form-control FCEBDBfields">
          <input type="text" id="FCEB_CATEGORY"  hidden="hidden" name="FCEB_CATEGORY" class="form-control FCEBDBfields">
           <input type="text" id="FCEB_SCHEME"  hidden="hidden" name="FCEB_SCHEME" class="form-control FCEBDBfields">
+          <input type="text" id="FCEB_SCHEMELOAN"  hidden="hidden" name="FCEB_SCHEMELOAN" class="form-control FCEBDBfields">
 
             <div class="form-row">
               <div class=" col-md-4 GryShd">
@@ -114,7 +114,10 @@
                  </div>
               </div>
             </div>
+			
+		
           </div>
+	
          </div>
          </div>
 		
@@ -368,10 +371,20 @@
         </form>
         </div>
         </div>-->
+			  	<div class="form-row ">
+              <span class="HyperControls FltRight REPAY">
+		         <a onclick="Gentraterepay();" class="Btxt4 FltRight" href="#">Re-Payment Schedule</a>
+		      </span>
+          </div>
+	<!--	<div class="form-row">
+            <div class="col d-flex justify-content-center">
+      	      <button type="button"  data-aria="LSW_TRTRCAMCHECKLISTMAIN|RCCM|RCCM_UNIQUID" data-form="CAM"  class="btn btn-Syel waves-effect waves-light FormSave1">CAM Generate</button>
+            </div>
+        </div> -->
         <div class="form-row" >
              <div class="col d-flex justify-content-center">
-                <button type="button" id="Save1" data-aria="LSW_TRTRCAMCHECKLISTMAIN|RCCM|RCCM_UNIQUID" data-form="CAM" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
-                <button type="button" data-aria="LSW_TRTRCAMCHECKLISTMAIN|RCCM|RCCM_UNIQUID" data-form="CAM" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
+                <button type="button" id="Save1" data-aria="LSW_TRTRCAMCHECKLISTMAIN|RCCM|RCCM_UNIQUID" data-form="CAM" class="btn btn-Syeloutline waves-effect waves-light FormSave1">Save</button>   
+                <button type="button" data-aria="LSW_TRTRCAMCHECKLISTMAIN|RCCM|RCCM_UNIQUID" data-form="CAM" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave1">Save & Next</button> 
            </div>
        </div>
      </form>
@@ -427,8 +440,8 @@
        	</br>
        	    <div class="form-row">
                  <div class="col d-flex justify-content-center">
-                     <button type="button" id="Save2" data-aria="LSW_TRTREXIXTLONMAIN|RXLM|RXLM_UNIQUID" data-form="EXLON" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
-                     <button type="button" data-aria="LSW_TRTREXIXTLONMAIN|RXLM|RXLM_UNIQUID" data-form="EXLON" data-card="1" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
+                     <button type="button" id="Save2" data-aria="LSW_TRTREXIXTLONMAIN|RXLM|RXLM_UNIQUID" data-form="EXLON" class="btn btn-Syeloutline waves-effect waves-light FormSave2">Save</button>   
+                     <button type="button" data-aria="LSW_TRTREXIXTLONMAIN|RXLM|RXLM_UNIQUID" data-form="EXLON" data-card="1" class="btn btn-Syel waves-effect waves-light FormSave2">Save & Next</button> 
                 </div>
             </div>
 			
@@ -1405,7 +1418,8 @@
          <input type="text" id="FCEB_DTMODIFIED" hidden="hidden" name="FCEB_DTMODIFIED" class="form-control FCEBDBfields">
          <input type="text" id="FCEB_MODIFIEDBY" hidden="hidden" name="FCEB_MODIFIEDBY" class="form-control FCEBDBfields">
          <input type="text" id="FCEB_CATEGORY"  hidden="hidden" name="FCEB_CATEGORY" class="form-control FCEBDBfields">
-          <input type="text" id="FCEB_SCHEME"  hidden="hidden" name="FCEB_SCHEME" class="form-control FCEBDBfields">
+         <input type="text" id="FCEB_SCHEME"  hidden="hidden" name="FCEB_SCHEME" class="form-control FCEBDBfields">
+		 <input type="text" id="FCEB_SCHEMELOAN"  hidden="hidden" name="FCEB_SCHEMELOAN" class="form-control FCEBDBfields">
 
             <div class="form-row">
               <div class=" col-md-4 GryShd">
@@ -1702,21 +1716,21 @@
       	</br>
            <div class="form-row">
                  <div class="col d-flex justify-content-center">
-      	             <button type="button"  data-aria="LSW_TINCELIGIBIL|ICEG|ICEG_UNIQUID" data-form="ELIGBL"  class="btn btn-Syel waves-effect waves-light FormSave">CAM Generate</button>
+      	             <button type="button"  data-aria="LSW_TINCELIGIBIL|ICEG|ICEG_UNIQUID" data-form="ELIGBL"  class="btn btn-Syel waves-effect waves-light FormSave2">CAM Generate</button>
                 </div>
            </div>
       	    <div class="form-row">
                  <div class="col d-flex justify-content-center">
-                     <button type="button" id="Save3" data-aria="LSW_TINCELIGIBIL|ICEG|ICEG_UNIQUID" data-form="ELIGBL"  class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
-                     <button type="button" data-aria="LSW_TINCELIGIBIL|ICEG|ICEG_UNIQUID" data-form="ELIGBL"  data-card="2" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
+                     <button type="button" id="Save3" data-aria="LSW_TINCELIGIBIL|ICEG|ICEG_UNIQUID" data-form="ELIGBL"  class="btn btn-Syeloutline waves-effect waves-light FormSave2">Save</button>   
+                     <button type="button" data-aria="LSW_TINCELIGIBIL|ICEG|ICEG_UNIQUID" data-form="ELIGBL"  data-card="2" class="btn btn-Syel waves-effect waves-light FormSave2">Save & Next</button> 
                 </div>
             </div>
 			
       	</form>
       </div>   
     </div>
-  </div>
-       <div class="GENCAM card CardNS" style="display:none">
+  </div><!--GENCAM-->
+       <div class=" card CardNS" >
         </br>
   	      <div class="form-row GenApprNote">
               <span class="HyperControls FltRight">
@@ -2141,6 +2155,41 @@
       </div>
    </div>
 </div>
+
+
+   <a type="button" id="FIOFFICEUPDATE" class="btn btn-floating btn-large red" style="display:none" data-toggle="modal" data-target="#FIOFFICEUPDATEModal">
+      <i class="fa fa-plus"></i>
+  </a>
+<div class="modal fade" id="FIOFFICEUPDATEModal" tabindex="-1" role="dialog" aria-labelledby="FIOFFICEUPDATEModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" style="max-width:1300px" role="document">
+    <div class="modal-content">
+       <div class="modal-header">
+       <div class="Btxt10">Re-payment Schedule</div> 
+   <a href="#">  <img id="" class="close" data-dismiss="modal" aria-label="Close" src="ThemeproLO/Common/FEP/images/Close1.png" alt="DashSearch"></img></a>     
+      </div>  
+      <div class="modal-body"> 
+   <div class="">
+    <!-- Card body -->
+     <div class="">  
+         <form>
+            
+          <div class="form-row">
+           <div class="col">
+             <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table2',{spname:'LOAN_SGETEMISCHEDULE_LOS',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#RCCM_LOANUNIQID').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||1','REPAYGRD');" id="BTNRCUGRD" name="BTNRCUGRD" />
+             <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" id="Table2">
+             </table>
+          </div>
+        </div> 
+  
+            
+         </form>
+        </div>
+     </div>
+      </div>   
+      </div>
+    </div>
+  </div>
 
 
 

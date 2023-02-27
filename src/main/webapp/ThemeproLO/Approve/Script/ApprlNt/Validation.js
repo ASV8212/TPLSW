@@ -591,7 +591,7 @@ function GridControlDetail_EMPOWERMNT(popTableModPageGrid1, TableID, dtData, dtc
                 "render": function(data, type, row, meta) {
 
                     var rowno = meta.row;
-                    var HTML = '<span><input type="text" style = "" id="APED_REMARK' + rowno + '"  name="APED_REMARK' + rowno + '" maxlength="100" disabled class="form-control DSVLBL form-control ">';
+                    var HTML = '<span><input type="text" style = "" id="APED_REMARK' + rowno + '"  name="APED_REMARK' + rowno + '" maxlength="300"  class="form-control  form-control ">';
                     HTML = HTML + '</span>';
 
                     var htmldata = $(HTML);
@@ -606,6 +606,28 @@ function GridControlDetail_EMPOWERMNT(popTableModPageGrid1, TableID, dtData, dtc
 
 
                     return htmldata[0].outerHTML;
+
+                }
+            },
+			
+			 {
+                targets: 5,
+                "render": function(data, type, row, meta) {
+
+                     var rowno = meta.row;		 
+    	        		var HTML =	'<span><input type="checkbox"  class="custom-control-input VRFY" value="'+data+'" name="APED_VERIFY'+ rowno + '" id="APED_VERIFY'+rowno+'">';			 
+    	        		HTML = HTML + '<label class="custom-control-label GridLabel" for="APED_VERIFY'+rowno+'"></label></span>';			  
+    	        		    
+    	        		// $('[name='+name+'][value="'+val+'"]').prop('checked', true);
+    	        		
+    	        		var htmldata = $(HTML);
+    	       			
+    	       			$(htmldata).find('[name=APED_VERIFY' + rowno + '][value="true"]').attr('checked', 'checked');       			       			
+    	       			
+    	    	 return htmldata[0].outerHTML;
+    	        		
+    	        		
+    	        			 return HTML;
 
                 }
             }
@@ -647,7 +669,7 @@ function GridControlDetail_EMPOWERMNTI(popTableModPageGrid1, TableID, dtData, dt
                 targets: 2,
                 "render": function(data, type, row, meta) {
                     var rowno = meta.row;
-                    var HTML = '<span><input type="text" style = "width:300px" id="APED_REMARK' + rowno + '"  name="APED_REMARK' + rowno + '" maxlength="100" class="form-control MATI form-control ">';
+                    var HTML = '<span><input type="text" style = "width:300px" id="APED_REMARK' + rowno + '"  name="APED_REMARK' + rowno + '" maxlength="300" class="form-control MATI form-control ">';
                     HTML = HTML + '</span>';
                     var htmldata = $(HTML);
                     if ($(htmldata).find('[name=APED_REMARK' + rowno + ']').hasClass("IsCURCommaFields")) {
@@ -762,7 +784,7 @@ function GridControlDetail_ASSET(popTableModPageGrid1, TableID, dtData, dtcolumn
                 targets: 3,
                 "render": function(data, type, row, meta) {
                     var rowno = meta.row;
-                    var HTML = '<span><input type="text" style = "width:250px" id="APAG_MRKTVAL' + rowno + '"  name="APAG_MRKTVAL' + rowno + '" maxlength="10" class="form-control form-control IsNumberFields IsCURCommaFields">';
+                    var HTML = '<span><input type="text" style = "width:250px" id="APAG_MRKTVAL' + rowno + '"  name="APAG_MRKTVAL' + rowno + '" maxlength="20" class="form-control form-control IsNumberFields IsCURCommaFields">';
                     HTML = HTML + '</span>';
                     var htmldata = $(HTML);
                     if ($(htmldata).find('[name=APAG_MRKTVAL' + rowno + ']').hasClass("IsCURCommaFields")) {
@@ -1126,8 +1148,18 @@ function GridControlDetailFINCSUMGRID (popTableModPageGrid1,TableID,dtData,dtcol
   
 	   { targets: 0, "render": function ( data, type, row, meta ) {                            
 			
-			 var rowno = meta.row;	 
-				var HTML =	'<span><input type="text" id="APFD_FINCYRDTL'+rowno+'" style=""  name="APFD_FINCYRDTL'+rowno+'"  class="form-control DSVLBL form-control">';			 
+			 var rowno = meta.row;
+			var HTML="";
+			 if(row[0]=="Balance Sheet")
+			{
+				var HTML =	'<span><input type="text" disabled id="APFD_FINCYRDTL'+rowno+'" style="font-weight: bold; font-size: 20px"  name="APFD_FINCYRDTL'+rowno+'"  class="form-control DSVLBL form-control">';			 
+			}
+			else
+			{
+					var HTML =	'<span><input type="text" id="APFD_FINCYRDTL'+rowno+'" style=""  name="APFD_FINCYRDTL'+rowno+'"  class="form-control DSVLBL form-control">';			 
+			
+			}
+						
 				HTML = HTML + '</span>'; 
 					 
 				var htmldata = $(HTML);
@@ -1237,23 +1269,36 @@ function GridControlDetailFINCSUMGRID (popTableModPageGrid1,TableID,dtData,dtcol
 function GentrateApprNote()
 {
 	var IOP=window.location.origin;
-	var PrcsId=$("#PrcsID").val()
-	
+	//var PrcsId=$("#PrcsID").val()
+	var PrcsId=$("#DMY7").val().split("|")[7]
+	var UniqId=$(".FormPageMultiTab li.active").attr('id');
 	var xml=UI_getdata(PrcsId,"","","","","LSW_SGETCUSSCHEME")
        var Scheme=$(xml).find('LODE_SCHEME').text()
     ajaxindicatorstart("Downloading.. Please wait");
 	
-	var flname = IOP+LoadFrmXML("RT085")+"&__format=pdf&Param1="+PrcsId+"&Param2="+Scheme+"&@Param3="+$("#DMY7").val().split("|")[0]+"&Param4="+$("#DMY7").val().split("|")[8]+"&__filename=ApproveNote-"+$("#DMY7").val().split("|")[7]+".pdf";
+	var LonType=$("#DMY7").val().split("|")[0]
+	LonType=LonType.replace('%','')
 	
+	//var flname = IOP+LoadFrmXML("RT0106")+"&__format=pdf&Param1="+PrcsId+"&Param2="+Scheme+"&Param3="+LonType+"&Param4="+$("#DMY7").val().split("|")[8]+"&__filename=ApproveNote-"+$("#DMY7").val().split("|")[7]+".pdf";
+	  if($("#VERTICAL").val()=="MSME")
+	  {
+		var flname = IOP+LoadFrmXML("RT0106")+"&__format=pdf&param1="+PrcsId+"&__filename=CAM_"+$(".FormPageMultiTab li.active").text()+".pdf";
+	  }
+	  else if($("#VERTICAL").val()=="MSME Alliance")
+	  {
+	      var flname = IOP+LoadFrmXML("RT0115")+"&__format=pdf&param1="+PrcsId+"&__format=pdf&param2="+UniqId+"&__filename=CAM_"+$(".FormPageMultiTab li.active").text()+".pdf";
+	 }
 	var link=document.createElement('a');
 		document.body.appendChild(link);
 		link.download=flname;
 			link.href=flname;
 			link.click();
 			ajaxindicatorstop();
+			
+	$("#AAPR_APROVBTN").val('Yes')
 }
 
-function CheckDocMndtry(TableID,FldClas,HDR)
+function CheckDocMndtryEndUse(TableID,FldClas,HDR)
 {
 	  var Doclength=$("#"+TableID).find(".tbodytr").length
 	  
@@ -1564,16 +1609,16 @@ function CheckConsti(FIRMID,CONSTITUTION,EVENT,HTML)
      if(CONSTITUTION.value=="Proprietorship" || CONSTITUTION.value=="HUF")
     	 {
     	     $(HTML).find('.PARTNERFARM').next().find('.GCLR').val('')
-    	     $("input[name='"+$($(HTML).find('.PARTNERFARM').next().find('.GCLR')[3]).attr('name')+"']:checked").prop('checked',false)
-    	     $("input[name='"+$($(HTML).find('.PARTNERFARM').next().find('.GCLR')[4]).attr('name')+"']:checked").prop('checked',false)
+    	     $(HTML).find("input[name='"+$($(HTML).find('.PARTNERFARM').next().find('.GCLR')[3]).attr('name')+"']:checked").prop('checked',false)
+    	     $(HTML).find("input[name='"+$($(HTML).find('.PARTNERFARM').next().find('.GCLR')[4]).attr('name')+"']:checked").prop('checked',false)
     		 $(HTML).find('.PARTNERFARM').hide() 
 		     $(HTML).find(".CONSM").removeClass('ABFDMndtry');
          }
        else
     	 {
     	  $(HTML).find('.PARTNERFARM').next().find('.GCLR').val('')
-  	      $("input[name='"+$($(HTML).find('.PARTNERFARM').next().find('.GCLR')[3]).attr('name')+"']:checked").prop('checked',false)
-  	      $("input[name='"+$($(HTML).find('.PARTNERFARM').next().find('.GCLR')[4]).attr('name')+"']:checked").prop('checked',false)
+  	      $(HTML).find("input[name='"+$($(HTML).find('.PARTNERFARM').next().find('.GCLR')[3]).attr('name')+"']:checked").prop('checked',false)
+  	      $(HTML).find("input[name='"+$($(HTML).find('.PARTNERFARM').next().find('.GCLR')[4]).attr('name')+"']:checked").prop('checked',false)
     	  $(HTML).find('.PARTNERFARM').show()
           $(HTML).find(".CONSM").addClass('ABFDMndtry');		  
          }	
@@ -1668,7 +1713,7 @@ function GridControlDetailMNUEMPOWERMNT (popTableModPageGrid1,TableID,dtData,dtc
 	   { targets: 0, "render": function ( data, type, row, meta ) {                            
 			
 			 var rowno = meta.row;	 
-				var HTML =	'<span><input type="text" id="AEMD_EMPOWTYP'+rowno+'" style=""  name="AEMD_EMPOWTYP"  class="form-control NoSpecialChar">';			 
+				var HTML =	'<span><input type="text" id="AEMD_EMPOWTYP'+rowno+'" style=""  name="AEMD_EMPOWTYP" disabled class="form-control ManuMiti NoSpecialChar">';			 
 				HTML = HTML + '</span>'; 
 					 
 				var htmldata = $(HTML);
@@ -1685,7 +1730,7 @@ function GridControlDetailMNUEMPOWERMNT (popTableModPageGrid1,TableID,dtData,dtc
 		 { targets: 1, "render": function ( data, type, row, meta ) {                            
 	 			
 			 var rowno = meta.row;       			 
-			   var HTML =    '<span><select class="Gridmdb-select md-form colorful-select dropdown-primary" disabled id="AEMD_LEVEL'+rowno+'" name="AEMD_LEVEL">';
+			   var HTML =    '<span><select disabled class="Gridmdb-select md-form colorful-select dropdown-primary" id="AEMD_LEVEL'+rowno+'" name="AEMD_LEVEL">';
 	                   HTML = HTML + '<option value="">Select</option>';
 	                   HTML = HTML + Level     			
 		 			var htmldata = $(HTML);
@@ -1699,7 +1744,7 @@ function GridControlDetailMNUEMPOWERMNT (popTableModPageGrid1,TableID,dtData,dtc
 				 { targets: 2, "render": function ( data, type, row, meta ) {                            
 			 			
 					 var rowno = meta.row;	 
-						var HTML =	'<span><input type="text" id="AEMD_METIGANTS'+rowno+'" style=""  name="AEMD_METIGANTS"  maxlength="100" class="form-control ManuMiti NoSpecialChar form-control">';			 
+						var HTML =	'<span><input type="text" id="AEMD_METIGANTS'+rowno+'" style=""  name="AEMD_METIGANTS"  maxlength="100" disabled class="form-control ManuMiti NoSpecialChar form-control">';			 
 						HTML = HTML + '</span>'; 
 							 
 						var htmldata = $(HTML);
@@ -1750,7 +1795,14 @@ function CheckManualEmpowMndtry(TableID,FldClas,HDR)
 			 {
 			  if($($($("#"+TableID).find(".tbodytr")[i]).find('.tbodytrtd')[j]).find("."+FldClas).length>0)
 				  {
-          if(j==2){
+			if(j==0){
+		          if($($($("#" + TableID).find(".tbodytr")[i]).find('.tbodytrtd')[0]).find('input[type=text]').val()=="")
+		             {
+			             RTNVAL = "Fill the Mitigant for Manual Empowerment";
+				    		return RTNVAL;
+		             }
+                 }
+          else if(j==2){
 		          if($($($("#" + TableID).find(".tbodytr")[i]).find('.tbodytrtd')[2]).find('input[type=text]').val()=="")
 		             {
 			             RTNVAL = "Fill the Mitigant for Manual Empowerment";
@@ -1767,4 +1819,26 @@ function CheckManualEmpowMndtry(TableID,FldClas,HDR)
 function RechkApprlNote()
 {
 	$("#AAPR_APROVBTN").val("");
+}
+
+
+	$(document).on("change", ".VRFY", function() {
+		
+		if($(this).prop("checked")==true)
+			{
+			 op=UI_getdata("",$($(this).closest('.tbodytr').find('.tbodytrtd')[4]).text(),"","","","LSW_SCHECKMETIGANTLVL");
+			 $($(this).closest('.tbodytr').find('.tbodytrtd')[7]).text($(op).find("RESULT").text())
+			}
+		else{
+			 $($(this).closest('.tbodytr').find('.tbodytrtd')[7]).text($($(this).closest('.tbodytr').find('.tbodytrtd')[5]).text())
+		   }
+});
+
+
+function Rtramount()
+{
+	var PrcsId=$("#AAPR_PRCSID").val()
+	var xml=UI_getdata(PrcsId,"","","","","LSW_SGETRTRAMOUNT")
+	$("#ALNM_RTRAMOUNT").val($(xml).find("RESULT").text());
+ 
 }

@@ -416,7 +416,7 @@ $(document).on("blur",".INCM",function()
 	 
 	ROI=$("#CGST_PROPOSEINR").val();
 	Tenur=$("#CGST_PROTENOR").val();
-	 var result=UI_getdata(ROI,Tenur,LnAmt,"","","LSW_SGETEMI_DATA");
+	 var result=UI_getdata(ROI,Tenur,LnAmt,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 	 var EMI=$(result).find("EMI").text();
 	 	if(EMI=='')
 	{
@@ -564,7 +564,19 @@ $(document).on("blur",".INMUL",function(){
 	$("#CRTR_PROPOSEDLNAMT").val(Math.min($("#CRTR_LOANAMT").val(),$("#CRTR_ELIGIBLELNAMT").val()));
 })
 
-
+function Getgstsls()
+{
+	 var GSTSALES1=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETGSTSALES");
+	       var GSTSALES= $(GSTSALES1).find ('GSTSALES').text();
+		   if(GSTSALES=='')
+		 {
+			 GSTSALES=0;
+		 }
+		 
+	$("#CGST_AVGOF12MONSAL").val(CURINRCommaSep(parseFloat(GSTSALES).toFixed(0)));
+	$('#CGST_AVGOF12MONSAL').next().addClass('active');
+		 
+}
 
 
 

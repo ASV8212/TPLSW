@@ -223,7 +223,7 @@ font-size: 21px;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #000000;
+  color: #0E8943;
 }
 
 .Btxt2
@@ -248,7 +248,7 @@ font-size: 30px;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #000000;
+  color: #0E8943;
 }
 
 .Btxt4
@@ -260,7 +260,7 @@ font-size: 30px;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #003f88;
+  color: #0E8943;
 }
 
 .Btxt5
@@ -272,7 +272,7 @@ font-size: 30px;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #000000;
+  color: #0E8943;
 }
 
 .Btxt6
@@ -284,7 +284,7 @@ font-size: 30px;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #666666;
+  color: #114984;
 }
 
 .Btxt7
@@ -295,7 +295,7 @@ font-size: 30px;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #666666;
+  color: #0E8943;
 }
 
 .Btxt8
@@ -306,7 +306,7 @@ font-size: 30px;
   font-style: normal !important;
   line-height: normal !important;
   letter-spacing: normal !important;
-  color: #020202 !important;
+  color: #0E8943 !important;
 }
 
 
@@ -318,7 +318,7 @@ font-size: 30px;
   font-style: normal !important;
   line-height: normal !important;
   letter-spacing: normal !important;
-  color: #666666 !important;
+  color: #0E8943 !important;
 }
 
 .Btxt10
@@ -329,7 +329,7 @@ font-size: 30px;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #000000;
+  color: #0E8943;
 }
 
 .Btxt11
@@ -386,7 +386,7 @@ font-size: 21px !important;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #666666;
+  color: #114984;
 }
 
 .Btxt16
@@ -612,6 +612,7 @@ font-size: 55px;
   color: #ffffff !important;
 }
 
+
 .Ntxt4
 {
   font-size: 14px;
@@ -646,7 +647,7 @@ font-size: 55px;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #666666;
+  color: #114984;
 }
 
 .Ntxt7
@@ -912,13 +913,13 @@ footer.page-footer .footer-copyright {
 
   z-index: 2;
     color: white;
-    background-color: #0081b8;
-    border-color: #0081b8;
+    background-color: #0E8943;
+    border-color: #0E8943;
    
 }
 
 .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
-    color: #003f88;
+    color: #0E8943;
 }
 
 .page-link {
@@ -1115,7 +1116,7 @@ table.dataTable tbody tr td{
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
-    color: #666666;
+    color: #114984;
     padding: 16px 10px;
 }
 
@@ -1127,7 +1128,7 @@ table.dataTable thead th
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #000000;
+  color: #114984;
   padding: 16px 10px;
 }
 
@@ -1198,7 +1199,7 @@ p {
 {
 /*background: linear-gradient(9deg, rgba(0,102,170,1) 0%, rgba(204,17,85,1) 100%); */
      box-shadow: 0 3px 9px 3px rgba(0, 0, 0, 0.2);
-  background-image: linear-gradient(to left, #0081b8, #003f88);
+  background: #114984;
   
   /*background-image: linear-gradient(to right,#004080,#0086b3);*/
 }
@@ -1208,7 +1209,8 @@ p {
 /*	background: rgb(17,119,153);
 background: linear-gradient(90deg, rgba(17,119,153,1) 0%, rgba(17,102,170,1) 18%, rgba(136,34,136,1) 64%, rgba(187,51,85,1) 100%);*/ 
 	 box-shadow: 0 3px 9px 3px rgba(0, 0, 0, 0.2);
-  background-image: linear-gradient(to left, #0081b8, #003f88);
+  /*background: #114984;*/
+  background: #eaf3fc;
 	/*position: fixed;*/
     /* width: 500px; */
    /* height: 300px; */
@@ -1278,7 +1280,9 @@ margin-right: 25px;
 
 .LGNRowBr{
 
-border-right: 3px solid #fffdfd;
+/*border-right: 3px solid #fffdfd;*/
+border-right: 3px solid #55986a;
+
 }
 
 /* Foating Icon */
@@ -1308,12 +1312,12 @@ background:#f40000;
 
 .btn-yel
 {
-	background-color: #f7941d!important;
+	background-color: #0E8943!important;
 }
 
 .btn-Syel
 {
-	background-color: #f7941d!important;
+	background-color: #0E8943!important;
 	font-size: 14px;
   font-weight: 600;
   font-stretch: normal;
@@ -1330,7 +1334,7 @@ background:#f40000;
 .btn-Syeloutline
 {
   background-color:	#ffffff;
-  border: solid 1px #f7941d;	
+  border: solid 1px #0E8943;	
 	font-size: 14px;
   font-weight: 600;
   font-stretch: normal;
@@ -1338,17 +1342,43 @@ background:#f40000;
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #f7941d !important;
-	padding: .5rem 2rem .5rem 2rem !important;
+  color: #0E8943 !important;
+	/*padding: .5rem 2rem .5rem 2rem !important;*/
+	padding: .5rem .8rem !important;
 	width:150px;
   height:35px
+}
+
+.btn-Syeloutline2
+{
+  background-color:         #ffffff;
+  border: 5px solid #0E8943;
+  font-size: 40px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #0E8943 !important;
+  /* padding: .5rem 2rem .5rem 2rem !important; */
+  display: flex;
+  border-radius: 1.4rem;
+  justify-content: center;
+  align-items: center;
+  /*width:500px;
+  height:290px*/
+  width: 62%;
+  height: 31vh;
+  margin-right: 4rem;
+  box-shadow: 0 30px 35px 0 rgb(240 243 245 / 15%) !important;
 }
 
 .btn-yelInplain
 {
 border-radius: 20px !important;
  background-color:	#ffffff;
-  border: solid 1px #f7941d;
+  border: solid 1px #0E8943;
     font-size: 14px;
   font-weight: 500;
   font-stretch: normal;
@@ -1356,7 +1386,7 @@ border-radius: 20px !important;
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #f7941d!important;
+  color: #0E8943!important;
 }
 
 .btn-GrnInplain
@@ -1472,7 +1502,7 @@ border-radius: 20px !important;
 .card-headerBlack, .card-headerGridBlack {
 	padding: .25rem 1rem;
     margin-bottom: 0;
-    background-color: #000000;
+    background-color: #0E8943;
 }
 
 .card-headerBlack:first-child  {
@@ -1770,7 +1800,7 @@ background-color: #f6f6f6;
 
 .ApplRow1Col1
 {
-background-color: #0081b8;
+background-color: #0E8943;
 /*height: 70px;*/
 padding-top: 15px;
 padding-bottom: 15px;
@@ -1780,7 +1810,7 @@ padding-right: 25px;
 
 .ApplRow1Col2
 {
-background-color: #006ea8;
+background-color: #0E8943;
 /*height: 70px;*/
 padding-top: 15px;
 padding-bottom: 15px;
@@ -1827,6 +1857,7 @@ height:1.2rem !important;
 	height: 1rem !important;
 	padding-bottom: .4rem;
     padding-top: 1rem;
+	color: #114984;
 	}
 
 .FormMainTabs
@@ -1892,7 +1923,7 @@ padding: .5rem .2rem !important;
 {
 border-radius: 17.5px;
   box-shadow: 0 2px 19px 0 rgba(0, 0, 0, 0.11);
-  background-color: #000000;
+  background-color: #114984;
   font-size: 18px;
   font-weight: 500;
   font-stretch: normal;
@@ -1902,7 +1933,6 @@ border-radius: 17.5px;
   color: #ffffff;
    opacity:100%;
 }
-
 
 /* Add for Popup page tab start  */
 
@@ -1996,12 +2026,12 @@ border-right: solid 1px #979797;
 
 .Formaccordion .card .fa-plus-circle  {
     float: right;
-    color:#020202;
+    color:#0E8943;
 }
 
 .Formaccordion .card .fa-minus-circle  {
     float: right;
-    color:#020202;
+    color:#0E8943;
 }
 
 
@@ -2070,22 +2100,22 @@ position: inherit;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #333333;
+  color: #114984;
 	
 	}
 
 [type=radio]:checked+label:after{
-    border-color: #003f88;
-    background-color: #003f88;
+    border-color: #0E8943;
+    background-color: #0E8943;
 }
 
 [type=checkbox]:checked+label:after {
-    border-color: #003f88;
+    border-color: #0E8943;
     /*background-color: #003f88;*/
 }
 
 [type=radio]:not(:checked)+label:before,[type=checkbox]:not(:checked)+label:before {
-    border-color: #003f88;
+    border-color: #0E8943;
 }
 
 [type=radio]+label:after,[type=radio]+label:before {
@@ -2168,7 +2198,7 @@ padding-right: 1rem;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #666666;
+  color: #0E8943;
 	}
 
 .md-form label.active
@@ -2179,7 +2209,7 @@ padding-right: 1rem;
   font-style: normal !important;
   line-height: normal !important;
   letter-spacing: normal !important;
-  color: #666666 !important;
+  color: #0E8943 !important;
 }
 
 .admin-panel .select-wrapper input.select-dropdown, .admin-panel input
@@ -2190,7 +2220,7 @@ padding-right: 1rem;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #333333;
+  color: #114984 !important;
 }
 
 /* FIX FOR DROPDOWN COLOR & SELECTION */
@@ -2256,8 +2286,6 @@ box-shadow: 0px 0px !important;
     opacity: .5;
     background-size: 70px 70px;
 }
-
-
 
 @-webkit-keyframes spinner-border {
   to {
@@ -2616,7 +2644,6 @@ zoom {
       transform: scale(2.5); 
       }
 /* Zoom Start  */
-
 /* Query Start */
 
 .Qtyprndblue
@@ -2819,6 +2846,7 @@ font-size: 16px;
 }
 
 
+/*Dashboard start */
 
 .btnDashNavNxt, active {
     width: 9px;
@@ -2848,6 +2876,85 @@ font-size: 16px;
     background-color: #f2f2f2;
     text-align: center;
 }
+
+/*Dashboard End*/
+
+ /* OPS DASHBOARD START*/
+    .BBBtxt06{
+	
+	font-size: 32px !important;
+  font-weight: 600 !important;
+  font-stretch: normal !important;
+  font-style: normal !important;
+  line-height: normal !important;
+  letter-spacing: normal !important;
+  color: #000000 !important;
+}
+
+   .BGGtxt01{
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.67;
+  letter-spacing: normal;
+ color: #666666;
+   }
+
+.DashTable1 tbody td {
+	text-align: left !important;
+
+	}
+	
+	.DashTable1 tbody th {
+
+
+	}
+	
+   .DashTable1 { 
+   margin-left: 35px !important;
+    }
+    .DashTable1 tbody tr {
+        border-bottom: 0px dotted #bbb !important;
+    }
+    /* OPS DASHBOARD END*/
+	
+/* Recommendation Buttons start*/
+
+.btn-Syeloutline1 {
+    background-color: #ffffff;
+    border: solid 1px #f7941d;
+    font-size: 14px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #f7941d !important;
+    /* padding: .5rem 2rem .5rem 2rem !important; */
+    padding: .5rem .8rem !important;
+    /* width: 150px; */
+    height: 35px;
+}
+
+.btn-Syel1 {
+    background-color: #f7941d!important;
+    font-size: 14px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff !important;
+    /* padding: .5rem 2rem .5rem 2rem !important; */
+    /* min-width: 160px; */
+    height: 35px;
+}
+
+/* Recommendation Buttons End*/
+
 
 /* Query End */
 
@@ -2891,8 +2998,6 @@ font-size: 16px;
 }
 
 /* Notification End */
-
-
 
 /* CR ANALYTICS Start*/
 
@@ -2971,54 +3076,32 @@ background-image: linear-gradient(to left, #0081b8, #003f88);
 }
 
 /* CR ANALYTICS END */
- /* OPS DASHBOARD START*/
-    .BBBtxt06{
-	
-	font-size: 32px !important;
-  font-weight: 600 !important;
-  font-stretch: normal !important;
-  font-style: normal !important;
-  line-height: normal !important;
-  letter-spacing: normal !important;
-  color: #000000 !important;
-}
-
-   .BGGtxt01{
-  font-size: 18px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.67;
-  letter-spacing: normal;
- color: #666666;
-   }
-
-.DashTable1 tbody td {
-	text-align: left !important;
-
-	}
-	
-	.DashTable1 tbody th {
 
 
-	}
-	
-   .DashTable1 { 
-   margin-left: 35px !important;
-    }
-    .DashTable1 tbody tr {
-        border-bottom: 0px dotted #bbb !important;
-    }
-    /* OPS DASHBOARD END*/
-	
-	
-	/* App info Dropdown Start*/
+/*DROPDOWN START */
+
+/*
+.colorful-select .dropdown-content {
+  bottom: unset !important;
+  top: 0px;
+}*/
+
+/*
+.dropdown-content {
+   
+    z-index: 9999999 !important;
+}*/
+
+/* DROPDOWN END */
+
+/* App info Dropdown Start*/
 
 .appinfodrpdwn{
 float: right;
     position: inherit;
     /* margin-left: 125px; */
     z-index: 9;
+	cursor: pointer;
     /* margin-top: -1;*/
 }
 .ApplRow1Col1 {
@@ -3044,7 +3127,7 @@ border-bottom: solid 0.5px rgba(241, 241, 241, 0.4);
     padding-bottom: 10px;
 }
 .ApplInfoRow1Col2 {
-    background-color: #006ea8;
+    background-color: #0E8943;
     /* height: 70px; */
     padding-top: 10px;
     padding-bottom: 5px;
@@ -3053,8 +3136,55 @@ border-bottom: solid 0.5px rgba(241, 241, 241, 0.4);
 }
 
 /* App info Dropdown ENd*/
+
+
+/* VERTICAL ALLIGNEMENT STRT*/
+.ModuleInfoRow1Col2 {
+	display: flex;
+    width: 100%;
+    /* align-items: center; */
+    justify-content: center;
+}
+/* VERTICAL ALLIGNEMENT STRT*/
+
+.VERIFYBTNPOSITION {
+	position: relative;
+}
+.VERIFYBTNPOSITIONRIGHT {
+	right: 0%;
+    position: absolute;
+	left: inherit;
+}
+
+.DSBLWITHPOINTREVNT {
+	pointer-events: auto;
+}
 	
 	
-	
-	
-	
+.IBtxt2_G{
+font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #00c851;
+  }
+  .IBtxt2_R{
+font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #dc3545;
+  }
+   .IBtxt2_O{
+font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffc107;
+  }

@@ -36,6 +36,8 @@
 			   <input type="text" id="VECR_TAPIMEII" hidden="hidden" name="VECR_TAPIMEII" class="form-control VECRDBfields">
 			   
 			   <input type="text" id="DOCVERSION" hidden="hidden" name="DOCVERSION" class="form-control VECRDBfields">
+			   
+			   <input type="text" id="VECR_ADDVALGROUP" hidden="hidden" name="VECR_ADDVALGROUP" class="form-control VECRDBfields">
 			
         	<div class="form-row">
         		<div class="col Btxt3">Vendor Creation</div>
@@ -354,7 +356,12 @@
                     <label for="VECR_RCUREMARKS" class="">RCU Remarks<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
-              
+              <div class="col-md-4">
+              <div class="md-form">
+                     <input type="text" id="VECR_SAPCODE" name="VECR_SAPCODE" onchange="chksapcodeex()" class="form-control VECRMndtry VECRDBfields">
+                    <label for="VECR_SAPCODE" class="">SAP Code<span class="MndtryAstr">*</span></label>
+                  </div>
+                </div>
                 
            </div>
 		   
@@ -520,7 +527,7 @@
                   <div class=" col-md-4">
                  <div class="md-form">
                     <input type="text" id="VEBN_BNKNAME" maxlength="25" disabled name="VEBN_BNKNAME" class="BANKMndtry  form-control NoSpecialChar VEBNDBfields">
-                    <label for="VEBN_BNKNAME" class="">Bank Holder Name<span class="MndtryAstr">*</span></label>
+                    <label for="VEBN_BNKNAME" class="">Bank Name<span class="MndtryAstr">*</span></label>
                   </div>
                  </div>
                  
@@ -553,7 +560,7 @@
                  
                  <div class=" col-md-4">
                  <div class="md-form">
-                    <input type="text" id="VEBN_MICRCODE" maxlength="25" name="VEBN_MICRCODE" class="form-control NoSpecialChar VEBNDBfields">
+                    <input type="text" id="VEBN_MICRCODE" maxlength="9" name="VEBN_MICRCODE" class="form-control NoSpecialChar VEBNDBfields">
                     <label for="VEBN_MICRCODE" class="">Micr Code<span class="MndtryAstr"></span></label>
                   </div>
                  </div>
@@ -644,7 +651,41 @@
                </div>
             </form>
          </div>
-      </div>	  
+      </div>	
+
+
+
+<!--ADDITION ROLE-->	
+      <div class="HyperControls">
+         <a type="button" class="Btxt4 FltRight ADDBTN" id="NewlyAddedGROUP" onclick="VENDORGROUPMAP();" data-toggle="modal" data-target="#ADDVALGROUPModal" href="#">+ Add Valuation</a>
+         
+      </div>
+
+      <div class="card cardNS">
+         <!-- Card body -->
+         <div class="card-body px-lg-5 pt-0">
+            <form >
+               </br>
+               <div class="form-row">
+                  <div class="col Btxt3">Valuation sub group</div>
+               </div>
+               </br>
+               <div class="form-row">
+                  <div class="col">
+                     <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table51',{spname:'LSW_TGETDOCUMTEMPLE',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:'Others',brid:$('#PrcsID').val(),MnuId:$('#UPDC_CUSID').val()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||8','VENDDOCUPLOAD');" id="BTNKYCOthers" name="BTNKYCOthers" />
+                     <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" id="Table51">
+                     </table>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
+
+
+
+
+
+	  
            
                <div class="form-row">
                    <div class="col d-flex justify-content-center">
@@ -842,6 +883,50 @@
       </div>
    </div>
    
+   
+   
+   
+     <div class="modal fade" id="ADDVALGROUPModal" tabindex="-1" role="dialog" aria-labelledby="ADDVALGROUPModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" style="max-width:900px" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <div class="Btxt10">Valuation Group Mapping</div>
+               <a href="#">  <img id="ADDVALGROUPCLOSE" class="close" data-dismiss="modal" aria-label="Close" src="ThemeproLO/Common/FEP/images/Close1.png" alt="DashSearch"></img></a>     
+            </div>
+            <div class="modal-body">
+               <div class="">
+                  <!-- Card body -->
+                  <div class="">
+                     <form>
+                        <div class="form-row">
+                          <div class="col-md-4">
+                 <div class="md-form">
+                  <select class="mdb-select md-form colorful-select dropdown-primary"    id="VECR_VALUATIONGROUP" name="VECR_VALUATIONGROUP">
+				</select>
+				<label class="mdb-main-label BTxt9">Valuation Group <span class="MndtryAstr">*</span></label>
+             </div>
+            </div>
+                        </div>
+
+                     </form>
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer align-middle">
+               <!--  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+               <button type="button" id="AddVALUGROUP" class="btn btn-yel Btxt2">Confirm</button>
+            </div>
+         </div>
+      </div>
+   </div>
+   
+   
+   
+   
+   
+   
+   
     <table style="display:none" id="GridTable3">
       <thead>
       	<th>ACTION</th>
@@ -865,6 +950,16 @@
 
 
       </thead>
+   </table>
+   
+    <table style="display:none" id="GridTable51">
+      <thead>
+      	<th>ACTION</th>
+         <th>VETE_ROLE</th>
+		 <th>VETE_USERNAME</th>
+		 <th>VETE_UNIQID</th>
+
+</thead>
    </table>
    
    

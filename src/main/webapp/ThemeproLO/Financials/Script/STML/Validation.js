@@ -82,6 +82,36 @@ var Cheque=$(html).find("input[name='FCBD_RPTGENR']:checked"). val();
 		}
 
 }
+
+
+function GETGSTSALS()
+{
+	 var GSTSALES1=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETGSTSALES");
+	       var GSTSALES= $(GSTSALES1).find ('GSTSALES').text();
+		   if(GSTSALES=='')
+		 {
+			 GSTSALES=0;
+		 }
+		 
+	$("#STML_LST12MONSALE").val(CURINRCommaSep(parseFloat(GSTSALES).toFixed(0)));
+	$('#STML_LST12MONSALE').next().addClass('active');
+		 
+}
+function Chkbuss()
+{
+	if($("#STML_PRIMNATBUS").val()=="Job Works")
+	{
+		
+		$(".MANU").hide();
+		$(".JOBWRK").show();
+			
+	}
+	else
+	{
+		$(".MANU").show();
+		$(".JOBWRK").hide();
+	}
+}
 function UploadFile()
 {
 	var DATA=["BankDetail1|"];
@@ -502,7 +532,7 @@ function STMLPageCalc()
 
 function BANKSUMAVG()
 {
-var xmlSTATUS=UI_getdata($("#PrcsID").val(),"SUMAVG",$("#STML_NUMBNKACCT").val(),"","","LSW_SABBCALCULATION")
+var xmlSTATUS=UI_getdata($("#PrcsID").val(),"SUMAVG",$("#STML_NUMBNKACCT").val(),$("#STML_BANKMONTHS").val(),"","LSW_SABBCALCULATION")
 if($(xmlSTATUS).find('RESULT').text()!="SUCCESS")
 {
 alert($(xmlSTATUS).find('RESULT').text())
@@ -523,6 +553,7 @@ $("#STML_MONTHABB").val(CURINRCommaSep(parseFloat(MONTHAVG).toFixed(2)));
 $('#STML_SUMAVG').next().addClass('active');
 $('#STML_MONTHABB').next().addClass('active');
    UPINFLOWSUMAVG();
+   Creditsum();
 }
 
 
@@ -587,7 +618,7 @@ SUMAVGEXCLUSION=0;
 	$("#STML_PERCNBCRDSUM").val(CURINRCommaSep(parseFloat(DIVTOTAL).toFixed(2)));
 	$('#STML_PERCNBCRDSUM').next().addClass('active');
 	$('#STML_REVCRDSUM').next().addClass('active');
-	
+	Creditsum();
 }
 
 function Creditsum()
@@ -603,7 +634,7 @@ function Creditsum()
 	{
 	g=0	
 	}
-	var divsum=parseFloat(e)/parseFloat(g)
+	var divsum=parseFloat(e)/parseFloat(g)*100
 	if(isNaN(e))
 	{
 		e=0;
@@ -627,7 +658,7 @@ function Creditsum()
 	{
 	f=0	
 	}
-	var mulsum=parseFloat(b1)*1-parseFloat(f)
+	var mulsum=parseFloat(b1)*(1-parseFloat(f)/100)
 	if(isNaN(b1))
 	{
 		b1=0;
@@ -638,7 +669,7 @@ function Creditsum()
 	}
 	$("#STML_ADJUABB").val(CURINRCommaSep(parseFloat(mulsum).toFixed(0)));
 	$('#STML_ADJUABB').next().addClass('active');
-	
+	Finalabb();
 }
 
 function Finalabb()
@@ -677,7 +708,7 @@ function Finalabb()
 	
 	//EMI PER LAKH
 	
-/* 	var check=UI_getdata($("#PrcsID").val(),$("#STML_SCHEMEID").val(),"","","","LSW_SGETLOANDETAILS");
+	var check=UI_getdata($("#PrcsID").val(),$("#STML_SCHEMEID").val(),"","","","LSW_SGETLOANDETAILS");
 	var ROI=($(check).find ('INTERESTRATE').text());
 	var Tenur=($(check).find ('TENTURE').text());
 	
@@ -711,7 +742,7 @@ function Finalabb()
 	amt=parseFloat(LonAt *((ROI/100)/12) * (Math.pow(1+((ROI/100)/12),Tenur)/((Math.pow(1+((ROI/100)/12),Tenur))-1)));
 	$("#STML_PERLAKHEMI").val(CURINRCommaSep(parseFloat(amt).toFixed(0)));
 
-	$("#STML_PERLAKHEMI").next().addClass('active');  */
+	$("#STML_PERLAKHEMI").next().addClass('active');  
 	
 	
 	var LnAmt=100000;
@@ -724,7 +755,7 @@ function Finalabb()
 	
 /* 	ROI=$("#CITR_PROPOSEINR").val();
 	Tenur=$("#CITR_PROTENOR").val(); */
-	 var result=UI_getdata(ROI,Tenur,LnAmt,"","","LSW_SGETEMI_DATA");
+	 var result=UI_getdata(ROI,Tenur,LnAmt,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 	 var EMI=$(result).find("EMI").text();
 	 	if(EMI=='')
 	{
@@ -775,7 +806,7 @@ function Finalabb()
 
 	
 	var LOANN=$("#STML_MAXEMIPOS").val().replace(/,/g,'');
-	var LOANL=$("#STML_ADJUABB").val().replace(/,/g,'');
+	var LOANL=$("#STML_FINLABB").val().replace(/,/g,'');
 	var LOANM=$("#STML_PERLAKHEMI").val().replace(/,/g,'');
 	if(LOANN=="")
 	{
@@ -822,6 +853,7 @@ function Finalabb()
 	
 	$("#STML_PROPLOAN").val(CURINRCommaSep(parseFloat(TOTALPROPOSE).toFixed(0)));
 	$("#STML_PROPLOAN").next().addClass('active'); 
+	lapos();
 }
 
 // q-(r*50%)-(s*50%)
@@ -845,7 +877,7 @@ function lapos()
 	}
 	var LAPT=parseFloat(LAPR)*50/100;
 	var LAPT1=parseFloat(LAPS)*50/100;
-	var LAPT2=parseFloat(LAPT)-parseFloat(LAPT1)
+	var LAPT2=parseFloat(LAPT)+parseFloat(LAPT1)
 	var LAPTOTAL=parseFloat(LAPQ)-parseFloat(LAPT2)
 	if(isNaN(LAPQ))
 	{
@@ -924,7 +956,7 @@ function lapos()
 		$("#STML_TURNOVALID").val("Deviation in Turnover Validation");
 	}
 	$("#STML_TURNOVALID").next().addClass('active'); 
-	
+	salsincl();
 	
 }
 
@@ -932,7 +964,8 @@ function salsincl()
 {
 
 	var SALESI=$("#STML_SALESMATCOST").val().replace(/,/g,'');
-	var SALESL=$("#STML_FINLABB").val().replace(/,/g,'');
+	//var SALESL=$("#STML_FINLABB").val().replace(/,/g,'');	
+	var SALESL=$("#STML_LST12MONSALE").val().replace(/,/g,'');
 	if(SALESI=="")
 	{
 	SALESI=0	
@@ -951,14 +984,18 @@ function salsincl()
 	{
 		SALESL=0;
 	}
+	if(isNaN(SALESTOTAL))
+	{
+		SALESTOTAL=0;
+	}
 	$("#STML_SALESCONS").val(CURINRCommaSep(parseFloat(SALESTOTAL).toFixed(0)));
 	$("#STML_SALESCONS").next().addClass('active'); 
 	
-	
+	outstand();
 }
 function outstand(){
 	var OUTSTAND3=$("#STML_PRIMOUTSEXLOAN").val().replace(/,/g,'');
-	var OUTSTAND4=$("#STML_FINLABB").val().replace(/,/g,'');
+	var OUTSTAND4=$("#STML_PRIMCCODLIMIT").val().replace(/,/g,'');
 	var OUTSTAND5=$("#STML_PRIMLAPOS").val().replace(/,/g,'');
 	if(OUTSTAND3=="")
 	{
@@ -974,7 +1011,7 @@ function outstand(){
 	}
 	var TOTAL4=parseFloat(OUTSTAND4)*50/100;
 	var TOTAL5=parseFloat(OUTSTAND5)*50/100;
-	var MIN45=parseFloat(TOTAL4)-parseFloat(TOTAL5);
+	var MIN45=parseFloat(TOTAL4)+parseFloat(TOTAL5);
 	var TOTALOUT=parseFloat(OUTSTAND3)-parseFloat(MIN45);
 	if(isNaN(OUTSTAND3))
 	{
@@ -987,6 +1024,10 @@ function outstand(){
 	if(isNaN(OUTSTAND5))
 	{
 		OUTSTAND5=0;
+	}
+	if(isNaN(TOTALOUT))
+	{
+		TOTALOUT=0;
 	}
 	$("#STML_PRIMOUTSCONS").val(CURINRCommaSep(parseFloat(TOTALOUT).toFixed(0)));
 	$("#STML_PRIMOUTSCONS").next().addClass('active'); 
@@ -1012,6 +1053,10 @@ function outstand(){
 	{
 		OUTSTAND6=0;
 	}
+	if(isNaN(TOTALEXPO))
+	{
+		TOTALEXPO=0;
+	}
 	$("#STML_PRIMTOTLONEXP").val(CURINRCommaSep(parseFloat(TOTALEXPO).toFixed(0)));
 	$("#STML_PRIMTOTLONEXP").next().addClass('active'); 
 	
@@ -1036,6 +1081,14 @@ function outstand(){
 	{
 		EXPO2=0;
 	}	
+	if(isNaN(TOLEXPO))
+	{
+		TOLEXPO=0;
+	}
+	if(TOLEXPO=="Infinity")
+		{
+			TOLEXPO=0;
+		}
 	$("#STML_PRIMTOTALLOAN").val(CURINRCommaSep(parseFloat(TOLEXPO).toFixed(2)));
 	$("#STML_PRIMTOTALLOAN").next().addClass('active'); 
 	
@@ -1053,7 +1106,7 @@ function outstand(){
 	$("#STML_PRIMTURNOVALID").next().addClass('active'); 
 	
 	
-	
+	valueofwrk();
 	
 }
 function valueofwrk()
@@ -1085,16 +1138,17 @@ function valueofwrk()
 	var WORKORD=$("#STML_WORKORDER").val().replace(/,/g,'');
 	if(WORKORD<10/100)
 	{
-		$("#STML_WORKORDERVALID").val("true");
+		$("#STML_WORKORDERVALID").val("Deviation in Work Order Policy");
 	}
 	else
 	{	
-		$("#STML_WORKORDERVALID").val("Deviation in Turnover Validation");
+		$("#STML_WORKORDERVALID").val("true");
 	}
 	$("#STML_WORKORDERVALID").next().addClass('active'); 
 	
 }
 //iii-(iv*50%)-(v*50%)
+
 
 
 

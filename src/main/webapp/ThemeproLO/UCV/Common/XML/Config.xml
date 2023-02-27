@@ -1,0 +1,336 @@
+<xml>
+<IP001>localhost</IP001>
+<IP002>localhost</IP002>
+<PT001>80</PT001>
+<PT002>80</PT002>
+<PT003>4040</PT003>
+<V0001>Please enter a valid date in DD/MM/YYYY format</V0001>
+<V0002>Income to Loan should not be greater than 20</V0002>
+<V0003>Customer Id does not Exists</V0003>
+<V0004>Please enter the date in DD-MM-YYYY format</V0004>
+<V0005>Age should not be less than 21</V0005>
+<V0006>Applicant is not eligible</V0006>
+<V0007>Number of months with employer is less than 6</V0007>
+<V0008>Date Of Joining Exceeds Business Date</V0008>
+<V0009>DSR value should not be greater than 50%</V0009>
+<V0010>Income to Loan should not be greater than 20</V0010>
+<V0011>Eligible</V0011>
+<V0012>Tenure Should not exceed </V0012>
+<V0013>Please Enter the Emirates Id in XXX-XXXX-XXXXXXX-X Format</V0013>
+<V0014>Only Numbers Allowed</V0014>
+<V0015>Kindly Enter Valid Date</V0015>
+<V0016>Kindly Enter Name of the Employer</V0016>
+<V0017>Please Enter The Customer ID</V0017>
+<V0018>Validity Date Should be greater Than 30 days from Business Date</V0018>
+<V0019>Kindly Enter a Value Less Than 31</V0019>
+<V0020>Installment date Should Not exceed more than 60 days from the Business Date</V0020>
+<V0021>Installment date must be greater than 15 days from the Business Date</V0021>
+<V0022>Kindly select the Deviation Level Officer</V0022>
+<V0023>Installment Date Should not be less than Business Date</V0023>
+<V0024>Date Should not be less than Business Date</V0024>
+<V0025>Date Should be less than Business Date</V0025>
+<V0026>Select Frequency</V0026>
+<V0027>Select Second DropDown in frequency</V0027>
+<V0028>Select First DropDown in frequency</V0028>
+<V0029>Entry of Past date not allowed</V0029>
+<V0030>Entry of Future date not allowed</V0030>
+<V0031>Don't delete the attachment which have previously attached</V0031>
+<V0032>Kindly Select the User Allocated</V0032>
+<V0033>Workflow not yet initialised</V0033>
+<V0034>Please ensure that all the documents are duly signed by the customer</V0034>
+<V0035>Enter DDS Reference Number</V0035>
+<V0036>Enter a valid 13 digit DDS Reference Number</V0036>
+<V0037>Please click the deviation approval</V0037>
+<V0038>Please select Exception recommendation officer and send the form for deviation approval</V0038>
+<V0039>There is No exception avilable in the Exception List, Press Submit Button</V0039>
+<V0040>Please select Exception recommendation officer</V0040>
+<V0041>Please select Attachment</V0041>
+<V0042>Two Attachment Should not be Same or Empty</V0042>
+<V0043>Kindly Add Attachments in Previous Row</V0043>
+<V0044>Kindly Attach a File for the Selected Option</V0044>
+<V0045>Kindly Select One Option For the Attached File</V0045>
+<V0046>Please ensure that all the documents are attached</V0046>
+<V0047>This Reference Number (</V0047>
+<V0048>) Does't Contain Any Data</V0048>
+<V0049>Kindly Enter The Reference Number</V0049>
+<V0050>Processing Fee must be less than 2500</V0050>
+<V0051>Processing Fee must be greater than 500</V0051>
+<V0052>Nationality and country of origin of the customer should be same</V0052>
+<V0053>Salary payment date should not exceed 31</V0053>
+<V0054>Only Alphabets are Allowed</V0054>
+<V0055>Only alphanumeric characters are allowed</V0055>
+<V0056>Basic Salary exceeds Total Monthly Salary</V0056>
+<V0057>Should not be greater than Approved Tenure</V0057>
+<V0058>Total experience cannot be less than months in organisation</V0058>
+<V0059>Top-up amount should not be greater than New loan Amount</V0059>
+<V0060>Approved loan amount cannot be greater than proposed loan amount</V0060>
+<V0061>Session Expired</V0061>
+<V0062>Enter Numbers Only</V0062>
+<V0063>Invalid Email Format</V0063>
+<V0064>Enter valid 10 digit mobile number without white space</V0064>
+<V0065>February has only 28 days</V0065>
+<V0066>This month has only 30 days</V0066>
+<V0067>Migration Failed</V0067>
+<V0068>Field Data Population Error</V0068>
+<V0069>Button Formation Failed</V0069>
+<V0070>On Load Data Failed</V0070>
+<V0071>Form Assignment Failed</V0071>
+<V0072>No Data Available</V0072>
+<V0073>this no exists</V0073>
+<V0074>this is exist</V0074>
+<V0075>Submission Failed</V0075>
+<V0076>Fail</V0076>
+<V0077>Issue Occured in!</V0077>
+<V0078>Fill all mandatory fields in!</V0078>
+<V0079>Insertion Failed in following forms, kindly resubmit. If the issue still persists, contact IT Team!</V0079>
+<V0080>Approval Limit Exceeded!</V0080>
+<V0081>Approval Limit Check Failed!</V0081>
+<V0082>Approval Limit Does Not Exists for the user!</V0082>
+<V0083>Are you sure?</V0083>
+<V0084>Data Inserted</V0084>
+<V0085>Insertion Failed</V0085>
+<V0086>Request Failed</V0086>
+<V0087>Credit Rating Submitted Successfully</V0087>
+<V0088>Credit Rating Submission Failed</V0088>
+<V0089>Enter valid other details</V0089>
+<V0090>Future date is not allowed</V0090>
+<V0091>Past date is not allowed</V0091>
+<V0092>Age Should be Greater than 18</V0092>
+<V0093>Atleast Two Parts of Name Is Required</V0093>
+<V0094>Enter valid Pan Number Eg AAAAA1111A</V0094>
+<V0095>Invalid Passport No</V0095>
+<V0096>Invalid Voter ID No.Length between 10 to 20</V0096>
+<V0097>Enter valid 12 digit Aadhar number without white space</V0097>
+<V0098>Enter valid Licenece no</V0098>
+<V0099>Enter Valid SSLC certificate Number</V0099>
+<V0100>Invalid Rationcard No</V0100>
+<V0101>Enter Valid Bank Number Number</V0101>
+<V0102>Submission Failed!</V0102>
+<V0103>Enter Valid 6 digit Pin Code without white space</V0103>
+<V0104>Attach mandatory documents in!</V0104>
+<V0105>Enter values for mandatory grids in!</V0105>
+<V0106>Successfully Assigned</V0106>
+<V0107>Successfully Removed</V0107>
+<V0108>Data Saved</V0108>
+<V0109>Data Deleted</V0109>
+<V0110>Please Select Less than 5 Files</V0110>
+<V0111>Upto 60 to 180 months</V0111>
+<V0112>Upto 60 to 360 months</V0112>
+<V0113>Upto 60 to 300 months</V0113>
+<V0114>Enter the Loan Amount less then 15 Lakhs</V0114>
+<V0115>Delete Failed</V0115>
+<V0116>Please delete the empty row</V0116>
+<V0117>Please choose the file to upload</V0117>
+<V0118>Upload Successful</V0118>
+<V0119>Upload Failed</V0119>
+<V0120>Template Changed</V0120>
+<V0121>Value already exists</V0121>
+<V0122>Check for submit validations in!</V0122>
+<V0123>Updated Successfully</V0123>
+<V0124>Deleted Successfully</V0124>
+<V0125>Incorrect username or password</V0125>
+<V0126>Data Error</V0126>
+<V0127>Error: File not Accepted</V0127>
+<V0128>Add Attachment type and Mandatory condition</V0128>
+<V0129>Please select an option to move</V0129>
+<V0130>End date is greater than Start Date</V0130>
+<V0131>Only Eight columns are Allowed</V0131>
+<V0132>Minimum loan amount should less than the Maximum Loan amount</V0132>
+<V0133>DepartmentId already Exsist</V0133>
+<V0134>Choose a row</V0134>
+<V0135>Enter a valid Unique field</V0135>
+<V0136>Fill all alies names</V0136>
+<V0137>Menu name already Exsist</V0137>
+<V0138>Queue name already Exsist</V0138>
+<V0139>Assigned Rights</V0139>
+<V0140>Rights has been removed</V0140>
+<V0141>No data in recommendation</V0141>
+<V0142>Requirement Fund total and Source of Fund total must be equal</V0142>
+<V0143>Add the correct no of security in Address form Grid</V0143>
+<V0144>Choose the Catergory for Eligible</V0144>
+<V0145>Enter/Verify the respective level data in recommendations grid</V0145>
+<V0146>You are Not Eligible for the applied loan</V0146>
+<V0147>Exceeded Eligible Loan Amount</V0147>
+<V0148>Send the File to legal Officer</V0148>
+<V0149>Date Should not be less then or equal to Handover date</V0149>
+<V0150>Fill the Mandatory field</V0150>
+<V0151>No file to Upload</V0151>
+<V0152>Minimum Term should be less than the Maximum Term</V0152>
+<V0153>Please select a File</V0153>
+<V0154>Please view the following tabs</V0154>
+<V0155>Are You Sure to Re-evaluate</V0155>
+<V0156>Are you Sure to Terminate the Activity</V0156>
+<V0157>Enter Valid IFSC Code</V0157>
+<V0158>Data already exists.Click Edit to change values</V0158>
+<V0159>Please Select ProcessID</V0159>
+<V0160>Only Four columns are Allowed</V0160>
+<V0080>Bank Staff Sanction!</V0080>
+<V0161>Enter Number Only this field does not allow Special Character</V0161>
+<V0162>Enter the phone Number Correctly</V0162>
+<V0163>Enter News Feed before clicking Add</V0163>
+<V0164>Table is empty. Enter New News Feed in New Tab</V0164>
+<V0165>No Instrument Added !!</V0165>
+<V0166>Delete the Entries if the option selected is "NO" for</V0166>
+<V0167>Collect the PF amount</V0167>
+<V0168>Kindly select a option for</V0168>
+<V0169>Enter value in any one of the fields</V0169>
+<V0170>Select Purpose Code for Proposal number generation</V0170>
+<V0171>Select Purpose, Scheme to enter the Tenure</V0171>
+<V0172>Only 3 files are allowed to upload</V0172>
+<V0173>The file not belong to you, Are you sure to pick it!!</V0173>
+<V0174>Other User has taken this File!!</V0174>
+<V0175>File Has send back by other User!!</V0175>
+<V0175>The Property Viewed Is No to Submit the Change 'Yes' to Submit!!</V0175>
+<V0176>Only one Customer can be selected for sole type</V0176>
+
+<V0177>Editor not saved</V0177>
+<V0178>Kindly save the Editor!</V0178>
+
+<V0179>CIBIL Yes</V0179>
+
+
+<PG001>/ThemePro_SCF/Login</PG001>
+<PG002>/ThemePro_SCF/DashBoard</PG002>
+<PG003>/jw/web/console/profile?</PG003>
+<PG004>/jw/web/json/directory/user/sso</PG004>
+<PG005>/ThemePro_SCF/Gridpopup</PG005>
+<PG006>/jw/web/json/workflow/currentUsername</PG006>
+<PG007>/jw/web/json/monitoring/activity/reevaluate?activityId=</PG007>
+<PG008>/jw/web/json/monitoring/activity/abort/</PG008>
+<PG009>FormEditPage</PG009>
+<PG010>/ThemePro_SCF/HistoryViewPage</PG010>
+<PG011>/jw/j_spring_security_logout</PG011>
+<PG012>ThemeproLO/Common/Doc/LSW.pdf</PG012>
+<RP001>752f6ad36c1777b739026cb63b2cf067</RP001>
+<RP002>6b7c0b6ba30e38405182a0be6ffdf573</RP002>
+
+<!-- <RS001>//10.225.179.3//LSW_Docs</RS001>
+<RS002>administrator:yLhCybXMLAt7mRUV</RS002> -->
+<RS001>//10.1.0.4//LSW_Docs</RS001>
+<RS002>THEMEPRO02;THEMEPRO02:Passw0rd123</RS002>
+<RS003>http://14.192.18.40/LSW_Attachments</RS003>
+
+<RS004>//10.225.179.3//SCF_BULKUPLOAD</RS004>
+<RS005>administrator:yLhCybXMLAt7mRUV</RS005>
+<!--<RS006>http://10.1.0.4:8082/LSW_DOC</RS006> -->
+<RS006>/LSW_DOC</RS006>
+<!-- <RS006>http://14.192.17.61:3030/LSW_DBDOC</RS006> -->
+<RS007>//10.225.179.3//SCF_Docs</RS007>
+<RS008>administrator:yLhCybXMLAt7mRUV</RS008>
+
+<RS009>http://14.192.17.61:3030/SCF_DOC</RS009>
+
+
+<RT001>/Birt/frameset?__report=report/RHFL/LSO/LSO.rptdesign</RT001>        
+<RT002>/Birt/frameset?__report=report/CHFL/SalaryCam.rptdesign</RT002>
+<RT003>/Birt/frameset?__report=report/CHFL/SystemCam.rptdesign</RT003>
+<RT005>/Birt/frameset?__report=report/CHFL/HomeLoanSanctionReport.rptdesign</RT005>
+<RT004>/Birt/frameset?__report=report/CHFL/LAPSanctionReport.rptdesign</RT004>
+<RT006>/Birt/frameset?__report=report/RHFL/Offsite/RH-55.rptdesign</RT006>
+<RT007>/Birt/frameset?__report=report/RHFL/Offsite/RH-56.rptdesign</RT007>
+<RT008>/Birt/frameset?__report=report/RHFL/Offsite/RH-57.rptdesign</RT008>
+<RT009>/Birt/frameset?__report=report/RHFL/Offsite/RH-58.rptdesign</RT009>
+<RT010>/Birt/frameset?__report=report/RHFL/Offsite/RH-84.rptdesign</RT010>
+<RT011>/Birt/frameset?__report=report/RHFL/Offsite/RH-244.rptdesign</RT011>
+<RT012>/Birt/frameset?__report=report/RHFL/Recommendation/RecommendDetl.rptdesign</RT012>
+<RT013>/Birt/frameset?__report=report/CHFL/LoninstentRpt.rptdesign</RT013>
+<RT014>/Birt/frameset?__report=report/CHFL/ReqDisbRpt.rptdesign</RT014>
+
+<RT015>/Birt/frameset?__report=report/CHFL/IPHLSancRpt.rptdesign</RT015>
+<RT016>/Birt/frameset?__report=report/CHFL/IPLAPSancRpt.rptdesign</RT016>
+<RT017>/Birt/frameset?__report=report/CHFL/NHB.rptdesign</RT017>
+
+<RT020>/Birt/frameset?__report=report/CHFL/CLSSRpt.rptdesign</RT020>
+<RT021>/Birt/frameset?__report=report/CHFL/KYCIDCardDetlRpt.rptdesign</RT021>
+<RT022>/Birt/frameset?__report=report/CHFL/DSTPerfRpt.rptdesign</RT022>
+<RT023>/Birt/frameset?__report=report/CHFL/ConsMISRpt.rptdesign</RT023>
+<RT024>/Birt/frameset?__report=report/CHFL/MISDmpSancDetl.rptdesign</RT024>
+<RT025>/Birt/frameset?__report=report/CHFL/MISDmpSancDvDetl.rptdesign</RT025>
+<RT026>/Birt/frameset?__report=report/CHFL/VendorRpt.rptdesign</RT026>
+<RT027>/Birt/frameset?__report=report/CHFL/DisbDocOTPD.rptdesign</RT027>
+<RT028>/Birt/frameset?__report=report/CHFL/VendorFilesTag.rptdesign</RT028>
+
+<RT029>/Birt/frameset?__report=report/CHFL/TATLonVal.rptdesign</RT029>
+<RT030>/Birt/frameset?__report=report/CHFL/TATDtDiff.rptdesign</RT030>
+<RT031>/Birt/frameset?__report=report/CHFL/SrcDump.rptdesign</RT031>
+<RT032>/Birt/frameset?__report=report/CHFL/SMPerfRpt.rptdesign</RT032>
+<RT033>/Birt/frameset?__report=report/CHFL/RejResnDump.rptdesign</RT033>
+<RT034>/Birt/frameset?__report=report/CHFL/ReopnedFleDmp.rptdesign</RT034>
+
+<RT035>/Birt/preview?__report=report/CHFL/PSR.rptdesign</RT035>
+<RT036>/Birt/output?__report=report/CHFL/IndTermSht.rptdesign</RT036>
+<RT037>/Birt/preview?__report=report/CHFL/DisbursementAdvice.rptdesign</RT037>
+<RT038>/Birt/output?__report=report/CHFL/Comments.rptdesign</RT038>
+<RT039>/Birt/preview?__report=report/CHFL/CAM.rptdesign</RT039>
+<RT040>/Birt/preview?__report=report/CHFL/TermSht.rptdesign</RT040>
+
+<RT041>/Birt/frameset?__report=report/CSCF/LoanOSReport.rptdesign</RT041>
+<RT042>/Birt/frameset?__report=report/CHFL/Programme_Summary.rptdesign</RT042>
+<RT043>/Birt/frameset?__report=report/CHFL/Client_Summary.rptdesign</RT043>
+<RT044>/Birt/frameset?__report=report/CHFL/SOA.rptdesign</RT044>
+<RT045>/Birt/preview?__report=report/CHFL/Voucher_Printing.rptdesign</RT045>
+<RT046>/Birt/frameset?__report=report/CHFL/Interest_Computaion.rptdesign</RT046>
+<RT047>/Birt/frameset?__report=report/CHFL/Bank_Transfer_pdf.rptdesign</RT047>
+
+<RT048>/Birt/preview?__report=report/CSCF/InstrumentDetails.rptdesign</RT048>
+<RT049>/Birt/frameset?__report=report/CHFL/Accrual_Amar_Details.rptdesign</RT049>
+<RT050>/Birt/preview?__report=report/CHFL/SOA.rptdesign</RT050>
+<RT051>/Birt/preview?__report=report/CSCF/BulkRepayment.rptdesign</RT051>
+<RT052>/Birt/frameset?__report=report/CHFL/Interest_Computaion.rptdesign</RT052>
+<RT053>/Birt/frameset?__report=report/CHFL/Daily_GL_Posting.rptdesign</RT053>
+<RT054>/Birt/preview?__report=report/CSCF/Charge_Summary.rptdesign</RT054>
+<RT055>/Birt/frameset?__report=report/CSCF/Disbursement_Advice.rptdesign</RT055>
+<RT056>/Birt/frameset?__report=report/CSCF/REFUND_ADVICE.rptdesign</RT056>
+<RT057>/Birt/frameset?__report=report/CSCF/REALISATION_ADVICE.rptdesign</RT057>
+<RT058>/Birt/preview?__report=report/CSCF/SOA_ADVICE.rptdesign</RT058>
+<RT059>/Birt/frameset?__report=report/CSCF/Debtor_Rpt.rptdesign</RT059>
+<RT060>/Birt/frameset?__report=report/CSCF/InvLevlIntstVerify.rptdesign</RT060>
+<RT061>/Birt/frameset?__report=report/CSCF/Portfolio.rptdesign</RT061>
+<RT062>/Birt/frameset?__report=report/CSCF/Limit_Report.rptdesign</RT062>
+
+<RT063>/Birt/run?__report=report/CSCF/Daily_OS_Rpt.rptdesign</RT063>
+<RT064>/Birt/run?__report=report/CSCF/DayEndReport.rptdesign</RT064>
+<RT065>/Birt/run?__report=report/CSCF/DebtorsRpt.rptdesign</RT065>
+<RT066>/Birt/preview?__report=report/CSCF/RefundAdvice.rptdesign</RT066>
+<RT067>/Birt/run?__report=report/CSCF/UtilisationRpt.rptdesign</RT067>
+<RT068>/Birt/run?__report=report/CSCF/JVRpt.rptdesign</RT068>
+<RT069>/Birt/frameset?__report=report/CSCF/Portfolio_New.rptdesign</RT069>
+<RT070>/Birt/run?__report=report/CSCF/ExcessMoneyHandling.rptdesign</RT070>
+<RT071>/Birt/frameset?__report=report/CSCF/BankGLReconciliation.rptdesign</RT071>
+<RT072>/Birt/frameset?__report=report/CSCF/BRSExcelDownload.rptdesign</RT072>
+<RT073>/Birt/frameset?__report=report/CSCF/SOASummary.rptdesign</RT073>
+<RT074>/Birt/frameset?__report=report/CSCF/InterestAdviceRearEnd.rptdesign</RT074>
+<RT075>/Birt/frameset?__report=report/CSCF/BankUploadReport.rptdesign</RT075>
+
+
+<RT076>/Birt/frameset?__report=report/CSCF/UTR Update MIS.rptdesign</RT076>
+<RT077>/Birt/frameset?__report=report/CSCF/TransactionBatch.rptdesign</RT077>
+<RT078>/Birt/frameset?__report=report/CSCF/BRSReconciliationBulkUpload.rptdesign</RT078>
+<RT079>/Birt/frameset?__report=report/CSCF/CustomerDump.rptdesign</RT079>
+<RT080>/Birt/frameset?__report=report/CSCF/ExcessMoneyAllocationRefund.rptdesign</RT080>
+
+<RT081>/Birt/frameset?__report=report/CSCF/Advices/DisbursementAdvice_Anchor.rptdesign</RT081>
+<RT082>/Birt/frameset?__report=report/CSCF/Advices/DisbursementAdvice_Counter.rptdesign</RT082>
+
+<RT083>/Birt/frameset?__report=report/CSCF/Advices/DisbursementAdvice.rptdesign</RT083>
+<RT084>/Birt/frameset?__report=report/CHFL/CAM.rptdesign</RT084>
+<RT085>/Birt/frameset?__report=report/CHFL/ApproveNote.rptdesign</RT085>
+<RT086>/Birt/frameset?__report=report/CHFL/NACH.rptdesign</RT086>
+<RT087>/Birt/frameset?__report=report/CHFL/Disbumemo.rptdesign</RT087>
+<RT088>/Birt/frameset?__report=report/CHFL/SancLetter.rptdesign</RT088>
+<RT089>/Birt/frameset?__report=report/CHFL/ApplicationForm.rptdesign</RT089>
+<RT090>/Birt/frameset?__report=report/CHFL/ENDUSE.rptdesign</RT090>
+<RT091>/Birt/frameset?__report=report/CHFL/TechnicalIRpt.rptdesign</RT091>
+<RT092>/Birt/frameset?__report=report/CHFL/LegalRpt.rptdesign</RT092>
+<RT093>/Birt/frameset?__report=report/CHFL/FIRESIDENCE.rptdesign</RT093>
+<RT094>/Birt/frameset?__report=report/CHFL/FIOFFICE.rptdesign</RT094>
+<RT095>/Birt/frameset?__report=report/CHFL/RadioSheet.rptdesign</RT095>
+<RT096>/Birt/frameset?__report=report/CHFL/HDFCNonMedicalForm.rptdesign</RT096>
+<RT097>/Birt/frameset?__report=report/CHFL/HDFCMedicalForm.rptdesign</RT097>
+<RT098>/Birt/frameset?__report=report/CHFL/ICICIMedicalForm.rptdesign</RT098>
+<RT099>/Birt/frameset?__report=report/CHFL/OPSACK.rptdesign</RT099>
+<RT0100>/Birt/frameset?__report=report/CHFL/GECLSanctionLetter.rptdesign</RT0100>
+<RT0101>/Birt/frameset?__report=report/CHFL/HDFCCovid.rptdesign</RT0101>
+<RT0102>/Birt/frameset?__report=report/CHFL/GECL3.rptdesign</RT0102>
+
+</xml>

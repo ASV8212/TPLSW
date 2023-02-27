@@ -1,0 +1,455 @@
+#disablingDiv {
+    /* Do not display it on entry */
+    
+    display: none;
+    /* Display it on the layer with index 1001.       Make sure this is the highest z-index value       used by layers on that page */
+    
+    z-index: 1001;
+    /* make it cover the whole screen */
+    
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    /* make it white but fully transparent */
+    
+    background-color: black;
+    opacity: 10%;
+    filter: alpha(opacity=10%);
+}
+.buttonPRS {
+	-moz-box-shadow:inset 0px 1px 0px 0px #dcecfb;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #dcecfb;
+	box-shadow:inset 0px 1px 0px 0px #dcecfb;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bfb930), color-stop(1, #ddd633));
+	background:-moz-linear-gradient(top, #bfb930 5%, #ddd633 100%);
+	background:-webkit-linear-gradient(top, #bfb930 5%, #ddd633 100%);
+	background:-o-linear-gradient(top, #bfb930 5%, #ddd633 100%);
+	background:-ms-linear-gradient(top, #bfb930 5%, #ddd633 100%);
+	background:linear-gradient(to bottom, #bfb930 5%, #ddd633 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bfb930', endColorstr='#ddd633',GradientType=0);
+	background-color:#DD7D39;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid bisque;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 2px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #E8B84B;
+}
+.buttonPRS:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ddd633), color-stop(1, #bfb930));
+	background:-moz-linear-gradient(top, #ddd633 5%, #bfb930 100%);
+	background:-webkit-linear-gradient(top, #ddd633 5%, #bfb930 100%);
+	background:-o-linear-gradient(top, #ddd633 5%, #bfb930 100%);
+	background:-ms-linear-gradient(top, #ddd633 5%, #bfb930 100%);
+	background:linear-gradient(to bottom, #ddd633 5%, #bfb930 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ddd633', endColorstr='#bfb930',GradientType=0);
+	background-color:#BF9530;
+}
+.buttonPRS:active {
+	position:relative;
+	top:1px;
+}
+
+.inputTXT {
+    background-color: #F5FFAF;
+}
+.inputTXT[value=""] {
+    background-color: white;
+}
+.inputTXT:focus {
+
+    background-color: #ADDFFF;
+}
+
+.inputTXT:disabled {
+
+    background-color: #EBEBE6;
+}
+.inputTXT {
+border: 1px solid #006;  
+height:20px;
+
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px
+ }
+
+
+
+#form-canvas * {
+    font-family: PT Sans,Arial,serif;
+    font-size: 13px;
+}
+#form-canvas .label {
+    color: #535353;
+}
+#form-canvas {
+    font-size: 13px;
+    display: block;
+    padding: 10px;
+    margin: 5px;
+    background: white;
+    border: solid 1px silver;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px;
+}
+#form-canvas textarea {
+    font-size: 13px;
+}
+.form-section, .form-column, .form-cell, .subform-section, .subform-column, .subform-cell {
+    border: none 1px #dddddd;
+    padding: 0px;
+    margin: 0px;
+}
+.form-section, .subform-section {
+    /*position: relative;*/
+    border: none 2px #cccccc;
+    heightx: 100%;
+    backgroundx: #cccccc;
+    background: white;
+    colorx: #ffffff;
+    min-heightx: 50px;
+    margin-bottom: 10px;
+}
+.form-section-title span, .subform-section-title span {
+    padding: 10px;
+    margin-bottom: 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px;
+    font-weight: bold;
+    font-size: 16px;
+   
+    background:  #DAA260;
+    color:white;
+    display: block;
+}
+.form-palette-section {
+    background: #cccccc;
+    height: 30px;
+    min-width: 200px;
+}
+.form-column, .subform-column {
+    position: relative;
+    border: none 2px #dddddd;
+    widthx: 200px;
+    float: left;
+    heightx: 100%;
+    min-height: 30px;
+    min-width: 250px;
+    padding: 0px 0px 0px 0px;
+    backgroundx: #dddddd;
+    color: #666666;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+}
+.form-column .hint, .subform-column .hint {
+    display: block;
+    text-align: center;
+    font-style: italic;
+    font-size: 12px;
+    color: #aaaaaa;
+    background: white;
+}
+.form-cell, .subform-cell {
+    position: relative;
+    min-height: 30px;
+    color: black;
+    clear: left;
+    padding: 5px 0px;
+}
+.form-cell .label, .subform-cell .label {
+    width: 30%;
+    display: block;
+    float: left;
+}
+.form-cell-highlight {
+    padding-bottom: 0px;
+    background: #f0ffcc;
+}
+.form-clear {
+    clear: both;
+}
+.form-error-cell {
+    border: solid 1px red;
+}
+.form-error-message {
+    color: red;
+    font-size: smaller;
+    display: block;
+}
+.subform-cell-validator,
+.form-cell-validator {
+    color: red;
+    font-size: smaller;
+}
+.form-message {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: red;
+}
+.form-cell table, .subform-cell table {
+    width: 100%;
+}
+.form-cell table td, .form-cell table th, .subform-cell table td, .subform-cell table th {
+    border: solid 1px silver;
+    margin: 0px;
+    padding: 3px;
+}
+.subform-container{
+    border: 5px solid #dfdfdf; 
+    padding: 3px;
+    margin-top:5px;
+}
+.subform-container.no-frame{
+    border: 0; 
+    padding: 0;
+    margin-top:10px;
+}
+.subform-container, .subform-section {
+    background: #efefef;
+}
+.subform-container.no-frame, .subform-container.no-frame .subform-section {
+    background: transparent;
+}
+.subform-title{
+    background: #efefef;
+    position:relative;
+    top:-12px;
+}
+.subform-container.no-frame .subform-title{
+    background: transparent;
+    position:relative;
+    top:-12px;
+    font-weight: bold;
+}
+.form-column-horizontal .form-cell {
+    display: block;
+    float: left;
+    clear: none;
+    margin-right: 3px;
+}
+.form-fileupload {
+    float: left;
+}
+.form-fileupload-value {
+    display: block;
+}
+.form-cell-value, .subform-cell-value {
+    float: left;
+    width: 70%;
+}
+.form-cell-value label, .subform-cell-value label {
+    display: block;
+    float: left;
+    width: 50%;
+}
+.form-cell-full {
+    width: 100%;
+}
+#ui-datepicker-div {
+    font-size: 13px;
+}
+.form-cell-value label.readonly_label, .subform-cell-value label.readonly_label {
+    width: 100%;
+    float: none;
+}
+#preview-label {
+    position: fixed;
+    top: 75px;
+    right: -225px;
+    width: 600px;
+    padding: 10px;
+    font-size: 24px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-family: 'trebuchet ms', verdana, arial, sans-serif;
+    background-color: rgb(0, 0, 0);
+    border: 1px solid rgb(170, 170, 170);
+    z-index: 500;
+    opacity: 0.5;
+    -moz-transform: rotate(45deg);  /* FF3.5/3.6 */
+    -o-transform: rotate(45deg);  /* Opera 10.5 */
+    -webkit-transform: rotate(45deg);  /* Saf3.1+ */
+    transform: rotate(45deg);
+}
+.tooltips, #form-canvas .tooltips {
+    color: #999;
+    font-size: 11px;
+    line-height: 15px;
+    padding: 5px 0 5px 5px;
+}
+.tooltips > span, #form-canvas .tooltips > span {
+    display:block;
+    color: #999;
+    font-size: 11px;
+    line-height: 15px;
+}
+#preview-label.ie {
+    top: -60px;
+    right: -150px;
+    width: 400px;
+    opacity: 1;
+    filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.7071067811865476, M12=-0.7071067811865475, M21=0.7071067811865475, M22=0.7071067811865476) progid:DXImageTransform.Microsoft.Alpha(Opacity=50); /* IE6,IE7 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(SizingMethod='auto expand', M11=0.7071067811865476, M12=-0.7071067811865475, M21=0.7071067811865475, M22=0.7071067811865476) progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; /* IE8 */
+    zoom: 1;
+}
+.quickEdit, #form-canvas .quickEdit {
+    display: none;
+}
+
+#iframe1
+{
+width:195%;
+}
+#iframe2
+{
+width:195%;
+}
+#iframe3
+{
+width:195%;
+}
+#iframe4
+{
+width:195%;
+}
+#iframe5
+{
+
+width:195%;
+}
+html
+        {
+            height: 100%;
+            min-height: 100%;
+            border-top: 0px;
+            overflow: auto;
+        }
+
+html,body
+{
+-ms-overflow-style: none;
+-webkit-appearance: none;
+}
+*,form{
+
+font-family:  Verdana, Helvetica, sans-serif;
+font-style: 15px arial, sans-serif;
+}
+a:link {
+    text-decoration: none;
+}
+ .Imgbody {
+
+    background-image: url(ThemeproLO/Common/Images/bgnoise_lg.png);
+
+}
+.form-section-subtitle {
+    display: block;
+    font-size: 17px;
+    letter-spacing: 1px;
+    color: #DAA260;
+    border-bottom: 2px solid #DAA260;
+    line-height: 30px;
+    margin-bottom: 8px;
+    float: left;
+    width: 50%;
+    padding-left: 0;
+    margin-top: 10px;
+    font-family: 'calibri';
+}
+ 
+.ColumnHeading
+{
+color: #DAA260;
+}
+
+
+.closecol{
+	background-color: #e6f2ff;
+}
+ .fileupfont{
+ margin-left: -120px;
+ font-family:HoltwoodOneSC;
+ font-weight: bold;
+ color: #34383B;
+ font-size: 50px;
+ text-align: center;
+ }
+ 
+
+
+.form-column-attch{		   position: relative;    border: none 2px #dddddd;    widthx: 200px;    float: left;    heightx: 100%;    min-height: 30px;    min-width: 250px;    padding: 0px 0px 0px 0px;    backgroundx: #dddddd;    color: #666666;    border-top: none;    border-right: none;    border-bottom: none;	}
+
+.ColumnHeading {
+    color: #488AC7;
+}
+.closecol {
+    background-color: #e6f2ff;
+}
+.fileupfont {
+    margin-left: -120px;
+    font-family: HoltwoodOneSC;
+    font-weight: bold;
+    color: #34383B;
+    font-size: 50px;
+    text-align: center;
+}
+img {
+    cursor: pointer
+}
+
+
+.inputTXTSM {
+    background-color: #F5FFAF;
+}
+.inputTXTSM[value=""] {
+    background-color: white;
+}
+.inputTXTSM:focus {
+    background-color: #ADDFFF;
+}
+.inputTXTSM:disabled {
+    background-color: #EBEBE6;
+}
+.inputTXTSM {
+    border: 1px solid #488AC7;
+    height: 20px;
+    width: 120px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px
+}
+
+
+
+.inputTXTAR {
+    background-color: #F5FFAF;
+}
+.inputTXTAR[value=""] {
+    background-color: white;
+}
+.inputTXTAR:focus {
+    background-color: #ADDFFF;
+}
+.inputTXTAR:disabled {
+    background-color: #EBEBE6;
+}
+.inputTXTAR {
+    border: 1px solid #488AC7;
+    height: 55px;
+    width: 175px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px
+}

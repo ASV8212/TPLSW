@@ -110,6 +110,8 @@ function GetCustomerName()
 	$("[name='ALIH_PARTIES']").append(CusName)
 	$("[name='ALIH_INSNOMNAME']").append(CusName)
 	
+	$("#FILESTATUS").val($(xml).find('STATUS').text())
+	
 }
 
 function INSURDETAILS(INSURENCE,HIDDENFIELD,Event)
@@ -170,34 +172,6 @@ function CheckDocMndtry(TableID,FldClas,HDR)
 }
 
 
-
-
-
-function CheckDocVal(TableID,FldClas,HTML)
-{
-	  var Doclength=$("#"+TableID).find(".tbodytr").length
-	  
-	  for(k=0;k<Doclength;k++)
-		  {
-		  var tdcount=$($("#"+TableID).find(".tbodytr")[k]).find('.tbodytrtd').length
-		   
-		  for(l=0;l<tdcount;l++)
-			 {
-			  if($($($("#"+TableID).find(".tbodytr")[k]).find('.tbodytrtd')[l]).find("."+FldClas).length>0)
-				  {
-				    if($($($("#"+TableID).find(".tbodytr")[l]).find('.tbodytrtd')[l]).find("."+FldClas).attr("type")=="radio")
-				      {
-					   if ($("input[name='"+$($($("#"+TableID).find(".tbodytr")[k]).find('.tbodytrtd')[l]).find("."+FldClas).attr("name")+"']:checked").val() == 'Yes') 
-		    		         {  
-                               $(HTML).find("input[name=ICICIGRDVAL]").val('Yes')								 
-		    		         }
-				     }
-				  }
-			 }
-		  }
-}
-
-
 function CheckApplicable(id,Event)
 {
 	  
@@ -229,13 +203,13 @@ function CheckApplicable(id,Event)
 	    			    $(HTML).find('.APPSTA').addClass('ALIHMndtry')
 	    			    //$(HTML).find('.Applradio').addClass('ALIHMndtry')
 	    		        $(HTML).find('.Docmndry').addClass('RadioMndtry')
-	                  if($(HTML).find('input:radio[name=ALIH_INSPTNR]')[0].checked == false && $(HTML).find('input:radio[name=ALIH_INSPTNR]')[1].checked == false)
+	                  /*if($(HTML).find('input:radio[name=ALIH_INSPTNR]')[0].checked == false && $(HTML).find('input:radio[name=ALIH_INSPTNR]')[1].checked == false)
                          { 
 					          $(HTML).find("[name='ALIH_INSPTNRHIDDEN']").val('ICICI Bank')
                               $(HTML).find('input:radio[name=ALIH_INSPTNR]')[1].checked = true;
 							  INSURDETAILS($(HTML).find("input[name='ALIH_INSPTNR']:checked").val(),$(HTML).find("[name='ALIH_INSPTNRHIDDEN']").val(),'Change')
                               //$(HTML).find('input:radio[name=ALIH_INSPTNR][value=ICICI Bank]').click();
-                         }
+                         }*/
 					}
 		      	   }
 	              }
@@ -275,13 +249,13 @@ function CheckApplicable(id,Event)
 	    			$(HTML).find('.APPSTA').addClass('ALIHMndtry')
 	    			//$(HTML).find('.Applradio').addClass('ALIHMndtry')
 	    		    $(HTML).find('.Docmndry').addClass('RadioMndtry')
-	                  if($(HTML).find('input:radio[name=ALIH_INSPTNR]')[0].checked == false && $(HTML).find('input:radio[name=ALIH_INSPTNR]')[1].checked == false)
+	                 /* if($(HTML).find('input:radio[name=ALIH_INSPTNR]')[0].checked == false && $(HTML).find('input:radio[name=ALIH_INSPTNR]')[1].checked == false)
                          { 
 					          $(HTML).find("[name='ALIH_INSPTNRHIDDEN']").val('ICICI Bank')
                               $(HTML).find('input:radio[name=ALIH_INSPTNR]')[1].checked = true;
 							  INSURDETAILS($(HTML).find("input[name='ALIH_INSPTNR']:checked").val(),$(HTML).find("[name='ALIH_INSPTNRHIDDEN']").val(),'Change')
                               //$(HTML).find('input:radio[name=ALIH_INSPTNR][value=ICICI Bank]').click();
-                         }
+                         }*/
                      }	
 
 	    			
@@ -292,13 +266,13 @@ function CheckApplicable(id,Event)
 	    			$(HTML).find('.APPSTA').addClass('ALIHMndtry')
 	    			//$(HTML).find('.Applradio').addClass('ALIHMndtry')
 	    		    $(HTML).find('.Docmndry').addClass('RadioMndtry')
-	                  if($(HTML).find('input:radio[name=ALIH_INSPTNR]')[0].checked == false && $(HTML).find('input:radio[name=ALIH_INSPTNR]')[1].checked == false)
+	                 /* if($(HTML).find('input:radio[name=ALIH_INSPTNR]')[0].checked == false && $(HTML).find('input:radio[name=ALIH_INSPTNR]')[1].checked == false)
                          { 
 					          $(HTML).find("[name='ALIH_INSPTNRHIDDEN']").val('ICICI Bank')
                               $(HTML).find('input:radio[name=ALIH_INSPTNR]')[1].checked = true;
 							  INSURDETAILS($(HTML).find("input[name='ALIH_INSPTNR']:checked").val(),$(HTML).find("[name='ALIH_INSPTNRHIDDEN']").val(),'Change')
                               //$(HTML).find('input:radio[name=ALIH_INSPTNR][value=ICICI Bank]').click();
-                         }
+                         }*/
                 }
 			  }
 }
@@ -356,6 +330,7 @@ function CallHDFCFn(Evnt)
 		}
    else
    {		
+      $(".loader2").show();
    var param1=$("#PrcsID").val()
 	   //var param1=$("#TXTCodeOTP").val();
    var param2=$(Evnt).closest('.DYNROW').find("[name=ALIH_CUSID]").val();
@@ -376,12 +351,14 @@ function CallHDFCFn(Evnt)
 			    	  var obj = JSON.parse(xml2)
 			    	  if(obj["errors"]==null)
 			    	  {
+						   $(".loader2").fadeOut("slow")
 			    	  	$(Evnt).closest('.DYNROW').find("[name=ALIH_INSAMOUNT]").val(CURCommaSep(parseFloat(obj["gcppPremiumResult"].totalPremium).toFixed(0)));
 			  		    $(Evnt).closest('.DYNROW').find("[name=ALIH_INSAMOUNT]").next().addClass('active');
 			    	     alert("Online \n\r Your Premium Amount is Rs."+ CURCommaSep(parseFloat(obj["gcppPremiumResult"].totalPremium).toFixed(0)));
 			    	  }
 			    	  else
 			    	  {
+						   $(".loader2").fadeOut("slow")
 			    	  	//alert("Premium Amount Gentration Failed");
 			    	  	 RTNVAL="Online \n\r Premium Amount Generation Failed"
 			    	  		return RTNVAL;
@@ -389,6 +366,7 @@ function CallHDFCFn(Evnt)
 			      },
 			      error: function (xml2)
 			      {
+					   $(".loader2").fadeOut("slow")
 			    	  RTNVAL="Premium Amount Generation Failed"
 			    		  return RTNVAL;
 			      }
@@ -400,6 +378,11 @@ function CallHDFCFn(Evnt)
 
 function ShowInsurLink(HTML,Cusid,Evnt)
 {	
+
+ var Status=$("#FILESTATUS").val()
+	  
+     if(Status=='Y')
+	 {
     if(Evnt=="Load")
     {
 	 var Bank=$(HTML).find("input[name='ALIH_INSPTNR']:checked").val()
@@ -407,9 +390,7 @@ function ShowInsurLink(HTML,Cusid,Evnt)
 	
 	// var xml=UI_getdata($("#PrcsID").val(),Cusid,"","","","LSW_SGETINSURL");
 	
-	  //var URL=$(xml).find('URL').text()
-	  
-
+	 
 		if(Bank=="HDFC Bank")
 		{
 			if($(HTML).find('[name = ALIH_MNMFORM]').val()=="Non-Madical")
@@ -466,6 +447,7 @@ function ShowInsurLink(HTML,Cusid,Evnt)
 		    $(".ICICI").hide();
         }	
 	}
+	 }
 }
 
 function generatePDF(Cusid,Bank,html)
@@ -502,6 +484,7 @@ function generatePDF(Cusid,Bank,html)
 		  }
 	  }
 }
+
 
 function MAILCHK1234(Cusid)
  {
@@ -547,7 +530,6 @@ function MAILCHK1234(Cusid)
 			      }
 			  }); 
  }
-
 
 
 function ICICICHK1234(Cusid)
@@ -600,7 +582,6 @@ function ICICICHK1234(Cusid)
 
 	 
  }
-
 
 function CheckHelthDetlMndtry(TableID,FldClas,HDR)
 {
@@ -666,32 +647,6 @@ function GentrateHDFCNonMedical(HTML,Event)
 			ajaxindicatorstop();
 }
 
-function GentrateHDFCCovid(HTML,Event)
-{
-	var IOP=window.location.origin;
-	var PrcsId=$("#PrcsID").val()
-	if(Event=="Load")
-	{
-    var Cusid=$(HTML).find("[name=ALIH_CUSID]").val();
-    ajaxindicatorstart("Downloading.. Please wait");
-	
-	var flname = IOP+LoadFrmXML("RT0101")+"&__format=pdf&Param1="+PrcsId+"&Param2="+Cusid+"&__filename=HDFCCOVID-19Form-"+$("#DMY7").val().split("|")[7]+".pdf";
-	}
-	else
-	{
-		var Cusid=$("#"+HTML).val();
-    ajaxindicatorstart("Downloading.. Please wait");
-	
-	var flname = IOP+LoadFrmXML("RT0101")+"&__format=pdf&Param1="+PrcsId+"&Param2="+Cusid+"&__filename=HDFCCOVID-19Form-"+$("#DMY7").val().split("|")[7]+".pdf";
-	}
-	var link=document.createElement('a');
-		document.body.appendChild(link);
-		link.download=flname;
-			link.href=flname;
-			link.click();
-			ajaxindicatorstop();
-}
-
 function GentrateHDFCMedical(HTML,Event)
 {
 	var IOP=window.location.origin;
@@ -744,6 +699,32 @@ function GentrateICICIMedical(HTML,Event)
 			ajaxindicatorstop();
 }
 
+function GentrateHDFCCovid(HTML,Event)
+{
+	var IOP=window.location.origin;
+	var PrcsId=$("#PrcsID").val()
+	if(Event=="Load")
+	{
+    var Cusid=$(HTML).find("[name=ALIH_CUSID]").val();
+    ajaxindicatorstart("Downloading.. Please wait");
+	
+	var flname = IOP+LoadFrmXML("RT0101")+"&__format=pdf&Param1="+PrcsId+"&Param2="+Cusid+"&__filename=HDFCCOVID-19Form-"+$("#DMY7").val().split("|")[7]+".pdf";
+	}
+	else
+	{
+		var Cusid=$("#"+HTML).val();
+    ajaxindicatorstart("Downloading.. Please wait");
+	
+	var flname = IOP+LoadFrmXML("RT0101")+"&__format=pdf&Param1="+PrcsId+"&Param2="+Cusid+"&__filename=HDFCCOVID-19Form-"+$("#DMY7").val().split("|")[7]+".pdf";
+	}
+	var link=document.createElement('a');
+		document.body.appendChild(link);
+		link.download=flname;
+			link.href=flname;
+			link.click();
+			ajaxindicatorstop();
+}
+
 
 function CheckGender(Gender,Relation,Event)
 {
@@ -755,13 +736,13 @@ function CheckGender(Gender,Relation,Event)
 	   if(Gend=="Male")
 	{
 	     $(Gender).find("[name='ALIH_RELVID']").empty();
-		 $(Gender).find("[name='ALIH_RELVID']").append('<option value="" >--Select--</option><option value="Father">Father</option><option value="Brother">Brother</option><option value="Brother In-Law">Brother In-Law</option><option value="Nephew">Nephew</option><option value="Uncle">Uncle</option><option value="Other">Other</option>') 
+		 $(Gender).find("[name='ALIH_RELVID']").append('<option value="" >--Select--</option><option value="Mother">Mother</option><option value="Spouse">Spouse</option><option value="Sister">Sister</option><option value="Sister In-Law">Sister In-Law</option><option value="Neice">Neice</option><option value="Aunty">Aunty</option><option value="Father">Father</option><option value="Brother">Brother</option><option value="Brother In-Law">Brother In-Law</option><option value="Nephew">Nephew</option><option value="Uncle">Uncle</option><option value="Other">Other</option>') 
 		 $(Gender).find("[name='ALIH_RELVID']").material_select();
 	}
 	else if(Gend=="Female")
 	{
 		$(Gender).find("[name='ALIH_RELVID']").empty();
-		$(Gender).find("[name='ALIH_RELVID']").append('<option value="" >--Select--</option><option value="Mother">Mother</option><option value="Spouse">Spouse</option><option value="Sister">Sister</option><option value="Sister In-Law">Sister In-Law</option><option value="Neice">Neice</option><option value="Aunty">Aunty</option><option value="Other">Other</option>') 
+		$(Gender).find("[name='ALIH_RELVID']").append('<option value="" >--Select--</option><option value="Mother">Mother</option><option value="Spouse">Spouse</option><option value="Sister">Sister</option><option value="Sister In-Law">Sister In-Law</option><option value="Neice">Neice</option><option value="Aunty">Aunty</option><option value="Father">Father</option><option value="Brother">Brother</option><option value="Brother In-Law">Brother In-Law</option><option value="Nephew">Nephew</option><option value="Uncle">Uncle</option><option value="Other">Other</option>') 
 		$(Gender).find("[name='ALIH_RELVID']").material_select();
 	}
 	else
@@ -785,13 +766,13 @@ function CheckGender(Gender,Relation,Event)
 	if(Gender=="Male")
 	{
 	     $("#"+Relation).empty();
-		 $("#"+Relation).append('<option value="" >--Select--</option><option value="Father">Father</option><option value="Brother">Brother</option><option value="Brother In-Law">Brother In-Law</option><option value="Nephew">Nephew</option><option value="Uncle">Uncle</option><option value="Other">Other</option>') 
+		 $("#"+Relation).append('<option value="" >--Select--</option><option value="Mother">Mother</option><option value="Spouse">Spouse</option><option value="Sister">Sister</option><option value="Sister In-Law">Sister In-Law</option><option value="Neice">Neice</option><option value="Aunty">Aunty</option><option value="Father">Father</option><option value="Brother">Brother</option><option value="Brother In-Law">Brother In-Law</option><option value="Nephew">Nephew</option><option value="Uncle">Uncle</option><option value="Other">Other</option>') 
 		 $("#"+Relation).material_select();
 	}
 	else if(Gender=="Female")
 	{
 		$("#"+Relation).empty();
-		$("#"+Relation).append('<option value="" >--Select--</option><option value="Mother">Mother</option><option value="Spouse">Spouse</option><option value="Sister">Sister</option><option value="Sister In-Law">Sister In-Law</option><option value="Neice">Neice</option><option value="Aunty">Aunty</option><option value="Other">Other</option>') 
+		$("#"+Relation).append('<option value="" >--Select--</option><option value="Mother">Mother</option><option value="Spouse">Spouse</option><option value="Sister">Sister</option><option value="Sister In-Law">Sister In-Law</option><option value="Neice">Neice</option><option value="Aunty">Aunty</option><option value="Father">Father</option><option value="Brother">Brother</option><option value="Brother In-Law">Brother In-Law</option><option value="Nephew">Nephew</option><option value="Uncle">Uncle</option><option value="Other">Other</option>') 
 		$("#"+Relation).material_select();
 	}
 	else
@@ -803,6 +784,7 @@ function CheckGender(Gender,Relation,Event)
 	}
 	
 }
+
 
 function CallICICIFn(Evnt)
 {
@@ -837,7 +819,7 @@ function CallICICIFn(Evnt)
       var spname2="LSW_SGETICICIPREMIUMINPUTDTLS";
    
 	 
-		
+		$(".loader2").show();
 		var OP = "Success"
 			$.ajax({
 			  url: "/TPLSW/InsrncePrmeiumICICI",
@@ -850,11 +832,13 @@ function CallICICIFn(Evnt)
 					 var obj = xml2
 					 if(obj=="")
 					 {
+						  $(".loader2").fadeOut("slow")
 						  RTNVAL="Online \n\r Premium Amount Gentration Failed"
 					  return RTNVAL;
 					 }
 			    	  else if(obj.split('|')[0]=='Success')
 			    	  {
+						   $(".loader2").fadeOut("slow")
 			    	  	$(Evnt).closest('.DYNROW').find("[name=ALIH_INSAMOUNT]").val(CURCommaSep(parseFloat(obj.split('|')[1]).toFixed(0)));
 			  		    $(Evnt).closest('.DYNROW').find("[name=ALIH_INSAMOUNT]").next().addClass('active');
 			    	     alert("Online \n\r Your Premium Amount is Rs."+ CURCommaSep(parseFloat(obj.split('|')[1]).toFixed(0)));
@@ -862,12 +846,14 @@ function CallICICIFn(Evnt)
 			    	  else
 			    	  {
 			    	  	//alert("Premium Amount Gentration Failed");
+						 $(".loader2").fadeOut("slow")
 			    	  	 RTNVAL="Online \n\r Premium Amount Generation Failed"
 			    	  		return RTNVAL;
 			    	  }
 			      },
 			      error: function (xml2)
 			      {
+					   $(".loader2").fadeOut("slow")
 					  RTNVAL="Online \n\r Premium Amount Gentration Failed"
 					  return RTNVAL;
 				
@@ -876,19 +862,26 @@ function CallICICIFn(Evnt)
    }
 }
 
-
-function ChkNomiName(CusID,Name)
+function CheckDocVal(TableID,FldClas,HTML)
 {
-	var CustomerId=$("#"+CusID).val();
-	var NomiName=$("#"+Name).val();
-	
-	var xml=UI_getdata($("#PrcsID").val(),CustomerId,NomiName,"","","LSW_SCHKNOMINAME")
-	
-	if($(xml).find('RESULT').text() != "NO")
-	{
-		alert($(xml).find('RESULT').text());
-		$("#"+Name).val('');
-		return false;
-	}
-	
+	  var Doclength=$("#"+TableID).find(".tbodytr").length
+	  
+	  for(k=0;k<Doclength;k++)
+		  {
+		  var tdcount=$($("#"+TableID).find(".tbodytr")[k]).find('.tbodytrtd').length
+		   
+		  for(l=0;l<tdcount;l++)
+			 {
+			  if($($($("#"+TableID).find(".tbodytr")[k]).find('.tbodytrtd')[l]).find("."+FldClas).length>0)
+				  {
+				    if($($($("#"+TableID).find(".tbodytr")[l]).find('.tbodytrtd')[l]).find("."+FldClas).attr("type")=="radio")
+				      {
+					   if ($("input[name='"+$($($("#"+TableID).find(".tbodytr")[k]).find('.tbodytrtd')[l]).find("."+FldClas).attr("name")+"']:checked").val() == 'Yes') 
+		    		         {  
+                               $(HTML).find("input[name=ICICIGRDVAL]").val('Yes')								 
+		    		         }
+				     }
+				  }
+			 }
+		  }
 }

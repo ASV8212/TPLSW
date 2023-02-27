@@ -68,7 +68,7 @@ public class InterfaceEsign {
    
 		////
 
-		    String PrcsID = Input2;
+		  String PrcsID = Input2;
 		    String DMSID = Encoded1;
 		    String DMSURL = "";
 		    String fileNAME = "";
@@ -200,7 +200,6 @@ public class InterfaceEsign {
 	}
 			return Status+"~"+Message;
 	}
-	
 	public static String InterfaceGetCall(String APiURL1,String JsonData1, String contenttype1,String Authtoken, String Authtoken1) 
 	{
 		String Status=null;

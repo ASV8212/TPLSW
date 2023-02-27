@@ -14,3 +14,38 @@
 	$("#BOCL_SECTOR").append($(borowclass).find("RESULT").html());
 	$("#BOCL_SECTOR").material_select(); 
 }
+function Chkrating()
+{
+	if($("#BOCL_RATINGDTLS").val()=="Yes")
+	{
+		$(".RAT").show();	
+		$("#BOCL_RATING").addClass('BOCLMndtry');
+		$("#BOCL_RATING").next().find(".MndtryAstr").html("*");
+		
+	}
+	else
+	{
+		$("#BOCL_RATING").val('');
+		$("#BOCL_RATING").removeClass('BOCLMndtry');
+		$("#BOCL_RATING").next().find(".MndtryAstr").html("");
+		$(".RAT").hide();
+	}
+}
+function CheckAmt()
+{
+	var RADIO=$("input[name='BOCL_BORWERRADIO']:checked"). val();
+	if(RADIO=="Plant and Machinery" || RADIO=="Turnover")
+	{
+		$(".AMT").show(); 
+		$("#BOCL_AMT").addClass('BOCLMndtry');
+		$("#BOCL_AMT").next().find(".MndtryAstr").html("*");
+	}
+	else
+	{
+		$("#BOCL_AMT").val('');
+		$("#BOCL_AMT").removeClass('BOCLMndtry');
+		$("#BOCL_AMT").next().find(".MndtryAstr").html("");
+		$(".AMT").hide(); 
+	}
+	
+}

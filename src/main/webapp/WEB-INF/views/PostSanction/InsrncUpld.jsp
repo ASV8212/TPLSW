@@ -96,7 +96,7 @@
     </tr>
    </table>
   </div> 
-    <div class="INUL_LIFEATTCH" style="display:none"> <img src="ThemeproLO/Common/Images/UploadImg.png" onclick="ReuploadFile(LERP_ATTACHMENT);" title="UPLOAD"  class="rounded ReUpld" alt="Cinque Terre" width="20" height="20">  <img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW"  class="rounded" onclick="GrdDocDwnld('INUL_LIFEATTCH')" alt="Cinque Terre" width="35" height="25"> </div> 
+    <div class="INUL_LIFEATTCH" style="display:none"> <img src="ThemeproLO/Common/Images/UploadImg.png" onclick="ReuploadFile(INUL_LIFEATTCH);" title="UPLOAD"  class="rounded ReUpld" alt="Cinque Terre" width="20" height="20">  <img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW"  class="rounded" onclick="GrdDocDwnld('INUL_LIFEATTCH')" alt="Cinque Terre" width="35" height="25"> </div> 
       </div>      
         </div> 
         </div>

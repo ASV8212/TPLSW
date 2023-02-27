@@ -7,6 +7,9 @@
          <br>
          <div class="Btxt10 ">FOIR GST</div>
 		   </br>
+		   <div class="form-row ALLI">
+        	<div class="col Btxt10" style="color: rgb(255, 0, 0);">Details to be entered in actuals (Rs)</div>
+        </div>
          <input type="text" id="FOGS_PRCSID" hidden="hidden" name="FOGS_PRCSID" class="form-control FOGSDBfields">
          <input type="text" id="FOGS_ACTIVITYID" hidden="hidden" name="FOGS_ACTIVITYID" class="form-control FOGSDBfields">
          <input type="text" id="FOGS_DTCREATED" hidden="hidden" name="FOGS_DTCREATED" class="form-control FOGSDBfields">
@@ -115,13 +118,19 @@
 			   
 			   
 			   <div class="form-row">
-			 <div class="col-md-4">
+			 <div class="col-md-4" style="display:none">
                      <div class="md-form">
                         <input type="text" id="FOGS_INDTAX"  disabled maxlength="200" onblur="FoirGst();"  class="form-control  IsCURCommaFields   IsNumberFields NoSpecialChar  FOGSDBfields " name="FOGS_INDTAX">
                         <label for ="FOGS_INDTAX" class="">Net Sales<span class="MndtryAstr"></span></label>
                      </div>
                   </div>
 				  
+				  <div class="col-md-4">
+                     <div class="md-form">
+                        <input type="text" id="FOGS_INDTAXI"   maxlength="200" onblur="FoirGst();"  class="form-control  IsCURCommaFields   IsNumberFields NoSpecialChar  FOGSDBfields " name="FOGS_INDTAXI">
+                        <label for ="FOGS_INDTAXI" class="">Individual Tax<span class="MndtryAstr"></span></label>
+                     </div>
+                  </div>
               
 			 <div class="col-md-4">
                      <div class="md-form">
@@ -243,7 +252,7 @@
 	  
 	  
       
-                <div class="form-row">
+                <div class="form-row"style="display:none">
                     <div class="col d-flex justify-content-center">
                         <button type="button" id="save3" data-form="PROPERTYAPPRASIAL"  data-aria="LSW_TFOIRGST|FOGS|FOGS_SCHEMEID" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
                         <button type="button" data-form="PROPERTYAPPRASIAL"  data-aria="LSW_TFOIRGST|FOGS|FOGS_SCHEMEID"data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 

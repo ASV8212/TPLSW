@@ -20,7 +20,7 @@
             <input type="text" id="BRCR_MODIFIEDBY" hidden="hidden" name="BRCR_MODIFIEDBY" class="form-control BRCRDBfields">
            
            <input type="text" id="BRCR_UNIQID" hidden="hidden" name="BRCR_UNIQID" class="form-control BRCRDBfields">
-           
+           <input type="text" id="BRCR_FLAG" hidden="hidden" name="BRCR_FLAG" class="form-control BRCRDBfields">
         	<div class="form-row">
         		<div class="col Btxt3">Branch Creation </div>
         	</div>
@@ -28,13 +28,13 @@
            <div class="form-row">
             <div class="col-md-4">
                    <div class="md-form">
-                     <input type="text" id="BRCR_BRANCHID"  name="BRCR_BRANCHID" class="form-control NoSpacFields NoSpecialChar BRCRMndtry BRCRDBfields">
+                     <input type="text" id="BRCR_BRANCHID"  name="BRCR_BRANCHID" class="form-control NoSpacFields NoSpecialCharNOTDOT BRCRMndtry BRCRDBfields">
                     <label for="BRCR_BRANCHID" class="">Branch ID<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
                <div class="col-md-4">
                 <div class="md-form">
-                     <input type="text" id="BRCR_BRANCHNAME" name="BRCR_BRANCHNAME" class="form-control NoSpecialChar BRCRMndtry BRCRDBfields">
+                     <input type="text" id="BRCR_BRANCHNAME" name="BRCR_BRANCHNAME" class="form-control NoSpecialCharNOTDOT  BRCRMndtry BRCRDBfields">
                     <label for="BRCR_BRANCHNAME" class="">Branch Name<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
@@ -82,6 +82,13 @@
         </div>
         
             <div class="form-row">
+			
+			<div class="col-md-4">
+                   <div class="md-form">
+                     <input type="text" id="BRCR_DESCRIPTION" name="BRCR_DESCRIPTION" maxlength="2" class="form-control  NoSpecialCharNOTDOT BRCRMndtry BRCRDBfields">
+                    <label for="BRCR_DESCRIPTION" class="">Description (State short code)<span class="MndtryAstr">*</span></label>
+                  </div>
+                </div>
                     
             <div class="col-md-4">
                    <div class="md-form">
@@ -125,7 +132,7 @@
              <div class="form-row">
             <div class="col-md-4">
                    <div class="md-form">
-                     <input type="text" id="BRCR_STATECODE"  disabled name="BRCR_STATECODE" class="form-control IsNumberFields  BRCRMndtry NoSpecialChar BRCRDBfields">
+                     <input type="text" id="BRCR_STATECODE"  disabled name="BRCR_STATECODE" class="form-control IsNumberFields  BRCRMndtry NoSpecialCharNOTDOT BRCRDBfields">
                     <label for="BRCR_STATECODE" class="">State Code<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
@@ -171,7 +178,7 @@
             </div>
             <div class="col-md-4">
                    <div class="md-form">
-                     <input type="text" id="BRCR_CONTACTPER" name="BRCR_CONTACTPER" class="form-control NoSpecialChar  IsAlphaFields  BRCRMndtry BRCRDBfields">
+                     <input type="text" id="BRCR_CONTACTPER" name="BRCR_CONTACTPER" class="form-control NoSpecialCharNOTDOT  IsAlphaFields  BRCRMndtry BRCRDBfields">
                     <label for="BRCR_CONTACTPER" class="">Contact Person<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
@@ -230,6 +237,15 @@
                 
            </div>
           <div class="form-row">
+		  <div class="col-md-4">
+			<div class="md-form">
+                  <select class="mdb-select md-form colorful-select dropdown-primary  BRCRMndtry BRCRDBfields" id="BRCR_STPFLAGING" name="BRCR_STPFLAGING">
+				  <option value="Yes">Yes</option>
+				  <option value="No">No</option>
+				</select>
+				<label class="mdb-main-label BTxt9">STP Available?<span class="MndtryAstr">*</span></label>
+             </div>
+		  </div>
 		   <div class="col-md-4">
                      <div class="md-form">
 						<label for="BRCR_REMARK" class="active">Remarks<span class="MndtryAstr"></span></label>
@@ -237,6 +253,14 @@
                           <textarea class="form-control BRCRDBfields" id="BRCR_REMARK" name="BRCR_REMARK" style="height: 100px;width:380px;"></textarea>					
                      </div>
                   </div>
+		  <div class="col-md-4">
+			<div class="md-form">
+                  <select class="mdb-select md-form colorful-select dropdown-primary  BRCRMndtry BRCRDBfields" id="BRCR_SUBREGION" name="BRCR_SUBREGION">
+			
+				</select>
+				<label class="mdb-main-label BTxt9">Sub Region<span class="MndtryAstr">*</span></label>
+             </div>
+		  </div>				  
 			 </div>
          <div class="form-row" style="display:none">
         	<div class="col Btxt8">User Mapping</div>

@@ -394,13 +394,13 @@
            <div class="form-row">
              <div class="col-md-4">
             	<div class="md-form">
-                  	<input type="text" id="FIAD_EMI"  maxlength="5" name="FIAD_EMI" class=" FINTWO form-control IsNumberFields NoSpecialChar IsCURCommaFields FIADDBfields">
+                  	<input type="text" id="FIAD_EMI"  maxlength="30" name="FIAD_EMI" class=" FINTWO form-control IsNumberFields NoSpecialChar IsCURCommaFields FIADDBfields">
                     <label for="FIAD_EMI" class="">EMI<span class="MndtryAstr"></span></label>
                 </div>
             </div>
             <div class="col-md-4">
             	<div class="md-form">
-                  	<input type="text" id="FIAD_EMICAR"  maxlength="5" name="FIAD_EMICAR" class=" FINCAR form-control IsNumberFields NoSpecialChar IsCURCommaFields FIADDBfields">
+                  	<input type="text" id="FIAD_EMICAR"  maxlength="30" name="FIAD_EMICAR" class=" FINCAR form-control IsNumberFields NoSpecialChar IsCURCommaFields FIADDBfields">
                     <label for="FIAD_EMICAR" class="">EMI<span class="MndtryAstr"></span></label>
                 </div>
             </div>
@@ -768,7 +768,7 @@
             </div>
             </div>
 			
-			 <div class="form-row ">
+			<div class="form-row ">
                   <div class="col-md-4">
                     <div class="col Btxt10">Upload Photos</div>
                      <div data-for="BankDetail1" class="BankDetail1"> 
@@ -825,6 +825,7 @@
                      </div>
                   </div>
              </div>
+			
 			
 			
              <div class="form-row Initiate">

@@ -27,7 +27,7 @@ $(document).ready(function () {
 		
 		if(MndtryChk == "Mandatory")
 			{
-			alert("Fill the Mandatory Fields");
+			alert("Fill the Mandatory Fields / Document(s)");
 			return false;
 			}
 		}

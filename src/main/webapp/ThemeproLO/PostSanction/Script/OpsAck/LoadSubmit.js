@@ -13,27 +13,32 @@ $(document).ready(function() {
     //$($('.AFormaccordion')[0]).click();
     //$("#BKDT_CUSID").val($(".FormPageMultiTab li.active").attr("id"));
 	
-	$("#DOAH_TRNCH").val($(".FormPageMultiTab li.active a div").text())
-	$("#DOAH_TRNCHName").val($(".FormPageMultiTab li.active a div").text())
+	/*$("#DOAH_TRNCH").val($(".FormPageMultiTab li.active a div").text())
+	$("#DOAH_TRNCHName").val($(".FormPageMultiTab li.active a div").text())*/
+	
+	$("#DOAH_TRNCH").attr("value",$(".FormPageMultiTab li.active a div").text());
+	$("#DOAH_TRNCHName").attr("value",$(".FormPageMultiTab li.active a div").text());
+	
 
-    FormDataFromDB("LSW_TDISBOPSACKHDR", "DOAH_", "DOAHDBfields", "");
+    FormDataFromDB("LSW_TDISBOPSACKHDR", "DOAH_", "DOAHDBfields", $("#DOAH_TRNCH").val()+"|DOAH_TRNCH");
 	var activityname = GetActivityName();
 	$("#HiddenActID").val(activityname);
+	$("#HiddenActID").val("BranchOPS");
     /**Grid Trigger Start **/
 	if(activityname == "BranchOPS")
 	{
-		FncallDocChkLst(this,'Table2',{spname:'LSW_SGETOPSACK',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||1,9,10,11,12','OPSASK');
+		FncallDocChkLst(this,'Table2',{spname:'LSW_SGETOPSACK',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||1,9,10,11,12,14','OPSASK');
 	}
 	else if(activityname == "OPS")
 	{
-		FncallDocChkLst(this,'Table2',{spname:'LSW_SGETOPSACK',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||1,8,11,12,13','OPSASK');
+		FncallDocChkLst(this,'Table2',{spname:'LSW_SGETOPSACK',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||1,8,11,12,13,14','OPSASK');
 	}
 	else if(activityname == "OPSQD"){
-		FncallDocChkLst(this,'Table2',{spname:'LSW_SGETOPSACK',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||1,9,10,11,12,13','OPSASK');
+		FncallDocChkLst(this,'Table2',{spname:'LSW_SGETOPSACK',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||1,9,10,11,12,13,14','OPSASK');
 		DSVLBLALL();
 	}
 	else{
-		FncallDocChkLst(this,'Table2',{spname:'LSW_SGETOPSACK',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||1,9,10,11,12,13','OPSASK');
+		FncallDocChkLst(this,'Table2',{spname:'LSW_SGETOPSACK',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('.FormPageMultiTab li.active a div').text(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||1,9,10,11,12,13,14','OPSASK');
 	}
     
     // $("#BTNEMPOWERMNT").click();
@@ -48,7 +53,7 @@ $(document).ready(function() {
         	}
         }
         }*/
-		
+	
 	/*Added for Grid Dropdown hide issue Start */
 	$("#Table2").parent().css("overflow","visible");
 	/*Added for Grid Dropdown hide issue End */
@@ -80,7 +85,7 @@ $(document).ready(function() {
         if ($(this).text() == "Save & Next") {
             var MndtryChk = ChkMandatoryFlds(prfx + "Mndtry");
             if (MndtryChk == "Mandatory") {
-                alert("Fill the Mandatory Fields");
+                alert("Fill the Mandatory Fields / Document(s)");
                 return false;
             }
 			
@@ -97,7 +102,7 @@ $(document).ready(function() {
 
         var OPSACKDTL = TxtGridsubmitdata_V1("Table2", "DDMD_", "DOAH_");
         AssignGridXmltoField("DOAH_OPSACKDTL", OPSACKDTL)
-        var CHKresult=FormDataToDB(tbl, prfx, '');
+        var CHKresult=FormDataToDB(tbl, prfx, $("#PrcsID").val()+"|"+$("#"+DATA).val()+"|" + DATA);
 		
         if (CHKresult == "Fail")
 		{

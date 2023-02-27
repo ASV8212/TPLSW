@@ -45,7 +45,7 @@
                 </div>
 				<div class="col-md-4">
            		<div class="md-form">
-                  <select class="mdb-select md-form colorful-select dropdown-primary OUBLDBfields" onchange="Profit();" id="OUBL_TYPOBUSS"
+                  <select class="mdb-select md-form colorful-select dropdown-primary OUBLDBfields Calculate" onchange="Profit();" id="OUBL_TYPOBUSS"
 				  name="OUBL_TYPOBUSS">
                   	<option value="" selected>Select</option>
   					
@@ -57,10 +57,25 @@
   
              </div>
 			 <div class="form-row">
+			 <div class="col-md-4">
+                        <div class="md-form">
+                           <div id="Customer House" class="select-radio OUBLMndtry Instant">
+                              <div class="custom-control custom-radio custom-control-inline">
+                                 <input type="radio" class="custom-control-input OUBLDBfields" onclick="FOIR();" value="Yes" id="OWNYES" name="OUBL_OWNHOUSE">
+                                 <label class="custom-control-label" for="OWNYES">Yes</label>
+                              </div>
+                              <div class="custom-control custom-radio custom-control-inline OUBLDBfields">
+                                 <input type="radio" class="custom-control-input OUBLDBfields" onclick="FOIR();" value="No" id="OWNNO" name="OUBL_OWNHOUSE">
+                                 <label class="custom-control-label" for="OWNNO">No</label>
+                              </div>
+                           </div>
+                           <label class="mdb-main-label BTxt9">Customer Staying in Own House<span class="MndtryAstr">*</span></label>      
+                        </div>
+                     </div>
             <div class="col-md-4">
                   <div class="md-form">
                   	  <input type="text" id="OUBL_YEARSALES"  maxlength="30"  name="OUBL_YEARSALES" 
-					  class="form-control  Calculate Division Instant IsCURCommaFields OUBLMndtry  OUBLDBfields">
+					  class="form-control  Calculate Division Instant Medium IsCURCommaFields OUBLMndtry  OUBLDBfields">
                       <label for="OUBL_YEARSALES" class="">Yearly Sales <span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
@@ -68,8 +83,20 @@
             <div class="col-md-4">
                   <div class="md-form">
                   	  <input type="text" id="OUBL_PROFIT" disabled maxlength="30"  name="OUBL_PROFIT" 
-					  class="form-control OUBLMndtry Calculate Division  OUBLDBfields">
+					  class="form-control OUBLMndtry Calculate Division Instant Medium OUBLDBfields">
                       <label for="OUBL_PROFIT" class="">Profit % <span class="MndtryAstr">*</span></label>
+                  </div>
+                </div>
+				
+			
+  
+             </div>
+			 <div class="form-row">
+			 <div class="col-md-4">
+                  <div class="md-form">
+                  	  <input type="text" id="OUBL_FIXEDCOST" maxlength="30"  name="OUBL_FIXEDCOST" 
+					  class="form-control OUBLMndtry Calculate Division Instant Medium OUBL_FIXEDCOST OUBLDBfields">
+                      <label for="OUBL_FIXEDCOST" class="">Fixed Cost, if any<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
 				
@@ -79,9 +106,6 @@
                       <label for="OUBL_YEARPROFIT" class="">Yearly Profit<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
-  
-             </div>
-			 <div class="form-row">
             <div class="col-md-4">
                   <div class="md-form">
                   	  <input type="text" id="OUBL_MONTHPROFIT" disabled maxlength="30"  name="OUBL_MONTHPROFIT" class="form-control OUBLMndtry IsCURCommaFields Instant OUBLDBfields">
@@ -89,7 +113,12 @@
                   </div>
                 </div>
 				 
-            <div class="col-md-4">
+            
+  
+             </div>
+			 
+			 <div class="form-row">
+			 <div class="col-md-4">
                   <div class="md-form">
                   	  <input type="text" id="OUBL_FOIR" disabled maxlength="30"  name="OUBL_FOIR" class="form-control OUBLMndtry IsCURCommaFields  OUBLDBfields">
                       <label for="OUBL_FOIR" class="">FOIR<span class="MndtryAstr">*</span></label>
@@ -102,10 +131,6 @@
                       <label for="OUBL_PROAVAEMI" class="">Profit Available for EMI<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
-  
-             </div>
-			 
-			 <div class="form-row">
             <div class="col-md-4">
                   <div class="md-form">
                   	  <input type="text" id="OUBL_EXISTEMI"  maxlength="30"  name="OUBL_EXISTEMI" class="form-control OUBLMndtry IsCURCommaFields Medium OUBLDBfields">
@@ -113,7 +138,12 @@
                   </div>
                 </div>
 				 
-            <div class="col-md-4">
+            
+  
+             </div>
+			 
+			 <div class="form-row">
+			 <div class="col-md-4">
                   <div class="md-form">
                   	  <input type="text" id="OUBL_PROEXISTEMI" disabled maxlength="30"  name="OUBL_PROEXISTEMI" class="form-control IsCURCommaFields OUBLMndtry  OUBLDBfields">
                       <label for="OUBL_PROEXISTEMI" class="">Profit Post Existing EMI <span class="MndtryAstr">*</span></label>
@@ -126,10 +156,6 @@
                       <label for="OUBL_EMILAKH" class="">EMI Per Lakh<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
-  
-             </div>
-			 
-			 <div class="form-row">
             <div class="col-md-4">
                   <div class="md-form">
                   	  <input type="text" id="OUBL_LOAMORDISB"  maxlength="30"  name="OUBL_LOAMORDISB" class="form-control OUBLMndtry ELIGI IsCURCommaFields OUBLDBfields">
@@ -137,16 +163,18 @@
                   </div>
                 </div>
 				 
-            <div class="col-md-4">
+            
+				</div>
+			<div class="form-row">
+				<div class="col-md-4">
                   <div class="md-form">
                   	  <input type="text" id="OUBL_MAXLOAELY" disabled maxlength="30"  name="OUBL_MAXLOAELY" class="form-control OUBLMndtry IsCURCommaFields OUBLDBfields">
                       <label for="OUBL_MAXLOAELY" class="">Maximum Loan Eligibility<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
-				</div>
-			 
+			 </div>
 				  </br>
-                  <div class="form-row">
+                  <div class="form-row"style="display:none">
                      <div class="col d-flex justify-content-center">
                         <button type="button" id="Save" data-aria="LSW_TTAKEOVERUBL|OUBL" class="btn btn-Syeloutline waves-effect waves-light Save FormSave">Save</button>   
                       <!--  <button type="button" data-aria="LSW_TTAKEOVERUBL|OUBL" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> -->
@@ -155,8 +183,8 @@
              
             </form>
          </div>
-       <!--  </div>
-    card 
+        </div>
+   <!--  card 
    </div>
 </div>-->
 <!--   </div>

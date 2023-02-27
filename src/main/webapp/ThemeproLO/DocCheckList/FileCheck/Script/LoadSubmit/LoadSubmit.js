@@ -3,7 +3,7 @@ $(document).ready(function () {
 	
 	$("#UCLH_PRCSID").attr("value",$("#PrcsID").val());
 
-	
+	 RECOMMENDHIDE()
 
 	 FormDataFromDB("LSW_UPFLCHCKLSTHDR","UCLH_","UCLHDBfields", "");
 	 if($("#UCLH_SCHEM").val()=="")
@@ -12,7 +12,16 @@ $(document).ready(function () {
 		 $("#UCLH_SCHEM").val($(xml).find('SCHEME').text())
 		 }
 	
-  
+    var xml=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETPRODUCTNAME")
+    var CROSS=$(xml).find('PRODUCT').text() 
+	if(CROSS=='T316')
+	{
+	$("#FormPageTab6").show()
+	}
+	else
+	{
+	$("#FormPageTab6").hide()
+	}
 	 var op = UI_getdata($("#LogUsr").val(),$("#PrcsID").val(),"","","","LSW_SGETUSRGRP1")
 
 	 if($(op).find("COAPPLI").text()=="NO")
@@ -47,7 +56,7 @@ $(document).ready(function () {
 	 
 		 
 		  getApplName()
-
+CheckRadio();
 	 var DATA=["COAPPCAMChecklist|"];
 	 for (j=0;j<DATA.length;j++)
 		 {
@@ -71,32 +80,12 @@ $(document).ready(function () {
 	         HndlPartclr(HTML,"FICL_SAMDATE");
 	         HndlPartclr(HTML,"FICL_MINLATEST");
 	         HndlPartclr(HTML,"FICL_CARPT");
-			 HndlPartclr(HTML,"FICL_ITRGAP");
 	       }
 		 }
 	 HndlPartclr('',"UCLH_SAMEDATE");
      HndlPartclr('',"UCLH_APPLACTION");
      HndlPartclr('',"UCLH_CARPT");
-	 HndlPartclr('',"UCLH_ITRGAP");
-	 
-	 CheckRadio();
-	 
-	 if($("#UCLH_SCHEM").val()=="S00003")
-		{
-		  $(".LOWLTV").text('')
-		  $(".LOWLTV").text('ITRs - Min Latest 1 Yr')
-		}
-    else if($("#UCLH_SCHEM").val()=="S00006")
-		{
-		  $(".LOWLTV").text('')
-		  $(".LOWLTV").text('ITRs - Min Latest 3 Yr')
-		}
-	else
-		{
-		  $(".LOWLTV").text('')
-		  $(".LOWLTV").text('ITRs - Min Latest 2 Yr')
-		}
-	 
+	
 	 
 	 //SchemeBasedCAM()
 	$('.FormSave').on('click', function() {
@@ -111,7 +100,7 @@ $(document).ready(function () {
 		
 		if(MndtryChk == "Mandatory")
 			{
-			alert("Fill the Mandatory Fields");
+			alert("Fill the Mandatory Fields / Document(s)");
 			return false;
 			}
 		 
@@ -188,6 +177,9 @@ $(document).ready(function () {
 					alert($(op).find("WFVAR").text());
 				}
 			}
+			   if ($(this).text() == "Save & Next") {
+            NXTTAB(this);
+        }
 		});
 	
 	$('.RADIOACTNCHK').on('change', function() {
@@ -245,8 +237,7 @@ $(document).ready(function () {
 			$(this).closest('.col-md-3').next().find('button').hide()
 		}
 	});
-	 
-$(document).on("click",".RaiseQry",function() {
+	 $(document).on("click",".RaiseQry",function() {
 		var UniqTyp = $(this).attr("data-uniq-type");
 		var op=""
 		if(UniqTyp=="CAM Checklist")
@@ -324,6 +315,13 @@ $(document).on("click",".RaiseQry",function() {
 			}
 			$('.RAISE').find("#MNGQ_DESC").addClass('MNGOMndtry');
 			
+			$('.RASHW').hide();
+		
+		$('.RAISE').find("#MNGQ_SECTNID").removeClass('MNGOMndtry');
+		$('.RAISE').find("#MNGQ_TYP").removeClass('MNGOMndtry');
+		$('.RAISE').find("#MNGQ_QURYNAME").removeClass('MNGOMndtry');
+		$('.RAISE').find("#MNGQ_APPLNO").removeClass('MNGOMndtry');
+			
 			 $("#RAISEQUERY").click();
 					 }
 		else{
@@ -331,6 +329,8 @@ $(document).on("click",".RaiseQry",function() {
 			return;
 		}
 				});	
+
+	 
 	 
 });
 

@@ -6,21 +6,27 @@ var profit=$("input[name='RACD_PROFIT']:checked"). val();
 		{
 		
 	
+	  $('.ASSETS').hide();
 		$('.PROFITLOSS').hide();
 		$('.BALSHEET').hide();
-		$('.RADIO').hide();
+		$('.RADIO').show();
 		$('.FINSUMM').show();
 		$(".DocumentUploadType").hide();
 		$(".UPDOC").hide();
 		if(Evnt=="Change"){
-		FncallDocChkLst(this,'Table5',{spname:'LSW_SGETROFINSMRYONCLICK',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'FS|'+$('#RACD_CUSID').val()+'|'+$('#RACD_UNIQID').val(),MnuId:$("#RACD_FINYEAR").val()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||1,5,6,7','FINCSUMMARY');
+		/* FncallDocChkLst(this,'Table5',{spname:'LSW_SGETROFINSMRYONCLICK',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'FS|'+$('#RACD_CUSID').val()+'|'+$('#RACD_UNIQID').val(),MnuId:$("#RACD_FINYEAR").val()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||1,5,6,7','FINCSUMMARY');
+		 */
+			FncallDocChkLst(this,'Table5',{spname:'LSW_SGETROFINSMRY',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'FS|'+$('#RACD_CUSID').val()+'|'+$('#RACD_UNIQID').val(),MnuId:$("#RACD_FINYEAR").val()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||1,5,6,7,8','FINCSUMMARY');
+		
+		
 		}
 		}
 	else
 		{
+		$('.ASSETS').show();
 		$('.PROFITLOSS').show();
 		$('.BALSHEET').show();
-		$('.RADIO').show();
+		//$('.RADIO').hide();
 		$('.FINSUMM').hide();
 		$(".DocumentUploadType").show();
 		
@@ -64,12 +70,12 @@ function GridControlDetailRATIOPROFITLOSS (popTableModPageGrid1,TableID,dtData,d
 
 "aoColumnDefs": [ 
 	   { "sClass": "dpass", "aTargets": jQuery.parseJSON(hideClm)},
- 
+ //&& row[0]!="Gross Profit"
 				 { targets: 1, "render": function ( data, type, row, meta ) {                            
-			 			if(row[0]!="Cash Profit" && row[0]!="Gross Profit" && row[0]!="Net Profit")
+			 			if(row[0]!="Cash Profit"  && row[0]!="Net Profit")
 			 				{
 			 				var rowno = meta.row;	 
-							var HTML =	'<span><input type="text" id="RPLS_YEAR1'+rowno+'" style="width:140px"  name="RPLS_YEAR1'+rowno+'" maxlength="40" class="form-control IsNumberFieldsSpl  GridMndtry IsCURCommaFields form-control">';			 
+							var HTML =	'<span><input type="text" id="RPLS_YEAR1'+rowno+'" style="width:140px"  name="RPLS_YEAR1'+rowno+'" maxlength="40" class="form-control IsNumberFieldsSpl  GridMndtry IsCURCommaFields form-control VIABILITYDTL">';			 
 							HTML = HTML + '</span>'; 
 								 
 							var htmldata = $(HTML);
@@ -83,7 +89,7 @@ function GridControlDetailRATIOPROFITLOSS (popTableModPageGrid1,TableID,dtData,d
 			 				}
 			 			else{
 			 				var rowno = meta.row;	 
-							var HTML =	'<span><input type="text" id="RPLS_YEAR1'+rowno+'" style="width:140px"  name="RPLS_YEAR1'+rowno+'" disabled maxlength="40" class="form-control DSVLBL IsNumberFieldsSpl  GridMndtry IsCURCommaFields form-control">';			 
+							var HTML =	'<span><input type="text" id="RPLS_YEAR1'+rowno+'" style="width:140px"  name="RPLS_YEAR1'+rowno+'" disabled maxlength="40" class="form-control DSVLBL IsNumberFieldsSpl  GridMndtry IsCURCommaFields form-control VIABILITYDTL">';			 
 							HTML = HTML + '</span>'; 
 								 
 							var htmldata = $(HTML);
@@ -97,12 +103,12 @@ function GridControlDetailRATIOPROFITLOSS (popTableModPageGrid1,TableID,dtData,d
 			 			}
 							
 				         } 
-						 },
+						 },//&& row[0]!="Gross Profit"
 						 { targets: 2, "render": function ( data, type, row, meta ) {                            
-							 if(row[0]!="Cash Profit" && row[0]!="Gross Profit" && row[0]!="Net Profit")
+							 if(row[0]!="Cash Profit"  && row[0]!="Net Profit")
 								 {
 								 var rowno = meta.row;	 
-									var HTML =	'<span><input type="text" id="RPLS_YEAR2'+rowno+'" style="width:140px" name="RPLS_YEAR2'+rowno+'" maxlength="40" class="form-control IsCURCommaFields GridMndtry IsNumberFieldsSpl  form-control">';			 
+									var HTML =	'<span><input type="text" id="RPLS_YEAR2'+rowno+'" style="width:140px" name="RPLS_YEAR2'+rowno+'" maxlength="40" class="form-control IsCURCommaFields GridMndtry IsNumberFieldsSpl  form-control VIABILITYDTL">';			 
 									HTML = HTML + '</span>'; 
 										 
 									var htmldata = $(HTML);
@@ -116,7 +122,7 @@ function GridControlDetailRATIOPROFITLOSS (popTableModPageGrid1,TableID,dtData,d
 								 }
 							 else{
 								 var rowno = meta.row;	 
-									var HTML =	'<span><input type="text" id="RPLS_YEAR2'+rowno+'" style="width:140px" name="RPLS_YEAR2'+rowno+'" disabled maxlength="40" class="form-control DSVLBL IsCURCommaFields GridMndtry IsNumberFieldsSpl  form-control">';			 
+									var HTML =	'<span><input type="text" id="RPLS_YEAR2'+rowno+'" style="width:140px" name="RPLS_YEAR2'+rowno+'" disabled maxlength="40" class="form-control DSVLBL IsCURCommaFields GridMndtry IsNumberFieldsSpl  form-control VIABILITYDTL">';			 
 									HTML = HTML + '</span>'; 
 										 
 									var htmldata = $(HTML);
@@ -131,12 +137,12 @@ function GridControlDetailRATIOPROFITLOSS (popTableModPageGrid1,TableID,dtData,d
 							 		
 									
 						  } 
-					 },
+					 },//&& row[0]!="Gross Profit"
 					 { targets: 3, "render": function ( data, type, row, meta ) {                            
-						 if(row[0]!="Cash Profit" && row[0]!="Gross Profit" && row[0]!="Net Profit")
+						 if(row[0]!="Cash Profit"  && row[0]!="Net Profit")
 							 {
 							 var rowno = meta.row;	 
-								var HTML =	'<span><input type="text" id="RPLS_YEAR3'+rowno+'" style="width:140px" name="RPLS_YEAR3'+rowno+'" maxlength="40" class="form-control IsCURCommaFields GridMndtry IsNumberFieldsSpl  form-control">';			 
+								var HTML =	'<span><input type="text" id="RPLS_YEAR3'+rowno+'" style="width:140px" name="RPLS_YEAR3'+rowno+'" maxlength="40" class="form-control IsCURCommaFields GridMndtry IsNumberFieldsSpl  form-control VIABILITYDTL">';			 
 								HTML = HTML + '</span>'; 
 									 
 								var htmldata = $(HTML);
@@ -151,7 +157,7 @@ function GridControlDetailRATIOPROFITLOSS (popTableModPageGrid1,TableID,dtData,d
 						 else
 							 {
 							 var rowno = meta.row;	 
-								var HTML =	'<span><input type="text" id="RPLS_YEAR3'+rowno+'" style="width:140px" disabled name="RPLS_YEAR3'+rowno+'" maxlength="40" class="form-control IsCURCommaFields DSVLBL GridMndtry IsNumberFieldsSpl  form-control">';			 
+								var HTML =	'<span><input type="text" id="RPLS_YEAR3'+rowno+'" style="width:140px" disabled name="RPLS_YEAR3'+rowno+'" maxlength="40" class="form-control IsCURCommaFields DSVLBL GridMndtry IsNumberFieldsSpl  form-control VIABILITYDTL">';			 
 								HTML = HTML + '</span>'; 
 									 
 								var htmldata = $(HTML);
@@ -370,7 +376,7 @@ function GridControlDetailFINCSUMMARY (popTableModPageGrid1,TableID,dtData,dtcol
 	   { "sClass": "dpass", "aTargets": jQuery.parseJSON(hideClm)},
 	   			
 	   { targets: 1, "render": function ( data, type, row, meta ) {                            
-			if(row[0] != "Cash Profit")
+			if(row[0] != "Cash Profit1")
 				{
 				 var rowno = meta.row;	 
 					var HTML =	'<span><input type="text" id="RFNS_PERC'+rowno+'" style="width:140px" data-field="RFNS_PERC'+rowno+'|Percentage" name="RFNS_PERC'+rowno+'" data-item="Percentage" data-total="" maxlength="3" class="form-control  IsPercentageFld  IsNumberFieldsSpl form-control FinYrIncm">';			 
@@ -403,7 +409,7 @@ function GridControlDetailFINCSUMMARY (popTableModPageGrid1,TableID,dtData,dtcol
 					
 		         } 
 				 },{ targets: 2, "render": function ( data, type, row, meta ) {                            
-					 if(row[0] != "Cash Profit")
+					 if(row[0] != "Cash Profit1")
 						 {
 						 var rowno = meta.row;	 
 							var HTML =	'<span><input type="text" id="RFNS_YEAR1'+rowno+'" style="width:140px"  name="RFNS_YEAR1'+rowno+'" data-item="Amount" data-itemr="Amount" data-totalr="ITRVAL" data-total="" maxlength="40" class="form-control GridMndtry IsCURCommaFields IsNumberFieldsSpl FinYrIncm1  form-control">';			 
@@ -436,7 +442,7 @@ function GridControlDetailFINCSUMMARY (popTableModPageGrid1,TableID,dtData,dtcol
 				         } 
 						 },
 						 { targets: 3, "render": function ( data, type, row, meta ) {                            
-							 if(row[0] != "Cash Profit")
+							 if(row[0] != "Cash Profit1")
 								 {
 								 var rowno = meta.row;	 
 									var HTML =	'<span><input type="text" id="RFNS_YEAR2'+rowno+'" style="width:140px" name="RFNS_YEAR2'+rowno+'" data-item="Amount" data-itemr="Amount" data-totalr="ITRVAL" data-total="" maxlength="40" class="form-control GridMndtry IsNumberFieldsSpl FinYrIncm1 IsCURCommaFields  form-control">';			 
@@ -470,7 +476,7 @@ function GridControlDetailFINCSUMMARY (popTableModPageGrid1,TableID,dtData,dtcol
 						  } 
 					 },
 					 { targets: 4, "render": function ( data, type, row, meta ) {                            
-						 if(row[0] != "Cash Profit")
+						 if(row[0] != "Cash Profit1")
 							 {
 							 var rowno = meta.row;	 
 								var HTML =	'<span><input type="text" id="RFNS_YEAR3'+rowno+'" style="width:140px" name="RFNS_YEAR3'+rowno+'" data-item="Amount" data-itemr="Amount" data-totalr="ITRVAL" data-total="" maxlength="40" class="form-control GridMndtry IsNumberFieldsSpl FinYrIncm1  IsCURCommaFields form-control">';			 
@@ -691,6 +697,8 @@ function GetFinclYr()
 	var xml=UI_getdata("","","","","","LSW_SGetLstYr")
 	var CusName=$(xml).find('RESULT').html();	
 	$("#RACD_FINYEAR").append(CusName)
+	$("#RACD_FINSUMYEAR").append(CusName)
+
 	//$('#RACD_FINYEAR').materialSelect();
 }
 
@@ -1161,7 +1169,7 @@ function GetLatestFincSumYr(){
 }
 
 function GrdLoadOnYrChng(){
-	FncallDocChkLst(this,'Table3',{spname:'LSW_SGETROPROFLOSS1',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'PL|'+$('#RACD_CUSID').val()+'|'+$('#RACD_UNIQID').val()+'|'+GetRadioBtnVal(),MnuId:GetLatestFincYr()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5','RATIOPROFITLOSS');
+	FncallDocChkLst(this,'Table3',{spname:'LSW_SGETROPROFLOSS1',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'PL|'+$('#RACD_CUSID').val()+'|'+$('#RACD_UNIQID').val()+'|'+GetRadioBtnVal(),MnuId:GetLatestFincYr()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5,6','RATIOPROFITLOSS');
 	FncallDocChkLst(this,'Table4',{spname:'LSW_SGETROBALSHTGRID1',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'BS|'+$('#RACD_CUSID').val()+'|'+$('#RACD_UNIQID').val()+'|'+GetRadioBtnVal(),MnuId:GetLatestFincYr()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5','RATIOBALSHEET');
 	if($("#RACD_FINYEAR").val() !="")
 		{
@@ -1223,7 +1231,7 @@ function RatioFldOnBlur(){
 	{
 		UI_getdata($("#PrcsID").val(),$("#RACD_UNIQID").val(),"","","","LSW_SCLRPREVCONSLDTREC");
 		FncallDocChkLst(this,'Table4',{spname:'LSW_SGETROBALSHTGRID1',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'BS|'+$('#RACD_CUSID').val()+'|'+$("#RACD_RatioHidden").val()+'|'+GetRadioBtnVal(),MnuId:GetLatestFincYr()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5','RATIOBALSHEET');
-		FncallDocChkLst(this,'Table3',{spname:'LSW_SGETROPROFLOSS1',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'PL|'+$('#RACD_CUSID').val()+'|'+$("#RACD_RatioHidden").val()+'|'+GetRadioBtnVal(),MnuId:GetLatestFincYr()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5','RATIOPROFITLOSS');
+		FncallDocChkLst(this,'Table3',{spname:'LSW_SGETROPROFLOSS1',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'PL|'+$('#RACD_CUSID').val()+'|'+$("#RACD_RatioHidden").val()+'|'+GetRadioBtnVal(),MnuId:GetLatestFincYr()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||4,5,6','RATIOPROFITLOSS');
 	}
 	else{
 		alert("Atleast select two sheets to consolidate");
@@ -1358,6 +1366,20 @@ else{
 
 function UploadData(id)
  {
+	 
+	 
+	 if($("#RACD_CMPNYID").val()=="")
+	             {
+					alert("Kindly choose Firm before save");
+					return;
+				}
+				
+		if($("#RACD_UNIQID").val()=="")
+	             {
+					alert("Please save the file after  Auto Upload Excel.");
+					return;
+				}		
+				
  	
  		//var s=$(id).val()
 		var s= $(id).closest('div').find('input[type="file"]').val()
@@ -1522,3 +1544,803 @@ alert('Invalid File Format');
         }
         });
 }
+
+
+
+function GridControlDetailRATIOASSETS (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm)
+{
+	 
+	 popTableModPageGrid1 = $('#'+TableID).DataTable({ 
+
+        'aaData': dtData,
+        "aoColumns": dtcolumn,  
+        
+        "bAutoWidth": false,
+
+        "autoWidth": false,
+
+        'bPaginate': false,
+
+       "aaSorting": [],
+
+       // "pageLength": 5,
+	   "bSort": false,
+
+        "bDeferRender": true,
+
+        'bInfo': true,
+
+        'bFilter': true,
+
+        "bDestroy": true,
+
+        "bJQueryUI": true,
+
+       //"scrollY": true,
+
+       // "scrollX": "200px",
+
+        "sPaginationType": "full_numbers",
+
+"aoColumnDefs": [ 
+	   { "sClass": "dpass", "aTargets": jQuery.parseJSON(hideClm)},
+ 
+				 { targets: 1, "render": function ( data, type, row, meta ) {                            
+			 			if(row[0]!="Total Assests" && row[0]!="Total Liabilities" && row[0]!="Difference between Total Assests and Liabilities")
+						{
+					 var rowno = meta.row;	 
+						var HTML =	'<span><input type="text" id="RAAS_YEAR1'+rowno+'" style="width:140px"  name="RAAS_YEAR1'+rowno+'" maxlength="40" class="form-control IsNumberFieldsSpl IsCURCommaFields  form-control">';			 
+						HTML = HTML + '</span>'; 
+							 
+						var htmldata = $(HTML);
+							
+						if ($(htmldata).find('[name=RAAS_YEAR1'+rowno+']').hasClass("IsCURCommaFields"))
+							{
+							data = CURCommaSep(data);
+							}
+							$(htmldata).find('[name=RAAS_YEAR1'+rowno+']').attr("value",data);
+							return htmldata[0].outerHTML;   		
+							
+				         } 
+						 else{
+							 var rowno = meta.row;	 
+						var HTML =	'<span><input type="text" disabled id="RAAS_YEAR1'+rowno+'" style="width:140px"  name="RAAS_YEAR1'+rowno+'" maxlength="40" class="form-control DSVLBL IsNumberFieldsSpl IsCURCommaFields  form-control">';			 
+						HTML = HTML + '</span>'; 
+							 
+						var htmldata = $(HTML);
+							
+						if ($(htmldata).find('[name=RAAS_YEAR1'+rowno+']').hasClass("IsCURCommaFields"))
+							{
+							data = CURCommaSep(data);
+							}
+							$(htmldata).find('[name=RAAS_YEAR1'+rowno+']').attr("value",data);
+							return htmldata[0].outerHTML;  
+						 }
+				 }
+						 },
+						 { targets: 2, "render": function ( data, type, row, meta ) {                            
+					 			if(row[0]!="Total Assests" && row[0]!="Total Liabilities" && row[0]!="Difference between Total Assests and Liabilities")
+						{
+							 var rowno = meta.row;	 
+								var HTML =	'<span><input type="text" id="RAAS_YEAR2'+rowno+'" style="width:140px" name="RAAS_YEAR2'+rowno+'" maxlength="40" class="form-control IsNumberFieldsSpl IsCURCommaFields  form-control">';			 
+								HTML = HTML + '</span>'; 
+									 
+								var htmldata = $(HTML);
+									
+								if ($(htmldata).find('[name=RAAS_YEAR2'+rowno+']').hasClass("IsCURCommaFields"))
+									{
+									data = CURCommaSep(data);
+									}
+									$(htmldata).find('[name=RAAS_YEAR2'+rowno+']').attr("value",data);
+									return htmldata[0].outerHTML;   		
+									
+						  } 
+						  else{
+							 var rowno = meta.row;	 
+								var HTML =	'<span><input type="text" disabled id="RAAS_YEAR2'+rowno+'" style="width:140px" name="RAAS_YEAR2'+rowno+'" maxlength="40" class="form-control IsNumberFieldsSpl IsCURCommaFields  DSVLBL form-control">';			 
+								HTML = HTML + '</span>'; 
+									 
+								var htmldata = $(HTML);
+									
+								if ($(htmldata).find('[name=RAAS_YEAR2'+rowno+']').hasClass("IsCURCommaFields"))
+									{
+									data = CURCommaSep(data);
+									}
+									$(htmldata).find('[name=RAAS_YEAR2'+rowno+']').attr("value",data);
+									return htmldata[0].outerHTML; 
+						 }
+						 }
+						 
+					 },
+					 { targets: 3, "render": function ( data, type, row, meta ) {                            
+				 			if(row[0]!="Total Assests" && row[0]!="Total Liabilities" && row[0]!="Difference between Total Assests and Liabilities")
+						{
+						 var rowno = meta.row;	 
+							var HTML =	'<span><input type="text" id="RAAS_YEAR3'+rowno+'" style="width:140px" name="RAAS_YEAR3'+rowno+'" maxlength="40" class="form-control IsCURCommaFields IsNumberFieldsSpl  form-control">';			 
+							HTML = HTML + '</span>'; 
+								 
+							var htmldata = $(HTML);
+								
+							if ($(htmldata).find('[name=RAAS_YEAR3'+rowno+']').hasClass("IsCURCommaFields"))
+								{
+								data = CURCommaSep(data);
+								}
+								$(htmldata).find('[name=RAAS_YEAR3'+rowno+']').attr("value",data);
+								return htmldata[0].outerHTML;   		
+								
+					  }
+						else{
+							var rowno = meta.row;	 
+							var HTML =	'<span><input type="text" disabled id="RAAS_YEAR3'+rowno+'" style="width:140px" name="RAAS_YEAR3'+rowno+'" maxlength="40" class="form-control IsCURCommaFields IsNumberFieldsSpl DSVLBL  form-control">';			 
+							HTML = HTML + '</span>'; 
+								 
+							var htmldata = $(HTML);
+								
+							if ($(htmldata).find('[name=RAAS_YEAR3'+rowno+']').hasClass("IsCURCommaFields"))
+								{
+								data = CURCommaSep(data);
+								}
+								$(htmldata).find('[name=RAAS_YEAR3'+rowno+']').attr("value",data);
+								return htmldata[0].outerHTML;   	
+						}	
+					 }
+				 }
+    	   ],
+
+         "fnDrawCallback": function (oSettings) {
+
+        }
+        });
+}
+
+
+
+
+
+function GridControlDetailRATIOASSETS (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm)
+{
+	 
+	 popTableModPageGrid1 = $('#'+TableID).DataTable({ 
+
+        'aaData': dtData,
+        "aoColumns": dtcolumn,  
+        
+        "bAutoWidth": false,
+
+        "autoWidth": false,
+
+        'bPaginate': false,
+
+       "aaSorting": [],
+
+       // "pageLength": 5,
+	   "bSort": false,
+
+        "bDeferRender": true,
+
+        'bInfo': true,
+
+        'bFilter': true,
+
+        "bDestroy": true,
+
+        "bJQueryUI": true,
+
+       //"scrollY": true,
+
+       // "scrollX": "200px",
+
+        "sPaginationType": "full_numbers",
+
+"aoColumnDefs": [ 
+	   { "sClass": "dpass", "aTargets": jQuery.parseJSON(hideClm)},
+ 
+				 { targets: 1, "render": function ( data, type, row, meta ) {                            
+			 			if(row[0]!="Total Assests" && row[0]!="Total Liabilities" && row[0]!="Difference between Total Assests and Liabilities")
+						{
+					 var rowno = meta.row;	 
+						var HTML =	'<span><input type="text" id="RAAS_YEAR1'+rowno+'" style="width:140px"  name="RAAS_YEAR1'+rowno+'" maxlength="40" class="form-control IsNumberFieldsSpl IsCURCommaFields  form-control">';			 
+						HTML = HTML + '</span>'; 
+							 
+						var htmldata = $(HTML);
+							
+						if ($(htmldata).find('[name=RAAS_YEAR1'+rowno+']').hasClass("IsCURCommaFields"))
+							{
+							data = CURCommaSep(data);
+							}
+							$(htmldata).find('[name=RAAS_YEAR1'+rowno+']').attr("value",data);
+							return htmldata[0].outerHTML;   		
+							
+				         } 
+						 else{
+							 var rowno = meta.row;	 
+						var HTML =	'<span><input type="text" disabled id="RAAS_YEAR1'+rowno+'" style="width:140px"  name="RAAS_YEAR1'+rowno+'" maxlength="40" class="form-control DSVLBL IsNumberFieldsSpl IsCURCommaFields  form-control">';			 
+						HTML = HTML + '</span>'; 
+							 
+						var htmldata = $(HTML);
+							
+						if ($(htmldata).find('[name=RAAS_YEAR1'+rowno+']').hasClass("IsCURCommaFields"))
+							{
+							data = CURCommaSep(data);
+							}
+							$(htmldata).find('[name=RAAS_YEAR1'+rowno+']').attr("value",data);
+							return htmldata[0].outerHTML;  
+						 }
+				 }
+						 },
+						 { targets: 2, "render": function ( data, type, row, meta ) {                            
+					 			if(row[0]!="Total Assests" && row[0]!="Total Liabilities" && row[0]!="Difference between Total Assests and Liabilities")
+						{
+							 var rowno = meta.row;	 
+								var HTML =	'<span><input type="text" id="RAAS_YEAR2'+rowno+'" style="width:140px" name="RAAS_YEAR2'+rowno+'" maxlength="40" class="form-control IsNumberFieldsSpl IsCURCommaFields  form-control">';			 
+								HTML = HTML + '</span>'; 
+									 
+								var htmldata = $(HTML);
+									
+								if ($(htmldata).find('[name=RAAS_YEAR2'+rowno+']').hasClass("IsCURCommaFields"))
+									{
+									data = CURCommaSep(data);
+									}
+									$(htmldata).find('[name=RAAS_YEAR2'+rowno+']').attr("value",data);
+									return htmldata[0].outerHTML;   		
+									
+						  } 
+						  else{
+							 var rowno = meta.row;	 
+								var HTML =	'<span><input type="text" disabled id="RAAS_YEAR2'+rowno+'" style="width:140px" name="RAAS_YEAR2'+rowno+'" maxlength="40" class="form-control IsNumberFieldsSpl IsCURCommaFields  DSVLBL form-control">';			 
+								HTML = HTML + '</span>'; 
+									 
+								var htmldata = $(HTML);
+									
+								if ($(htmldata).find('[name=RAAS_YEAR2'+rowno+']').hasClass("IsCURCommaFields"))
+									{
+									data = CURCommaSep(data);
+									}
+									$(htmldata).find('[name=RAAS_YEAR2'+rowno+']').attr("value",data);
+									return htmldata[0].outerHTML; 
+						 }
+						 }
+						 
+					 },
+					 { targets: 3, "render": function ( data, type, row, meta ) {                            
+				 			if(row[0]!="Total Assests" && row[0]!="Total Liabilities" && row[0]!="Difference between Total Assests and Liabilities")
+						{
+						 var rowno = meta.row;	 
+							var HTML =	'<span><input type="text" id="RAAS_YEAR3'+rowno+'" style="width:140px" name="RAAS_YEAR3'+rowno+'" maxlength="40" class="form-control IsCURCommaFields IsNumberFieldsSpl  form-control">';			 
+							HTML = HTML + '</span>'; 
+								 
+							var htmldata = $(HTML);
+								
+							if ($(htmldata).find('[name=RAAS_YEAR3'+rowno+']').hasClass("IsCURCommaFields"))
+								{
+								data = CURCommaSep(data);
+								}
+								$(htmldata).find('[name=RAAS_YEAR3'+rowno+']').attr("value",data);
+								return htmldata[0].outerHTML;   		
+								
+					  }
+						else{
+							var rowno = meta.row;	 
+							var HTML =	'<span><input type="text" disabled id="RAAS_YEAR3'+rowno+'" style="width:140px" name="RAAS_YEAR3'+rowno+'" maxlength="40" class="form-control IsCURCommaFields IsNumberFieldsSpl DSVLBL  form-control">';			 
+							HTML = HTML + '</span>'; 
+								 
+							var htmldata = $(HTML);
+								
+							if ($(htmldata).find('[name=RAAS_YEAR3'+rowno+']').hasClass("IsCURCommaFields"))
+								{
+								data = CURCommaSep(data);
+								}
+								$(htmldata).find('[name=RAAS_YEAR3'+rowno+']').attr("value",data);
+								return htmldata[0].outerHTML;   	
+						}	
+					 }
+				 }
+    	   ],
+
+         "fnDrawCallback": function (oSettings) {
+
+        }
+        });
+}
+
+
+
+
+function GridControlDetailRATIOSUMMBALSHT(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm)
+{
+	 
+	 popTableModPageGrid1 = $('#'+TableID).DataTable({ 
+
+        'aaData': dtData,
+        "aoColumns": dtcolumn,  
+        
+        "bAutoWidth": false,
+
+        "autoWidth": false,
+
+        'bPaginate': false,
+
+       "aaSorting": [],
+
+       // "pageLength": 5,
+	   "bSort": false,
+
+        "bDeferRender": true,
+
+        'bInfo': true,
+
+        'bFilter': true,
+
+        "bDestroy": true,
+
+        "bJQueryUI": true,
+
+       //"scrollY": true,
+
+       // "scrollX": "200px",
+
+        "sPaginationType": "full_numbers",
+
+"aoColumnDefs": [ 
+	   { "sClass": "dpass", "aTargets": jQuery.parseJSON(hideClm)},
+ 
+				 { targets: 1, "render": function ( data, type, row, meta ) {                            
+			 			if(row[0]!="Total Assests" && row[0]!="Total Liabilities1" && row[0]!="Difference between Total Assests and Liabilities")
+						{
+					 var rowno = meta.row;	 
+						var HTML =	'<span><input type="text" id="RBAL_YEAR1'+rowno+'" style="width:140px"  name="RBAL_YEAR1'+rowno+'" maxlength="40" class="form-control IsNumberFieldsSpl IsCURCommaFields  form-control">';			 
+						HTML = HTML + '</span>'; 
+							 
+						var htmldata = $(HTML);
+							
+						if ($(htmldata).find('[name=RBAL_YEAR1'+rowno+']').hasClass("IsCURCommaFields"))
+							{
+							data = CURCommaSep(data);
+							}
+							$(htmldata).find('[name=RBAL_YEAR1'+rowno+']').attr("value",data);
+							return htmldata[0].outerHTML;   		
+							
+				         } 
+						 else{
+							 var rowno = meta.row;	 
+						var HTML =	'<span><input type="text" disabled id="RBAL_YEAR1'+rowno+'" style="width:140px"  name="RBAL_YEAR1'+rowno+'" maxlength="40" class="form-control DSVLBL IsNumberFieldsSpl IsCURCommaFields  form-control">';			 
+						HTML = HTML + '</span>'; 
+							 
+						var htmldata = $(HTML);
+							
+						if ($(htmldata).find('[name=RBAL_YEAR1'+rowno+']').hasClass("IsCURCommaFields"))
+							{
+							data = CURCommaSep(data);
+							}
+							$(htmldata).find('[name=RBAL_YEAR1'+rowno+']').attr("value",data);
+							return htmldata[0].outerHTML;  
+						 }
+				 }
+						 },
+						 { targets: 2, "render": function ( data, type, row, meta ) {                            
+					 			if(row[0]!="Total Assests" && row[0]!="Total Liabilities1" && row[0]!="Difference between Total Assests and Liabilities")
+						{
+							 var rowno = meta.row;	 
+								var HTML =	'<span><input type="text" id="RBAL_YEAR2'+rowno+'" style="width:140px" name="RBAL_YEAR2'+rowno+'" maxlength="40" class="form-control IsNumberFieldsSpl IsCURCommaFields  form-control">';			 
+								HTML = HTML + '</span>'; 
+									 
+								var htmldata = $(HTML);
+									
+								if ($(htmldata).find('[name=RBAL_YEAR2'+rowno+']').hasClass("IsCURCommaFields"))
+									{
+									data = CURCommaSep(data);
+									}
+									$(htmldata).find('[name=RBAL_YEAR2'+rowno+']').attr("value",data);
+									return htmldata[0].outerHTML;   		
+									
+						  } 
+						  else{
+							 var rowno = meta.row;	 
+								var HTML =	'<span><input type="text" disabled id="RBAL_YEAR2'+rowno+'" style="width:140px" name="RBAL_YEAR2'+rowno+'" maxlength="40" class="form-control IsNumberFieldsSpl IsCURCommaFields  DSVLBL form-control">';			 
+								HTML = HTML + '</span>'; 
+									 
+								var htmldata = $(HTML);
+									
+								if ($(htmldata).find('[name=RBAL_YEAR2'+rowno+']').hasClass("IsCURCommaFields"))
+									{
+									data = CURCommaSep(data);
+									}
+									$(htmldata).find('[name=RBAL_YEAR2'+rowno+']').attr("value",data);
+									return htmldata[0].outerHTML; 
+						 }
+						 }
+						 
+					 },
+					 { targets: 3, "render": function ( data, type, row, meta ) {                            
+				 			if(row[0]!="Total Assests" && row[0]!="Total Liabilities1" && row[0]!="Difference between Total Assests and Liabilities")
+						{
+						 var rowno = meta.row;	 
+							var HTML =	'<span><input type="text" id="RBAL_YEAR3'+rowno+'" style="width:140px" name="RBAL_YEAR3'+rowno+'" maxlength="40" class="form-control IsCURCommaFields IsNumberFieldsSpl  form-control">';			 
+							HTML = HTML + '</span>'; 
+								 
+							var htmldata = $(HTML);
+								
+							if ($(htmldata).find('[name=RBAL_YEAR3'+rowno+']').hasClass("IsCURCommaFields"))
+								{
+								data = CURCommaSep(data);
+								}
+								$(htmldata).find('[name=RBAL_YEAR3'+rowno+']').attr("value",data);
+								return htmldata[0].outerHTML;   		
+								
+					  }
+						else{
+							var rowno = meta.row;	 
+							var HTML =	'<span><input type="text" disabled id="RBAL_YEAR3'+rowno+'" style="width:140px" name="RBAL_YEAR3'+rowno+'" maxlength="40" class="form-control IsCURCommaFields IsNumberFieldsSpl DSVLBL  form-control">';			 
+							HTML = HTML + '</span>'; 
+								 
+							var htmldata = $(HTML);
+								
+							if ($(htmldata).find('[name=RBAL_YEAR3'+rowno+']').hasClass("IsCURCommaFields"))
+								{
+								data = CURCommaSep(data);
+								}
+								$(htmldata).find('[name=RBAL_YEAR3'+rowno+']').attr("value",data);
+								return htmldata[0].outerHTML;   	
+						}	
+					 }
+				 }
+    	   ],
+
+         "fnDrawCallback": function (oSettings) {
+
+        }
+        });
+}
+
+
+
+
+
+
+function GridControlDetailRATIORATIOSUMCASHFLOW(popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm)
+{
+	 
+	 popTableModPageGrid1 = $('#'+TableID).DataTable({ 
+
+        'aaData': dtData,
+        "aoColumns": dtcolumn,  
+        
+        "bAutoWidth": false,
+
+        "autoWidth": false,
+
+        'bPaginate': false,
+
+       "aaSorting": [],
+
+       // "pageLength": 5,
+	   "bSort": false,
+
+        "bDeferRender": true,
+
+        'bInfo': true,
+
+        'bFilter': true,
+
+        "bDestroy": true,
+
+        "bJQueryUI": true,
+
+       //"scrollY": true,
+
+       // "scrollX": "200px",
+
+        "sPaginationType": "full_numbers",
+
+"aoColumnDefs": [ 
+	   { "sClass": "dpass", "aTargets": jQuery.parseJSON(hideClm)},
+ 
+				 { targets: 1, "render": function ( data, type, row, meta ) {                            
+			 			if(row[0]!="Total Assests" && row[0]!="Total Liabilities" && row[0]!="Difference between Total Assests and Liabilities")
+						{
+					 var rowno = meta.row;	 
+						var HTML =	'<span><input type="text" id="RCFL_YEAR1'+rowno+'" style="width:140px"  name="RCFL_YEAR1'+rowno+'" maxlength="40" class="form-control IsNumberFieldsSpl IsCURCommaFields  form-control">';			 
+						HTML = HTML + '</span>'; 
+							 
+						var htmldata = $(HTML);
+							
+						if ($(htmldata).find('[name=RCFL_YEAR1'+rowno+']').hasClass("IsCURCommaFields"))
+							{
+							data = CURCommaSep(data);
+							}
+							$(htmldata).find('[name=RCFL_YEAR1'+rowno+']').attr("value",data);
+							return htmldata[0].outerHTML;   		
+							
+				         } 
+						 else{
+							 var rowno = meta.row;	 
+						var HTML =	'<span><input type="text" disabled id="RCFL_YEAR1'+rowno+'" style="width:140px"  name="RCFL_YEAR1'+rowno+'" maxlength="40" class="form-control DSVLBL IsNumberFieldsSpl IsCURCommaFields  form-control">';			 
+						HTML = HTML + '</span>'; 
+							 
+						var htmldata = $(HTML);
+							
+						if ($(htmldata).find('[name=RCFL_YEAR1'+rowno+']').hasClass("IsCURCommaFields"))
+							{
+							data = CURCommaSep(data);
+							}
+							$(htmldata).find('[name=RCFL_YEAR1'+rowno+']').attr("value",data);
+							return htmldata[0].outerHTML;  
+						 }
+				 }
+						 },
+						 { targets: 2, "render": function ( data, type, row, meta ) {                            
+					 			if(row[0]!="Total Assests" && row[0]!="Total Liabilities" && row[0]!="Difference between Total Assests and Liabilities")
+						{
+							 var rowno = meta.row;	 
+								var HTML =	'<span><input type="text" id="RCFL_YEAR2'+rowno+'" style="width:140px" name="RCFL_YEAR2'+rowno+'" maxlength="40" class="form-control IsNumberFieldsSpl IsCURCommaFields  form-control">';			 
+								HTML = HTML + '</span>'; 
+									 
+								var htmldata = $(HTML);
+									
+								if ($(htmldata).find('[name=RCFL_YEAR2'+rowno+']').hasClass("IsCURCommaFields"))
+									{
+									data = CURCommaSep(data);
+									}
+									$(htmldata).find('[name=RCFL_YEAR2'+rowno+']').attr("value",data);
+									return htmldata[0].outerHTML;   		
+									
+						  } 
+						  else{
+							 var rowno = meta.row;	 
+								var HTML =	'<span><input type="text" disabled id="RCFL_YEAR2'+rowno+'" style="width:140px" name="RCFL_YEAR2'+rowno+'" maxlength="40" class="form-control IsNumberFieldsSpl IsCURCommaFields  DSVLBL form-control">';			 
+								HTML = HTML + '</span>'; 
+									 
+								var htmldata = $(HTML);
+									
+								if ($(htmldata).find('[name=RCFL_YEAR2'+rowno+']').hasClass("IsCURCommaFields"))
+									{
+									data = CURCommaSep(data);
+									}
+									$(htmldata).find('[name=RCFL_YEAR2'+rowno+']').attr("value",data);
+									return htmldata[0].outerHTML; 
+						 }
+						 }
+						 
+					 },
+					 { targets: 3, "render": function ( data, type, row, meta ) {                            
+				 			if(row[0]!="Total Assests" && row[0]!="Total Liabilities" && row[0]!="Difference between Total Assests and Liabilities")
+						{
+						 var rowno = meta.row;	 
+							var HTML =	'<span><input type="text" id="RCFL_YEAR3'+rowno+'" style="width:140px" name="RCFL_YEAR3'+rowno+'" maxlength="40" class="form-control IsCURCommaFields IsNumberFieldsSpl  form-control">';			 
+							HTML = HTML + '</span>'; 
+								 
+							var htmldata = $(HTML);
+								
+							if ($(htmldata).find('[name=RCFL_YEAR3'+rowno+']').hasClass("IsCURCommaFields"))
+								{
+								data = CURCommaSep(data);
+								}
+								$(htmldata).find('[name=RCFL_YEAR3'+rowno+']').attr("value",data);
+								return htmldata[0].outerHTML;   		
+								
+					  }
+						else{
+							var rowno = meta.row;	 
+							var HTML =	'<span><input type="text" disabled id="RCFL_YEAR3'+rowno+'" style="width:140px" name="RCFL_YEAR3'+rowno+'" maxlength="40" class="form-control IsCURCommaFields IsNumberFieldsSpl DSVLBL  form-control">';			 
+							HTML = HTML + '</span>'; 
+								 
+							var htmldata = $(HTML);
+								
+							if ($(htmldata).find('[name=RCFL_YEAR3'+rowno+']').hasClass("IsCURCommaFields"))
+								{
+								data = CURCommaSep(data);
+								}
+								$(htmldata).find('[name=RCFL_YEAR3'+rowno+']').attr("value",data);
+								return htmldata[0].outerHTML;   	
+						}	
+					 }
+				 }
+    	   ],
+
+         "fnDrawCallback": function (oSettings) {
+
+        }
+        });
+}
+
+/*$(document).on("blur", ".VIABILITYDTL", function() {
+	 
+var currentVal = $(this).val();
+    	      currentVal=currentVal.replace(/,/g,'')
+		   if(parseInt(currentVal)!=0)
+      	    {
+      	    if (currentVal.length > 1){
+				var currentVal1=currentVal[0]
+         if(currentVal1=="-")
+         {
+         	currentVal=currentVal.replace("-","")
+         }
+              	var FirstLetter=currentVal.substring(0, 1)
+      	    	if(parseInt(FirstLetter)==0)
+      	    		{
+						
+						  alert ("Enter the Valid Amount,Cannot be Start with Zero");
+						   $(this).val('');
+						   $(this).next().removeClass('active')
+						 
+                    }
+      	      }
+			}
+	 
+	 
+ 
+	var amt=0;
+	var val1=0;
+	var val2=0;
+	val1=$($($(this).closest(".tbody").find(".tbodytr")[0]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".VIABILITYDTL").val().replace(/,/g,'');
+	val2=$($($(this).closest(".tbody").find(".tbodytr")[1]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".VIABILITYDTL").val().replace(/,/g,'');
+	if(val1 == "")
+		{
+			val1=0;
+		}
+		if(isNaN(val1))
+		{
+			val1=0;
+		}
+		 if(val2 == "")
+		{
+			val2=0;
+		}
+		if(isNaN(val2))
+		{
+			val2=0;
+		}
+		amt=parseFloat(val1)+parseFloat(val2);
+		amt=CURINRCommaSep(parseFloat(amt).toFixed(0));
+		$($($(this).closest(".tbody").find(".tbodytr")[2]).find(".tbodytrtd")[$(this).closest(".tbodytrtd").index()]).find(".VIABILITYDTL").val(amt);
+
+
+
+});*/
+
+
+function FSAUploadFile(id,docu,UploadView)
+{
+	
+var Val=$(id).val()
+if($("#RACD_CMPNYID").val()==""){
+					alert("Kindly choose Firm before upload");
+					return;
+				}
+
+if($(id).closest('td').find('input[type="file"]').val()!="")
+{
+    var domain= LoadFrmXML("RS001");
+    var usrpwd= LoadFrmXML("RS002");
+    var PrcsID=$("#PrcsID").val();
+    var FormName= 'FSA';
+    var CusID=$("#RACD_CUSID").val();
+    var DocName="FSA"+$("#RACD_CUSID").val()
+    var names="";
+    var descrptns="";
+	var flsize = "";
+ var fd = new FormData();
+   var vrsnno= "";
+	var prodata = "";
+var CountAttch=1;
+	
+	 for(var c=0;c<CountAttch;c++)
+	 {
+      file_data = $(id).closest('td').find('input[type="file"]')[0].files; // for multiple files
+	     for(var i = 0;i<file_data.length;i++){
+			var op= UI_getdata("DOCVRNO","","","","","Sam_sGetCOMSeqID")
+	         fd.append("file_"+c, file_data[i]);
+	         names += $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[0]+',';
+			 flsize += parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2)+',';
+			 vrsnno += $(op).find("VR").text()+',';
+			 if($($('input[type="file"]')[c]).closest('tr').find("#comments").val()=="")
+			 {
+				 $($('input[type="file"]')[c]).closest('tr').find("#comments").val("No Description");
+			 }
+	         descrptns += 'FieldDocument'+',';
+	     }
+	 }
+	 
+	 var FileSize=parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2);
+
+          var Filename  = $(id).closest('td').find('input[type="file"]')[0].files[0].name
+	      var FileType= Filename.substring(Filename.lastIndexOf('.')+1);
+          var  Filename= Filename.substring(0, Filename.lastIndexOf('.'));
+          var names=Filename
+  
+       
+	
+  names=names+'.'+FileType	
+var y=  names;
+
+	 
+ ajaxindicatorstart("Uploading.. Please wait");
+	    $.ajax({
+	    	//url:"/TPLSW/FSAExcelUpload?names="+names+"&PrcsID="+PrcsID+"&FormName="+FormName+"&descrptns="+descrptns+"&flsize="+flsize+"&vrsnno="+vrsnno+"&domain="+domain+"&usrpwd="+usrpwd+"&Prvnt="+$("#Prvnt").val()+"&CusID="+CusID+"&DocName="+DocName,
+			url:"/TPLSW/FSAExcelUpload?DocName="+DocName+"&CusID="+CusID+"&attachname="+DocName+"&attachdescrptn="+DocName+"&prcsid="+PrcsID+"&formName=FSA&version="+vrsnno+"&fileName="+names+"&filesize="+flsize+"&unqid="+$("#RACD_UNIQID").val()+"&Prvnt="+$("#Prvnt").val(),
+	        data: fd,
+			async:false,
+	        contentType: false,
+	        processData: false,
+	        type: 'POST',
+	        success: function(data){
+			var ajaxresult = data.split("~");
+			if(ajaxresult[0]!="SUCCESS")
+	        		{
+						 ajaxindicatorstop();
+	        		alert(LoadFrmXML("V0119"));
+					return
+	        		}
+			else{
+				$("#RACD_FINYEAR").material_select("destroy");
+				$("#RACD_FINYEAR").html("");
+				$("#RACD_FINYEAR").append("<option value='"+data.split('~')[3]+"' selected='selected'>"+data.split('~')[3]+"</option>");
+				$("#RACD_FINYEAR").material_select();
+				var op = UI_getdata($("#RACD_FINYEAR").val(),"","","","","LSW_SSTNDRYR")
+				$("#RACD_RADYEARI").val($(op).find("RACD_RADYEARI").text())
+				$("#RACD_RADYEARII").val($(op).find("RACD_RADYEARII").text())
+				$("#RAPR_REMARKS").val($(op).find("RAPR_REMARKS").text())
+				$(id).closest('td').find('input[type="hidden"]').val(data.split('~')[2])
+				$(id).closest('td').find('input[type="file"]').attr('disabled',true)
+				$(id).closest('td').find('input[type="file"]').val('');
+				$(id).closest('td').find('input[type="file"]').hide();
+				//
+				$(id).closest('.md-form').find('span').remove()
+				 $(id).val('')
+		
+			    $(id).val(data.split('~')[2])
+				var UPLOAD=docu+'UPLOAD'
+				$('#'+UPLOAD).hide();
+				$('.'+docu).show();
+				$('.'+UploadView).show();
+				$(id).closest('.md-form').append('<span class="name">'+names+'</span>');
+				
+				$("#BTNRATIOBALSHEET").click();
+			$("#BTNPROFITLOSS").click();
+			$("#BTNFINCSUMMARY").click();
+			$("#BTNRATIOASSETS").click();
+			
+			$("#BTNFNBALSHT").click();
+				$("#BTNFNCASHFLOW1").click();
+			
+			//FncallDocChkLst(this,'Table5',{spname:'LSW_SGETROFINSMRY',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'FS|'+$('#RACD_CUSID').val()+'|'+$('#RACD_UNIQID').val(),MnuId:GetLatestFincSumYr()},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||1,5,6,7','FINCSUMMARY');
+			$('.PROFITRATIO').empty();
+				$(".COVERAGERATIO").empty();
+				$(".ACTIVITYRATIO").empty();
+				$('.SHORTTERMRATIO').empty();
+				$('.OTHERRATIO').empty();
+				$('.CASHFLOW').empty();
+			
+			LoadMultiData("",$("#PrcsID").val()+"|" + $("#RACD_CUSID").val()+"|"+$("#RACD_UNIQID").val(),"PROFITABILITY RATIOS","PROFITRATIO","RAPRDBfields","LSW_SGETPROPBILITYRATIO");
+			LoadMultiData("",$("#PrcsID").val()+"|" + $("#RACD_CUSID").val()+"|"+$("#RACD_UNIQID").val(),"COVERAGE RATIOS","COVERAGERATIO","RACODBfields","LSW_SGETCOVERAGERATIO");
+			LoadMultiData("",$("#PrcsID").val()+"|" + $("#RACD_CUSID").val()+"|"+$("#RACD_UNIQID").val(),"ACTIVITY RATIOS","ACTIVITYRATIO","RAACDBfields","LSW_SGETACTIVITYRATIO");
+			LoadMultiData("",$("#PrcsID").val()+"|" + $("#RACD_CUSID").val()+"|"+$("#RACD_UNIQID").val(),"SHORT TERM LIQUIDITY","SHORTTERMRATIO","RASTDBfields","LSW_SGETSHORTTERMRATIO");
+			LoadMultiData("",$("#PrcsID").val()+"|" + $("#RACD_CUSID").val()+"|"+$("#RACD_UNIQID").val(),"OTHER RATIOS","OTHERRATIO","RAOTDBfields","LSW_SGETOTHERRATIO");
+			LoadMultiData("",$("#PrcsID").val()+"|" + $("#RACD_CUSID").val()+"|"+$("#RACD_UNIQID").val(),"CASH FLOW","CASHFLOW","RACFDBfields","LSW_SGETCASHFLOW");
+				$("#Save2").click();
+				//window.location.reload();
+					ajaxindicatorstop();
+					alert(LoadFrmXML("V0118"));
+					return
+					
+				}	
+					 ajaxindicatorstop(); 
+	        },
+	        failure:function(data)
+	        {
+	     		  ajaxindicatorstop();
+					alert(LoadFrmXML("V0119"));
+					return
+	        	
+	        }
+	    });
+		
+		  ajaxindicatorstop();
+		  }
+		  else{
+		  
+		  alert('select the file to upload');
+		  }
+
+}
+

@@ -496,7 +496,7 @@ alert('Invalid File Format');
  	  var op= UI_getdata("DOCVRNO","","","","","Sam_sGetCOMSeqID")
 	  $("#PrcsID").attr('value',$(op).find("VR").text())
  	var   param1=$(op).find("VR").text();
- 	var   param2="SCF_SEXCELMULTIUPLOADDATA";
+ 	var   param2="LSW_SEXCELMULTIUPLOADDATA";
  	var   param3="LSW_TDSACNCTRVNDR";
  	
  		$.ajax({

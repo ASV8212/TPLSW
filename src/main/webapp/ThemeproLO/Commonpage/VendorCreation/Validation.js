@@ -756,20 +756,27 @@ function DocFldUpldHndlr(id,docu)
  	         descrptns += 'FieldDocument'+',';
  	     }
  	 }
- 	 var FileSize=parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2);
-     var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
-	 
-
-		var xml=UI_getdata(FileType,FileSize,"","","","LSW_SGETDOCUMNTSIZE")
+ 	  var FileSize=parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2);
+  //   var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
+  //   var Filename  = names.replace(',','')
+          var Filename  = $(id).closest('td').find('input[type="file"]')[0].files[0].name
+	      var FileType= Filename.substring(Filename.lastIndexOf('.')+1);
+          var  Filename= Filename.substring(0, Filename.lastIndexOf('.'));
+          var names=Filename
+  
+  
+		var xml=UI_getdata(FileType,FileSize,Filename,"","","LSW_SGETDOCUMNTSIZE")
 		var FileAccept=$(xml).find('RESULT').text()
 	if(FileAccept == 'No')
 	{
-		alert("File Size not matched")
+		alert($(xml).find("alert").text());
+		$(id).closest('td').find('input[type="file"]').val('')
 		return
     }	 
 
 $("#DOCVERSION").val($(op).find("VR").text())
 
+ names=names+'.'+FileType
  var y=  names;
  var specialChars = "<>&#^|~`"
  var check = function(string){
@@ -825,7 +832,7 @@ $("#DOCVERSION").val($(op).find("VR").text())
  				$('#'+UPLOAD).hide();
  				$('.'+docu).show();
  				$(".DDV").show();
- 				$(id).closest('.md-form').append('<span class="name">'+names.slice(0,-1)+'</span>');
+ 				$(id).closest('.md-form').append('<span class="name">'+names+'</span>');
 
  					ajaxindicatorstop();
  					alert(LoadFrmXML("V0118"));
@@ -1088,6 +1095,32 @@ $("#DOCVERSION").val($(op).find("VR").text())
 
 
  }
+ 
+ 
+  function VENDORGROUPMAP()
+ {
+	var Channel=UI_getdata("","","","","","LSW_SGETVALUATIONGROUP")
+	 $("#VECR_VALUATIONGROUP").empty();
+	 $("#VECR_VALUATIONGROUP").append($(Channel).find("RESULT").html());	
+	 $('#VECR_VALUATIONGROUP').material_select(); 
+     
+	 var rowCnt = $("#Table51").find("tbody tr").length
+	 var value="";
+     for (i=0;i<rowCnt;i++)
+	{
+	
+	value = $("#VETE_ROLE"+i).val();
+ 
+	$("#VECR_VALUATIONGROUP").find("[value="+value+"]").attr("disabled",true);
+	 $('#VECR_VALUATIONGROUP').material_select(); 
+	}
+
+
+
+ }
+ 
+ 
+ 
  
  
 
@@ -1503,3 +1536,122 @@ function CHKBLOCKLIST()
 
 
 
+ function GridControlDetailVENDADDTECHGROUP (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm)
+ {
+	 
+	 popTableModPageGrid1 = $('#'+TableID).DataTable({ 
+
+         'aaData': dtData,
+         "aoColumns": dtcolumn,  
+         
+         "bAutoWidth": false,
+
+         "autoWidth": false,
+
+         'bPaginate': false,
+
+        "aaSorting": [],
+
+        // "pageLength": 5,
+
+         "bDeferRender": true,
+
+         'bInfo': true,
+
+         'bFilter': true,
+
+         "bDestroy": true,
+
+         "bJQueryUI": true,
+
+        //"scrollY": true,
+
+        // "scrollX": "200px",
+
+         "sPaginationType": "full_numbers",
+
+         
+         
+"aoColumnDefs": [ 
+       		   { "sClass": "dpass", "aTargets": jQuery.parseJSON(hideClm)},
+           	  {
+       			 targets: 0, "render": function ( data, type, row, meta ) {
+       				var rowno = meta.row; 
+       				
+           				var HTML =	'<span><img src="ThemeproLO/Common/Images/Delete_Img.png"  class="DelGridrow " title="Delete" attr-Upd="ACTION'+rowno+'"  width="20" height="20"/>';			 
+        					HTML = HTML + '<input type="text" value="'+data+'" id="ACTION'+rowno+'" hidden="hidden" name="ACTION'+rowno+'" class="form-control"/>';
+						
+						HTML = HTML + '</span>';  
+        				var htmldata = $(HTML);				
+        				return htmldata[0].outerHTML;
+       					
+       				  
+       			 }
+           	  },
+			   { targets: 1, "render": function ( data, type, row, meta ) {                            
+			
+
+			var rowno = meta.row;	 
+			var HTML =	'<span><input type="text"  id="VETE_ROLE'+rowno+'"  disabled name="VETE_ROLE" maxlength="10"   class=" DSVLBL form-control   form-control ">';			 
+			HTML = HTML + '</span>'; 
+				 
+			var htmldata = $(HTML);
+				
+
+			if ($(htmldata).find('[name=VETE_ROLE]').hasClass("IsCURCommaFields"))
+				{
+				data = CURCommaSep(data);
+				}
+				
+			
+				$(htmldata).find('[name=VETE_ROLE]').attr("value",data);
+
+				
+				return htmldata[0].outerHTML;      
+				
+	         } 
+			 }
+			 ,
+			   { targets: 3, "render": function ( data, type, row, meta ) {                            
+			
+
+			var rowno = meta.row;	 
+			var HTML =	'<span><input type="text"  id="VETE_UNIQID'+rowno+'"  disabled name="VETE_UNIQID" maxlength="10"   class=" DSVLBL form-control   form-control ">';			 
+			HTML = HTML + '</span>'; 
+				 
+			var htmldata = $(HTML);
+				
+
+			if ($(htmldata).find('[name=VETE_UNIQID]').hasClass("IsCURCommaFields"))
+				{
+				data = CURCommaSep(data);
+				}
+				
+			
+				$(htmldata).find('[name=VETE_UNIQID]').attr("value",data);
+
+				
+				return htmldata[0].outerHTML;      
+				
+	         } 
+			 }
+
+           	
+           	   ],
+
+          "fnDrawCallback": function (oSettings) {
+
+         }
+
+         });
+	 
+ }
+ 
+ function chksapcodeex(){
+	 var op = UI_getdata($("#VEBN_UNIQID").val(),$("#VECR_SAPCODE").val(),"","","","LSW_SSAPCODECHCKER")
+	 if($(op).find("Result").text() != "SUCCESS")
+	 {
+		 alert($(op).find("Result").text());
+		 $("#VECR_SAPCODE").val("");
+	 }
+ }

@@ -29,15 +29,18 @@
         	<div class="col Btxt10">Eligibility Calculation - Actual/Existing Purchase Method</div>
         </div>
       	</br>
+		<div class="form-row">
+        	<div class="col Btxt10" style="color: rgb(255, 0, 0);">Details to be entered in actuals (Rs)</div>
+        </div>
        <div class="form-row">
            <div class="col">
-             <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table7',{spname:'LSW_SELIGCALCI',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#AEPM_SCHEMEID').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||3,4','ELIGCALCI');" id="BTNELIGCALCIGRD" name="BTNELIGCALCIGRD" />
+             <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table7',{spname:'LSW_SELIGCALCI',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#AEPM_SCHEMEID').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||2,3,4','ELIGCALCI');" id="BTNELIGCALCIGRD" name="BTNELIGCALCIGRD" />
              <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display DataGrid" id="Table7">
              </table>
            </div>
         </div> 
     </br>
-            <div class="form-row">
+            <div class="form-row"style="display:none">
                <div class="col d-flex justify-content-center">
                 <button type="button" id="Save" data-aria="LSW_TACTUALPURMETHOD|AEPM|AEPM_SCHEMEID" class="btn btn-Syeloutline waves-effect waves-light Save FormSave">Save</button>   
                       <!--  <button type="button" data-aria="LSW_TTAKEOVERUBL|AEPM" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> -->

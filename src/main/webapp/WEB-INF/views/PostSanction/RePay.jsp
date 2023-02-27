@@ -9,32 +9,41 @@
 
                             <!--Admin panel-->
      <div class="admin-panel">
+	   <div class="row">
+          <div class="col-lg-12">
+            <ul title="Bank" data-aria="LSW_TPOATREPAY|PRPM|PRPM_LOANID" data-popup="No"  class="nav FormPageMultiTab">
+               ${SUBPAGETABDATA}
+            </ul>
+         </div>
+      </div>
  <div class="card CardNS">
     <!-- Card body -->
       <div class="card-body px-lg-5 pt-0">
         <form >
-         <input type="text" id="PRPM_PRCSID" hidden="hidden" name="PRPM_PRCSID" class="form-control PRPMDBfields">
-          <input type="text" id="PRPM_ACTIVITYID" hidden="hidden" name="PRPM_ACTIVITYID" class="form-control PRPMDBfields">
-           <input type="text" id="PRPM_CREATEDBY" hidden="hidden" name="PRPM_CREATEDBY" class="form-control PRPMDBfields"> 
-           <input type="text" id="PRPM_DTCREATED" hidden="hidden" name="PRPM_DTCREATED" class="form-control PRPMDBfields">
+            <input type="text" id="PRPM_PRCSID" hidden="hidden" name="PRPM_PRCSID" class="form-control PRPMDBfields">
+            <input type="text" id="PRPM_ACTIVITYID" hidden="hidden" name="PRPM_ACTIVITYID" class="form-control PRPMDBfields">
+            <input type="text" id="PRPM_CREATEDBY" hidden="hidden" name="PRPM_CREATEDBY" class="form-control PRPMDBfields"> 
+            <input type="text" id="PRPM_DTCREATED" hidden="hidden" name="PRPM_DTCREATED" class="form-control PRPMDBfields">
             <input type="text" id="PRPM_MODIFIEDBY" hidden="hidden" name="PRPM_MODIFIEDBY" class="form-control PRPMDBfields">
-             <input type="text" id="PRPM_DTMODIFIED" hidden="hidden" name="PRPM_DTMODIFIED" class="form-control PRPMDBfields">
+            <input type="text" id="PRPM_DTMODIFIED" hidden="hidden" name="PRPM_DTMODIFIED" class="form-control PRPMDBfields">
         	
         	<input type="text" id="PRPM_CHQUDETL" hidden="hidden" name="PRPM_CHQUDETL" class="form-control PRPMDBfields">
         	<input type="text" id="PRPM_MLTBNKDETL" hidden="hidden" name="PRPM_MLTBNKDETL" class="form-control PRPMDBfields">
         	<input type="text" id="PRPM_BNKCHQDETL" hidden="hidden" name="PRPM_BNKCHQDETL" class="form-control PRPMDBfields">
-        	</br>
+        	<input type="text" id="PRPM_LOANID" hidden="hidden" name="PRPM_LOANID" class="form-control PRPMDBfields">
+			<input type="text" id="PRPM_LOANTY" hidden="hidden" name="PRPM_LOANTY" class="form-control PRPMDBfields">
+
         	</br>
         <div class="form-row">
             <div class="col-md-4"> 
               <div class="md-form">
-                  <input type="text" id="PRPM_EMI"  value="" maxlength="15" class="form-control DSVLBL IsCURCommaFields PRPMDBfields NoSpecialChar" name="PRPM_EMI">
+                  <input type="text" id="PRPM_EMI"  value="" maxlength="30" class="form-control DSVLBL IsCURCommaFields PRPMDBfields NoSpecialChar" name="PRPM_EMI">
                    <label for="PRPM_EMI" class="">EMI Amount (Rs.)<span class="MndtryAstr"></span></label>
               </div>
             </div>
             <div class="col-md-4">
                <div class="md-form">
-                  <input type="text" id="PRPM_REPAY"  value="" maxlength="15" class="form-control DSVLBL PRPMDBfields NoSpecialChar" name="PRPM_REPAY">
+                  <input type="text" id="PRPM_REPAY"  value="" maxlength="4" class="form-control DSVLBL PRPMDBfields NoSpecialChar" name="PRPM_REPAY">
                    <label for="PRPM_REPAY" class="">Re-payable (In Months)<span class="MndtryAstr"></span></label>
                 </div>
             </div>
@@ -42,15 +51,15 @@
              <div class="md-form">
                     <div class="select-radio PRPMMndtry"> 
                        <div class="custom-control custom-radio custom-control-inline">
-                          <input type="radio" class="custom-control-input PRPMDBfields" onclick="ChkEnachReson()" value="PDC" id="MODEPDC" name="PRPM_MODE">
+                          <input type="radio" class="custom-control-input MPDC PRPMDBfields" value="PDC" id="MODEPDC" name="PRPM_MODE">
                           <label class="custom-control-label" for="MODEPDC">PDC</label>
                        </div>
                        <div class="custom-control custom-radio custom-control-inline">
-                           <input type="radio" class="custom-control-input PRPMDBfields" onclick="ChkEnachReson()"  value="ACH" id="MODEACH" name="PRPM_MODE">
+                           <input type="radio" class="custom-control-input PRPMDBfields"  value="ACH" id="MODEACH" name="PRPM_MODE">
                            <label class="custom-control-label" for="MODEACH">ACH</label>
                        </div>
                        <div class="custom-control custom-radio custom-control-inline">
-                             <input type="radio" class="custom-control-input PRPMDBfields" onclick="ChkEnachReson()" value="E-NACH" id="MODENACH" name="PRPM_MODE">
+                             <input type="radio" class="custom-control-input PRPMDBfields MENACH"  value="E-NACH" id="MODENACH" name="PRPM_MODE">
                              <label class="custom-control-label" for="MODENACH">E-NACH</label>
                        </div>
                    </div>
@@ -106,7 +115,7 @@
          <div class="form-row">
             <div class="col-md-4">
               <div class="md-form">
-                  <input type="text" id="PRPM_ACCHNAME"  value="" maxlength="20" class="form-control IsAlphaFields DSVLBL APPRBNK PRPMDBfields NoSpecialChar" name="PRPM_ACCHNAME">
+                  <input type="text" id="PRPM_ACCHNAME"  value="" maxlength="40" class="form-control IsAlphaFields DSVLBL APPRBNK PRPMDBfields NoSpecialChar" name="PRPM_ACCHNAME">
                    <label for="PRPM_ACCHNAME" class="">Account Holder Name<span class="MndtryAstr"></span></label>
               </div>
             </div>
@@ -156,17 +165,17 @@
             </div>
 			<div class="col-md-4">
                  <div class="md-form">
-                    <select class="md-form colorful-select dropdown-primary PRPMDBfields" disabled id="PRPM_BNKRESON" name="PRPM_BNKRESON">
+                    <select class="md-form colorful-select dropdown-primary PRPMDBfields" id="PRPM_BNKRESON" name="PRPM_BNKRESON">
                          <option value="" >--Select--</option>
 						 <option value="Reason 1" >Reason 1</option>
                     </select>
-                    <label class="mdb-main-label BTxt9">Banking Reson<span class="MndtryAstr">*</span></label>
+                    <label class="mdb-main-label BTxt9">Banking Reason<span class="MndtryAstr">*</span></label>
                  </div>
            </div>
 	</div>
     <div class="form-row">
            <div class="col">
-             <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table2',{spname:'LSW_SGETREPAYCHQUDETL',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:'',MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||5,6','REPAYCHQ');" id="BTNRPCHQGRD" name="BTNRPCHQGRD" />
+             <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table2',{spname:'LSW_SGETREPAYCHQUDETL',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#PRPM_LOANID').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||5,6,7','REPAYCHQ');" id="BTNRPCHQGRD" name="BTNRPCHQGRD" />
              <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display DataGrid" id="Table2">
              </table>
            </div>
@@ -199,7 +208,8 @@
                         <input type="text" id="RPBD_UNIQUID" hidden="hidden" name="RPBD_UNIQUID"  class="form-control RPBDDBfields">
                         <input type="text" id="RPBD_BNKCHQDETL" hidden="hidden" name="RPBD_BNKCHQDETL" class="form-control RPBDDBfields">
                         <input type="text" id="RPBD_BNKDETLVAL" hidden="hidden" name="RPBD_BNKDETLVAL" class="form-control RPBDDBfields">
-
+                        <input type="text" id="RPBD_LONID" hidden="hidden" name="RPBD_LONID" class="form-control RPBDDBfields">
+						<input type="text" id="RPBD_PDCTYPE" hidden="hidden" name="RPBD_PDCTYPE" class="form-control RPBDDBfields">
                         <!-- </br>
                            <div class="form-row">
                            	<div class="col Btxt3"></div>
@@ -217,9 +227,6 @@
                                       </div>    
                                  </div>     
                                 </div> 
-						
-						
-						
                         </br>
                         <div class="form-row">
                            <div class="col-md-4">
@@ -268,7 +275,7 @@
                         <div class="form-row">
                            <div class="col-md-4">
                               <div class="md-form">
-                                   <input type="text" id="RPBD_ACCHNAME"  value="" maxlength="20" class="form-control IsAlphaFields DSVLBL RPBDDBfields NoSpecialChar" name="RPBD_ACCHNAME">
+                                   <input type="text" id="RPBD_ACCHNAME"  value="" maxlength="40" class="form-control IsAlphaFields DSVLBL RPBDDBfields NoSpecialChar" name="RPBD_ACCHNAME">
                                    <label for="RPBD_ACCHNAME" class="">Account Holder Name<span class="MndtryAstr"></span></label>
                               </div>
                            </div>
@@ -351,7 +358,7 @@
                        </div>
                         <div class="form-row">
                             <div class="col">
-                               <input type="button" data-button="GridButton" data-value="RPBDTable|LSW_SGETREPAYCHQUDETL1|PrcsID|RPBD_ACCNUM||5,6|REPAYCHQMULTI" style="display:none" class="DashTrg RPBDDBfields MultiGridTrg" id="BTNLPDSGRD" name="BTNLPDSGRD" />
+                               <input type="button" data-button="GridButton" data-value="RPBDTable|LSW_SGETREPAYCHQUDETL1|PrcsID|RPBD_ACCNUM|RPBD_LONID|5,6,7|REPAYCHQMULTI" style="display:none" class="DashTrg RPBDDBfields MultiGridTrg" id="BTNLPDSGRD" name="BTNLPDSGRD" />
                                <table cellpadding="0"  cellspacing="0" border="0" style="width: 80%" class="display RPBDDBfields DataGrid" name="RPBDTable" id="RPBDTable">
                                </table>
                            </div>
@@ -366,8 +373,8 @@
            </br>
                 <div class="form-row">
                  <div class="col d-flex justify-content-center">
-                     <button type="button" id="Save" data-aria="LSW_TPOATREPAY|PRPM|PRPM_ACCNUM" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
-                     <button type="button" data-aria="LSW_TPOATREPAY|PRPM|PRPM_ACCNUM" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
+                     <button type="button" id="Save" data-aria="LSW_TPOATREPAY|PRPM|PRPM_LOANID" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
+                     <button type="button" data-aria="LSW_TPOATREPAY|PRPM|PRPM_LOANID" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> 
                 </div>
             </div>
         </form>
@@ -390,7 +397,10 @@
 <th>RPCD_ENDCHQNUM</th>
 <th>RPCD_NOFCHQ</th>
 <th>RPCD_PDCTYPE</th>
+<th>ACTION</th>
 <th>RPCD_UNIQNO</th>
+<th>RWNO</th>
+<th>RPCD_LONID</th>
 <!--<th>RPCD_PRCSID</th>
 <th>RPCD_ACTIVITYID</th>
 <th>RPCD_CREATEDBY</th>
@@ -408,6 +418,7 @@
 <th>BMTD_PDCTYPE</th>
 <th>ACTION</th>
 <th>BMTD_UNIQNO</th>
+<th>BMTD_LONID</th>
 <!--<th>RPCD_PRCSID</th>
 <th>RPCD_ACTIVITYID</th>
 <th>RPCD_CREATEDBY</th>

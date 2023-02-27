@@ -7,12 +7,12 @@ var Cheque=$(html).find("input[name='FCBD_RPTGENR']:checked"). val();
 		$(html).find(".ManualRpt").show()
 		$(html).find(".DetailRpt").show()
         $(html).find(".AutoRpt").hide()
-        $(html).find(".DetRpt").attr('disabled',false)
+       // $(html).find(".DetRpt").attr('disabled',false)
         $(html).find('.BnkMndtry').addClass('FCBDMndtry')
 		}
 	else if(Cheque=="Auto")
 		{
-		$(html).find(".ManualRpt").hide()
+		//$(html).find(".ManualRpt").hide()
 		$(html).find(".DetailRpt").hide()
 		$(html).find(".AutoRpt").show()
 		$(html).find('.BnkMndtry').removeClass('FCBDMndtry')
@@ -20,8 +20,14 @@ var Cheque=$(html).find("input[name='FCBD_RPTGENR']:checked"). val();
 		if(UploadValue!="")
 		{
 			$(html).find(".DetailRpt").show()
-			$(html).find(".DetRpt").attr('disabled',true)
+			//$(html).find(".DetRpt").attr('disabled',true)
          }
+		var BnkFile=$(html).find("input[name='FCBD_NETBNKDATA']"). val();
+		if(BnkFile!="")
+		{
+			$(html).find(".FCBD_NETBNKDATA").show()
+			//$(html).find(".DetRpt").attr('disabled',true)
+        } 
        }
 	else
 		{
@@ -30,35 +36,58 @@ var Cheque=$(html).find("input[name='FCBD_RPTGENR']:checked"). val();
 		$(html).find(".DetailRpt").hide()
 		}
 }
+
 function ManualAvailable(html,id)
 {
 var Cheque=$(html).find("input[name='FCBD_RPTGENR']:checked"). val();
 	
 	if(Cheque=="Manual")
-		{
+	  {
 		$(html).find(".ManualRpt").show()
 		$(html).find(".DetailRpt").show()
         $(html).find(".AutoRpt").hide()
-        
+        $(html).find('input[name="FCBD_EMIRUTN"]').prop('checked', false); 
+		$(html).find('input[name="FCBD_NAMEMATCH"]').prop('checked', false); 
+		$(html).find('input[name="FCBD_BNKSRG"]').prop('checked', false); 
+		$(html).find('input[name="FCBD_NETBNKDATA"]').val(''); 
+		
+		
         $(html).find(".DetRpt").val('')
  
         $(html).find('.BnkMndtry').addClass('FCBDMndtry')
         $(html).find(".DetRpt").attr('disabled',false)
-        $(html).find('.BNKL').removeClass('active')
-		}
+		$(html).find(".PERCEN").attr('disabled',true)
+        $(html).find('.BNKL').removeClass('active');
+		$(html).find(".AutoOnly").hide();
+		$(html).find(".AutoOnlyMnd").removeClass('FCBDMndtry');
+	  }
 	else if(Cheque=="Auto")
-		{
-		$(html).find('.BnkMndtry').removeClass('FCBDMndtry')
-		$(html).find(".ManualRpt").hide()
-		$(html).find(".DetailRpt").hide()
+	  {	
+       if($(html).find("input[select='FCBD_ACCTTYPE']").val()=="Over Draft Account" ||
+           $(html).find("input[select='FCBD_ACCTTYPE']").val()=="Cash Credit")
+		   {
+		     $(html).find(".AutoOnly").show();
+		     $(html).find(".AutoOnlyMnd").addClass('FCBDMndtry');
+		   }
+		  else
+		  {
+			$(html).find(".AutoOnly").hide();
+		    $(html).find(".AutoOnlyMnd").removeClass('FCBDMndtry');
+		  }			  
+		//$(html).find('.BnkMndtry').removeClass('FCBDMndtry')
+		//$(html).find(".ManualRpt").hide()
+		//$(html).find(".DetailRpt").hide()
 		$(html).find(".AutoRpt").show()
 		$(html).find(".DetRpt").val('')
+		$(html).find('input[name="FCBD_EMIRUTN"]').prop('checked', false); 
+		$(html).find('input[name="FCBD_NAMEMATCH"]').prop('checked', false); 
+		$(html).find('input[name="FCBD_BNKSRG"]').prop('checked', false); 
 	//	$(html).find('span').remove()
         $(html).find('input[type="file"]').attr('disabled',false)
 		$(html).find('input[type="file"]').val('');
 		$(html).find('input[type="file"]').show();
 		$(html).find(".file-field").show()
-		$(html).find(".FCBD_UPLOADFILE").hide()
+		//$(html).find(".FCBD_UPLOADFILE").hide()
 		$(html).find(".file-field").find('input[type="file"]').css('display', 'block');
 		//$(html).find('AutoRpt').find('span').find('.FileName').text('');
 
@@ -75,13 +104,23 @@ var Cheque=$(html).find("input[name='FCBD_RPTGENR']:checked"). val();
          }*/
        }
 	else
-		{
-		$(html).find(".ManualRpt").hide()
-		$(html).find(".AutoRpt").hide()
-		$(html).find(".DetailRpt").hide()
-		}
-
+	{
+	 $(html).find(".ManualRpt").hide()
+	 $(html).find(".AutoRpt").hide()
+	 $(html).find(".DetailRpt").hide()
+    }
+	
+	var xml=UI_getdata($("#PrcsID").val(),$(html).find("input[name='FCBD_BNKNO']").val(),"","","","LSW_SCLEARBALFLOWDT");
+    $(html).find("input[name='FCBD_AVG']").val('0');
+    $(html).find("input[name='BTNBALANCEGRD']").click();	
 }
+
+$('.CollectedPage').on('click', function() {
+   //location.reload();
+   $(".FormPageMultiTab").find("li.active").click();
+ //window.location.reload()
+});
+
 function UploadFile()
 {
 	var DATA=["BankDetail1|"];
@@ -450,8 +489,72 @@ function GridControlDetailUPDATEFLOWGRID (popTableModPageGrid1,TableID,dtData,dt
 							
 				         } 
 						 },
+					{ targets: 3, "render": function ( data, type, row, meta ) {                            	
+					 var rowno = meta.row;	 
+						var HTML =	'<span><input type="text" id="UPFD_TOTALINFLOW'+rowno+'" data-item="Amount" data-scr="OUTFLOW" name="UPFD_TOTALINFLOW'+rowno+'" data-to="FCBD_OUTFLWSUM" data-item="Amount" data-total="UPFD_TOTALINFLOW" maxlength="30" class="form-control NoSpecialChar IsNumberFields UPFDDBfields form-control ">';			 
+						HTML = HTML + '</span>'; 
+							 
+						var htmldata = $(HTML);
+							
+						if ($(htmldata).find('[name=UPFD_TOTALINFLOW'+rowno+']').hasClass("IsCURCommaFields"))
+							{
+							data = CURCommaSep(data);
+							}
+							$(htmldata).find('[name=UPFD_TOTALINFLOW'+rowno+']').attr("value",data);
+							return htmldata[0].outerHTML;   		
+							
+				         } 
+						 },
+					{ targets: 4, "render": function ( data, type, row, meta ) {                            	
+					 var rowno = meta.row;	 
+						var HTML =	'<span><input type="text" id="UPFD_TOTALOUTFLOW'+rowno+'" data-item="Amount" data-scr="OUTFLOW" name="UPFD_TOTALOUTFLOW'+rowno+'" data-to="FCBD_OUTFLWSUM" data-item="Amount" data-total="UPFD_TOTALOUTFLOW" maxlength="30" class="form-control NoSpecialChar IsNumberFields UPFDDBfields form-control ">';			 
+						HTML = HTML + '</span>'; 
+							 
+						var htmldata = $(HTML);
+							
+						if ($(htmldata).find('[name=UPFD_TOTALOUTFLOW'+rowno+']').hasClass("IsCURCommaFields"))
+							{
+							data = CURCommaSep(data);
+							}
+							$(htmldata).find('[name=UPFD_TOTALOUTFLOW'+rowno+']').attr("value",data);
+							return htmldata[0].outerHTML;   		
+							
+				         } 
+						 },
+						 { targets: 5, "render": function ( data, type, row, meta ) {                            	
+					 var rowno = meta.row;	 
+						var HTML =	'<span><input type="text" id="UPFD_CASHDEP'+rowno+'" data-item="Amount" data-scr="OUTFLOW" name="UPFD_CASHDEP'+rowno+'" data-to="FCBD_OUTFLWSUM" data-item="Amount" data-total="UPFD_CASHDEP" maxlength="30" class="form-control NoSpecialChar IsNumberFields UPFDDBfields form-control ">';			 
+						HTML = HTML + '</span>'; 
+							 
+						var htmldata = $(HTML);
+							
+						if ($(htmldata).find('[name=UPFD_CASHDEP'+rowno+']').hasClass("IsCURCommaFields"))
+							{
+							data = CURCommaSep(data);
+							}
+							$(htmldata).find('[name=UPFD_CASHDEP'+rowno+']').attr("value",data);
+							return htmldata[0].outerHTML;   		
+							
+				         } 
+						 },
+						 { targets: 6, "render": function ( data, type, row, meta ) {                            	
+					 var rowno = meta.row;	 
+						var HTML =	'<span><input type="text" id="UPFD_CASHWITDRA'+rowno+'" data-item="Amount" data-scr="OUTFLOW" name="UPFD_CASHWITDRA'+rowno+'" data-to="FCBD_OUTFLWSUM" data-item="Amount" data-total="UPFD_CASHWITDRA" maxlength="30" class="form-control NoSpecialChar IsNumberFields UPFDDBfields form-control ">';			 
+						HTML = HTML + '</span>'; 
+							 
+						var htmldata = $(HTML);
+							
+						if ($(htmldata).find('[name=UPFD_CASHWITDRA'+rowno+']').hasClass("IsCURCommaFields"))
+							{
+							data = CURCommaSep(data);
+							}
+							$(htmldata).find('[name=UPFD_CASHWITDRA'+rowno+']').attr("value",data);
+							return htmldata[0].outerHTML;   		
+							
+				         } 
+						 },
 						 
-						 { targets: 3, "render": function ( data, type, row, meta ) {                            
+						 { targets: 7, "render": function ( data, type, row, meta ) {                            
 					 			
 							 var rowno = meta.row;	 
 								var HTML =	'<span><input type="text" id="UPFD_UNIQID'+rowno+'" name="UPFD_UNIQID'+rowno+'"  data-total="UPFD_UNIQID" maxlength="15" class="form-control NoSpecialChar UPFDDBfields form-control ">';			 
@@ -627,7 +730,8 @@ $(document).on("blur", ".FinYrIncm", function() {
 	  else
 	  {
 	  
-	Amount=parseFloat(Amount)-parseFloat(SubData)
+	// Amount=parseFloat(Amount)-parseFloat(SubData)
+	Amount=parseFloat(Amount)
 	
 	var Average = parseFloat(Amount)/6
 	Average=Math.round(Average * 100) / 100  //Average.toFixed(2)
@@ -753,6 +857,34 @@ function BNKREMARKPOPUP(Evnt,ID){
 	}
 }
 
+function CalcperinChqBounc(EMI,InwBonc,TotInwBonc,InClrDys,PerofInw)
+{
+var EMI1=$("#"+EMI).val();
+var InwBonc1=$("#"+InwBonc).val();
+var TotInwBonc1=$("#"+TotInwBonc).val();
+var InClrDys1=$("#"+InClrDys).val();
+var PerofInw1=$("#"+PerofInw).val();
+
+var a=parseInt(InwBonc1)-parseInt(InClrDys1)
+var b=parseInt(TotInwBonc1)+parseInt(EMI1)
+
+var c=parseInt(a)/parseInt(b)*100;
+
+
+if (isNaN(c)) 
+	{
+		c = 0
+	}
+	if (isNaN(c)) 
+	{
+		c = 0
+	}
+c=c.toFixed(2)
+  $("#"+PerofInw).val(c);
+	$("#"+PerofInw).next().addClass('active');
+
+}
+
 function CalcInOutCkhPerc(InwBonc,OutwBonc,TotInwBonc,TotOutwBonc,InwPerc,OutwPerc,Transaction)
 {
 	var InwBonc1=$("#"+InwBonc).val();
@@ -763,6 +895,15 @@ function CalcInOutCkhPerc(InwBonc,OutwBonc,TotInwBonc,TotOutwBonc,InwPerc,OutwPe
 	
 	var InwPerc1= parseInt(InwBonc1)/parseInt(TotInwBonc1)
 	var OutwPerc1= parseInt(OutwBonc1)/parseInt(TotOutwBonc1)
+	
+	if(InwPerc1=="Infinity")
+	{
+		InwPerc1 = 0
+	}
+	if(OutwPerc1=="Infinity")
+	{
+		OutwPerc1 = 0
+	}
 	
 	if (isNaN(OutwPerc1)) 
 	{
@@ -825,10 +966,14 @@ function CalcInOutCkhPerc(InwBonc,OutwBonc,TotInwBonc,TotOutwBonc,InwPerc,OutwPe
 }
 
 
-function NetBankingInteg(Type)
+function NetBankingInteg(Type,BnkID,StDate,EndDate)
 {
-$("#Save").click();
-
+	if($("#"+StDate).val()=="" || $("#"+EndDate).val()=="")
+	{
+		alert('Start Date and End Date is Mandatory');
+		return false;
+	}
+	$("#Save").click();
     var w = "600";
     var h = "500";
 	var left = (screen.width/2)-(w/2);
@@ -836,12 +981,36 @@ $("#Save").click();
 	
 if(Type=="NetBanking")	
 {
-	var URL=window.location.origin+"/TPLSW/BankingPage?Type="+Type+"&PRCSID="+$("#PrcsID").val()+"&CUSID="+$("#FCBD_CUSID").val()+"&BNKID="+$("#FCBD_BNKNO").val()+"&Prvnt="+$(window.parent.parent.document).find("#Prvnt").val();
+	var URL=window.location.origin+"/TPLSW/BankingPage?Type="+Type+"&PRCSID="+$("#PrcsID").val()+"&CUSID="+$("#FCBD_CUSID").val()+"&BNKID="+$("#"+BnkID).val()+"&Prvnt="+$(window.parent.parent.document).find("#Prvnt").val();
 }
 else
 {
-  var URL=window.location.origin+"/TPLSW/BankingPage?Type="+Type+"&PRCSID="+$("#PrcsID").val()+"&CUSID="+$("#FCBD_CUSID").val()+"&BNKID="+$("#FCBD_BNKNO").val()+"&Prvnt="+$(window.parent.parent.document).find("#Prvnt").val();	
+  var URL=window.location.origin+"/TPLSW/BankingPage?Type="+Type+"&PRCSID="+$("#PrcsID").val()+"&CUSID="+$("#FCBD_CUSID").val()+"&BNKID="+$("#"+BnkID).val()+"&Prvnt="+$(window.parent.parent.document).find("#Prvnt").val();	
 }
 	$(".loader").show();	  
 	childWindow = window.open(URL, Type, 'toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, copyhistory=no, //width='+w+', height='+h+', top='+top+', left='+left);
+}
+
+function ODCCLOAD(html)
+//function ODCC(html)
+{
+//var acctype=$(html).find("input[name='BKDT_ACCTTYPE']"). val();
+//var row=$($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).attr('data-row');
+//var acctype=$(acctype).val();
+var acctype=$(html).find("select[name='FCBD_ACCTTYPE']").val()
+if((acctype=="Over Draft Account")||(acctype=="Cash Credit"))
+{
+$(html).find(".ODCC").show();
+$(html).find(".AutoOnly").show();
+//$('.ODCC').show();
+$(html).find("input[name='FCBD_SANCTIONLIM']").addClass('FCBDMndtry')
+$(html).find("input[name='FCBD_DRAWPWR']").addClass('FCBDMndtry')
+}
+else
+{
+$(html).find('.ODCC').hide();
+$(html).find(".AutoOnly").hide();
+$(html).find("input[name='FCBD_SANCTIONLIM']").removeClass('FCBDMndtry')
+$(html).find("input[name='FCBD_DRAWPWR']").removeClass('FCBDMndtry')
+}
 }

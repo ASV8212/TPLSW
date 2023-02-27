@@ -3,20 +3,25 @@ $(document).ready(function() {
 
     //$($('.AFormaccordion')[0]).click();
     //$("#BKDT_CUSID").val($(".FormPageMultiTab li.active").attr("id"));
-
+  //   $("#ALIH_LOANID").val($(".FormPageMultiTab li.active").attr("id"));
     $("#ALIH_PRCSID").attr("value", $("#PrcsID").val());
     //FormDataFromDB("LSW_TLYFINSRNCHDR", "ALIH_", "ALIHDBfields", "");
     
-	 if($("#DMY7").val().split('|')[0]=="Registered Mortgage")
+	var XML=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETLOANDTL")
+	$("#ALIH_LOANID").append($(XML).find("RESULT").html())
+	
+	
+	
+	if($("#DMY7").val().split('|')[0]=="Registered Mortgage")
 	 {
 		$(".ALIHDBfields").attr('disabled',true) ;
 		$(".RadioMndtry").attr('disabled',true);
 	 }
-     
+   
     GetCustomerName()
     
     
-    LoadMultiData("",$("#PrcsID").val(),"","ApproveNote2","ALIHDBfields","LSW_SGETAPPLNWSCRSSELL");
+    LoadMultiData("",$("#PrcsID").val(),$(".FormPageMultiTab li.active").attr("id"),"ApproveNote2","ALIHDBfields","LSW_SGETAPPLNWSCRSSELL");
     
 	if($("#DMY7").val().split('|')[0]=="Registered Mortgage")
 	 {
@@ -37,16 +42,52 @@ $(document).ready(function() {
 
     			$(HTML).find("[name='ALIH_SUMASRD']").val(CURCommaSep($("#DMY3").val().split("|")[3]))
     			$(HTML).find("[name='ALIH_LONTNR']").val($("#DMY3").val().split("|")[4])
-    			$(HTML).find("[name='ALIH_SUMASRD']").attr('disabled',true);
-	
+    			//$(HTML).find("[name='ALIH_SUMASRD']").attr('disabled',true);
+    			
+				
     		}
 			
-
 			CheckGender(HTML,'',"Load")
 			
-			   var tble="Table2"+[i+1]
-                CheckDocVal(tble,"RadioMndtry",HTML)
-				ShowInsurLink(HTML,'',"Load")
+			var tble="Table2"+[i+1]
+            CheckDocVal(tble,"RadioMndtry",HTML)
+			
+			ShowInsurLink(HTML,'',"Load")
+			
+			var Status=$("#FILESTATUS").val()
+	  
+             /*   if(Status=='Y')
+	              {
+					if($(HTML).find("input[name='ALIH_INSPTNR']:checked").val()=="HDFC Bank")
+					{
+				      if($(HTML).find('[name = ALIH_MNMFORM]').val()=="Madical")
+						{
+							$(HTML).find(".HDFC").hide()
+                            $(HTML).find(".ICICI").hide() 							
+							
+						}
+					 else if($(HTML).find('[name = ALIH_MNMFORM]').val()=="Non-Madical")
+					    {
+						     $(HTML).find(".HDFC").show()
+                             $(HTML).find(".ICICI").hide() 							 
+					    }
+					}
+					else if($(HTML).find("input[name='ALIH_INSPTNR']:checked").val()=="ICICI Bank")
+					{
+						if($(HTML).find('[name = ICICIGRDVAL]').val()=="Yes" || $(HTML).find('[name = ALIH_MNMFORM]').val() =="Madical"
+						|| $(HTML).find('[name = ICICIGRDVAL]').val()=="" || $(HTML).find('[name = ALIH_MNMFORM]').val()=="" )
+						{
+							$(HTML).find(".HDFC").hide()
+                            $(HTML).find(".ICICI").hide() 							
+							
+						}
+					 else if($(HTML).find('[name = ICICIGRDVAL]').val()!="Yes" || $(HTML).find('[name = ALIH_MNMFORM]').val() =="Non-Madical") 
+					    {
+						    $(HTML).find(".HDFC").hide()
+                             $(HTML).find(".ICICI").show() 							 
+					    }      
+					}
+	              }	*/
     	}
       }
     
@@ -67,10 +108,12 @@ $(document).ready(function() {
     		        }
     			}
 				*/
-				if($("#PrMs1").val()=="View")
+				/*if($("#PrMs1").val()=="View")
 				{
 					if($(HTML).find("input[name='ALIH_INSPTNR']:checked").val()=="HDFC Bank")
 					{
+					  if( $(HTML).find("[name='ALIH_INSAMOUNT']").val() !="")
+						{	
 						if($(HTML).find('[name=ALIH_MNMFORM]').val()=="Madical")
 						{
 						$(HTML).find(".HDFCMRPT").show() 
@@ -83,6 +126,13 @@ $(document).ready(function() {
 						$(HTML).find(".HDFCMRPT").hide()
 						$(HTML).find(".ICICIRPT").hide()
 						}
+						}
+						else
+						{
+							$(HTML).find(".HDFCNMRPT").hide()
+						    $(HTML).find(".HDFCMRPT").hide()
+						    $(HTML).find(".ICICIRPT").hide()
+						}
 					}
 					else if($(HTML).find("input[name='ALIH_INSPTNR']:checked").val()=="ICICI Bank")
 					{
@@ -92,29 +142,16 @@ $(document).ready(function() {
 						}
 						else
 						{
-					       $(HTML).find(".ICICIRPT").hide() 
+					       $(HTML).find(".ICICIRPT").hide()						   
 						}
 						$(HTML).find(".HDFCNMRPT").hide()
 						$(HTML).find(".HDFCMRPT").hide()
 					}
-				}
+				}*/
 				
-					if($(HTML).find("input[name='ALIH_INSPTNR']:checked").val()=="HDFC Bank")
-					{
-				      if($(HTML).find('[name = ALIH_MNMFORM]').val()=="Madical")
-						{
-							$(HTML).find(".HDFC").hide()
-                            $(HTML).find(".ICICI").hide() 							
-							
-						}
-					 else if($(HTML).find('[name = ALIH_MNMFORM]').val()=="Non-Madical")
-					    {
-						     $(HTML).find(".HDFC").show()
-                             $(HTML).find(".ICICI").hide() 							 
-					    }
-					}	
+				 				
 					
-			if($(HTML).find('input:radio[name=ALIH_INSPTNR]')[0].checked == false && $(HTML).find('input:radio[name=ALIH_INSPTNR]')[1].checked == false)
+			/*if($(HTML).find('input:radio[name=ALIH_INSPTNR]')[0].checked == false && $(HTML).find('input:radio[name=ALIH_INSPTNR]')[1].checked == false)
               {
                // $(HTML).find('input:radio[name=ALIH_INSPTNR]')[1].checked = true;
              //   $(HTML).find('input:radio[name=ALIH_INSPTNR][value=ICICI Bank]').click();
@@ -122,7 +159,7 @@ $(document).ready(function() {
 				
 				$(HTML).find('[name=ALIH_INSPTNR][value="ICICI Bank"]').prop('checked', true);
     			$(HTML).find('[name=ALIH_INSPTNRHIDDEN]').val($("[name=ALIH_INSPTNR]:checked").val());
-              }
+              }*/
     	}
     }
     
@@ -173,10 +210,10 @@ $(document).ready(function() {
 			    alert("Submission Failed");
 			    return false;			
 			}
-		   else
+		  /* else
 		    {
 			  alert("Form Saved Successfully")
-	        }
+	        }*/
 	})
 
     $(document).on("click", ".FormSave", function() {
@@ -194,17 +231,17 @@ $(document).ready(function() {
 		if($(html).find("[name='ALIH_APPCONSIDER']").val() == "Yes")
 			{
 				
-			if($(html).find('input:radio[name=ALIH_INSPTNR]')[0].checked == false && $(html).find('input:radio[name=ALIH_INSPTNR]')[1].checked == false)
+			/*if($(html).find('input:radio[name=ALIH_INSPTNR]')[0].checked == false && $(html).find('input:radio[name=ALIH_INSPTNR]')[1].checked == false)
 			{
 				alert('Fill the Insurance Partner');
 				return false;
 			}
-		
+		*/
 		var MndtryChk = ChkMandatoryFlds_V1("ALIHMndtry",html);
 
 		if(MndtryChk == "Mandatory")
 			{
-			alert("Fill the Mandatory Fields");
+			alert("Fill the Mandatory Fields / Document(s)");
 			return false;
 			}
 		
@@ -269,7 +306,7 @@ $(document).ready(function() {
 		    {
 			   alert("Form Saved Successfully")
 	         }
-       if($(html).find("[name='ALIH_APPCONSIDER']").val() == "Yes")
+     /*  if($(html).find("[name='ALIH_APPCONSIDER']").val() == "Yes")
 		{
 		var op=UI_getdata($(this).closest('.DYNROW').find("input[name='ALIH_INSPTNR']:checked").val(),"Life Insurance",$(this).closest('.DYNROW').find("input[name='ALIH_CUSID']").val(),$("#PrcsID").val(),"","LSW_SVALDTINSBFRCALC")
 	        
@@ -378,8 +415,6 @@ $(document).ready(function() {
 			}
 		   else
 		    {
-			   alert("Form Saved Successfully")
-			   
 			   if($(this).closest('.DYNROW').find("input[name='ALIH_INSPTNR']:checked").val()=="HDFC Bank")
 			   {
 				   if(MndtryChk != "" || $(html).find('[name = ALIH_MNMFORM]').val()=="Madical")
@@ -389,7 +424,7 @@ $(document).ready(function() {
 				   }
 				   else
 				   {
-				     GentrateHDFCNonMedical(html,"Load")
+				      GentrateHDFCNonMedical(html,"Load")
                      GentrateHDFCCovid(html,"Load")					 
 				   }
 			   }
@@ -397,16 +432,20 @@ $(document).ready(function() {
 			   {
 				  GentrateICICIMedical(html,"Load")
 			   }
-			   
 	         }
             }
-		}
+		}*/
         // Tab Header Change End
 
 
        // if ($(this).text() == "Save & Generate") {
           //  NXTTAB(this);
        // }
+ if ($(this).text() == "Save & Next") {
+            NXTTAB(this);
+        }
+	   
+	   
     });
 
 

@@ -1,5 +1,54 @@
 $(document).ready(function () {
 	
+	
+	var result=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHKSECURITYTYPE");
+	var chksec=$(result).find("RESULT").text();
+	var chkval=$(result).find("VALUATION").text(); 
+	var chkleg=$(result).find("LEGAL").text(); 
+	var chkprop=$(result).find("PROP").text(); 
+	
+	if(chksec=='Y')	
+	{
+		$(".LNSEC").show();	
+		$(".LEGAL").show();	
+		$(".PROP").show();	
+	}
+	else
+	{
+		$(".LNSEC").hide();
+		$(".LEGAL").hide();
+		$(".PROP").hide();
+	}	
+	if(chkval=='Y')
+	{
+		$(".LNSEC").show();
+	}
+	else{
+		$(".LNSEC").hide();
+	}
+	if(chkleg=='Y')
+	{
+		$(".LEGAL").show();
+	}
+	else{
+		$(".LEGAL").hide();
+	}
+	if(chkprop=='Y')
+	{
+		$(".PROP").show();
+	}
+	else
+	{
+		$(".PROP").hide();
+	}
+	
+	 if($("#RCUI_STATUS").val()=="")
+	 {
+		 $("#RCUI_STATUS").next().addClass('active')
+		 $("#RCUI_STATUS").val('To be Initiated');
+	 }		 
+
+	//ChkAdr();
 	//$($('.AFormaccordion')[0]).click();
 	var tbl = $("#heading1 a").attr("data-aria").split("|")[0];	
 	var prfx = $("#heading1 a").attr("data-aria").split("|")[1];
@@ -8,76 +57,53 @@ $(document).ready(function () {
 	//FormDataFromDB(tbl, prfx + "_", prfx+"DBfields", DATA);
 	
 	
-	    
 	
 	
 	Branchname()
 	
+	
     LoadMultiData("",$("#PrcsID").val(),"","PropertyValuer1","TEVDDBfields","LSW_SGetTechPropDetls");
+	 
+	//LoadMultiData("",$("#PrcsID").val(),"","PropertyValuer2","TVIIDBfields","LSW_SGetTechIIPropDetls");
 	
-	LoadMultiData("",$("#PrcsID").val(),"","PropertyValuer2","TVIIDBfields","LSW_SGetTechIIPropDetls");
+	//LoadMultiData("",$("#PrcsID").val(),"","PropertyValuer3","TIIIDBfields","LSW_SGetTechIIIPropDetls");
 	
-	LoadMultiData("",$("#PrcsID").val(),"","PropertyValuer3","TIIIDBfields","LSW_SGetTechIIIPropDetls");
+	//LoadMultiData("",$("#PrcsID").val(),"","LegalRpt","LEGDDBfields","LSW_SGetLegalDetls");
 	
-	LoadMultiData("",$("#PrcsID").val(),"","LegalRpt","LEGDDBfields","LSW_SGetLegalDetls");
+	//LoadMultiData("",$("#PrcsID").val(),"","LegalIIRpt","LDIIDBfields","LSW_SGETLEGALIIDETL");
 	
-	LoadMultiData("",$("#PrcsID").val(),"","LegalIIRpt","LDIIDBfields","LSW_SGETLEGALIIDETL");
+	//LoadMultiData("",$("#PrcsID").val(),"","FIResidVerify","FIRVDBfields","LSW_SGetFIResidenDetls");
 	
-	LoadMultiData("",$("#PrcsID").val(),"","FIResidVerify","FIRVDBfields","LSW_SGetFIResidenDetls");
+//	LoadMultiData("",$("#PrcsID").val(),"","FIOfficeVerify","FIOVDBfields","LSW_SGetFIOfficeDetls");	
 	
-	LoadMultiData("",$("#PrcsID").val(),"","FIOfficeVerify","FIOVDBfields","LSW_SGetFIOfficeDetls");	
+//	//LoadMultiData("",$("#PrcsID").val(),"","PropVisitDoc","PVMDDBfields","LSW_SGETPROPVISITPH");
 	
-//	LoadMultiData("",$("#PrcsID").val(),"","PropVisitDoc","PVMDDBfields","LSW_SGETPROPVISITPH");
+	//LoadMultiData("",$("#PrcsID").val(),"","MCAVerify","MCAVDBfields","LSW_SGetMCAVERIFY");
 	
-	LoadMultiData("",$("#PrcsID").val(),"","MCAVerify","MCAVDBfields","LSW_SGetMCAVERIFY");
+	//LoadMultiData("",$("#PrcsID").val(),"","PropVisit","PRVMDBfields","LSW_SGETPROPERVISIT");
 	
-	LoadMultiData("",$("#PrcsID").val(),"","PropVisit","PRVMDBfields","LSW_SGETPROPERVISIT");
+		
 	
-	 ADVASMARTMSTR()
-
-   LoadMultiData("",$("#PrcsID").val(),"","ADVSMART","ADSMDBfields","LSW_SGETADVSAMRT");
-   
-    ADVDROPDOWN();
-    ADVREPORTVIEW();
-   
-	MCAVERIFI()
+	//MCAVERIFI()
 	
-	ReAssignBranch()
+	//ReAssignBranch()
 	
    VendorDropdown()
 	
-  CHKPRPVISIT();
+  //CHKPRPVISIT();
 	
-  var ADVASMART=UI_getdata("","","","","","LSW_SGETADVASMARTSTAUS");
+var ADVAACTIVEPAGE=UI_getdata("","","","","","LSW_SGETADVASMARTSTAUS");
 
-    var ADVSTATUS =$(ADVASMART).find('STATUS').text();
+    var ADVAPAGESTATUS =$(ADVAACTIVEPAGE).find('STATUS').text();
    
-    if(ADVSTATUS=="Inactive")
+    if(ADVAPAGESTATUS=="Inactive")
     	{
           $(".ADVA").hide();
     	}
     
-	
-	
-/*	var DATA=["PropertyValuer2|"];
-var MemoData=DATA[0].split("|")[0];
-var row = $("." + MemoData).find(".DYNROW").length;
-for (j=0;j<row;j++)
-{
-$("#TVII_VENDORNAME"+[j+1]).empty();
-var PrcsID=$("#PrcsID").val();
-var val=$("#TVII_BRANCNAME"+[j+1]).val()
-//var xml=UI_getdata(PrcsID,val,"","","","LSW_SGETBANKDTLCUSWS")
-var xml=UI_getdata("TECHNICAL",val,"","","","LSW_SGETVALUATION")
-var CusName=$(xml).find('RESULT').html();	
-$("#TVII_VENDORNAME"+[j+1]).append(CusName)
-var Data=$("#TVII_VENDORID"+[j+1]).val()
-$("#TVII_VENDORNAME option:contains("+Data+")").attr("selected","selected")
-}
+
 	 
-*/	 
-	// On Load H/S
-	 var DATA=["PropertyValuer1|TEVD_STATUS","PropertyValuer2|TVII_STATUS","PropertyValuer3|TIII_STATUS","LegalRpt|LEGD_STATUS","LegalIIRpt|LDII_STATUS","FIResidVerify|FIRV_STATUS","FIOfficeVerify|FIOV_STATUS|FIOV_PROPADDR"]
+	  var DATA=["PropertyValuer1|TEVD_STATUS|TEVD_ADDPROPERTY|TEVD_WAVIER"]
      
 	 for (j=0;j<DATA.length;j++)
 		 {
@@ -85,7 +111,9 @@ $("#TVII_VENDORNAME option:contains("+Data+")").attr("selected","selected")
 		 var ValuationID=DATA[j].split("|")[0];
 	     var ValuationStatus=DATA[j].split("|")[1];
 	     var FIOAddr=DATA[j].split("|")[2];
-	     
+		 var Wavre=DATA[j].split("|")[3];
+		 
+	   
 	 var row = $("." + ValuationID).find(".DYNROW").length;
 		 
 	 for (i=0;i<row;i++)
@@ -93,79 +121,51 @@ $("#TVII_VENDORNAME option:contains("+Data+")").attr("selected","selected")
 		 
 	var HTML =	 $("." + ValuationID).find(".DYNROW")[i];
 	
-	var Status = $(HTML).find("[name=" + ValuationStatus + "]").val();	 
+	var Status = $(HTML).find("[name=" + ValuationStatus + "]").val();	
+	var Addrs=$(HTML).find("[name=" + FIOAddr + "]").val();
+	var Wav=$(HTML).find("[name=" + Wavre + "]:checked").val();
+	
+	var Finl=Addrs.replace(/ /g, '');
+	if(Finl=="")
+	{
+		$(HTML).find(".CHKADRS").hide();
+		
+	}
+	else
+	{
+		$(HTML).find(".CHKADRS").show();
+	}
 	StatusData (Status,HTML,ValuationStatus,FIOAddr);
+	if(Status=="To be Initiated")
+				{
+					if(Wav=="Waiver"||Wav=="Not Applicable")
+					{
+						$(HTML).closest('.DYNROW').find('.ValuationInitone').hide();
+			
+					
+					}
+					else
+					{
+						$(HTML).closest('.DYNROW').find('.ValuationInitone').show();
+				
+					}
+				}
+	//AppLoad(ValuationStatus,HTML);
 	 }
      }
 	 
-	 DEVloadstatus()
-	 
-	 
 	
-      
-	 
-	 
-	 
-	 
-	
-	 var op = UI_getdata($("#LogUsr").val(),"","","","","LSW_SGETUSRGRP1")
-	 if($(op).find("groupId").text()=="BSM")
-		 {
-		 $(".TEVDDBfields").addClass('DSVLBL')
-		 $(".TVIIDBfields").addClass('DSVLBL')
-		 $(".TIIIDBfields").addClass('DSVLBL')
-         $(".LEGDDBfields").addClass('DSVLBL')
-		 $(".LDIIDBfields").addClass('DSVLBL')
-		 $(".PRVMDBfields").addClass('DSVLBL')
-		 $(".PVMDDBfields").addClass('DSVLBL')
-		 $(".RCUIDBfields").addClass('DSVLBL')
-		 $(".FIRVDBfields").addClass('DSVLBL')
-		 $(".FIOVDBfields").addClass('DSVLBL')
-		 $(".MCAVDBfields").addClass('DSVLBL')
-         $(".btn").hide();
-		 $(".file-field").hide();
-         }
-	
-	var CHKresult=FormDataFromDB("LSW_TRCUINITIATION","RCUI_", "RCUIDBfields", "")
-	
-	if(CHKresult == "Fail")
-	{
-	  alert("Submission Failed");
-	   return false;			
-	}
-	
-	var CHKresult=FormDataFromDB("LSW_PROPVISTMAIN","PRVM_", "PRVMDBfields", "")
-	
-	if(CHKresult == "Fail")
-	{
-	  alert("Submission Failed");
-	   return false;			
-	}
-	//$(".GRBI_CUSID").text($("#GRBI_CUSID").val());
-	var xml=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETMCAVERAPPLNAME")
-    var APPLNAME=$(xml).find('CUSTNAME').text()
-     $("#MCAV_APPLINAME").val(APPLNAME) 
-	
-	var tbl = $("#heading1 a").attr("data-aria").split("|")[0];	
-	var prfx = $("#heading1 a").attr("data-aria").split("|")[1];
-	var DATA = $("#heading1 a").attr("data-aria").split("|")[2];
-	var CusID =$("#heading1 a").attr("data-aria").split("|")[2];
-	var CusID1 =$("#heading1 a").attr("data-aria").split("|")[3];
-	
-	if  (DATA != "")
-	{
-		DATA = $("#"+DATA).val()+"|" + DATA;
-	}
-	//FormDataToDB_V1(tbl, prfx + "_", prfx+"DBfields", DATA);
-	
-	$("#BTNRCUGRD").click();
-//	CheckFileStatus()
-	/*if ($("#"+CusID1).length>0)
-	{
-	   $("."+CusID1).text($("#"+CusID1).val());
-	}*/
-	
-	$("#headingOne1 a").attr("data-load","Yes");
+
+
+$("#BTNADVSMART").on('click', function() {
+    	
+
+    ADVASMARTMSTR()
+
+   LoadMultiData("",$("#PrcsID").val(),"","ADVSMART","ADSMDBfields","LSW_SGETADVSAMRT");
+   
+    ADVDROPDOWN();
+    ADVREPORTVIEW();
 	
 	if($("#DMY7").val().split("|")[3]=="SFA") 
     {
@@ -175,10 +175,499 @@ $("#TVII_VENDORNAME option:contains("+Data+")").attr("selected","selected")
    if($("#DMY7").val().split("|")[3]=="STP") 
      {
       DSVLBLALL('')
-	  $('.ADVSMPDF').show();
-     }  	
+      }
+	if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))
+	 {
+		 DSVLBLALL('')
+	 }
+		if(($("#DMY5").val().split("|")[2]=="BranchOPS")&&($("#VERTICAL").val()=="Tractor Finance"))
+		{
+			DSVLBLALL('')
+		}
+ if($("#PrMs1").val()=="View") 
+     {
+      DSVLBLALL('')
+      } 
+
+	  
+   
+});  
+   
+
 	
-	$('.PropVisit').find('.name').text('')
+	   $("#BTNTECHIIVALUER").on('click', function() {
+    	
+    
+    	LoadMultiData("",$("#PrcsID").val(),"","PropertyValuer2","TVIIDBfields","LSW_SGetTechIIPropDetls");
+    	
+    	TechII()
+    	
+   	 var DATA=["PropertyValuer2|TVII_STATUS|TVII_ADDPROPERTY|TVII_WAVIER"]
+        
+   	 for (j=0;j<DATA.length;j++)
+   		 {
+   		 
+         var ValuationID=DATA[j].split("|")[0];
+   	     var ValuationStatus=DATA[j].split("|")[1];
+   	     var FIOAddr=DATA[j].split("|")[2];
+		 var Wavier=DATA[j].split("|")[3];
+	
+   	     
+   	 var row = $("." + ValuationID).find(".DYNROW").length;
+   		 
+   	 for (i=0;i<row;i++)
+   	 {
+   		 
+   	var HTML =	 $("." + ValuationID).find(".DYNROW")[i];
+   	
+   	var Status = $(HTML).find("[name=" + ValuationStatus + "]").val();	 
+	var Addrs=$(HTML).find("[name=" + FIOAddr + "]").val();
+	var Wav=$(HTML).find("[name=" + Wavier + "]:checked").val();
+	var Finl=Addrs.replace(/ /g, '');
+	
+	if(Finl=="")
+	{
+		$(HTML).find(".CHKADRSII").hide();
+		
+	}
+	else
+	{
+		$(HTML).find(".CHKADRSII").show();
+	}
+	StatusData (Status,HTML,ValuationStatus,FIOAddr);
+	if(Status=="To be Initiated")
+				{
+					if(Wav=="Waiver"||Wav=="Not Applicable")
+					{
+						$(HTML).closest('.DYNROW').find('.ValuationInittwo').hide();
+			
+					
+					}
+					else
+					{
+						$(HTML).closest('.DYNROW').find('.ValuationInittwo').show();
+				
+					}
+				}
+   	
+	//NotappLoad(ValuationStatus,HTML);
+   	 }
+        }
+		
+		if($("#DMY7").val().split("|")[3]=="SFA") 
+    {
+      DSBVLTECH()
+    }  
+    
+   if($("#DMY7").val().split("|")[3]=="STP") 
+     {
+      DSVLBLALL('')
+	  
+     } 
+	 if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))
+	 {
+		 DSVLBLALL('')
+	 }
+	 if(($("#DMY5").val().split("|")[2]=="BranchOPS")&&($("#VERTICAL").val()=="Tractor Finance"))
+		{
+			DSVLBLALL('')
+		}
+	  if($("#PrMs1").val()=="View") 
+     {
+      DSVLBLALL('')
+      } 
+   	 
+   if($("#DMY5").val().split('|')[2] == "ReCredit" && $("#PrMs1").val() != "View" && $(".FormMainTabs li.active").attr("id") == "FormMainTab5")
+	   {
+		   var op = UI_getdata($("#LogUsr").val(),"","","","","LSW_SGETUSRMAPROLE");
+		   if($(op).find("ROLENAME").text() == "Credit")
+		   {
+			    for(var i = 0;i<$(".PropertyValuer2 ").find(".INPRINCSANC").length;i++)
+			   {
+				   if($($(".PropertyValuer2 ").find(".INPRINCSANC")[i]).is(":visible"))
+				   {
+					   $($(".PropertyValuer2 ").find(".INPRINCSANC")[i]).removeAttr("disabled")
+				   }
+			   } 
+			   
+		   }
+	   }
+});  
+	
+
+
+	 
+	 //Start Tech 3 valuer
+	 
+	 $("#BTNTECHIIIVALUER").on('click', function() {
+	    	
+		    
+			LoadMultiData("",$("#PrcsID").val(),"","PropertyValuer3","TIIIDBfields","LSW_SGetTechIIIPropDetls");
+	    	
+	    	TechIII();	
+	    	
+	   	 var DATA=["PropertyValuer3|TIII_STATUS|TIII_ADDPROPERTY|TIII_WAVIER"]
+	        
+	   	 for (j=0;j<DATA.length;j++)
+	   		 {
+	   		 
+	         var ValuationID=DATA[j].split("|")[0];
+	   	     var ValuationStatus=DATA[j].split("|")[1];
+	   	     var FIOAddr=DATA[j].split("|")[2];
+			 var Wavier=DATA[j].split("|")[3];
+			 
+	   	      
+	   	 var row = $("." + ValuationID).find(".DYNROW").length;
+	   		 
+	   	 for (i=0;i<row;i++)
+	   	 {
+	   		 
+	   	var HTML =	 $("." + ValuationID).find(".DYNROW")[i];
+	   	
+	   	var Status = $(HTML).find("[name=" + ValuationStatus + "]").val();
+		var Addrs=$(HTML).find("[name=" + FIOAddr + "]").val();
+		var Wav=$(HTML).find("[name=" + Wavier + "]:checked").val();
+		
+		var Finl=Addrs.replace(/ /g, '');
+		
+		
+		
+		if(Finl=="")
+		{
+			$(HTML).find(".CHKADRSIII").hide();
+		
+		}
+		else
+		{
+			$(HTML).find(".CHKADRSIII").show();
+		}		
+			StatusData (Status,HTML,ValuationStatus,FIOAddr);
+		if(Status=="To be Initiated")
+				{
+					if(Wav=="Waiver"||Wav=="Not Applicable")
+					{
+						$(HTML).closest('.DYNROW').find('.ValuationInitthree').hide();
+			
+					
+					}
+					else
+					{
+						$(HTML).closest('.DYNROW').find('.ValuationInitthree').show();
+				
+					}
+				}
+				
+	   
+	   	 }
+	     }
+	   	 
+	   	DEVloadstatus();
+		
+		if($("#DMY7").val().split("|")[3]=="SFA") 
+    {
+      DSBVLTECH()
+    }  
+    
+   if($("#DMY7").val().split("|")[3]=="STP") 
+     {
+      DSVLBLALL('')
+	  
+     } 
+	 if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))
+	 {
+		 DSVLBLALL('')
+	 }
+	 if(($("#DMY5").val().split("|")[2]=="BranchOPS")&&($("#VERTICAL").val()=="Tractor Finance"))
+		{
+			DSVLBLALL('')
+		}
+	  if($("#PrMs1").val()=="View") 
+     {
+      DSVLBLALL('')
+      } 
+	  if($("#DMY5").val().split('|')[2] == "ReCredit" && $("#PrMs1").val() != "View" && $(".FormMainTabs li.active").attr("id") == "FormMainTab5")
+	   {
+		   var op = UI_getdata($("#LogUsr").val(),"","","","","LSW_SGETUSRMAPROLE");
+		   if($(op).find("ROLENAME").text() == "Credit")
+		   {
+			    for(var i = 0;i<$(".PropertyValuer3 ").find(".INPRINCSANC").length;i++)
+			   {
+				   if($($(".PropertyValuer3 ").find(".INPRINCSANC")[i]).is(":visible"))
+				   {
+					   $($(".PropertyValuer3 ").find(".INPRINCSANC")[i]).removeAttr("disabled")
+				   }
+			   } 
+			   
+		   }
+	   }
+	});  
+
+
+	
+//Start Legal 1
+	 
+	 
+	 $("#BTNLEGALI").on('click', function() {
+	    	
+		    
+		 LoadMultiData("",$("#PrcsID").val(),"","LegalRpt","LEGDDBfields","LSW_SGetLegalDetls");
+	    	
+		 LegalI();
+	    	
+	   	 var DATA=["LegalRpt|LEGD_STATUS"]
+	        
+	   	 for (j=0;j<DATA.length;j++)
+	   		 {
+	   		 
+	         var ValuationID=DATA[j].split("|")[0];
+	   	     var ValuationStatus=DATA[j].split("|")[1];
+	   	     var FIOAddr=DATA[j].split("|")[2];
+	   	     
+	   	 var row = $("." + ValuationID).find(".DYNROW").length;
+	   		 
+	   	 for (i=0;i<row;i++)
+	   	 {
+	   		 
+	   	var HTML =	 $("." + ValuationID).find(".DYNROW")[i];
+	   	var Status = $(HTML).find("[name=" + ValuationStatus + "]").val();	 
+	   	StatusData (Status,HTML,ValuationStatus,FIOAddr);
+	   	 }
+	     }
+	   	
+if($("#DMY7").val().split("|")[3]=="SFA") 
+    {
+      DSBVLTECH()
+    }  
+    
+   if($("#DMY7").val().split("|")[3]=="STP") 
+     {
+      DSVLBLALL('')
+	  
+     }
+	if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))
+	 {
+		 DSVLBLALL('')
+	 }	
+if(($("#DMY5").val().split("|")[2]=="BranchOPS")&&($("#VERTICAL").val()=="Tractor Finance"))
+		{
+			DSVLBLALL('')
+		}	 
+
+ if($("#PrMs1").val()=="View") 
+     {
+      DSVLBLALL('')
+      } 	 
+	   	if($("#DMY5").val().split('|')[2] == "ReCredit" && $("#PrMs1").val() != "View" && $(".FormMainTabs li.active").attr("id") == "FormMainTab5")
+	   {
+		   var op = UI_getdata($("#LogUsr").val(),"","","","","LSW_SGETUSRMAPROLE");
+		   if($(op).find("ROLENAME").text() == "Credit")
+		   {
+			    for(var i = 0;i<$(".LegalRpt ").find(".INPRINCSANC").length;i++)
+			   {
+				   if($($(".LegalRpt ").find(".INPRINCSANC")[i]).is(":visible"))
+				   {
+					   $($(".LegalRpt ").find(".INPRINCSANC")[i]).removeAttr("disabled")
+				   }
+			   } 
+			   
+		   }
+	   }
+	});  
+		  
+	 
+ $("#BTNLEGALII").on('click', function() {
+	    	
+		    
+		 LoadMultiData("",$("#PrcsID").val(),"","LegalIIRpt","LDIIDBfields","LSW_SGETLEGALIIDETL");
+	    	
+		 LegalII();
+	    	
+	   	 var DATA=["LegalIIRpt|LDII_STATUS"]
+	        
+	   	 for (j=0;j<DATA.length;j++)
+	   		 {
+	   		 
+	         var ValuationID=DATA[j].split("|")[0];
+	   	     var ValuationStatus=DATA[j].split("|")[1];
+	   	     var FIOAddr=DATA[j].split("|")[2];
+	   	     
+	   	 var row = $("." + ValuationID).find(".DYNROW").length;
+	   		 
+	   	 for (i=0;i<row;i++)
+	   	 {
+	   		 
+	   	var HTML =	 $("." + ValuationID).find(".DYNROW")[i];
+	   	var Status = $(HTML).find("[name=" + ValuationStatus + "]").val();	 
+	   	StatusData (Status,HTML,ValuationStatus,FIOAddr);
+	   	 }
+	     }
+	   	 
+	 	DEVloadstatus();
+
+if($("#DMY7").val().split("|")[3]=="SFA") 
+    {
+      DSBVLTECH()
+    }  
+    
+   if($("#DMY7").val().split("|")[3]=="STP") 
+     {
+      DSVLBLALL('')
+	  
+     }
+	 if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))
+	 {
+		 DSVLBLALL('')
+	 }
+	 if(($("#DMY5").val().split("|")[2]=="BranchOPS")&&($("#VERTICAL").val()=="Tractor Finance"))
+		{
+			DSVLBLALL('')
+		}
+
+ if($("#PrMs1").val()=="View") 
+     {
+      DSVLBLALL('')
+      } 
+	if($("#DMY5").val().split('|')[2] == "ReCredit" && $("#PrMs1").val() != "View" && $(".FormMainTabs li.active").attr("id") == "FormMainTab5")
+	   {
+		   var op = UI_getdata($("#LogUsr").val(),"","","","","LSW_SGETUSRMAPROLE");
+		   if($(op).find("ROLENAME").text() == "Credit")
+		   {
+			    for(var i = 0;i<$(".LegalIIRpt ").find(".INPRINCSANC").length;i++)
+			   {
+				   if($($(".LegalIIRpt ").find(".INPRINCSANC")[i]).is(":visible"))
+				   {
+					   $($(".LegalIIRpt ").find(".INPRINCSANC")[i]).removeAttr("disabled")
+				   }
+			   } 
+			   
+		   }
+	   }
+	  
+	});  
+
+
+
+ $("#BTNFIRESI").on('click', function() {
+	    	
+		    
+		 LoadMultiData("",$("#PrcsID").val(),"","FIResidVerify","FIRVDBfields","LSW_SGetFIResidenDetls");
+	    	
+		 FIRES();
+	    	
+	   	 var DATA=["FIResidVerify|FIRV_STATUS"]
+	        
+	   	 for (j=0;j<DATA.length;j++)
+	   		 {
+	   		 
+	         var ValuationID=DATA[j].split("|")[0];
+	   	     var ValuationStatus=DATA[j].split("|")[1];
+	   	     var FIOAddr=DATA[j].split("|")[2];
+	   	     
+	   	 var row = $("." + ValuationID).find(".DYNROW").length;
+	   		 
+	   	 for (i=0;i<row;i++)
+	   	 {
+	   		 
+	   	var HTML =	 $("." + ValuationID).find(".DYNROW")[i];
+	   	
+	   	var Status = $(HTML).find("[name=" + ValuationStatus + "]").val();	 
+	   	StatusData (Status,HTML,ValuationStatus,FIOAddr);
+	   	 }
+	     }
+	   	 
+	 	if($("#DMY7").val().split("|")[3]=="SFA") 
+    {
+      DSBVLTECH()
+    }  
+    
+   if($("#DMY7").val().split("|")[3]=="STP") 
+     {
+      DSVLBLALL('')
+	  
+     } 
+	 if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))
+	 {
+		 DSVLBLALL('')
+	 }
+	 if(($("#DMY5").val().split("|")[2]=="BranchOPS")&&($("#VERTICAL").val()=="Tractor Finance"))
+		{
+			DSVLBLALL('')
+		}
+
+	  if($("#PrMs1").val()=="View") 
+     {
+      DSVLBLALL('')
+      } 
+	  
+	  
+	});   
+	 
+
+
+ $("#BTNFIOFFICE").on('click', function() {
+	    	
+		    
+			LoadMultiData("",$("#PrcsID").val(),"","FIOfficeVerify","FIOVDBfields","LSW_SGetFIOfficeDetls");	
+	    	
+			FIOFFICE();
+	    	
+	   	 var DATA=["FIOfficeVerify|FIOV_STATUS|FIOV_PROPADDR"]
+	        
+	   	 for (j=0;j<DATA.length;j++)
+	   		 {
+	   		 
+	         var ValuationID=DATA[j].split("|")[0];
+	   	     var ValuationStatus=DATA[j].split("|")[1];
+	   	     var FIOAddr=DATA[j].split("|")[2];
+	   	     
+	   	 var row = $("." + ValuationID).find(".DYNROW").length;
+	   		 
+	   	 for (i=0;i<row;i++)
+	   	 {
+	   		 
+	   	var HTML =	 $("." + ValuationID).find(".DYNROW")[i];
+	   	
+	   	var Status = $(HTML).find("[name=" + ValuationStatus + "]").val();	 
+	   	StatusData (Status,HTML,ValuationStatus,FIOAddr);
+	   	 }
+	     }
+	   	 
+	 	if($("#DMY7").val().split("|")[3]=="SFA") 
+    {
+      DSBVLTECH()
+    }  
+    
+   if($("#DMY7").val().split("|")[3]=="STP") 
+     {
+      DSVLBLALL('')
+	  
+     } 
+	 if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))
+	 {
+		 DSVLBLALL('')
+	 }
+	 if(($("#DMY5").val().split("|")[2]=="BranchOPS")&&($("#VERTICAL").val()=="Tractor Finance"))
+		{
+			DSVLBLALL('')
+		}
+	  if($("#PrMs1").val()=="View") 
+     {
+      DSVLBLALL('')
+      } 
+	  
+	  
+	});   
+	 
+
+
+ $("#BTNPROPERVISIT").on('click', function() {
+	    	
+		    
+			LoadMultiData("",$("#PrcsID").val(),"","PropVisit","PRVMDBfields","LSW_SGETPROPERVISIT");
+	    	
+			  CHKPRPVISIT();
+			  
+			$('.PropVisit').find('.name').text('')
 	
 	
 	var PVrow = $(".PropVisit").find(".DYNROW").length;
@@ -204,6 +693,185 @@ $("#TVII_VENDORNAME option:contains("+Data+")").attr("selected","selected")
 	}
 	
 	 }
+	  
+			 
+	if($("#DMY7").val().split("|")[3]=="SFA") 
+    {
+      DSBVLTECH()
+    }  
+    
+   if($("#DMY7").val().split("|")[3]=="STP") 
+     {
+      DSVLBLALL('')
+	  
+     } 	
+	if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))
+	 {
+		 DSVLBLALL('')
+	 }
+	 if(($("#DMY5").val().split("|")[2]=="BranchOPS")&&($("#VERTICAL").val()=="Tractor Finance"))
+		{
+			DSVLBLALL('')
+		}
+ if($("#PrMs1").val()=="View") 
+     {
+      DSVLBLALL('')
+      } 	 
+	
+	 	
+	});   
+	 
+
+
+
+ $("#BTNMCAVERIFI").on('click', function() {
+	    	
+		    
+		 LoadMultiData("",$("#PrcsID").val(),"","MCAVerify","MCAVDBfields","LSW_SGetMCAVERIFY");
+	    	
+		 MCAVERIFI()
+			  
+			var xml=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETMCAVERAPPLNAME")
+		    var APPLNAME=$(xml).find('CUSTNAME').text()
+		     $("#MCAV_APPLINAME").val(APPLNAME) 
+		
+if($("#DMY7").val().split("|")[3]=="SFA") 
+    {
+      DSBVLTECH()
+    }  
+    
+   if($("#DMY7").val().split("|")[3]=="STP") 
+     {
+      DSVLBLALL('')
+	  
+     } 	
+	if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))
+	 {
+		 DSVLBLALL('')
+	 }
+	 if(($("#DMY5").val().split("|")[2]=="BranchOPS")&&($("#VERTICAL").val()=="Tractor Finance"))
+		{
+			DSVLBLALL('')
+		}
+ if($("#PrMs1").val()=="View") 
+     {
+      DSVLBLALL('')
+      } 	 
+	 	
+	});   
+	
+	
+   	 $("#BTNRCU").on('click', function() {
+	    	
+		    
+		 var CHKresult=FormDataFromDB("LSW_TRCUINITIATION","RCUI_", "RCUIDBfields", "")
+        $("#BTNRCUGRD").click();	
+			
+			RCUPage();
+			
+			var ResI=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHKRCUSAMPLED");
+	       var CHKMODE=$(ResI).find("MODE").text();	
+		   if(CHKMODE=="Screened")
+		   {
+		    $('input:radio[name=RCUI_RCUMODE]')[0].checked = true;
+		   }
+		   
+		    if(CHKMODE=="Sampled")
+		   {
+		    $('input:radio[name=RCUI_RCUMODE]')[1].checked = true;
+		   }
+			
+			if($("#DMY7").val().split("|")[3]=="SFA") 
+    {
+      DSBVLTECH()
+    }  
+    
+   if($("#DMY7").val().split("|")[3]=="STP") 
+     {
+      DSVLBLALL('')
+	  
+     }
+	if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))
+	 {
+		 DSVLBLALL('')
+	 }
+	 if(($("#DMY5").val().split("|")[2]=="BranchOPS")&&($("#VERTICAL").val()=="Tractor Finance"))
+		{
+			DSVLBLALL('')
+		}
+ if($("#PrMs1").val()=="View") 
+     {
+      DSVLBLALL('')
+      } 
+
+	  
+	});   
+	    
+	 
+	 
+	 
+	 
+	/*
+	 var op = UI_getdata($("#LogUsr").val(),"","","","","LSW_SGETUSRGRP1")
+	 if($(op).find("groupId").text()=="BSM")
+		 {
+		 $(".TEVDDBfields").addClass('DSVLBL')
+		 $(".TVIIDBfields").addClass('DSVLBL')
+		 $(".TIIIDBfields").addClass('DSVLBL')
+         $(".LEGDDBfields").addClass('DSVLBL')
+		 $(".LDIIDBfields").addClass('DSVLBL')
+		 $(".PRVMDBfields").addClass('DSVLBL')
+		 $(".PVMDDBfields").addClass('DSVLBL')
+		 $(".RCUIDBfields").addClass('DSVLBL')
+		 $(".FIRVDBfields").addClass('DSVLBL')
+		 $(".FIOVDBfields").addClass('DSVLBL')
+		 $(".MCAVDBfields").addClass('DSVLBL')
+         $(".btn").hide();
+		 $(".file-field").hide();
+         }*/
+	
+/*	var CHKresult=FormDataFromDB("LSW_TRCUINITIATION","RCUI_", "RCUIDBfields", "")
+	
+	if(CHKresult == "Fail")
+	{
+	  alert("Submission Failed");
+	   return false;			
+	}
+	
+	var CHKresult=FormDataFromDB("LSW_PROPVISTMAIN","PRVM_", "PRVMDBfields", "")
+	
+	if(CHKresult == "Fail")
+	{
+	  alert("Submission Failed");
+	   return false;			
+	}*/
+	//$(".GRBI_CUSID").text($("#GRBI_CUSID").val());
+	//var xml=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETMCAVERAPPLNAME")
+   // var APPLNAME=$(xml).find('CUSTNAME').text()
+   //  $("#MCAV_APPLINAME").val(APPLNAME) 
+	
+	
+
+	
+	$("#headingOne1 a").attr("data-load","Yes");
+	
+	if($("#DMY7").val().split("|")[3]=="SFA") 
+    {
+      DSBVLTECH()
+    }  
+    
+   if($("#DMY7").val().split("|")[3]=="STP") 
+     {
+      DSVLBLALL('')
+	   // $('.ADVSMPDF').show();
+     }  
+
+ if($("#PrMs1").val()=="View") 
+     {
+      DSVLBLALL('')
+      } 	 
+	
+
 	
 	
 // New Applicant Details Start
@@ -223,13 +891,16 @@ $("#TVII_VENDORNAME option:contains("+Data+")").attr("selected","selected")
 			
 	});*/
 	
-	$(".VENDDATA").change(function()
-	        {
+	
+	 $(document).on("change", ".VENDDATA" , function() {
+	      
 				
 			var RowCount=$(this).closest('.DYNROW').attr('data-row')
 				
 				
 			 var HTML=$(this).parent().parent().parent().parent();
+			 if($(HTML).find(this).attr("data-vendor")!=undefined)
+				{
 			 var Group=$(HTML).find(this).attr("data-vendor").split("|")[0];
 			 var BrID=$(HTML).find(this).attr("data-vendor").split("|")[1];
 			 var VendorName=$(HTML).find(this).attr("data-vendor").split("|")[2];
@@ -243,8 +914,55 @@ $("#TVII_VENDORNAME option:contains("+Data+")").attr("selected","selected")
 			 $(HTML).find("[name="+VendorName+"]").empty();
 			 $(HTML).find("[name="+VendorName+"]").append($(xml).find("RESULT").html());
 			 $(HTML).find("[name="+VendorName+"]").material_select(); 
+				}
 			})
-	RCUPage();
+			
+			
+
+	 $(document).on("change", ".VENIDRELOAD" , function() {
+	       
+				
+			var RowCount=$(this).closest('.DYNROW').attr('data-row')
+				
+				
+			 var HTML=$(this).parent().parent().parent().parent();
+			 if($(HTML).find(this).attr("data-vendor")!=undefined)
+				{
+			 var Group=$(HTML).find(this).attr("data-vendor").split("|")[0];
+			 var BrID=$(HTML).find(this).attr("data-vendor").split("|")[1];
+			 var VendorName=$(HTML).find(this).attr("data-vendor").split("|")[2];
+			 
+			 var UNIQID=$(HTML).find(this).attr("data-vendor").split("|")[3];
+             var UNIQID=$("#"+UNIQID+RowCount).val()
+			 
+			 var ALTUNIQID=$(HTML).find(this).attr("data-vendor").split("|")[4];
+             var ALTUNIQID=$("#"+ALTUNIQID+RowCount).val()
+			 
+	          var BrID=$(HTML).find("[name="+BrID+"]").val()
+			  var VENDID=$(HTML).find("[name="+VendorName+"]").val()
+			  
+			  
+			 
+			 var xml=UI_getdata(Group,BrID,$("#PrcsID").val(),UNIQID+'|'+ALTUNIQID,VENDID,"LSW_SCHKVENDORID")
+			 var Status= $(xml).find("STATUS").text()
+			 if(Status=="PENDING")
+			 {
+			   alert($(xml).find("MSG").text())
+			   return false;
+			 }
+			 else if(Status=="YES")
+			 {
+			 alert($(xml).find("MSG").text())
+			 $(HTML).find("[name="+VendorName+"]").empty();
+			 $(HTML).find("[name="+VendorName+"]").append($(xml).find("RESULT").html());
+			//  $(HTML).find("[name="+VendorName+"]").material_select("destroy");
+			 $(HTML).find("[name="+VendorName+"]").material_select(); 
+			 }
+			 }
+			})		
+			
+			
+
 	
  	
 	 $(document).on("click", ".DELETEMCA" , function() {
@@ -371,18 +1089,18 @@ $(document).on("change", ".DataToFldFIRESI" , function() {
     	 })
 
     
-	
+
 $(document).on("click", ".ValuationInit" , function() {
 		
 			  var RowHTML = $(this).parent().parent().parent().parent();
 			  var prfx = $(this).attr("data-aria").split("|")[1];
 			  var MndtryChk = ChkMandatoryFlds_V1(prfx+"Mndtry",RowHTML);
 			  
-			   var DEVTYPE = $(this).attr("data-for").split("|")[0];  
+			  	  var DEVTYPE = $(this).attr("data-for").split("|")[0];  
 				  
 				  
 				  
-			  if(DEVTYPE=="PropertyValuer2")
+			  if(DEVTYPE=="PropertyValuer2"||DEVTYPE=="PropertyValuer3"||DEVTYPE=="LegalRpt"||DEVTYPE=="LegalIIRpt")
 				{
 				  
 				  var UN1=$(this).attr("data-info").split("|")[1];
@@ -393,44 +1111,53 @@ $(document).on("click", ".ValuationInit" , function() {
 				  
 				    var PROPERTYINIT=$(CHKADD).find('PROPINIT').text()
 				  
-                    if(ADDPROPERTY=="YES")
+				  
+				   if(DEVTYPE=="PropertyValuer3")
+					   {
+				      if(PROPERTYINIT!="YES")
+					  {
+					  alert('Cannot initiate Technical 3,Since '+PROPERTYINIT +' not initiated') 
+					   return false;
+                      } 
+					  }
+				  
+				    if(DEVTYPE=="LegalIIRpt")
+				     {
+			       if(PROPERTYINIT!="YES")
+				    {
+				    alert('Cannot initiate Legal 2,Since '+PROPERTYINIT +' not initiated') 
+					 return false;
+                    } 
+				    }
+					
+					
+				  
+				  if(ADDPROPERTY=="YES")
 					{
 					 alert('Cannot initiate,Since Property select as Additional Property') 
 					   return false;
 					}  
-					
-					
-					  
 				}
 			
+		    var UID=$(this).attr("data-info").split("|")[1];
+			var UIDValue=$("#"+UID+$(this).attr("data-row")).val()
+			/*var Mndxml=UI_getdata($("#PrcsID").val(),$(this).attr("data-info").split("|")[3],UIDValue,"","","LSW_SCHECKADDR")
 			  
-			  
-			  
+			  if($(Mndxml).find('MSG').text()!="Yes")
+			  {
+				  alert($(Mndxml).find('MSG').text())
+				  return false;
+			  }
+			  */
 			  
 			  if(MndtryChk == "Mandatory")
 			   {
-			   alert("Fill the Mandatory Fields");
+			   alert("Fill the Mandatory Fields / Document(s)");
 			   return false;
 			   }
-		
-		var tbl = $(this).attr("data-aria").split("|")[0];
-		var prfx = $(this).attr("data-aria").split("|")[1];
-		var DATA = $(this).attr("data-aria").split("|")[2];
-		var TYPE = $(this).attr("data-aria").split("|")[3];
-			
-		var Status=$(this).attr("data-Status");
-	    $(RowHTML).find("[name="+Status+"]").val('In Progress');	
-	    
-	/*	if($(RowHTML).find("[name="+DATA+"]").val() == "")
-		{
-		var CUSID = UI_getdata("OFFICE","","Yes","","","Sam_sGetSeqID");
-		
-		$(RowHTML).find("[name="+DATA+"]").val($(CUSID).find("Val1").text());
-
-	    }*/
-		 var DEVTYPE = $(this).attr("data-for").split("|")[0]; 
-		
-			/*	 if(DEVTYPE=="FIOfficeVerify"||DEVTYPE=="FIResidVerify")
+			   
+			   
+				if(DEVTYPE=="FIOfficeVerify"||DEVTYPE=="FIResidVerify")
 				{ 
 			  if(confirm('Are you sure the entered address is correct or not , once initiated the entered address cannot be  editable') == true)
                  {
@@ -441,10 +1168,42 @@ $(document).on("click", ".ValuationInit" , function() {
 	                return false;
                   }
 			  
-				}*/
+				}
+			  
+			   if(DEVTYPE=="PropertyValuer1"||DEVTYPE=="PropertyValuer2"||DEVTYPE=="PropertyValuer3"||DEVTYPE=="LegalRpt"||DEVTYPE=="LegalIIRpt")
+				{
+				  
+					var VendorName=$(this).attr("data-info").split("|")[0];
+					var UN1=$(this).attr("data-info").split("|")[1];
+					var UN2=$(this).attr("data-info").split("|")[2];
+					var GROUP=$(this).attr("data-info").split("|")[3];
+					var BranID=$(this).attr("data-info").split("|")[5];
+					
+					var BrID = $(RowHTML).find("[name="+BranID+"]").val();
+					var VENDID = $(RowHTML).find("[name="+VendorName+"]").val();
+					var UNIQID = $(RowHTML).find("[name="+UN1+"]").val();
+					var ALTUNIQID = $(RowHTML).find("[name="+UN2+"]").val();
+					
+					 var xml=UI_getdata(GROUP,BrID,$("#PrcsID").val(),UNIQID+'|'+ALTUNIQID,VENDID,"LSW_SCHKVENDORID")
+					 var Status= $(xml).find("STATUS").text()
+					 if(Status=="PENDING")
+					 {
+						 alert($(xml).find("MSG").text())
+						  return false;
+					 }
+					 else if(Status=="YES")
+					 {
+					     alert($(xml).find("MSG").text())
+					 $(RowHTML).find("[name="+VendorName+"]").empty();
+					 $(RowHTML).find("[name="+VendorName+"]").append($(xml).find("RESULT").html());
+					 $(RowHTML).find("[name="+VendorName+"]").material_select(); 
+					 return false;
+					 }
+				  
+				}
 			  
 			  
-		/*	  if(DEVTYPE=="PropertyValuer1"||DEVTYPE=="PropertyValuer2"||DEVTYPE=="PropertyValuer3"||DEVTYPE=="LegalRpt"||DEVTYPE=="LegalIIRpt")
+			/*  if(DEVTYPE=="PropertyValuer1"||DEVTYPE=="PropertyValuer2"||DEVTYPE=="PropertyValuer3"||DEVTYPE=="LegalRpt"||DEVTYPE=="LegalIIRpt")
 				{
 				  var UN1=$(this).attr("data-info").split("|")[1];
 				  var UNIQid = $(RowHTML).find("[name="+UN1+"]").val();
@@ -462,7 +1221,24 @@ $(document).on("click", ".ValuationInit" , function() {
                 }
 			  
 				}
-				} */ 
+				}  */
+		
+		var tbl = $(this).attr("data-aria").split("|")[0];
+		var prfx = $(this).attr("data-aria").split("|")[1];
+		var DATA = $(this).attr("data-aria").split("|")[2];
+		var TYPE = $(this).attr("data-aria").split("|")[3];
+			
+		var Status=$(this).attr("data-Status");
+	    $(RowHTML).find("[name="+Status+"]").val('In Progress');	
+	    
+	/*	if($(RowHTML).find("[name="+DATA+"]").val() == "")
+		{
+		var CUSID = UI_getdata("OFFICE","","Yes","","","Sam_sGetSeqID");
+		
+		$(RowHTML).find("[name="+DATA+"]").val($(CUSID).find("Val1").text());
+
+	    }*/
+		
 	var CHKresult = FormDataToDB_V1(tbl,prfx,$(RowHTML).find("[name="+DATA+"]").val()+"|"+$(RowHTML).find("[name="+DATA+"]").val()+"|" + DATA,RowHTML);
 		
 		 
@@ -495,7 +1271,7 @@ $(document).on("click", ".ValuationInit" , function() {
 			var XML=''
 			var SEQN=''
 			
-			if(DEVTYPE=="PropertyValuer3"||DEVTYPE=="LegalIIRpt")
+			if(DEVTYPE=="PropertyValuer31"||DEVTYPE=="LegalIIRpt1")
 			{
 				
 			
@@ -515,9 +1291,16 @@ $(document).on("click", ".ValuationInit" , function() {
 				
 			} 
 			
-			
+			var Vendorname=GROUP
+			if(GROUP=="FIO"||GROUP=="FIR")
+			{
+				Vendorname='FI'
+				GROUP=GROUP
+			}
 			
 	var WFVndACTVINIT1 = WFVndActvInit($("#ActvID").val(),$("#PrcsID").val()+"|VendorInitiate|Vendor|var_status=SVF&var_statusHES="+Vendorname+"&var_INFO1="+GROUP+"~"+Vendorname+"~"+UNIQid+"~"+UNIQid1+"|ADMIN","LSW_SWFACTVINITCALL");	
+	
+		/* var WFVndACTVINIT1 = WFVndActvInit($("#ActvID").val(),$("#PrcsID").val()+"|VendorInitiate|Vendor|var_status=SVF&var_statusHES="+Vendorname+"&var_INFO1="+GROUP+"~"+Vendorname+"~"+UNIQid+"~"+UNIQid1+"|ADMIN","LSW_SWFACTVINITCALL"); */
 		
 		if (WFVndACTVINIT1 == "Success")
 			{
@@ -525,7 +1308,7 @@ $(document).on("click", ".ValuationInit" , function() {
 			
 			StatusData ("In Progress",RowHTML,Status);
 			
-			if(DEVTYPE=="PropertyValuer3"||DEVTYPE=="LegalIIRpt")
+			if(DEVTYPE=="PropertyValuer31"||DEVTYPE=="LegalIIRpt1")
 			{
 			DEVloadstatus()
 			}
@@ -535,13 +1318,14 @@ $(document).on("click", ".ValuationInit" , function() {
 		else
 			{
 			alert("Initiation Failed");
-			var DEVXML=UI_getdata(XML,SEQNO,"","","","LSW_SPUSHDATATODEV")
+			var DEVXML=UI_getdata("",SEQNO,"","","","LSW_SPUSHDATATODEV")
 			
 			}
 	    })
 
 
-$(".ViewUptRpt").click(function()
+
+ $(document).on("click", ".ViewUptRpt" , function() 
 	{
 		//var HTML=$(this).parent().parent().parent().parent();
 		//$(HTML).find("[name=TEVD_FILESTATUS]").val('Initiated');
@@ -550,16 +1334,34 @@ $(".ViewUptRpt").click(function()
 		var ALTERNREFID=$(this).attr("data-aria").split("|")[4];
         
 		var ACCORD=$(this).attr("data-aria").split("|")[5];
-		
+		var Type=$(this).attr("data-aria").split("|")[6];
 		var HTML=$(this).parent().parent().parent().parent();
 		var UNIQID=$(HTML).find("[name="+REFID+"]").val();
 		var ALTNUNIQID=$(HTML).find("[name="+ALTERNREFID+"]").val();
+		
+		if(($(HTML).find("[name="+Type+"]").val()=="Vehicles")||($(HTML).find("[name="+Type+"]").val()=="Machinery"))
+		{
+			PAGENAME="UCVVehicleDetl";
+		}
+		if($(this).text()=="Update Report")
+		{
+		var UPDADATERPTSTATUS=UI_getdata($("#PrcsID").val(),ALTNUNIQID,"","","","LSW_SCHKDEVIATIONSTATUS")
+	    var UPDATESTAS=$(UPDADATERPTSTATUS).find('UPDATEDEVIATION').text()	
+		if(UPDATESTAS=="PENDING")
+	    	{
+	    	alert('Deivation is pending for approval,cannot Update the report')
+			 return false;
+	    	}
+		
+		}
+		
+		
 		var VENDORSTAT=''
 		if($(this).text()=="View Report")
 		{
 		var VENDOR=UI_getdata($("#PrcsID").val(),ALTNUNIQID,"","","","LSW_SGETVENDORSTATUSCHK")
 	    var VENDORSTAT=$(VENDOR).find('RESULT').text()	
-		var VENDORNAME=$(VENDOR).find('VENDORNAME').text()	
+		var VENDORNAME=$(VENDOR).find('VENDORNAME').text()		
 		}
 		
 		
@@ -571,28 +1373,39 @@ $(".ViewUptRpt").click(function()
 	    	{
         var Formactive = "";//$(".FormPageTab").find("li.active").attr("id");		  
  		var MainActive = $(".FormMainTabs").find("li.active").attr("id");
-		var  ViewFlag=$("#PrMs1").val()
-		RedirectURL = window.location.origin+"/TPLSW/"+PAGENAME+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs10="+MainActive+"&PrMs6="+UNIQID+"&PrMs5="+ALTNUNIQID+"&PrMs3="+ACCORD+"&PrMs1="+ViewFlag;
+		RedirectURL = window.location.origin+"/TPLSW/"+PAGENAME+"?PrcsID="+$("#PrcsID").val()+"&ActvID="+$("#ActvID").val()+"&PrMs10="+MainActive+"&PrMs6="+UNIQID+"&PrMs5="+ALTNUNIQID+"&PrMs3="+ACCORD+"&PrMs1="+$("#PrMs1").val();
 		$(location).attr('href',encodeURI(RedirectURL));
 			}
 	})
 	
 	
 	
-	
+/*	
 	$(".Initiate").click(function () {
 		$(".INITIATEPAGE").show();
 		$(".INITIATE").hide();
 		$("#RCUI_INITIDATED").val('Yes');
-	})
+	})*/
 	
 	
-	$(".VerStatus").click(function () {
+	$(document).on("click", ".VerStatus" , function() 
+	{
         
 		var Value= $(this).val()
 		var id= $(this).attr('id');
+		
+		    var UID=$(this).attr("data-info").split("|")[0];
+			var UIDValue=$(this).closest('.DYNROW').find("[name="+UID+"]").val();
+			/*var Mndxml=UI_getdata($("#PrcsID").val(),$(this).attr("data-info").split("|")[1],UIDValue,"","","LSW_SCHECKADDR")
+			  
+			  if($(Mndxml).find('MSG').text()!="Yes")
+			  {
+				  alert($(Mndxml).find('MSG').text())
+				  return false;
+			  }
+			  */
 	
-	 if(Value=="Verify")	
+		 if(Value=="Verify")	
 			{
 	              var UN1=$(this).attr("data-info").split("|")[0];
 				  var UNIQid = $(this).closest('.DYNROW').find("[name="+UN1+"]").val();
@@ -622,9 +1435,6 @@ $(".ViewUptRpt").click(function()
 	 {
         if(Value=="Verify")
 			{
-				
-				
-				
      		$(this).closest('.DYNROW').find('.Status').val('Verified')
             $(this).closest('.DYNROW').find(".ReAssignPopup").hide();
 			$(this).closest('.DYNROW').find(".ViewDataRpt").show();
@@ -633,7 +1443,13 @@ $(".ViewUptRpt").click(function()
 			//$(this).closest('.DYNROW').find(".CORRDISB").attr("disabled",true)
 			//$(this).closest('.DYNROW').find('.FormSave').click()
 		//	$(this).closest('.DYNROW').find(".RADCOMPL").hide();
+		if(this.name == "FIRV_VERIFY" || this.name == "FIOV_VERIFY")
+		{
+			$(this).closest('.DYNROW').find('#SaveRpt').click()
+		}
+		else{
 			$(this).closest('.DYNROW').find('.FormSave')[0].click()
+		}
 			}
 		if(Value=="Correction")
 			{
@@ -644,9 +1460,8 @@ $(".ViewUptRpt").click(function()
 			$(this).closest('.DYNROW').find(".SaveRpt").hide();
 			$(this).closest('.DYNROW').find(".RADCOMPL").hide();
 			//$(this).closest('.DYNROW').find('.FormSave').click()
-		    $(this).closest('.DYNROW').find('.FormSave')[0].click()    */
+		    $(this).closest('.DYNROW').find('.FormSave')[0].click()*/
 			$(this).closest('.DYNROW').find('.ReAssignPopup').click()
-			//$(this).closest('.DYNROW').find('input[type=radio]').prop('checked', false);
             }
 		
 	 }
@@ -659,6 +1474,46 @@ $(".ViewUptRpt").click(function()
 		
 	    })
 	
+	$(document).on("click", ".APPLIC" , function() 
+	{
+        
+		var Value= $(this).val()
+		var id= $(this).attr('id');
+		/*   if(Value=="Not Applicable")	
+			{
+             var Statement='Confirm Not Applicable';
+			}
+		
+		 if(Value=="Waiver")	
+		 {
+         var Statement='Confirm Waiver'
+	  	} 
+		if(confirm(Statement+' ') == true)
+	    { */
+         if(Value=="Not Applicable")
+		 {
+			 $(this).closest('.DYNROW').find('.FormSave')[0].click()
+			
+		 } 
+		 if(Value=="Waiver")
+		 {
+			 $(this).closest('.DYNROW').find('.FormSave')[0].click()
+			
+		 } 
+		 if(Value=="Applicable")
+		 {
+			 $(this).closest('.DYNROW').find('.FormSave')[0].click()
+			
+		 }
+		
+		/*  
+		 else
+	    {
+	 
+	   $(this).closest('.DYNROW').find('input[type=radio]').prop('checked', false);
+	   } */
+		
+	 })	
 	
 	
 	
@@ -670,23 +1525,65 @@ $(".ViewUptRpt").click(function()
    $("#"+ACCORD).find('.AFormaccordion').click()
 	}
 	}
+	/* 
+	 $(document).on("click", ".Chkinit" , function() {
+	   
+	   if($(this).text() == "Initiate")
+	   {
+		   if($("#TEVD_WAVIER").val()=="Applicable")
+		   {
+		  // $("#Inti").closest('div').find('APPLIC').hide()
+			$('.APPLIC').hide();
+		   }
+	   }   
+	   
+   })  */
+  
+	//$('.FormSave').on('click', function() 
+	
+	 $(document).on("click", ".FormSave" , function() {
 	
 	
-
-	
-	$('.FormSave').on('click', function() {
     var TYPE = $(this).attr("data-aria").split("|")[3];
 		
 		
-		
+		if(TYPE=="RCU" && $(this).text() == "Save for Initiation")
+		{
+			$("#RCUI_VENDORID").val($("#RCUI_VENDORNAME option:selected").text());
+			var RCUUNIQID=UI_getdata("","","","","","LSW_SGETTOKEN")
+			$("#RCUI_UNIQID").val($(RCUUNIQID).find("TOKEN").text());
+			var prfx = $(this).attr("data-aria").split("|")[1];
+			var MndtryChk = ChkMandatoryFlds("INTIMndtry");
+			if($("#RCUI_STATUS").val()=="To be Initiated")
+			 {
+				 $("#RCUI_STATUS").next().addClass('active')
+				 $("#RCUI_STATUS").val('In Progress');
+			 }	
+			if(MndtryChk == "Mandatory")
+				{
+				alert("Fill the Mandatory Fields / Document(s)");
+				return false;
+				}
+			//$("#RCUI_INITIDATED").val('Yes');
+			
+			
+			}
+			
 		 if(TYPE=="RCU" && $(this).text() == "Initiate")
 	{	
+	$("#RCUI_VENDORID").val($("#RCUI_VENDORNAME option:selected").text());
+	var RCUUNIQID=UI_getdata("","","","","","LSW_SGETTOKEN")
+	$("#RCUI_UNIQID").val($(RCUUNIQID).find("TOKEN").text());
 	var prfx = $(this).attr("data-aria").split("|")[1];
 	var MndtryChk = ChkMandatoryFlds("INTIMndtry");
-	
+	if($("#RCUI_STATUS").val()=="To be Initiated")
+	 {
+		 $("#RCUI_STATUS").next().addClass('active')
+		 $("#RCUI_STATUS").val('In Progress');
+	 }	
 	if(MndtryChk == "Mandatory")
 		{
-		alert("Fill the Mandatory Fields");
+		alert("Fill the Mandatory Fields / Document(s)");
 		return false;
 		}
 	$("#RCUI_INITIDATED").val('Yes');
@@ -709,15 +1606,49 @@ $(".ViewUptRpt").click(function()
 		
 		if(MndtryChk == "Mandatory")
 			{
-			alert("Fill the Mandatory Fields");
+			alert("Fill the Mandatory Fields / Document(s)");
 			return false;
 			}
 			$("#RCUI_FILESTATSU").val('Completed')
+			
+			
+/* 			if($("#RCUI_DATEOFCOMP").val() == "")
+		    		{
+                    var today=$("#DMY7").val().split("|")[1]
+		    		$("#RCUI_DATEOFCOMP").val(today)
+		    		$(RCUI_DATEOFCOMP).next().addClass('active')
+		    		} */
+					$('.RCUSUB').text('Re-submit')
+			
+		}
+		
+		
+		if(TYPE=="RCU" && $(this).text()=="Re-submit")
+		{	
+		var prfx = $(this).attr("data-aria").split("|")[1];
+		var MndtryChk = ChkMandatoryFlds(prfx+"Mndtry");
+		
+		if(MndtryChk == "Mandatory")
+			{
+			alert("Fill the Mandatory Fields / Document(s)");
+			return false;
+			}
+			$("#RCUI_FILESTATSU").val('Completed')
+			
+			
+/* 			if($("#RCUI_DATEOFCOMP").val() == "")
+		    		{
+                    var today=$("#DMY7").val().split("|")[1]
+		    		$("#RCUI_DATEOFCOMP").val(today)
+		    		$(RCUI_DATEOFCOMP).next().addClass('active')
+		    		} */
+					$('.RCUSUB').text('Re-submit')
+			
 		}
 		
 		
 		
-			if(TYPE=="ADVSMART" && $(this).text() == "Initiate"||$(this).text() == "Get Report")
+		if(TYPE=="ADVSMART" && $(this).text() == "Initiate")
 		{	
 		var prfx = $(this).attr("data-aria").split("|")[1];
 		var MndtryChk = ChkMandatoryFlds(prfx+"Mndtry");
@@ -729,15 +1660,13 @@ $(".ViewUptRpt").click(function()
 		  
 		  if(MndtryChk == "Mandatory")
 		   {
-		   alert("Fill the Mandatory Fields");
+		   alert("Fill the Mandatory Fields / Document(s)");
 		   return false;
 		   }
 		
 		}
 		
-		
-		
-		if(TYPE=="PropertyVisit" && $(this).text() == "Submit"||$(this).text()=="Re-submit")
+		if(TYPE=="ADVSMART" && $(this).text() == "Get Report")
 		{	
 		var prfx = $(this).attr("data-aria").split("|")[1];
 		var MndtryChk = ChkMandatoryFlds(prfx+"Mndtry");
@@ -749,9 +1678,38 @@ $(".ViewUptRpt").click(function()
 		  
 		  if(MndtryChk == "Mandatory")
 		   {
-		   alert("Fill the Mandatory Fields");
+		   alert("Fill the Mandatory Fields / Document(s)");
 		   return false;
 		   }
+		
+		}
+		
+		if(TYPE=="PropertyVisit" && $(this).text() == "Submit")
+		{	
+	     	 var RowHTML = $(this).parent().parent().parent().parent();
+			  var prfx = $(this).attr("data-aria").split("|")[1];
+			  var MndtryChk = ChkMandatoryFlds_V1(prfx+"Mndtry",RowHTML);
+			  
+			  if(MndtryChk == "Mandatory")
+			   {
+			   alert("Fill the Mandatory Fields / Document(s)");
+			   return false;
+			   }
+		 $(RowHTML).find('.Resub').text('Re-submit')
+		}
+		
+		
+		if(TYPE=="PropertyVisit" &&$(this).text()=="Re-submit")
+		{	
+	     	 var RowHTML = $(this).parent().parent().parent().parent();
+			  var prfx = $(this).attr("data-aria").split("|")[1];
+			  var MndtryChk = ChkMandatoryFlds_V1(prfx+"Mndtry",RowHTML);
+			  
+			  if(MndtryChk == "Mandatory")
+			   {
+			   alert("Fill the Mandatory Fields / Document(s)");
+			   return false;
+			   }
 		 $(RowHTML).find('.Resub').text('Re-submit')
 		}
 		
@@ -764,12 +1722,7 @@ $(".ViewUptRpt").click(function()
 		   var TYPE = $(this).attr("data-aria").split("|")[3];
 		    if(TYPE=="RCU")
 			   {
-		    	if($("#RCUI_DATEOFCOMP").val() == "")
-		    		{
-                    var today=$("#DMY7").val().split("|")[1]
-		    		$("#RCUI_DATEOFCOMP").val(today)
-		    		$(RCUI_DATEOFCOMP).next().addClass('active')
-		    		}
+		    	
 		    	
 		    	 var RCUSTATUSGRD = TxtGridsubmitdata_V1("Table2","RCUS_","RCUI_");
 				   AssignGridXmltoField("RCUI_RCUSTATUSGRID", RCUSTATUSGRD)
@@ -798,14 +1751,17 @@ $(".ViewUptRpt").click(function()
 			 var CHKresult = FormDataToDB_V1(tbl,prfx,$(RowHTML).find("[name="+DATA+"]").val()+"|"+$(RowHTML).find("[name="+DATA+"]").val()+"|" + DATA,RowHTML);
             }
 			
-			
-			
+				
 		    
 		    if(CHKresult=="Success")
 		    	{
 		    	
 		    	alert('Form Saved Sucessfully')
 		    	}
+				if(TYPE=="RCU" && $(this).text() == "Initiate")
+				{
+					InitRCU(this);
+				}
 		   // Customer Seq ID Gen Start		
 	   /*if($("#GRBI_CUSID").val() == "")
 		{
@@ -856,7 +1812,8 @@ $(".ViewUptRpt").click(function()
 	   })*/
   
 	   
-$(".UPDateRptPopup").click(function () {
+$(document).on("click", ".UPDateRptPopup" , function() 
+{
 	
 	
 	var RowCount=$(this).attr("data-row").split("|")[0]
@@ -867,12 +1824,26 @@ $(".UPDateRptPopup").click(function () {
 	 
 	 var PAGENAME =$(this).attr("data-for").split("|")[0]
 	
+		if($(this).text()=="Update Report")
+		{
+		var UPDADATERPTSTATUS=UI_getdata($("#PrcsID").val(),ALTNUNIQID,"","","","LSW_SCHKDEVIATIONSTATUS")
+	    var UPDATESTAS=$(UPDADATERPTSTATUS).find('UPDATEDEVIATION').text()	
+		if(UPDATESTAS=="PENDING")
+	    	{
+	    	alert('Deivation is pending for approval,cannot Update the report')
+			 return false;
+	    	}
+		
+		}
+	
+	
        var VENDORSTAT=''
 		if($(this).text()=="View Report")
 		{	
      	var VENDOR=UI_getdata($("#PrcsID").val(),ALTNUNIQID,"","","","LSW_SGETVENDORSTATUSCHK")
         var VENDORSTAT=$(VENDOR).find('RESULT').text()	
-	    var VENDORNAME=$(VENDOR).find('VENDORNAME').text()	
+	    var VENDORNAME=$(VENDOR).find('VENDORNAME').text()
+  
 		}
     if(VENDORSTAT=="VENDORCOMPLETED")
     	{
@@ -959,6 +1930,8 @@ $("#RPT_Date").next().addClass('active');
   $('.FIOFFICEATT').show()
   $("#FIOFFICEATTUPLOAD").hide()
   $('.rounded').show();
+   $('.FIDU').find('.name').text('')
+   $('.reupload').show();
   }
   else
   {
@@ -969,6 +1942,7 @@ $("#RPT_Date").next().addClass('active');
   $("input[name=datafile]").attr('display','block');
   
   $('.FIDU').find('.name').text('Click Here to Upload')
+  $('.reupload').hide();
   }
 
   
@@ -982,6 +1956,29 @@ $("#RPT_Date").next().addClass('active');
 	  {
 	  $("#OFRemarks").next().removeClass('active'); 
 	  }
+	  
+	  if($(this).text()=="View Report")
+		{
+			$('.OFFVERDone').hide();
+			$("#DT_Inititate").closest('div').find('img').hide()
+			$("#RPT_Date").closest('div').find('img').hide()
+			$("#RPT_Date").attr('disabled',true)
+			$("#OFRemarks").attr('disabled',true)
+			$("#FI_STATUS").prev().prev().attr('disabled',true)
+			$("#FIOFFICEATT").closest('table').prev('div').find('img[title="UPLOAD"]').hide()
+		}
+		
+		else
+		{
+			$('.OFFVERDone').show();
+			$("#DT_Inititate").closest('div').find('img').show()
+			$("#RPT_Date").closest('div').find('img').show()
+			$("#RPT_Date").attr('disabled',false)
+			$("#OFRemarks").attr('disabled',false)
+			$("#FI_STATUS").prev().prev().attr('disabled',false)
+			$("#FIOFFICEATT").closest('table').prev('div').find('img[title="UPLOAD"]').show()
+		}
+	  
 }
   
   
@@ -997,7 +1994,7 @@ $("#RPT_Date").next().addClass('active');
 		  var MndtryChk = ChkMandatoryFlds("UPDATEMndtry");
             if (MndtryChk == "Mandatory") 
             {
-                alert("Fill the Mandatory Fields");
+                alert("Fill the Mandatory Fields / Document(s)");
                 return false;
             }
 		
@@ -1007,17 +2004,6 @@ $("#RPT_Date").next().addClass('active');
                 return false;
             }
 			
-			
-			
-			if(confirm('Are you sure the entered address is correct or not , once Completed the entered address cannot be  editable') == true)
-                 {
-                  
-                 } 
-			  else
-				  {
-					  $(".close").click();
-	                   return false;
-                  }
 			
 		
 		if(UPDATEVENDER=="FIOfficeVerify")	
@@ -1049,7 +2035,6 @@ $("#RPT_Date").next().addClass('active');
 		
 		var UNIQID=$("#FIUNIQUEID").val()
 		
-		
 		var xml1=UI_getdata($("#PrcsID").val(),UNIQID,"","","","LSW_SCHKVENDORCOMP")
              var VENCOMSTA=$(xml1).find('RESULT').text()
 			 if(VENCOMSTA=="YES")
@@ -1067,12 +2052,19 @@ $("#RPT_Date").next().addClass('active');
 				return false
 		
 		     }
-			 
-			 
+		
+		
+		
 		var xml=UI_getdata($("#PrcsID").val(),UNIQID,"FIOFFICE",$("#LogUsr").val(),"","LSW_SSTATUSUPDATE")
 		
 		
             var DATAROW=DATAROW -1
+				// var DATA=["FIOfficeVerify|FIOV_STATUS"]
+		      //   var ValuationID=DATA[j].split("|")[0];
+			   //  var ValuationStatus=DATA[j].split("|")[1];
+		       //   var row = $("." + ValuationID).find(".DYNROW").length;
+				//Click save
+			//	$(".close").click();
 		         var HTML =	 $("." + "FIOfficeVerify").find(".DYNROW")[DATAROW];
 		        $(HTML).find('.Save').click()
 
@@ -1081,6 +2073,7 @@ $(HTML).find(".ReAssignPopup").hide();
 $(HTML).find(".ViewDataRpt").show();
 $(HTML).find(".ViewRpt").hide();
 $(HTML).find(".SaveRpt").show();
+window.location.reload();
 		     //   $(HTML).find('.ViewDataRpt').show()
 		        $(".close").click();     
 			}
@@ -1120,7 +2113,6 @@ $(HTML).find(".SaveRpt").show();
 				 
 				 var DATAROW=DATAROW -1
 				 var HTML =	 $("." + "FIResidVerify").find(".DYNROW")[DATAROW];
-		        $(HTML).find('.Save').click()
                 $(HTML).find(".ValuationInit").hide();
                 $(HTML).find(".ReAssignPopup").hide();
                 $(HTML).find(".ViewDataRpt").show();
@@ -1147,14 +2139,15 @@ $(HTML).find(".ReAssignPopup").hide();
 $(HTML).find(".ViewDataRpt").show();
 $(HTML).find(".ViewRpt").hide();
 $(HTML).find(".SaveRpt").show();
-		        
+		        window.location.reload();
 		        $(".close").click();     
 			}
           })
 
 
 
-		$(".ReAssignPopup").on('click', function() {
+	$(document).on("click", ".ReAssignPopup" , function() 
+		{
 		  $("#Reassign").click();
 		  
 	var RowCount=$(this).attr("data-row").split("|")[0]
@@ -1194,6 +2187,7 @@ $(HTML).find(".SaveRpt").show();
 	$("#UNIQUID").val($("#"+UNI+RowCount).val());
 	$("#ALTNUNIQUID").val($("#"+UNII+RowCount).val());
 	
+	 $("#REASSVENDOR").empty();
      $("#REASSVENDOR").val('');
 	 $('#REASSVENDOR').material_select("destroy");	
 	 $('#REASSVENDOR').material_select();
@@ -1272,6 +2266,11 @@ $(".ReAssignDone").click(function () {
 		 $('#'+REASSVENDERID+DATAROWReASS).val(REASSVENDOR+'|'+RSVender); 
 		 
 		 var  ASSVENSTATUS=$("#ASSVENSTATUS").val()
+		 
+		 if(ASSVENSTATUS=="To be Initiated")
+		 {
+			ASSVENSTATUS='In Progress' 
+		 }
 		   var  ADDR=$("#RSAddPRoperty").val()
 		   
 		   var PRCSTYP= $("#PROCESSTYPE").val();
@@ -1326,6 +2325,8 @@ $(".ReAssignDone").click(function () {
 			}
 			
 		   var XML='<DEVCODE>DEV0001</DEVCODE><TYPE>Vendor</TYPE><VENDORID>'+RSVender+'</VENDORID><BRID></BRID><PRCSID>'+$("#PrcsID").val()+'</PRCSID><PROPNO>'+$("#UNIQUID").val()+'</PROPNO><UNIQNO>'+$("#ALTNUNIQUID").val()+'</UNIQNO><SEQNO></SEQNO><CATEGORY>'+$("#WFGROUP").val()+'</CATEGORY><REMARKS>'+$("#RSREASSREMARKS").val()+'</REMARKS><CRNTSTATUS>'+ASSVENSTATUS+'</CRNTSTATUS><ADDR>'+ADDR+'</ADDR><PRCSTYP>'+PRCSTYP+'</PRCSTYP>'	
+		   
+		   
 			// var XML=''
 			var DEVXML=UI_getdata(XML,"","","","","LSW_SPUSHDATATODEV")
              var DESCRIPTION=$(DEVXML).find('DESCRIPTION').text();
@@ -1341,14 +2342,14 @@ $(".ReAssignDone").click(function () {
 		    alert(DESCRIPTION)
 			
 			
-			
+			var RSVender=$("#WFGROUP").val()
 			
 	var WFVndACTVINIT1 = WFVndActvInit($("#ActvID").val(),$("#PrcsID").val()+"|VendorInitiate|Vendor|var_status=SVF&var_statusHES="+RSVender+"&var_INFO1="+$("#WFGROUP").val()+"~"+RSVender+"~"+$("#UNIQUID").val()+"~"+$("#ALTNUNIQUID").val()+"|ADMIN","LSW_SWFACTVINITCALL");	
 		
 		
 		 var HTML=$('#'+REASSVENDERID+DATAROWReASS).closest('.DYNROW')
-		 
-		 var DEVTYPE =$(HTML).find("#Inti").attr("data-for").split("|")[0];
+		   
+		    var DEVTYPE =$(HTML).find("#Inti").attr("data-for").split("|")[0];
 		 
 		 
 		 if (WFVndACTVINIT1 == "Success"&& STATUS=="Y")
@@ -1365,8 +2366,6 @@ $(".ReAssignDone").click(function () {
 				}
 				
 		 }
-		 
-		 
 		   
 		 var tbl=$(HTML).find("#Inti").attr("data-aria").split("|")[0];
 		 var prfx=$(HTML).find("#Inti").attr("data-aria").split("|")[1];
@@ -1383,7 +2382,8 @@ $(".ReAssignDone").click(function () {
 			{
 			alert("Initiation Failed");
 			var DEVXML=UI_getdata("",SEQNO,"","","","LSW_SPUSHDATATODEV")
-            }
+			
+			}
 
 		
 		//  var HTML =$("." +DIVID).find(".DYNROW")[DATAROWReASS];
@@ -1446,6 +2446,18 @@ $(".ReAssignDone").click(function () {
 	  //  GrdDocDwnld('CBSI_PANATTACHMENT')"	
 		GrdDocDwnld(Attachview)
 		})
+		
+		$(".ViewRCUReport").click(function () {
+		var a = window.location.href;
+	a=btoa(a);
+		var PrMst8 = 'AdditionalURL|Appl|No Add';
+	$(location).attr('href',encodeURI(window.location.origin + "/TPLSW/IRCU?PrcsID="
+			+$("#PrcsID").val()
+			+"&ActvID="+$("#ActvID").val()+"&PrMs3="+a
+						+"&PrMs6="+$("#RCUI_UNIQID").val()
+						+"&PrMs5="+"IRCU"+$("#RCUI_UNIQID").val()
+						+"&PrMs8="+PrMst8+"&PrMs9=FormPageTab1&PrMs10=FormMainTab9&PrMs1=View")); 
+	});
 
 });
 

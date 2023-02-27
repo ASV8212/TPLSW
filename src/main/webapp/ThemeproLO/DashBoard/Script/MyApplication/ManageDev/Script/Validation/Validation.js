@@ -36,7 +36,7 @@ function GridControlDetailMNGDEV (popTableModPageGrid1,TableID,dtData,dtcolumn,h
          
 "aoColumnDefs": [ 
        		   { "sClass": "dpass", "aTargets": jQuery.parseJSON(hideClm)},
-       		{ targets: 3, "render": function ( data, type, row, meta ) {                            
+       		{ targets: 6, "render": function ( data, type, row, meta ) {                            
     	 		 
        			var rowno = meta.row;	
        			
@@ -46,7 +46,7 @@ function GridControlDetailMNGDEV (popTableModPageGrid1,TableID,dtData,dtcolumn,h
        				{
        				data = Addvalue;
        				}
-				var	HTML =  '<span id=""><img src="ThemeproLO/Common/FEP/images/Remarks.png" title="VIEW" onclick="REMARKPOPUP(this)" class="" width="35" height="25">';
+				var	HTML =  '<span id=""><img src="ThemeproLO/Common/FEP/images/Remarks.png" title="VIEW" onclick="REMARKPOPUPDSBL(this)" class="" width="35" height="25">';
 				var	HTML =  HTML + '<input type="text" style="display:none;" id="DEVT_REMARK'+rowno+'"  name="DEVT_REMARK'+rowno+'" disabled class="form-control DSVLBL form-control     ">';		 
 				var htmldata = $(HTML);
        			$(htmldata).find('[name=DEVT_REMARK'+rowno+']').attr("value",data);
@@ -54,9 +54,9 @@ function GridControlDetailMNGDEV (popTableModPageGrid1,TableID,dtData,dtcolumn,h
                 } 
        		 },
        		{
-                 targets: 4,
+                 targets: 7,
                  "render": function(data, type, row, meta) {
-                 	if(row[4] == "Pending" ){
+                 	if(row[7] == "Pending" ){
                  		var rowno = meta.row;
                          var HTML = '<span><div class="HyperControls "><i class="fa fa-check"></i><a  class="Btxt4 OTCSTATUS" id="Approve'+ rowno +'" name="Approve'+ rowno +'" data-value="Approve" data-table="TableRR" href="#">Approve</a></div>';
                          HTML = HTML + '<div class="HyperControls"><i class="fa fa fa-times"></i><a  class="Btxt4 OTCSTATUS" id="Reject'+ rowno +'" name="Reject'+ rowno +'"  data-table="TableRR" href="#">Reject</a></div>';
@@ -94,3 +94,26 @@ function GridControlDetailMNGDEV (popTableModPageGrid1,TableID,dtData,dtcolumn,h
          });
 	 
  }
+
+
+function REMARKPOPUPDSBL(Evnt){
+	var ClosID = $(Evnt).next()
+	var val =ClosID.val()
+	
+	$("#REMARKSPopup").click();
+	$("#REMARKSModal").find("#RemarksCONFIRM").attr("data-to",$(ClosID).attr("id"))
+	$("#RemarksCONFIRM").hide();
+	if(val != ""){
+		$("#POPUPRemarks").val(val);
+	///	$("#POPUPRemarks").attr("disabled","disabled")
+		$("#POPUPRemarks").next().addClass('active');
+		
+	}
+	else{
+		$("#POPUPRemarks").val("");
+	//	$("#POPUPRemarks").attr("disabled","disabled")
+		$("#POPUPRemarks").next().addClass('active');
+	}
+	
+	$("#RemarksCONFIRM").show();
+}

@@ -13,6 +13,7 @@ $(document).ready(function () {
 	 
 	FormDataFromDB("LSW_TGSTBASEDDTLS","CGST_", "CGSTDBfields", "CGST_SCHEMEID")
 	  CheckLoan();
+	  Getgstsls();
 	//LoadMultiData("",$("#PrcsID").val(),"","PROPEAPPRI","PAPDDBfields","LSW_SPROPEAPPRISAL");
 		
 	//getRadioVal();	
@@ -31,7 +32,7 @@ $(document).ready(function () {
 		
 		if(MndtryChk == "Mandatory")
 			{
-			alert("Fill the Mandatory Fields");
+			alert("Fill the Mandatory Fields / Document(s)");
 			return false;
 			}
 		}

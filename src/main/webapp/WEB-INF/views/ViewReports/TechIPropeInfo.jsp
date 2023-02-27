@@ -69,20 +69,20 @@
         <div class="form-row ">
              <div class="col-md-4">
                   <div class="md-form">
-                    <input type="text" id="TPIF_PLOTNO" name="TPIF_PLOTNO" maxlength="6"  class="form-control SMADDR AddrNoSpecialChar TPIFDBfields">
+                    <input type="text" id="TPIF_PLOTNO" name="TPIF_PLOTNO" maxlength="30"  class="form-control SMADDR AddrNoSpecialChar TPIFDBfields">
                     <label for="TPIF_PLOTNO" class="">Plot Number<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
                 <div class="col-md-4">
                    <div class="md-form">
-                       <input type="text" id="TPIF_DOORNO" name="TPIF_DOORNO"  maxlength="7"  class="form-control SMADDR AddrNoSpecialChar TPIFDBfields">
+                       <input type="text" id="TPIF_DOORNO" name="TPIF_DOORNO"  maxlength="30"  class="form-control SMADDR AddrNoSpecialChar TPIFDBfields">
                        <label for="TPIF_DOORNO" class="">Door Number<span class="MndtryAstr"></span></label>
                    </div>
                 </div>
                  <div class="col-md-4">
                   <!-- First name -->
                    <div class="md-form">
-                       <input type="text" id="TPIF_BUIDNAME" maxlength="15" name="TPIF_BUIDNAME" class="form-control IsAlphaFields SMADDR TPIFDBfields">
+                       <input type="text" id="TPIF_BUIDNAME" maxlength="100" name="TPIF_BUIDNAME" class="form-control AddrNoSpecialChar SMADDR TPIFDBfields">
                        <label for="TPIF_BUIDNAME" class="">Building Name/House Name<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
@@ -91,21 +91,21 @@
              <div class="col-md-4">
                   <!-- First name -->
                   <div class="md-form">
-                    <input type="text" id="TPIF_STREETNAME" maxlength="15" name="TPIF_STREETNAME"  class="form-control IsAlphaFields SMADDR TPIFDBfields">
+                    <input type="text" id="TPIF_STREETNAME" maxlength="100" name="TPIF_STREETNAME"  class="form-control IsAlphaFields SMADDR TPIFDBfields">
                     <label for="TPIF_STREETNAME" class="">Street Name<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <!-- First name -->
                    <div class="md-form">
-                       <input type="text" id="TPIF_LOCALITY" maxlength="15" name="TPIF_LOCALITY" class="form-control SMADDR TPIFDBfields">
+                       <input type="text" id="TPIF_LOCALITY" maxlength="100" name="TPIF_LOCALITY" class="form-control SMADDR AddrNoSpecialChar TPIFDBfields">
                        <label for="TPIF_LOCALITY" class="">Locality<span class="MndtryAstr"></span></label>
                    </div>
                 </div>
                  <div class="col-md-4">
                   <!-- First name -->
                    <div class="md-form">
-                       <input type="text" id="TPIF_SERVEYNO" maxlength="10" name="TPIF_SERVEYNO" class="form-control SMADDR NoSpecialChar TPIFDBfields">
+                       <input type="text" id="TPIF_SERVEYNO" maxlength="30" name="TPIF_SERVEYNO" class="form-control SMADDR AddrNoSpecialChar TPIFDBfields">
                        <label for="TPIF_SERVEYNO" class="">Survey Number<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
@@ -136,7 +136,7 @@
             <div class="form-row">
                <div class=" col-md-12">
                   <div class="md-form">
-                    <input type="text" id="TPIF_LANDMARK" name="TPIF_LANDMARK" class="form-control IsAlphaFields TPIFDBfields">
+                    <input type="text" id="TPIF_LANDMARK" maxlength="100"  name="TPIF_LANDMARK" class="form-control AddrNoSpecialChar TPIFDBfields">
                     <label for="TPIF_LANDMARK" class="">Land Mark<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
@@ -158,21 +158,21 @@
              <div class="col-md-4">
                   <!-- First name -->
                   <div class="md-form">
-                    <input type="text" id="TPIF_DOCPLOTNO" maxlength="6" name="TPIF_DOCPLOTNO"  class="form-control SMDOC SMADDR AddrNoSpecialChar TPIFDBfields">
+                    <input type="text" id="TPIF_DOCPLOTNO" maxlength="30" name="TPIF_DOCPLOTNO"  class="form-control SMDOC SMADDR AddrNoSpecialChar TPIFDBfields">
                     <label for="TPIF_DOCPLOTNO" class="ADDR">Plot Number<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <!-- First name -->
                    <div class="md-form">
-                       <input type="text" id="TPIF_DOCDOORNO" maxlength="7" name="TPIF_DOCDOORNO" class="form-control SMDOC SMADDR AddrNoSpecialChar TPIFDBfields">
+                       <input type="text" id="TPIF_DOCDOORNO" maxlength="30" name="TPIF_DOCDOORNO" class="form-control SMDOC SMADDR AddrNoSpecialChar TPIFDBfields">
                        <label for="TPIF_DOCDOORNO" class="ADDR">Door Number<span class="MndtryAstr"></span></label>
                    </div>
                 </div>
               <div class="col-md-4">
                   <!-- First name -->
                    <div class="md-form">
-                       <input type="text" id="TPIF_DOCBUILDNAME" maxlength="15" name="TPIF_DOCBUILDNAME" class="form-control SMDOC IsAlphaFields SMADDR TPIFDBfields">
+                       <input type="text" id="TPIF_DOCBUILDNAME" maxlength="100" name="TPIF_DOCBUILDNAME" class="form-control SMDOC IsAlphaFields SMADDR TPIFDBfields">
                        <label for="TPIF_DOCBUILDNAME" class="ADDR">Building Name/House Name<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
@@ -181,21 +181,21 @@
              <div class="col-md-4">
                   <!-- First name -->
                   <div class="md-form">
-                    <input type="text" id="TPIF_DOCSTREETNAME" maxlength="15" name="TPIF_DOCSTREETNAME"  class="form-control SMDOC IsAlphaFields SMADDR TPIFDBfields">
+                    <input type="text" id="TPIF_DOCSTREETNAME" maxlength="100" name="TPIF_DOCSTREETNAME"  class="form-control SMDOC IsAlphaFields SMADDR TPIFDBfields">
                     <label for="TPIF_DOCSTREETNAME" class="ADDR">Street Name<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <!-- First name -->
                    <div class="md-form">
-                       <input type="text" id="TPIF_DOCLOCALITY" maxlength="15" name="TPIF_DOCLOCALITY" class="form-control SMDOC IsAlphaFields SMADDR TPIFDBfields">
+                       <input type="text" id="TPIF_DOCLOCALITY" maxlength="100" name="TPIF_DOCLOCALITY" class="form-control SMDOC AddrNoSpecialChar SMADDR TPIFDBfields">
                        <label for="TPIF_DOCLOCALITY" class="ADDR">Locality<span class="MndtryAstr"></span></label>
                    </div>
                 </div>
                  <div class="col-md-4">
                   <!-- First name -->
                    <div class="md-form">
-                       <input type="text" id="TPIF_DOCSERVEYNO" maxlength="15" name="TPIF_DOCSERVEYNO" class="form-control NoSpecialChar SMDOC SMADDR TPIFDBfields">
+                       <input type="text" id="TPIF_DOCSERVEYNO" maxlength="30" name="TPIF_DOCSERVEYNO" class="form-control AddrNoSpecialChar SMDOC SMADDR TPIFDBfields">
                        <label for="TPIF_DOCSERVEYNO" class="ADDR">Survey Number<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
@@ -223,9 +223,71 @@
                   </div>
                 </div>
             </div>  
+			
+			<div class="form-row">
+		  <div class="col-md-6">
+                    <div class="col Btxt10">Uploaded Security Documents</div>
+                     <div data-for="UploadSecurityDoc" class="UploadSecurityDoc"> 
+                     </div>
+                     <div class="DynamicPageGrid" data-val="PROPTXTHDR|" id="UploadSecurityDoc" style="display:none">
+                        <div data-row="" class="card-body px-lg-5 pt-0 DYNROW">
+                           </br>
+                           <input type="text" id="PRDO_PRCSID" hidden="hidden" name="PRDO_PRCSID" value="" class="form-control PRDODBfields">
+                           <input type="text" id="PRDO_ACTIVITYID" hidden="hidden" name="PRDO_ACTIVITYID" class="form-control PRDODBfields">
+                           <input type="text" id="PRDO_DTCREATED" hidden="hidden" name="PRDO_DTCREATED" class="form-control PRDODBfields">
+                           <input type="text" id="PRDO_CREATEDBY" hidden="hidden" name="PRDO_CREATEDBY" class="form-control PRDODBfields">
+                           <input type="text" id="PRDO_DTMODIFIED" hidden="hidden" name="PRDO_DTMODIFIED" class="form-control PRDODBfields">
+                           <input type="text" id="PRDO_MODIFIEDBY" hidden="hidden" name="PRDO_MODIFIEDBY" class="form-control PRDODBfields">
+                           <input type="text" id="PRDO_PROPNUM" hidden="hidden" name="PRDO_PROPNUM" class="form-control PRDODBfields">
+						   <div class="form-row">
+                              <div class="col">
+                                 <div class="md-form " >
+                                    <table>
+                                       <tr>
+                                          <td>
+                                             <div id="PRDO_DOCUMENTUPLOAD"  class="file-field" style="display:none">
+                                                <a class="">
+                                                <i class="fa fa-plus imgAdd" aria-hidden=""></i>
+                                                <input type="file"  name="datafile" onchange="DocFldUpldHndlr_V1(this,'PRDO_DOCUMENT'+$(this).closest('.DYNROW').attr('data-row'),'PRDO_DOCUMENT','PDDetails','PDDate','PD',$(this).closest('.DYNROW'))" class="PRDO_DOCUMENT"  >
+                                                </a>
+                                                <input type="text" id="PRDO_DOCUMENT" hidden="hidden" data-Validate="PRDO_DOCUMENT"  name="PRDO_DOCUMENT" class="form-control File PRDODBfields PRDOMndtry">
+                                                <span class="name">Upload Documents</span> 
+                                             </div>
+                                          </td>
+                                          <div class="md-form" >
+                                             <div class="md-form Formcol-mdLR">
+												 <div class="PRDO_DOCUMENT"> 
+												 <img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW" 
+                                                onclick="GrdDocDwnld('PRDO_DOCUMENT'+$(this).closest('.DYNROW').attr('data-row'))" class="rounded" 
+                                                alt="Cinque Terre" width="35" height="25">
+												</div>
+                                             </div>
+                                          </div>
+                                       </tr>
+                                    </table>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="HyperControls form-row" style="display:none" >
+                        <a onclick="AddPageMultiData('',$('#PRDO_PRCSID').val(),$('#LPDT_PROPERTYNO').val(),'BankDetail1','PRDODBfields');" class="Btxt4 FltRight ADDBTN "  href="#">+ Add</a>
+                        <!-- <a class="Btxt4" id="AuditTrail" href="#">Audit Trail</a> -->
+                     </div>
+                  </div>
+				  </div>
+			
+			
+			
+			
+			
+			
+			
            <div class="form-row">
         		<div class="col Btxt10">TECHNICAL VALUATION DETAILS</div>
         	</div> 
+			
+
 			
 			<div class="form-row">
 
@@ -261,47 +323,20 @@
 				</select>
 				<label class="mdb-main-label BTxt9">Building type<span class="MndtryAstr">*</span></label>
              </div>
-            </div>    
-           <div class="col-md-4">
+            </div>   
+             <div class="col-md-4">
 		       <div class="md-form">
                   <input type="text" id="TPIF_MLTITENANT" maxlength="3" onchange="ChkMultiTenant(this)" name="TPIF_MLTITENANT" class="form-control NoSpecialChar TPIFMndtry IsNumberFields  TPIFDBfields">
                   <label for="TPIF_MLTITENANT" class="">Multi Tenant<span class="MndtryAstr">*</span></label>
                </div>	
-           </div>			
-     </div>
-	 <div class="form-row">
-          <div class="col-md-4">
-                 <div class="md-form">
-                  <select class="mdb-select md-form colorful-select dropdown-primary  TPIFMndtry TPIFDBfields" id="TPIF_PROPERTYPE" name="TPIF_PROPERTYPE">
-                  	<option value="">Select</option>
-  					<option value="Individual House">Individual House</option>
- 					<option value="Flat">Flat</option>
-  					<option value="Office">Office</option>
-  					<option value="Shop">Shop</option>
- 					<option value="Industrial Property">Industrial Property</option>
- 					<option value="Plot">Plot</option>
-  					<option value="Godown">Godown</option>
-  					<option value="Hospital">Hospital</option>
-  					<option value="Restaurant">Restaurant</option>
- 					<option value="Farm House">Farm House</option>
- 					<option value="Mixed (Resi cum Commercial)">Mixed (Resi cum Commercial)</option>
-				</select>
-				<label class="mdb-main-label BTxt9">Property type<span class="MndtryAstr">*</span></label>
-             </div>
-            </div>   
+           </div>
                <div class="col-md-4">
-                 <div class="md-form">
-                  <select class="mdb-select md-form colorful-select dropdown-primary TPIFMndtry TPIFDBfields" id="TPIF_BUILDTYPE" name="TPIF_BUILDTYPE">
-                  	<option value="" selected>--Select--</option>
-  					<option value="Commercial">Commercial</option> 
-  					<option value="Residential">Residential</option> 
-  					<option value="Industrial">Industrial</option> 
-  					<option value="Farming">Farming</option> 
-  					<option value="Mixed">Mixed</option> 
-				</select>
-				<label class="mdb-main-label BTxt9">Building type<span class="MndtryAstr">*</span></label>
-             </div>
-            </div>     
+                  <!-- First name -->
+                   <div class="md-form">
+                       <input type="text" id="TPIF_PROPERTYOWNNAME" maxlength="100" name="TPIF_PROPERTYOWNNAME" class="form-control  NoSpecialChar  TPIFDBfields">
+                       <label for="TPIF_PROPERTYOWNNAME" class="">Property Owner Name<span class="MndtryAstr"></span></label>
+                  </div>
+                </div>			
      </div>
 			
            <div class="form-row ">
@@ -358,13 +393,13 @@
             </div>   
                <div class="col-md-4">
                  <div class="md-form">
-                  <input type="text" id="TPIF_NEIGHCOMMNTS" name="TPIF_NEIGHCOMMNTS" class="form-control NoSpecialChar TPIFDBfields">
+                  <input type="text" id="TPIF_NEIGHCOMMNTS" name="TPIF_NEIGHCOMMNTS" class="form-control AddrNoSpecialChar TPIFDBfields">
 				<label class="mdb-main-label BTxt9">Comments<span class="MndtryAstr"></span></label>
              </div>
             </div> 
              <div class="col-md-4">
                  <div class="md-form">
-                  <input type="text" id="TPIF_OCCUPANCDETAILS" name="TPIF_OCCUPANCDETAILS" class="form-control  TPIFDBfields">
+                  <input type="text" id="TPIF_OCCUPANCDETAILS" name="TPIF_OCCUPANCDETAILS" class="form-control AddrNoSpecialChar TPIFDBfields">
 				<label class="mdb-main-label BTxt9">Occupancy Details<span class="MndtryAstr"></span></label>
              </div>
             </div>     
@@ -384,7 +419,7 @@
             </div>   
                <div class="col-md-4">
                  <div class="md-form">
-                  <input type="text" id="TPIF_PROPCOMMNTS" name="TPIF_PROPCOMMNTS" class="form-control NoSpecialChar TPIFDBfields">
+                  <input type="text" id="TPIF_PROPCOMMNTS" name="TPIF_PROPCOMMNTS" class="form-control AddrNoSpecialChar TPIFDBfields">
 				<label class="mdb-main-label BTxt9">Comments<span class="MndtryAstr"></span></label>
              </div>
             </div> 
@@ -418,7 +453,7 @@
             </div>     
             <div class="col-md-4">
                  <div class="md-form">
-                 <input type="text" id="TPIF_CONTRUCOMMNRS" name="TPIF_CONTRUCOMMNRS" class="form-control NoSpecialChar TPIFDBfields">
+                 <input type="text" id="TPIF_CONTRUCOMMNRS" name="TPIF_CONTRUCOMMNRS" class="form-control AddrNoSpecialChar TPIFDBfields">
 				<label class="mdb-main-label BTxt9">Comments<span class="MndtryAstr"></span></label>
              </div>
             </div> 
@@ -492,13 +527,13 @@
           <div class="form-row ">
               <div class="col-md-4">
                  <div class="md-form">
-                  <input type="text" id="TPIF_LAYOUTPLAN" maxlength="25" name="TPIF_LAYOUTPLAN" class="form-control TPIFDBfields">
+                  <input type="text" id="TPIF_LAYOUTPLAN" maxlength="100" name="TPIF_LAYOUTPLAN" class="form-control AddrNoSpecialChar TPIFDBfields">
 				<label  for="TPIF_LAYOUTPLAN">Layout Plan Details<span class="MndtryAstr"></span></label>
              </div>
             </div>
             <div class="col-md-4">
                  <div class="md-form">
-                  <input type="text" id="TPIF_BUILDPLAN" maxlength="25" name="TPIF_BUILDPLAN" class="form-control TPIFDBfields">
+                  <input type="text" id="TPIF_BUILDPLAN" maxlength="100" name="TPIF_BUILDPLAN" class="form-control AddrNoSpecialChar TPIFDBfields">
 				<label  for="TPIF_BUILDPLAN">Building Plan Details<span class="MndtryAstr"></span></label>
              </div>
             </div>
@@ -512,7 +547,7 @@
           <div class="form-row">
                <div class=" col-md-12">
                   <div class="md-form">
-                    <input type="text" id="TPIF_CONTRUCTIONDETLS" maxlength="25" name="TPIF_CONTRUCTIONDETLS" class="form-control TPIFDBfields ">
+                    <input type="text" id="TPIF_CONTRUCTIONDETLS" maxlength="100" name="TPIF_CONTRUCTIONDETLS" class="form-control NoSpecialChar TPIFDBfields ">
                     <label for="TPIF_CONTRUCTIONDETLS" class="">Construction Permission Details<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
@@ -520,7 +555,7 @@
            <div class="form-row">
                <div class=" col-md-12">
                   <div class="md-form">
-                    <input type="text" id="TPIF_VALUAPPRCH" maxlength="500" name="TPIF_VALUAPPRCH" class="form-control TPIFDBfields">
+                    <input type="text" id="TPIF_VALUAPPRCH" maxlength="500" name="TPIF_VALUAPPRCH" class="form-control NoSpecialChar TPIFDBfields">
                     <label for="TPIF_VALUAPPRCH" class="">Valuation Approach<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
@@ -545,7 +580,7 @@
 		   </div>
                 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="TPIF_SPECIFYDEVI" maxlength="25" name="TPIF_SPECIFYDEVI" class="form-control NoSpecialChar TPIFDBfields">
+                    <input type="text" id="TPIF_SPECIFYDEVI" maxlength="100" name="TPIF_SPECIFYDEVI" class="form-control NoSpecialChar TPIFDBfields">
                     <label for="TPIF_SPECIFYDEVI" class="">If, Yes Specify the Deviation<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
@@ -582,12 +617,12 @@
                 </div>
                 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="TPIF_NORTHSITE" name="TPIF_NORTHSITE" maxlength="12" class="NoSpecialChar form-control TPIFDBfields">
+                    <input type="text" id="TPIF_NORTHSITE" name="TPIF_NORTHSITE" maxlength="300" class="form-control TPIFDBfields">
                    </div>
                 </div>
                 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="TPIF_NORTHDOC" name="TPIF_NORTHDOC" maxlength="12" class="NoSpecialChar form-control TPIFDBfields">
+                    <input type="text" id="TPIF_NORTHDOC" name="TPIF_NORTHDOC" maxlength="300" class="form-control TPIFDBfields">
                   </div>
                 </div>
            </div>
@@ -599,12 +634,12 @@
                 </div>
                 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="TPIF_SOUTHSITE" name="TPIF_SOUTHSITE" maxlength="12" class="NoSpecialChar form-control TPIFDBfields">
+                    <input type="text" id="TPIF_SOUTHSITE" name="TPIF_SOUTHSITE" maxlength="300" class="form-control TPIFDBfields">
                    </div>
                 </div>
                 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="TPIF_SOUTHDOC" name="TPIF_SOUTHDOC" maxlength="12" class="NoSpecialChar form-control TPIFDBfields">
+                    <input type="text" id="TPIF_SOUTHDOC" name="TPIF_SOUTHDOC" maxlength="300" class="form-control TPIFDBfields">
                   </div>
                 </div>
            </div>
@@ -616,12 +651,12 @@
                 </div>
                 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="TPIF_EASTSITE" name="TPIF_EASTSITE" maxlength="12" class="NoSpecialChar form-control TPIFDBfields">
+                    <input type="text" id="TPIF_EASTSITE" name="TPIF_EASTSITE" maxlength="300" class="form-control TPIFDBfields">
                    </div>
                 </div>
                 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="TPIF_EASTDOC" name="TPIF_EASTDOC" maxlength="12" class="NoSpecialChar form-control TPIFDBfields">
+                    <input type="text" id="TPIF_EASTDOC" name="TPIF_EASTDOC" maxlength="300" class="form-control TPIFDBfields">
                   </div>
                 </div>
            </div>
@@ -633,12 +668,12 @@
                 </div>
                 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="TPIF_WESTSITE" name="TPIF_WESTSITE" maxlength="12"  class="NoSpecialChar form-control TPIFDBfields">
+                    <input type="text" id="TPIF_WESTSITE" name="TPIF_WESTSITE" maxlength="300"  class="form-control TPIFDBfields">
                    </div>
                 </div>
                 <div class=" col-md-4">
                   <div class="md-form">
-                    <input type="text" id="TPIF_WESTDOC" name="TPIF_WESTDOC" maxlength="12" class="NoSpecialChar form-control TPIFDBfields">
+                    <input type="text" id="TPIF_WESTDOC" name="TPIF_WESTDOC" maxlength="300" class="form-control TPIFDBfields">
                   </div>
                 </div>
            </div>
@@ -658,7 +693,7 @@
   <div class="card">
     <!-- Card header -->
     <div class="card-header Btxt7" role="tab" id="heading2">
-      <a class="collapsed Btxt7 AFormaccordion" data-toggle="collapse" data-multidata="" data-load="" data-aria="LSW_TTECHSTARUCTUALDETL|THSD|THSD_ALTNPROPERTYNO|TPIF_ALTNPROPERTYNO|THSD_PROPERTYNO|TPIF_PROPERTYNO" data-parent="#accordionEx" href="#collapse2"
+      <a class="collapsed Btxt7 AFormaccordion Structural" data-toggle="collapse" data-multidata="" data-load="" data-aria="LSW_TTECHSTARUCTUALDETL|THSD|THSD_ALTNPROPERTYNO|TPIF_ALTNPROPERTYNO|THSD_PROPERTYNO|TPIF_PROPERTYNO" data-parent="#accordionEx" href="#collapse2"
         aria-expanded="false" aria-controls="collapse2">
         Structural Details <i class="fa fa-plus-circle rotate-icon"></i>
       </a>
@@ -695,7 +730,7 @@
                 <div class="col-md-4">
                   <!-- First name -->
                    <div class="md-form">
-                       <input type="text" id="THSD_NATURBUILD" maxlength="15" name="THSD_NATURBUILD" class="form-control IsAlphaFields THSDDBfields">
+                       <input type="text" id="THSD_NATURBUILD" maxlength="100" name="THSD_NATURBUILD" class="form-control NoSpecialChar IsAlphaFields THSDDBfields">
                        <label for="THSD_NATURBUILD" class="">Nature of Building<span class="MndtryAstr"></span></label>
                    </div>
                 </div>
@@ -796,7 +831,7 @@
             <div class="col-md-12">
                   <!-- First name -->
                    <div class="md-form">
-                       <input type="text" id="THSD_DETLOFENCROACH" maxlength="50" name="THSD_DETLOFENCROACH" class="form-control NoSpecialChar THSDDBfields">
+                       <input type="text" id="THSD_DETLOFENCROACH" maxlength="100" name="THSD_DETLOFENCROACH" class="form-control NoSpecialChar THSDDBfields">
                        <label for="THSD_DETLOFENCROACH" class="">Details of Encroachment<span class="MndtryAstr"></span></label>
                    </div>
                 </div>      
@@ -867,7 +902,7 @@
           <div class="col-md-4">
                <div class="md-form">
                 <div class="HyperControls"> 
-                    <a type="button" class="Btxt4 FltRight" data-toggle="modal" id="AddFloor" data-target="#AddFloorModal" href="#">+ Add Another Floor</a>
+                    <a type="button" class="Btxt4 BTNHIDE FltRight" data-toggle="modal" id="AddFloor" data-target="#AddFloorModal" href="#">+ Add Another Floor</a>
                  </div>
               </div>
             </div>
@@ -880,39 +915,7 @@
              </div>
          </div> 
 		 
-		         <div class="form-row">
-         <div class="col-md-12">
-           <div class="md-form">
-             <div class="HyperControls"> 
-                  <a type="button" class="Btxt4 FltRight" data-toggle="modal" id="AddAMENTIES" data-target="#AddAMENTIESModal" href="#">+ Add Amenities</a>
-             </div>
-          </div>
-      </div>
-      </div>
-     
-     
-        <div class="form-row">
-        <div class="col">
-           <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table4',{spname:'LSW_STECHVALUEAMENTIEVALUE',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#TPIF_ALTNPROPERTYNO').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||2','ValuarAMENITIES');" id="BTNAMINGRD" name="BTNAMINGRD" />
-           <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" id="Table4">
-          </table>
-       </div>
-    </div>    
-    
-        <div class="form-row">
-        <div class="col-md-4">
-           <div class="md-form">
-              <label class="">Total Amenities value<span class="MndtryAstr"></span></label>
-           </div>
-        </div>
-        <div class="col-md-4">
-           <div class="md-form">
-            <input type="text" id="THVD_AMENTIESVAL" maxlength="10" disabled name="THVD_AMENTIESVAL" class="form-control DOCU DSVLBL IsCURCommaFields IsNumberFields THVDDBfieldS">
-            </div>
-        </div>
-         <div class="col-md-4">
-         </div>
-        </div>
+		        
          
 		 
 		 
@@ -948,6 +951,39 @@
            </div>
         </div>
      </div> 
+	  <div class="form-row">
+         <div class="col-md-12">
+           <div class="md-form">
+             <div class="HyperControls"> 
+                  <a type="button" class="Btxt4 FltRight" data-toggle="modal" id="AddAMENTIES" data-target="#AddAMENTIESModal" href="#">+ Add Amenities</a>
+             </div>
+          </div>
+      </div>
+      </div>
+     
+     
+        <div class="form-row">
+        <div class="col">
+           <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'Table4',{spname:'LSW_STECHVALUEAMENTIEVALUE',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#TPIF_ALTNPROPERTYNO').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||2','ValuarAMENITIES');" id="BTNAMINGRD" name="BTNAMINGRD" />
+           <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" id="Table4">
+          </table>
+       </div>
+    </div>    
+    
+        <div class="form-row">
+        <div class="col-md-4">
+           <div class="md-form">
+              <label class="">Total Amenities value<span class="MndtryAstr"></span></label>
+           </div>
+        </div>
+        <div class="col-md-4">
+           <div class="md-form">
+            <input type="text" id="THVD_AMENTIESVAL" maxlength="30" disabled name="THVD_AMENTIESVAL" class="form-control DOCU DSVLBL IsCURCommaFields NoSpecialChar IsNumberFields THVDDBfieldS">
+            </div>
+        </div>
+         <div class="col-md-4">
+         </div>
+        </div>
      <div class="form-row">
          <div class="col-md-3">
         		<div class="col Btxt10">Total Estimate Value</div>
@@ -982,8 +1018,8 @@
 				<div class="col-md-4">
                   <!-- First name -->
                    <div class="md-form">
-                       <input type="text" id="THVD_PROPINS" name="THVD_PROPINS"  maxlength="30"  class="form-control NoSpecialChar THVDMndtry IsNumberFields IsCURCommaFields THVDDBfields">
-                       <label for="THVD_PROPINS" class="">Property Insurance<span class="MndtryAstr">*</span></label>
+                       <input type="text" id="THVD_PROPINS" name="THVD_PROPINS" onchange="CheckPropIns();" maxlength="30"  class="form-control NoSpecialChar THVDMndtry IsNumberFields IsCURCommaFields THVDDBfields">
+                       <label for="THVD_PROPINS" class="">Property Insurance Value<span class="MndtryAstr">*</span></label>
                    </div>
                 </div>
            </div>
@@ -991,7 +1027,7 @@
                <div class="col-md-12">
                   <!-- First name -->
                   <div class="md-form">
-                    <input type="text" id="THVD_REMARKS" maxlength="50" name="THVD_REMARKS"  class="form-control NoSpecialChar THVDDBfields">
+                    <input type="text" id="THVD_REMARKS" maxlength="300" name="THVD_REMARKS"  class="form-control NoSpecialChar THVDDBfields">
                     <label for="THVD_REMARKS" class="">Remark<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
@@ -1014,7 +1050,7 @@
                 <div class="col-md-4">
                   <!-- First name -->
                    <div class="md-form">
-                       <input type="text" id="THVD_PERSENTAGECOMPL" maxlength="5" data-field="THVD_PERSENTAGECOMPL|" name="THVD_PERSENTAGECOMPL" class="form-control IsPercentageFld IsNumberFields THVDDBfields">
+                       <input type="text" id="THVD_PERSENTAGECOMPL" maxlength="5" data-field="THVD_PERSENTAGECOMPL|" name="THVD_PERSENTAGECOMPL" class="form-control IsPercentageFld IsNumberFields NoSpecialChar THVDDBfields">
                        <label for="THVD_PERSENTAGECOMPL" class="">Percentage Completed<span class="MndtryAstr"></span></label>
                    </div>
                 </div>
@@ -1073,21 +1109,72 @@
         <input type="text" id="THVR_DTCREATED" hidden="hidden" name="THVR_DTCREATED" class="form-control THVRDBfields">
         <input type="text" id="THVR_MODIFIEDBY" hidden="hidden" name="THVR_MODIFIEDBY" class="form-control THVRDBfields">
         <input type="text" id="THVR_DTMODIFIED" hidden="hidden" name="THVR_DTMODIFIED" class="form-control THVRDBfields">
-        <input type="text" id="THVR_PROPERTYNO" hidden="hidden" name="THVR_PROPERTYNO" value="1" class="form-control THVRDBfields">
+        <input type="text" id="THVR_PROPERTYNO" hidden="hidden" name="THVR_PROPERTYNO"  class="form-control THVRDBfields">
          
-         <input type="text" id="THVR_GENREMARKI" hidden="hidden" name="THVR_GENREMARKI" value="1" class="form-control THVRDBfields">
+         <input type="text" id="THVR_GENREMARKI" hidden="hidden" name="THVR_GENREMARKI" class="form-control THVRDBfields">
+		 
+		   <input type="text" id="THVR_DOCUSUB" hidden="hidden" name="THVR_DOCUSUB" class="form-control THVRDBfields">
+		   
          <input type="text" id="THVR_ALTNPROPERTYNO" hidden="hidden" name="THVR_ALTNPROPERTYNO" class="form-control THVRDBfields">   
           <input type="text" id="THVR_UPLODPHS" hidden="hidden" name="THVR_UPLODPHS" class="form-control THVRDBfields">
          </br>
             <div class="form-row">
         		<div class="col Btxt1">GENERAL</div>
         	 </div>
+			 
+		 <div class="form-row">
+        		<div class="col Btxt10">Document Submitted</div>
+        	 </div>
+             
+                 <div class="HyperControls form-row"> 
+   <a onclick="AddPageMultiData('','','','DOCUSUB','TDSUDBfields');" class="Btxt4 FltRight BTNHIDE"  href="#">+ Add a Point</a>
+  </div>	
+        <div data-for="DOCUSUB" class="DOCUSUB"> 
+      </div>
+       <div class="DynamicPageGrid" data-val="PROPTXTHDR|" id="DOCUSUB" style="display:none">
+        <div data-row="" class="card-body px-lg-5 pt-0  DYNROW">
+         <input type="text" id="TDSU_PRCSID" hidden="hidden" name="TDSU_PRCSID" class="form-control TDSUDBfields">
+         <input type="text" id="TDSU_ACTIVITYID" hidden="hidden" name="TDSU_ACTIVITYID" class="form-control TDSUDBfields">
+         <input type="text" id="TDSU_DTCREATED" hidden="hidden" name="TDSU_DTCREATED" class="form-control TDSUDBfields">
+         <input type="text" id="TDSU_CREATEDBY" hidden="hidden" name="TDSU_CREATEDBY" class="form-control TDSUDBfields">
+         <input type="text" id="TDSU_DTMODIFIED" hidden="hidden" name="TDSU_DTMODIFIED" class="form-control TDSUDBfields">
+         <input type="text" id="TDSU_MODIFIEDBY" hidden="hidden" name="TDSU_MODIFIEDBY" class="form-control TDSUDBfields">
+         <input type="text" id="TDSU_REFNO" hidden="hidden" name="TDSU_REFNO" class="form-control TDSUDBfields">
+        
+		
+			
+       <div class="form-row">
+         <div class=" col-md-11">
+                 <div class="md-form">
+                 <span id="PROPTXTHDR" class="Btxt10"></span> <input type="text" id="TDSU_TEXTVAL" name="TDSU_TEXTVAL" class="form-control NoSpecialChar TDSUDBfields">
+                  </div>
+              </div>
+			  
+			    <div class=" col-md-1"> 
+                  <div class="md-form">
+                   <img src="ThemeproLO/Common/Images/Delete_Img.png"   class="DELDOCU BTNHIDE" alt="Cinque Terre" width="20" height="20"> 
+                   </div>
+                   </div>
+              </div>
+         </div>
+         </div>	 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
         	 <div class="form-row">
         		<div class="col Btxt10">REMARKS</div>
         	 </div>
              
                  <div class="HyperControls form-row"> 
-   <a onclick="AddPageMultiData('','','','NICETOHAVE','TVRLDBfields');ADDREMARKROWNO();" class="Btxt4 FltRight"  href="#">+ Add a Point</a>
+   <a onclick="AddPageMultiData('','','','NICETOHAVE','TVRLDBfields');ADDREMARKROWNO();" class="Btxt4 FltRight BTNHIDE"  href="#">+ Add a Point</a>
   </div>	
         <div data-for="NICETOHAVE" class="NICETOHAVE"> 
       </div>
@@ -1104,11 +1191,17 @@
 		
 			
        <div class="form-row">
-         <div class=" col-md-12">
+         <div class=" col-md-11">
                  <div class="md-form">
-                 <span id="PROPTXTHDR" class="Btxt10"></span> <input type="text" id="TVRL_TEXTVAL" name="TVRL_TEXTVAL" class="form-control TVRLDBfields">
+                 <span id="PROPTXTHDR" class="Btxt10"></span> <input type="text" id="TVRL_TEXTVAL" name="TVRL_TEXTVAL" class="form-control NoSpecialChar TVRLDBfields">
                   </div>
               </div>
+			  
+			  <div class=" col-md-1"> 
+                  <div class="md-form">
+                   <img src="ThemeproLO/Common/Images/Delete_Img.png"   class="DELREMARKS BTNHIDE" alt="Cinque Terre" width="20" height="20"> 
+                   </div>
+                   </div>
               </div>
          </div>
          </div>
@@ -1125,7 +1218,7 @@
                 <div class="col-md-5">
                   <!-- First name -->
                    <div class="md-form">
-                       <input type="text" id="THVR_DECLARRESPECT" maxlength="50" name="THVR_DECLARRESPECT" class="form-control NoSpecialChar THVRDBfields">
+                       <input type="text" id="THVR_DECLARRESPECT" maxlength="100" name="THVR_DECLARRESPECT" class="form-control NoSpecialChar THVRDBfields">
                    </div>
                 </div>
                 </div>
@@ -1207,7 +1300,7 @@
                  </td>
               <div class="md-form">
               <div class="md-form Formcol-mdLR">
-               <div class="THVR_UPLOADMAP" style="display:none"> <img src="ThemeproLO/Common/Images/UploadImg.png" class="rounded" title="UPLOAD" onclick="ReuploadFile(THVR_UPLOADMAP);" alt="Cinque Terre" width="20" height="20">  <img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW" onclick="GrdDocDwnld('THVR_UPLOADMAP')" class="rounded" alt="Cinque Terre" width="35" height="25"> </div>
+               <div class="THVR_UPLOADMAP" style="display:none"> <img src="ThemeproLO/Common/Images/UploadImg.png" class="rounded BTNHIDE" title="UPLOAD" onclick="ReuploadFile(THVR_UPLOADMAP);" alt="Cinque Terre" width="20" height="20">  <img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW" onclick="GrdDocDwnld('THVR_UPLOADMAP')" class="rounded" alt="Cinque Terre" width="35" height="25"> </div>
               </div>
              </div>   
            </tr>

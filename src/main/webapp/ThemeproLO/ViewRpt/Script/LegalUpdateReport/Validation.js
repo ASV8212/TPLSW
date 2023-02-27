@@ -90,7 +90,30 @@ if($(id).closest('td').find('input[type="file"]').val()!="")
 	         descrptns += 'FieldDocument'+',';
 	     }
 	 }
+	 
+	 
+	 
+	  var FileSize=parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2);
+    // var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
+	//    var Filename  = names.replace(',','')
+	      var Filename  = $(id).closest('td').find('input[type="file"]')[0].files[0].name
+	      var FileType= Filename.substring(Filename.lastIndexOf('.')+1);
+          var  Filename= Filename.substring(0, Filename.lastIndexOf('.'));
+          var names=Filename
+
+		var xml=UI_getdata(FileType,FileSize,Filename,"","","LSW_SGETDOCUMNTSIZE")
+		var FileAccept=$(xml).find('RESULT').text()
+	if(FileAccept == 'No')
+	{
+		alert($(xml).find("alert").text());
+		$(id).closest('td').find('input[type="file"]').val('')
+		return
+    }
+	
+	
+names=names+'.'+FileType	
 var y=  names;
+/*
 var specialChars = "<>&#^|~`"
 var check = function(string){
     for(i = 0; i < specialChars.length;i++){
@@ -104,10 +127,10 @@ var check = function(string){
 if(check(y) == false){
     // Code that needs to execute when none of the above is in the string
 }else{
-    alert('Error in File Name');
+    alert('File name contains special character please remove and upload');
 	$(id).closest('td').find('input[type="file"]').val('')
 	return;
-}
+}*/
  ajaxindicatorstart("Uploading.. Please wait");
 	    $.ajax({
 	    	url:"/TPLSW/DMS?names="+names+"&PrcsID="+PrcsID+"&FormName="+FormName+"&descrptns="+descrptns+"&flsize="+flsize+"&vrsnno="+vrsnno+"&domain="+domain+"&usrpwd="+usrpwd+"&Prvnt="+$("#Prvnt").val()+"&CusID="+CusID+"&DocName="+DocName,
@@ -143,7 +166,7 @@ if(check(y) == false){
 				var UPLOAD=docu+'UPLOAD'
 				$('#'+UPLOAD).hide();
 				$('.'+docu).show();
-				$(id).closest('.md-form').append('<span class="name">'+names.slice(0,-1)+'</span>');
+				$(id).closest('.md-form').append('<span class="name">'+names+'</span>');
 				
 				
 			
@@ -249,7 +272,7 @@ function LoadMultiData (TblName,PrcsID,UniqNo,DV,FieldClass,SP)
                if($(html).find("[data-Validate="+name+"]").length > 0)
                {
               	 FileSplit=val.split('\\');
-              	var FileName=FileSplit[FileSplit.length - 3]
+              	var FileName=FileSplit[FileSplit.length - 1]
               	$(html).find("#"+name+"UPLOAD").hide()
               	 $(html).find("#"+name+"UPLOAD").closest('.md-form').append(FileName);
                	if(val != "")
@@ -429,21 +452,6 @@ $(idval).val('');
 }
 }
 
-/*
-function ADDROWNO()
-{
-		var k= $('.MUSTTOHAVE').find('.DYNROW').length
-  		for(i=0;i<k;i++)
-  			{
-  			//('.BankDetail1').find('.DYNROW')[i]
-  		    var	j=i+1
-             $("#LEMU_TXTROW"+j).val(j)
-  			}	
-}
-
-*/
-
-
 function ADDROWNO()
 {
 	var k= $('.MUSTTOHAVE').find('.DYNROW').length
@@ -460,6 +468,7 @@ function ADDROWNO()
 	$("#LERP_MAXTEXTROW").val(j) 
 	
 }
+
 
 function ADDROWNONICE()
 {

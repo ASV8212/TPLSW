@@ -48,10 +48,10 @@
      <div class="col-md-12">  
   <div class="card card-cascade narrower">
   
-  
-   <br>
+ <br>
    <div class="form-row ViewOnly" style="display:none">
-               <div class="col-md-4">
+    
+               <div class="col-md-3" style="display:none">
                   <!-- First name -->
                   <div class="md-form">
                     <input type="text" id="FromDate" name="FromDate" disabled maxlength="10" class="form-control form-control CEMIDBfields IsNumberFields NoSpecialChar ISDatefield ">
@@ -59,7 +59,7 @@
                     <img src="ThemeproLO/Common/Images/calendar.png" style="display:none" class="FieldIcon datepicker"/>
                   </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3" style="display:none">
                   <!-- First name -->
                   <div class="md-form">
                     <input type="text" id="ToDate" name="ToDate" disabled maxlength="10" class="form-control form-control CEMIDBfields IsNumberFields NoSpecialChar ISDatefield ">
@@ -67,33 +67,19 @@
                     <img src="ThemeproLO/Common/Images/calendar.png" style="display:none" class="FieldIcon datepicker"/>
                   </div>
                 </div>
-				<div class="col-md-4">
+				<div class="col-md-3">
                   <!-- Last name -->
                   <div class="md-form">
-                    <input type="text" id="ApplNo" name="ApplNo"  class="form-control IsNumberFields NoSpecialChar">
-                    <label for="ApplNo" class="">Application No<span class="MndtryAstr"></span></label>
+                    <input type="text" id="ApplNo" name="ApplNo"  class="form-control   NoSpecialChar">
+                    <label for="ApplNo" class="">Application No<span class="MndtryAstr">*</span></label>
                   </div>
+				  	
                 </div>
-			  </div>
-              <div class="form-row ViewOnly" style="display:none">
-                <div class="col-md-4">
-                  <!-- Last name -->
-                  <div class="md-form">
-                    <input type="text" id="Name" name="Name"  class="form-control IsUpprCse IsAlphaFields  NoSpecialChar">
-                    <label for="Name" class="">Name<span class="MndtryAstr"></span></label>
-                  </div>
-                </div>
-				<div class="col-md-4">
-                  <!-- Last name -->
-                  <div class="md-form">
-                    <input type="text" id="AggrNo" name="AggrNo"  class="form-control IsUpprCse NoSpecialChar">
-                    <label for="AggrNo" class="">Aggreement No<span class="MndtryAstr"></span></label>
-                  </div>
-                </div>
-				<div class="col-md-4">
+				<div class="col-md-3">
 				    <button type="button" id="Search" class="btn btn-Syeloutline waves-effect waves-light">Search</button>
 				</div>
-             </div>
+			  </div>
+   
   
   
  <!--  <div class="row">
@@ -105,9 +91,9 @@
          Total no of files :
          <span class="Ntxt3">100</span>
          </div>                 
-         <div class="col-md-2 " >
+         <div class="col-md-2 ">
          <span class="Ntxt4" style="display:none;">Address Type</span>
-         <select id="GridBranch" name="GridBranch" onchange="OnChngeSetVal('GridBranch','');"  searchable="Search here.." class="RINV colorful-select dropdown-primary Ntxt3">
+          <select id="GridBranch" name="GridBranch" onchange="OnChngeSetVal('GridBranch','');"  searchable="Search here.." class="RINV colorful-select dropdown-primary Ntxt3">
                                                     <option value="" selected>All</option>
                                                     </select>
 		 <select id="GridCategory" name="GridCategory" onchange="TgrGrid();" style="display:none;"  searchable="Search here.." class="RINV  colorful-select dropdown-primary Ntxt3">
@@ -140,9 +126,9 @@
                                 <!--Main First row-->
                                 <div class="row m-b-0">
 <div class="col-md-12">
-  <input type="button" style="display:none" class="DashTrg" onclick="FncallFEPDashLrgDataWP(this,'Table3',{spname:'LSW_SMYAPPLICATIONDTLS',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#LogUsr').val(),brid:'',MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||3');" id="BTNAcctRecv" name="BTNAcctRecv" />
+  <input type="button" style="display:none" class="DashTrg" onclick="FncallFEPDashLrgDataWP(this,'Table3',{spname:'LSW_SMYAPPLICATIONDTLS',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#LogUsr').val(),brid:'',MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||3,7');" id="BTNAcctRecv" name="BTNAcctRecv" />
 
-    <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" id="Table3">
+    <table cellpadding="0" cellspacing="0" border="0" style="width: 80%;zoom: 80%" class="display" id="Table3">
     </table>
     
     </div>
@@ -195,6 +181,7 @@
         <a type="button" id="LCR" class="btn-floating btn-large red">
             <i class="fa fa-plus"></i>
         </a>
+
         <ul  class="TransMnu">
             <!--<li Class="FltMnu" name="GetNextNavAction?MnuID=30e&Action=View" id="30e"  ><a data-toggle="tooltip" data-placement="left" title="" data-original-title="Finance Request" class="btn-floating red"><i class="fa fa-star"></i></a></li>
             <li Class="FltMnu" name="GetNextNavAction?MnuID=30d&Action=View" id="30d"  ><a data-toggle="tooltip" data-placement="left" title="" data-original-title="Invoice Acceptance" class="btn-floating red"><i class="fa fa-star"></i></a></li>
@@ -204,8 +191,6 @@
             <li Class="FltMnu" name="GetNextNavAction?MnuID=30a&Action=New" id="30a" ><a data-toggle="tooltip" data-placement="left" title="" data-original-title="PO Issuance" class="btn-floating blue"><i class="fa fa-shopping-cart"></i></a></li>-->
         </ul>
     </div>
-    
-      <button type="button" id="MSInsHIt" class="btn btn-yel Btxt2">Done</button>
 
   <a type="button" id="Popup" class="btn btn-floating btn-large red" style="display:none" data-toggle="modal" data-target="#basicExampleModal">
             <i class="fa fa-plus"></i>
@@ -240,20 +225,21 @@
             <input type="text" id="LBSI_DTMODIFIED" hidden="hidden"  name="LBSI_DTMODIFIED" class=" LBSIDBfields ">
 	        <input type="text" id="LBSI_BRID" hidden="hidden"  name="LBSI_BRID" class=" LBSIDBfields ">
 			<input type="text" id="LBSI_SOURCEID" hidden="hidden"  name="LBSI_SOURCEID" class=" LBSIDBfields ">
-			
-            <input type="text" id="LBSI_PRDID" hidden="hidden"  name="LBSI_PRDID" class=" LBSIDBfields ">
+			<input type="text" id="LBSI_PRDID" hidden="hidden"  name="LBSI_PRDID" class=" LBSIDBfields ">
+ 		    <input type="text" id="LBSI_PRDNAME"  hidden="hidden"  name="LBSI_PRDNAME" class=" LBSIDBfields ">
+ 
            <div class="form-row">
            
             <div class="col">
                  
             <div class="md-form  MNST">
-               <div class="select-radio INDIMNDRY "> 
+               <div class="select-radio INDIMNDRY LBSIMndtry "> 
                     <div class="custom-control custom-radio custom-control-inline">
-                         <input type="radio" class="custom-control-input LBSIDBfields PROII " onclick="CheckCusType();" value="Individual" id="Indvdl" name="LBSI_CUSTYPE">
+                         <input  type="radio"  class="custom-control-input  LBSIDBfields"  onclick="CheckCusType();" value="Individual" id="Indvdl" name="LBSI_CUSTYPE">
                          <label class="custom-control-label" for="Indvdl">Individual</label>
                    </div>
                    <div class="custom-control custom-radio custom-control-inline">
-                         <input type="radio" class="custom-control-input LBSIDBfields PROII" onclick="CheckCusType();" value="Non-Individual" id="NonIndvdl" name="LBSI_CUSTYPE">
+                         <input type="radio" class="custom-control-input LBSIDBfields" onclick="CheckCusType();" value="Non-Individual" id="NonIndvdl" name="LBSI_CUSTYPE">
                          <label class="custom-control-label" for="NonIndvdl">Non-Individual</label>
                   </div>
               </div>
@@ -262,120 +248,144 @@
                 </div>
                  <div class="col">
                   <div class="md-form">
-                  <select class="mdb-select md-form colorful-select dropdown-primary  LBSIDBfields LBSIMndtry "  onchange="ChangeProduct();"   id="LBSI_PRODUCT" name="LBSI_PRODUCT">
-                        <!-- <option value="" selected>--Select--</option>  s-->
+                  <!--<select class="mdb-select md-form colorful-select dropdown-primary LBSIDBfields LBSIMndtry" disabled id="LBSI_VERTICAL" name="LBSI_VERTICAL"> <!-- onchange="ChangeProduct();" 
+                        <option value="" selected>--Select--</option>
                          <option value="HE01">Home Equity</option>
-						  <option value="HE02">Home Equity - New Product</option>
-                  </select>
-                        <label class="mdb-main-label BTxt9">Product <span class="MndtryAstr">*</span></label>
+                  </select>-->
+				    <input type="text" id="LBSI_VERTICAL" disabled maxlength="30" name="LBSI_VERTICAL" class="form-control LBSIDBfields  ">
+                    
+                        <label class="mdb-main-label BTxt9">Vertical <span class="MndtryAstr">*</span></label>
                 </div>
                 </div>
            </div>
            <div class="form-row">
                 <div class="col">
                   <div class="md-form">
-                  <select class="mdb-select md-form colorful-select dropdown-primary LBSIDBfields LBSIMndtry DataToFld" searchable="Search here.." data-change="LBSI_BRID"  id="LBSI_BRANCH" name="LBSI_BRANCH">
-                        <!--  <option value="" selected>--Select--</option>
-                              <option value="Perangudi">Perangudi</option>
+                  <select class="mdb-select md-form colorful-select dropdown-primary LBSIDBfields LBSIMndtry DataToFld"  searchable="Search here.." data-change="LBSI_BRID" id="LBSI_BRANCH" name="LBSI_BRANCH">
+                         <option value="" selected>--Select--</option>
+                              <!--<option value="Perangudi">Perangudi</option>
                               <option value="Anakapalli">Anakapalli</option> -->
                         </select>
-                        <label class="mdb-main-label BTxt9">Branch <span class="MndtryAstr">*</span></label>
+                        <label  class="mdb-main-label BTxt9">Branch <span class="MndtryAstr">*</span></label>
+	
                 </div>
                 </div> 
                 <div class="col">
                 <div class="md-form">
-                        <select class="mdb-select md-form colorful-select dropdown-primary LBSIDBfields LBSIMndtry" onchange="GETDROPDOWNVAL('Page')" id="LBSI_LONTYPE" name="LBSI_LONTYPE">
+                        <select class="mdb-select md-form colorful-select dropdown-primary LBSIDBfields  LBSIMndtry" onchange="GetNaturProduct(); GetSubLoan();" id="LBSI_LONTYPE" name="LBSI_LONTYPE">
                         </select>
-                        <label class="mdb-main-label BTxt9">Type of Loan <span class="MndtryAstr">*</span></label>
+                        <label class="mdb-main-label BTxt9">Type Of Loan <span class="MndtryAstr">*</span></label>
+						<!--onchange="GETDROPDOWNVAL('Page')"-->
                 </div>  
                 </div>
            </div>
            <div class="form-row">
-            <div class="col-md-6 SUBLON">
-                 <div class="md-form">
-                       <select class="mdb-select md-form colorful-select dropdown-primary PROIIDROP LBSIDBfields  " id="LBSI_SUBLONTYPE" name="LBSI_SUBLONTYPE">
+		     <div class="col-md-6">
+                  <div class="md-form">
+                       <select class="mdb-select md-form colorful-select dropdown-primary  LBSIDBfields LBSIMndtry DataToFld" data-change="LBSI_PRDNAME"  onchange="CheckSource();GetPrdagaScheme();"  id="LBSI_PRODUCT" name="LBSI_PRODUCT">
                         <option value="" selected>--Select--</option>
+                        </select>
+                  <label class="mdb-main-label BTxt9">Product <span class="MndtryAstr">*</span></label>
+                </div>
+            </div><!--SUBLON-----PROIIDROP-->
+            <div class="col-md-6 ">
+                 <div class="md-form">
+                       <select class="mdb-select md-form colorful-select dropdown-primary LBSIMndtry LBSIDBfields  " id="LBSI_SUBLONTYPE" name="LBSI_SUBLONTYPE">
+                        <option value="" selected>--Select--</option>
+						<!--<option value="">Fresh</option>
+						<option value="">Renewal at Existing</option>
+						<option value="">Renewal with enhancement</option>
+						<option value="">Renewal with limit Decrease</option>
+						<option value="">Adhoc</option>
+						<option value="">Balance Transfer</option>
+						<option value="">Enhancement</option>-->
+						
+						
                         </select>
                         <label class="mdb-main-label BTxt9">Sub Loan Type <span class="MndtryAstr">*</span></label> 
                   </div>
                </div>
-               <div class="col-md-6 PRIME">
+              <!-- <div class="col-md-6 PRIME" style="display:none">
                    <div class="md-form">
                          <input type="text" id="LBSI_PRIMLONID" maxlength="18" class="form-control NoSpecialChar LBSIDBfields" onblur="ChkPrimLoanID();GetOldPrcsid();" name="LBSI_PRIMLONID">
                          <input type="text" id="OLDPRCSID" class="form-control LBSIDBfields" hidden="hidden" name="OLDPRCSID">
                          <label for="LBSI_PRIMLONID" class="">Primary Loan ID/Application ID<span class="MndtryAstr">*</span></label>
                          <img src="ThemeproLO/Common/Images/search.png" style="display:none" onclick="GetExistApplcant();" class="FieldIcon"/>
                     </div>
-               </div>
+               </div>-->
            </div>
-           <div class="form-row">
-             <div class="col-md-6">
+          <div class="form-row">
+		  <div class="col-md-6">
                   <div class="md-form">
-                       <select class="mdb-select md-form colorful-select dropdown-primary PROIIDROP LBSIDBfields LBSIMndtry "    onchange="CheckDirect();CheckSource();"  id="LBSI_SOURCBY" name="LBSI_SOURCBY">
-                       <!-- <option value="" selected>--Select--</option>
+                       <select class="mdb-select md-form colorful-select dropdown-primary PROIIDROP LBSIDBfields LBSIMndtry "    onchange="CheckSource();"  id="LBSI_SOURCBY" name="LBSI_SOURCBY">
+					   
+                        <option value="" selected>--Select--</option>
                         <option value="Connector">Connector</option>
                         <option value="DST">DST</option>
                         <option value="DSA">DSA</option>
-                        <option value="Direct">Direct</option>-->
+                        <option value="Direct">Direct</option>
                         </select>
                   <label class="mdb-main-label BTxt9">Sourced By <span class="MndtryAstr">*</span></label>
                 </div>
             </div>
-            <div class="col-md-6 DIRDISB" style="display:none">
+			    <div class="col-md-6 DIRDISB">
                   <div class="md-form">
-                  <select class="mdb-select md-form colorful-select dropdown-primary LBSIDBfields DataToFld" searchable="Search here.." data-change="LBSI_SOURCEID"   id="LBSI_CONECTNAME" name="LBSI_CONECTNAME">
- 
+                  <select class="mdb-select md-form colorful-select dropdown-primary LBSIDBfields LBSIMndtry DataToFld" searchable="Search here.." data-change="LBSI_SOURCEID"   id="LBSI_CONECTNAME" name="LBSI_CONECTNAME">
+                   <option value="" selected>--Select--</option>
                         </select>
                      <label for="" class="mdb-main-label BTxt9">Source Name <span class="MndtryAstr">*</span></label>
                    
-                   <!-- <div class="collapse" id="SourceNameCollapse">
+                   <!--<div class="collapse" id="SourceNameCollapse">
                         <input type="text" id="LBSI_SOURCNAME" class="form-control LBSIDBfields ">
                         <label for="LBSI_SOURCNAME" class="">Source Name *</label>
-                    </div> --> 
+                    </div>-->
                  </div>
              </div>
-           </div>
-          <div class="form-row">
-            <div class="col-md-6 CONS">
-                <div class="md-form">
-                  <select class="mdb-select md-form colorful-select dropdown-primary LBSIDBfields " id="LBSI_CONSTITUTION" name="LBSI_CONSTITUTION">
+           </div> 
+		   <div class="form-row">
+		       <div class="col-md-6 CONS">
+                  <div class="md-form">
+                     <select class="mdb-select md-form colorful-select dropdown-primary LBSIDBfields " id="LBSI_CONSTITUTION" name="LBSI_CONSTITUTION">
                         <option value="" selected>--Select--</option>
-                            <!-- <option value="Partnership firms">Partnership firms</option>
-                              <option value="LLP">LLP</option>
-                              <option value="HUF">HUF</option>
-			      			  <option value="Private Ltd">Private Ltd</option>
-			      			  <option value="Public Ltd">Public Ltd</option>
-			      			  <option value="Proprietorship">Proprietorship</option>-->
                         </select>
                         <label class="mdb-main-label BTxt9">Constitution <span class="MndtryAstr">*</span></label>
                    </div>
+				   </div>
+				   <div class="col-md-6">
+					<div class="md-form">
+                  <!--<select class="mdb-select md-form colorful-select dropdown-primary LBSIDBfields LBSIMndtry" disabled id="LBSI_VERTICAL" name="LBSI_VERTICAL"> <!-- onchange="ChangeProduct();" 
+                        <option value="" selected>--Select--</option>
+                         <option value="HE01">Home Equity</option>
+                  </select>-->
+				    <input type="text" id="LBSI_REQAMT"  maxlength="30" name="LBSI_REQAMT" class="form-control LBSIDBfields IsCURCommaFields NoSpecialChar LBSIMndtry">
+                    
+                        <label class="mdb-main-label BTxt9">Requested Loan Amount (Rs.) <span class="MndtryAstr">*</span></label>
+                </div>
+				   </div>
+               
+			   
+			    <div class="col-md-6 " style="display:none">
+                 <div class="md-form">
+                       <select class="mdb-select md-form colorful-select dropdown-primary LBSIDBfields" onchange="" id="LBSI_SCHEMEID" name="LBSI_SCHEMEID">
+                            <option value="" selected>--Select--</option>
+					     	<option value="">Fresh</option>
+                        </select>
+                        <label class="mdb-main-label BTxt9">Scheme ID<span class="MndtryAstr">*</span></label> 
+                  </div>
                </div>
-           </div> 
-      <!--  <div class="form-row">
-                <div class="col Grid">
-                 <input type="button" style="display:none" class="DashTrg" onclick="FncallFEPDashLrgDataWP(this,'Table2',{spname:'LSW_SGetApplDetls',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#LogUsr').val(),brid:'',MnuId:''},{0:$('#LBSI_PRIMLONID'),2:$('#OLDPRCSID')});" id="BTNTRIGAPPL" name="BTNTRIGAPPL" />
-                    <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" id="Table2">
-                    </table>
-                </div> 
-            </div> -->
+			 </div>
         </form>
       </div>
     </div>
       </div>
       <div class="modal-footer align-middle">
-      <!--  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
         <button type="button" id="InitWF" class="btn btn-yel Btxt2">Done</button>
       </div>
     </div>
   </div>
 </div>
-
   <button type="button" style="display:none" id="InitWF1" class="btn btn-yel Btxt2">Done</button>
-
-
  <script>
- 
- 
         $(function() {
         	
 		 //  var opjson = UI_IntrData($("#CpmCd").val(),"","","","","LSW_sGETLiabilities","INTR1");   		   

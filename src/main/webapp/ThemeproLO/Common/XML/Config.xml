@@ -100,8 +100,7 @@
 <V0094>Enter valid Pan Number Eg AAAAA1111A</V0094>
 <V0095>Invalid Passport No</V0095>
 <V0096>Invalid Voter ID No.Length between 10 to 20</V0096>
-<!--<V0097>Enter valid 12 digit Aadhar number without white space</V0097>-->
-<V0097>Enter last 4 digit Aadhar number without white space</V0097>
+<V0097>Enter valid 12 digit Aadhar number without white space</V0097>
 <V0098>Enter valid Licenece no</V0098>
 <V0099>Enter Valid SSLC certificate Number</V0099>
 <V0100>Invalid Rationcard No</V0100>
@@ -188,8 +187,8 @@
 <V0178>Kindly save the Editor!</V0178>
 
 <V0179>CIBIL Yes</V0179>
-<!-- HDFC -->
-<V0180>Y</V0180>
+<V0180>Commercial CIBIL Yes</V0180>
+
 
 <PG001>/ThemePro_SCF/Login</PG001>
 <PG002>/ThemePro_SCF/DashBoard</PG002>
@@ -215,7 +214,7 @@
 <RS004>//10.225.179.3//SCF_BULKUPLOAD</RS004>
 <RS005>administrator:yLhCybXMLAt7mRUV</RS005>
 <!--<RS006>http://10.1.0.4:8082/LSW_DOC</RS006> -->
-<RS006>/LSW_DOC</RS006>
+<RS006>/LSW_Docs</RS006>
 <!-- <RS006>http://14.192.17.61:3030/LSW_DBDOC</RS006> -->
 <RS007>//10.225.179.3//SCF_Docs</RS007>
 <RS008>administrator:yLhCybXMLAt7mRUV</RS008>
@@ -316,7 +315,7 @@
 
 <RT083>/Birt/frameset?__report=report/CSCF/Advices/DisbursementAdvice.rptdesign</RT083>
 <RT084>/Birt/frameset?__report=report/CHFL/CAM.rptdesign</RT084>
-<RT085>/Birt/frameset?__report=report/CHFL/ApproveNote.rptdesign</RT085>
+<RT085>/Birt/frameset?__report=report/CHFL/CAMUCVREPORT.rptdesign</RT085>
 <RT086>/Birt/frameset?__report=report/CHFL/NACH.rptdesign</RT086>
 <RT087>/Birt/frameset?__report=report/CHFL/Disbumemo.rptdesign</RT087>
 <RT088>/Birt/frameset?__report=report/CHFL/SancLetter.rptdesign</RT088>
@@ -334,5 +333,29 @@
 <RT0100>/Birt/frameset?__report=report/CHFL/GECLSanctionLetter.rptdesign</RT0100>
 <RT0101>/Birt/frameset?__report=report/CHFL/HDFCCovid.rptdesign</RT0101>
 <RT0102>/Birt/frameset?__report=report/CHFL/GECL3.rptdesign</RT0102>
+<RT0103>/Birt/frameset?__report=report/CHFL/CAM_MSME_report.rptdesign</RT0103>
+<RT0104>/Birt/frameset?__report=report/CHFL/Application_Form_MSME_Report.rptdesign</RT0104>
+<RT0105>/Birt/frameset?__report=report/CHFL/ApplicationFormMSME.rptdesign</RT0105>
+<RT0106>/Birt/frameset?__report=report/CHFL/CAM_MSME_report_1.rptdesign</RT0106>
+<RT0108>/Birt/frameset?__report=report/CHFL/appfromucv1.rptdesign</RT0108>
+<RT0109>/Birt/frameset?__report=report/CHFL/CAMUCVREPORT.rptdesign</RT0109>
+<RT0110>/Birt/frameset?__report=report/CHFL/AppFormMSME1.rptdesign</RT0110>
+<RT0111>/Birt/frameset?__report=report/CHFL/alliance.rptdesign</RT0111>
+<RT0112>/Birt/frameset?__report=report/CHFL/UCVEcoSystem.rptdesign</RT0112>
+<RT0113>/Birt/frameset?__report=report/CHFL/appfromucv.rptdesign</RT0113>
+<RT0114>/Birt/frameset?__report=report/CHFL/CAMAlliance_report.rptdesign</RT0114>
+<RT0115>/Birt/frameset?__report=report/CHFL/CAM_Alliance_report.rptdesign</RT0115>
+<RT0116>/Birt/frameset?__report=report/CHFL/LETTEROFUNDERTAKING_report.rptdesign</RT0116>
+<RT0117>/Birt/frameset?__report=report/CHFL/ENDUSEDECLARATIONCUMUNDERTAKING_report.rptdesign</RT0117>
+<RT0118>/Birt/frameset?__report=report/CHFL/Loanagreement_BL_report.rptdesign</RT0118>
+<RT0119>/Birt/frameset?__report=report/CHFL/CibilReport.rptdesign</RT0119>
+<RT0120>/Birt/frameset?__report=report/CHFL/Disbursement Memo_report_UCV.rptdesign</RT0120>
+
+<RT0121>/Birt/frameset?__report=report/CHFL/MSME_UBLPRODSANLETTER.rptdesign</RT0121>
+<RT0122>/Birt/frameset?__report=report/CHFL/MSME_WCDLSTLSANLETTR.rptdesign</RT0122>
+<RT0123>/Birt/frameset?__report=report/CHFL/MSME_LAMPRODSANLETTER.rptdesign</RT0123>
+<RT0124>/Birt/frameset?__report=report/CHFL/MSME_LAPSANLETTER.rptdesign</RT0124>
+<RT0125>/Birt/frameset?__report=report/CHFL/CommercialCibil.rptdesign</RT0125>
+
 
 </xml>

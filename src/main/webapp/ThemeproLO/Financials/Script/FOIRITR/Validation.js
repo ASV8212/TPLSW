@@ -55,15 +55,15 @@ $(document).on("blur", ".Charges", function() {
 	 if(isNaN(pen))
 		{
 			pen=0;
-		}
-	 var gen = parseFloat(AIOI)*parseFloat(75)/parseFloat(100);
+		}//*parseFloat(75)/parseFloat(100)
+	 var gen = parseFloat(AIOI);
 	 if(isNaN(gen))
 		{
 			gen=0;
 		}
 		
 	  
-	 var TotEligVal=parseFloat(PAT)+parseFloat(DEP)+parseFloat(Inter)+parseFloat(den)-parseFloat(pen)-parseFloat(gen)-parseFloat(IndTax);
+	 var TotEligVal=parseFloat(PAT)+parseFloat(DEP)+parseFloat(Inter)+parseFloat(den)-parseFloat(pen)+parseFloat(gen)-parseFloat(IndTax);
 	if(isNaN(TotEligVal))
 		{
 			TotEligVal=0;
@@ -88,7 +88,7 @@ $(document).on("blur", ".Charges", function() {
 		}
 	$("#FOIR_FOIREGINC").val(CURINRCommaSep(parseFloat(nun).toFixed(2))); 
     $("#FOIR_FOIREGINC").next().addClass('active');
-		//wmi calculation 
+		//emi calculation 
 		
 		
 		var LnAmt=100000;
@@ -97,7 +97,7 @@ $(document).on("blur", ".Charges", function() {
 	 
 	ROI=$("#FOIR_INAPPROIPRO").val();
 	Tenur=$("#FOIR_SETENUREPRO").val();
-	 var result=UI_getdata(ROI,Tenur,LnAmt,"","","LSW_SGETEMI_DATA");
+	 var result=UI_getdata(ROI,Tenur,LnAmt,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 	 var EMI=$(result).find("EMI").text();
 	 	if(EMI=='')
 	{
@@ -164,6 +164,10 @@ $(document).on("blur", ".Charges", function() {
 		{
 			PREFUNDSCR=0;
 		}
+	if(PREFUNDSCR=="Infinity")
+		{
+			PREFUNDSCR=0;
+		}
    $("#FOIR_PREFUNDSCR").val(CURINRCommaSep(parseFloat(PREFUNDSCR).toFixed(2)));
     $("#FOIR_PREFUNDSCR").next().addClass('active');
 	
@@ -172,7 +176,7 @@ var ROI=0;
 var Tenur=0; 
 ROI=$("#FOIR_INAPPROIPRO").val();
 Tenur=$("#FOIR_SETENUREPRO").val();
-var result=UI_getdata(ROI,Tenur,LOANPROP,"","","LSW_SGETEMI_DATA");
+var result=UI_getdata(ROI,Tenur,LOANPROP,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 var EMI1=$(result).find("EMI").text();
 if(EMI1=='')
 {
@@ -190,6 +194,10 @@ $("#FOIR_EMIASPRO").next().addClass('active');  */
 	//var EMI1=$("#FOIR_EMIASPRO").val().replace(/,/g,'');
 	var POSTFUNDSCR=parseFloat(TotEligPM)/(parseFloat(ExEMI)+parseFloat(EMI1));
 	if(isNaN(POSTFUNDSCR))
+		{
+			POSTFUNDSCR=0;
+		}
+	if(POSTFUNDSCR=="Infinity")
 		{
 			POSTFUNDSCR=0;
 		}

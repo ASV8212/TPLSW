@@ -26,7 +26,7 @@ $(document).ready(function () {
 			
 				if(MndtryChkRTR == "Mandatory")
 				{
-				alert("Fill the Mandatory Fields");
+				alert("Fill the Mandatory Fields / Document(s)");
 				return false;
 				}
 			}
@@ -314,7 +314,7 @@ $("#SchemeAdd").on('click', function() {
 		
 		if(MndtryChk == "Mandatory")
 			{
-			alert("Fill the Mandatory Fields");
+			alert("Fill the Mandatory Fields / Document(s)");
 			return false;
 			}
 		

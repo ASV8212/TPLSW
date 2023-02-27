@@ -1,11 +1,6 @@
 package Controls;
 
-
-import com.squareup.okhttp.MediaType;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
+import java.util.concurrent.TimeUnit;
 
 public class InterfacePosidex {
 
@@ -21,19 +16,19 @@ public class InterfacePosidex {
 		System.out.println(" Interface Start "+ Uniqid);
 		try
 		{
-			OkHttpClient client = new OkHttpClient();
-
-			MediaType mediaType = MediaType.parse(ContentType);
-			RequestBody body = RequestBody.create(mediaType, XML);
+			okhttp3.OkHttpClient client = new okhttp3.OkHttpClient.Builder().connectTimeout(10, TimeUnit.SECONDS)
+					.writeTimeout(180, TimeUnit.SECONDS).readTimeout(180, TimeUnit.SECONDS).build(); 
+			okhttp3.MediaType mediaType = okhttp3.MediaType.parse(ContentType);
+			okhttp3.RequestBody body = okhttp3.RequestBody.create(mediaType, XML);
 			System.out.println("XML "+ XML);
-			Request request = new Request.Builder()
-			  .url(URL)
-			  .post(body)
-			  .addHeader("cache-control", "no-cache")
-			  .addHeader("content-type", ContentType)
-			  .build();
+			okhttp3.Request request = new okhttp3.Request.Builder()
+				 	  .url(URL)
+				 	 .addHeader("cache-control", "no-cache")
+					  .addHeader("content-type", ContentType)
+				 	.post(body)
+				 	  .build();
 
-			Response resp = client.newCall(request).execute();
+			okhttp3.Response resp = client.newCall(request).execute();
 			
 			System.out.println("InterfaceRest Response Code "+ resp.code());
 

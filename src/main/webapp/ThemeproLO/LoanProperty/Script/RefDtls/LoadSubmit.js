@@ -2,17 +2,40 @@ $(document).ready(function () {
 	
 	
 	$($('.AFormaccordion')[0]).click();
-	
-	
+
+	var result=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHECKSECURITY");
+	var chk=$(result).find("RESULT").text();
+	 
+	if(chk=='Y')	
+	{
+		$("#FormPageTab2").show()
+	}
+	else
+	{
+		$("#FormPageTab2").hide()
+	}	
 	
 	//if ($(".FormPageMultiTab li.active").attr("id").indexOf($(".FormPageMultiTab").attr("title")) < 0)
 		//{
 	//$("#LPDT_PROPERTYNO").val($(".FormPageMultiTab li.active").attr("id"))
 	//	}
 	//$(".LPDT_PROPERTYNO").text($("#LPDT_PROPERTYNO").val());
+	if ($(".FormPageMultiTab li.active").attr("id").indexOf($(".FormPageMultiTab").attr("title")) < 0)
+		{
+	$("#LRDT_REFID").val($(".FormPageMultiTab li.active").attr("id"))
+		}
+	GetRelationship();
 	
-	FormDataFromDB("LSW_TLONREFDTLS","LRDT_","LRDTDBfields");
-	CheckLoanType('LRDT');
+	FormDataFromDB("LSW_TLONREFDTLS","LRDT_","LRDTDBfields", $("#LRDT_REFID").val()+"|LRDT_REFID");
+	
+		
+	var propertyname=$(".FormPageMultiTab li.active a div").text()	
+if(propertyname=="Reference 1")
+{
+	$('.DELBTNTXT').hide()
+}
+	//FormDataFromDB("LSW_TLONREFDTLS","LRDT_","LRDTDBfields");
+	//CheckLoanType('LRDT');
 /*	$('.AFormaccordion').on('click', function() {
 		
 	//var FormXML =	submitdata("CBSIDBfields");
@@ -27,6 +50,24 @@ $(document).ready(function () {
 	});*/
 	
 	
+	 if($("#VERTICAL").val()=="MSME")
+		{
+			$(".MSMEDETAILS").show();
+					 
+		}
+		
+		
+	if($("#VERTICAL").val()=="Tractor Finance")
+		{
+			$(".AUTOTRAC").hide();
+					 
+		}
+		else
+		{
+			$(".AUTOTRAC").show();
+					 
+		}
+	
 	$('.FormSave').on('click', function() {
 		
 		if($(this).text() == "Save & Next")
@@ -36,7 +77,7 @@ $(document).ready(function () {
 		
 		if(MndtryChk == "Mandatory")
 			{
-			alert("Fill the Mandatory Fields");
+			alert("Fill the Mandatory Fields / Document(s)");
 			return false;
 			}
 		}
@@ -55,7 +96,14 @@ $(document).ready(function () {
 		// Customer Seq ID Gen End 
 		
 		//$("#LPDT_PROPERTYNAME").val($(".FormPageMultiTab li.active a div").text())
+		if($("#LRDT_REFID").val() == "")
+		{
+		var REFID = UI_getdata("REFDETAILS","","Yes","","","Sam_sGetSeqID");
 		
+		$("#LRDT_REFID").val($(REFID).find("Val1").text());
+		
+	    }
+		$("#LRDT_REFNAME").val($(".FormPageMultiTab li.active a div").text())
 		var tbl = $(this).attr("data-aria").split("|")[0];
 		var prfx = $(this).attr("data-aria").split("|")[1];
 		var DATA = $(this).attr("data-aria").split("|")[2];
@@ -73,10 +121,22 @@ $(document).ready(function () {
 		//$(".FormPageMultiTab li.active").attr("title",$("#LPDT_PROPERTYNO").val());
 		//$(".FormPageMultiTab li.active a div").text($("#LPDT_PROPERTYNAME").val());
 		
+		$(".FormPageMultiTab li.active").attr("id",$("#LRDT_REFID").val());
+		$(".FormPageMultiTab li.active").attr("title",$("#LRDT_REFID").val());
+		$(".FormPageMultiTab li.active a div").text($("#LRDT_REFNAME").val());
 		// Tab Header Change End
 		
 		if($(this).text() == "Save & Next")
-		{
+		{   
+	
+			 var REFID = UI_getdata($("#PrcsID").val(),"","","","","LSW_SREFERENCEDETAILS");
+			 var ref=$(REFID).find("RESULT").text();
+			 if(ref!='SUCCESS')
+			 {
+				 alert (ref);
+				 return false;
+			 }
+			 
 			  NXTTAB(this);
 		}
 		

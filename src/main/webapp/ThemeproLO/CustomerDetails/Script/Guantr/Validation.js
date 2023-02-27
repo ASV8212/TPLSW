@@ -11,7 +11,9 @@ function residentaddr()
   document.getElementById('GRAI_PERMSTATE').value=document.getElementById('GRAI_STATE').value;
   document.getElementById('GRAI_PERMLNDMARK').value=document.getElementById('GRAI_LNDMARK').value;
   document.getElementById('GRAI_PERMLNDLINENO').value=document.getElementById('GRAI_LNDLINENO').value;
-  document.getElementById('GRAI_PERMYEAROFRESID').value=document.getElementById('GRAI_YEAROFRESID').value;  
+  document.getElementById('GRAI_PERMYEAROFRESID').value=document.getElementById('GRAI_YEAROFRESID').value; 
+  document.getElementById('GRAI_PSTDC').value=document.getElementById('GRAI_STDC').value; 
+  
   var ResType=document.getElementById('GRAI_RESIDTYPE').value;
   var Month=document.getElementById('GRAI_MONTHS').value;
   $("#GRAI_PERMRESIDTYPE").val(ResType);
@@ -29,6 +31,7 @@ function residentaddr()
 	$('#GRAI_SAMRESIDADDR').val('No');   
 	$('.PRADDR').attr('disabled',false)
 	$('.RSADDR').attr('disabled',false)
+	$('.ALLDIS').attr('disabled',true);
 	$('.PRADDR').find('.select-dropdown').attr('disabled',false)
 	$('.RSADDR').find('.select-dropdown').attr('disabled',false)
 	$('.PRADDR').val('');
@@ -40,6 +43,36 @@ function residentaddr()
 	$('.ADDR').removeClass('active');
   }
 }
+
+function Loadresidentaddr()
+{
+  if($( '#GRAI_SAMRESIDADDR').is(':checked')==true)
+  {
+  $('#GRAI_SAMRESIDADDR').val('Yes');
+
+  document.getElementById('GRAI_PREMADDRLINI').value=document.getElementById('GRAI_ADDRLINI').value;
+  document.getElementById('GRAI_PERMADDRLINII').value=document.getElementById('GRAI_ADDRLINII').value;
+  document.getElementById('GRAI_PERMPINCODE').value=document.getElementById('GRAI_PINCODE').value;
+  document.getElementById('GRAI_PERMCITY').value=document.getElementById('GRAI_CITY').value;
+  document.getElementById('GRAI_PERMSTATE').value=document.getElementById('GRAI_STATE').value;
+  document.getElementById('GRAI_PERMLNDMARK').value=document.getElementById('GRAI_LNDMARK').value;
+  document.getElementById('GRAI_PERMLNDLINENO').value=document.getElementById('GRAI_LNDLINENO').value;
+  document.getElementById('GRAI_PERMYEAROFRESID').value=document.getElementById('GRAI_YEAROFRESID').value;  
+  document.getElementById('GRAI_PSTDC').value=document.getElementById('GRAI_STDC').value; 
+  var ResType=document.getElementById('GRAI_RESIDTYPE').value;
+  var Month=document.getElementById('GRAI_MONTHS').value;
+  $("#GRAI_PERMRESIDTYPE").val(ResType);
+  $("#GRAI_PERMMONTHS").val(Month)
+  $('#GRAI_PERMRESIDTYPE').material_select();
+  $('#GRAI_PERMMONTHS').material_select();
+  $('.PRADDR').find('.select-dropdown').attr('disabled',true)
+  $('.RSADDR').find('.select-dropdown').attr('disabled',true)
+  $('.PRADDR').attr('disabled',true)
+  $('.RSADDR').attr('disabled',true)
+  $('.ADDR').addClass('active');
+  }
+}
+
 
 function CheckAddrMndtry()
 {
@@ -120,8 +153,11 @@ function CheckAppltype()
 	if(ApplCusType=="Non-Individual")
 		{
 		$("#GRBI_CUSFISNAM").next().text('Organisation Name *');
-		$(".INDU").hide();
+		$("#GRBI_CUSFISNAM").removeClass('IsAlphaFields');
+		
+		$(".NINDM").addClass('GRBIMndtry');		
 		$(".NINDU").show();
+		$(".INDU").hide();
 		$(".AddKYC").hide();
 		$(".OKYCD").hide();
 		//$(".GSTF").show();
@@ -132,9 +168,7 @@ function CheckAppltype()
 		$("#GRAI_ORGRESIDTYPE").next().text('Address Type');
 		$(".DocImg").removeClass('DOCMndtry');
 		
-		 $("#GRBI_TITLE").empty();
-		 $("#GRBI_TITLE").append('<option id="M/S">M/S</option>') 
-		 $("#GRBI_TITLE").val('M/S');
+		 
 		
 	//	$("#GRAI_ORGRESIDTYPE").removeClass('GRAIMndtry');
 		var element = document.getElementById("RadINDU");
@@ -166,10 +200,18 @@ function CheckAppltype()
 		 $("#GRBI_NPROFILE").append('<option value="SENP">SENP</option>') 
 		 $('#GRBI_NPROFILE').material_select();
 		 $('#GRBI_PROFILE').val('SENP');
+		 
+		 $("#GRBI_TITLE").empty();
+		 $("#GRBI_TITLE").append('<option id="M/S">M/S</option>')
+         $('#GRBI_TITLE').material_select();		 
+		 $("#GRBI_TITLE").val('M/S');
+		 
 		 $(".PROFILE").show();
 		}
 	else
 		{
+			
+		 $(".NINDM").removeClass('GRBIMndtry');
 		 $(".INDU").show();
 		 $(".NINDU").hide();
 		 $(".AddKYC").show();
@@ -187,12 +229,11 @@ function CheckAppltype()
 
 function CheckProfile()
 {
-	var Profile=$("#GRBI_PROFILE").val();
-	
-var ApplCusType=$("#GRBI_CUSTYPE").val()
-	
-	// Credit Change Start
-	var Qualification=$("#GRBI_QUALIFICATION").val();
+	var Profile=$("#GRBI_PROFILE").val();	
+    var ApplCusType=$("#GRBI_CUSTYPE").val()
+
+// Credit Change Start
+	/* var Qualification=$("#GRBI_QUALIFICATION").val();
 	if(Profile=="SEP")
 	{
 	     $("#GRBI_QUALIFICATION").empty();
@@ -209,7 +250,7 @@ append('<option value="">--Select--</option><option value="Matriculation" disabl
 append('<option value="">--Select--</option><option value="Matriculation">Matriculation</option><option value="UG">UG</option><option value="PG">PG</option><option value="Graduate">Graduate</option>') 
 		 $('#GRBI_QUALIFICATION').material_select();
 		  $('#GRBI_QUALIFICATION').val(Qualification);
-	}
+	} */
 	// Credit Change End
 	
 	if(ApplCusType=="Individual")
@@ -222,7 +263,7 @@ append('<option value="">--Select--</option><option value="Matriculation">Matric
 		 $(".SALM").addClass('GRMIMndtry');
 		 $(".SEPM").removeClass('GRMIMndtry');
 		 $(".SEP").hide();
-		 $(".EMP").hide();
+		 $(".EMP").show();
 		 $(".ORG").hide();
 		// $(".GSTF").hide();
 		 $(".PRECOMM").show();
@@ -234,8 +275,8 @@ append('<option value="">--Select--</option><option value="Matriculation">Matric
 	  $(".EMP").hide()
 	  $("#GREI_ORGANINAME").attr('disabled',true);
 	  $("#GREI_ADDRLINEI").attr('disabled',true);
-	  $("#GREI_ORGANINAME").removeClass('COEIMndtry');
-	  $("#GREI_ADDRLINEI").removeClass('COEIMndtry');
+	  $("#GREI_ORGANINAME").removeClass('GREIMndtry');
+	  $("#GREI_ADDRLINEI").removeClass('GREIMndtry');
 	  $("#GREI_ORGANINAME").next().find(".MndtryAstr").html("");
 	  $("#GREI_ADDRLINEI").next().find(".MndtryAstr").html("");
 	}
@@ -248,44 +289,51 @@ append('<option value="">--Select--</option><option value="Matriculation">Matric
 		  $("#GREI_NOOFYERBUSINESS").next().text('No. of Years in Business');
 		  $(".SALM").removeClass('GREIMndtry');
 		  $(".SEPM").addClass('GREIMndtry');
-		  $(".EMP").hide();
+		  $(".EMP").show();
 		  $(".ORG").hide();
 		  $("#GREI_ORGANINAME").attr('disabled',false);
 		  $("#GREI_ADDRLINEI").attr('disabled',false);
-		  $("#GREI_ORGANINAME").addClass('COEIMndtry');
-		  $("#GREI_ADDRLINEI").addClass('COEIMndtry');
+		  $("#GREI_ORGANINAME").addClass('GREIMndtry');
+		  $("#GREI_ADDRLINEI").addClass('GREIMndtry');
 		  $("#GREI_ORGANINAME").next().find(".MndtryAstr").html("*");
 		  $("#GREI_ADDRLINEI").next().find(".MndtryAstr").html("*");
 		 var element = document.getElementById("ORGSEP");
 		  element.classList.add("GRMIMndtry");
-		}
+		}/* 
                 else
 		{
 		  $(".EMP").hide();
 		  $(".ORG").hide();
-		}
+		} */
 	}
-	else
+	/* else
 	 {
 	   $(".EMP").hide();
 	   $(".ORG").hide();
-	 }
-}
+	 } */
+	 
+if(ApplCusType=="Non-Individual")
+	{
+	
+	$(".ORG").show();
+	
+	}
 
+}
 function CheckMarStatus()
 {
 	var MaritStatus=$("#GRBI_MARITSTUS").val()
 	if(MaritStatus=="Married")
 		{
-		  $("#GRBI_SPOUSNAME").addClass('GRBIMndtry');
-		  $("#GRBI_SPOUSNAME").next().find(".MndtryAstr").html("*");
+		 // $("#GRBI_SPOUSNAME").addClass('GRBIMndtry');
+		 // $("#GRBI_SPOUSNAME").next().find(".MndtryAstr").html("*");
 		  $("#GRBI_SPOUSNAME").attr("disabled",false)
-		  $("#GRBI_SPOUSNAME").val('')
+		//  $("#GRBI_SPOUSNAME").val('')
 		}
 	else
 		{
-		$("#GRBI_SPOUSNAME").next().find(".MndtryAstr").html("");
-		$("#GRBI_SPOUSNAME").removeClass('GRBIMndtry');
+		//$("#GRBI_SPOUSNAME").next().find(".MndtryAstr").html("");
+		//$("#GRBI_SPOUSNAME").removeClass('GRBIMndtry');
 		$("#GRBI_SPOUSNAME").attr("disabled",true)
 		$("#GRBI_SPOUSNAME").val('')
 		}
@@ -304,7 +352,7 @@ function CheckGender()
 		}
 		}
 }
-function GetNaturBusness(Category,Nature)
+function GetNaturBusness(Category,Nature,Cluster)
 {
 	var row=$($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).attr('data-row');
 	var Category=$(Category).val();
@@ -312,18 +360,42 @@ function GetNaturBusness(Category,Nature)
 	
 	$("#"+Nature+row).html("")
 	$("#"+Nature+row).append($(xml).find("NATURE").html());
-	$("#"+Nature+row).material_select();	
+	$("#"+Nature+row).material_select();
+	$("#"+Cluster+row).val('');	
 }
 
-function GetNaturBusness_V1(Category,Nature)
+function GetNaturBusness_V1(Category,Nature,Cluster)
 {
 	var Category=$(Category).val();
 	var xml=UI_getdata(Category,"","","","","LSW_SGETNATUROFBUSSINESS")
 	
 	$("#"+Nature).html("")
 	$("#"+Nature).append($(xml).find("NATURE").html());
-	$("#"+Nature).material_select();	
+	$("#"+Nature).material_select();
+	$("#"+Cluster).val('')	
 }
+
+function EmpNaturBusness(html,row)
+{
+		//var CATEGORY=$("#CEMI_INDUSCATRGORY"+row).val().replace(/,/g,'');
+		//var row=$($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).attr('data-row');
+		//var row=$(row).val();
+		var CATEGORY=$("#GREI_INDUSCATRGORY"+row).val();
+		var Naturebusiness=$("#GREI_NATRBUSINESS"+row).val();
+		//var Cluster=$("#CEMI_CLUSTER"+row).val();
+		//var CATEGORY=$(CATEGORY).val();
+		var xml=UI_getdata(CATEGORY,"","","","","LSW_SGETNATUROFBUSSINESS")
+		var NATURE=$(xml).find('NATURE').html();
+		$("#GREI_NATRBUSINESS"+row).append(NATURE)
+		if(Naturebusiness!="")
+		{
+		$("#GREI_NATRBUSINESS"+row+" option:contains("+Naturebusiness+")").attr("selected","selected")
+		}
+		$("#GREI_NATRBUSINESS"+row).material_select("destroy");	
+		$("#GREI_NATRBUSINESS"+row).material_select();
+} 
+
+
 
 function CheckLoanType(Prifx1,Prifx2,Prifx3,Prifx4)
 {
@@ -402,29 +474,43 @@ var CountAttch=1;
 	 }
 	 
 	 var FileSize=parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2);
-    // var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
+   //  var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
    //  var Filename  = names.replace(',','')
-    var Filename  = $(id).closest('td').find('input[type="file"]')[0].files[0].name
+         var Filename  = $(id).closest('td').find('input[type="file"]')[0].files[0].name
 	      var FileType= Filename.substring(Filename.lastIndexOf('.')+1);
           var  Filename= Filename.substring(0, Filename.lastIndexOf('.'));
           var names=Filename
-		  
-		  
-		var xml=UI_getdata(FileType,FileSize,Filename,'ADDRESSPROOF',"","LSW_SGETKYCDOCUMNTTYPE")
+   
+	  if($("#GRBI_CUSTYPE").val()=='Individual')
+	   {
+		   if(DocName=="Aadhar")
+		   {
+			   var ADDRTYPE =DocName
+		   }
+		   else
+		   {
+		     var ADDRTYPE = "ADDRESSPROOF"
+		   }
+	   }
+	   else
+	   {
+		 var ADDRTYPE = "Others"     
+	   }
+		var xml=UI_getdata(FileType,FileSize,Filename,ADDRTYPE,$("#GRBI_CUSTYPE").val()+'|'+$("#PrcsID").val(),"LSW_SGETKYCDOCUMNTTYPE")
 		var FileAccept=$(xml).find('RESULT').text()
+		
 		
 		
 	if(FileAccept == 'No')
 	{
 		alert($(xml).find("alert").text());
+		$(id).closest('td').find('input[type="file"]').val('')
 		return
     }
 	
-	
-	
 names=names+'.'+FileType	
 var y=  names;
-var specialChars = "<>&#^|~`"
+/*var specialChars = "<>&#^|~`"
 var check = function(string){
     for(i = 0; i < specialChars.length;i++){
         if(string.indexOf(specialChars[i]) > -1){
@@ -437,10 +523,10 @@ var check = function(string){
 if(check(y) == false){
     // Code that needs to execute when none of the above is in the string
 }else{
-    alert('Special characters not allowed in the upload file');
+    alert('File name contains special character please remove and upload');
 	$(id).closest('td').find('input[type="file"]').val('')
 	return;
-}
+}*/
 	 
  ajaxindicatorstart("Uploading.. Please wait");
 	    $.ajax({
@@ -495,7 +581,6 @@ if(check(y) == false){
 	        	
 	        }
 	    });
-		
 		  ajaxindicatorstop();
 		  }
 		  else{
@@ -505,6 +590,7 @@ if(check(y) == false){
 }
 
 
+/*
 function checkPAN()
 {
   if($('#GRBI_PANNAVAIL').is(':checked')==true)
@@ -514,11 +600,14 @@ function checkPAN()
 		$('#GRBI_PANNAVAIL').val('Yes');
 		$(".FORM").show();
 		$("#GRBI_PAN").removeClass('GRBIMndtry');
+		$(".PANTYP").removeClass('GRBIMndtry');
 		$("#GRBI_PAN").attr('disabled',true);
+		$(".PANVTyp").attr('disabled',true);
 		$("#GRBI_PAN").val('');
 		$("#GRBI_PAN").next().removeClass('active');
 		$("#GRBI_PAN").next().find(".MndtryAstr").html("");
 		$("#GRBI_PANVERIFY").val('');
+		$(".CHEK").attr('disabled',true);
 		$("[data-Validatearia=GRBI_PANVERIFY]").text('Verify');
         $("[data-Validatearia=GRBI_PANVERIFY]").removeClass("btn-GrnInplain");	
         $("[data-Validatearia=GRBI_PANVERIFY]").addClass("btn-yelInplain");
@@ -529,12 +618,16 @@ function checkPAN()
 		{
 		$('#GRBI_PANNAVAIL').val('No');
 		$(".FORM").hide();
-		$("#GRBI_PAN").addClass('GRBIMndtry');
+		$("#GRBI_PAN").addClass('GRBIMndtry');		
+		$(".PANTYP").addClass('GRBIMndtry');
 		//$("#GRBI_PAN").val('');
 		$("#GRBI_PAN").attr('disabled',false);
+		$(".PANVTyp").attr('disabled',false);
+		$(".CHEK").attr('disabled',false);
 		$("#GRBI_PAN").next().find(".MndtryAstr").html("*");
 		}
 }
+ */
 
 
 function CheckRelatOther()
@@ -543,14 +636,14 @@ function CheckRelatOther()
     if(Relation=="Other")
 	{
 	   $(".Relationother").show(); 
-	   $("#GRBI_OTHERRELATION").addClass('COBIMndtry'); 
+	   $("#GRBI_OTHERRELATION").addClass('GRBIMndtry'); 
 	   
 	}
    else
 	 {
 	   
 	   $(".Relationother").hide(); 
-	   $("#GRBI_OTHERRELATION").removeClass('COBIMndtry'); 
+	   $("#GRBI_OTHERRELATION").removeClass('GRBIMndtry'); 
 	   
 	 }
 }
@@ -628,10 +721,15 @@ function CheckGenter()
 		{
 	     $('input:radio[name=GRBI_GENTER]')[1].checked = true;
 		}
+		else if (Title=="NA" || Title=="NA")
+		{
+		 $('input:radio[name=GRBI_GENTER]')[2].checked = true;
+		}
 	    else
 	    {
 	    	$('input:radio[name=GRBI_GENTER]')[0].checked = false;
 	    	$('input:radio[name=GRBI_GENTER]')[1].checked = false;
+			$('input:radio[name=GRBI_GENTER]')[2].checked = false;
 	    }
 }
 
@@ -666,6 +764,31 @@ function CheckCusType()
 		 $("#CoAppcin").val('')
 		 $(".Constitution").hide();
 		 $(".CIN").hide();
+		 }
+}
+
+function CheckCusType1()
+{
+	var CusType=$("input[name='CoAppType1']:checked"). val();
+
+	 if(CusType=="Non-Individual")
+		{
+		 $(".Constitution").show();
+		 $("#Constitution1").val('')
+		 $("#Constitution1").addClass('LDCOMndtry');
+		 $("#Constitution1").parent().next().find(".MndtryAstr").html("*");
+	     $('#Constitution1').material_select("destroy");	
+		 $('#Constitution1').material_select();
+		}
+	 else
+		 {
+		 $('#Constitution1').find('.select-dropdown').val('')
+		 $("#Constitution1").val('')
+	     $('#Constitution1').material_select("destroy");	
+		 $('#Constitution1').material_select();
+		 $("#Constitution1").removeClass('LDCOMndtry');
+		 $("#Constitution1").parent().next().find(".MndtryAstr").html("");
+		 $(".Constitution").hide();
 		 }
 }
 
@@ -751,8 +874,24 @@ function GridControlDetailKARZAGRD (popTableModPageGrid1,TableID,dtData,dtcolumn
   
 		 
 		 { targets: 6, "render": function ( data, type, row, meta ) {                            
-	 			
+	 		if((($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="AMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="CMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="HRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="IRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="RMRCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SERCU")||($("#DMY10").val().split('|')[1].split('(')[1].replace(")","")=="SMRCU")) && ($(".FormMainTabs li.active").attr("id")!="FormMainTab9"))	
+			{	
 			 var rowno = meta.row;		 
+		 		var HTML =	'<span><input type="radio" disabled class="custom-control-input CBSIDBfields" value="Yes" id="MULTIPLY'+rowno+'" name="ACTION"><label class="custom-control custom-control-label" for="MULTIPLY'+rowno+'">Yes</label>';			 
+		 		HTML = HTML + '</span>';			  
+		 		
+		 		var htmldata = $(HTML);
+					
+					$(htmldata).find('[name=RXLD_MULTIPLIER'+rowno+'][value="'+data+'"]').attr('checked', 'checked');
+
+					//alert($(htmldata).find('[name=OKYD_DOCSTATUS'+rowno+'][value="'+data+'"]').length)
+					//alert(htmldata[0].outerHTML);
+					
+		        return htmldata[0].outerHTML; 
+			}
+				else
+				{
+					var rowno = meta.row;		 
 		 		var HTML =	'<span><input type="radio" class="custom-control-input CBSIDBfields" value="Yes" id="MULTIPLY'+rowno+'" name="ACTION"><label class="custom-control custom-control-label" for="MULTIPLY'+rowno+'">Yes</label>';			 
 		 		HTML = HTML + '</span>';			  
 		 		
@@ -763,7 +902,8 @@ function GridControlDetailKARZAGRD (popTableModPageGrid1,TableID,dtData,dtcolumn
 					//alert($(htmldata).find('[name=OKYD_DOCSTATUS'+rowno+'][value="'+data+'"]').length)
 					//alert(htmldata[0].outerHTML);
 					
-		        return htmldata[0].outerHTML;   		
+		        return htmldata[0].outerHTML;
+				}
 					
 		         } 
 				 }				 
@@ -855,8 +995,9 @@ function CheckPanORNot()
 		}
 }
 
-function GridControlDetailINTERDEDUPE (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm)
+function GridControlDetailDEDUPEBIFGRD (popTableModPageGrid1,TableID,dtData,dtcolumn,hideClm)
 {
+	 
 	 popTableModPageGrid1 = $('#'+TableID).DataTable({ 
 
         'aaData': dtData,
@@ -888,38 +1029,32 @@ function GridControlDetailINTERDEDUPE (popTableModPageGrid1,TableID,dtData,dtcol
 
         "sPaginationType": "full_numbers",
 
-        "aoColumnDefs": [ 
+"aoColumnDefs": [ 
 	   { "sClass": "dpass", "aTargets": jQuery.parseJSON(hideClm)},
-		 { targets: 6, "render": function ( data, type, row, meta ) {                            
-     	 		 
-       			var rowno = meta.row;	
-       			
-       			var Addvalue = "";
-       			var	HTML ="";
-       		if (data != "")
-{	
-       		HTML =  '<span id=""><img src="ThemeproLO/Common/FEP/images/Remarks.png" title="VIEW" onclick="REMARKPOPUP(this)" class="" width="35" height="25">';
-       			HTML =  HTML + '<input type="hidden" id="KYCD_REMARKS'+rowno+'"  name="KYCD_REMARKS'+rowno+'" disabled class="form-control DSVLBL form-control">';
-       		
-       						HTML = HTML + '</span>';		 
+           
+	   { targets: 8, "render": function ( data, type, row, meta ) {                            
+			
+			 var rowno = meta.row;		 
+		 		var HTML =	'<span><input type="radio" class="custom-control-input CBSIDBfields" value="Yes" id="MULTIPLY'+rowno+'" name="ACTION"><label class="custom-control custom-control-label" for="MULTIPLY'+rowno+'"></label>';			 
+		 		HTML = HTML + '</span>';			  
+		 		
+		 		var htmldata = $(HTML);
+					
+					$(htmldata).find('[name=RXLD_MULTIPLIER'+rowno+'][value="'+data+'"]').attr('checked', 'checked');
 
-
-		
-       						var htmldata = $(HTML);
-       						$(htmldata).find('[name=KYCD_REMARKS'+rowno+']').attr("value",data);
-
-       	    	   		return htmldata[0].outerHTML;
-}	
-else{ return ""}
-       	    	   			
-                } 
-       		 }
+					//alert($(htmldata).find('[name=OKYD_DOCSTATUS'+rowno+'][value="'+data+'"]').length)
+					//alert(htmldata[0].outerHTML);
+					
+		        return htmldata[0].outerHTML;   		
+					
+		         } 
+				 }	
+	   	
     	   ],
 
          "fnDrawCallback": function (oSettings) {
 
         }
-
         });
 }
 
@@ -1024,13 +1159,12 @@ function GridControlDetailDEDUPEAIFGRD(popTableModPageGrid1,TableID,dtData,dtcol
 "aoColumnDefs": [ 
 	   { "sClass": "dpass", "aTargets": jQuery.parseJSON(hideClm)},
 	   { targets: 5, "render": function ( data, type, row, meta ) {                            
-			
-		   var rowno = meta.row;       			 
+			if($("#GRBI_CUSTYPE").val()=="Non-Individual")
+	         {
+		      var rowno = meta.row;       			 
 			 
-	 		var HTML =    '<span><select class="Gridmdb-select md-form colorful-select dropdown-primary" id="RXLD_ADDRTYPE'+rowno+'" name="RXLD_ADDRTYPE'+rowno+'">';
+	 		  var HTML ='<span><select class="Gridmdb-select md-form colorful-select dropdown-primary" id="RXLD_ADDRTYPE'+rowno+'" name="RXLD_ADDRTYPE'+rowno+'">';
 	 			HTML = HTML + '<option value="">--Select--</option>';
-	 			HTML = HTML + '<option value="Residence Address">Residence Address</option>';
-	 			HTML = HTML + '<option value="Permanent Address">Permanent Address</option>';
 	 			HTML = HTML + '<option value="Office Address">Office Address</option></span>';
 			          			
 	 			var htmldata = $(HTML);
@@ -1038,9 +1172,23 @@ function GridControlDetailDEDUPEAIFGRD(popTableModPageGrid1,TableID,dtData,dtcol
 	 			$(htmldata).find("option[value='"+data+ "']").attr("selected","selected");
 
 	          return htmldata[0].outerHTML; 		
-					
-		         } 
-				 },   
+			 }
+			 else
+			 {
+				var rowno = meta.row;       			 
+			 
+	 		    var HTML ='<span><select class="Gridmdb-select md-form colorful-select dropdown-primary" id="RXLD_ADDRTYPE'+rowno+'" name="RXLD_ADDRTYPE'+rowno+'">';
+	 			HTML = HTML + '<option value="">--Select--</option>';
+	 			HTML = HTML + '<option value="Residence Address">Residence Address</option>';
+	 			HTML = HTML + '<option value="Permanent Address">Permanent Address</option>';     			
+	 			var htmldata = $(HTML);
+	 			
+	 			$(htmldata).find("option[value='"+data+ "']").attr("selected","selected");
+
+	          return htmldata[0].outerHTML;  
+			 }
+		   } 
+		},   
 	   { targets: 6, "render": function ( data, type, row, meta ) {                            
 			
 			 var rowno = meta.row;		 
@@ -1130,7 +1278,7 @@ function RelationShipDropdown()
             if(ApplCusType=="Non-Individual")
 			{
             	$("#GRBI_RELATIONSHIP").empty();
-        		$("#GRBI_RELATIONSHIP").append('<option value="" selected>--Select--</option><option value="Partner">Partner</option><option value="Director">Director</option><option value="Shareholder">Shareholder</option><option value="Other">Other</option>') 
+        		$("#GRBI_RELATIONSHIP").append('<option value="" selected>--Select--</option><option value="Partner">Partner</option><option value="Director">Director</option><option value="Shareholder">Shareholder</option><option value="Proprietor">Proprietor</option><option value="Other">Other</option>') 
         		$('#GRBI_RELATIONSHIP').material_select("destroy");	
         		$('#GRBI_RELATIONSHIP').material_select();
         		$('#GRBI_RELATIONSHIP').val(CoAppRelation);
@@ -1161,7 +1309,7 @@ function RelationShipDropdown()
 		else
 			{
 			$("#GRBI_RELATIONSHIP").empty();
-    		$("#GRBI_RELATIONSHIP").append('<option value="" selected>--Select--</option><option value="Partner">Partner</option><option value="Director">Director</option><option value="Shareholder">Shareholder</option><option value="Other">Other</option>') 
+    		$("#GRBI_RELATIONSHIP").append('<option value="" selected>--Select--</option><option value="Partner">Partner</option><option value="Director">Director</option><option value="Shareholder">Shareholder</option><option value="Proprietor">Proprietor</option><option value="Other">Other</option>') 
     		$('#GRBI_RELATIONSHIP').material_select("destroy");	
     		$('#GRBI_RELATIONSHIP').material_select();
     		$('#GRBI_RELATIONSHIP').val(CoAppRelation);
@@ -1316,7 +1464,7 @@ function CheckGSTorNot()
 	}
 	else
 	{
-		$(".GSTF").show()
+		//$(".GSTF").show()
 	}
 }
 
@@ -1516,17 +1664,959 @@ function disbRmk()
 	$("#RemarksCONFIRM").hide();
 }
 
-/*
-function AddUAMDocMnd()
+
+function CheckPani()
 {
-	var UAM= $("#GRBI_UAMNO").val();
-	var UAMDOC=$("#GRBI_UPDUAMNO").val();
-	if(UAM!="")
+	var PANVerify=$("#GRBI_PANVERIFY").val();
+	if($("#KARZASTATUS").val()=="Active")
 	{
-		$("#GRBI_UPDUAMNO").addClass("DOCMndtry");
+	if(PANVerify=="Verified")
+		{
+		 if($("#GRBI_CUSFISNAM").val()!="")
+		  {
+			  //$("#GRBI_CUSFISNAM").attr('disabled',true)
+		  }
+		  if($("#GRBI_CUSLSTNAM").val()!="")
+		  {
+			 // $("#GRBI_CUSLSTNAM").attr('disabled',true)
+		  }
+		}
+	}
+}
+/* function GCheckDirectt()
+ {
+	
+	 var borrower=$("#GRBI_GBORROWER").val()
+      if(borrower=="Yes")
+	  {
+		 //$(".NINDU").show();
+         $("#GREI_GEUAMNO").addClass('GREIMndtry');
+         $("#GREI_GEUAMNO").next().find(".MndtryAstr").html("*");
+		 
+         $("#GUOA_GUAMNO").addClass('GUOAMndtry');
+         $("#GUOA_GUAMNO").next().find(".MndtryAstr").html("*");
+	  }
+	  else 
+	  {
+		 //$(".NINDU").hide();
+         $("#GREI_GEUAMNO").removeClass('GREIMndtry');
+         $("#GREI_GEUAMNO").next().find(".MndtryAstr").html("");
+		 
+         $("#GUOA_GUAMNO").removeClass('GUOAMndtry');
+         $("#GUOA_GUAMNO").next().find(".MndtryAstr").html("");
+		 
+	  }
+		  
+ } */
+ function GuCheckborrower()
+ {
+	
+	 var borrower=$("#GRBI_GBORROWER").val()
+      if(borrower=="Yes")
+	  {
+		 $(".GUNON").show();
+		 if($('#GRBI_UDYAMVERI').val()=="Verified")
+			{
+			$(".VerifyUdyam").show();
+			}
+			else
+			{
+			$(".VerifyUdyam").hide();
+			}
+/* 		 $(".GUEUDHA").addClass('GREIMndtry');
+         //$("#CEMI_EUAMNO").addClass('GREIMndtry');
+         $(".GUEUDHA").next().find(".MndtryAstr").html("*");
+		 
+		 $(".CEUDHA").removeClass('GREIMndtry');
+		 $(".CEUDHA").next().find(".MndtryAstr").html("");
+		 
+		 $(".GUUDHA").addClass('GUOAMndtry');
+        // $("#CDOG_UAMNO").addClass('GUOAMndtry');
+         $(".GUUDHA").next().find(".MndtryAstr").html("*");
+		 
+		 $(".CUDHA").removeClass('GUOAMndtry');
+		 $(".CUDHA").next().find(".MndtryAstr").html(""); */
+	  }
+	  else
+	  {
+		 $(".GUNON").hide();
+/* 		  $(".GUEUDHA").removeClass('GREIMndtry');
+       //  $("#CEMI_EUAMNO").removeClass('GREIMndtry');
+         $(".GUEUDHA").next().find(".MndtryAstr").html("");
+		 
+		 $(".CEUDHA").addClass('GREIMndtry');
+		 $(".CEUDHA").next().find(".MndtryAstr").html("*");
+		 
+		  $(".GUUDHA").removeClass('GUOAMndtry');
+        // $("#CDOG_UAMNO").removeClass('GUOAMndtry');
+         $(".GUUDHA").next().find(".MndtryAstr").html("");
+		 
+		 //$(".CUDHA").addClass('GUOAMndtry');
+		 $(".CUDHA").next().find(".MndtryAstr").html("");
+		 
+		 //$("#GUOA_GCUAMNO").addClass('GUOAMndtry');
+		 //$("#GUOA_GCUAMNO").next().find(".MndtryAstr").html("*"); */
+	  }
+		  
+ }
+ 
+function GCheckNumber()
+ {
+	$("#GRBI_GSTNUM").attr('disabled',false);
+	var GST=$("input[name='GRBI_GGST']:checked"). val();
+	if(GST=="Yes")
+	{
+		$("#GRBI_GSTAPPLILE").addClass('GRBIMndtry');
+		$("#GRBI_GSTAPPLILE").parent().next().find(".MndtryAstr").html("*");
+		$(".GSTAPP").show(); 
+	  /* 
+		 $(".EXEM").show();
+		 $(".GSTF").show();
+		 $("#GRBI_GEXEMPTED").addClass('GRBIMndtry');
+		 $("#GRBI_GSTNUM").addClass('GRBIMndtry');        
+		 $("#GRBI_GEXEMPTED").parent().next().find(".MndtryAstr").html("*");
+		 $("#GRBI_GSTNUM").next().find(".MndtryAstr").html("*"); */
+         
 	}
 	else
 	{
-		$("#GRBI_UPDUAMNO").removeClass("DOCMndtry");
+		$("#GRBI_GSTAPPLILE").val('');
+		$("#GRBI_GSTAPPLILE").removeClass('GRBIMndtry');
+		$("#GRBI_GSTAPPLILE").parent().next().find(".MndtryAstr").html("");		
+		$('#GRBI_GSTAPPLILE').material_select("destroy");	
+		$("#GRBI_GSTAPPLILE").material_select();
+		$(".GSTAPP").hide();
+		$(".BankDetail2").html('');
+		
+		$("#GRBI_GEXEMPTED").val('');
+		$("#GRBI_GEXEMPTED").removeClass('GRBIMndtry');
+		$("#GRBI_GSTNUM").val('');
+		$("#GRBI_GSTNUM").removeClass('GRBIMndtry');
+		$("#GRBI_GEXEMPTED").parent().next().find(".MndtryAstr").html("");
+		$('#GRBI_GEXEMPTED').material_select("destroy");	
+		$("#GRBI_GEXEMPTED").material_select();
+		$("#GRBI_GSTNUM").next().find(".MndtryAstr").html("");
+		$(".EXEM").hide();
+		$(".GSTF").hide();
+		$(".CHKBOX").hide();
+	/* 	 $("#GRBI_GSTNUM").val('');
+		 $("#GRBI_GEXEMPTED").val('');
+		 $("#GRBI_GSTNUM").removeClass('GRBIMndtry');
+         $("#GRBI_GEXEMPTED").removeClass('GRBIMndtry');
+         $("#GRBI_GEXEMPTED").parent().next().find(".MndtryAstr").html("");
+		 $("#GRBI_GSTNUM").next().find(".MndtryAstr").html("");
+		  $(".EXEM").hide();
+		  $(".GSTF").hide(); */
 	}
-}*/
+	Checkgstapp();
+ }
+ 
+  function Checkgstapp()
+ {
+	 var Gstapp=$("#GRBI_GSTAPPLILE").val()
+	 var GST=$("input[name='GRBI_GGST']:checked"). val();
+	 if(Gstapp=="Single" && GST=="Yes")
+	 {
+		$("#GRBI_GEXEMPTED").addClass('GRBIMndtry');
+		$("#GRBI_GSTNUM").addClass('GRBIMndtry');
+		$("#GRBI_GEXEMPTED").parent().next().find(".MndtryAstr").html("*");
+		$("#GRBI_GSTNUM").next().find(".MndtryAstr").html("*");
+		$(".GSTCLER").val('')
+		$(".CHKCLER").prop("checked", false);
+		$(".EXEM").show();
+		$(".GSTF").show(); 
+		$(".CHKBOX").hide();		
+		$(".BankDetail2").html('');						 
+	 }
+	 else if(Gstapp=="Multiple" && GST=="Yes")
+	 {
+		 $("#GRBI_GEXEMPTED").addClass('GRBIMndtry');
+		 $("#GRBI_GEXEMPTED").parent().next().find(".MndtryAstr").html("*");
+		 $(".EXEM").show();
+		 $(".CHKBOX").show();			 
+		 $("#GRBI_GSTNUM").val('');
+		 $("#GRBI_GSTNUM").removeClass('GRBIMndtry');
+		 $("#GRBI_GSTNUM").next().find(".MndtryAstr").html("");
+		 $(".GSTF").hide();
+	 }
+	/*  else
+	 {
+		$("#GRBI_GEXEMPTED").val('');
+		$("#GRBI_GEXEMPTED").removeClass('GRBIMndtry');
+		$("#GRBI_GSTNUM").val('');
+		$("#GRBI_GSTNUM").removeClass('GRBIMndtry');
+		$("#GRBI_GEXEMPTED").parent().next().find(".MndtryAstr").html("");
+		$("#GRBI_GSTNUM").next().find(".MndtryAstr").html("");
+		$(".EXEM").hide();
+		$(".GSTF").hide();
+		$(".CHKBOX").hide();
+	 } */
+	 
+ }
+ function RmoveEmpFlds()
+{
+	 var html=$('.BankDetail1').find(".DYNROW")
+	 var row = $('.BankDetail1').find(".DYNROW").length;
+	 
+	 for (i=0;i<row;i++)
+	 {
+		 if(i>0)
+		  {
+		  	$($('.BankDetail1').find(".DYNROW")[i]).find(".OEMPONE").hide(); 
+			$($('.BankDetail1').find(".DYNROW")[i]).find(".DLTICON").show(); 
+		  	$($('.BankDetail1').find(".DYNROW")[i]).find(".EMPI").removeClass("GREIMndtry")
+			$($('.BankDetail1').find(".DYNROW")[i]).find(".SALM").removeClass("GREIMndtry")
+			$($('.BankDetail1').find(".DYNROW")[i]).find(".OEMPM").removeClass("GREIMndtry")
+		  }
+		 else
+		 {
+			 $($('.BankDetail1').find(".DYNROW")[i]).find(".DLTICON").hide();
+			 $($('.BankDetail1').find(".DYNROW")[i]).find(".OEMPM").addClass("GREIMndtry")
+			//$($('.BankDetail1').find(".DYNROW")[i]).find(".EMPI").addClass("GREIMndtry")
+		 }
+		 
+		  $($('.BankDetail1').find(".DYNROW")[i]).find("input[name='GREI_CUSID']" ).val($("#GRBI_CUSID").val())
+	 } 
+}function GetOfficaddr()
+{	 
+//var row = $('.BankDetail1').find(".DYNROW").length;
+var row=$($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).attr('data-row');
+var Resi=$($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find("input[name='GREI_ORGANIADDR']:checked").val();
+
+if(Resi=="Resi-cum-office")
+ {
+	 if($('#GREI_ADDRLINEI'+row).val() != "")
+	 {
+	if (confirm("The entered address will be cleared are you sure to continue") == true) {
+ //$('#CADI_SAMRESIDADDR').val('Yes');
+ document.getElementById('GREI_ADDRLINEI'+row).value=document.getElementById('GRAI_ADDRLINI').value;
+ document.getElementById('GREI_ADDRLINEII'+row).value=document.getElementById('GRAI_ADDRLINII').value;
+ document.getElementById('GREI_PINCODE'+row).value=document.getElementById('GRAI_PINCODE').value;
+ document.getElementById('GREI_CITY'+row).value=document.getElementById('GRAI_CITY').value;
+ document.getElementById('GREI_STATE'+row).value=document.getElementById('GRAI_STATE').value;
+ document.getElementById('GREI_LNDMARK'+row).value=document.getElementById('GRAI_LNDMARK').value;
+ document.getElementById('GREI_LNDLINENO'+row).value=document.getElementById('GRAI_LNDLINENO').value;
+ document.getElementById('GREI_STDC'+row).value=document.getElementById('GRAI_STDC').value;
+ $("#GREI_CITY"+row).next().addClass('active')
+ $("#GREI_STATE"+row).next().addClass('active')
+ $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.RSADDR').attr('disabled',true)
+  //$('.OFFADDR').attr('disabled',true)
+  $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.OADDR').addClass('active');
+	} 
+  }
+  else
+  {
+	  document.getElementById('GREI_ADDRLINEI'+row).value=document.getElementById('GRAI_ADDRLINI').value;
+	  document.getElementById('GREI_ADDRLINEII'+row).value=document.getElementById('GRAI_ADDRLINII').value;
+	  document.getElementById('GREI_PINCODE'+row).value=document.getElementById('GRAI_PINCODE').value;
+	  document.getElementById('GREI_CITY'+row).value=document.getElementById('GRAI_CITY').value;
+	  document.getElementById('GREI_STATE'+row).value=document.getElementById('GRAI_STATE').value;
+	  document.getElementById('GREI_LNDMARK'+row).value=document.getElementById('GRAI_LNDMARK').value;
+	  document.getElementById('GREI_LNDLINENO'+row).value=document.getElementById('GRAI_LNDLINENO').value;
+	  document.getElementById('GREI_STDC'+row).value=document.getElementById('GRAI_STDC').value;
+$("#GREI_CITY"+row).next().addClass('active')
+ $("#GREI_STATE"+row).next().addClass('active')
+	  $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.RSADDR').attr('disabled',true)
+	   //$('.OFFADDR').attr('disabled',true)
+	   $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.OADDR').addClass('active');
+  }
+ }
+ else
+   {
+	 if($('#GREI_ADDRLINEI'+row).val() != "")
+		 {
+		 if (confirm("The entered address will be cleared are you sure to continue") == true) {
+			   $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.RSADDR').attr('disabled',false)
+			//$('.OFFADDR').attr('disabled',false)
+			   $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.RSADDR').val('');	
+			//$('.PINL').removeClass('active');
+			$("#GREI_CITY"+row).next().removeClass('active')
+			$("#GREI_CITY"+row).val('');
+			 $("#GREI_STATE"+row).val('');
+            $("#GREI_STATE"+row).next().removeClass('active')
+			   $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.OADDR').removeClass('active');
+		   }
+		 }
+	 else
+		 {
+		     $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.RSADDR').attr('disabled',false)
+			//$('.OFFADDR').attr('disabled',false)
+			   $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.RSADDR').val('');	
+			//$('.PINL').removeClass('active');
+			$("#GREI_CITY"+row).next().removeClass('active')
+            $("#GREI_STATE"+row).next().removeClass('active')
+			$("#GREI_CITY"+row).val('');
+			 $("#GREI_STATE"+row).val('');
+			   $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.OADDR').removeClass('active');
+		 }
+   }
+}function DELEMPDETAILS()
+{
+	
+	if($("#GRBI_PROFILE").val() != "Salaried" && $("#GRBI_PROFILE").val()!="SEP" && $("#GRBI_PROFILE").val()!= "SENP")
+	{
+       var EMPDETAILS=UI_getdata($("#PrcsID").val(),$("#GRBI_CUSID").val(),"","","","LSW_SCLEAREMPDETAILS")	
+   	   
+   	 $('.PROCHGS').val('')
+   	 $('.PROCHGAC').removeClass('active')
+   	 
+   	   
+   	
+  	$('input:radio[name=GREI_PREFCOMMUADDR]')[0].checked = false;
+	$('input:radio[name=GREI_PREFCOMMUADDR]')[1].checked = false;
+	$('input:radio[name=GREI_PREFCOMMUADDR]')[2].checked = false;
+   	
+   	$('input:radio[name=GREI_ORGANIADDR]')[0].checked = false;
+	$('input:radio[name=GREI_ORGANIADDR]')[1].checked = false;
+	$('input:radio[name=GREI_ORGANIADDR]')[2].checked = false;
+   	
+   	
+    }
+}
+
+function CheckNegativeList()
+{
+	var NegativeList = UI_getdata("","","","","","LSW_SGETCAUTIONLIST");
+	
+	$("#GREI_NEGATLIST").html("")
+	$("#GREI_NEGATLIST").append($(NegativeList).find("Negative").html());	
+	
+	$("#GREI_CAUTLIST").html("")
+	$("#GREI_CAUTLIST").append($(NegativeList).find("Caution").html()); 	
+	
+    $("#GREI_PAR").html("")
+	$("#GREI_PAR").append($(NegativeList).find("PAR").html());
+}
+
+function Chkqualify(Input1,Input2,Type,Event)
+{
+	if(Event=="Load")
+	{
+		if($("#GRBI_QUALIFICATION").val()=="Others")
+		{
+		  $(".OTHERS").show();
+		  $("#GRBI_GOTHER").addClass("GRBIMndtry");	
+		  $("#GRBI_GOTHER").next().find(".MndtryAstr").html("*");
+		}
+		else
+		{
+		  
+		  $("#GRBI_GOTHER").removeClass("GRBIMndtry");
+		  $("#GRBI_GOTHER").next().find(".MndtryAstr").html("");
+		  $(".OTHERS").hide();
+		}
+		
+	}
+	else
+	{
+	if(Type=="Category")
+	{
+		if($("#"+Input1).val()=="Others")
+		{
+		  $(".OTHERS").show();
+		  $("#"+Input2).addClass("GRBIMndtry");	
+		  $("#"+Input2).next().find(".MndtryAstr").html("*");
+		}
+		else
+		{
+		  $(".OTHERS").hide();
+		  $("#"+Input2).val('');
+		  $("#"+Input2).next().removeClass('active');
+		  $("#"+Input2).removeClass("GRBIMndtry");
+          $("#"+Input2).next().find(".MndtryAstr").html("");		  
+		}
+	}
+}
+}
+function Chkudha(){
+	var borrower=$("#GRBI_GBORROWER").val()
+	var ApplCusType=$("#GRBI_CUSTYPE").val()
+	
+	if(ApplCusType=="Non-Individual")
+		{
+	
+	if ($("#GRBI_UDYAMVERI").val()=='Verified')
+		{
+		$("#GRBI_GCUAMNO").attr("disabled",true)
+		$("#GRBI_GUAMNO").removeClass("GRBIMndtry");
+		$(".VerifyUdyam").show();
+		}
+		else
+		{
+		$("#GRBI_GCUAMNO").attr("disabled",false)
+		$("#GRBI_GUAMNO").addClass("GRBIMndtry");
+		$(".VerifyUdyam").hide();
+		}
+		
+    /* if(borrower=="Yes")
+	{ */
+ if(borrower=="Yes")
+	{
+	if($("#GRBI_GCUAMNO").prop('checked') == true){
+		$("#GRBI_GUAMNO").val('');
+		$("#GRBI_GUAMNO").removeClass("GRBIMndtry");
+		$("#GRBI_GUAMNO").next().find(".MndtryAstr").html("");
+		$("#GRBI_GUAMNO").attr("disabled",true);
+		$(".veri").hide();
+	}
+	else {
+
+		$("#GRBI_GUAMNO").addClass("GRBIMndtry");
+		$("#GRBI_GUAMNO").next().find(".MndtryAstr").html("*");
+		$("#GRBI_GUAMNO").attr("disabled",false);
+		$(".veri").show();
+	}
+	}
+	/* if ($("#GRBI_UDYAMVERI").val()=='Verified')
+		{
+		$("#GRBI_GCUAMNO").attr("disabled",true)
+		}
+		else
+		{
+		$("#GRBI_GCUAMNO").attr("disabled",false)
+		} */
+	/* }
+	else
+	{	$("#GRBI_GUAMNO").val('');
+		$("#GRBI_GUAMNO").removeClass("GRBIMndtry");
+		$("#GRBI_GUAMNO").next().find(".MndtryAstr").html("");
+		$("#GRBI_GUAMNO").attr("disabled",true);
+		$(".veri").hide();
+	} */
+		}
+	}
+	
+ function Sector()
+ {
+   
+	var xml=UI_getdata("TypeSec","","","","","LSW_SGETFINANCIALVAL");
+	
+    $("#GUOA_SECTOR").html("");
+	$("#GUOA_SECTOR").append($(xml).find("RESULT").html());
+	$("#GUOA_SECTOR").material_select(); 
+}
+function ChkGrProf()
+{
+	var Mar=$("#GRBI_MARITSTUS").val();	
+	var Gen=$("input[name='GRBI_GENTER']:checked"). val();
+	if((Mar=='Single') ||  Gen=='Male')
+	{
+		
+		 $(".PROFILEVAL").find('.HSWF').attr('disabled',true)
+	     $("span:contains('Housewife')").parent().addClass('HSWF');
+		 $(".HSWF").addClass('disabled');
+		 $("#GRBI_NPROFILE").val('')		 
+		 $("#GRBI_NPROFILE").material_select();
+	
+	}
+	else{
+		
+		 $(".PROFILEVAL").find('.HSWF').attr('disabled',false)
+	     $("span:contains('Housewife')").parent().addClass('HSWF');
+		 $(".HSWF").removeClass('disabled');
+		 $("#GRBI_NPROFILE").val('')		 
+		 $("#GRBI_NPROFILE").material_select();
+	}
+}
+function Chkdirect()
+{
+	var dir=$("input[name='GRBI_PANTYPE']:checked"). val();
+	if($("#GRBI_PANVERIFY").val()=="")
+	{
+	if(dir=="Direct")
+	{
+		$("#GRBI_PANNAVAIL").attr('disabled',true)
+		$("#GRBI_PAN").addClass("GRBIMndtry");	
+		$("#GRBI_PAN").next().find(".MndtryAstr").html("*");
+		$(".TYP").show();
+		$(".UPLD").hide();
+		$(".KYCPROOF").show();
+	}
+	else if(dir=="OCR")
+	{
+		$("#GRBI_PANNAVAIL").attr('disabled',true)
+		$("#GRBI_PAN").removeClass("GRBIMndtry");	
+		$("#GRBI_PAN").next().find(".MndtryAstr").html("");
+		$(".TYP").hide();
+		//$("#CBSI_PAN").val("");
+		$("#GRBI_PAN").removeClass('active');
+		$(".UPLD").show();
+		$(".KYCPROOF").show();
+	}
+	}
+	else
+	{
+		$("#GRBI_PANNAVAIL").attr('disabled',false)
+		$(".TYP").show();
+		$(".UPLD").show();
+		$(".KYCPROOF").hide();
+	}
+	/* var KYCDOCPROOF = UI_getdata("PAN","","","","","LSW_SKYCPROOFTYPELIST");
+	$("#GRBI_KYCPROOFTYP").html("")
+	$("#GRBI_KYCPROOFTYP").append($(KYCDOCPROOF).find("RESULT").html());
+	$("#GRBI_KYCPROOFTYP").material_select(); */
+	if((($("#GRBI_VOTERIDPROOF").val()).includes ("ID PROOF"))||(($("#GRBI_AADHARPROOF").val()).includes ("ID PROOF"))||(($("#GRBI_DLPROOF").val()).includes ("ID PROOF"))||(($("#GRBI_PASSPORTPROOF").val()).includes ("ID PROOF"))||(($("#GRBI_UTILITYPROOF").val()).includes ("ID PROOF")))
+	{
+	   $("#GRBI_KYCPROOFTYP option[value='ID PROOF']").attr('disabled',true);
+	   $("#GRBI_KYCPROOFTYP").material_select();
+	}
+	 if((($("#GRBI_VOTERIDPROOF").val()).includes ("DOB PROOF"))||(($("#GRBI_AADHARPROOF").val()).includes ("DOB PROOF"))||(($("#GRBI_DLPROOF").val()).includes ("DOB PROOF"))||(($("#GRBI_PASSPORTPROOF").val()).includes ("DOB PROOF"))||(($("#GRBI_UTILITYPROOF").val()).includes ("DOB PROOF")))
+	{
+	   $("#GRBI_KYCPROOFTYP option[value='DOB PROOF']").attr('disabled',true);
+	   $("#GRBI_KYCPROOFTYP").material_select();
+	}
+	if((($("#GRBI_VOTERIDPROOF").val()).includes ("ADDRESS PROOF 2"))||(($("#GRBI_AADHARPROOF").val()).includes ("ADDRESS PROOF 2"))||(($("#GRBI_DLPROOF").val()).includes ("ADDRESS PROOF 2"))||(($("#GRBI_PASSPORTPROOF").val()).includes ("ADDRESS PROOF 2"))||(($("#GRBI_UTILITYPROOF").val()).includes ("ADDRESS PROOF 2")))
+	{
+	   $("#GRBI_KYCPROOFTYP option[value='ADDRESS PROOF 2']").attr('disabled',true);
+	   $("#GRBI_KYCPROOFTYP").material_select();
+	}
+	if((($("#GRBI_VOTERIDPROOF").val()).includes ("ADDRESS PROOF 1"))||(($("#GRBI_AADHARPROOF").val()).includes ("ADDRESS PROOF 1"))||(($("#GRBI_DLPROOF").val()).includes ("ADDRESS PROOF 1"))||(($("#GRBI_PASSPORTPROOF").val()).includes ("ADDRESS PROOF 1"))||(($("#GRBI_UTILITYPROOF").val()).includes ("ADDRESS PROOF 1")))
+	{
+	   $("#GRBI_KYCPROOFTYP option[value='ADDRESS PROOF 1']").attr('disabled',true);
+	   $("#GRBI_KYCPROOFTYP").material_select();
+	}
+	if((($("#GRBI_VOTERIDPROOF").val()).includes ("SIGN PROOF"))||(($("#GRBI_AADHARPROOF").val()).includes ("SIGN PROOF"))||(($("#GRBI_DLPROOF").val()).includes ("SIGN PROOF"))||(($("#GRBI_PASSPORTPROOF").val()).includes ("SIGN PROOF"))||(($("#GRBI_UTILITYPROOF").val()).includes ("SIGN PROOF")))
+	{
+	   $("#GRBI_KYCPROOFTYP option[value='SIGN PROOF']").attr('disabled',true);
+	   $("#GRBI_KYCPROOFTYP").material_select();
+	} 
+	if($("#GRBI_CUSTYPE").val() == "Non-Individual")
+	{
+		$("#GRBI_KYCPROOFTYP option[value='SIGN PROOF']").attr('disabled',true);
+		$("#GRBI_KYCPROOFTYP option[value='DOB PROOF']").attr('disabled',true);
+	}
+
+}
+
+function GetOfficaddr()
+{	 
+//var row = $('.BankDetail1').find(".DYNROW").length;
+var row=$($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).attr('data-row');
+var Resi=$($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find("input[name='GREI_ORGANIADDR']:checked").val();
+
+if(Resi=="Resi-cum-office")
+ {
+	 if($('#GREI_ADDRLINEI'+row).val() != "")
+	 {
+	if (confirm("The entered address will be cleared are you sure to continue") == true) {
+ //$('#CADI_SAMRESIDADDR').val('Yes');
+ document.getElementById('GREI_ADDRLINEI'+row).value=document.getElementById('GRAI_ADDRLINI').value;
+ document.getElementById('GREI_ADDRLINEII'+row).value=document.getElementById('GRAI_ADDRLINII').value;
+ document.getElementById('GREI_PINCODE'+row).value=document.getElementById('GRAI_PINCODE').value;
+ document.getElementById('GREI_CITY'+row).value=document.getElementById('GRAI_CITY').value;
+ document.getElementById('GREI_STATE'+row).value=document.getElementById('GRAI_STATE').value;
+ document.getElementById('GREI_LNDMARK'+row).value=document.getElementById('GRAI_LNDMARK').value;
+ document.getElementById('GREI_LNDLINENO'+row).value=document.getElementById('GRAI_LNDLINENO').value;
+ document.getElementById('GREI_STDC'+row).value=document.getElementById('GRAI_STDC').value;
+  $("#GREI_CITY"+row).next().addClass('active')
+  $("#GREI_STATE"+row).next().addClass('active')
+ $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.OFFADDR').attr('disabled',true)
+  //$('.OFFADDR').attr('disabled',true)
+  $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.OADDR').addClass('active');
+	} 
+  }
+  else
+  {
+	  document.getElementById('GREI_ADDRLINEI'+row).value=document.getElementById('GRAI_ADDRLINI').value;
+	  document.getElementById('GREI_ADDRLINEII'+row).value=document.getElementById('GRAI_ADDRLINII').value;
+	  document.getElementById('GREI_PINCODE'+row).value=document.getElementById('GRAI_PINCODE').value;
+	  document.getElementById('GREI_CITY'+row).value=document.getElementById('GRAI_CITY').value;
+	  document.getElementById('GREI_STATE'+row).value=document.getElementById('GRAI_STATE').value;
+	  document.getElementById('GREI_LNDMARK'+row).value=document.getElementById('GRAI_LNDMARK').value;
+	  document.getElementById('GREI_LNDLINENO'+row).value=document.getElementById('GRAI_LNDLINENO').value;
+	  document.getElementById('GREI_STDC'+row).value=document.getElementById('GRAI_STDC').value;
+       $("#GREI_CITY"+row).next().addClass('active')
+       $("#GREI_STATE"+row).next().addClass('active')
+	  $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.OFFADDR').attr('disabled',true)
+	   //$('.OFFADDR').attr('disabled',true)
+	   $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.OADDR').addClass('active');
+  }
+ }
+ else
+   {
+	 if($('#GREI_ADDRLINEI'+row).val() != "")
+		 {
+		 if (confirm("The entered address will be cleared are you sure to continue") == true) {
+			   $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.OFFADDR').attr('disabled',false)
+			//$('.OFFADDR').attr('disabled',false)
+			$("#GREI_CITY"+row).next().removeClass('active')
+			$("#GREI_CITY"+row).val('');
+			$("#GREI_STATE"+row).val('');
+            $("#GREI_STATE"+row).next().removeClass('active')
+			   $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.OFFADDR').val('');	
+			//$('.PINL').removeClass('active');
+			   $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.OADDR').removeClass('active');
+		   }
+		 }
+	 else
+		 {
+		     $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.OFFADDR').attr('disabled',false)
+			//$('.OFFADDR').attr('disabled',false)
+			$("#GREI_CITY"+row).next().removeClass('active')
+			$("#GREI_CITY"+row).val('');
+			$("#GREI_STATE"+row).val('');
+            $("#GREI_STATE"+row).next().removeClass('active')
+			   $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.OFFADDR').val('');	
+			//$('.PINL').removeClass('active');
+			   $($('.BankDetail1').find(event.target).closest('.DYNROW')[0]).find('.OADDR').removeClass('active');
+		 }
+   }
+}
+
+function checkPAN(Event)
+{
+  if($('#GRBI_PANNAVAIL').is(':checked')==true)
+	   {
+		$("#GRBI_CUSFISNAM").attr('disabled',false);
+		$("#GRBI_CUSLSTNAM").attr('disabled',false);
+		$('#GRBI_PANNAVAIL').val('Yes');
+		$(".FORM").show();
+		$("#GRBI_PAN").val('');
+		$("#GRBI_PAN").next().removeClass('active');
+		$(".PANTYP").removeClass('GRBIMndtry');
+		$("#GRBI_PAN").removeClass('GRBIMndtry');
+		$("#GRBI_PAN").attr('disabled',true);
+		$(".PANVTyp").attr('disabled',true);
+		$("#GRBI_KYCPROOFTYP").val('')
+		$("#GRBI_KYCPROOFTYP").attr('disabled',true);
+		$("#GRBI_KYCPROOFTYP").material_select();
+		$("#GRBI_KYCPROOFTYP").removeClass('COBIMndtry')
+		$("#GRBI_KYCPROOFTYP").next().find(".MndtryAstr").html("");
+		$("#GRBI_PAN").next().find(".MndtryAstr").html("");
+		$("#GRBI_PANVERIFY").val('');		
+		$(".CHEK").attr('disabled',true);
+		$("[data-Validatearia=GRBI_PANVERIFY]").text('Verify');
+        $("[data-Validatearia=GRBI_PANVERIFY]").removeClass("btn-GrnInplain");	
+        $("[data-Validatearia=GRBI_PANVERIFY]").addClass("btn-yelInplain");
+        $("[data-Validatearia=GRBI_PANVERIFY]").removeClass("btn-RedInplain"); 
+		var xml=UI_getdata($("#GRBI_PRCSID").val(),$("#GRBI_PAN").val(),$("#GRBI_CUSID").val(),$("#GRBI_CONSTITUTION").val(),"","LSW_SCHKDUPDATA");
+	   }
+	else
+		{
+		$('#GRBI_PANNAVAIL').val('No');
+		$(".FORM").hide();
+		$("#GRBI_PAN").addClass('GRBIMndtry');		
+		$(".PANTYP").addClass('GRBIMndtry');
+		$("#GRBI_PAN").attr('disabled',false);
+		$(".PANVTyp").attr('disabled',false);		
+		$(".CHEK").attr('disabled',false);
+		$("#GRBI_PAN").next().find(".MndtryAstr").html("*");
+		$("#GRBI_KYCPROOFTYP").attr('disabled',false);
+		$("#GRBI_KYCPROOFTYP").material_select();
+		}
+}
+function Chkresi()
+{
+	var resi=$("#GRAI_YEAROFRESID").val()
+	var month=$("#GRAI_MONTHS").val()
+		
+	var perresi=$("#GRAI_PERMYEAROFRESID").val()
+	var permonth=$("#GRAI_PERMMONTHS").val()
+	
+	var orgresi=$("#GRAI_ORGYEAROFRESID").val()
+	var orgmonth=$("#GRAI_ORGMONTHS").val()
+	
+	if(resi=="0" && month=="0")
+	{
+		alert("In year of residence is 0 then at least enter month should be greater than 0 ");
+		
+		$("#GRAI_MONTHS").val(''); 
+		$("#GRAI_MONTHS").material_select(); 
+	}
+	if(perresi=="0" && permonth=="0")
+	{
+		alert("In year of residence is 0 then at least enter month should be greater than 0 ");
+		$("#GRAI_PERMMONTHS").val(''); 
+		$("#GRAI_PERMMONTHS").material_select(); 
+	}
+	if(orgresi=="0" && orgmonth=="0")
+	{
+		alert("In year of residence is 0 then at least enter month should be greater than 0 ");
+		$("#GRAI_ORGMONTHS").val(''); 
+		$("#GRAI_ORGMONTHS").material_select(); 
+	}
+}
+
+
+
+
+
+function ChkLanMark(html,row)
+{
+	             var lanmark=$("#"+[row]).val()
+				 
+				 
+				 if(isNumeric(lanmark))
+				 {
+					 alert("LandMark Should be AlphaNumeric");
+					 $("#"+[row]).val('');
+				 }
+
+}
+function Filesizepop(KYCName,Evnt)
+{
+	if(KYCName == "PAN"|| "Aadhar"|| "GRBI_FORM60A")
+	{
+		if($("#GRBI_CUSTYPE").val()=='Individual')
+		   {
+			  var ADDRTYPE1 = "ADDRESSPROOF"
+		   }
+		   else
+		   {
+			var ADDRTYPE1 = "Others"   
+		   }
+		   
+		   var xmlDocSize=UI_getdata($("#GRBI_CUSTYPE").val(),ADDRTYPE1,"","","","LSW_SGETDOCSIZELST")
+		   if($(xmlDocSize).find("RESULT").text() != "")
+		   {
+			   alert($(xmlDocSize).find("RESULT").text());
+			   $(Evnt).next().click();
+		   }
+		   else{
+			   alert("Invalid Format");
+			   return;
+		   }
+	}
+}
+
+function Checkcin(Prcsid,CIN,CUSID)
+{
+	var PrcsId=$("#"+Prcsid).val()
+	var CINVAL=$("#"+CIN).val()
+	var cusidVAL=$("#"+CUSID).val()
+var xml=UI_getdata(PrcsId,CINVAL,cusidVAL,"","","LSW_SCHECKCINDATA");
+		
+		var Output=$(xml).find('RESULT').text()
+		
+		if(Output != "OK")
+			{
+			  alert(Output);
+			  $("#"+CIN).val('')
+			  return false;
+			}
+}
+function Checkudym(Prcsid,UDYM,CUSID)
+{
+	var PrcsId=$("#"+Prcsid).val()
+	var UDYMVAL=$("#"+UDYM).val()
+	var cusidVAL=$("#"+CUSID).val()
+	var xml=UI_getdata(PrcsId,UDYMVAL,cusidVAL,"","","LSW_SCHECKUDAYAMDATA");
+		
+	var Output=$(xml).find('RESULT').text()
+		
+		if(Output != "OK")
+			{
+			  alert(Output);
+			  $("#"+UDYM).val('')
+			  return false;
+			}
+}
+function CheckGst(Prcsid,GST,CUSID)
+{
+	var PrcsId=$("#"+Prcsid).val()
+	var GSTVAL=$("#"+GST).val()
+	var cusidVAL=$("#"+CUSID).val()
+	var xml=UI_getdata(PrcsId,GSTVAL,cusidVAL,"","","LSW_SCHECKGSTDATA");
+		
+	var Output=$(xml).find('RESULT').text()
+		
+		if(Output != "OK")
+			{
+			  alert(Output);
+			  $("#"+GST).val('')
+			  return false;
+			}
+}
+
+function Chkgst(id)
+{
+                   var inputvalues = $(id).val(); 
+                   var GstNumber= inputvalues.toUpperCase()				 
+                 var gstinformat = new RegExp('^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$');    
+                 if (gstinformat.test(GstNumber)) {
+                 //  $(".gst").val(GstNumber);					 
+                   return true;    
+                 }
+             else
+             {    
+                 alert('Please Enter Valid GSTIN Number - Eg.27AACCH5453M1Z9');    
+                 $(id).val('');    
+                 $(id).focus();    
+			 }
+}
+
+
+function ChkGstPrimary (Gstnum,PGst){
+	
+
+		if($("#"+Gstnum).val()=='')
+{
+	
+	alert ("Kindly fill GST Number")
+	$("#"+PGst).prop('checked', false)
+	return false;
+	
+}
+else{
+	
+	$("input[name='GGST_GSTCHK']").prop('checked',false)	
+	$("#"+PGst).prop('checked', true);
+}
+}
+
+
+function OtherKYC() 
+{
+if(($("#GRBI_VOTERIDTYPE").val()!="") && ($("#GRBI_VOTERIDTYPE").val()!=undefined))
+{
+	$(".voter").show();
+	if($("#GRBI_VOTERIDTYPE").val()=="Direct")
+	{
+		if($("#GRBI_VOTERIDVEIRFY").val()=="Verified")
+		{
+		$(".voterupload").show();
+		}
+		else
+		{
+		$(".voterupload").hide();
+		}
+	}
+	if($("#GRBI_VOTERIDTYPE").val()=="OCR")
+	{
+		if($("#GRBI_VOTERUPLOADVERIFY").val()=="Upload Verified")
+		{
+		$(".VoterFld").show();
+		}
+		else
+		{
+		$(".VoterFld").hide();
+		}
+	}
+}
+
+if(($("#GRBI_AADHARTYPE").val()!="") && ($("#GRBI_AADHARTYPE").val()!=undefined))
+{
+	$(".AADHAR").show();
+	if($("#GRBI_AADHARTYPE").val()=="OCR")
+	{
+		if($("#GRBI_AADHARUPLOADVERIFY").val()=="Upload Verified")
+		{
+		//$(".AUPLDXML").show();
+		//$(".AUPLDXMLII").show();
+		$(".AVER").show();
+		}
+		else
+		{
+		//$(".AUPLDXML").hide();
+		//$(".AUPLDXMLII").hide();
+		$(".AVER").hide();
+		}
+	}
+	if($("#GRBI_AADHARTYPE").val()=="XML Verification")
+	{
+		if($("#GRBI_AADHARUPLOADVERIFY").val()=="Upload Verified")
+		{
+		//$(".AUPLDXML").show();
+		$(".AUPLDXMLII").hide();
+		$(".AVER").show();
+		}
+		else
+		{
+		//$(".AUPLDXML").hide();
+		$(".AUPLDXMLII").hide();
+		$(".AVER").hide();
+		}
+	}
+	if($("#GRBI_AADHARTYPE").val()=="ZIP File Verification")
+	{
+		if($("#GRBI_AADHARUPLOADVERIFY").val()=="Upload Verified")
+		{
+		//$(".AUPLDXML").show();
+		$(".AUPLDXMLII").hide();
+		$(".AVER").show();
+		}
+		else
+		{
+		//$(".AUPLDXML").hide();
+		$(".AUPLDXMLII").hide();
+		$(".AVER").hide();
+		}
+	}
+}
+
+if(($("#GRBI_DRIVNGTYPE").val()!="") && ($("#GRBI_DRIVNGTYPE").val()!=undefined))
+{
+	$(".dl").show();
+	if($("#GRBI_DRIVNGTYPE").val()=="Direct")
+	{
+		if($("#GRBI_DRIVLICNSVERIFY").val()=="Verified")
+		{
+		$(".DUPLD").show();
+		}
+		else
+		{
+		$(".DUPLD").hide();
+		}
+	}
+	if($("#GRBI_DRIVNGTYPE").val()=="OCR")
+	{
+		if($("#GRBI_DLUPLOADVERIFY").val()=="Upload Verified")
+		{
+		$(".DVER").show();
+		}
+		else
+		{
+		$(".DVER").hide();
+		}
+	}
+}
+
+if(($("#GRBI_PASPRTTYPE").val()!="") && ($("#GRBI_PASPRTTYPE").val()!=undefined))
+{
+	$(".passport").show();
+	if($("#GRBI_PASPRTTYPE").val()=="Direct")
+	{
+		if($("#GRBI_PASSPORTVERIFY").val()=="Verified")
+		{
+		$(".passportupload").show();
+		}
+		else
+		{
+		$(".passportupload").hide();
+		}
+	}
+	if($("#GRBI_PASPRTTYPE").val()=="OCR")
+	{
+		if(($("#GRBI_PASSUPLOADVERIFY").val()=="Upload Verified")&&($("#GRBI_PASSUPLOADIIVERIFY").val()=="Upload Verified"))
+		{
+		$(".PVER").show();
+		}
+		else
+		{
+		$(".PVER").hide();
+		}
+	}
+}
+
+if(($("#GRBI_UBVERIFYTYPE").val()!="") && ($("#GRBI_PASPRTTYPE").val()!=undefined))
+{
+$(".Utility").show();
+}
+}
+function GETPROOFTYP()
+{
+
+var k=	$("#GRBI_KYCPROOFTYP").val().length	
+var PROOFTYPE=""
+ for(i=0;i<k;i++)
+	 {
+	 var PROOFTYPE1=$("#GRBI_KYCPROOFTYP").val()[i]
+		
+	 if(PROOFTYPE1!=undefined)
+		 {
+	      var PROOFTYPE= PROOFTYPE+','+PROOFTYPE1
+		}
+	 }
+       var PROOFTYPE =PROOFTYPE.replace(',','')
+       $("#GRBI_HIDPROFTYP").val(PROOFTYPE)	
+}

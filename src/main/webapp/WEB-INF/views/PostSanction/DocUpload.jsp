@@ -25,6 +25,7 @@
       <input type="text" id="DCUL_CREATEDBY" hidden="hidden" name="DCUL_CREATEDBY" class="form-control DCULDBfields">
       <input type="text" id="DCUL_DTMODIFIED" hidden="hidden" name="DCUL_DTMODIFIED" class="form-control DCULDBfields">
       <input type="text" id="DCUL_MODIFIEDBY" hidden="hidden" name="DCUL_MODIFIEDBY" class="form-control DCULDBfields">
+	  <input type="text" id="HIDDENIPLDST" hidden="hidden" name="HIDDENIPLDST" class="form-control DCULDBfields">
      
       
         <input type="text" id="DCUL_DOCUMNTS" hidden="hidden" name="DCUL_DOCUMNTS" class="form-control DCULDBfields">
@@ -147,6 +148,10 @@
          <th>DULD_TYPE</th>
          <th>DULD_NAME</th>
          <th>DULD_UPLOAD</th>
+		 <th>DULD_INITESIGN</th>
+		 <th>DULD_RETERIVEREPORT</th>
+		 <th>DULD_GRIDUPLOAD</th>
+		 
 
 
       </thead>

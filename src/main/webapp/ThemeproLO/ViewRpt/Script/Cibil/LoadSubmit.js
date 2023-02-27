@@ -20,9 +20,11 @@ $(document).ready(function () {
 	
 	$(".CIBIL").click(function () {	
 	//$("#FIEG_CUSID").empty();
+	  $("#FIEG_DATEOFINIT").val('');	
 	  $("#FIEG_CUSID").val('');			
 	  $("#FIEG_CUSID").material_select();
-	  $(".CCLR").val('');
+	  $(".CCLR").val('');	  
+	  $("#FIEG_DATEOFINIT").next().removeClass('active')
 	  $("#FIEG_CIBILSCOREI").next().removeClass('active')
 	  $("#FIEG_CIBILSCOREII").next().removeClass('active')
 	  $(".DDV").hide();
@@ -36,6 +38,9 @@ $(document).ready(function () {
 	
      DisbCusName();
      
+     
+     
+     
 	$('.FormSave').on('click', function() {
 
 		if($(this).text() == "Done")
@@ -45,15 +50,15 @@ $(document).ready(function () {
 		
 		if(MndtryChk == "Mandatory")
 			{
-			alert("Fill the Mandatory Fields");
+			alert("Fill the Mandatory Fields / Document(s)");
 			return false;
 			}
-
+		
 		InsCIBILData();
 	   // FormDataToDB(tbl,prfx,$("#RCBP_PRCSID").val()+"|"+$("#"+DATA).val()+"|" + DATA);
 		}
 		
-		if($(this).text() == "Save & Next")
+		/*if($(this).text() == "Next")
 		{
 		var MndtryChk = ChkMandatoryFlds("RCBPMndtry");
 		
@@ -63,6 +68,7 @@ $(document).ready(function () {
 			return false;
 			}
 		}
+		*/
 		//var CIBILGRD = TxtGridsubmitdata_V1("CBRTable","FIEG_","RCBP_");
 	 //AssignGridXmltoField("RCBP_CIBILGRD", CIBILGRD)
 		var tbl = $(this).attr("data-aria").split("|")[0];

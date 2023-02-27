@@ -40,7 +40,17 @@
 	<link href="ThemeproLO/Common/FEP/css/Grid/datatables-select.min.css${DMY13}" rel="stylesheet">-->
 	
  <!-- SCRIPTS -->
-
+<script type = "text/javascript" >  
+    function preventBack() { 
+	window.history.forward();
+		if(window.location.href !=window.location.origin+"/TPLSW/")
+		{
+			window.location.href=window.location.origin+"/TPLSW/";
+		}
+	}  
+    setTimeout("preventBack()", 0);  
+    window.onunload = function () { null };  
+</script> 
     <!-- JQuery -->
    <script type="text/javascript" src="ThemeproLO/Common/FEP/js/jquery-3.1.1.min.js${DMY13}"></script>
 
@@ -99,10 +109,12 @@ input[type=date], input[type=datetime-local], input[type=email], input[type=numb
 		 </style>
 </head>
  
-<body class="hidden-sn white-skin">
+<body class="hidden-sn white-skin" >
 
 
-			
+			<div class = "clientlogo">
+				<!--<img  class="img-fluid" style="width: 10rem;padding: 1rem;" alt="Responsive image" src="ThemeproLO/Common/Images/Client Logo/TVS-Credit-Logo-PNG.png">-->
+			</div>
     <!--Main layout-->
    <!-- <main class="">-->
         <div class="container-fluid LGNcontainer-fluid">
@@ -118,9 +130,13 @@ input[type=date], input[type=datetime-local], input[type=email], input[type=numb
     <div class="col-md-6 LGNRow LGNRowBr" >
   
 
-        <div class="LGNCenter">              
-<img  class="img-fluid" style="width: 20rem;" alt="Responsive image" src="ThemeproLO/Common/Images/chola-logo3x.png">
-	</div>		   
+    <!-- <div class="LGNCenter">              
+	<img  class="img-fluid" style="width: 20rem;" alt="Responsive image" src="ThemeproLO/Common/Images/Tvs_Logo.jpg">
+	</div> 	 -->
+
+     <div class="LGNCenter">              
+<img  class="img-fluid" style="width: 20rem;" alt="Responsive image" src="ThemeproLO/Common/Images/Client Logo/TVS-Credit-Logo-PNG.png">
+	</div> 	  
 
 </div>
 
@@ -186,9 +202,9 @@ input[type=date], input[type=datetime-local], input[type=email], input[type=numb
 											<div class="col-md-12">                                             
                                              Captcha  
                                               <div>
-<input type="text" disabled="" onpaste="return false" style="color:black;text-align: center;background-color:#afe2fa;margin:5px 0px;float:left;border-radius: .4rem;width:45px;height:40px;" class="" id="txt1"/>
+<input type="text" disabled="" onpaste="return false" style="color:black;text-align: center;background-color:#0e8943;margin:5px 0px;float:left;border-radius: .4rem;width:45px;height:40px;" class="" id="txt1"/>
 <div class="plus" style="padding: 16px 0;margin: 0px 4px;float: left;">+</div>  
-<input type="text" disabled="" onpaste="return false" style="color:black;text-align: center;background-color:#afe2fa;margin:5px 0px;float:left;border-radius: .4rem;width:45px;height:40px;" class="" id="txt2"/>
+<input type="text" disabled="" onpaste="return false" style="color:black;text-align: center;background-color:#0e8943;margin:5px 0px;float:left;border-radius: .4rem;width:45px;height:40px;" class="" id="txt2"/>
 <div class="plus" style="padding: 16px 0;margin: 0px 4px;float: left;">=</div> 
 <input type="text" onpaste="return false" style="border:1px solid #CCC;color:black;text-align: center;margin:5px 0px;float:left;border-radius: .4rem;width:45px;height:40px;" class="" id="txt3"/><img src="ThemeproLO/Common/Images/swap-arrows-refresh.png" title="Refresh" id="Refreshbtn" onclick="randomnum()" align=" right" style="display:none;width:20px;height:20px;cursor: pointer;"/>
 </div>
@@ -219,9 +235,14 @@ input[type=date], input[type=datetime-local], input[type=email], input[type=numb
 <div class="col-md-12">                                         
                                              
   <div style="display: flex;justify-content: center">
-<div><button type="button" value="Sign In" id="CheckSignInBtn1" class="btn btn-light waves-effect waves-light CheckSignInBtn" style="color: black!important;">Sign In</button></div>
+<div><button type="button" value="Sign In" id="CheckSignInBtn1" class="btn btn-light waves-effect waves-light CheckSignInBtn" >Sign In</button></div>
 <div><button type="button" style="display:none" value="Forgot Password?" onclick="FrgPwd()" id="CheckFrgPwd" class="btn btn-light waves-effect waves-light " style="color: black!important;">Forgot Password?</button></div>
 <div><button type="button" style="display:none" value="Forgot Username?" onclick="FrgUsrNme()" id="CheckFrgUsrNme" class="btn btn-light waves-effect waves-light " style="color: black!important;">Forgot Username?</button></div>
+</div>
+<div style="display: flex;justify-content: right">
+<font id="RightSD" size="2px"> Powered By ThemePro
+<img style="height:16px;width:12px" src="ThemeproLO/Common/Images/encorelogo.png">
+</font>
 </div>
 </div>   		
 </div> 
@@ -579,13 +600,12 @@ input[type=date], input[type=datetime-local], input[type=email], input[type=numb
 
 
 
-
+</div>
 </section>
 
-        </div>
+        
    <!-- </main>-->
     <!--/Main layout-->
-
 			     <script type="text/javascript" src="ThemeproLO/Common/scripts/Alert/alertfy.js${DMY13}"></script>
  <script type="text/javascript" src="ThemeproLO/Common/Alert/metro/js/jquery.msgbox.js${DMY13}"></script>
  
@@ -631,6 +651,9 @@ input[type=date], input[type=datetime-local], input[type=email], input[type=numb
  <script src="ThemeproLO/Common/scripts/UI/jquery.xml2json.js${DMY13}" type="text/javascript"></script>
 <script type="text/javascript" src="ThemeproLO/Common/scripts/Commonfiles/loadjson_V_19.js${DMY13}"></script>
  
+ <script>
+ 
+ </script>
 	
 	<script>
 	
@@ -701,7 +724,31 @@ function FrgUsrNme()
             $("#TXTIP").val(data.ip); 
         }) 
     </script> 
+ <script>
+	$(document).ready(function() {
+		var browser = (function() {
+    var test = function(regexp) {return regexp.test(window.navigator.userAgent)}
+    switch (true) {
+        case test(/edg/i): return "Microsoft Edge";
+        case test(/trident/i): return "Microsoft Internet Explorer";
+        case test(/firefox|fxios/i): return "Mozilla Firefox";
+        case test(/opr\//i): return "Opera";
+        case test(/ucbrowser/i): return "UC Browser";
+        case test(/samsungbrowser/i): return "Samsung Browser";
+        case test(/chrome|chromium|crios/i): return "Google Chrome";
+        case test(/safari/i): return "Apple Safari";
+        default: return "Other";
+    }
+})();
+if(browser != "Google Chrome")
+{
+	alert("Works best in Chrome");
+	window.location.href = "https://www.google.co.in/";
+}
+	});
+ </script>
  
 		<!--</footer>-->
+		
 </body>
 </html>

@@ -5,7 +5,7 @@ $(document).ready(function () {
 	
 	
 	$("#COEI_PRCSID").attr("value",$("#PrcsID").val());
-	
+	$("#COGS_PRCSID").attr("value",$("#PrcsID").val());
 	if ($(".FormPageMultiTab li.active").attr("id").indexOf($(".FormPageMultiTab").attr("title")) < 0)
 		{
 	$("#COBI_CUSID").val($(".FormPageMultiTab li.active").attr("id"))
@@ -15,25 +15,132 @@ $(document).ready(function () {
 	$(".COBI_CUSID").text($("#COBI_CUSID").val());
 		}
 	
-	if($("#DMY7").val().split("|")[8]=="HE02")
-	{
-		$(".BTNDedupe").hide();
-	}
-	
 	var tbl = $("#headingOne1 a").attr("data-aria").split("|")[0];	
 	var prfx = $("#headingOne1 a").attr("data-aria").split("|")[1];
 	var DATA = $("#headingOne1 a").attr("data-aria").split("|")[2];
 	var CusID =$("#headingOne1 a").attr("data-aria").split("|")[2];
 	var CusID1 =$("#headingOne1 a").attr("data-aria").split("|")[3];
 	
+	// Added Since Loading Issues Date - 28/05/2020 Start
+	var CItbl = $("#headingTwo2 a").attr("data-aria").split("|")[0];	
+	var CIprfx = $("#headingTwo2 a").attr("data-aria").split("|")[1];
+	var CIDATA = $("#headingTwo2 a").attr("data-aria").split("|")[2];
+	var CICusID =$("#headingTwo2 a").attr("data-aria").split("|")[2];
+	var CICusID1 =$("#headingTwo2 a").attr("data-aria").split("|")[3];
+	
+	
+	
+	var Orgtbl = $("#headingFour4 a").attr("data-aria").split("|")[0];	
+	var Orgprfx = $("#headingFour4 a").attr("data-aria").split("|")[1];
+	var OrgDATA = $("#headingFour4 a").attr("data-aria").split("|")[2];
+	var OrgCusID =$("#headingFour4 a").attr("data-aria").split("|")[2];
+	var OrgCusID1 =$("#headingFour4 a").attr("data-aria").split("|")[3];
+    //End
+	
 	if  (DATA != "")
 	{
 		DATA = $("#"+DATA).val()+"|" + DATA;
 	}
 	
-	FormDataFromDB(tbl, prfx + "_", prfx+"DBfields", DATA);
+		
+	var xml=UI_getdata("","","","","","LSW_SGETNATUR")
 	
-	var xml=UI_getdata("Karza","","","","","LSW_SCHKINTGSTATUS")
+	$("#COOA_INDUSCATRGORY").html("")
+	$("#COOA_INDUSCATRGORY").append($(xml).find("Industry").html());
+	$("#COOA_INDUSCATRGORY").material_select();
+	$("#COEI_INDUSCATRGORY").html("")
+	$("#COEI_INDUSCATRGORY").append($(xml).find("Industry").html());
+	
+	GetSec();
+	FormDataFromDB(tbl, prfx + "_", prfx+"DBfields", DATA);
+	if($("#COBI_PANVERIFY").val()=='Verified')
+	{
+		$(".COBI_PAN").addClass('VIEWDISABLE');
+	}
+	if($("#COBI_VOTERIDVEIRFY").val()=='Verified')
+	{
+		$(".COBI_VOTERID").addClass('VIEWDISABLE');
+	}
+	if($("#COBI_DRIVLICNSVERIFY").val()=='Verified')
+	{
+		$(".COBI_DRIVLICNS").addClass('VIEWDISABLE');
+	}
+	if($("#COBI_PASSPORTVERIFY").val()=='Verified')
+	{
+		$(".COBI_PASSPORT").addClass('VIEWDISABLE');
+	}
+	// Added Since Loading Issues Date - 28/05/2020 Start
+	
+	if($("#"+CICusID1).length>0)
+	  {
+		$("#"+CICusID).val($("#"+CICusID1).val())
+	  }
+	
+	if($("#"+OrgCusID1).length>0)
+	  {
+		$("#"+OrgCusID).val($("#"+OrgCusID1).val())
+	  }
+	
+	if  (CIDATA != "")
+	{
+		CIDATA = $("#"+CIDATA).val()+"|" + CIDATA;
+	}
+	$(".ImgScore").text('Image Score : '+$("#COBI_IMGSCORE").val());
+	FormDataFromDB(CItbl, CIprfx + "_", CIprfx+"DBfields", CIDATA);
+	
+       
+	LoadMultiData("",$("#PrcsID").val(),$("#COBI_CUSID").val(),"BankDetail2","COGSDBfields","LSW_SCOSUSGSTGRDDATA");
+	if($("#COBI_AADHARTYPE").val()=="ZIP File Verification")
+     {
+      $(".AUPLDXMLII").hide();
+      }
+	  if  (OrgDATA != "")
+	{
+		OrgDATA = $("#"+OrgDATA).val()+"|" + OrgDATA;
+	}
+	  FormDataFromDB(Orgtbl, Orgprfx + "_", Orgprfx+"DBfields", OrgDATA);
+	// End
+	if(($("#COBI_CUSTYPE").val() == "Non-Individual") && (($("#COBI_CONSTITUTION").val()=="Private Ltd ")||($("#COBI_CONSTITUTION").val()=="Public Ltd ")))
+    {
+    
+      $("#COAI_ORGLNDLINENO").addClass('COAIMndtry');
+	  $("#COAI_ORGSTDC").addClass('COAIMndtry');
+	  //$("#COAI_MOBNOI").removeClass('COAIMndtry');
+      //$("#COAI_MOBIVERIFY").removeClass('COAIMndtry'); 
+    }
+
+ else
+    {
+     $("#COAI_ORGLNDLINENO").removeClass('COAIMndtry');
+	 $("#COAI_ORGSTDC").removeClass('COAIMndtry');
+	 //$("#COAI_MOBNOI").addClass('COAIMndtry');
+     //$("#COAI_MOBIVERIFY").addClass('COAIMndtry'); 
+    }
+
+	
+	if($("#DMY7").val().split("|")[8]=="HE02")
+	{
+		$(".BTNDedupe").hide();
+	}
+	Chkdirect();
+	CheckNumber();
+	CoCheckborrower();
+	//Chkudyam();
+	OtherKYC();
+	if($("#COBI_HIDPROFTYP").val()!='')
+	{	
+		var HIDPROFTYP=$("#COBI_HIDPROFTYP").val()
+		var PROOFTYPE=HIDPROFTYP.split(",");
+		var row = $(PROOFTYPE).length;
+		for (i=0;i<row;i++)
+		{
+			if(PROOFTYPE[i] !="")
+			{
+				$("#COBI_KYCPROOFTYP option[value='"+PROOFTYPE[i]+"']").attr("selected","selected")
+			}
+		}
+	}
+	var xml=UI_getdata("Karza",$("#VERTICAL").val(),"","","","LSW_SCHKINTGSTATUS")
 	var data=$(xml).find('STATUS').text()
 	
 	$("#KARZASTATUS").val(data)
@@ -49,7 +156,6 @@ $(document).ready(function () {
 		$(".INTDSBV").attr("disabled",false);
 	}
 	
-	
        if($("#DMY7").val().split("|")[0]=="Existing Loans" && $("#COBI_FILESTATUS").val()=="C")
 		{
 		$("#COBI_PROFILE").attr('disabled',true) 
@@ -61,39 +167,37 @@ $(document).ready(function () {
         }
 		
 		
-		 if($("#DMY5").val().split("|")[2]!= "PreLogin" && $("#DMY5").val().split("|")[2]!="SendToCredit")
+		 if($("#DMY5").val().split("|")[2]!= "PreLogin"||$("#DMY7").val().split("|")[0]=="Existing Loans"||$("#DMY7").val().split("|")[0]=="Re-Punch")
 		{
           $(".SWAPTXT").hide()
 		}
-		
-		 if($("#DMY7").val().split("|")[0]=="Existing Loans"||$("#DMY7").val().split("|")[0]=="Re-Punch")
-		{
-          $(".SWAPTXT").hide()
-		}
-		
-		
 		
 		
 		 if($("#COBI_CUSTYPE").val()== "Individual"||$("#PrMs7").val().split("|")[0]=="Individual")
 			{
+				CheckMsme();
 	          $(".SWAPTXT").hide()
+			 
+			  
 			}
 			
 		
 	
 	$("#COEI_CUSID").attr("value",$("#"+CusID).val());
-	
-	
-    FindConstDD();
+
+
 	//CheckLoanType('COBI','COAI','COEI','COOA');
 	//CheckRelation();
+	FindConstDD();
 	CheckDudupe('COBI_DEDUPEVERIFY');
 	CheckRelatOther();
 	CHKApplIndiv();
 	ApplicantTitleDisabl();
-	residentaddr();
+	CheckNegativeList();
+	//residentaddr();
 	CheckUploadMndtry();
-	getSameaApplAddr();
+	Chkqualify('','','','Load');
+	//getSameaApplAddr();
 	if ($("#"+CusID1).length>0)
 	{
 		if($("#"+CusID1).val()=="")
@@ -119,7 +223,7 @@ $(document).ready(function () {
 	CheckMarStatus();
 	ApplicantTitleDisabl();
 	CHKAPPResidType();
-	//AddUAMDocMnd();
+	
 	CheckPanORNot();
 	CheckFieldDisb();
 	RelationShipDropdown();
@@ -127,10 +231,30 @@ $(document).ready(function () {
     NotIndiPan();
           //CheckCIN();
 	AddZoom();
-	CheckGSTorNot();
-	CheckProfile();
+	//CheckGSTorNot();
+	CheckProfile("Load");
 	LoadVwImage('COBI_');
-	//getSameAs();
+	if($("#COBI_PANUPLOADVERIFY").val()=="Upload Verified")
+	{
+		 $(".TYP").show()
+	}
+	 if($("#COBI_MSKAADHARATTACHMENT").val()!="")
+	  {
+	   $(".AadharMskImg").show();
+	   $(".AadharViewImg").hide();
+	   $("#COBI_AADHAR").attr("disabled",true);
+      }
+	if($("#COBI_MSKAADHARATTACHMENTII").val()!="")
+	  {
+	   $(".AadharMskImgII").show();
+	   $(".AadharViewImgII").hide();
+	   $("#COBI_AADHAR").attr("disabled",true);
+      }
+	if($("#COBI_UBVERIFYTYPE").val()=="Mobile Authentication with OTP")
+	{
+		$(".UtilityLable").text("Service Number");
+	}
+	
 	// New Applicant Details End
 	
 /*	$('.AFormaccordion').on('click', function() {
@@ -151,7 +275,7 @@ $(document).ready(function () {
 			
 			 if($(xmlSTATUS).find('RESIDENCESTA').text()=="Completed")
 				 {
-			      $("#COBI_RESCOMPETED").val($(xmlSTATUS).find('RESIDENCESTA').text())
+				   $("#COBI_RESCOMPETED").val($(xmlSTATUS).find('RESIDENCESTA').text())
 				  $('.RESSTAT').attr('disabled',true)
 		         }
 			 
@@ -162,15 +286,28 @@ $(document).ready(function () {
 		    		$('.ORGADD').attr('disabled',true)
 		          }
 			 	
-	if($("input[name='COAI_SAMRESIDADDR']:checked"). val()=="Co-Applicant Residence Address")
-		{
-		     LoadSameCoAppresiaddr()
-		}
-		else if($("input[name='COAI_SAMRESIDADDR']:checked"). val()=="Applicant Permanent Address")
-		{
-		    LoadgetSameaApplAddr()
-		}
-	
+
+
+if($("#COBI_CUSTYPE").val()=='Non-Individual')
+		 {	  
+			  $("#COBI_CUSFISNAM").removeClass('IsUpprCse');
+			  $("#COBI_CUSFISNAM").removeClass('IsAlphaFields');
+			  $("#COBI_CUSFISNAM").addClass('NONumber');
+			if($("#COBI_CONSTITUTION").val()=="Partnership firms")
+			{
+				
+				$(".PARTTYPE").show();
+				$("#COBI_PARTNERSHPTY").addClass('CBSIMndtry');
+				$("#COBI_PARTNERSHPTY").parent().next().find(".MndtryAstr").html("*");
+			}
+			else
+			{
+				$(".PARTTYPE").hide(); 
+			}
+			  
+		 }
+		 
+		 
 	
 	$(document).on("click", ".CusTypeDetl" , function() {
 		$('input[name="CoAppType"]').prop('checked', false);	
@@ -186,13 +323,17 @@ $(document).ready(function () {
 	
 	$(document).on("click", ".CONLOAD", function()
 	 {
-		 
-		CHKLOADSAMEASAPPLICANT();
-		if($("#COBI_GSTNUM").val() != "")
+		/*if($("#COBI_GSTNUM").val() != "")
 		{
 		  VerifyGST('COBI_GSTNUM','COBI_GSTVERIFY','COBI_CUSTYPE','COAI_ADDRLINI','COAI_ADDRLINII')//$(".CBSI_GSTNUM").click();
-		}
+		}*/
+		if($("#"+CICusID1).length>0)
+	  {
+		$("#"+CICusID).val($("#"+CICusID1).val())
+	  }
+		Loadresidentaddr()
 		
+		ONLOADCOAPPResidence();
 		if($("input[name='COAI_SAMRESIDADDR']:checked"). val()=="Co-Applicant Residence Address")
 		{
 		     LoadSameCoAppresiaddr()
@@ -201,14 +342,16 @@ $(document).ready(function () {
 		{
 		    LoadgetSameaApplAddr()
 		}
-		
-		var ADxml=UI_getdata($("#PrcsID").val(),$("#COBI_CUSID").val(),"","","","LSW_SGETDCADDRDATA")
+	   getSameAs('Load');
+	   
+	   var ADxml=UI_getdata($("#PrcsID").val(),$("#COBI_CUSID").val(),"","","","LSW_SGETDCADDRDATA")
 			  
 			  if($(ADxml).find("ADP1").text()!="")
 			  {
 				  $(".ADDRVI").show();
 			      $("#COAI_ADDRPROOF1").val($(ADxml).find("ADP1").text())
 				  $("#COAI_NIADDRPROOF1").val($(ADxml).find("ADP1").text())
+				  //$("#COAI_ADDRPROOF1").next().append("<span>"+$(ADxml).find("ADPNAME1").text()+"</span>")
 			  }
 			  else
 			  {
@@ -219,6 +362,7 @@ $(document).ready(function () {
 			  {
 				  $(".ADDRVII").show();
 			    $("#COAI_ADDRPROOF2").val($(ADxml).find("ADP2").text())
+				//$("#COAI_ADDRPROOF2").next().append("<span>"+$(ADxml).find("ADPNAME2").text()+"</span>")
 			  }
 			  else
 			  {
@@ -227,11 +371,21 @@ $(document).ready(function () {
 	})
 	// Contact Details Data End
 	
+	
+	$(document).on("click", ".ORGD", function()
+    {
+		//if($("#"+$(this).attr("data-aria").split("|")[2]).val() == "")
+	  // {
+		$("#"+$(this).attr("data-aria").split("|")[2]).val($("#"+$(this).attr("data-aria").split("|")[3]).val())
+	  // }
+		//Chkudyam();
+	})
+	
 	// Employment Details Data Start
 		
 	$(document).on("click", ".EMPDLOAD", function()
     {
-	  if($("#COBI_GSTNUM").val() != "")
+	  /*if($("#COBI_GSTNUM").val() != "")
 	  {
 		VerifyGST('COBI_GSTNUM','COBI_GSTVERIFY','COBI_CUSTYPE','COEI_ADDRLINEI1','COEI_ADDRLINEII1')//$(".CBSI_GSTNUM").click();
 	  }
@@ -281,7 +435,7 @@ $(document).ready(function () {
 	    	 $("#"+state).next().addClass('active');
 	    	 //$("#"+state).attr('disabled',true)
    		 }
-	   }
+	   }*/
     })
     
     // Employment Details Data End
@@ -308,8 +462,20 @@ $(document).ready(function () {
 	 		}
 	 })
 	 
-	 
-	 	 	
+	 $(document).on("click", ".DELETEUPLDDTL" , function() {
+		 if(confirm('Are you sure to remove the attachment') == true)
+		 {
+			 var FLD = $(this).attr("data-hide");
+			 var FLDSHOW = $(this).attr("data-show");
+			 $(this).closest("."+FLD).hide();
+			 $($(this).closest(".row").find("div")[0]).find("#"+FLD).val('');
+			 $($(this).closest(".row").find("div")[0]).find("span").text('');
+			 $($(this).closest(".row").find("#"+FLDSHOW)).show();
+			 $($(this).closest(".row").find("#"+FLDSHOW)).append('<span class="name1">Upload</span>');
+			 $($(this).closest(".row").find("#"+FLDSHOW)).find('input[type=file]').removeAttr("disabled");
+		 }
+		 
+	 }) 	
 $(document).on("click", ".SWAPAPPLICANT" , function() {
 	 	 		
 	 	 		 var  AppMndtryChk = ChkMandatoryFlds("COBIMndtry");
@@ -347,7 +513,7 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
 			  }
               else if(CoMndtryChk == "Mandatory")
 			   {
-				 alert("View Contact screen once before swapping to Ensure all the mandatory details are entered");
+				 alert("Fill the Contact Details Mandatory Fields");
 				 return false;
 			   }
              else if(DocMndtry != "")
@@ -362,7 +528,7 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
 		     }
              else if(NONCoMndtryChk =="Mandatory")
 			 {
-            	 alert('View Organisation screen once before swapping to Ensure all the mandatory details are entered');
+            	 alert('Fill the Organisation Mandatory Fields');
 			    return false;
 			 }
               else
@@ -378,28 +544,15 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
 			   {
 	 		 	 $("#Save4").click();
 			    }
-                if(confirm('Are you Sure Swap the  Co Applicant to Applicant ?') == true)
+                if(confirm('Are you sure to swap Coapplicant to Applicant') == true)
 	 		   {
                var SWAPPAPP=UI_getdata($("#COBI_PRCSID").val(),$("#COBI_CUSID").val(),"","","","LSW_GETSWAPPAPPLI");
-			   
-			    if($(SWAPPAPP).find('RESULT').text()=="COMPLETED")
-				{	
-               location.reload(true);
-				}
-				else
-				{              var Collection=$(SWAPPAPP).find('Alert').text()
-				                var Alert2=''
-								var nameArr = Collection.split(',')
-						         k=nameArr.length
-								 for(i=0;i<k;i++)
-								 {
-									var Alert1= nameArr[i]
-									var Alert2 = Alert2 +'\r\n'+Alert1
-								 }
-						  
-						  alert(Alert2);
-						   return false;	
-				}
+                 if($(SWAPPAPP).find('Alert').text()!="")
+				 {
+				   alert($(SWAPPAPP).find('Alert').text())
+		         }
+
+			    location.reload(true);
 	 		   }
 	 		  }
 	 })
@@ -410,7 +563,7 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
 	 
 	 
 	 
-	 if($("#COBI_FETCHFSTNAME").val() != "")
+	      if($("#COBI_FETCHFSTNAME").val() != "")
         	  {
         	  $("#COBI_CUSFISNAM").attr('disabled',true);
         	  }
@@ -429,9 +582,42 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
 		  		
     	    if($(this).text()=="Confirm")
     	    	{
-    	    	 if($("input[name='ACTION']:checked").val()=="Yes")
+					
+					var personalinfocusid = $($("input[name='ACTION']:checked").closest(".tbodytr").find(".tbodytrtd")[19]).text();
+					
+					/*var contactcusid = $($("input[name='MOBNO']:checked").closest(".tbodytr").find(".tbodytrtd")[7]).text();
+					var addrinfocusid = $($("input[name='ADDRACTION']:checked").closest(".tbodytr").find(".tbodytrtd")[12]).text();*/
+					if(personalinfocusid == "NA")
+					{
+						alert("Invalid Customer ID Has Been Picked For Processing, Pick a Valid Customer ID to Process Further");
+						return;
+					}
+					if( personalinfocusid == "")
+					{
+						alert("Invalid Customer ID Has Been Picked For Processing, Pick a Valid Customer ID to Process Further");
+						return;
+					}
+					
+					var xmlsamecus=UI_getdata($("#PrcsID").val(),personalinfocusid,"","","","LSW_SCHKCUSTOMERIDEX");
+			
+					if($(xmlsamecus).find("RESULT").text() != "SUCCESS")
+					{
+						alert($(xmlsamecus).find("RESULT").text());
+						return;
+					}
+					/*if((contactcusid == personalinfocusid) && (contactcusid  == addrinfocusid))
+					{
+						
+					}
+					else
+					{
+						alert("Different Customer ID Has Been Choosen, Pick Same Customer ID to Process Further");
+						return;
+					}*/
+    	   if($("input[name='ACTION']:checked").val()=="Yes")
   			   {
-				   var FstNam='COBI_CUSFISNAM'
+				   
+			  var FstNam='COBI_CUSFISNAM'
     	      var LstNam='COBI_CUSLSTNAM'
     	      var Gender='COBI_GENTER'
     	      var DOB='COBI_DOB'
@@ -439,15 +625,83 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
     	      var Fathnam ='COBI_FATHRNAM';
 			  var SpouseName='COBI_SPOUSNAME';
 			  
+			  
+			 if($("#COBI_CUSTYPE").val() == "Non-Individual")
+		      {
+		    	 var Addr1='COAI_ORGADDRLINI';
+				 var Addr2='COAI_ORGADDRLINII';
+				 var pin='COAI_ORGPINCODE';
+				 var city='COAI_ORGCITY';
+				 var state='COAI_ORGSTATE';
+			  }
+			  else
+			  {
+			    var Addr1='COAI_ADDRLINI';
+			    var Addr2='COAI_ADDRLINII';
+			    var pin='COAI_PINCODE';
+			    var city='COAI_CITY';
+			    var state='COAI_STATE';
+			  }
+			  
   			  var FirstName=$($("input[name='ACTION']:checked").closest('tbody tr').find('td')[0]).text()
   		      var LastName=$($("input[name='ACTION']:checked").closest('tbody tr').find('td')[1]).text()
   		      var Gend=$($("input[name='ACTION']:checked").closest('tbody tr').find('td')[2]).text()
   	          var MarStatus=$($("input[name='ACTION']:checked").closest('tbody tr').find('td')[3]).text()
   	          var DOBVal=$($("input[name='ACTION']:checked").closest('tbody tr').find('td')[4]).text()
   	          var FatherName=$($("input[name='ACTION']:checked").closest('tbody tr').find('td')[5]).text()
+			  
+			   
+   var AddrOne=$($("input[name='ACTION']:checked").closest('tbody tr').find('td')[8]).text()
+   var AddrTwo=$($("input[name='ACTION']:checked").closest('tbody tr').find('td')[9]).text()
+   var Pincode=$($("input[name='ACTION']:checked").closest('tbody tr').find('td')[10]).text()
+   var CityVal=$($("input[name='ACTION']:checked").closest('tbody tr').find('td')[11]).text()
+   var SatetVal=$($("input[name='ACTION']:checked").closest('tbody tr').find('td')[12]).text()
+			  
+			  
   	          
-  			    	 //$("#"+FstNam).val(FirstName);
-  			    	// $("#"+LstNam).val(LastName);
+			   if($("#COBI_CUSTYPE").val()=="Non-Individual")
+	             {
+		            $("#"+FstNam).val(FirstName+' '+LastName)
+	             }
+	          else
+	             {
+                    if(FirstName!="")
+			          {
+	    	            $("#"+FstNam).val(FirstName);
+			          }
+			
+			        if(LastName!="")
+			         {
+	    	           $("#"+LstNam).val(LastName);
+			         }
+	             }
+				 
+			if(AddrOne!="")
+			{
+	    	  $("#"+Addr1).val(AddrOne);
+			  $("#"+Addr1).next().addClass("active");
+			}
+			if(AddrTwo!="")
+			{
+	    	  $("#"+Addr2).val(AddrTwo);
+			  $("#"+Addr2).next().addClass("active");
+			}
+			if(Pincode!="")
+			{
+	    	  $("#"+pin).val(Pincode);
+			  $("#"+pin).next().addClass("active");
+			}
+			if(CityVal!="")
+			{
+	    	  $("#"+city).val(CityVal);
+			  $("#"+city).next().addClass("active");
+			}
+			if(SatetVal!="")
+			{
+	    	  $("#"+state).val(SatetVal);
+			  $("#"+state).next().addClass("active");
+			}
+  			    	 
 					if(Gend != "")
 					{
 					  $("#"+Gender).val(Gend);
@@ -469,10 +723,17 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
 						 $("#"+DOB).val(DOBVal);
 					}
   			    	
-  			    	
+		 if($("#COBI_CONSTITUTION").val()=="Proprietorship" || $("#COBI_CONSTITUTION").val()=="Society" || $("#COBI_CONSTITUTION").val()=="Trustee")
+			 {
+				 $("#"+FstNam).attr('disabled',false);
+			 }
+			 else
+			 {
+			   $("#"+FstNam).attr('disabled',true);
+  			   $("#"+LstNam).attr('disabled',true);
+			 }
+	    	 
   			    	 $("#"+Fathnam).attr('disabled',false)
-  			    	 $("#"+FstNam).attr('disabled',false)
-  			    	 $("#"+LstNam).attr('disabled',false)
   			    	 $("#"+DOB).attr('disabled',false)
   			    	 
   			    	 if($("#"+DOB).val() != "")
@@ -504,15 +765,15 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
   		    		 {
   			    	 $("#"+FstNam).next().addClass('active');
   					 $("#COBI_FETCHFSTNAME").val('');
-  			    	 $("#"+FstNam).attr('disabled',false)
+  			    	// $("#"+FstNam).attr('disabled',true)
   		    		 }
   			    	 if( $("#"+LstNam).val() != "")
   		    		 {
   			    	  $("#"+LstNam).next().addClass('active');
   					  $("#COBI_FETCHLSTNAME").val('');
-  			    	  $("#"+LstNam).attr('disabled',false)
+  			    	 // $("#"+LstNam).attr('disabled',true)
   		    		 }
-  			    	  if( $("#"+MartStatus).val() == "Married")
+  	  if($("#"+MartStatus).val() == "Married")
  		 {
 	    	 $("#"+SpouseName).attr('disabled',false)
 			 $("#"+SpouseName).addClass('COBIMndtry');
@@ -660,6 +921,31 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
 			    	 $("#"+pin).val(PINCODE);
 			    	 $("#"+city).val(CITYVAL);
 			    	 $("#"+state).val(STATEVAL);
+					 if( $("#"+Addr1).val() != "")
+		    		 {
+			    	 $("#"+Addr1).next().addClass('active');
+			    	// $("#"+Addr1).attr('disabled',true)
+		    		 }
+			    	 if( $("#"+Addr2).val() != "")
+		    		 {
+			    	 $("#"+Addr2).next().addClass('active');
+			    	 //$("#"+Addr2).attr('disabled',true)
+		    		 }
+			    	 if( $("#"+pin).val() != "")
+		    		 {
+			    	 $("#"+pin).next().addClass('active');
+			    	// $("#"+pin).attr('disabled',true)
+		    		 }
+			    	 if( $("#"+city).val() != "")
+		    		 {
+			    	 $("#"+city).next().addClass('active');
+			    	 //$("#"+city).attr('disabled',true)
+		    		 }
+			    	 if( $("#"+state).val() != "")
+		    		 {
+			    	 $("#"+state).next().addClass('active');
+			    	// $("#"+state).attr('disabled',true)
+		    		 }
 		        }
 		     else
 		    	 {
@@ -718,6 +1004,24 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
     	      var DOB='COBI_DOB'
     	      var MartStatus='COBI_MARITSTUS'
     	      var Fathnam ='COBI_FATHRNAM';
+			  
+			 if($("#COBI_CUSTYPE").val() == "Non-Individual")
+		      {
+		    	 var Addr1='COAI_ORGADDRLINI';
+				 var Addr2='COAI_ORGADDRLINII';
+				 var pin='COAI_ORGPINCODE';
+				 var city='COAI_ORGCITY';
+				 var state='COAI_ORGSTATE';
+			  }
+			  else
+			  {
+			    var Addr1='COAI_ADDRLINI';
+			    var Addr2='COAI_ADDRLINII';
+			    var pin='COAI_PINCODE';
+			    var city='COAI_CITY';
+			    var state='COAI_STATE';
+			  }
+			  
 		     if($(this).attr("data-form")=="Contact Details" || $(this).attr("data-form")=="Organisation Details")
 		      {
 				   if($("input[name='MOBNO']:checked").val()=="Yes")
@@ -846,6 +1150,32 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
 			    	 $("#"+pin).val(PINCODE);
 			    	 $("#"+city).val(CITYVAL);
 			    	 $("#"+state).val(STATEVAL);
+					 
+					  if( $("#"+Addr1).val() != "")
+		    		 {
+			    	 $("#"+Addr1).next().addClass('active');
+			    	// $("#"+Addr1).attr('disabled',true)
+		    		 }
+			    	 if( $("#"+Addr2).val() != "")
+		    		 {
+			    	 $("#"+Addr2).next().addClass('active');
+			    	 //$("#"+Addr2).attr('disabled',true)
+		    		 }
+			    	 if( $("#"+pin).val() != "")
+		    		 {
+			    	 $("#"+pin).next().addClass('active');
+			    	// $("#"+pin).attr('disabled',true)
+		    		 }
+			    	 if( $("#"+city).val() != "")
+		    		 {
+			    	 $("#"+city).next().addClass('active');
+			    	 //$("#"+city).attr('disabled',true)
+		    		 }
+			    	 if( $("#"+state).val() != "")
+		    		 {
+			    	 $("#"+state).next().addClass('active');
+			    	// $("#"+state).attr('disabled',true)
+		    		 }
 		        }
 		     }
 		   }
@@ -900,29 +1230,85 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
 			   }
 		     }
 		 else
-			 {
+		   {
 			  
 			 if($("input[name='ACTION']:checked").val()=="Yes")
 			   {
+				   
 			  var FirstName=$($("input[name='ACTION']:checked").closest('tbody tr').find('td')[0]).text()
 		      var LastName=$($("input[name='ACTION']:checked").closest('tbody tr').find('td')[1]).text()
 		      var Gend=$($("input[name='ACTION']:checked").closest('tbody tr').find('td')[2]).text()
 	          var MarStatus=$($("input[name='ACTION']:checked").closest('tbody tr').find('td')[3]).text()
 	          var DOBVal=$($("input[name='ACTION']:checked").closest('tbody tr').find('td')[4]).text()
 	          var FatherName=$($("input[name='ACTION']:checked").closest('tbody tr').find('td')[5]).text()
+			  
+   var AddrOne=$($("input[name='ACTION']:checked").closest('tbody tr').find('td')[8]).text()
+   var AddrTwo=$($("input[name='ACTION']:checked").closest('tbody tr').find('td')[9]).text()
+   var Pincode=$($("input[name='ACTION']:checked").closest('tbody tr').find('td')[10]).text()
+   var CityVal=$($("input[name='ACTION']:checked").closest('tbody tr').find('td')[11]).text()
+   var SatetVal=$($("input[name='ACTION']:checked").closest('tbody tr').find('td')[12]).text()
+		
 	          
-			    	 //$("#"+FstNam).val(FirstName);
-			    	// $("#"+LstNam).val(LastName);
+			  if($("#COBI_CUSTYPE").val()=="Non-Individual")
+	             {
+		            $("#"+FstNam).val(FirstName+' '+LastName)
+	             }
+	          else
+	             {
+                    if(FirstName!="")
+			          {
+	    	            $("#"+FstNam).val(FirstName);
+			          }
+			
+			        if(LastName!="")
+			         {
+	    	           $("#"+LstNam).val(LastName);
+			         }
+	             }
 			    	 $("#"+Gender).val(Gend);
 			    	 $("#"+Fathnam).val(FatherName);
 			    	 $('[name='+Gender+'][value="'+Gend+'"]').prop('checked', true);
 			    	 $("#"+MartStatus).val(MarStatus);
 			    	 $("#"+MartStatus).material_select();
 			    	 $("#"+DOB).val(DOBVal);
+					 
+			if(AddrOne!="")
+			{
+	    	  $("#"+Addr1).val(AddrOne);
+			  $("#"+Addr1).next().addClass("active");
+			}
+			if(AddrTwo!="")
+			{
+	    	  $("#"+Addr2).val(AddrTwo);
+			  $("#"+Addr2).next().addClass("active");
+			}
+			if(Pincode!="")
+			{
+	    	  $("#"+pin).val(Pincode);
+			  $("#"+pin).next().addClass("active");
+			}
+			if(CityVal!="")
+			{
+	    	  $("#"+city).val(CityVal);
+			  $("#"+city).next().addClass("active");
+			}
+			if(SatetVal!="")
+			{
+	    	  $("#"+state).val(SatetVal);
+			  $("#"+state).next().addClass("active");
+			}		 
+					 
+		 if($("#COBI_CONSTITUTION").val()=="Proprietorship" || $("#COBI_CONSTITUTION").val()=="Society" || $("#COBI_CONSTITUTION").val()=="Trustee")
+			 {
+				 $("#"+FstNam).attr('disabled',false);
+			 }
+			 else
+			 {
+			   $("#"+FstNam).attr('disabled',true);
+  			   $("#"+LstNam).attr('disabled',true);
+			 }
 			    	
 			    	 $("#"+Fathnam).attr('disabled',false)
-			    	 $("#"+FstNam).attr('disabled',false)
-			    	 $("#"+LstNam).attr('disabled',false)
 			    	 $("#"+DOB).attr('disabled',false)
 			    	 
 			    	 if($("#"+DOB).val() != "")
@@ -954,13 +1340,13 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
 		    		 {
 			    	 $("#"+FstNam).next().addClass('active');
 					 $("#COBI_FETCHFSTNAME").val('');
-			    	 $("#"+FstNam).attr('disabled',false)
+			    	 //$("#"+FstNam).attr('disabled',false)
 		    		 }
 			    	 if( $("#"+LstNam).val() != "")
 		    		 {
 			    	  $("#"+LstNam).next().addClass('active');
 					  $("#COBI_FETCHLSTNAME").val('');
-			    	  $("#"+LstNam).attr('disabled',false)
+			    	 // $("#"+LstNam).attr('disabled',false)
 		    		 }
 			    	 /*if( $("#"+Gender).val() != "")
 		    		 {
@@ -974,13 +1360,61 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
 			    	   $("#"+DOB).attr('disabled',false)
 		    		 }
 			   }
-			  
 			 }
 	      }
+		  if(personalinfocusid != "")
+			{
+	           UI_getdata($("#PrcsID").val(),$("#COBI_CUSID").val(),personalinfocusid,"","","LSW_SPUSHPOSIDEXTOCUSID_1");
+			   $("#COBI_CUSID").val(personalinfocusid);
+			   $("#COAI_CUSID").val(personalinfocusid);
+			   $("#Save1").click();
+			   $("#Save2").click();
+			   window.location.reload();
+			}
 	      //var FathName=$(this).attr("data-aria").split("|")[2];
 	      //var DOB=$(this).attr("data-aria").split("|")[3];
 	         $(".DedupeClose").click();
 	})
+		$(document).on("click", ".DedupeGenCusID", function(){
+			var chkyflg = "";
+		var chkyflg_1 = "";
+		if($($("#DedupeBIFTable").find(".tbodytr")[0]).find(".tbodytrtd").text() != "No data available in table")
+		{
+			for(var i=0;i<$("#DedupeBIFTable").find(".tbodytr").length;i++)
+			{
+				if($($($("#DedupeBIFTable").find(".tbodytr")[i]).find(".tbodytrtd")[20]).text() == "Y")
+				{
+					chkyflg_1 = true;
+					if($($($("#DedupeBIFTable").find(".tbodytr")[i]).find(".tbodytrtd")[13]).find("input[type=radio]").is(':checked') && chkyflg == "")
+					{
+						chkyflg = true;
+					}
+				}
+			}
+		}
+		//if((chkyflg == true && chkyflg_1 == true) || chkyflg_1 == "")
+		if(chkyflg_1 == "")
+		{
+			PosdxGenCusID('COBI_CUSID','COBI_CUSTYPE','COBI_DEDUPEVERIFY','Co-Applicant','','COBI_CUSFISNAM');
+		}
+		else
+		{
+			alert('Y matches found but the customer id was not selected, Kindly chosen any of the Y matched customer to proceed further');
+			return;
+		}
+	});
+	
+	
+	
+
+	
+	$(document).on("click", ".AddKYC", function(){
+		
+		if($("#COBI_CUSID").val()=="")
+		{
+		$("#Save1").click();
+		}
+	});
 
 	//$('.FormSave').on('click', function() {
 	$(document).on("click", ".FormSave", function(){
@@ -997,17 +1431,24 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
 		var prfx = $(this).attr("data-aria").split("|")[1];
 		var MndtryChk = "";
 		var DocMndtryChk="";
-		if($(this).closest('.DYNROW').parent().parent().attr("id")=="collapseThree3"){
-			 MndtryChk = ChkMandatoryFlds_V1(prfx+"Mndtry",html);
-		}	
-		else{
-			 MndtryChk = ChkMandatoryFlds(prfx+"Mndtry");
-			 //DocMndtryChk=ChkMandatoryFlds_Doc("DOCMndtry")
-		}
+		if(prfx!="COEI" )
+			{
+				if($(this).closest('.DYNROW').parent().parent().attr("id")=="collapseThree3"){
+					MndtryChk = ChkMandatoryFlds_V1(prfx+"Mndtry",html);
+				}	
+				else
+				{
+					MndtryChk = ChkMandatoryFlds(prfx+"Mndtry");
+				 
+				 
+				 //DocMndtryChk=ChkMandatoryFlds_Doc("DOCMndtry")
+				}
+			}
+	
 
 		if(MndtryChk == "Mandatory")
 				{
-				 alert("Fill the Mandatory Fields");
+				 alert("Fill the Mandatory Fields / Document(s)");
 				 return false;
 				}
 			else
@@ -1047,33 +1488,39 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
 			
 		}
 		
-		if($("#COBI_AADHAR").val()=="XXXXXXXX")
-			{
-				alert("Aadhar is Mandatory");
-				return false;
-			}
-			else if($("#COBI_AADHAR").val() != "XXXXXXXX" && $("#COBI_AADHAR").val() !="" && $("#COBI_AADHARATTACHMENT").val()=="")
-			{
-				alert("Upload Aadhar's ID is Mandatory");
-				return false;
-			}
-		
-		 if($("#COBI_CUSPHOTO").val() == "" && $("#COBI_CUSTYPE").val() == "Individual")
-		         {
-		             alert("Upload the photo")
-		             return false
-	             }
-		
-		
-		
         var FormName=$(this).attr("data-form")
 		
+		   if(FormName=="ContactDetails")
+				{
+		       if(($("#COBI_CUSTYPE").val() != "Non-Individual") && ($("#COBI_CONSTITUTION").val()!="Private Ltd "))
+			   {
+			   if($("#COBI_CONSTITUTION").val()!="Public Ltd ")
+			   {
+			   if($("#COAI_MOBNOI").val()!="")
+			     {
+		         if($("#COAI_MOBIVERIFY").val() != "Verified")
+		          {
+			       alert("Verify your Mobile Number")
+			       return false
+		          }
+			     }  
+				/* if($("#COAI_EMAILID").val()!="")
+			     {
+		         if($("#COAI_EMAILVERIFY").val() != "Verified")
+		          {
+			       alert("Verify your Email ID")
+			       return false
+		          }
+			     } */
+				 }
+				}
+				}
 		   if(FormName=="PersonalInfo")
 		     {
 			   
-			   if($("#COBI_GSTNUM").val()!="")
+			/*    if($("#COBI_GSTNUM").val()!="")
                {
-				if($("#KARZASTATUS").val()=="Active")
+				   if($("#KARZASTATUS").val()=="Active")
 				{
                 if($("#COBI_GSTVERIFY").val() != "Verified")
                 {
@@ -1081,9 +1528,9 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
                   return false
                 }
 				}
-                } 
+                }  */
 			   
-		      if($("#COBI_PANNAVAIL").val() == "Yes" && $("#COBI_CUSTYPE").val() == "Individual" )
+		     /* if($("#COBI_PANNAVAIL").val() == "Yes" && $("#COBI_CUSTYPE").val() == "Individual" )
 		         {
 					 if($("#KARZASTATUS").val()=="Active")
 				{
@@ -1093,18 +1540,46 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
 	        		  return false;
 	        		}
 				}
-	             }
+	             }*/
 				 
-				 if($("#COBI_PANNAVAIL").val() == "Yes" && $("#COBI_FORM60A").val() =="" )
+			if($("#COBI_PANNAVAIL").val() == "Yes" && $("#COBI_FORM60A").val() =="" )
 				 {
 					  alert("Please Upload Form 60");
 	        		  return false;
 				 }
+				 
+			if($("#COBI_CUSPHOTO").val() == "" && $("#COBI_CUSTYPE").val() == "Individual")
+		        {
+		             alert("Upload the photo")
+		             return false
+	            }
+				
+				if($("#COBI_PAN").val()!="")
+			     {
+		         if($("#COBI_PANVERIFY").val() != "Verified")
+		          {
+			       alert("Verify your PAN Number")
+			       return false
+		          }
+			     } 
+				
+				
+		/*if($("#COBI_AADHAR").val()=="XXXXXXXX")
+			{
+				alert("Aadhar is Mandatory");
+				return false;
+			}
+			else if($("#COBI_AADHAR").val() != "XXXXXXXX" && $("#COBI_AADHAR").val() !="" && $("#COBI_AADHARATTACHMENT").val()=="")
+			{
+				alert("Upload Aadhar's ID is Mandatory");
+				return false;
+			}*/
+				
 		      }
+			  
+			  
+			  
 		}
-		
-		
-		
 		
 		// Customer Seq ID Gen Start
 
@@ -1120,10 +1595,14 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
 	    }
 		if($(html).find("[name=COEI_EMPID]").val() == "")
 		{
-		var CUSID = UI_getdata("EMPID","","Yes","","","Sam_sGetLONApplSeqID");
+		var CUSID = UI_getdata("EMPID",$("#PrcsID").val(),"Yes",$("#COBI_CUSID").val(),"","Sam_sGetLONApplSeqID");
 		$(html).find("[name=COEI_EMPID]").val('EC'+$(CUSID).find("Val1").text());
 	//	$(".BKDT_BNKNO").text($(CUSID).find("Val1").text());
 	    }
+		
+        $('.BankDetail2').find("[name=COGS_CUSID]").val($("#COBI_CUSID").val())
+		var GSTGRDDATA = TxtGridsubmitdata_V2("BankDetail2","COGS_","COBI_","COGSDBfields");
+		AssignGridXmltoField("COBI_GSTMULTI", GSTGRDDATA)
 		// Customer Seq ID Gen End 
 		
 	if($("#COBI_CUSID").val() != "")
@@ -1131,7 +1610,7 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
    	   $('.ACCRDISB').removeClass('TABDSVLBL');
    	  }      
 	      
-		
+			
 		
 		var tbl = $(this).attr("data-aria").split("|")[0];
 		var prfx = $(this).attr("data-aria").split("|")[1];
@@ -1160,11 +1639,6 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
 		}
 	}
 		
-		
-		var FormName=$(this).attr("data-form")
-			var UPDATEFIADDR=UI_getdata($("#PrcsID").val(),$("#COBI_CUSID").val(),FormName,"","","LSW_SGETFIADDRSSUPDATE")
-			
-			
 		// Tab Header Change Start
 		
 		$(".FormPageMultiTab li.active").attr("id",$("#COBI_CUSID").val());
@@ -1196,12 +1670,10 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
 
 		if($(this).text() == "Save & Next")
 		{
-			var FormName=$(this).attr("data-form")
 			
 			if(FormName=="OrganisationDetails" || FormName=="EmployementDetails"||$("#COBI_PROFILE").val() == "Retired"||$("#COBI_PROFILE").val()=="Housewife")
 				{
 				var PRCSID = $("#PrcsID").val();
-				var CUSID=$("#CBSI_CUSID").val();
 	            var xml=UI_getdata($("#PrcsID").val(),$("#COBI_CUSID").val(),'COAPPL',"","","LSW_SUPDDEDUPESTS")
 			
 				}
@@ -1223,7 +1695,7 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
 		
 		if(MndtryChk == "Mandatory")
 			{
-			alert("Fill the Mandatory Fields");
+			alert("Fill the Mandatory Fields / Document(s)");
 			return false;
 			}
 		
@@ -1237,7 +1709,19 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
 		
 		//checkCINNum();
 		
+	if((CusType == "Non-Individual") && (Constitution=="Partnership firms"))
+    {
 		
+		$(".PARTTYPE").show();
+		$("#COBI_PARTNERSHPTY").addClass('CBSIMndtry');
+		$("#COBI_PARTNERSHPTY").parent().next().find(".MndtryAstr").html("*");
+	}
+	else
+	{
+		$("#COBI_PARTNERSHPTY").removeClass('CBSIMndtry');
+		$("#CBSI_PARTNERSHPTY").parent().next().find(".MndtryAstr").html("");	
+		$(".PARTTYPE").hide(); 
+	}
 		
 		var xml=UI_getdata(ExistAppNo,Prcsid,ActivityID,UserID,"","LSW_SGETCUSTOMERDETAILS")
 		if($("#NextPageID").val() == "")
@@ -1252,19 +1736,115 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
 			}
 
 	});
+	
+	$("#LoadCusAdd").on('click', function() {
+		
+		var licount = $(".FormPageMultiTab li").length;
+		var value = $(".FormPageMultiTab").attr('title');
+		var Formactive = $(".FormPageTab").find("li.active").attr("id");		  
+		var MainActive = $(".FormMainTabs").find("li.active").attr("id");
+		
+		
+		var CusType=$('input[name=CoAppType1]:checked').val();
+		
+		var MndtryChk = ChkMandatoryFlds("LDCOMndtry");
+		
+		if(MndtryChk == "Mandatory")
+			{
+			alert("Fill the Mandatory Fields / Document(s)");
+			return false;
+			}
+		
+		$("#COBI_CUSTYPE").val(CusType)
+		$("#COBI_CONSTITUTION").val($("#Constitution1").val());
+		$("#COBI_CONSTITUTION").next().addClass('active');
+		$("#LoadPopCls").click();
+	if(($("#COBI_CUSTYPE").val() == "Non-Individual") && ($("#COBI_CONSTITUTION").val()=="Partnership firms"))
+    {
+		
+		$(".PARTTYPE").show();
+		$("#COBI_PARTNERSHPTY").addClass('CBSIMndtry');
+		$("#COBI_PARTNERSHPTY").parent().next().find(".MndtryAstr").html("*");
+	}
+	else
+	{
+		$("#COBI_PARTNERSHPTY").removeClass('CBSIMndtry');
+		$("#CBSI_PARTNERSHPTY").parent().next().find(".MndtryAstr").html("");	
+		$(".PARTTYPE").hide(); 
+	}
+		
+		CheckLoanType('COBI','COAI','COEI','COOA');
+	//CheckRelation();
+	FindConstDD();
+	CheckDudupe('COBI_DEDUPEVERIFY');
+	CheckRelatOther();
+	CHKApplIndiv();
+	ApplicantTitleDisabl();
+	CheckNegativeList();
+	//residentaddr();
+	CheckUploadMndtry();
+	
+	CheckAppltype();
+	CheckMarStatus();
+	ApplicantTitleDisabl();
+	CHKAPPResidType();
+	
+	CheckPanORNot();
+	CheckFieldDisb();
+	RelationShipDropdown();
+	checkPAN();
+    NotIndiPan();
+          //CheckCIN();
+	AddZoom();
+	CheckGSTorNot();
+	CheckProfile("Load");
+	LoadVwImage('COBI_');
+		
+		// Only for Proprietorship Start
+ 
+ var Consitition=$("#COBI_CONSTITUTION").val()
+ 
+ if(Consitition=='Proprietorship' || Consitition=='Trustee' || Consitition=='Society')
+ {
+	 $("#COBI_CUSFISNAM").attr('disabled',false);
+ }
+ //Only for Proprietorship End
+	      if($("#COBI_FETCHFSTNAME").val() != "")
+        	  {
+        	  $("#COBI_CUSFISNAM").attr('disabled',true);
+        	  }
+	      if($("#COBI_FETCHLSTNAME").val() != "")
+	          {
+	    	    $("#COBI_CUSLSTNAM").attr('disabled',true);
+	          }
+			  
+			  
+		 if($("#COBI_CUSID").val() == "")
+    	  {
+    	   $('.ACCRDISB').addClass('TABDSVLBL');
+    	  } 
+  
+		  
+	});
+	
+	LoadMultiData("",$("#PrcsID").val(),$("#COEI_CUSID").val(),"BankDetail1","COEIDBfields","LSW_SGETCOAPPLNTEMPDTL");
+	
+	 CheckPani();	
+	
 	$("#BTNEMPMULTIDATA").on('click', function() {
-		
-		CheckNegativeList();
-		
-		LoadMultiData("",$("#PrcsID").val(),$("#COEI_CUSID").val(),"BankDetail1","COEIDBfields","LSW_SGETCOAPPLNTEMPDTL");
+		//LoadMultiData("",$("#PrcsID").val(),$("#COEI_CUSID").val(),"BankDetail1","COEIDBfields","LSW_SGETCOAPPLNTEMPDTL");
 		$("input[name='COEI_CUSID']" ).val($("#COBI_CUSID").val());
 		
-		/*if($("#COBI_FICOMPETED").val()=="Completed")
+		if($("#COBI_FICOMPETED").val()=="Completed")
 		 {
 		 $($('.BankDetail1').find('.DYNROW')[0]).find('.OFFADDR').attr('disabled',true)
 		 $($('.BankDetail1').find('.DYNROW')[0]).find('.OFFTYPE').attr('disabled',true)
-	     }*/
-		
+	     }
+		else
+		{
+		 $($('.BankDetail1').find('.DYNROW')[0]).find('.OFFADDR').attr('disabled',false)
+		 $($('.BankDetail1').find('.DYNROW')[0]).find('.OFFTYPE').attr('disabled',false)
+		}
 		var DATA=["BankDetail1|"];
 		 for (j=0;j<DATA.length;j++)
 			 {
@@ -1273,14 +1853,18 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
 		 for (i=0;i<row;i++)
 		 {
 		var HTML =	 $("."+EMPDetails).find(".DYNROW")[i];
+		if($("#DMY5").val().split('|')[2]=="SendToCredit")
+		{
+		EmpNaturBusness(HTML,row);
+		}
+		
+		
 		$(HTML).find("input[name='COEI_CUSID']" ).val($("#COBI_CUSID").val())
 		//CheckNegativeList (HTML,"");
-		CheckRESICUMOFFICE(HTML);
-		CheckFIOFFICECOMP(HTML);
 		 }
 		}     
 		   RmoveEmpFlds();
-              CheckPan();		
+             	
 	});
 	
 	
@@ -1317,6 +1901,16 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
 	      var Data=name.replace(" ","|");
 	      var FirstName=Data.split("|")[0];
 		  var LastName=Data.split("|")[1];
+		  
+		  if($("#COBI_CUSTYPE").val()=='Non-Individual')
+		 {	  
+			 var   FirstName=FirstName+' '+LastName
+			 var  LastName=''
+			  
+		 }
+		 
+		  
+		  
                
 			   if(FirstName != "")
 			   {
@@ -1527,7 +2121,28 @@ $(document).on("click", ".SWAPAPPLICANT" , function() {
 	    	 $("#"+GST).attr('disabled',true)
     		 }
          $(".KarzaPopup").click();
+		 SavePersInfo();
+		 
+		 $("#COBI_GSTVERIFY").val('');
+		 $(".COBI_GSTNUM").text('Verify')
+		 $(".COBI_GSTNUM").addClass("btn-yelInplain");
+		 $(".COBI_GSTNUM").removeClass("btn-GrnInplain");
+		 $(".COBI_GSTNUM").removeClass("btn-RedInplain");
 });
+
+// Only for Proprietorship Start
+ 
+ var Consitition=$("#COBI_CONSTITUTION").val()
+ 
+ if(Consitition=='Proprietorship' || Consitition=='Trustee' || Consitition=='Society')
+ {
+	 $("#COBI_CUSFISNAM").attr('disabled',false);
+ }
+ //Only for Proprietorship End
+ 
+  
+	 
+ 	
 		
 });
 

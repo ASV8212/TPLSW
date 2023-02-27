@@ -94,9 +94,27 @@ var CountAttch=1;
 	     }
 	 }
 	 
-
+	  var FileSize=parseFloat($(id).closest('td').find('input[type="file"]')[0].files[0].size/1024).toFixed(2);
+   //  var FileType= $(id).closest('td').find('input[type="file"]')[0].files[0].name.split('.')[1];
+  //   var Filename  = names.replace(',','')
+	      var Filename  = $(id).closest('td').find('input[type="file"]')[0].files[0].name
+	      var FileType= Filename.substring(Filename.lastIndexOf('.')+1);
+          var  Filename= Filename.substring(0, Filename.lastIndexOf('.'));
+          var names=Filename
+	 
+	 
+		var xml=UI_getdata(FileType,FileSize,Filename,"","","LSW_SGETDOCUMNTSIZE")
+		var FileAccept=$(xml).find('RESULT').text()
+	if(FileAccept == 'No')
+	{
+		alert($(xml).find("alert").text());
+		$(id).closest('td').find('input[type="file"]').val('')
+		return
+    }
+	 
+names=names+'.'+FileType
 var y=  names;
-var specialChars = "<>&#^|~`"
+/*var specialChars = "<>&#^|~`"
 var check = function(string){
     for(i = 0; i < specialChars.length;i++){
         if(string.indexOf(specialChars[i]) > -1){
@@ -109,10 +127,10 @@ var check = function(string){
 if(check(y) == false){
     // Code that needs to execute when none of the above is in the string
 }else{
-    alert('Error in File Name');
+    alert('File name contains special character please remove and upload');
 	$(id).closest('td').find('input[type="file"]').val('')
 	return;
-}
+}*/
 	 
 	 
 	 
@@ -152,7 +170,7 @@ if(check(y) == false){
 				var UPLOAD=docu+'UPLOAD'
 				$('#'+UPLOAD).hide();
 				$('.'+docu).show();
-				$(id).closest('.md-form').append('<span class="name">'+names.slice(0,-1)+'</span>');
+				$(id).closest('.md-form').append('<span class="name">'+names+'</span>');
 				
 				
 			
@@ -292,7 +310,7 @@ function LoadMultiData (TblName,PrcsID,UniqNo,DV,FieldClass,SP)
                if($(html).find("[data-Validate="+name+"]").length > 0)
                {
               	 FileSplit=val.split('\\');
-              	var FileName=FileSplit[FileSplit.length - 3]
+              	var FileName=FileSplit[FileSplit.length - 1]
               	$(html).find("#"+name+"UPLOAD").hide()
               	 $(html).find("#"+name+"UPLOAD").closest('.md-form').append(FileName);
                	if(val != "")
@@ -570,3 +588,42 @@ function OnloadSameADDR()
   }
 }
 
+
+
+
+function DateInspect(XID,YID)
+{	
+if(XID.value!='')	
+{	
+var validdt=DateValid(XID);
+
+if(validdt!="")
+{
+var InspDate=XID.value;
+
+var InitiDate=$('#'+YID).val()
+
+      date = new Date();
+    var y = date.getFullYear();
+    var res = InspDate.split("/");
+    var dd = res[0];
+    var mm = res[1];
+    var yy = res[2];
+
+var InspecDate=yy+mm+dd
+
+    var Inti = InitiDate.split("/");
+     var dd1 = Inti[0];
+     var mm1 = Inti[1];
+     var yy1 = Inti[2];
+
+ var InitiateDate=yy1+mm1+dd1
+    if(parseInt(InspecDate)<parseInt(InitiateDate))
+    	{
+    	 window.alert('Date of report cannot be less than date initiation');
+    	 XID.value="";
+    	 XID.nextElementSibling.classList.remove('active');
+    	}
+}
+}
+}

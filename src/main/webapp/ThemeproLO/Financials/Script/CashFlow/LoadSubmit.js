@@ -6,6 +6,7 @@ $(document).ready(function () {
 	//Checkint();
 	//GetBusns();
 	//GetProp();
+	//getproperty();
 	
 	//FormDataFromDB("LSW_TCASHFLOW","CAFL_","CAFLDBfields", "CAFL_SCHEMEID");
 	//$("#CAFL_PRCSID").val($("#PrcsID").val())
@@ -16,6 +17,45 @@ $(document).ready(function () {
 		//$("#CAFL_INTERATE").val($(xmlSTATUS).find('INTER').text())
 		//$("#CAFL_PROPOSEDTENU").val($(xmlSTATUS).find('TENURE').text())
 //$("#BTNFINANACESHEET").click();
+
+$("#CAFL_SCHEMEID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
+	$("#CAFL_SCHEMENAME").attr("value",$(".FormPageMultiTab li.active").text());
+    
+    $("#CAFL_PRCSID").attr("value", $("#PrcsID").val());
+	  //GetBorowClass();
+      //GetSector();
+	
+		var check1=UI_getdata($("#PrcsID").val(),$("#CAFL_SCHEMEID").val(),"","","","LSW_SGETLOANDETAILS");
+		var pro3=($(check1).find('PRODUCT').text());
+	
+	Getbussiness();
+	GetMarginVal() ;
+	
+ /*  Checkinst();
+	if(pro3=='T201')
+	{
+		GetbussinessUBL();
+		
+	}
+	else
+	{
+		 Getbussiness();
+		 GetMarginVal() ;
+	} */
+ 
+ getproperty();
+  //GetMarginVal() ;
+  //Checkemiamt();
+  
+    FormDataFromDB("LSW_TCASHFLOW", "CAFL_", "CAFLDBfields", "CAFL_SCHEMEID");
+	Checkinst();
+    $("#CAFL_PRCSID").val($("#PrcsID").val())
+      	
+	$("#BTMONTHCASHGRD").click();
+	
+	$("#CAFL_SCHEMEID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
+	$("#CAFL_SCHEMENAME").attr("value",$(".FormPageMultiTab li.active").text());
+	
 		$(document).on("click", ".FormSave", function(){	
 	
 			
@@ -27,12 +67,12 @@ $(document).ready(function () {
 			
 			if(MndtryChk == "Mandatory")
 				{
-				alert("Fill the Mandatory Fields");
+				alert("Fill the Mandatory Fields / Document(s)");
 				return false;
 				}
 			}
 			
-			var CAFL_CASHGRID = TxtGridsubmitdata_V1("Table4","CAGR_","CAFL_");
+			var CAFL_CASHGRID = TxtGridsubmitdata_V1("Table3","CASF_","CAFL_");
 		    AssignGridXmltoField("CAFL_CASHGRID", CAFL_CASHGRID)
 			
 			var tbl = $(this).attr("data-aria").split("|")[0];

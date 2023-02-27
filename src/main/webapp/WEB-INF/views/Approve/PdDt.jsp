@@ -1,4 +1,4 @@
-</br>
+
 <!--Main row-->
 <!--  <div class="row FormRows"> 
    <div class="col-md-12"> -->
@@ -6,7 +6,7 @@
 <div class="">
    <!--Admin panel-->
    <div class="admin-panel">
-      <div class="row">
+     <!-- <div class="row">
          <div class="col-lg-12">
             <ul title="Bank" data-aria="LSW_TLONBANKDTLS|BKDT|" data-popup="No"  class="nav FormPageMultiTab">
                ${SUBPAGETABDATA}
@@ -17,13 +17,13 @@
                   <li id=""  value="Add" title = "" class="nav-item FormPageMultiTabAdd">
                   <a> <div class="nav-link" href="#">+ Add</div>  </a>
                   </li>
-                  --> 
+                  --
             </ul>
          </div>
-      </div>
+      </div>-->
       </br>
       <!-- card -->
-      <div class="card">
+      <div class="card CardNS">
          <div class="card-body px-lg-5 pt-0" >
             </br>
             <form>
@@ -46,7 +46,7 @@
                   </div>
 				  <div class="col-md-4">
                      <div class="md-form">
-                    <select class="mdb-select md-form colorful-select dropdown-primary APDDMndtry APDDDBfields" onchange="getPDNames();" multiple id="APDD_PDDONEBY" name="APDD_PDDONEBY">
+                    <select class="mdb-select md-form colorful-select dropdown-primary APDDMndtry APDDDBfields PDSEARCH" searchable="Search here.." onchange="getPDNames();" multiple id="APDD_PDDONEBY" name="APDD_PDDONEBY">
 				   <option value="" disabled>Select</option>
                    <option value="ASM">ASM</option>
 					<option value="RSM">RSM</option>
@@ -65,7 +65,7 @@
                         </div>
                   </div> -->
                    <div class="col-md-4">
-                    <div class="col Btxt10">Upload Photos</div>
+                    <div class="col Btxt10">Upload Documents</div>
                      <div data-for="BankDetail1" class="BankDetail1"> 
                      </div>
                      <div class="DynamicPageGrid" data-val="PROPTXTHDR|" id="BankDetail1" style="display:none">
@@ -78,8 +78,8 @@
                            <input type="text" id="APDG_DTMODIFIED" hidden="hidden" name="APDG_DTMODIFIED" class="form-control APDGDBfields">
                            <input type="text" id="APDG_MODIFIEDBY" hidden="hidden" name="APDG_MODIFIEDBY" class="form-control APDGDBfields">
                            <div class="form-row">
-                              <div class="col">
-                                 <div class="md-form " >
+                              <div class="col-md-6">
+                                 <div class="md-form">
                                     <table>
                                        <tr>
                                           <td>
@@ -90,7 +90,7 @@
                                                 <input type="file"  name="datafile" onchange="DocFldUpldHndlr_V1(this,'APDG_PDATTACHMNT'+$(this).closest('.DYNROW').attr('data-row'),'APDG_PDATTACHMNT','PDDetails','PDDate','PD',$(this).closest('.DYNROW'))" class="APDG_PDATTACHMNT"  >
                                                 </a>
                                                 <input type="text" id="APDG_PDATTACHMNT" hidden="hidden" data-Validate="APDG_PDATTACHMNT"  name="APDG_PDATTACHMNT" class="form-control File APDGDBfields APDGMndtry">
-                                                <span class="name">Upload Photos</span> 
+                                                <span class="name">Upload Document</span> 
                                              </div>
                                           </td>
                                           <div class="md-form">
@@ -117,6 +117,7 @@
                         <!-- <a class="Btxt4" id="AuditTrail" href="#">Audit Trail</a> -->
                      </div>
                   </div>
+				  </div>
 				  <div class="form-row">
                   <div class="col-md-4">
                      <div class="md-form">
@@ -128,7 +129,27 @@
 						
                      </div>
                   </div>
-				  </div>
+				   
+				  
+			<div class="col-md-4">
+                <div class="md-form">
+					<select class="mdb-select md-form colorful-select dropdown-primary  APDDDBfields"   id="APDD_PDTYPE" name="APDD_PDTYPE">
+						<option value="">Select</option>
+						<option value="Tele PD">Tele PD</option>
+						<option value="Visit">Visit</option>
+						<option value="No PD">No PD</option>
+					</select>
+						<label class="mdb-main-label BTxt9">PD Type </label>
+                 </div>
+            </div> 
+			   		
+			<div class="col-md-4">
+				   <div class="md-form">
+						<label for="APDD_REMARKS" class="">Remarks</label>
+						</br>
+							<textarea class="form-control btxt24 AddrNoSpecialChar APDDDBfields  " rows="5" id="APDD_REMARKS" name="APDD_REMARKS" data-to="" style="height: 100px;width:380px;"></textarea>						
+			</div>
+				</div>	
 				</div>
                <div class="form-row">
                            <div class="col d-flex justify-content-center">

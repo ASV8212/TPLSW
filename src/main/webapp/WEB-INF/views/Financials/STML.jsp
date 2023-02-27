@@ -16,7 +16,7 @@
       	</br>
 		
 		<div class="form-row">
-           <div class="col Btxt3">STML</div>
+           <div class="col Btxt3">STML</div>		
         </div>
         </br>
 		    <div class="form-row">
@@ -30,20 +30,31 @@
 				<label class="mdb-main-label BTxt9">Number of Bank accounts considered for eligibility<span class="MndtryAstr">*</span></label>
              </div>
             </div>
+			<div class="col-md-4">
+                     <div class="md-form">
+                        <select class="mdb-select md-form colorful-select dropdown-primary  STMLDBfields"  onchange="BANKSUMAVG();" id="STML_BANKMONTHS" name="STML_BANKMONTHS">
+                           <option value="" selected>--Select--</option>
+						   <option value="6 Month">6 Month</option>
+                           <option value="12 Month">12 Month</option>
+                        </select>
+                        <label class="mdb-main-label BTxt9">Banking Months<span class="MndtryAstr"></span></label>
+                     </div>
+                  </div>
                 <div class="col-md-4">
                   <div class="md-form">
                     <input type="text" id="STML_SUMAVG" disabled maxlength="25" name="STML_SUMAVG" class="form-control IsCURCommaFields STMLDBfields">
                     <label for="STML_SUMAVG" class="">Sum of Averages <span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
-                <div class="col-md-4">
+                
+           </div><!-- onchange="STMLPageCalc();"-->
+		    <div class="form-row">
+			<div class="col-md-4">
                     <div class="md-form">
                        <input type="text" id="STML_MONTHABB" disabled maxlength="25" name="STML_MONTHABB" class="form-control STMLDBfields IsCURCommaFields">
                        <label for="STML_MONTHABB" class="">Monthly ABB<span class="MndtryAstr"></span></label>
                     </div>
                 </div>
-           </div><!-- onchange="STMLPageCalc();"-->
-		    <div class="form-row">
                  <div class="col-md-4">
                   <div class="md-form">
                     <input type="text" id="STML_TOTCRDSUM" disabled maxlength="25"  name="STML_TOTCRDSUM" class="form-control IsCURCommaFields STMLDBfields">
@@ -56,14 +67,15 @@
                     <label for="STML_TOTNONBCRDSUM"  class="">Total non-business credit summation<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
-                <div class="col-md-4">
+                
+           </div>
+		    <div class="form-row">
+			<div class="col-md-4">
                     <div class="md-form">
                        <input type="text" id="STML_REVCRDSUM" disabled maxlength="25" name="STML_REVCRDSUM" class="form-control STMLDBfields IsCURCommaFields">
                        <label for="STML_REVCRDSUM" class="">Revised Credit Summation (Business)<span class="MndtryAstr"></span></label>
                     </div>
                 </div>
-           </div>
-		    <div class="form-row">
                  <div class="col-md-4">
                   <div class="md-form">
                     <input type="text" id="STML_PERCNBCRDSUM" disabled maxlength="25" name="STML_PERCNBCRDSUM" class="form-control IsNumberFields STMLDBfields">
@@ -76,14 +88,15 @@
                     <label for="STML_LST12MONSALE" class="">Last 12 months sales (as validated from GST)<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
-                <div class="col-md-4">
+               
+           </div>
+            <div class="form-row">
+			 <div class="col-md-4">
                     <div class="md-form">
                        <input type="text" id="STML_PERCCRDSUM" disabled maxlength="25" name="STML_PERCCRDSUM" class="form-control IsNumberFields STMLDBfields ">
                        <label for="STML_PERCCRDSUM" class="">% Credit summation (excluding non-business transaction)<span class="MndtryAstr"></span></label>
                     </div>
                 </div>
-           </div>
-            <div class="form-row">
                  <div class="col-md-4">
                   <div class="md-form">
                     <input type="text" id="STML_ADJUABB" disabled maxlength="25" name="STML_ADJUABB" class="form-control IsCURCommaFields STMLDBfields">
@@ -92,19 +105,20 @@
                 </div>
 				 <div class="col-md-4">
                   <div class="md-form">
-                    <input type="text" id="STML_EMIOFLONMON" maxlength="25"  name="STML_EMIOFLONMON" class="form-control IsCURCommaFields STMLDBfields">
+                    <input type="text" id="STML_EMIOFLONMON" maxlength="25" onblur="Finalabb();" name="STML_EMIOFLONMON" class="form-control IsCURCommaFields STMLDBfields">
                     <label for="STML_EMIOFLONMON" class="">EMI of loan taken within last 3 months<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
-                <div class="col-md-4">
+                
+
+           </div>
+		   <div class="form-row">
+		   <div class="col-md-4">
                   <div class="md-form">
                     <input type="text" id="STML_EMIOFLON" maxlength="25" onblur="Finalabb();" name="STML_EMIOFLON" class="form-control IsCURCommaFields STMLDBfields">
                     <label for="STML_EMIOFLON" class="">EMI of loan to be closed within next 6 Months<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
-
-           </div>
-		   <div class="form-row">
 		        <div class="col-md-4">
                     <div class="md-form">
                        <input type="text" id="STML_FINLABB" disabled maxlength="25"  name="STML_FINLABB" class="form-control STMLDBfields IsCURCommaFields">
@@ -117,15 +131,16 @@
                     <label for="STML_PERLAKHEMI" class="">Per Lakh EMI<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
-                <div class="col-md-4">
+                
+
+           </div>
+		   <div class="form-row">
+		   <div class="col-md-4">
                   <div class="md-form">
                     <input type="text" id="STML_MAXEMIPOS" disabled maxlength="25" name="STML_MAXEMIPOS" class="form-control IsCURCommaFields STMLDBfields">
                     <label for="STML_MAXEMIPOS" class="">Maximum EMI Possible<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
-
-           </div>
-		   <div class="form-row">
 		        <div class="col-md-4">
                     <div class="md-form">
                        <input type="text" id="STML_LOANELIGIB" disabled maxlength="25"  name="STML_LOANELIGIB" class="form-control STMLDBfields IsCURCommaFields">
@@ -145,7 +160,7 @@
 		 <div class="form-row">
 		 <div class="col-md-4">
 		     <div class="md-form">
-                  <select class="mdb-select md-form colorful-select dropdown-primary STMLDBfields"   id="STML_PRIMNATBUS" name="STML_PRIMNATBUS">
+                  <select class="mdb-select md-form colorful-select dropdown-primary STMLDBfields" onchange="Chkbuss();"  id="STML_PRIMNATBUS" name="STML_PRIMNATBUS">
                   	<option value="">Select</option>
   					<option value="Manufacturing">Manufacturing</option>
   					<option value="Job Works">Job Works</option>
@@ -153,32 +168,35 @@
 				<label class="mdb-main-label BTxt9">Primary Nature of Business<span class="MndtryAstr">*</span></label>
              </div>
 			 </div>
+		</div>
                <!--  <div class="col-md-4">
                   <div class="md-form">
                     <input type="text" id="STML_PRIMNATBUS" maxlength="25" name="STML_PRIMNATBUS" class="form-control IsNoSpcharFields STMLDBfields">
                     <label for="STML_PRIMNATBUS" class="">Primary Nature of Business<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>-->
-                <div class="col-md-4">
+			<div class="form-row MANU">
+                <div class="col-md-4 ">
                   <div class="md-form">
-                    <input type="text" id="STML_OUTSEXLON" maxlength="25" name="STML_OUTSEXLON" class="form-control IsCURCommaFields STMLDBfields">
+                    <input type="text" id="STML_OUTSEXLON" maxlength="25" onblur="lapos();" name="STML_OUTSEXLON" class="form-control IsCURCommaFields STMLDBfields">
                     <label for="STML_OUTSEXLON" class="">Outstanding of Existing Loans (including LAP/CC/OD)<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 ">
                     <div class="md-form">
-                       <input type="text" id="STML_CCODLIMIT" maxlength="25" name="STML_CCODLIMIT" class="form-control STMLDBfields IsCURCommaFields">
+                       <input type="text" id="STML_CCODLIMIT" maxlength="25" onblur="lapos();" name="STML_CCODLIMIT" class="form-control STMLDBfields IsCURCommaFields">
                        <label for="STML_CCODLIMIT" class="">CC/OD Limit<span class="MndtryAstr"></span></label>
                     </div>
                 </div>
-           </div>
-		    <div class="form-row">
-                 <div class="col-md-4">
+				   <div class="col-md-4 ">
                   <div class="md-form">
                     <input type="text" id="STML_LAPOS" maxlength="25" onblur="lapos();" name="STML_LAPOS" class="form-control IsCURCommaFields  STMLDBfields">
                     <label for="STML_LAPOS" class="">LAP O/s<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
+           </div>
+		    <div class="form-row MANU">
+              
                 <div class="col-md-4">
                   <div class="md-form">
                     <input type="text" id="STML_OUTSCONS" disabled maxlength="25" name="STML_OUTSCONS" class="form-control IsCURCommaFields STMLDBfields">
@@ -191,14 +209,15 @@
                        <label for="STML_TOTLONEXP" class="">Total Loan Exposure<span class="MndtryAstr"></span></label>
                     </div>
                 </div>
-           </div>
-		    <div class="form-row">
-                 <div class="col-md-4">
+				<div class="col-md-4">
                   <div class="md-form">
                     <input type="text" id="STML_PERCTOTLONEXP" disabled maxlength="5" name="STML_PERCTOTLONEXP" class="form-control IsNumberFields STMLDBfields">
                     <label for="STML_PERCTOTLONEXP" class="">Total Loan Exposure (as a % of Sales)<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
+           </div>
+		    <div class="form-row MANU">
+                 
                 <div class="col-md-4">
                   <div class="md-form">
                     <input type="text" id="STML_TURNOVALID" disabled maxlength="50" name="STML_TURNOVALID" class="form-control   STMLDBfields">
@@ -206,10 +225,10 @@
                   </div>
                 </div>
            </div>
-		   <div class="form-row">
+		 <!--/*   <div class="form-row JOBWRK">
         	  <div class="col Btxt10">If Primary Business is Job Works & only Job Work Charges Appear as Sales in GST return</div>
-           </div>
-		   <div class="form-row">
+           </div> */-->
+		   <div class="form-row JOBWRK">
                  <div class="col-md-4">
                   <div class="md-form">
                     <input type="text" id="STML_SALESMATCOST" maxlength="25" onblur="salsincl();" name="STML_SALESMATCOST" class="form-control IsCURCommaFields STMLDBfields">
@@ -224,15 +243,15 @@
                 </div>
                 <div class="col-md-4">
                     <div class="md-form">
-                       <input type="text" id="STML_PRIMOUTSEXLOAN" maxlength="25"  name="STML_PRIMOUTSEXLOAN" class="form-control STMLDBfields IsCURCommaFields">
+                       <input type="text" id="STML_PRIMOUTSEXLOAN" maxlength="25" onblur="outstand();"; name="STML_PRIMOUTSEXLOAN" class="form-control STMLDBfields IsCURCommaFields">
                        <label for="STML_PRIMOUTSEXLOAN" class="">Outstanding of Existing Loans<span class="MndtryAstr"></span></label>
                     </div>
                 </div>
            </div>
-		   <div class="form-row">
+		   <div class="form-row JOBWRK">
                  <div class="col-md-4">
                   <div class="md-form">
-                    <input type="text" id="STML_PRIMCCODLIMIT" maxlength="25" name="STML_PRIMCCODLIMIT" class="form-control IsCURCommaFields STMLDBfields">
+                    <input type="text" id="STML_PRIMCCODLIMIT" maxlength="25" onblur="outstand();"; name="STML_PRIMCCODLIMIT" class="form-control IsCURCommaFields STMLDBfields">
                     <label for="STML_PRIMCCODLIMIT" class="">CC/OD Limit<span class="MndtryAstr">*</span></label>
                   </div>
                 </div>
@@ -249,7 +268,7 @@
                     </div>
                 </div>
            </div>
-		   <div class="form-row">
+		   <div class="form-row JOBWRK">
                  <div class="col-md-4">
                   <div class="md-form">
                     <input type="text" id="STML_PRIMTOTLONEXP" disabled maxlength="25" name="STML_PRIMTOTLONEXP" class="form-control IsCURCommaFields STMLDBfields">
@@ -269,7 +288,7 @@
                     </div>
                 </div>
            </div>
-		    <div class="form-row">
+		    <div class="form-row ">
                  <div class="col-md-4">
                   <div class="md-form">
                     <input type="text" id="STML_VALOFWORK"  maxlength="25"onblur="valueofwrk();" name="STML_VALOFWORK" class="form-control IsCURCommaFields STMLDBfields">
@@ -290,7 +309,7 @@
                 </div>
            </div>
 		   </br>
-		    <div class="form-row">
+		    <div class="form-row"style="display:none">
                  <div class="col d-flex justify-content-center">
                      <button type="button" id="Save" data-aria="LSW_TCAMSTML|STML|STML_SCHEMEID" class="btn btn-Syeloutline waves-effect waves-light FormSave">Save</button>   
                      <!--<button type="button" data-aria="LSW_TCAMSTML|STML|STML_SCHEMEID" data-card="0" class="btn btn-Syel waves-effect waves-light FormSave">Save & Next</button> -->

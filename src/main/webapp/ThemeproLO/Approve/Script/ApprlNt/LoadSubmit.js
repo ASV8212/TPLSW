@@ -1,11 +1,14 @@
 var ViewRInavtivePGFlg = "";
+var EmpowermentFlg = "Inactive";
 if(($("#DMY5").val().split("|")[1]=="Yes")||$("#PrMs1").val()=="View")
 		{
 		  ViewRInavtivePGFlg = "View";
 		}
+		
+		
 $(document).ready(function() {
 
-
+//$("#BTNEMPWRDATA").focusout();	
     //$($('.AFormaccordion')[0]).click();
     //$("#BKDT_CUSID").val($(".FormPageMultiTab li.active").attr("id"));
 
@@ -31,6 +34,13 @@ $(document).ready(function() {
    // $("#BTNEMPOWERMNT").click();
     /**Grid Trigger End **/
 	
+	var Cnt=$(".FormPageMultiTab").find('li').length
+
+         for(i=1;i<Cnt;i++)
+           {
+			   $($(".FormPageMultiTab").find('li')[i]).attr('value','BusinessDetl')
+           }
+	
 	var Role=$("#DMY5").val().split("|")[1]
 	
 	if(Role=="Yes")
@@ -45,12 +55,7 @@ $(document).ready(function() {
 		{
 		 $(".GenApprNote").hide()
 		}
-	var Cnt=$(".FormPageMultiTab").find('li').length
-
-         for(i=1;i<Cnt;i++)
-           {
-			   $($(".FormPageMultiTab").find('li')[i]).attr('value','BusinessDetl')
-           }
+	
  FormDataFromDB("LSW_TAPPLNAPPROV", "AAPR_", "AAPRDBfields", "");
  FormDataFromDB("LSW_TAPPREMPR", "APEM_", "APEMDBfields", "");
 	var xml=UI_getdata($("#PrcsID").val(),"","","","","LSW_SChkBusinessDetails")
@@ -62,7 +67,7 @@ $(document).ready(function() {
     	{
     	$('.BUSINESS').show()
     	//$("#DMY3").val("50000000|20")
-        var ReqAmt=$("#DMY3").val().split("|")[0]
+        var ReqAmt=$("#DMY3").val().split("|")[3]
     	if(ReqAmt>5000000)
     		{
              $('.RELMND').addClass('ABFDMndtry');
@@ -75,6 +80,10 @@ $(document).ready(function() {
         }
 	
 RECOMMENDHIDE()
+if($("#PrMs1").val()!='View')
+{
+Rtramount()
+}
 	
 	
 	var Activityname=$("#DMY5").val().split("|")[2]
@@ -86,14 +95,17 @@ RECOMMENDHIDE()
 	  {
 	  $('.BTNSTA').hide()
       }
-	  
-	  
-	  
+	
 	if(($("#DMY5").val().split("|")[1]=="Yes")||$("#PrMs1").val()=="View")
 		{
             DSVLBLEXTEDITER()
         }
-		
+		if($("#DMY5").val().split('|')[2]=="SendToCredit")
+	   {
+		   $("#SendBack").show();
+		   var op = UI_getdata($("#DMY5").val().split('|')[2],"","","","","LSW_SGETSTAGEREVACT");
+		   $("#SENDBCKACT").append($(op).find('RESULT').html());
+	   } 
 	
     $(document).on("click", ".AddLPDS", function() {
     	
@@ -182,8 +194,7 @@ RECOMMENDHIDE()
     		HTML = $($("#"+TableID).find('tbody tr')[parseInt(NewrowCnt)-1]);
             //$("#AEMD_LEVEL"+[parseInt(NewrowCnt)-1]).append($(Level).find("RESULT").html())			
     		//$($(HTML).find('td')[1]).append($(Level).find("RESULT").html())
-            $($(HTML).find('td')[1]).find("option[value='"+$(_xmlApprvLVL).find("ACTLVL").text()+"']").attr("selected","selected");		
-			//$($(HTML).find('td')[1]).find("option[value='L9']").attr("selected","selected");
+            $($(HTML).find('td')[1]).find("option[value='"+$(_xmlApprvLVL).find("ACTLVL").text()+"']").attr("selected","selected");;			
     		//$($(HTML).find('td')[7]).text($(html1).find("[name=EGCD_UNIQUID]").val());
     		
     		// For Data Population in Grid Columns End
@@ -221,8 +232,6 @@ RECOMMENDHIDE()
 
 
     });
-	
-	
     
  $(document).on("click", "#AssetGrid", function() {
     	
@@ -335,7 +344,10 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
 
     $(document).on("click", "#Reject", function() {
 			$("#REJECTREMARKSPopup").click();
-			
+		if($("#DMY5").val().split("|")[2]=="SendToCredit" )	
+		 {
+			 UI_getdata($("#PrcsID").val(),"","","","Underwriting Rejection","LSW_SSMSEMAILLINKSND");
+		 }	
 		});
     
     $(document).on("click", ".FormSave", function() {
@@ -347,7 +359,7 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
     		 if ($(this).text() == "Save & Next") {
               var MndtryChk = ChkMandatoryFlds_V1("ABFDMndtry", html);
                if (MndtryChk == "Mandatory") {
-                alert("Fill the Mandatory Fields");
+                alert("Fill the Mandatory Fields / Document(s)");
                 return false;
             }
             
@@ -359,6 +371,8 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
 	  if ($(this).text() == "Generate Approval Note") 
           {
 			  
+			  
+		//var DEVRAISE=UI_getdata($("#PrcsID").val(),"","","","","LSW_SRAISEDEVROI")  
 		/*	var xml=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHKSHCMFORAPPR")
 
 		    if($(xml).find('RESULT').text()!="Y")
@@ -370,6 +384,8 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
 		        $("#Save3").click()
 		        $("#Save7").click()
 		        $("#Save9").click()
+				$("#Save11").click()
+	
 				var HARDSTP = UI_getdata($("#PrcsID").val(),"APPROVE NOTE","","","","LSW_SOVERALLSTAGVALDT ");
 			if($(HARDSTP).find("RESULT").text() != "")
 			{
@@ -399,9 +415,9 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
                     AssignGridXmltoField("APEM_MANEMPRMNT", MNUEMPRMNT)
 				}
 				
-		if($("#DMY7").val().split("|")[8] != "HE02")
+		    if($("#DMY7").val().split("|")[8] != "HE02")
 			   {
-				
+				if(EmpowermentFlg == "Active"){
 		     var PFNO1 = "4";
 			 var PRCSID1 = $("#PrcsID").val()+"|APPROVALNOTE";
 			 //var PRCSID1 = $("#PrcsID").val();
@@ -419,88 +435,87 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
 			  // var obj = JSON.parse(JSON.stringify(stm))
 			    if (stm == "")
 			    {
-			      alert("OPA Integration Failed");
+			      //alert("OPA Integration Failed");
 			      return false;    
 			    }
 			    else  if(stm == "Success")
 			    {
 					$("#BTNEMPOWERMNTI").click();
-			    	$(".ApprNote").click();
+			    	//$(".ApprNote").click();
+					if(confirm('Confirm all the deviations applicable are marked') == true)
+					{
+						GentrateApprNote();
+						//$("#AAPR_APROVBTN").val('Yes')
+					}
 			    	
-			    	 $(document).on("click", ".SaveAppr", function() {
-						 if($("#APEM_PRCSID").val() == "")
-						   {
-						     $("#APEM_PRCSID").val($("#PrcsID").val())
-						   }
-			    		 if($(this).text() == "Confirm")
-					    	{
-								 var MndtryChk="";
-								 MndtryChk = CheckDocMndtry();	
-								 
-								 if(MndtryChk != "")
-        			               {
-        			                 alert(MndtryChk);
-        			                 return false;
-        			               }
-								   
-			    			        var EMPRMNT = TxtGridsubmitdata_V1("EmpovTable4","APED_","APEM_");
-			 				          AssignGridXmltoField("APEM_EMPRMNT", EMPRMNT) 
-			    			        var CHKresult=FormDataToDB("LSW_TAPPREMPR","APEM","");
-			 				         
-			 				        if(CHKresult == "Fail")
-			 						{
-			 						  alert("Submission Failed");
-			 						   return false;			
-			 						}
-			 				        else
-			 				         {
-			 				          GentrateApprNote();
-									  $(".Apprclose").click();
-									  $('#BTNEMPOWERMNT').click();
-			 				        }
-			 				   
-					    	}
-					     else if($(this).text() == "Cancel")
-					    	{
-								var EMPRMNT = TxtGridsubmitdata_V1("EmpovTable4","APED_","APEM_");
-			 				          AssignGridXmltoField("APEM_EMPRMNT", EMPRMNT)
-								 var CHKresult=FormDataToDB("LSW_TAPPREMPR","APEM","");
-			 				         if(CHKresult == "Fail")
-				 						{
-				 						  alert("Submission Failed");
-				 						   return false;			
-				 						}
-			 				         else
-			 				        	 {
-			 				        	  $(".Apprclose").click();
-			 				        	 }
-					    		 
-					    	}
-					 })
+					 
                  // var Button = "ToRCMD";
 					// To be Placed At Last Start
 		           // WFComplete ($("#ActvID").val(),"var_status="+Button+"&var_rcmdu=CM","");
 			    }
 			    else
 			    {
-			    	alert("OPA Integration Failed");
+			    	//alert("OPA Integration Failed");
 				    return false;   	
 			    }  
 			 },
 			 error: function(stm) {
 
-			    alert("OPA Integration Failed");
+			    //alert("OPA Integration Failed");
 			    return false; 
 			  }
 			 });
-			 
-			   }
-			   
+				}
+				else{
+					$.ajax({
+					   url: "/TPLSW/internalBRE",
+					   type: 'POST',
+					   data: {prcsid:$("#PrcsID").val(),procName:"LSW_SBUSINESSRULESENGINE",Prvnt:$(window.parent.parent.document).find("#Prvnt").val()},
+					   async:false,
+					   success: function(stm){ 
+					   if (stm == "")
+			    {
+			      //alert("OPA Integration Failed");
+			      return false;    
+			    }
+			    else  if(stm == "Success~Success")
+			    {
+					$("#BTNEMPOWERMNTI").click();
+			    	//$(".ApprNote").click();
+					if(confirm('Confirm all the deviations applicable are marked') == true)
+					{
+						GentrateApprNote();
+						//$("#AAPR_APROVBTN").val('Yes')
+					}
+			    	
+					 
+                 // var Button = "ToRCMD";
+					// To be Placed At Last Start
+		           // WFComplete ($("#ActvID").val(),"var_status="+Button+"&var_rcmdu=CM","");
+			    }
+			    else
+			    {
+			    	//alert("OPA Integration Failed");
+				    return false;   	
+			    }  
+			 },
+			 error: function(stm) {
+
+			    //alert("OPA Integration Failed");
+			    return false; 
+			  }
+			 });
+				}
+			 }
 			   // Added for HE02 Purpose Start
-			   else
-			   {
-				   $(".ApprNote").click();
-				   
+		else
+		   {
+				   //$(".ApprNote").click();
+				   if(confirm('Confirm all the deviations applicable are marked') == true)
+					{
+						GentrateApprNote();
+						//$("#AAPR_APROVBTN").val('Yes')
+					}
 				   $('.PRDLBL').text('There is no deviation for '+$("#DMY7").val().split("|")[9]+', click confirm to gentrate approve note')
 				   
 				   $('.Confirm').removeClass('SaveAppr');
@@ -509,23 +524,24 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
 					    {
 								GentrateApprNote();
 							   $(".Apprclose").click();
+							   $("#AAPR_APROVBTN").val('Yes')
 						}
 					});
 			   }
 			   // Added for HE02 Purpose End
-             $("#AAPR_APROVBTN").val('Yes')
+             
           }
 
        if($(this).text() == "Send for Approval")
 		{    
 	       
-           if($("#AAPR_APROVBTN").val() != "Yes")
+         if($("#AAPR_APROVBTN").val() != "Yes")
 				{
 					alert("Generate Approve Note");
 					return false;
 				}
 
-		   var xml=UI_getdata($("#PrcsID").val(),"","","","","LSW_CHECKINCBNK")
+		   /*var xml=UI_getdata($("#PrcsID").val(),"","","","","LSW_CHECKINCBNK")
 			
 			var FINCBNKDETAILS=$(xml).find('BANKDETAILS').text()
 			
@@ -533,7 +549,7 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
 		    	{
 		          alert("Enter Banking Details for the respective Applicant \n whose income to be Considered is selected as Yes")
 				  return false;
-		    	}
+		    	}*/
 
 			var xml=UI_getdata($("#PrcsID").val(),"","","","","LSW_SCHKSCHEMECOUNT")
 			
@@ -592,14 +608,14 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
              		 {
              		   var ValuationID=DATA[x].split("|")[0];
              	       var row = $("." + ValuationID).find(".DYNROW").length;
-             	    for (var z=0;z<row;z++)
+/*              	    for (var z=0;z<row;z++)
           	           {
           	          //var HTML =	 $("." + ValuationID).find(".DYNROW")[i];
              	    	if(MndtryChk=="")
              	    		{
-             	    		   MndtryChk = CheckDocMndtry("LoansTable"+[z+1],"EndUse","End Use");	
+             	    		   MndtryChk = CheckDocMndtryEndUse("LoansTable"+[z+1],"EndUse","End Use");	
              	    		}
-          	            }
+          	            } */
                       }
              	if(MndtryChk != "")
         			{
@@ -607,8 +623,7 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
         			return;
         			}
             }
-        	
-			if (($(this).text() == "Save" || $(this).text() == "Save & Next") && $(this).closest('.collapse').attr('id')=="collapseEleven11") 
+        	if (($(this).text() == "Save" || $(this).text() == "Save & Next") && $(this).closest('.collapse').attr('id')=="collapseEleven11") 
             {
         		var MndtryChk="";
         		if(MndtryChk=="")
@@ -667,7 +682,7 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
 				    AssignGridXmltoField("ALNM_CUSDATA", LOANSPAGE)
 				 var LOANTable = TxtGridsubmitdata_V3("LoansTable","LCDT_","ALNM_");
 					AssignGridXmltoField("ALNM_CUSDATAGED", LOANTable);
-                 $("#cke_AAPR_LOANSUMM").find(".cke_toolbar").find(".cke_button__save").click()					
+                $("#cke_AAPR_LOANSUMM").find(".cke_toolbar").find(".cke_button__save").click()						
 			   }
         	if($(this).closest('.collapse').attr('id')=="collapseThree3")
 			   {
@@ -686,7 +701,7 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
         	if($(this).closest('.collapse').attr('id')=="collapseEleven11")
 			   {
 		    	var EMPRMNT = TxtGridsubmitdata_V1("Table4","APED_","APEM_");
-				    AssignGridXmltoField("APEM_EMPRMNT", EMPRMNT)
+				AssignGridXmltoField("APEM_EMPRMNT", EMPRMNT)
 				var MNUEMPRMNT = TxtGridsubmitdata_SV1("MDTable","AEMD_","APEM_");
                     AssignGridXmltoField("APEM_MANEMPRMNT", MNUEMPRMNT)
 			   }
@@ -720,8 +735,11 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
 			     AssignGridXmltoField("AEUM_ENDUSEOTHGRD", OTHRINCM)
         		var ENDUSE = TxtGridsubmitdata_V3("EUTable","AEUG_","AEUM_");
 				AssignGridXmltoField("AEUM_ENDUSEBTGRD", ENDUSE)
-              $("#cke_AAPR_ENDUSESUMMARY").find(".cke_toolbar").find(".cke_button__save").click()
+               
+			    $("#cke_AAPR_ENDUSESUMMARY").find(".cke_toolbar").find(".cke_button__save").click()
     		}
+			
+			
 			if($(this).attr('data-form')=="FamilyBackground")
 			{
 				$("#cke_AAPR_FamilyBckGrnd").find(".cke_toolbar").find(".cke_button__save").click()
@@ -741,6 +759,10 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
 			else if($(this).attr('data-form')=="Banking")
 			{
 			  $("#cke_AAPR_BANKINGSUMM").find(".cke_toolbar").find(".cke_button__save").click()
+			}
+			else if($(this).attr('data-form')=="Justification")
+			{
+			  $("#cke_AAPR_JUSTIFY").find(".cke_toolbar").find(".cke_button__save").click()
 			}
 			
         	var CHKresult=FormDataToDB(tbl, prfx, '');
@@ -766,18 +788,18 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
         }
 		
 		
-		 if($(this).text() == "Send for Approval")
+		 if ($(this).text() == "Send for Approval")
 			{
-			var PFNO1 = "";//$(".FormPageMultiTab li.active a div").text();
+				
+			/******var PFNO1 ="";
 	var PRCSID1 = $("#PrcsID").val();
 	var RECEIPTNO=""
-
 
    $.ajax({
 		    url: "/TPLSW/LMSPF",
 		    type: 'POST',
 		    data: {PRCSID:PRCSID1,PFNO:PFNO1,RECEIPTNO:RECEIPTNO,Prvnt:$(window.parent.parent.document).find("#Prvnt").val()},
-		    async:true,
+		    async:false,
 		   // dataType: 'json',
 		   // contentType:'application/json',
 		    
@@ -785,35 +807,33 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
 		   // var obj = JSON.parse(JSON.stringify(stm))
 		    	if (stm == "")
 		    		{
-		    		
-		    		//alert("Customer Creation/Updation failed. Contant IT!!!");
-		    	//	return;
-		    		
+		    		alert("Customer Creation/Updation failed. Contant IT!!!");
+		    		return;
 		    		}
 		    	
 		    	else if (stm.split("|")[0] == "Fail")
 	    			{
-	    			
-	    			//alert("Customer Creation/Updation failed. " + stm.split("|")[1]);
-		    	//	return;
-	    			
+	    			alert("Customer Creation/Updation failed. " + stm.split("|")[1]);
+		    		return;
 	    			}
 		    	
 		    	else if (stm.split("|")[0] == "Success")
 	    			{
-
-		          }
-		
-		},
-		error: function(stm) {
+		            }
+		           },
+		        error: function(stm) {
 			 //window.alert(LoadFrmXML("V0125"))
-			//alert("Customer Creation/Updation failed. Contant IT!!!");
+			alert("Customer Creation/Updation failed. Contant IT!!!");
+			return;
 			   }
-		});
-	   
-	   	
+		});	****/
+			if($("#VERTICAL").val()=="MSME")
+			 {
+			  var RES=UI_getdata($("#PrcsID").val(),"","","","","LSW_SPPFCOMPUT")
+			  }
+			  var DEVRAISE=UI_getdata($("#PrcsID").val(),"","","","","LSW_SRAISEDEVROI")
 		    var MILESTONE=UI_getdata('APPROVAL',$("#PrcsID").val(),"","","","LSW_SGETMILESTONEUPDATE")	 	
-			 var op = UI_getdata($("#PrcsID").val()+'|'+$("#ActvID").val(),"DEVIATIONS",$("#LogUsr").val(),"","","LSW_SONSUBMTWFDTLINS");
+			 var op = UI_getdata($("#PrcsID").val()+'|'+$("#ActvID").val(),"DEVIATIONS",$("#LogUsr").val(),"","","LSW_SONSUBMTWFDTLINS");			
 			 var pattern = /var_/;
 			 var exists = pattern.test($(op).find("WFVAR").text());
 				 if(exists) 
@@ -920,11 +940,10 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
         	$('#BTNFINCLMSTDTL').click();
         }
   //  });
-
-    $("#BTNEMPWRDATA").on('click', function() {
+//$("#BTNEMPWRDATA").on('click', function() {
 		if($("#DMY7").val().split("|")[8] == "HE01")
 		{
-		$("#APEM_360EMPWRUSR").material_select("destroy")
+		$("#APEM_360EMPWRUSR").material_select("destroy");
 		$("#APEM_360EMPWRUSR").empty();
 		var xml=UI_getdata($("#PrcsID").val(),ViewRInavtivePGFlg,"","","","LSW_SGET360EMPWRELIGUSR")
 		$("#APEM_360EMPWRUSR").append($(xml).find('DRPDWNOPTN').html());
@@ -934,7 +953,21 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
     	FormDataFromDB("LSW_TAPPREMPR", "APEM_", "APEMDBfields", "");
     	$('#BTNEMPOWERMNT').click();
 		$("#BTNMNUEMPOWERMNT").click();
-    });
+  
+    /*$("#BTNEMPWRDATA").on('click', function() {
+		if($("#DMY7").val().split("|")[8] == "HE01")
+		{
+		$("#APEM_360EMPWRUSR").material_select("destroy");
+		$("#APEM_360EMPWRUSR").empty();
+		var xml=UI_getdata($("#PrcsID").val(),ViewRInavtivePGFlg,"","","","LSW_SGET360EMPWRELIGUSR")
+		$("#APEM_360EMPWRUSR").append($(xml).find('DRPDWNOPTN').html());
+		$("#APEM_360EMPWRUSR").parent().show();
+		$("#APEM_360EMPWRUSR").addClass("APEMMndtry");
+		}
+    	FormDataFromDB("LSW_TAPPREMPR", "APEM_", "APEMDBfields", "");
+    	$('#BTNEMPOWERMNT').click();
+		$("#BTNMNUEMPOWERMNT").click();
+    });*/
     $("#BTNASSTDATA").on('click', function() {
     	FormDataFromDB("LSW_TAPPRASSET", "APAS_", "APASDBfields", "");
     	$('#BTNASST').click();
@@ -944,7 +977,7 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
     	$('#BTNREPT').click();
     	$('#BTNREPT1').click();
     	LoadMultiData("",$("#PrcsID").val(),"","MUSTTOHAVE","APRGDBfields","LSW_SGETAPPRRESN");
-		LoadMultiData("",$("#PrcsID").val(),"","CommonLink","ARCLDBfields","LSW_SGETCOMMONLINK");
+	    LoadMultiData("",$("#PrcsID").val(),"","CommonLink","ARCLDBfields","LSW_SGETCOMMONLINK");
 
     //});
     $("#BTNSANCCONDDATA").on('click', function() {
@@ -992,31 +1025,56 @@ $(document).on("click", ".DELETEFIRMDETAILS" , function() {
     	
     	//$("#BTNIEUGRD").click();
     //});
-	
-	//Analytics data Start
-	var xml=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETCREDITANALYSDATA")
-	
-	           if($(xml).find('CREDITSCORE').text() != "")
-	              {
-		            $("#CreditAnalyticsST").show();
-	              }
-	           else
-	              {
-		             $("#CreditAnalyticsST").hide();
-	              }
-	$("#CRSCORE").text($(xml).find('CREDITSCORE').text())
-    $("#CRD").text($(xml).find('CREDITDECISION').text())
-	$("#CRR1").text($(xml).find('CREDITRESONI').text())
-	$("#CRR2").text($(xml).find('CREDITRESONII').text())
-	$("#CRR3").text($(xml).find('CREDITRESONIII').text())
-	$("#CLSCORE").text($(xml).find('CLUSTERSCORE').text())
-	$("#CLD").text($(xml).find('CLUSTERDECISION').text())
-	$("#CLR1").text($(xml).find('CLUSTERRESONI').text())
-	$("#CLR2").text($(xml).find('CLUSTERRESONII').text())
-	$("#CLR3").text($(xml).find('CLUSTERRESONIII').text())
-	
-	////Analytics data End
-    
+    $(document).on("click", ".SaveAppr", function() {
+						 if($("#APEM_PRCSID").val() == "")
+						   {
+						     $("#APEM_PRCSID").val($("#PrcsID").val())
+						   }
+			    		 if($(this).text() == "Confirm")
+					    	{
+								 var MndtryChk="";
+								 MndtryChk = CheckDocMndtry();	
+								 
+								 if(MndtryChk != "")
+        			               {
+        			                 alert(MndtryChk);
+        			                 return false;
+        			               }
+								   
+			    			        var EMPRMNT = TxtGridsubmitdata_V1("EmpovTable4","APED_","APEM_");
+			 				          AssignGridXmltoField("APEM_EMPRMNT", EMPRMNT) 
+			    			        var CHKresult=FormDataToDB("LSW_TAPPREMPR","APEM","");
+			 				         
+			 				        if(CHKresult == "Fail")
+			 						{
+			 						  alert("Submission Failed");
+			 						   return false;			
+			 						}
+			 				        else
+			 				         {
+			 				          GentrateApprNote();
+									  $("#AAPR_APROVBTN").val("Yes")
+									  $(".Apprclose").click();
+									  $('#BTNEMPOWERMNT').click();
+			 				        }
+					    	}
+					     else if($(this).text() == "Cancel")
+					    	{
+								var EMPRMNT = TxtGridsubmitdata_V1("EmpovTable4","APED_","APEM_");
+			 				          AssignGridXmltoField("APEM_EMPRMNT", EMPRMNT)
+								 var CHKresult=FormDataToDB("LSW_TAPPREMPR","APEM","");
+			 				         if(CHKresult == "Fail")
+				 						{
+				 						  alert("Submission Failed");
+				 						   return false;			
+				 						}
+			 				         else
+			 				        	 {
+			 				        	  $(".Apprclose").click();
+			 				        	 }
+					    		 
+					    	}
+					 })
 	$('#PropertyGrid').on('click', function() {
 		
 		var TableID = "Table3";

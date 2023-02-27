@@ -28,41 +28,41 @@
  -->
  
  <!--Alert-->
- <link href="ThemeproLO/Common/Alert/sweetalert.css" rel="stylesheet" />
+ <link href="ThemeproLO/Common/Alert/sweetalert.css${DMY13}" rel="stylesheet" />
 <!--<link rel="stylesheet" href="ThemeproLO/Common/scripts/UI/queuefrwd/ionicons.min.css">-->
 
-<link rel="stylesheet" href="ThemeproLO/Common/CSS/Alert/alertify.bootstrap.css">
-<link rel="stylesheet" href="ThemeproLO/Common/CSS/Alert/alertify.core.css">
-<link rel="stylesheet" href="ThemeproLO/Common/CSS/Alert/alertify.default.css">
+<link rel="stylesheet" href="ThemeproLO/Common/CSS/Alert/alertify.bootstrap.css${DMY13}">
+<link rel="stylesheet" href="ThemeproLO/Common/CSS/Alert/alertify.core.css${DMY13}">
+<link rel="stylesheet" href="ThemeproLO/Common/CSS/Alert/alertify.default.css${DMY13}">
 
-  <link href="ThemeproLO/Common/jw/js/boxy/stylesheets/boxy.css" rel="stylesheet" type="text/css" />
- <link href="ThemeproLO/Common/Alert/metro/css/jquery.msgbox.css" rel="stylesheet" type="text/css" />
+  <link href="ThemeproLO/Common/jw/js/boxy/stylesheets/boxy.css${DMY13}" rel="stylesheet" type="text/css" />
+ <link href="ThemeproLO/Common/Alert/metro/css/jquery.msgbox.css${DMY13}" rel="stylesheet" type="text/css" />
  
-<script type="text/javascript" src="ThemeproLO/Common/Alert/sweetalert.min.js"></script>
+<script type="text/javascript" src="ThemeproLO/Common/Alert/sweetalert.min.js${DMY13}"></script>
 	
  <!--Alert-->
 
 
  <!--Text Editor-->
  
- <script src="ThemeproLO/ckeditor/ckeditor.js"></script>
-<script src="ThemeproLO/ckeditor/BrowserIdentity.js"></script>
-<script src="ThemeproLO/ckeditor/samples/js/sample.js"></script>
+ <script src="ThemeproLO/ckeditor/ckeditor.js${DMY13}"></script>
+<script src="ThemeproLO/ckeditor/BrowserIdentity.js${DMY13}"></script>
+<script src="ThemeproLO/ckeditor/samples/js/sample.js${DMY13}"></script>
 
 <!--FEB-->
 
 
-	<link href="ThemeproLO/Common/FEP/css/bootstrap.min.css" rel="stylesheet"> 
+	<link href="ThemeproLO/Common/FEP/css/bootstrap.min.css${DMY13}" rel="stylesheet"> 
 	
 	<!-- Material Design Bootstrap --> 
-	<link href="ThemeproLO/Common/FEP/css/mdb.min.css" rel="stylesheet"> 
+	<link href="ThemeproLO/Common/FEP/css/mdb.min.css${DMY13}" rel="stylesheet"> 
 	
 	<!-- Customizer --> 
-	<link rel="stylesheet" href="ThemeproLO/Common/FEP/css/customizer.min.css"> 
+	<link rel="stylesheet" href="ThemeproLO/Common/FEP/css/customizer.min.css${DMY13}"> 
 	
 	
 	<!-- Your custom styles (optional) --> 
-	<link href="ThemeproLO/Common/FEP/css/style.css" rel="stylesheet"> 
+	<link href="ThemeproLO/Common/FEP/css/style.css${DMY13}" rel="stylesheet"> 
 	
 	<!-- <link href="ThemeproLO/Common/FEP/css/Grid/datatables.min.css" rel="stylesheet"> 
 	<link href="ThemeproLO/Common/FEP/css/Grid/datatables-select.min.css" rel="stylesheet"> --> 
@@ -87,7 +87,9 @@
   </script>
 <% editData.ClearMtd(); %>
 <% 
-String Prcsid=request.getParameter("PrcsID")+"|"+request.getParameter("PrMs6");
+
+
+String Prcsid=request.getParameter("PrcsID")+"|"+request.getParameter("PrMs3");
 String TblName="LSW_tTEAPPRBUSIFIRM";
 String Spname="Sam_sFetRichTxtEdt";
 String AcvtID="";
@@ -110,7 +112,7 @@ editData.setHistVar(HistVar); %>
 	  <div class="row">
 	<div class="col-lg-12">
 		  <ul title="Firm" data-popup="No" class="nav FormPageMultiTab">
-<li id="ApprlNt" value="ApprlNt" title="ApprlNt" class="nav-item active"><a><div class="nav-link" href="#">Approval Note</div></a></li>		  
+<!--<li id="ApprlNt" value="ApprlNt" title="ApprlNt" class="nav-item active"><a><div class="nav-link" href="#">Approval Note</div></a></li>	-->	  
     ${SUBPAGETABDATA}
        <!-- <li id="Co-Applicant1" value="" title = "Co-Applicant1" class="nav-item  active">
        <a> <div class="nav-link" href="#">Co-Applicant 1</div></a>
@@ -138,21 +140,23 @@ editData.setHistVar(HistVar); %>
                 <input type="text" id="ABFD_FIRMNAMEVAL" hidden="hidden"  name="ABFD_FIRMNAMEVAL" class="form-control ABFDDBfields ">
                 <input type="text" id="ABFD_LPDSGRD" hidden="hidden"  name="ABFD_LPDSGRD" class="form-control ABFDDBfields ">
 				<input type="text" id="ABFD_CUSTYPE" hidden="hidden"  name="ABFD_CUSTYPE" class="form-control ABFDDBfields ">
+                       
                         </br>
 						<div class="form-row">
            <div class="col ">
            <div class="FltRight DELBTNTXT">
-           Delete Firm
-           <img src="ThemeproLO/Common/Images/Delete_Img.png" style="height:25px;width:25px" data-tab="ABFD_PRCSID|ABFD_FIRMCONT|Firm" class="DELBTN DELETETAP">
+           Delete Business Details
+           <img src="ThemeproLO/Common/Images/Delete_Img.png" style="height:25px;width:25px" data-tab="ABFD_PRCSID|ABFD_FIRMCONT|Business Details" class="DELBTN DELETETAP">
            </div>    
            </div>     
            </div>
-                 <div class="form-row">
+                        <div class="form-row">
                            <div class="col">
                               <div class="md-form">
-                                 <select class=" md-form colorful-select dropdown-primary ABFDDBfields DataToFld" onchange="GetInduestry(this,'ABFD_INDUSCATRY','ABFD_INDUSCATRY','Page','','ABFD_CONSTITUTION','ABFD_CUSTYPE')" data-change="ABFD_FIRMNAMEVAL" id="ABFD_FIRMNAME" name="ABFD_FIRMNAME">
-                                 </select>
-                                 <label class="mdb-main-label BTxt9">Name of Firm<span class="MndtryAstr">*</span></label>
+                                 <select class=" md-form colorful-select dropdown-primary ABFDMndtry ABFDDBfields DataToFld" onchange="GetInduestry(this,'ABFD_INDUSCATRY','ABFD_INDUSCATRY','Page','','ABFD_CONSTITUTION','ABFD_CUSTYPE')" data-change="ABFD_OTHFIRM" id="ABFD_FIRMNAME" name="ABFD_FIRMNAME">
+                                <!-- <option value="" >--Select--</option>-->
+								 </select>
+                                 <label class="mdb-main-label BTxt9">Name of Firms<span class="MndtryAstr">*</span></label>
                               </div>
                            </div>
                            <div class="col">
@@ -175,7 +179,7 @@ editData.setHistVar(HistVar); %>
                            <div class="col-md-4">
                               <div class="md-form">
                                  <input type="text" id="ABFD_OTHFIRM" maxlength="30" onchange="getOthname(this,'ABFD_INDUSCATRY')"  name="ABFD_OTHFIRM" class="form-control NoSpecialChar ABFDDBfields">
-                                 <label for="ABFD_OTHFIRM" class="">Others<span class="MndtryAstr"></span></label>
+                                 <label for="ABFD_OTHFIRM" class="">Others<span class="MndtryAstr">*</span></label>
                               </div>
                            </div>
                         </div>
@@ -185,7 +189,7 @@ editData.setHistVar(HistVar); %>
 						
                          <div class="form-row PARTNERFARM" style="display:none">						
                             <div class="col">
-                               <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'LPDSTable',{spname:'LSW_SLPDSGRDDETL',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#ABFD_FIRMCONT').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||5,6','LPDSGRID');" id="BTNLPDSGRD" name="BTNLPDSGRD" />
+                               <input type="button" style="display:none" class="DashTrg" onclick="FncallDocChkLst(this,'LPDSTable',{spname:'LSW_SLPDSGRDDETL',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#PrcsID').val(),brid:$('#ABFD_FIRMCONT').val(),MnuId:''},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||6','LPDSGRID');" id="BTNLPDSGRD" name="BTNLPDSGRD" />
                                <table cellpadding="0"  cellspacing="0" border="0" style="width: 80%" class="display ABFDDBfields DataGrid" name="LPDSTable" id="LPDSTable">
                                </table>
                            </div> 
@@ -213,7 +217,7 @@ editData.setHistVar(HistVar); %>
                               </div>
                            </div>
                         </div>-->
-							 <div class="adjoined-bottom">
+					 <div class="adjoined-bottom">
 		<div class="grid-container">
 			<div class="grid-width-100">
 		
@@ -227,6 +231,7 @@ editData.setHistVar(HistVar); %>
 			
 		</div>
 	</div>
+	</br>
                         <div class="form-row">
                            <div class="col Btxt10">NO. OF SKILLED</div>
                         </div>
@@ -312,7 +317,7 @@ editData.setHistVar(HistVar); %>
                         <div class="form-row">
                            <div class=" col-md-4 GryShd">
                               <div class="md-form">
-                              <input type="text" id="" disabled value="Debitor Credit Period"  maxlength="3"  name="" class="form-control DSVLBL Btxt17 NoSpecialChar ">
+                              <input type="text" id="" disabled value="Debtor Turnover period"  maxlength="3"  name="" class="form-control DSVLBL Btxt17 NoSpecialChar ">
                               </div>
                            </div>
                            <div class=" col-md-4">
@@ -326,7 +331,7 @@ editData.setHistVar(HistVar); %>
                         <div class="form-row">
                            <div class=" col-md-4 GryShd">
                               <div class="md-form">
-                                <input type="text" id="" disabled value="Creditor Credit Period"  maxlength="3"  name="" class="form-control DSVLBL Btxt17 NoSpecialChar ">
+                                <input type="text" id="" disabled value="Credit Turnover period"  maxlength="3"  name="" class="form-control DSVLBL Btxt17 NoSpecialChar ">
                                </div>
                            </div>
                            <div class=" col-md-4">

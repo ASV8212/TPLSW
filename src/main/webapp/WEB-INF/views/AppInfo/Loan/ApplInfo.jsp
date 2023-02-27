@@ -1,4 +1,4 @@
-<!-- SRINIVASH SRINi  -->
+
 
 
                 <!--Main row-->
@@ -72,7 +72,7 @@ Application Info
 <div class="row FormRows m-b-0">
   
 <div class="col-md-7  Formcol-mdLR">
-<div class="Btxt9" >Loan Purpose</div>
+<div class="Btxt9" >Loan Product</div>
 <div class="Btxt14 CBSIAPPINFO" id="APFI_LONPURPOSE" name="APFI_LONPURPOSE"></div>
 </div>  
 

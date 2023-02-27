@@ -374,6 +374,7 @@ function GetNetProfit1(){
 			amt=0;
 		}
 	 $("#CLTV_NETPROFIT").val(CURINRCommaSep(parseFloat(amt).toFixed(2))); 
+	 $("#CLTV_NETPROFIT").next().addClass('active');
 	$("#CLTV_DSR").val(60);
 	$("#CLTV_DSR").next().addClass('active');
 	amt=parseFloat(amt)*parseFloat(60/100);
@@ -386,9 +387,13 @@ function GetNetProfit1(){
 			amt=0;
 		}
 	$("#CLTV_MSURAVLEMISER").val(CURINRCommaSep(parseFloat(amt).toFixed(2)));
-	$("#CLTV_ASURAVLFREMISER").val(CURINRCommaSep(parseFloat(amt).toFixed(2)));
-	  $("#CLTV_MSURAVLEMISER").next().addClass('active');	 
-	    $("#CLTV_ASURAVLFREMISER").next().addClass('active');	 
+	$("#CLTV_MSURAVLEMISER").next().addClass('active');	
+	 
+		//if($("#CLTV_ASURAVLFREMISER").val()=='0')
+	//{
+		$("#CLTV_ASURAVLFREMISER").val(CURINRCommaSep(parseFloat(amt).toFixed(2)));	   
+	    $("#CLTV_ASURAVLFREMISER").next().addClass('active');	
+	//}
 	$(".AVLFUND").focusout();
 	
 }
@@ -444,7 +449,7 @@ $(document).on("blur",".AVLFUND",function(){
 	{
 		val1=0;
 	} 
-	  amt=parseFloat((val1*12)*3);
+	  amt=parseFloat(val1*3);
 	  if(amt=='')
 	{
 		amt=0;
@@ -457,9 +462,9 @@ $(document).on("blur",".AVLFUND",function(){
 	$("#CLTV_THREETIMEABB").next().addClass('active');	 
 		//Emi paid in last 12 Months
 		 var val1=0,amt=0;
-	//var check1=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETEMIDETAILS");
-	//  val1=($(check1).find ('EMIPAID').text());
-	  val1=3242523; 
+	var check1=UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETEMIDETAILS");
+	  val1=($(check1).find ('EMIPAID').text());
+	  //val1=3242523; 
 	  if(val1=='')
 	{
 		val1=0;
@@ -541,7 +546,7 @@ function  GetEmiPerLakh(){
 	 
 	ROI=$("#CLTV_PROPOSEINR").val();
 	Tenur=$("#CLTV_PROTENOR").val();
-	 var result=UI_getdata(ROI,Tenur,LnAmt,"","","LSW_SGETEMI_DATA");
+	 var result=UI_getdata(ROI,Tenur,LnAmt,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 	 var EMI=$(result).find("EMI").text();
 	 	if(EMI=='')
 	{

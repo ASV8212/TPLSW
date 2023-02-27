@@ -115,18 +115,23 @@ editData.setHistVar(HistVar); %>
       <!-- card -->
       
         <div class="form-row">
-             <div class="col-md-8">
+             <div class="col-md-6">
       <div class="card CardNS">
          </br>
          <!-- Card header -->
          
          <div class="form-row card-body px-lg-5 pt-0">
             <div class="col Btxt3">Approval Activity
-            <div class="HyperControls form-row FltRight"  style="display:none;"> 
+           <!-- <div class="HyperControls form-row FltRight"  style="display:none;"> 
 			      <a onclick="" class="Btxt4 FltRight"  href="#">Raise a Query</a>
-			      </div>
+			      </div>-->
+				     <div class="HyperControls form-row FltRight " style="display:none"> 
+			      <a  id="QUERYRAISED" data-aria="LSW_TENACHDTL|AEND" onclick="PopFldToDrpDwn(this)" class="Btxt4 FltRight WFRECMFLOW FormSave"  href="#">Approval Query</a>
+			  </div>
+
             </div>
          </div>
+		 <input type="text" id="DEVLVL" hidden="hidden" name="DEVLVL" class="form-control ">
          </br>
          <!-- Card body -->
          <div data-for="BankDetail1" class="BankDetail1"> 
@@ -135,7 +140,7 @@ editData.setHistVar(HistVar); %>
             <div class="card-body px-lg-5 pt-0 DYNROW BSbrdlight" >
                </br>
                
-                <form>
+               <form>
                <div class="form-row">
 			   <input type="text" id="HIDNLVL" hidden="hidden" name="HIDNLVL" class="form-control ">
                  <!--  <div class="col Btxt1">
@@ -190,50 +195,86 @@ editData.setHistVar(HistVar); %>
          </div>
 		 
 		 </br>
-		 <div class="form-row">
-		     <div class="HyperControls form-row FltRight SanLink" style="display:none"> 
+		 <div class="form-row" > 
+		     <div class="HyperControls form-row FltRight SanLink" style="display:none"  > 
 			      <a onclick="GentrateSancLetter()" class="Btxt4 FltRight"  href="#">Sanction Letter.pdf</a>
 			  </div>
 		    <div class="col d-flex justify-content-center">
-			  <button type="button" style="dispplay:none" onclick="GentrateSancLetter()" id="GenSan" class="btn btn-Syel  waves-effect waves-light">Generate Sanction Letter</button>
+			  <button type="button" style="display:none" onclick="GentrateSancLetter()" id="GenSan" class="btn btn-Syel  waves-effect waves-light">Generate Sanction Letter</button>
 			  <!--CO SIGN STRT-->
-			  <!--<button type="button" data-aria="LSW_TCHRGHDR|APCH" data-card="0" style="display:none;" id="ApproveRecmnd" onclick="PopFldToDrpDwn(this)" class="btn btn-Syel waves-effect waves-light DECDBTN WFRECMFLOW BTNHIDE">Approve and Recommend</button>-->
+			  <button type="button" data-aria="LSW_TCHRGHDR|APCH" data-card="0" style="display:none;" id="ApproveRecmnd" onclick="PopFldToDrpDwn(this)" class="btn btn-Syel waves-effect waves-light DECDBTN WFRECMFLOW BTNHIDE">Approve and Recommend</button>
 			  <!--CO SIGN END-->
 			   </div>
 		</div>
+		<br>
+		 <div class="form-row"  style="display:none"  >
+		     <div class="HyperControls form-row FltRight SanLink" > 
+			      <a onclick="Gentrateform()" class="Btxt4 FltRight"  href="#">Loan Agreement.pdf</a>
+			  </div>
+		    <div class="col d-flex justify-content-center">
+			  <button type="button" style="display:none" onclick="Gentrateform()" id="GenSan" class="btn btn-Syel  waves-effect waves-light">Generate Sanction Letter</button>
+			  <!--CO SIGN STRT-->
+			  <button type="button" data-aria="LSW_TCHRGHDR|APCH" data-card="0" style="display:none;" id="ApproveRecmnd" onclick="PopFldToDrpDwn(this)" class="btn btn-Syel waves-effect waves-light DECDBTN WFRECMFLOW BTNHIDE">Approve and Recommend</button>
+			  <!--CO SIGN END-->
+			   </div>
+		</div>
+		<br>
+		 <div class="form-row" style="display:none"> <!-- style="display:none"  -->
+		     <div class="HyperControls form-row FltRight SanLink" > 
+			      <a onclick="Gentrateform()" class="Btxt4 FltRight"  href="#">Letter of undertaking.pdf</a>
+			  </div>
+		    <div class="col d-flex justify-content-center">
+			  <button type="button" style="display:none" onclick="Gentrateform()" id="GenSan" class="btn btn-Syel  waves-effect waves-light">Generate Sanction Letter</button>
+			  <!--CO SIGN STRT-->
+			  <button type="button" data-aria="LSW_TCHRGHDR|APCH" data-card="0" style="display:none;" id="ApproveRecmnd" onclick="PopFldToDrpDwn(this)" class="btn btn-Syel waves-effect waves-light DECDBTN WFRECMFLOW BTNHIDE">Approve and Recommend</button>
+			  <!--CO SIGN END-->
+			   </div>
+		</div>
+		<br>
+		 <div class="form-row" style="display:none"> <!-- style="display:none"  -->
+		     <div class="HyperControls form-row FltRight SanLink" > 
+			      <a onclick="Gentrateform()" class="Btxt4 FltRight"  href="#">End use Declaration.pdf</a>
+			  </div>
+		    <div class="col d-flex justify-content-center">
+			  <button type="button" style="display:none" onclick="Gentrateform()" id="GenSan" class="btn btn-Syel  waves-effect waves-light">Generate Sanction Letter</button>
+			  <!--CO SIGN STRT-->
+			  <button type="button" data-aria="LSW_TCHRGHDR|APCH" data-card="0" style="display:none;" id="ApproveRecmnd" onclick="PopFldToDrpDwn(this)" class="btn btn-Syel waves-effect waves-light DECDBTN WFRECMFLOW BTNHIDE">Approve and Recommend</button>
+			  <!--CO SIGN END-->
+			   </div>
+		</div>
+		
+		
+		
+		
          <div class="form-row">
             <div class="col d-flex justify-content-center">
             
              <button type="button" id="REEVAL" data-aria="" style="display:none;" class="btn btn-Syeloutline waves-effect waves-light BTNHIDE ">Re-Evaluate</button>
                <button type="button" id="Save" style="display:none;" data-aria="LSW_TENACHDTL|AEND"  class="btn btn-Syeloutline waves-effect waves-light FormSave BTNHIDE">Save</button>
-               <button type="button" id="Reject" data-aria="LSW_TENACHDTL|AEND" id="Reject" class="btn btn-Syeloutline waves-effect waves-light FormSave WFRECMFLOW BTNHIDE ">Reject</button>
-			    <button type="button" id="QUERYRAISED" style="width:200px" data-aria="LSW_TENACHDTL|AEND" onclick="PopFldToDrpDwn(this)"  class="btn btn-Syeloutline waves-effect waves-light WFRECMFLOW FormSave">Approval Query</button>
-               <button type="button" id="Forward" data-aria="LSW_TENACHDTL|AEND" id="Forward" onclick="PopFldToDrpDwn(this)"  class="btn btn-Syeloutline waves-effect waves-light WFRECMFLOW FormSave">Forward</button>   
-               <button type="button" data-aria="LSW_TENACHDTL|AEND" data-card="2" id="Recommended" onclick="PopFldToDrpDwn(this)" class="btn btn-Syel waves-effect waves-light DECDBTN WFRECMFLOW BTNHIDE">Recommend</button> 
-               <button type="button" data-aria="LSW_TCHRGHDR|APCH" data-card="0" style="display:none;" id="Approve" class="btn btn-Syel waves-effect waves-light DECDBTN WFRECMFLOW BTNHIDE">Approve</button>
-               <button type="button" data-aria="LSW_TCHRGHDR|APCH" data-card="0"  id="SB" onclick="PopFldToDrpDwn(this)" class="btn btn-Syel waves-effect waves-light DECDBTN WFRECMFLOW  BTNHIDE">Send Back</button>
-            </div>
+               <button type="button" id="Reject" data-aria="LSW_TENACHDTL|AEND" id="Reject" class="btn btn-Syeloutline1 waves-effect waves-light FormSave WFRECMFLOW BTNHIDE ">Reject</button>
+			  <!--<button type="button" id="QUERYRAISED"   onclick="PopFldToDrpDwn(this)"  class="btn btn-Syeloutline1 WFRECMFLOW waves-effect waves-light FormSave ">Approval Query</button> -->
+               <button type="button" id="Forward" data-aria="LSW_TENACHDTL|AEND" id="Forward" onclick="PopFldToDrpDwn(this)"  class="btn btn-Syeloutline1 waves-effect waves-light WFRECMFLOW FormSave">Forward and Recommend</button>   
+               <!-- <button type="button" data-aria="LSW_TENACHDTL|AEND" data-card="2" id="Recommended" onclick="PopFldToDrpDwn(this)" class="btn btn-Syel1 waves-effect waves-light DECDBTN WFRECMFLOW BTNHIDE">Recommend</button> -->
+               <button type="button" data-aria="LSW_TCHRGHDR|APCH" data-card="0" style="display:none;" id="Approve" class="btn btn-Syel1 waves-effect waves-light DECDBTN WFRECMFLOW BTNHIDE">Approve</button>
+               <button type="button" data-aria="LSW_TCHRGHDR|APCH" data-card="0" style="display:none;" id="SB" onclick="PopFldToDrpDwn(this)" class="btn btn-Syel1 waves-effect waves-light DECDBTN WFRECMFLOW BTNHIDE">Send Back</button>
+              
+			  <!--<button type="button" data-aria="LSW_TCHRGHDR|APCH" data-card="0"  id="Recredit" class="btn btn-Syeloutline1 waves-effect waves-light UCVWFRECMFLOW">Send to credit</button>
+              <button type="button" data-aria="LSW_TCHRGHDR|APCH" data-card="0"  id="PDisb" onclick="" class="btn btn-Syel1 waves-effect waves-light UCVWFRECMFLOW">Proceed Disbursement</button>-->
+			   
+			</div>
          </div>
       </div>
       <!-- card -->
    </div>
-
-
-   <div class="col-md-4">
-
+<div class="col-md-6">
  <div class="card CardNS">
          </br>
          <!-- Card header -->
-         
-       
-         
           <div class="form-row">
-           <div class="col-md-12 ">
-            
+           <div class="col-md-12">
             <div class="form-row">
                <div class="col Btxt3">View Reports</div>
             </div>
-       
          <!-- Card body -->
          <div data-for="ViewReport" class="ViewReport"> 
          </div>
@@ -246,6 +287,8 @@ editData.setHistVar(HistVar); %>
          <input type="text" id="ARVR_DTMODIFIED" hidden="hidden" name="ARVR_DTMODIFIED" class="form-control ARVRDBfields">
          <input type="text" id="ARVR_MODIFIEDBY" hidden="hidden" name="ARVR_MODIFIEDBY" class="form-control ARVRDBfields">
          <input type="text" id="ARVR_CATEGORY"  hidden="hidden" name="ARVR_CATEGORY" class="form-control ARVRDBfields">
+		 <input type="text" id="ARVR_UNIQID" hidden="hidden" name="ARVR_UNIQID" class="form-control DSVLBL  ARVRDBfields  ">
+		 <input type="text" id="ARVR_ROW" hidden="hidden" name="ARVR_ROW" class="form-control DSVLBL  ARVRDBfields">
             <div class="form-row">
               <div class=" col-md-6">
                 <div class="md-form">
@@ -261,7 +304,7 @@ editData.setHistVar(HistVar); %>
 			  <div class=" col-md-2">
                  <div class="md-form">
                      <input type="text" id="ARVR_VIEWPDF" hidden="hidden" name="ARVR_VIEWPDF" class="form-control DSVLBL  ARVRDBfields  ">
-                     <div class="ARVR_VIEWPDF"><img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW" onclick="GrdDocDwnld(this,$(this).closest('.DYNROW').attr('data-row'))" data-view="ARVR_VIEWPDF|ARVR_FILEPDF" class="rounded" alt="Cinque Terre" width="35" height="25"> </div>
+                     <div class="ARVR_VIEWPDF"><img src="ThemeproLO/Common/Images/Eyeview.png" title="VIEW" onclick="GrdDocDwnld(this,$(this).closest('.DYNROW').attr('data-row'),'ARVR_UNIQID'+$(this).closest('.DYNROW').attr('data-row'),'ARVR_ROW'+$(this).closest('.DYNROW').attr('data-row'))" data-view="ARVR_VIEWPDF|ARVR_FILEPDF" class="rounded" alt="Cinque Terre" width="35" height="25"> </div>
                  </div>
               </div>
             </div>
@@ -269,7 +312,7 @@ editData.setHistVar(HistVar); %>
          </div>
           <div class="md-form">
               <div class="HyperControls"> 
-                  <a type="button" class="Btxt4" data-toggle="modal" name="DocCheck" data-target="#DocCheck" href="#">View Document Checklist</a>
+                  <a type="button" class="Btxt4 DocCheckList" data-toggle="modal" name="DocCheck" data-target="#DocCheck" href="#">View Document Checklist</a>
               </div>
           </div>
             </br>
@@ -298,8 +341,7 @@ editData.setHistVar(HistVar); %>
             </div>
           </div>
          </div> 
-		 
-		  </br>
+		 </br>
             <div class="form-row">
                <div class="col Btxt3">Manual Empowerment</div>
             </div>
@@ -355,7 +397,7 @@ editData.setHistVar(HistVar); %>
   <div class="modal-dialog" style="max-width:800px" role="document">
     <div class="modal-content">
        <div class="modal-header">
-       <div class="Btxt10">APPROVALS</div> 
+       <div class="Btxt10 HEADTEXT">APPROVALS</div> 
    
    <a href="#"><img id="MOBIPOPCLOSE" class="close" data-dismiss="modal" aria-label="Close" src="ThemeproLO/Common/FEP/images/Close1.png" alt="DashSearch"></img></a>      
       </div>  
@@ -368,7 +410,7 @@ editData.setHistVar(HistVar); %>
         	</br>
            <div class="form-row">
            		 <div class="col">
-           	     <div class="md-form">
+           	     <div class="md-form" >
                     <select class="mdb-select md-form colorful-select dropdown-primary" id="RECMTO" name="RECMTO">
 				   <option value="" disabled>Select</option>
                   
@@ -380,11 +422,12 @@ editData.setHistVar(HistVar); %>
            		    <div class="form-row">
            		 	 <div class="col">
            	     <div class="md-form" style="display:none">
-       <textarea id="RDESC" name="RDESC" class="form-control NoSpecialChar AAPRDBfields btxt24"   style="height:200px"></textarea>
+       <textarea id="RDESC" name="RDESC" class="form-control  AAPRDBfields btxt24"   style="height:200px"></textarea>
 				<!-- <label class="mdb-main-label BTxt9 active ">Remarks<span class="MndtryAstr"></span></label> -->
                   </div>
-				  
-				    <div class="adjoined-bottom">
+           		 
+           		 
+           		 <div class="adjoined-bottom">
 		      <div class="grid-container">
 			  <div class="grid-width-100">
 		
@@ -398,12 +441,6 @@ editData.setHistVar(HistVar); %>
 			
 		</div>
 	</div> 
-			
-				  
-				  
-           		 </div>
-           		 
-           		 
            </div>
       <!-- grid  show -->
 
@@ -420,7 +457,53 @@ editData.setHistVar(HistVar); %>
     </div>
   </div>
   </div>
+  </div>
+  
+  
+  <a type="button" id="GetRemarks" class="btn btn-floating btn-large red" style="display:none" data-toggle="modal" data-target="#GetRemarksModal">
+ <i class="fa fa-plus"></i></a>
+                             
+<div class="modal fade" id="GetRemarksModal" tabindex="-1" role="dialog" aria-labelledby="GetRemarksModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" style="max-width:800px" role="document">
+    <div class="modal-content">
+       <div class="modal-header">
+       <div class="Btxt10 HEADTEXT">REMARKS</div> 
+   
+   <a href="#"><img id="MOBIPOPCLOSE" class="close" data-dismiss="modal" aria-label="Close" src="ThemeproLO/Common/FEP/images/Close1.png" alt="DashSearch"></img></a>      
+      </div>  
+      <div class="modal-body">
+         <div class="">
+    <!-- Card body -->
+     <div class="">
+         <form >
+        	</br>
+        	</br>
+           		    <div class="form-row">
+           		 	 <div class="col">
+           	     <div class="md-form">
+       <textarea id="INPRINCRDESC" name="INPRINCRDESC" class="form-control  btxt24"   style="height:200px"></textarea>
+				<!-- <label class="mdb-main-label BTxt9 active ">Remarks<span class="MndtryAstr"></span></label> -->
+                  </div>
+           		 
+           </div>
+      <!-- grid  show -->
 
+    <!--Main layout-->
+        </form>
+      </div>
+    </div> 
+      </div>
+      <div class="modal-footer align-middle">
+
+        <button type="button" id="INPRINCRDESCSUBMIT"  class="btn btn-yel Btxt2">Confirm</button>
+        
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  
 <div class="modal fade" id="DocCheck" tabindex="-1" role="dialog" aria-labelledby="DocCheckLabel"
   aria-hidden="true">
     <div class="modal-dialog" style="max-width:1250px" role="document">

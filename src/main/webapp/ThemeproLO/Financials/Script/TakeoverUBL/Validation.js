@@ -13,7 +13,7 @@ function Checkinst(){
 	$("#OUBL_PROTENURE").val($(check).find ('TENTURE').text());
 }
 function GetBusiness(){
-	var xml=UI_getdata("TAKEOVERBUSI","","","","","LSW_SGETFINANCIALVAL");
+	var xml=UI_getdata("TYPEBUSINESS1","","","","","LSW_SGETFINANCIALVAL");
     $("#OUBL_TYPOBUSS").html("");
 	$("#OUBL_TYPOBUSS").append($(xml).find("RESULT").html());
 	$("#OUBL_TYPOBUSS").material_select(); 
@@ -21,16 +21,18 @@ function GetBusiness(){
 }
  function Profit()  
 {
+//Profit %
 var Tybus=$("#OUBL_TYPOBUSS").val();
-var result=UI_getdata("TAKEOVERVALUE",Tybus,"","","","LSW_SGETFINANCIALVAL");
-$("#OUBL_PROFIT").val($(result).find("RESULT").text());
+var result=UI_getdata("TYPEBUSINESS1",Tybus,"","","","LSW_SGETFINANCIALVAL");
+$("#OUBL_PROFIT").val($(result).find("MARGIN").text());
  $("#OUBL_PROFIT").next().addClass('active'); 
 }
 
 $(document).on("blur", ".Calculate", function() {
-
+//Yearly Profit
 var year=$("#OUBL_YEARSALES").val().replace(/,/g,'');
 var pro=$("#OUBL_PROFIT").val().replace(/,/g,'');
+var FIXEDCOST=$("#OUBL_FIXEDCOST").val().replace(/,/g,'');
 if(pro=='')
 {
 	pro=0;
@@ -39,23 +41,49 @@ if(year=='')
 {
 	year=0;
 }
-var yrpro=parseFloat(year)*parseFloat(pro)/100;
-yrpro=CURINRCommaSep(parseFloat(yrpro).toFixed(0));
-$("#OUBL_YEARPROFIT").val(yrpro);
+var yrpro=(parseFloat(pro)/100) * parseFloat(year)-parseFloat(FIXEDCOST);
+//yrpro=CURINRCommaSep(parseFloat(yrpro).toFixed(0));
+if(isNaN(yrpro))
+	{
+		yrpro=0;
+	}
+$("#OUBL_YEARPROFIT").val(CURINRCommaSep(parseFloat(yrpro).toFixed(0)));
 $("#OUBL_YEARPROFIT").next().addClass('active');
 
 })
 
 $(document).on("blur", ".Division", function() {
+
+//Monthly Profit
 	var mul=$("#OUBL_YEARPROFIT").val().replace(/,/g,'');
-	var foir=60;
+	if(mul=='')
+	{
+	mul=0;
+	}
 	var abc=parseFloat(mul)/12;
-	abc=CURINRCommaSep(parseFloat(abc).toFixed(0));
-	$("#OUBL_MONTHPROFIT").val(abc);
-	$("#OUBL_FOIR").val(foir);
-	$("#OUBL_FOIR").next().addClass('active');
+	//abc=CURINRCommaSep(parseFloat(abc).toFixed(0));
+	if(isNaN(abc))
+	{
+		abc=0;
+	}
+	$("#OUBL_MONTHPROFIT").val(CURINRCommaSep(parseFloat(abc).toFixed(0)));
 	$("#OUBL_MONTHPROFIT").next().addClass('active');
 })
+//FOIR	
+function FOIR()
+{
+	var OWNHOUSE=$("input[name='OUBL_OWNHOUSE']:checked"). val()
+	if(OWNHOUSE=="Yes")
+	{
+	var foir=70;
+	}
+	else
+	{
+	var foir=60;
+	}
+	$("#OUBL_FOIR").val(foir);
+	$("#OUBL_FOIR").next().addClass('active');
+}
 
 $(document).on("blur", ".Instant", function() {
 
@@ -70,8 +98,12 @@ if(law=='')
 	law=0;
 }
 var mas=parseFloat(test)*parseFloat(law)/100;
-mas=CURINRCommaSep(parseFloat(mas).toFixed(0));
-$("#OUBL_PROAVAEMI").val(mas);
+//mas=CURINRCommaSep(parseFloat(mas).toFixed(0));
+if(isNaN(mas))
+	{
+		mas=0;
+	}
+$("#OUBL_PROAVAEMI").val(CURINRCommaSep(parseFloat(mas).toFixed(0)));
 $("#OUBL_PROAVAEMI").next().addClass('active');
 })
 
@@ -88,9 +120,13 @@ if(leng=='')
 	leng=0;
 }
 var win=parseFloat(line)-parseFloat(leng);
-win=CURINRCommaSep(parseFloat(win).toFixed(0));
-$("#OUBL_PROEXISTEMI").val(win);
- $("#OUBL_PROEXISTEMI").next().addClass('active');
+//win=CURINRCommaSep(parseFloat(win).toFixed(0));
+if(isNaN(win))
+	{
+		win=0;
+	}
+$("#OUBL_PROEXISTEMI").val(CURINRCommaSep(parseFloat(win).toFixed(0)));
+$("#OUBL_PROEXISTEMI").next().addClass('active');
  
  //EMI PER LAKH
  
@@ -136,7 +172,7 @@ $("#OUBL_PROEXISTEMI").val(win);
 	 
 	ROI=$("#OUBL_PROINTRT").val();
 	Tenur=$("#OUBL_PROTENURE").val();
-	 var result=UI_getdata(ROI,Tenur,LnAmt,"","","LSW_SGETEMI_DATA");
+	 var result=UI_getdata(ROI,Tenur,LnAmt,$("#PrcsID").val()+'|'+$(".FormPageMultiTab li.active").attr("id"),"","LSW_SGETEMI_DATA");
 	 var EMI=$(result).find("EMI").text();
 	 	if(EMI=='')
 	{
@@ -152,11 +188,32 @@ $("#OUBL_PROEXISTEMI").val(win);
 	//ELIGIBILITY
 	
 $(document).on("blur", ".ELIGI", function() {
+
 	var j13=$("#OUBL_PROEXISTEMI").val().replace(/,/g,'');
 	var j14=$("#OUBL_EMILAKH").val().replace(/,/g,'');
 	var j16=$("#OUBL_LOAMORDISB").val().replace(/,/g,'');
+	if(j13=='')
+	{
+		j13=0;
+	}
+	if(j13=='')
+	{
+		j13=0;
+	}
+	if(j13=='')
+	{
+		j13=0;
+	}
 	var j13Dj14=parseFloat(j13)/parseFloat(j14)*100000;
+	if(isNaN(j13Dj14))
+		{
+			j13Dj14=0;
+		}
 	var j16M=1.5*parseFloat(j16);
+	if(isNaN(j16M))
+		{
+			j16M=0;
+		}
 	var minj13j16=Math.min((j13Dj14),(j16M));
 	if(minj13j16>=100000)
 	{
@@ -167,7 +224,7 @@ $(document).on("blur", ".ELIGI", function() {
 		var result=0;
 	}
 	var end=Math.min((result),(500000));
-
+	end=Math.round(end/1000) * 1000
 	$("#OUBL_MAXLOAELY").val(CURINRCommaSep(parseFloat(end).toFixed(0)));
 	$("#OUBL_MAXLOAELY").next().addClass('active'); 
 })

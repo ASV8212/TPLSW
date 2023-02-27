@@ -20,7 +20,9 @@ $(document).ready(function () {
 	 $("#BRCR_ZONE").append($(Branch).find("ZONE").html());	
     $("#BRCR_REGION").append($(Branch).find("REGION").html());	
     $("#BRCR_AREA").append($(Branch).find("RESULT").html());	
-	$("#BRCR_PROFITCEN").append($(Branch).find("PROFIT").html());	
+	$("#BRCR_PROFITCEN").append($(Branch).find("PROFIT").html());
+	$("#BRCR_SUBREGION").append($(Branch).find("NEWREGION").html());
+	
 	
 	    if($("#PrMs3").val()=="NEW")
 	  {
@@ -33,6 +35,8 @@ $(document).ready(function () {
    $("#BRCR_ACTIVEDT").val(Today)
    $("#BRCR_ACTIVEDT").attr("disabled",true)
    $("#BRCR_ACTIVEDT").next().addClass('active');
+   
+   $("#BRCR_FLAG").val('New')
 	  }
 	  
 	  
@@ -62,9 +66,23 @@ $(document).ready(function () {
      if($("#PrMs3").val()=="EDIT")
 	  {
 	  $("#BRCR_BRANCHID").attr("disabled",true)
+	  $("#BRCR_DESCRIPTION").attr("disabled",true)
+	  
 	 //  $("#BRCR_BRANCHNAME").attr("disabled",true)
-	
       }
+	  
+	  if($("#BRCR_BRANCHID").val()!="")
+	  {
+       $("#BRCR_BRANCHID").attr("disabled",true)
+      }
+	  
+	  
+	  if($("#BRCR_DESCRIPTION").val()!="")
+	  {
+       $("#BRCR_DESCRIPTION").attr("disabled",true)
+      }
+	  
+	  
 	  
 	  if(activityname=="Checker")
 	 {
@@ -92,7 +110,7 @@ $(document).ready(function () {
 				}
 				
 				
-				var VALIDATIONCHK=UI_getdata('Branch Creation',$("#BRCR_UNIQID").val(),$("#BRCR_PRCSID").val(),"","","LSW_SCHKFILEINFLOW")
+			var VALIDATIONCHK=UI_getdata('Branch Creation',$("#BRCR_UNIQID").val(),$("#BRCR_PRCSID").val(),"","","LSW_SCHKFILEINFLOW")
 			var RESULT=$(VALIDATIONCHK).find('RESULT').text();
 			if(RESULT!="SUCCESS")
 			{
@@ -118,7 +136,9 @@ $(document).ready(function () {
 		    }
 		if($(this).text() == "Approve"||$(this).text() == "Submit")
 		{
-			 var xml=UI_getdata($("#BRCR_BRANCHID").val(),$("#BRCR_MOBILE").val(),$("#PrMs3").val(),"","","LSW_SCHKBRDUPDATA")
+			
+			
+			 var xml=UI_getdata($("#BRCR_BRANCHID").val(),$("#BRCR_MOBILE").val(),$("#PrMs3").val(),$("#BRCR_FLAG").val(),$("#BRCR_DESCRIPTION").val(),"LSW_SCHKBRDUPDATA")
 					
 			 var Collection=$(xml).find('RESULT').text()
 					
@@ -159,7 +179,7 @@ $(document).ready(function () {
 			
 			if($(this).text() == "Approve")
             {
-             var LMSBRANCREATION = UI_getdata($("#BRCR_BRANCHID").val(),"",$("#BRCR_BRANCHNAME").val(),$("#BRCR_BRANCHNAME").val(),$("#BRCR_STATE").val(),"LSW_SBRANCHCREALMS");				
+             var LMSBRANCREATION = UI_getdata($("#BRCR_BRANCHID").val(),"",$("#BRCR_BRANCHNAME").val(),$("#BRCR_DESCRIPTION").val(),$("#BRCR_STATE").val(),"LSW_SBRANCHCREALMS");				
 			}
 			
 		   WFComplete_V1 ($("#ActvID").val(),$(WFOPT).find("WFVAR").text(),"","DirDepartmentMST");

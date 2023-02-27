@@ -37,7 +37,7 @@
                 </div>
 				<div class="col-md-4">
 				<div class="md-form">
-                  <select class="mdb-select md-form colorful-select dropdown-primary" id="PrdName" name="PrdName">
+                  <select class="mdb-select md-form colorful-select dropdown-primary ClearFielddrop" id="PrdName" name="PrdName">
                         <!-- <option value="" selected>--Select--</option>  s-->
                          <option value="HE01">Home Equity</option>
 						  <option value="HE02">Home Equity - New Product</option>
@@ -48,7 +48,7 @@
 				<div class="col-md-4">
                   <!-- Last name -->
                   <div class="md-form">
-                    <input type="text" id="ApplNo" name="ApplNo"  class="form-control IsNumberFields NoSpecialChar">
+                    <input type="text" id="ApplNo" name="ApplNo"  class="form-control  NoSpecialChar ClearField">
                     <label for="ApplNo" class="">Application No<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
@@ -56,7 +56,7 @@
 				<div class="col-md-4">
                   <!-- Last name -->
                   <div class="md-form">
-                    <input type="text" id="AggrNo" name="AggrNo"  class="form-control IsUpprCse NoSpecialChar">
+                    <input type="text" id="AggrNo" name="AggrNo"  class="form-control IsUpprCse NoSpecialChar ClearField">
                     <label for="AggrNo" class="">Agreement No<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
@@ -65,25 +65,25 @@
 			  <div class="col-md-4">
                   <!-- Last name -->
                   <div class="md-form">
-                    <input type="text" id="Name" name="Name"  class="form-control IsUpprCse IsAlphaFields  NoSpecialChar">
+                    <input type="text" id="Name" name="Name"  class="form-control IsUpprCse IsAlphaFields  NoSpecialChar ClearField">
                     <label for="Name" class="">Name<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
 				<div class="col-md-4">
 				<div class="md-form">
-                    <select class="mdb-select md-form colorful-select dropdown-primary"    id="CusType" name="CusType">
+                    <select class="mdb-select md-form colorful-select dropdown-primary ClearFielddrop"    id="CusType" name="CusType">
                         <!-- <option value="" selected>--Select--</option>  s-->
                          <option value="Applicant">Applicant</option>
 						 <option value="Co Applicant">Co Applicant</option>
 						 <option value="Both">Both</option>
                      </select>
-                        <label class="mdb-main-label BTxt9">Customer Type<span class="MndtryAstr">*</span></label>
+                        <label class="mdb-main-label BTxt9 ">Customer Type<span class="MndtryAstr">*</span></label>
                 </div>
 				</div>
                 <div class="col-md-4">
                   <!-- Last name -->
                   <div class="md-form">
-                    <input type="text" id="PAN" name="PAN" maxlength="10" class="form-control IsUpprCse NoSpecialChar">
+                    <input type="text" id="PAN" name="PAN" maxlength="10" class="form-control IsUpprCse NoSpecialChar ClearField">
                     <label for="PAN" class="">PAN<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
@@ -92,7 +92,7 @@
 			    <div class="col-md-4">
                   <!-- Last name -->
                   <div class="md-form">
-                    <input type="text" id="DOB" name="DOB" maxlength="10" class="form-control IsNumberFields NoSpecialChar ISDatefield DataNormal">
+                    <input type="text" id="DOB" name="DOB" maxlength="10" class="form-control IsNumberFields NoSpecialChar ISDatefield DataNormal ClearField">
                     <label for="DOB" class="">DOB<span class="MndtryAstr"></span></label>
 					<img src="ThemeproLO/Common/Images/calendar.png" class="FieldIcon datepicker picker__input" id="P1631730378" aria-haspopup="true" aria-expanded="false" aria-readonly="false" aria-owns="P1631730378_root">
                   </div>
@@ -100,18 +100,21 @@
 			    <div class="col-md-4">
                   <!-- Last name -->
                   <div class="md-form">
-                    <input type="text" id="MOB" name="MOB" maxlength="10" class="form-control IsNumberFields NoSpecialChar">
+                    <input type="text" id="MOB" name="MOB" maxlength="10" class="form-control IsNumberFields NoSpecialChar ClearField">
                     <label for="MOB" class="">Mobile Number<span class="MndtryAstr"></span></label>
                   </div>
                 </div>
 			     <div class="col-md-4">
                   <div class="md-form">
-                    <input type="text" id="CKYC" name="CKYC" maxlength="10" class="form-control NoSpecialChar">
+                    <input type="text" id="CKYC" name="CKYC" maxlength="10" class="form-control NoSpecialChar ClearField">
                     <label for="CKYC" class="">CKYC<span class="MndtryAstr"></span></label>
                   </div>
                  </div>
                   <div class="col-md-4">
 				    <button type="button" id="Search" class="btn btn-Syeloutline waves-effect waves-light">Search</button>
+				</div>
+				<div class="col-md-4">
+				    <button type="button" id="Clear" onclick="ClearVal()" class="btn btn-Syeloutline waves-effect waves-light">Clear</button>
 				</div>
 		    </div>
  <!--  <div class="row">
@@ -158,9 +161,9 @@
                                 <!--Main First row-->
                                 <div class="row m-b-0">
 <div class="col-md-12">
-  <input type="button" style="display:none" class="DashTrg" onclick="FncallMyAppl(this,'Table3',{spname:'LSW_SENQUIRYVIEWTAB',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#LogUsr').val(),brid:'Loan|'+$('#FromDate').val()+'|'+$('#ToDate').val()+'|||||||',MnuId:'Load'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||3,10','ENQUIRTYTAB');" id="BTNENQUIRYTAB" name="BTNENQUIRYTAB" />
+  <input type="button" style="display:none" class="DashTrg" onclick="FncallMyAppl(this,'Table3',{spname:'LSW_SENQUIRYVIEWTAB',DBSrc:'currentProfile',TableHeader:'card-headerGridAsh',Mode:'',Param:$('#LogUsr').val(),brid:'Loan|'+$('#FromDate').val()+'|'+$('#ToDate').val()+'|||||||'+$('#VERTICAL').val(),MnuId:'Load'},{0:$('#LOCC_BrID'),1:$('#LOCC_BrName')},'||3,10','ENQUIRTYTAB');" id="BTNENQUIRYTAB" name="BTNENQUIRYTAB" />
 
-    <table cellpadding="0" cellspacing="0" border="0" style="width: 80%" class="display" id="Table3">
+    <table cellpadding="0" cellspacing="0" border="0" style="width: 80%; zoom:80%;"  class="display" id="Table3">
     </table>
     
     </div>

@@ -53,7 +53,7 @@ $("#AEPM_SCHEMENAME").attr("value",$(".FormPageMultiTab li.active").text());
             var MndtryChk = ChkMandatoryFlds(prfx + "Mndtry");
             if (MndtryChk == "Mandatory") 
             {
-                alert("Fill the Mandatory Fields");
+                alert("Fill the Mandatory Fields / Document(s)");
                 return false;
             }
     

@@ -3,24 +3,32 @@ $(document).ready(function() {
 
     //$($('.AFormaccordion')[0]).click();
     //$("#BKDT_CUSID").val($(".FormPageMultiTab li.active").attr("id"));
+	
 	var op = UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETACCNTNOBKREPAY");
 	var CusName=$(op).find('RESULT').html();
 	$("#AEND_ACCNTNO").append(CusName)
 	
+	$("#AEND_LOANID").attr("value",$(".FormPageMultiTab li.active").attr("id"));
+
+    $("#AEND_PRCSID").attr("value",$("#PrcsID").val())
 	
-	//$("#AEND_ACCNTNO").materialSelect();
-	
-    FormDataFromDB("LSW_TENACHDTL", "AEND_", "AENDDBfields", "");
+    FormDataFromDB("LSW_TENACHDTL", "AEND_", "AENDDBfields", $("#AEND_LOANID").val()+"|AEND_LOANID");
 
     /**Grid Trigger Start **/
     //$("#BTNBUSNSDTL").click();
     // $("#BTNEMPOWERMNT").click();
     /**Grid Trigger End **/
-   RECOMMENDHIDE()
- 
-  
+ RECOMMENDHIDE()
+LoadENACHStatus();
+var xmlop=UI_getdata($("#PrcsID").val(),$("#AEND_LOANID").val(),"","","","LSW_SCHECKLOANTY")
+	var ExVal = $("#AEND_CHNLTYP").val();
+	$("#AEND_CHNLTYP").html("");
+	$("#AEND_CHNLTYP").material_select("destroy");
+	$("#AEND_CHNLTYP").append($(xmlop).find("DROWDOWN").html());
+	$("#AEND_CHNLTYP option[value='"+ExVal+"']").attr("selected","selected")
+	$("#AEND_CHNLTYP").material_select();
 	
-     if($("#AEND_ENACHVERIFY").val()=="Success")
+if($("#AEND_ENACHVERIFY").val()=="Success")
 	 {
 		 $("[data-Validatedata=AEND_ENACHVERIFY]").text('Re-Initiate E-NACH');
 	     $("[data-Validatedata=AEND_ENACHVERIFY]").addClass("btn-GrnInplain");	
@@ -35,7 +43,7 @@ $(document).ready(function() {
 	     $("[data-Validatedata=AEND_ENACHVERIFY]").addClass("btn-RedInplain");  
 	 }
 	 
-	  var XML = UI_getdata($("#PrcsID").val(),"","","","","LSW_SGETENCHBNKDETL");
+	var XML = UI_getdata($("#PrcsID").val(),$("#AEND_LOANID").val(),"","","","LSW_SGETENCHBNKDETL");
 	
 	var Acct1=$("#AEND_ACCNTNO").val()
 	var Acct2=$(XML).find('ACCTNO').text()
@@ -45,6 +53,7 @@ $(document).ready(function() {
 	    $("#AEND_ACCNTHLDRNAME").val($(XML).find('ACTHOLDNAME').text())
 	    $("#AEND_BANKNAME").val($(XML).find('BNKNAME').text())
 	    $("#AEND_ACCNTNO").val($(XML).find('ACCTNO').text())
+		$("#AEND_EMI").val(CURCommaSep($(XML).find('EMI').text()))
         $('#AEND_ACCNTNO').material_select();
 	
 	   $("[data-Validatedata=AEND_ENACHVERIFY]").text('Initiate E-NACH');
@@ -52,16 +61,24 @@ $(document).ready(function() {
 	   $("[data-Validatedata=AEND_ENACHVERIFY]").addClass("btn-yelInplain");
 	   $("[data-Validatedata=AEND_ENACHVERIFY]").removeClass("btn-RedInplain"); 
 	}
+	
+	
+	
 	 
 	 $("#AEND_SATDATE").val($("#DMY7").val().split('|')[1])
 
 	 //$("#AEND_ENDDATE").val($("#DMY7").val().split('|')[1].setMonth($("#DMY7").val().split('|')[1].getMonth() + $("#DMY3").val().split('|')[4]*12 ))
 	 
 	 var EMI=$("#DMY3").val().split('|')[6]
-	 
-	 $("#AEND_EMI").val(CURCommaSep(EMI))
-	 $("#AEND_REPAYMONTH").val($("#DMY3").val().split('|')[4]*12)
+	// $("#AEND_EMI").val(CURCommaSep(EMI))
+	// var LOANSANCTION=$("#DMY3").val().split('|')[3]
+	var XML=UI_getdata($("#PrcsID").val(),$("#AEND_LOANID").val(),"","","","LSW_SGETENCHBNKDETL");
+	var LOANSANCTION=$(XML).find('LNAMT').text()
+	 $("#AEND_LOANSANC").val(CURCommaSep(LOANSANCTION))
+	// $("#AEND_REPAYMONTH").val($("#DMY3").val().split('|')[4]*12)
+	  $("#AEND_REPAYMONTH").val($("#DMY3").val().split('|')[4])
 addMonths()
+
 
     $(document).on("click", ".FormSave", function() {
 
@@ -73,7 +90,7 @@ addMonths()
         if ($(this).text() == "Submit") {
             var MndtryChk = ChkMandatoryFlds(prfx + "Mndtry");
             if (MndtryChk == "Mandatory") {
-                alert("Fill the Mandatory Fields");
+                alert("Fill the Mandatory Fields / Document(s)");
                 return false;
             }
         }
@@ -87,8 +104,8 @@ addMonths()
         /*$("#BKDT_BNKREFNAME").val($(".FormPageMultiTab li.active a div").text())*/
 
        
-        var CHKresult=FormDataToDB(tbl, prfx, '');
-
+       // var CHKresult=FormDataToDB(tbl, prfx, '');
+        var CHKresult=FormDataToDB(tbl, prfx, $("#AEND_PRCSID").val()+"|"+$("#"+DATA).val()+"|" + DATA);
         
         if(CHKresult == "Fail")
    		{
@@ -99,7 +116,7 @@ addMonths()
         // Tab Header Change End
 
 
-        if ($(this).text() == "Submit") {
+        if ($(this).text() == "Save & Next") {
             NXTTAB(this);
         }
     });
